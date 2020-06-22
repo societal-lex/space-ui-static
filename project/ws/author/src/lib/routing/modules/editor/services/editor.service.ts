@@ -19,19 +19,26 @@ import { NSApiRequest } from '@ws/author/src/lib/interface/apiRequest'
 import { NSContent } from '@ws/author/src/lib/interface/content'
 import { AccessControlService } from '@ws/author/src/lib/modules/shared/services/access-control.service'
 import { ApiService } from '@ws/author/src/lib/modules/shared/services/api.service'
-import { Observable, of } from 'rxjs'
-import { map, mergeMap, catchError } from 'rxjs/operators'
+import { Observable, of, forkJoin } from 'rxjs'
+import { map, mergeMap, catchError, switchMap, filter } from 'rxjs/operators'
 import { CONTENT_READ_MULTIPLE_HIERARCHY } from './../../../../constants/apiEndpoints'
 import { ISearchContent, ISearchResult } from '../../../../interface/search'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable()
 export class EditorService {
+
+  detail = {
+    endpoint : `/apis/protected/v8/user/details?ts=${Date.now()}`,
+  }
+
   accessPath: string[] = []
   constructor(
     private apiService: ApiService,
     private accessService: AccessControlService,
     private userAutoComplete: UserAutocompleteService,
     private configSvc: ConfigurationsService,
+    private readonly http: HttpClient,
   ) { }
 
   create(meta: NSApiRequest.ICreateMetaRequestGeneral): Observable<string> {
@@ -118,6 +125,86 @@ export class EditorService {
       }),
       catchError(_ => of([])),
     )
+  }
+
+  generateDetailsRequests(originalData: object[]) {
+    if (originalData.length) {
+      return originalData.map((user: any) => {
+        const headers = new HttpHeaders({
+          wid: user.wid,
+        })
+        return this.http.get<any>(this.detail.endpoint, {
+          headers,
+        }).pipe(map((httpRes: object) => {
+          return {
+            ...httpRes,
+            wid: user.wid,
+            email: user.email,
+          }
+        }))
+      })
+    }
+    // tslint:disable-next-line: no-console
+    console.log('did not recieve anything ')
+    return of([])
+  }
+
+  filterPublishers = () => (source: Observable<any>) => {
+    return new Observable(observer => {
+      return source.pipe(
+        switchMap((originalData: any) =>  {
+          const roleRequests = this.generateDetailsRequests(originalData)
+          return forkJoin(roleRequests).pipe(
+            map((rolesResponse: object[]) => {
+              return rolesResponse.filter((roleObj: any) => {
+                return roleObj.hasOwnProperty('roles') && Array.isArray(roleObj.roles) && roleObj.roles.includes('publisher')
+              })
+            })
+            )
+        })
+      ).subscribe({
+          next(data) {
+            observer.next([...data])
+          },
+          error(e) {
+            observer.error(e)
+          },
+          complete() {
+            observer.complete()
+          }
+      })
+    })
+  }
+
+  parseDetailsOfPublishers(combinedDetails: any[]) {
+    console.log('total users are ', combinedDetails)
+    const allUsers = combinedDetails[0] // contains other meta of user
+        const publisherRoleUsers = combinedDetails[1]  // contains roles of user
+        return publisherRoleUsers.map((publisher: any) => {
+          const foundUser = allUsers.find((user: any) => user.wid === publisher.wid)
+          if (foundUser) {
+            return {
+            displayName: `${foundUser.first_name || ''} ${foundUser.last_name || ''}`,
+            id: foundUser.wid,
+            mail: foundUser.email,
+            }
+          } return null
+        })
+  }
+
+  fetchPublishersList(data: string): Observable<any> {
+    const allMatchingUsers$ = this.userAutoComplete.fetchAutoComplete(data)
+    const filteredPublishersDetails$ = allMatchingUsers$.pipe(
+      this.filterPublishers(),
+      catchError(_ => of([]))
+      )
+    const finalPublishers$ = forkJoin([allMatchingUsers$, filteredPublishersDetails$]).pipe(
+      map((combinedDetails: any[]) => {
+        return this.parseDetailsOfPublishers(combinedDetails)
+      }),
+      filter((finalData: object[]) => finalData !== null)
+    )
+    return finalPublishers$
   }
 
   searchSkills(query: string): Observable<any> {

@@ -44,6 +44,19 @@ import {
   map,
 } from 'rxjs/operators'
 import { FeedbackFormComponent } from '@ws/author/src/lib/modules/shared/components/feedback-form/feedback-form.component'
+import { LicenseInfoDisplayDialogComponent } from '../license-info-display-dialog/license-info-display-dialog.component'
+
+interface ILicenseMetaInfo {
+  parent: string[],
+  details: string,
+  name: string,
+  link: string,
+}
+
+interface ICurrentLicenseDialogInfo {
+  details: string,
+  name: string
+}
 
 @Component({
   selector: 'ws-auth-edit-meta',
@@ -95,6 +108,10 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   hours = 0
   minutes = 0
   seconds = 0
+  technologyAssetFormEnabled = false
+  connectionAssetFormEnabled = false
+  knowledgeAssetFormEnabled = false
+  currentLicenseList: [string] = ['']
   @Input() parentContent: string | null = null
   routerSubscription!: Subscription
   imageTypes = IMAGE_SUPPORT_TYPES
@@ -103,6 +120,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   complexityLevelList: string[] = []
   isEditEnabled = false
   minDate = new Date(new Date().setDate(new Date().getDate() + 1))
+  licenseMetaList: ILicenseMetaInfo[] | any[] = []
+  currentLicenseData: ICurrentLicenseDialogInfo[] | undefined = undefined
 
   @ViewChild('creatorContactsView', { static: false }) creatorContactsView!: ElementRef
   @ViewChild('trackContactsView', { static: false }) trackContactsView!: ElementRef
@@ -153,6 +172,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.audienceList = this.ordinals.audience
     this.jobProfileList = this.ordinals.jobProfile
     this.complexityLevelList = this.ordinals.audience
+    this.processLicenseDetails()
 
     this.creatorContactsCtrl = new FormControl()
     this.trackContactsCtrl = new FormControl()
@@ -272,7 +292,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           if (typeof value === 'string' && value) {
             this.employeeList = <any[]>[]
             this.fetchTagsStatus = 'fetching'
-            return this.editorService.fetchEmployeeList(value)
+            return this.editorService.fetchPublishersList(value)
           }
           return of([])
         }),
@@ -385,6 +405,12 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       distinctUntilChanged(),
       switchMap(value => this.interestSvc.fetchAutocompleteInterestsV2(value)),
     )
+  }
+
+  processLicenseDetails() {
+    if (Array.isArray(this.authInitService.licenseMeta)) {
+      this.licenseMetaList = [...this.authInitService.licenseMeta] as never[]
+    }
   }
 
   optionSelected(keyword: string) {
@@ -613,7 +639,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   storeData() {
-    const originalMeta = this.contentService.getOriginalMeta(this.contentMeta.identifier)
+    try {
+      const originalMeta = this.contentService.getOriginalMeta(this.contentMeta.identifier)
     if (originalMeta && this.isEditEnabled) {
       const expiryDate = this.contentForm.value.expiryDate
       const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
@@ -647,6 +674,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       })
       this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
+    }
+    } catch (e) {
+      console.error('Error occured while saving data ', e)
     }
   }
 
@@ -844,6 +874,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   changeToDefaultImg($event: any) {
+    // console.log($event.target.value)
     $event.target.src = this.configSvc.instanceConfig
       ? this.configSvc.instanceConfig.logos.defaultContent
       : ''
@@ -1000,6 +1031,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       accessibility: [],
       appIcon: [],
       audience: [],
+      assetType: [],
       body: [],
       catalogPaths: [],
       category: [],
@@ -1007,6 +1039,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       certificationList: [],
       certificationUrl: [],
       clients: [],
+      codebase: [],
       complexityLevel: [],
       concepts: [],
       contentIdAtSource: [],
@@ -1015,14 +1048,17 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       customClassifiers: [],
       description: [],
       dimension: [],
+      documentation: [],
       duration: [],
       editors: [],
+      email_id: [],
       equivalentCertifications: [],
       expiryDate: [],
       exclusiveContent: [],
       idealScreenSize: [],
       introductoryVideo: [],
       introductoryVideoIcon: [],
+      interface_api: [],
       fileType: [],
       jobProfile: [],
       kArtifacts: [],
@@ -1030,6 +1066,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       learningMode: [],
       learningObjective: [],
       learningTrack: [],
+      license: [],
       locale: [],
       mimeType: [],
       name: [],
@@ -1047,12 +1084,14 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       projectCode: [],
       publicationId: [],
       publisherDetails: [],
+      profile_link: [],
       references: [],
       region: [],
       registrationInstructions: [],
       resourceCategory: [],
       resourceType: [],
       sampleCertificates: [],
+      sandbox: [],
       skills: [],
       softwareRequirements: [],
       sourceName: [],
@@ -1065,16 +1104,36 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       thumbnail: [],
       trackContacts: [],
       transcoding: [],
+      theme: [],
       unit: [],
       verifiers: [],
       visibility: [],
       isSearchable: [],
     })
 
+    this.contentForm.controls.assetType.valueChanges.subscribe(() => {
+      this.updateLicenseType(this.contentForm.controls.assetType.value)
+      this.updateLicenceInfoTable(this.contentForm.controls.assetType.value)
+      this.enableSpecificAssetForm(this.contentForm.controls.assetType.value)
+    })
+
     this.contentForm.valueChanges.pipe(debounceTime(500)).subscribe(() => {
       if (this.canUpdate) {
         this.storeData()
       }
+    })
+
+    this.contentForm.controls.theme.valueChanges.subscribe(() => {
+      console.log('new data is ', this.contentForm.controls.theme.value)
+      if (this.contentForm.controls.theme.value.includes(null)) {
+        this.contentForm.controls.theme.setValue([])
+        console.log('post change data is ', this.contentForm.controls.theme.value)
+      }
+    })
+
+    // to set the body same as description entered
+    this.contentForm.controls.description.valueChanges.subscribe(_newDescription => {
+      this.contentForm.controls.body.setValue(_newDescription)
     })
 
     this.contentForm.controls.contentType.valueChanges.subscribe(() => {
@@ -1104,6 +1163,44 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       // const catalogs = this.removeCommonFromCatalog(response)
       this.contentForm.controls.catalogPaths.setValue(response)
     })
+  }
+
+  updateLicenseType(assetType: string) {
+    if (assetType) {
+      const selectedLicense = this.ordinals.license.find((licenseObject: {parent: string, values: [string]}) => {
+        return licenseObject.parent.toLowerCase() === assetType.toLowerCase()
+      })
+      if (selectedLicense && selectedLicense.values.length) {
+        this.currentLicenseList = Object.assign([], selectedLicense.values)
+        return
+      }
+    }
+    this.currentLicenseList[0] = 'N/A'
+  }
+
+  enableSpecificAssetForm(assetType: string) {
+    this.technologyAssetFormEnabled = false
+    this.connectionAssetFormEnabled = false
+    this.knowledgeAssetFormEnabled = false
+    if (assetType) {
+      switch (assetType) {
+        case 'Technology' :
+          this.technologyAssetFormEnabled = true
+          break
+        case 'Connection':
+          this.connectionAssetFormEnabled = true
+          break
+        case 'Knowledge':
+          this.knowledgeAssetFormEnabled = true
+          break
+        default:
+          {
+            this.technologyAssetFormEnabled = false
+            this.connectionAssetFormEnabled = false
+            this.knowledgeAssetFormEnabled = false
+          }
+      }
+    }
   }
 
   removeSkill(skill: string) {
@@ -1168,5 +1265,35 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     })
     return newCatalog
+  }
+
+  showLicenseDetails() {
+    // to filter out the specific license details as slected in asset Type and then show it in the table
+    if (this.currentLicenseData) {
+      this.dialog.open(LicenseInfoDisplayDialogComponent, {
+        panelClass: 'license-class',
+        width: '50%',
+        data: {
+          items: this.currentLicenseData,
+        },
+      })
+    }
+  }
+
+  updateLicenceInfoTable(assetType: string) {
+    if (assetType) {
+      this.currentLicenseData = this.licenseMetaList.filter(
+        (licenseObj: ILicenseMetaInfo) => {
+          return licenseObj.parent.includes(assetType)
+        }).map((filteredLicenseObj: ILicenseMetaInfo) => {
+          return {
+            name: filteredLicenseObj.name,
+            details: filteredLicenseObj.details,
+            link: filteredLicenseObj.link,
+          }
+        })
+    } else {
+      this.currentLicenseData = undefined
+    }
   }
 }

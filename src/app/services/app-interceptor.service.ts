@@ -26,12 +26,14 @@ export class AppInterceptorService implements HttpInterceptor {
     }
 
     if (this.configSvc.activeOrg && this.configSvc.rootOrg) {
+      // tslint:disable-next-line: max-line-length
+      const stipulatedWID = (req.headers.has('wid') && req.headers.get('wid')) ? req.headers.get('wid') : ((this.configSvc.userProfile && this.configSvc.userProfile.userId) || '')
       const modifiedReq = req.clone({
         setHeaders: {
           org: this.configSvc.activeOrg,
           rootOrg: this.configSvc.rootOrg,
           locale: lang.join(','),
-          wid: (this.configSvc.userProfile && this.configSvc.userProfile.userId) || '',
+          wid: stipulatedWID as string,
           hostPath: this.configSvc.hostPath,
         },
       })

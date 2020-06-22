@@ -35,4 +35,5 @@ export class AuthInitService {
     actionName: string
   }[]
   permissionDetails!: { role: string; editContent: IPermission; editMeta: IPermission }[]
+  licenseMeta: any
 }

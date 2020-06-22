@@ -142,6 +142,7 @@ export class EditorContentService {
     let isValid = true
     Object.keys(this.authInitService.authConfig).map(v => {
       if (this.checkCondition(id, v, 'required') && !this.isPresent(v, id)) {
+        console.log('validation failed for ', v)
         isValid = false
       }
     })

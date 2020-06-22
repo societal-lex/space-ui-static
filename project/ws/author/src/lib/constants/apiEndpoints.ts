@@ -24,6 +24,7 @@ export const SEARCH_V6 = `${PROTECTED_SLAG_V8}/content/searchV6`
 export const SEARCH_V6_AUTH = `${AUTHORING_SEARCH_BASE}v6/search/auth`
 export const SEARCH_V6_ADMIN = `${AUTHORING_SEARCH_BASE}v6/search/admin`
 export const ORDINALS = `${ACTION_BASE}meta/v2/ordinals/list`
+// export const ORDINALS = `/sample/ordinals`
 export const INIT = `${AUTHORING_SEARCH_BASE}/v1/`
 
 export const UPLOAD_APPICON = `${CONTENT_FILE_BASE}TestAuth/`

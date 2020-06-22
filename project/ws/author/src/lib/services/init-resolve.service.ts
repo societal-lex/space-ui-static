@@ -48,6 +48,14 @@ export class InitResolver implements Resolve<NSContent.IContentMeta> {
       )
       pushedJobs.push('meta')
     }
+    if (data.includes('license') && !this.authInitService.licenseMeta) {
+      forkProcess.push(
+        this.apiService.get<IFormMeta>(
+          `${this.configurationsService.baseUrl}/feature/license-meta.json`,
+        ),
+      )
+      pushedJobs.push('license')
+    }
     if (data.includes('ordinals') && !this.authInitService.ordinals) {
       forkProcess.push(
         this.apiService.get<IFormMeta>(`${ORDINALS}${this.accessService.orgRootOrgAsQuery}`),
@@ -83,6 +91,11 @@ export class InitResolver implements Resolve<NSContent.IContentMeta> {
           this.authInitService.ownerDetails = v[pushedJobs.indexOf('config')].ownerDetails
           this.authInitService.permissionDetails = v[pushedJobs.indexOf('config')].permissionDetails
         }
+
+        if (pushedJobs.includes('license')) {
+          this.authInitService.licenseMeta = v[pushedJobs.indexOf('license')].details || []
+        }
+
         if (pushedJobs.includes('meta')) {
           this.authInitService.authConfig = v[pushedJobs.indexOf('meta')]
         }
