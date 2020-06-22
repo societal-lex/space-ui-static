@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   allLanguages: any
   language = ''
   error = false
-  showLanguageDropdown = false
+  enableLanguageDropdown = false
 
   constructor(
     private snackBar: MatSnackBar,

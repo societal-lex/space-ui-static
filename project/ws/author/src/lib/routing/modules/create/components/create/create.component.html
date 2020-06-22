@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="margin-top-xl margin-left-xl">
-    <ng-container *ngIf="showLanguageDropdown">
+    <ng-container>
       <div class="flex flex-col md:flex-row margin-top-xl padding-top-l justify-between">
         <h3 class="mat-h3">
           Choose your starting point from the below available options
@@ -52,6 +52,7 @@
             *ngIf="allLanguages?.length"
             mat-button
             [matMenuTriggerFor]="sortLang"
+            [disabled]="!enableLanguageDropdown"
           >
             {{ language | uppercase }}
             <mat-icon>arrow_drop_down</mat-icon>
