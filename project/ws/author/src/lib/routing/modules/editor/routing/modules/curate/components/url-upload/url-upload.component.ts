@@ -23,6 +23,8 @@ export class UrlUploadComponent implements OnInit {
   iprAccepted = false
   currentContent = ''
   canUpdate = true
+  showOpensInNewTab = false
+  showIntranetOptions = false
   @Input() isCollectionEditor = false
   @Input() isSubmitPressed = false
   @Output() data = new EventEmitter<string>()
@@ -42,6 +44,10 @@ export class UrlUploadComponent implements OnInit {
       this.currentContent = data
       this.triggerDataChange()
     })
+  }
+
+  checkCondition(meta: string, type: 'show' | 'required' | 'disabled'): boolean {
+    return this.contentService.checkCondition(this.currentContent, meta, type)
   }
 
   triggerDataChange() {

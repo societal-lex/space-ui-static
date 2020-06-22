@@ -28,7 +28,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="margin-top-xs">
+      <div class="margin-top-xs" *ngIf="checkCondition('isInIntranet', 'show')">
         <p class="font-weight-bold margin-remove-bottom" i18n>
           Is It Available on internet ?
         </p>
@@ -39,17 +39,19 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="margin-top-xs">
-        <p class="font-weight-bold margin-remove-bottom" i18n>
-          Opens in a new tab?
-        </p>
-        <mat-form-field appearance="outline" class="margin-top-xs">
-          <mat-select formControlName="isIframeSupported" placeholder="e.g. Yes">
-            <mat-option [value]="'No'" i18n>Yes</mat-option>
-            <mat-option [value]="'Yes'" i18n>No</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+      <ng-container *ngIf="checkCondition('isIframeSupported', 'show')">
+        <div class="margin-top-xs">
+          <p class="font-weight-bold margin-remove-bottom" i18n>
+            Opens in a new tab?
+          </p>
+          <mat-form-field appearance="outline" class="margin-top-xs">
+            <mat-select formControlName="isIframeSupported" placeholder="e.g. Yes">
+              <mat-option [value]="'No'" i18n>Yes</mat-option>
+              <mat-option [value]="'Yes'" i18n>No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
       <div class="flex flex-middle margin-top-xs padding-top-l">
         <mat-checkbox [checked]="iprAccepted" (change)="iprChecked()"></mat-checkbox>
         <p class="margin-left-xs margin-remove-bottom">
