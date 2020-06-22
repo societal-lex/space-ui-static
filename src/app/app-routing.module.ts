@@ -20,6 +20,9 @@ import { TncComponent } from './routes/tnc/tnc.component'
 import { TncAppResolverService } from './services/tnc-app-resolver.service'
 import { TncPublicResolverService } from './services/tnc-public-resolver.service'
 import { AppTocResolverService } from '@ws/app/src/lib/routes/app-toc/resolvers/app-toc-resolver.service'
+import { AssetguidelinesComponent } from './routes/public/assetguidelines/assetguidelines.component'
+import { GrievanceredressalComponent } from './routes/public/grievanceredressal/grievanceredressal.component'
+import { LicencepolicyComponent } from './routes/public/licencepolicy/licencepolicy.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -374,6 +377,18 @@ const routes: Routes = [
     resolve: {
       pageData: PageResolve,
     },
+  },
+  {
+    path: 'public/assetguidelines',
+    component: AssetguidelinesComponent,
+  },
+  {
+    path: 'public/grievanceredressal',
+    component: GrievanceredressalComponent,
+  },
+  {
+    path: 'public/licencepolicy',
+    component: LicencepolicyComponent,
   },
   {
     path: 'public/tnc',
