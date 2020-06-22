@@ -7,6 +7,7 @@
 
 <!-- <div class="contact-info ws-mat-primary-lite-background"
   *ngIf="contactPage.detailaboutenable || contactPage.description"> -->
+
 <div class="contact-info ws-mat-primary-lite-background" *ngIf="contactPage.detailaboutenable">
 
   <h2 class="flex flex-middle flex-center mat-h2" *ngIf="contactPage.title">
@@ -22,6 +23,7 @@
 </div>
 
 <!-- <div class="faq-img-section flex flex-wrap flex-between items-stretch" *ngIf="contactPage.help"> -->
+
 <div class="faq-img-section flex flex-wrap flex-between items-stretch" *ngIf="contactPage.detailaboutenable">
   <div class="info-section" [ngClass]="{ 'width-1-1': !contactPage.contact}">
     <h3 class="flex flex-middle mat-h3">

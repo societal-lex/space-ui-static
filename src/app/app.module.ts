@@ -97,7 +97,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     LoginRootDirective,
     AssetguidelinesComponent,
     GrievanceredressalComponent,
-    LicencepolicyComponent
+    LicencepolicyComponent,
   ],
   imports: [
     FormsModule,

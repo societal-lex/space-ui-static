@@ -378,6 +378,7 @@ const routes: Routes = [
       pageData: PageResolve,
     },
   },
+
   {
     path: 'public/assetguidelines',
     component: AssetguidelinesComponent,

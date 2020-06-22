@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AssetguidelinesComponent } from './assetguidelines.component';
+import { AssetguidelinesComponent } from './assetguidelines.component'
 
 describe('AssetguidelinesComponent', () => {
-  let component: AssetguidelinesComponent;
-  let fixture: ComponentFixture<AssetguidelinesComponent>;
+  let component: AssetguidelinesComponent
+  let fixture: ComponentFixture<AssetguidelinesComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AssetguidelinesComponent ]
+      declarations: [AssetguidelinesComponent],
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AssetguidelinesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(AssetguidelinesComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
