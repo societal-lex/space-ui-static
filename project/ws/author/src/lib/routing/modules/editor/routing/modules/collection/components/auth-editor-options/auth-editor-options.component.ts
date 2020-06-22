@@ -22,6 +22,7 @@ export class AuthEditorOptionsComponent implements OnInit {
   canEdit = false
   contentEditDisabled = false
   metaEditDisabled = false
+  showCreateNewSibling = false
 
   constructor(
     private authInitService: AuthInitService,
