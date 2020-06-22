@@ -387,6 +387,7 @@ const routes: Routes = [
     path: 'public/grievanceredressal',
     component: GrievanceredressalComponent,
   },
+
   {
     path: 'public/licencepolicy',
     component: LicencepolicyComponent,

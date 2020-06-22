@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 
 @Component({
   selector: 'ws-assetguidelines',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core'
 })
 export class AssetguidelinesComponent implements OnInit {
 
-  constructor() { }
+  pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
+
+  constructor(private configSvc: ConfigurationsService) { }
 
   ngOnInit() {
   }
