@@ -18,7 +18,7 @@ import { DragDropDirective } from './directives/drag-drop.directive'
 import { UploadService } from './services/upload.service'
 import { BaseComponent } from './components/editor/base/base.component'
 import { EditMetaV2Component } from './components/editor/edit-meta-v2/edit-meta-v2.component'
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table'
 import { LicenseInfoDisplayDialogComponent } from './components/license-info-display-dialog/license-info-display-dialog.component'
 
 @NgModule({

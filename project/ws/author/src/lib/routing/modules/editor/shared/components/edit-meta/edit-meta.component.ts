@@ -676,7 +676,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
     }
     } catch (e) {
-      console.error('Error occured while saving data ', e)
+      throw new Error(e)
+      // console.error('Error occured while saving data ', e)
     }
   }
 

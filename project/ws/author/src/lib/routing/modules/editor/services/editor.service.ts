@@ -145,7 +145,7 @@ export class EditorService {
       })
     }
     // tslint:disable-next-line: no-console
-    console.log('did not recieve anything ')
+    // console.log('did not recieve anything ')
     return of([])
   }
 
@@ -171,13 +171,13 @@ export class EditorService {
           },
           complete() {
             observer.complete()
-          }
+          },
       })
     })
   }
 
   parseDetailsOfPublishers(combinedDetails: any[]) {
-    console.log('total users are ', combinedDetails)
+    // console.log('total users are ', combinedDetails)
     const allUsers = combinedDetails[0] // contains other meta of user
         const publisherRoleUsers = combinedDetails[1]  // contains roles of user
         return publisherRoleUsers.map((publisher: any) => {
