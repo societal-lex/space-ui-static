@@ -154,6 +154,22 @@ const routes: Routes = [
     canActivate: [GeneralGuard],
   },
   {
+    path: 'app/user_dashboard',
+    data: {
+      requiredRoles: [
+        'org-admin',
+      ],
+      pageType: 'feature',
+      pageKey: 'user-dashboard',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+    loadChildren: () =>
+      import('./routes/route-user-dashboard.module').then(u => u.RouteUserDashboardModule),
+    canActivate: [GeneralGuard],
+  },
+  {
     path: 'app/profile',
     loadChildren: () =>
       import('./routes/route-profile-app.module').then(u => u.RouteProfileAppModule),
