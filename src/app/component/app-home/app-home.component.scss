@@ -1,0 +1,68 @@
+@import 'ws-mixins';
+.imgResponsive {
+  width: 100%;
+  height: auto;
+  margin-bottom: -0.5rem;
+}
+.slide-details {
+  padding: 0;
+  color: #333;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+  font-size: 15px;
+  /* text-shadow: 1px 1px 1px #000; */
+  width: 100%;
+}
+.text-white {
+  color: #fff !important;
+}
+.text-center {
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .slide-details {
+    transform: translate(-2%, 30%);
+    font-size: 22px;
+    /* text-shadow: 1px 1px 1px #000; */
+    /* width: 90%; */
+    line-height: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    padding: 20px 30px;
+  }
+}
+.text {
+  //   width: 51rem;
+  margin: auto;
+  display: block;
+  font-size: 21px;
+  color: black;
+  font-family: 'MontserratRegular_2';
+  font-weight: 400;
+  line-height: 1.9rem;
+}
+.owl-item {
+  min-height: 1px;
+  float: left;
+  -webkit-backface-visibility: hidden;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.text.partnerBody {
+  font-size: 17px;
+  line-height: 2;
+  text-align: center;
+  font-family: MontserratRegular_2;
+  font-weight: 400 !important;
+}

@@ -57,6 +57,9 @@ import { AppRetryInterceptorService } from './services/app-retry-interceptor.ser
 import { TncAppResolverService } from './services/tnc-app-resolver.service'
 import { TncPublicResolverService } from './services/tnc-public-resolver.service'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { AppHomeComponent } from './component/app-home/app-home.component'
+import { PublicCollaboratorsModule } from './routes/public/public-collaborators/public-collaborators.module'
+import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
 // import { ServiceWorkerModule } from '@angular/service-worker'
 // import { environment } from '../environments/environment'
 
@@ -92,6 +95,8 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     DialogConfirmComponent,
     LoginRootComponent,
     LoginRootDirective,
+    AppHomeComponent,
+    AppCollaboratorsComponent,
   ],
   imports: [
     FormsModule,
@@ -125,6 +130,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     BtnFeatureModule,
     PublicAboutModule,
     PublicContactModule,
+    PublicCollaboratorsModule,
     PublicFaqModule,
     MobileAppModule,
     PipeSafeSanitizerModule,
@@ -138,6 +144,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
   entryComponents: [
     DialogConfirmComponent,
     LoginComponent,
+    AppHomeComponent,
   ],
   providers: [
     {

@@ -1,5 +1,5 @@
 <mat-toolbar [hidden]="!showAppNavBar" [color]="primaryNavbarBackground?.color"
-  [ngStyle]="primaryNavbarBackground?.styles" class="mat-elevation-z3">
+  [ngStyle]="primaryNavbarBackground?.styles" id="appWhiteNavbar" class="mat-elevation-z3">
   <ng-container *ngIf="mode === 'top'">
     <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" name="applicationLogo" class="logo-dim">
       <img [src]="appIcon" alt="Application Logo" class="app-logo" />
@@ -62,6 +62,14 @@
             type: 'mat-menu-item'
           }
         }"></ws-widget-btn-feature>
+  </div>
+  <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('feature_collaborator') > -1">
+    <ws-widget-btn-feature [widgetData]="{
+            actionBtnId: 'feature_collaborator',
+            config: {
+              type: 'mat-menu-item'
+            }
+          }"></ws-widget-btn-feature>
   </div>
   <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('channel_how_to') > -1">
     <ws-widget-btn-feature [widgetData]="{

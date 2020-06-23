@@ -46,6 +46,7 @@ export interface IFeatures {
 }
 
 export interface IAboutObject {
+  detailaboutenable: string
   banner: IBanner
   section1: ISection1
   section2?: ISection2
