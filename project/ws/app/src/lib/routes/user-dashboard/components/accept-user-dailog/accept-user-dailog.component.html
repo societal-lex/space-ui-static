@@ -1,0 +1,14 @@
+<div align="end">
+  <button mat-icon-button [mat-dialog-close]="false">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<h2 class="ws-mat-primary-text">Please select the roles</h2>
+<li *ngFor="let item of ordersData">
+  <mat-checkbox [checked]="getSelection(item)" (change)="changeHandler(item, $event)" color = "primary">
+  <label class="text-sm font-normal">{{item.name}}</label>
+  </mat-checkbox>
+</li>
+<div align="end">
+  <button mat-flat-button [disabled]="!selection.length" color="primary" (click)="save()">Change Role</button>
+</div>

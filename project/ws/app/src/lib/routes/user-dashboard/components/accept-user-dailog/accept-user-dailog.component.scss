@@ -1,0 +1,28 @@
+.example-h2 {
+    margin: 10px;
+  }
+
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+
+  .example-margin {
+    margin: 0 10px;
+  }
+  .button-align{
+    justify-content: flex-end;
+    margin-top: 80px;
+  }
+  .align-bottom{
+      margin-top: 300px;
+  }
+  li{
+    list-style-type: none;
+  }
+  input[type=checkbox]:checked {
+  background-color: #a77e2d !important;
+  color: red !important;
+}
