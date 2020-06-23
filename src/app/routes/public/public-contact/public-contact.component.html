@@ -1,11 +1,14 @@
 <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span class="margin-left-xs text-truncate">
-    <span i18n="page title: contact" class="margin-left-xs">Contact Us</span>
+    <span i18n="page title: contact" class="margin-left-xs">Support</span>
   </span>
 </mat-toolbar>
 
-<div class="contact-info ws-mat-primary-lite-background" *ngIf="contactPage.title || contactPage.description">
+<!-- <div class="contact-info ws-mat-primary-lite-background"
+  *ngIf="contactPage.detailaboutenable || contactPage.description"> -->
+<div class="contact-info ws-mat-primary-lite-background" *ngIf="contactPage.detailaboutenable">
+
   <h2 class="flex flex-middle flex-center mat-h2" *ngIf="contactPage.title">
     <mat-icon>contact_support</mat-icon>
     <span>
@@ -18,7 +21,9 @@
   </p>
 </div>
 
-<div class="faq-img-section flex flex-wrap flex-between items-stretch" *ngIf="contactPage.help">
+<!-- <div class="faq-img-section flex flex-wrap flex-between items-stretch" *ngIf="contactPage.help"> -->
+
+<div class="faq-img-section flex flex-wrap flex-between items-stretch" *ngIf="contactPage.detailaboutenable">
   <div class="info-section" [ngClass]="{ 'width-1-1': !contactPage.contact}">
     <h3 class="flex flex-middle mat-h3">
       <mat-icon>help</mat-icon>
@@ -59,3 +64,10 @@
 
   </div>
 </div>
+<section *ngIf="!contactPage.detailaboutenable">
+  <div class="contact-info ws-mat-white-background" *ngFor="let details of contactPage.contact.contents">
+    <p [innerHTML]="details.value | pipeSafeSanitizer: 'html'">
+
+    </p>
+  </div>
+</section>

@@ -1,15 +1,12 @@
 {
   "/apis/*": {
-    "target": "http://localhost:3003",
+    "target": "https://space.societalplatform.org",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true,
-    "pathRewrite": {
-      "/apis": ""
-    }
+    "changeOrigin": true
   },
   "/content-api/*": {
-    "target": "http://localhost:3004",
+    "target": "https://space.societalplatform.org",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -18,7 +15,7 @@
     }
   },
   "/content-store/*": {
-    "target": "http://localhost:3005",
+    "target": "https://space.societalplatform.org",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -27,7 +24,7 @@
     }
   },
   "/chat-bot/*": {
-    "target": "http://localhost:3006",
+    "target": "https://space.societalplatform.org",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -36,7 +33,7 @@
     }
   },
   "/mobile-apps/*": {
-    "target": "http://localhost:3007",
+    "target": "https://space.societalplatform.org",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -45,7 +42,7 @@
     }
   },
   "/LA/*": {
-    "target": "http://localhost:3008",
+    "target": "https://space.societalplatform.org",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
@@ -54,7 +51,7 @@
     }
   },
   "/assets/*": {
-    "target": "http://localhost:3009",
+    "target": "http://localhost:3007",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
