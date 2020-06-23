@@ -42,6 +42,11 @@
                 "lazy": true
               },
               {
+                "input": "src/themes/theme-muave.scss",
+                "bundleName": "theme-muave",
+                "lazy": true
+              },
+              {
                 "input": "src/themes/theme-grey.scss",
                 "bundleName": "theme-grey",
                 "lazy": true
