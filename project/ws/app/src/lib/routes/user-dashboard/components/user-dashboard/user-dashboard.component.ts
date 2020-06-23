@@ -82,7 +82,7 @@ export class UserDashboardComponent implements OnInit {
         this.userDashboardSvc.setUserDashboardConfig(this.userDashboardData)
       this.getRootOrg = data.pageData.data.root_org,
         this.getOrg = data.pageData.data.org
-      this.navBackground = data.pageData.navigationBar.background || this.configSvc.pageNavBar
+      this.navBackground = this.configSvc.pageNavBar
     })
     this.selectedVal = 'all'
     this.getAllUsers(this.selectedVal)
