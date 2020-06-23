@@ -1124,8 +1124,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.theme.valueChanges.subscribe(() => {
-      if (this.contentForm.controls.theme.value.includes(null)) {
-        this.contentForm.controls.theme.setValue([])
+      if (this.contentForm.controls.theme.value.includes('None')) {
+        this.contentForm.controls.theme.setValue(['None'])
       }
     })
 

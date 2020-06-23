@@ -503,7 +503,7 @@
                 [ngClass]="{ 'mat-form-field-invalid': showError('theme') }">
                 <mat-select formControlName="theme" placeholder="--Select--"
                   [required]="checkCondition('theme', 'required')" multiple>
-                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="null">None
+                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'">None
                   </mat-option>
                   <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
                     {{ resource }}</mat-option>
