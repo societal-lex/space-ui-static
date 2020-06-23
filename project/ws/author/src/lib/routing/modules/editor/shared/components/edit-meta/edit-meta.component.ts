@@ -1067,7 +1067,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       learningMode: [],
       learningObjective: [],
       learningTrack: [],
-      license: [],
+      spaceLicense: [],
       locale: [],
       mimeType: [],
       name: [],

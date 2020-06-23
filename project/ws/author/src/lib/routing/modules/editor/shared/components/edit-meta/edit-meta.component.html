@@ -1004,23 +1004,23 @@
               </div>
             </div>
             <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
-              [ngClass]="{ disable: checkCondition('license', 'disabled') }">
+              [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
               <label>
                 <div class="margin-top-s flex flex-middle">
-                  <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('license', 'required') }">License</b>
+                  <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('spaceLicense', 'required') }">License</b>
                   <mat-icon  *ngIf="licenseMetaList?.length && currentLicenseData?.length" class="ws-mat-primary-text margin-left-xs pointer" (click)="showLicenseDetails()">info
                   </mat-icon>
                 </div>
               </label>
               <div class="margin-top-xs">
                 <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('license') }">
-                  <mat-select formControlName="license" placeholder="--Select--"
-                    [required]="checkCondition('license', 'required')">
+                  [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }">
+                  <mat-select formControlName="spaceLicense" placeholder="--Select--"
+                    [required]="checkCondition('spaceLicense', 'required')">
                     <mat-option *ngFor="let licenseEntry of currentLicenseList" [value]="licenseEntry">
                       {{  licenseEntry }}</mat-option>
                   </mat-select>
-                  <mat-error *ngIf="showError('license')" i18n>License is mandatory
+                  <mat-error *ngIf="showError('spaceLcense')" i18n>License is mandatory
                   </mat-error>
                 </mat-form-field>
               </div>
