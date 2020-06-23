@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { LicenseInfoDisplayDialogComponent } from './license-info-display-dialog.component';
+import { LicenseInfoDisplayDialogComponent } from './license-info-display-dialog.component'
 
 describe('LicenseInfoDisplayDialogComponent', () => {
-  let component: LicenseInfoDisplayDialogComponent;
-  let fixture: ComponentFixture<LicenseInfoDisplayDialogComponent>;
+  let component: LicenseInfoDisplayDialogComponent
+  let fixture: ComponentFixture<LicenseInfoDisplayDialogComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LicenseInfoDisplayDialogComponent ]
+      declarations: [LicenseInfoDisplayDialogComponent],
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LicenseInfoDisplayDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(LicenseInfoDisplayDialogComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

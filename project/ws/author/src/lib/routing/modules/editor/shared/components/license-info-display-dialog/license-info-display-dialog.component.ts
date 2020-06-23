@@ -12,11 +12,11 @@ interface IDialogData {
   // tslint:disable-next-line: component-selector
   selector: 'ws-author-license-info-display-dialog',
   templateUrl: './license-info-display-dialog.component.html',
-  styleUrls: ['./license-info-display-dialog.component.scss']
+  styleUrls: ['./license-info-display-dialog.component.scss'],
 })
 export class LicenseInfoDisplayDialogComponent implements OnInit {
 
-  public dataSource: IDialogData["items"] = []
+  public dataSource: IDialogData['items'] = []
   public columnSequence = ['Sno', 'License', 'Details', 'Link']
 
   constructor(
@@ -32,7 +32,7 @@ export class LicenseInfoDisplayDialogComponent implements OnInit {
           ...item,
         }
       })
-      console.log('mapped data now is ', this.dataSource)
+      // console.log('mapped data now is ', this.dataSource)
     }
   }
 
