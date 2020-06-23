@@ -23,6 +23,7 @@ export class LoginRootComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.loadComponent()
   }
 

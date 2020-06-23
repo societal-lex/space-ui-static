@@ -34,6 +34,7 @@ export namespace NsInstanceConfig {
     telemetryConfig: ITelemetryConfig
     themes: ITheme[]
     logos: ILogos
+    banners: IBanners
     mailIds: IMailIds
     details: IDetails
     validMailIdExtensionsForMailMe: string[]
@@ -132,6 +133,10 @@ export namespace NsInstanceConfig {
     landingLogo: string
     navbarLogo?: string
     thumpsUp?: string
+  }
+  export interface IBanners {
+    mainBanner: string
+    collaboratorBanner: string
   }
   export interface IMailIds {
     contactUs: string

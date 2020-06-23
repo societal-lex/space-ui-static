@@ -1,5 +1,8 @@
 @import 'ws-mixins';
 
+#appWhiteNavbar {
+  background-color: white;
+}
 .tourGuideBtn {
   padding: 10px 16px;
   display: flex;
@@ -20,18 +23,18 @@
   min-width: 70px;
   // max-width: 100px;
 }
-
 .app-logo {
-  max-width: 100px;
-  max-height: 30px;
-  min-width: 30px;
-  padding: 8px 0 0 8px;
+  // max-width: 100px;
+  // max-height: 30px;
+  min-width: 8rem;
+  // height: 2.5rem;
+  padding: 19px 0 0 8px;
 
   @include breakpoint-xs {
     max-width: 80px;
+    min-width: 5rem;
   }
 }
-
 
 .title {
   font-size: 12px !important;

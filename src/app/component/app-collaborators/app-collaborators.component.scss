@@ -1,0 +1,54 @@
+@import 'ws-mixins';
+.cimage {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: auto;
+}
+#textDec {
+  font-size: -webkit-xxx-large;
+  font-family: MontserratRegular_2;
+}
+.jumbotron {
+  background-color: white;
+}
+.jumbotron-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  border-radius: 0;
+}
+@media (min-width: 576px) {
+  .jumbotron {
+    padding: 4rem 2rem;
+  }
+}
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+}
+.partnerBody {
+  font-size: 17px;
+  line-height: 2;
+  text-align: center;
+  font-family: MontserratRegular_2;
+  font-weight: 400 !important;
+}
+.imageRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+.box {
+  width: 34%;
+  padding: 5.5em 0em 0 8rem;
+  margin-right: 10px;
+}
+a {
+  background-color: transparent;
+  color: #1cadce;
+  text-decoration: none;
+  -webkit-transition: 0.2s ease-in;
+}

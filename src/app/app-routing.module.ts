@@ -23,6 +23,9 @@ import { AppTocResolverService } from '@ws/app/src/lib/routes/app-toc/resolvers/
 import { AssetguidelinesComponent } from './routes/public/assetguidelines/assetguidelines.component'
 import { GrievanceredressalComponent } from './routes/public/grievanceredressal/grievanceredressal.component'
 import { LicencepolicyComponent } from './routes/public/licencepolicy/licencepolicy.component'
+import { AppHomeComponent } from './component/app-home/app-home.component'
+import { PublicCollaboratorsComponent } from './routes/public/public-collaborators/public-collaborators.component'
+import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -282,17 +285,22 @@ const routes: Routes = [
       import('./routes/route-learning-hub-app.module').then(u => u.LearningHubAppModule),
     canActivate: [GeneralGuard],
   },
+  // {
+  //   path: 'login',
+  //   canActivate: [LoginGuard],
+  //   component: LoginRootComponent,
+  //   data: {
+  //     pageType: 'feature',
+  //     pageKey: 'login',
+  //   },
+  //   resolve: {
+  //     pageData: PageResolve,
+  //   },
+  // },
   {
-    path: 'login',
+    path: 'public/home',
     canActivate: [LoginGuard],
-    component: LoginRootComponent,
-    data: {
-      pageType: 'feature',
-      pageKey: 'login',
-    },
-    resolve: {
-      pageData: PageResolve,
-    },
+    component: AppHomeComponent,
   },
   {
     path: 'page/toc',
@@ -362,6 +370,28 @@ const routes: Routes = [
     data: {
       pageType: 'feature',
       pageKey: 'public-faq',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+  },
+  {
+    path: 'public/collaborators',
+    component: PublicCollaboratorsComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'public-faq',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+  },
+  {
+    path: 'page/collaborators',
+    component: AppCollaboratorsComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'collaborators',
     },
     resolve: {
       pageData: PageResolve,

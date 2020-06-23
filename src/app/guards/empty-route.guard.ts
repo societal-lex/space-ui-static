@@ -13,7 +13,7 @@ import { ConfigurationsService } from '@ws-widget/utils'
   providedIn: 'root',
 })
 export class EmptyRouteGuard implements CanActivate {
-  constructor(private router: Router, private configSvc: ConfigurationsService) {}
+  constructor(private router: Router, private configSvc: ConfigurationsService) { }
   canActivate(
     _next: ActivatedRouteSnapshot,
     _state: RouterStateSnapshot,
@@ -23,6 +23,6 @@ export class EmptyRouteGuard implements CanActivate {
       return this.router.parseUrl('/page/home')
     }
     // logger.log('redirecting to login page as the user is not loggedIn');
-    return this.router.parseUrl('/login')
+    return this.router.parseUrl('/public/home')
   }
 }
