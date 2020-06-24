@@ -11,7 +11,7 @@ export class AppHomeComponent implements OnInit {
   appBanner: SafeUrl | null = null
 
   constructor(private configSvc: ConfigurationsService,
-              private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer) {
     const instanceConfig = this.configSvc.instanceConfig
     if (instanceConfig) {
       this.appBanner = this.domSanitizer.bypassSecurityTrustResourceUrl(
