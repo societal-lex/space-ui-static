@@ -319,6 +319,10 @@ const routes: Routes = [
     canActivate: [GeneralGuard],
   },
   {
+    path: 'page/collaborators',
+    component: AppCollaboratorsComponent,
+  },
+  {
     path: 'page/:id',
     component: PageComponent,
     data: {
@@ -378,17 +382,6 @@ const routes: Routes = [
     data: {
       pageType: 'feature',
       pageKey: 'public-faq',
-    },
-    resolve: {
-      pageData: PageResolve,
-    },
-  },
-  {
-    path: 'page/collaborators',
-    component: AppCollaboratorsComponent,
-    data: {
-      pageType: 'feature',
-      pageKey: 'collaborators',
     },
     resolve: {
       pageData: PageResolve,

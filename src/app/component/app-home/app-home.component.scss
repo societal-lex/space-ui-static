@@ -20,7 +20,7 @@
   color: #fff !important;
 }
 .text-center {
-  text-align: center;
+  // text-align: center;
 }
 @media only screen and (min-width: 768px) {
   .slide-details {
@@ -40,10 +40,10 @@
   //   width: 51rem;
   margin: auto;
   display: block;
-  font-size: 21px;
+  // font-size: 21px;
   color: black;
-  font-family: 'MontserratRegular_2';
-  font-weight: 400;
+  font-family: 'campaign', 'sans-serif';
+  // font-weight: 400;
   line-height: 1.9rem;
 }
 .owl-item {

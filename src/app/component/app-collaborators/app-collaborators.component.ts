@@ -12,7 +12,7 @@ export class AppCollaboratorsComponent implements OnInit {
   collaboratorBanner: SafeUrl | null = null
 
   constructor(private configSvc: ConfigurationsService,
-              private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer) {
     const instanceConfig = this.configSvc.instanceConfig
     if (instanceConfig) {
       this.collaboratorBanner = this.domSanitizer.bypassSecurityTrustResourceUrl(

@@ -96,7 +96,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     LoginRootComponent,
     LoginRootDirective,
     AppHomeComponent,
-    AppCollaboratorsComponent,
+    AppCollaboratorsComponent
   ],
   imports: [
     FormsModule,
@@ -134,7 +134,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     PublicFaqModule,
     MobileAppModule,
     PipeSafeSanitizerModule,
-    TourModule,
+    TourModule
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   exports: [

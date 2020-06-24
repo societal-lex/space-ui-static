@@ -1,16 +1,16 @@
 @import 'ws-mixins';
-.cimage {
+#cimage {
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: auto;
+  height: 20rem;
 }
 #textDec {
   font-size: -webkit-xxx-large;
   font-family: MontserratRegular_2;
 }
 .jumbotron {
-  background-color: white;
+  background-color: white !important;
 }
 .jumbotron-fluid {
   padding-right: 0;

@@ -13,7 +13,7 @@
 html,
 body {
   margin: 0px;
-  font-family: $font-family-sans;
+  font-family: $font-family-campaign;
 }
 
 ::selection {
@@ -33,7 +33,9 @@ body {
 .font-sans {
   font-family: $font-family-sans;
 }
-
+.font-campaign {
+  font-family: $font-family-campaign;
+}
 .font-serif {
   font-family: $font-family-sans;
 }
@@ -416,22 +418,22 @@ h3.shepherd-title {
     content: '';
     transform: rotate(45deg);
     background: #e6e6e6 !important;
-}
+  }
   h3.shepherd-title,
   .shepherd-cancel-icon {
     color: #fff !important;
   }
-  .shepherd-content{
+  .shepherd-content {
     background: #303030;
   }
 }
-.shepherd-title{
-  @include breakpoint-xs{
+.shepherd-title {
+  @include breakpoint-xs {
     width: 80% !important;
   }
 }
-.shepherd-title{
-  @include breakpoint-xs{
+.shepherd-title {
+  @include breakpoint-xs {
     width: 80% !important;
   }
 }
@@ -459,10 +461,10 @@ h3.shepherd-title {
   cursor: move;
   user-select: none;
 }
-.shepherd-arrow:before{
+.shepherd-arrow:before {
   background: #e6e6e6 !important;
 }
-.shepherd-content{
+.shepherd-content {
   border: 2px solid #e6e6e6;
   background: #ffffff;
   @include breakpoint-xs {
@@ -473,7 +475,7 @@ h3.shepherd-title {
   color: #856404 !important;
   background-color: #fff3cd !important;
 }
-.faqBlock img{
+.faqBlock img {
   width: 60%;
 }
 .faqTable {
@@ -483,11 +485,11 @@ h3.shepherd-title {
   padding: 10px;
   border: 1px solid #eeeeee;
 }
-.faqBlock{
+.faqBlock {
   width: 30%;
   padding: 10px;
   margin-bottom: 15px;
-  @include breakpoint-xs{
+  @include breakpoint-xs {
     width: 100% !important;
   }
 }

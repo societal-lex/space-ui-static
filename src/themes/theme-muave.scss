@@ -1,0 +1,93 @@
+@import '~@angular/material/theming';
+@import './theme-mixins';
+
+$mat-muave: (
+  50: #865ba0,
+  100: #c3add0,
+  200: #926baa,
+  300: #aa8cbd,
+  400: #c3add0,
+  500: #795290,
+  600: #cfbdd9,
+  700: #a56ec7,
+  800: #c380c6,
+  900: #9a5c9a,
+  A100: #8e388e,
+  A200: #dbcee3,
+  A400: #ffc9ff,
+  A700: #871f78,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  ),
+);
+
+$mat-orange: (
+  50: #ffe22a,
+  100: #2096cd,
+  200: #ffcc80,
+  300: #ffb74d,
+  400: #ffa726,
+  500: #2096cd,
+  600: #fb8c00,
+  700: #f57c00,
+  800: #ef6c00,
+  900: #2096cd,
+  A100: #ffd180,
+  A200: #ffab40,
+  A400: #ff9100,
+  A700: #ff6d00,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: black,
+  ),
+);
+
+// Plus imports for other components in your app.
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$theme-primary: mat-palette($mat-muave, 50);
+$theme-accent: mat-palette($mat-orange, 50);
+
+// The warn palette is optional (defaults to red).
+$theme-warn: mat-palette($mat-red);
+
+.theme-muave {
+  &.day-mode {
+    $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+    @include angular-material-theme($theme);
+    @include theme-based-configurations($theme);
+  }
+
+  &.night-mode {
+    $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+    @include angular-material-theme($theme);
+    @include theme-based-configurations($theme);
+  }
+}
