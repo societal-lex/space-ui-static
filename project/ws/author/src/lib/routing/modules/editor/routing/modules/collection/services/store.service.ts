@@ -166,10 +166,10 @@ export class CollectionStoreService {
           index === ids.length - 1,
         )
       })
-      return {done: true, createdNodes: contents}
+      return { done: true, createdNodes: contents }
     } catch (ex) {
       this.logger.error(ex)
-      return {done: false}
+      return { done: false }
     }
   }
 
@@ -211,7 +211,7 @@ export class CollectionStoreService {
       }
     } catch (ex) {
       this.logger.error(ex)
-      return {done: false}
+      return { done: false }
     }
   }
 
