@@ -137,12 +137,15 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
     this.loaderService.changeLoad.next(false)
   }
 
-  onNodeSelect(node: IContentTreeNode) {
+  onNodeSelect(node: IContentTreeNode | any, directClick = false) {
     if (node.id !== this.selectedNode) {
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
       this.store.currentSelectedNode = node.id
       this.editorStore.changeActiveCont.next(node.identifier)
+    }
+    if (directClick) {
+      this.action.emit({ type: 'editContent', identifier: node.identifier })
     }
   }
 
@@ -338,14 +341,21 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
           parentNode,
           asSibling ? node.id : undefined,
           'below',
-        )
+        ) as {done: boolean, createdNodes: [any]}
         this.loaderService.changeLoad.next(false)
         this.snackBar.openFromComponent(NotificationComponent, {
           data: {
-            type: isDone ? Notify.SUCCESS : Notify.FAIL,
+            type: isDone.done ? Notify.SUCCESS : Notify.FAIL,
           },
           duration: NOTIFICATION_TIME * 1000,
         })
+        if (isDone.done && isDone.createdNodes && isDone.createdNodes.length === 1) {
+          const createdTreeNode = this.treeControl.dataNodes.filter(_node => _node.identifier === isDone.createdNodes[0].identifier)
+          if (createdTreeNode.length) {
+            this.onNodeSelect(createdTreeNode[0])
+            this.takeAction('editContent', createdTreeNode[0])
+          }
+        }
       }
     })
   }
@@ -360,13 +370,21 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
       parentNode,
       asSibling ? node.id : undefined,
       'below',
-    )
+    ) as {done: boolean, createdNode?: any}
     this.snackBar.openFromComponent(NotificationComponent, {
       data: {
-        type: isDone ? Notify.SUCCESS : Notify.FAIL,
+        type: isDone.done ? Notify.SUCCESS : Notify.FAIL,
       },
       duration: NOTIFICATION_TIME * 1000,
     })
+    if (isDone.done) {
+      const createdTreeNode = this.treeControl.dataNodes.filter(_node => _node.identifier === isDone.createdNode.identifier)
+      if (createdTreeNode.length) {
+        this.onNodeSelect(createdTreeNode[0])
+        this.takeAction('editContent', createdTreeNode[0])
+      }
+    }
+    // this.takeAction('editContent', node)
     this.loaderService.changeLoad.next(false)
   }
 

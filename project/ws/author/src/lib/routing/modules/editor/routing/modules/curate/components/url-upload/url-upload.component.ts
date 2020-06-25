@@ -28,7 +28,7 @@ export class UrlUploadComponent implements OnInit {
   @Input() isCollectionEditor = false
   @Input() isSubmitPressed = false
   @Output() data = new EventEmitter<string>()
-  @Input() showIPRDeclaration = true
+  @Input() showIPRDeclaration = false
 
   constructor(
     private formBuilder: FormBuilder,

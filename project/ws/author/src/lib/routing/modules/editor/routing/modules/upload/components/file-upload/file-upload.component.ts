@@ -63,7 +63,7 @@ export class FileUploadComponent implements OnInit {
   @Input() isCollectionEditor = false
   @Input() isSubmitPressed = false
   @Input() canTransCode = false
-  @Input() showIPRDeclaration = true
+  @Input() showIPRDeclaration = false
   isMobile = false
   @Output() data = new EventEmitter<any>()
 
