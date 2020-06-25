@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { map, catchError } from 'rxjs/operators'
 import { IResolveResponse } from '@ws-widget/utils'
-import { UtilityService } from '../services/utility.service'
 import { ConfigurationsService } from '../services/configurations.service'
 
 @Injectable({
@@ -21,7 +20,6 @@ export class ExploreDetailResolve
   constructor(
     private http: HttpClient,
     private configSvc: ConfigurationsService,
-    private utilitySvc: UtilityService,
   ) { }
 
   resolve(
@@ -64,22 +62,15 @@ export class ExploreDetailResolve
 
       if (widget.widgetSubType === 'contentStripMultiple') {
         widget.widgetData.strips = widget.widgetData.strips.map((strip: any) => {
-          strip.request.searchV6.filters[0].andFilters.push({ catalogPaths: [tag] })
-          if (this.utilitySvc.isMobile && !this.isIntranetAllowedSettings) {
-            strip.request.searchV6.filters[0].andFilters.push({ isInIntranet: ['false'] })
-          }
+          strip.request.search.filters.catalogPaths = [tag]
           return strip
         })
         if (widget.widgetData.noDataWidget && widget.widgetData.noDataWidget.widgetData.strips) {
           widget.widgetData.noDataWidget.widgetData.strips = widget.widgetData.noDataWidget.widgetData.strips.map((strip: any) => {
-            strip.request.searchV6.filters[0].andFilters.push({ catalogPaths: [tag] })
-            if (this.utilitySvc.isMobile && !this.isIntranetAllowedSettings) {
-              strip.request.searchV6.filters[0].andFilters.push({ isInIntranet: ['false'] })
-            }
+            strip.request.search.filters.catalogPaths = [tag]
             return strip
           })
         }
-
       }
       return widget
     })
