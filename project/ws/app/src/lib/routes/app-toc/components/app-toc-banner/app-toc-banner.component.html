@@ -32,6 +32,7 @@
     </div>
     <div [ngSwitch]="routePath" class="header-meta" [ngClass]="{ 'header-meta-banner': bannerUrl }">
       <!-- Overview Section -->
+
       <div class="banner-overview-container" [hidden]="!content?.subTitle && showSubtitleOnBanner"
         *ngSwitchCase="'overview'">
         <h2 class="overview-description" *ngIf="showSubtitleOnBanner" i18n-title title="Subtitle">

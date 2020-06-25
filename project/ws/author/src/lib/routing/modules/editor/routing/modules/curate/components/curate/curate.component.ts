@@ -38,6 +38,7 @@ export class CurateComponent implements OnInit, OnDestroy {
   isSubmitPressed = false
   isChanged = false
   mimeTypeRoute = ''
+  showIPRDeclaraion = false
 
   @ViewChild(UrlUploadComponent, { static: false }) urlComponent!: UrlUploadComponent
   constructor(
@@ -60,11 +61,27 @@ export class CurateComponent implements OnInit, OnDestroy {
     )
     this.contentService.changeActiveCont.subscribe(data => {
       this.currentContent = data
+      const iprDeclarationSettings = this.authInitService.authConfig.iprDeclaration || {}
+      this.setIprVisibility(iprDeclarationSettings)
       if (this.contentService.getOriginalMeta(data).isContentEditingDisabled) {
         this.currentStep = 3
       }
     })
     this.loaderService.changeLoadState(true)
+  }
+
+  setIprVisibility(iprSettings: any | null) {
+    this.showIPRDeclaraion = false
+    if (!iprSettings || (iprSettings && !Object.keys(iprSettings).length)) {
+      return
+    }
+    if (iprSettings.hasOwnProperty('showFor')) {
+      if (Object.keys(iprSettings['showFor']).length) {
+        if (Object.keys(iprSettings['showFor']).includes(this.contentService.getOriginalMeta(this.currentContent).contentType)) {
+          this.showIPRDeclaraion = true
+        }
+      }
+    }
   }
 
   ngOnDestroy() {

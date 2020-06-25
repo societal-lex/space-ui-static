@@ -72,11 +72,13 @@ export class BtnContentLikeComponent extends WidgetBaseComponent
       this.status = 'NOT_LIKED'
     }
   }
+
   ngOnDestroy() {
     if (this.likeSubscription) {
       this.likeSubscription.unsubscribe()
     }
   }
+
   like(event: Event) {
     if (!this.forPreview) {
       event.stopPropagation()

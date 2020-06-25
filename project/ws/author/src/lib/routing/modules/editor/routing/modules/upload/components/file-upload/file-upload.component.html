@@ -65,7 +65,7 @@
       </button>
     </div>
   </div>
-  <div class="flex margin-top-m margin-bottom-xl">
+  <div class="flex margin-top-m margin-bottom-xl" *ngIf="showIPRDeclaration">
     <div class="flex flex-middle margin-top-xs padding-top-l">
       <mat-checkbox [checked]="iprAccepted" (change)="iprChecked()"></mat-checkbox>
       <p class="margin-left-xs margin-remove-bottom">
