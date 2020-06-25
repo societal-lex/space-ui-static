@@ -33,7 +33,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     canActivate: [EmptyRouteGuard],
-    component: LoginRootComponent,
+    component: AppHomeComponent,
   },
   {
     path: 'practice/behavioral',
@@ -282,18 +282,18 @@ const routes: Routes = [
       import('./routes/route-learning-hub-app.module').then(u => u.LearningHubAppModule),
     canActivate: [GeneralGuard],
   },
-  // {
-  //   path: 'login',
-  //   canActivate: [LoginGuard],
-  //   component: LoginRootComponent,
-  //   data: {
-  //     pageType: 'feature',
-  //     pageKey: 'login',
-  //   },
-  //   resolve: {
-  //     pageData: PageResolve,
-  //   },
-  // },
+  {
+    path: 'login',
+    canActivate: [LoginGuard],
+    component: LoginRootComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'login',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+  },
   {
     path: 'public/home',
     canActivate: [LoginGuard],

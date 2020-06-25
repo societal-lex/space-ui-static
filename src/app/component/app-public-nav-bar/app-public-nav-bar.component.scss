@@ -2,17 +2,23 @@
 #publicWhiteNavBar {
   background-color: white;
 }
+
 .app-logo {
   // max-width: 100px;
   // max-height: 30px;
   min-width: 8rem;
-  height: 2.5rem;
+  // height: 3.5rem;
+  margin-top: -1.4rem;
   padding: 8px 0 0 8px;
 
   @include breakpoint-xs {
     max-width: 80px;
     min-width: 5rem;
   }
+}
+.logosize {
+  overflow-y: hidden;
+  height: 3rem;
 }
 .title-app {
   @include breakpoint-xs {

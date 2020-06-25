@@ -1,9 +1,11 @@
 <mat-toolbar [hidden]="!showAppNavBar" [color]="primaryNavbarBackground?.color"
   [ngStyle]="primaryNavbarBackground?.styles" id="appWhiteNavbar" class="mat-elevation-z3">
   <ng-container *ngIf="mode === 'top'">
-    <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" name="applicationLogo" class="logo-dim">
-      <img [src]="appIcon" alt="Application Logo" class="app-logo" />
-    </a>
+    <div class="logosize">
+      <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" name="applicationLogo" class="logo-dim">
+        <img [src]="appIcon" alt="Application Logo" class="app-logo" />
+      </a>
+    </div>
     <ng-container *ngIf="primaryNavbarConfig?.mediumScreen">
       <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
         *ngFor="let item of primaryNavbarConfig?.mediumScreen?.left">
@@ -63,7 +65,7 @@
           }
         }"></ws-widget-btn-feature>
   </div>
-  <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('feature_collaborators') > -1">
+  <div mat-menu-item class="padding-remove campaign" *ngIf="featureApps.indexOf('feature_collaborators') > -1">
     <ws-widget-btn-feature [widgetData]="{
             actionBtnId: 'feature_collaborators',
             config: {
@@ -71,7 +73,7 @@
             }
           }"></ws-widget-btn-feature>
   </div>
-  <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('channel_how_to') > -1">
+  <div mat-menu-item class="padding-remove campaign" *ngIf="featureApps.indexOf('channel_how_to') > -1">
     <ws-widget-btn-feature [widgetData]="{
           actionBtnId: 'channel_how_to',
           config: {
@@ -79,7 +81,7 @@
           }
         }"></ws-widget-btn-feature>
   </div>
-  <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('feature_FAQs') > -1">
+  <div mat-menu-item class="padding-remove campaign" *ngIf="featureApps.indexOf('feature_FAQs') > -1">
     <ws-widget-btn-feature [widgetData]="{
           actionBtnId: 'feature_FAQs',
           config: {
@@ -87,7 +89,7 @@
           }
         }"></ws-widget-btn-feature>
   </div>
-  <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('feature_quickTour') > -1">
+  <div mat-menu-item class="padding-remove campaign" *ngIf="featureApps.indexOf('feature_quickTour') > -1">
     <ws-widget-btn-feature [widgetData]="{
           actionBtnId: 'feature_quickTour',
           config: {
@@ -98,7 +100,7 @@
   </div>
   <div mat-menu-item *ngIf="isTourGuideAvailable" (click)="startTour()">
     <mat-icon>contact_support</mat-icon>
-    <span class="ml-2" i18n>Tour Guide</span>
+    <span class="ml-2 campaign" i18n>Tour Guide</span>
   </div>
 
 </mat-menu>

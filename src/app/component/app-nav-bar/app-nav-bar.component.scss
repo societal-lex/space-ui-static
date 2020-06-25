@@ -23,19 +23,25 @@
   min-width: 70px;
   // max-width: 100px;
 }
+.logosize {
+  overflow-y: hidden;
+  height: 3rem;
+}
 .app-logo {
   // max-width: 100px;
   // max-height: 30px;
   min-width: 8rem;
-  // height: 2.5rem;
-  padding: 19px 0 0 8px;
+  margin-top: -1.4rem;
+  padding: 8px 0 0 8px;
 
   @include breakpoint-xs {
     max-width: 80px;
     min-width: 5rem;
   }
 }
-
+// .campaign {
+//   font-size: 18px !important;
+// }
 .title {
   font-size: 12px !important;
   line-height: 26px !important;

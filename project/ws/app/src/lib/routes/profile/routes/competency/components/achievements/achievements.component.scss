@@ -15,7 +15,9 @@
     padding: 0px;
     min-height: 150px;
   }
-
+  .montserrat {
+    font-family: montserrat, sans-serif !important;
+  }
   .assessment-add-more {
     @extend %assessment-add-card;
     display: flex;

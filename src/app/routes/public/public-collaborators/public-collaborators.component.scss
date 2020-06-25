@@ -3,11 +3,16 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 20rem;
+  // height: 22rem;
+}
+.imgsize {
+  height: 22rem;
+  overflow-y: hidden;
+  margin-top: -3rem;
 }
 #textDec {
   font-size: -webkit-xxx-large;
-  font-family: MontserratRegular_2;
+  font-family: montserrat, sans-serif;
 }
 .jumbotron {
   background-color: white !important;
@@ -31,7 +36,7 @@
   font-size: 17px;
   line-height: 2;
   text-align: center;
-  font-family: MontserratRegular_2;
+  font-family: montserrat, sans-serif;
   font-weight: 400 !important;
 }
 .imageRow {

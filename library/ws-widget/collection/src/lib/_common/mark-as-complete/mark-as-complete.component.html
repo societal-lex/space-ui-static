@@ -23,22 +23,26 @@
       </ng-container>
       <ng-container *ngIf="!content?.progress?.showMarkAsComplete">
         <h4 class="pt-3" *ngIf="content?.progress?.markAsCompleteReason; let msg">
-          <span i18n *ngIf="msg === 'pass.required'">Content will be marked as complete once you pass this
+          <span class="montserrat" i18n *ngIf="msg === 'pass.required'">Content will be marked as complete once you pass
+            this
             assessment.</span>
-          <span i18n *ngIf="msg === 'submission.required'">Content will be marked as complete once you submit this
+          <span class="montserrat" i18n *ngIf="msg === 'submission.required'">Content will be marked as complete once
+            you submit this
             quiz/exercise.</span>
-          <span i18n
+          <span i18n class="montserrat"
             *ngIf="msg === 'external.vendor.provided' && content?.progress?.progressStatus !== 'completed'">Your
             learning progress for this content is captured externally and will be updated in this portal once it is
             received.</span>
-          <span i18n
+          <span i18n class="montserrat"
             *ngIf="msg === 'external.vendor.provided' && content?.progress?.progressStatus === 'completed'">Your
             progress was automatically captured from its source.</span>
-          <span i18n *ngIf="msg === 'has.children'">This content is hierarchical. Progress will be calculated on the
+          <span class="montserrat" i18n *ngIf="msg === 'has.children'">This content is hierarchical. Progress will be
+            calculated on the
             basis
             of children resources</span>
-          <span i18n *ngIf="msg === 'already.completed'">Completed</span>
-          <span i18n *ngIf="msg === 'instructor.led'">Progress will be calculated based on your classroom
+          <span i18n class="montserrat" *ngIf="msg === 'already.completed'">Completed</span>
+          <span i18n class="montserrat" *ngIf="msg === 'instructor.led'">Progress will be calculated based on your
+            classroom
             attendance.</span>
         </h4>
       </ng-container>

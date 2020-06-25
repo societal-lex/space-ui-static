@@ -9,7 +9,7 @@ $mat-muave: (
   400: #c3add0,
   500: #795290,
   600: #cfbdd9,
-  700: #a56ec7,
+  700: #464980,
   800: #c380c6,
   900: #9a5c9a,
   A100: #8e388e,
@@ -72,8 +72,8 @@ $mat-orange: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$theme-primary: mat-palette($mat-muave, 50);
-$theme-accent: mat-palette($mat-orange, 50);
+$theme-primary: mat-palette($mat-muave, 50, 700);
+$theme-accent: mat-palette($mat-orange, 50, 700);
 
 // The warn palette is optional (defaults to red).
 $theme-warn: mat-palette($mat-red);

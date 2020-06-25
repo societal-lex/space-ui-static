@@ -3,13 +3,13 @@
     <div class="col-xl"> -->
 <div class="owl-item">
   <div class="item">
-    <img src="/assets/instances/space/banners/MainBanner.jpg" alt="space" class="imgResponsive">
+    <img [src]="appBanner" alt="space" class="imgResponsive">
     <div class="slide-details text-white">
       <div class="container-1">
         <!-- <p class="fax"> Welcome to Societal Platform Assets Collaboration Environment</p> -->
-        <pre class="text">
-                 A place to search, discover and share assets including
-              concepts, methods, processes, software, hardware and data.</pre>
+        <pre class="text" *ngIf="loadText === true">
+              A place to search, discover and share assets including
+          concepts, methods, processes, software, hardware and data.</pre>
       </div>
     </div>
   </div>
