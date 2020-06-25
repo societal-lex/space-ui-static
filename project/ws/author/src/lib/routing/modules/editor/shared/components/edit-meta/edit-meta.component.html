@@ -140,6 +140,46 @@
                   </mat-error>
                 </mat-form-field>
               </div>
+              <div
+                *ngIf="checkCondition('description', 'show')"
+                [ngClass]="{ disable: checkCondition('description', 'disabled') }"
+              >
+                <mat-label
+                  class="font-weight-bold"
+                  i18n="Subtitle label|Label which explains the user to enter Subtitle"
+                  [ngClass]="{ required: checkCondition('description', 'required') }"
+                  i18n
+                >
+                  Description</mat-label
+                >
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('description') }"
+                >
+                  <textarea
+                    cdkTextareaAutosize
+                    name="description"
+                    #description
+                    class="resize-none"
+                    [matTextareaAutosize]="true"
+                    maxlength="2000"
+                    matInput
+                    rows="3"
+                    formControlName="description"
+                    i18n-placeholder
+                    placeholder="Description will appear on card and in details"
+                    [required]="checkCondition('description', 'required') ? true : null"
+                    id="description"
+                    name="description"
+                  >
+                  </textarea>
+                  <mat-hint align="end">{{ description.value.length }} / 2000</mat-hint>
+                  <mat-error *ngIf="showError('description')" i18n
+                    >Description is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
           </div>
           <div class="flex">
@@ -300,46 +340,6 @@
             </div>
             <div class="margin-top-s margin-left-40" style="width: 55%;">
               <div
-                *ngIf="checkCondition('description', 'show')"
-                [ngClass]="{ disable: checkCondition('description', 'disabled') }"
-              >
-                <mat-label
-                  class="font-weight-bold"
-                  i18n="Subtitle label|Label which explains the user to enter Subtitle"
-                  [ngClass]="{ required: checkCondition('description', 'required') }"
-                  i18n
-                >
-                  Description</mat-label
-                >
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('description') }"
-                >
-                  <textarea
-                    cdkTextareaAutosize
-                    name="description"
-                    #description
-                    class="resize-none"
-                    [matTextareaAutosize]="true"
-                    maxlength="2000"
-                    matInput
-                    rows="3"
-                    formControlName="description"
-                    i18n-placeholder
-                    placeholder="Description will appear on card and in details"
-                    [required]="checkCondition('description', 'required') ? true : null"
-                    id="description"
-                    name="description"
-                  >
-                  </textarea>
-                  <mat-hint align="end">{{ description.value.length }} / 2000</mat-hint>
-                  <mat-error *ngIf="showError('description')" i18n
-                    >Description is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div
                 class="margin-top-s"
                 *ngIf="checkCondition('body', 'show')"
                 [ngClass]="{ disable: checkCondition('body', 'disabled') }"
@@ -455,7 +455,7 @@
                 </mat-error>
               </div>
             </div>
-            <div
+            <!-- <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('resourceType', 'show')"
               [ngClass]="{ disable: checkCondition('resourceType', 'disabled') }"
@@ -492,29 +492,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
-            [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
-            <label [ngClass]="{ required: checkCondition('theme', 'required') }">
-              <b i18n>SDG (Sustainable Development Goals)</b>
-            </label>
-            <div class="margin-top-xs">
-              <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                [ngClass]="{ 'mat-form-field-invalid': showError('theme') }">
-                <mat-select formControlName="theme" placeholder="--Select--"
-                  [required]="checkCondition('theme', 'required')" multiple>
-                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'">None
-                  </mat-option>
-                  <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
-                    {{ resource }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="showError('theme')" i18n>SDG is mandatory
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          </div>
-          <div class="grid">
+            </div> -->
             <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('sourceName', 'show')"
@@ -543,6 +521,28 @@
                 </mat-form-field>
               </div>
             </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
+            [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
+            <label [ngClass]="{ required: checkCondition('theme', 'required') }">
+              <b i18n>SDG (Sustainable Development Goals)</b>
+            </label>
+            <div class="margin-top-xs">
+              <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                [ngClass]="{ 'mat-form-field-invalid': showError('theme') }">
+                <mat-select formControlName="theme" placeholder="--Select--"
+                  [required]="checkCondition('theme', 'required')" multiple>
+                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'">None
+                  </mat-option>
+                  <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
+                    {{ resource }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="showError('theme')" i18n>SDG is mandatory
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          </div>
+          <div class="grid">
             <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('complexityLevel', 'show')"
@@ -613,6 +613,28 @@
                       {{  assetTypeEntry }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
+              [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
+              <label>
+                <div class="margin-top-s flex flex-middle">
+                  <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('spaceLicense', 'required') }">License</b>
+                  <mat-icon  *ngIf="licenseMetaList?.length && currentLicenseData?.length" class="ws-mat-primary-text margin-left-xs pointer" (click)="showLicenseDetails()">info
+                  </mat-icon>
+                </div>
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }">
+                  <mat-select formControlName="spaceLicense" placeholder="--Select--"
+                    [required]="checkCondition('spaceLicense', 'required')">
+                    <mat-option *ngFor="let licenseEntry of currentLicenseList" [value]="licenseEntry">
+                      {{  licenseEntry }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="showError('spaceLcense')" i18n>License is mandatory
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -896,6 +918,61 @@
                 </mat-autocomplete>
               </div>
             </div>
+            <div class="margin-top-xs margin-left-xl">
+              <div class="margin-top-xs margin-bottom-s flex flex-middle">
+                <div
+                  class="margin-top-xs width-90"
+                  *ngIf="checkCondition('region', 'show')"
+                  [ngClass]="{ disable: checkCondition('region', 'disabled') }"
+                >
+                  <label>
+                    <b class="margin-remove-bottom" i18n>Region</b>
+                  </label>
+                  <div class="margin-top-xs">
+                    <mat-form-field
+                      appearance="outline"
+                      class="margin-top-xs"
+                      style="width: 68%;"
+                      [ngClass]="{ 'mat-form-field-invalid': showError('region') }"
+                    >
+                      <mat-chip-list #regionChipList i18n-aria-label aria-label="Region selection">
+                        <mat-chip
+                          *ngFor="let region of contentForm.controls.region.value"
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="removeFromFormControl(region, 'region')"
+                        >
+                          {{ region }}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                          i18n-placeholder
+                          placeholder="Search by region"
+                          #regionView
+                          [formControl]="regionCtrl"
+                          [matChipInputFor]="regionChipList"
+                          [matAutocomplete]="regionAuto"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="false"
+                          (matChipInputTokenEnd)="removeField($event)"
+                        />
+                      </mat-chip-list>
+                      <mat-autocomplete
+                        #regionAuto="matAutocomplete"
+                        (optionSelected)="addToFormControl($event, 'region')"
+                      >
+                        <mat-option *ngFor="let region of regionList" [value]="region">
+                          {{ region }}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <mat-error class="error-font" *ngIf="showError('region')" i18n
+                        >Region is mandatory
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div
               class="margin-top-xs margin-left-xl"
               *ngIf="!isClient1 && checkCondition('skills', 'show')"
@@ -1003,28 +1080,6 @@
                 </mat-autocomplete>
               </div>
             </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
-              [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
-              <label>
-                <div class="margin-top-s flex flex-middle">
-                  <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('spaceLicense', 'required') }">License</b>
-                  <mat-icon  *ngIf="licenseMetaList?.length && currentLicenseData?.length" class="ws-mat-primary-text margin-left-xs pointer" (click)="showLicenseDetails()">info
-                  </mat-icon>
-                </div>
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }">
-                  <mat-select formControlName="spaceLicense" placeholder="--Select--"
-                    [required]="checkCondition('spaceLicense', 'required')">
-                    <mat-option *ngFor="let licenseEntry of currentLicenseList" [value]="licenseEntry">
-                      {{  licenseEntry }}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="showError('spaceLcense')" i18n>License is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
           </div>
           <div class="grid">
             <div
@@ -1120,61 +1175,6 @@
                 </mat-form-field>
               </div>
             </div> -->
-            <div class="margin-top-xs margin-left-xl">
-              <div class="margin-top-xs margin-bottom-s flex flex-middle">
-                <div
-                  class="margin-top-xs width-90"
-                  *ngIf="checkCondition('region', 'show')"
-                  [ngClass]="{ disable: checkCondition('region', 'disabled') }"
-                >
-                  <label>
-                    <b class="margin-remove-bottom" i18n>Region</b>
-                  </label>
-                  <div class="margin-top-xs">
-                    <mat-form-field
-                      appearance="outline"
-                      class="margin-top-xs"
-                      style="width: 68%;"
-                      [ngClass]="{ 'mat-form-field-invalid': showError('region') }"
-                    >
-                      <mat-chip-list #regionChipList i18n-aria-label aria-label="Region selection">
-                        <mat-chip
-                          *ngFor="let region of contentForm.controls.region.value"
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="removeFromFormControl(region, 'region')"
-                        >
-                          {{ region }}
-                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input
-                          i18n-placeholder
-                          placeholder="Search by region"
-                          #regionView
-                          [formControl]="regionCtrl"
-                          [matChipInputFor]="regionChipList"
-                          [matAutocomplete]="regionAuto"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          [matChipInputAddOnBlur]="false"
-                          (matChipInputTokenEnd)="removeField($event)"
-                        />
-                      </mat-chip-list>
-                      <mat-autocomplete
-                        #regionAuto="matAutocomplete"
-                        (optionSelected)="addToFormControl($event, 'region')"
-                      >
-                        <mat-option *ngFor="let region of regionList" [value]="region">
-                          {{ region }}
-                        </mat-option>
-                      </mat-autocomplete>
-                      <mat-error class="error-font" *ngIf="showError('region')" i18n
-                        >Region is mandatory
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('idealScreenSize', 'show')"
@@ -1298,7 +1298,7 @@
                 <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
                   [ngClass]="{ 'mat-form-field-invalid': showError('interface_api') }">
                   <input matInput #interface_api formControlName="interface_api" maxlength="500" i18n-placeholder
-                    placeholder="Enter interface / API"
+                    placeholder="Enter interface / API link"
                     [required]="checkCondition('interface_api', 'required') ? true : null" />
                   <mat-hint align="end">{{ interface_api?.value.length }} / 500</mat-hint>
                   <mat-error *ngIf="showError('interface_api')" i18n="Name Error|Explains interface / API is required">
@@ -1361,7 +1361,7 @@
                 <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
                   [ngClass]="{ 'mat-form-field-invalid': showError('sandbox') }">
                   <input matInput #sandbox formControlName="sandbox" maxlength="500" i18n-placeholder
-                    placeholder="Enter Sandbox"
+                    placeholder="Enter Sandbox link"
                     [required]="checkCondition('sandbox', 'required') ? true : null" />
                   <mat-hint align="end">{{ sandbox?.value.length }} / 500</mat-hint>
                   <mat-error *ngIf="showError('sandbox')" i18n="Name Error|Explains Sandbox is required">
@@ -2263,7 +2263,7 @@
             >
               <label>
                 <div class="margin-top-xs flex flex-middle">
-                  <b i18n>Curators</b>
+                  <b i18n [ngClass]="{ required: checkCondition('creatorContacts', 'required') }">Curators</b>
                   <mat-icon
                     class="ws-mat-primary-text margin-left-xs pointer"
                     (click)="showInfo('coAuthors')"
@@ -2680,7 +2680,7 @@
                       No user found. Please check the value entered.</mat-option
                     >
                     <mat-option *ngFor="let author of employeeList" [value]="author">
-                      {{ author.displayName }} | {{ author.mail }}
+                      {{ author.displayName }}
                       <span *ngIf="author.department">
                         <span *ngIf="author.department">| {{ author.department }}</span>
                       </span>
