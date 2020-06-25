@@ -77,6 +77,7 @@ export class BtnContentLikeComponent extends WidgetBaseComponent
       this.likeSubscription.unsubscribe()
     }
   }
+
   like(event: Event) {
     if (!this.forPreview) {
       event.stopPropagation()
