@@ -23,7 +23,7 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   objectKeys = Object.keys
 
   constructor(private domSanitizer: DomSanitizer, private configSvc: ConfigurationsService,
-    private activateRoute: ActivatedRoute, private authSvc: AuthKeycloakService,
+              private activateRoute: ActivatedRoute, private authSvc: AuthKeycloakService,
   ) { }
 
   public get showPublicNavbar(): boolean {
