@@ -127,7 +127,6 @@ export class UserDashboardComponent implements OnInit {
                    // tslint:disable-next-line: brace-style
                    this.dataSource.sort = this.sort})
       }
-
     }
   }
 
@@ -141,7 +140,6 @@ export class UserDashboardComponent implements OnInit {
     this.isLoad = true
     this.userDashboardSvc.fetchPublishersList(element.email).subscribe(async data => {
       this.getUserData.roles = []
-
       if (data.length) {
         this.getUserData = data[0]
         this.getUserData.roles = data[0].roles

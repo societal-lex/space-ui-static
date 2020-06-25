@@ -43,7 +43,7 @@
     .example-header{
         display: inline-flex;
       flex-wrap: wrap;
-      width: 40%;
+      width: 65%;
   }
   }
   @media only screen and (max-width: 375px) {
@@ -57,6 +57,7 @@
 
 
 .example-container {
+  padding-top:20px;
     height: auto;
     overflow: auto;
     display: flex;
@@ -136,6 +137,7 @@
 
     }
     .allignment{
+      padding-top: 20px;
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
