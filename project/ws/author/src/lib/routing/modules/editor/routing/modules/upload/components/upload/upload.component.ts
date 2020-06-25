@@ -39,6 +39,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   isSubmitPressed = false
   mimeTypeRoute = ''
   isMobile = false
+  showIPRDeclaration = false
   constructor(
     private authInitService: AuthInitService,
     private contentService: EditorContentService,
@@ -68,11 +69,27 @@ export class UploadComponent implements OnInit, OnDestroy {
     }
     this.contentService.changeActiveCont.subscribe(data => {
       this.currentContent = data
+      const iprSettings = this.authInitService.authConfig.iprDeclaration || {}
+      this.setIprVisibility(iprSettings)
       if (this.contentService.getOriginalMeta(data).isContentEditingDisabled) {
         this.currentStep = 3
       }
     })
     this.loaderService.changeLoadState(true)
+  }
+
+  setIprVisibility(iprSettings: any | null) {
+    this.showIPRDeclaration = false
+    if (!iprSettings || (iprSettings && !Object.keys(iprSettings).length)) {
+      return
+    }
+    if (iprSettings.hasOwnProperty('showFor')) {
+      if (Object.keys(iprSettings['showFor']).length) {
+        if (Object.keys(iprSettings['showFor']).includes(this.contentService.getOriginalMeta(this.currentContent).contentType)) {
+          this.showIPRDeclaration = true
+        }
+      }
+    }
   }
 
   ngOnDestroy() {

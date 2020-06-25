@@ -158,7 +158,8 @@ export namespace NSContent {
     verifiers: IAuthorDetails[]
     studyMaterials: IInternalReference[]
     studyDuration: number
-    sampleCertificates: IInternalReference[]
+    sampleCertificates: IInternalReference[],
+    iprDeclaration: object,
   }
 
   export interface IClient {

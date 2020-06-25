@@ -74,7 +74,7 @@
   </div>
   <div id="upload-container" class="mat-app-background">
     <div class="margin-top-xl margin-left-xl margin-right-xl" *ngIf="currentStep === 2">
-      <ws-auth-file-upload [canTransCode]="canTransCode" [isSubmitPressed]="isSubmitPressed" (data)="action($event)">
+      <ws-auth-file-upload [canTransCode]="canTransCode" [isSubmitPressed]="isSubmitPressed" (data)="action($event)" [showIPRDeclaration]="showIPRDeclaration">
       </ws-auth-file-upload>
     </div>
     <div class="margin-top-xl margin-left-xl margin-right-xl" *ngIf="currentStep === 3">
