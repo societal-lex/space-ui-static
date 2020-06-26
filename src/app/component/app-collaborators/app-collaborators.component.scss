@@ -54,13 +54,23 @@
   justify-content: space-evenly;
   margin-bottom: 20px;
 }
-@media only screen and (min-width: 312px) and (max-width: 680px) {
+@media only screen and (min-width: 453px) and (max-width: 680px) {
   .imageRow {
     display: inline !important;
   }
   .box {
     width: 35% !important;
-    padding: 5.5em 0em 0 2rem !important;
+    // padding: 5.5em 0em 0 -0rem !important;
+    margin-right: 10px !important;
+  }
+}
+@media only screen and (min-width: 312px) and (max-width: 453px) {
+  .imageRow {
+    display: inline !important;
+  }
+  .box {
+    width: 35% !important;
+    padding: 5.5em 0em 0 -0rem !important;
     margin-right: 10px !important;
   }
 }

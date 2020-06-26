@@ -37,7 +37,7 @@ button {
   font-family: $font-family-campaign !important;
 }
 a {
-  font-family: $font-family-campaign !important;
+  font-family: $font-family-montserrat !important;
 }
 span {
   font-family: $font-family-campaign !important;
@@ -48,7 +48,13 @@ p {
 ::selection {
   background-color: #e0f2f1;
 }
-
+.mat-error {
+  font-family: $font-family-montserrat !important;
+}
+.mat-button-wrapper {
+  font-size: 16px;
+  font-weight: bolder;
+}
 ::-moz-selection {
   background-color: #e0f2f1;
 }
