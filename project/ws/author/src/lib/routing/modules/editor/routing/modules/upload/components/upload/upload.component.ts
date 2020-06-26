@@ -40,6 +40,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   mimeTypeRoute = ''
   isMobile = false
   showIPRDeclaration = false
+  languageSelectorEnabled = false
   constructor(
     private authInitService: AuthInitService,
     private contentService: EditorContentService,

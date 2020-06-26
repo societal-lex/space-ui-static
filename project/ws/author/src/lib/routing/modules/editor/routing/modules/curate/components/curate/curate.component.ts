@@ -39,6 +39,7 @@ export class CurateComponent implements OnInit, OnDestroy {
   isChanged = false
   mimeTypeRoute = ''
   showIPRDeclaraion = false
+  languageSelectorEnabled = false
 
   @ViewChild(UrlUploadComponent, { static: false }) urlComponent!: UrlUploadComponent
   constructor(
