@@ -36,7 +36,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     canActivate: [EmptyRouteGuard],
-    component: LoginRootComponent,
+    component: AppHomeComponent,
   },
   {
     path: 'practice/behavioral',
@@ -301,18 +301,18 @@ const routes: Routes = [
       import('./routes/route-learning-hub-app.module').then(u => u.LearningHubAppModule),
     canActivate: [GeneralGuard],
   },
-  // {
-  //   path: 'login',
-  //   canActivate: [LoginGuard],
-  //   component: LoginRootComponent,
-  //   data: {
-  //     pageType: 'feature',
-  //     pageKey: 'login',
-  //   },
-  //   resolve: {
-  //     pageData: PageResolve,
-  //   },
-  // },
+  {
+    path: 'login',
+    canActivate: [LoginGuard],
+    component: LoginRootComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'login',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+  },
   {
     path: 'public/home',
     canActivate: [LoginGuard],
@@ -336,6 +336,10 @@ const routes: Routes = [
     runGuardsAndResolvers: 'paramsChange',
     component: PageComponent,
     canActivate: [GeneralGuard],
+  },
+  {
+    path: 'page/collaborators',
+    component: AppCollaboratorsComponent,
   },
   {
     path: 'page/:id',
@@ -397,17 +401,6 @@ const routes: Routes = [
     data: {
       pageType: 'feature',
       pageKey: 'public-faq',
-    },
-    resolve: {
-      pageData: PageResolve,
-    },
-  },
-  {
-    path: 'page/collaborators',
-    component: AppCollaboratorsComponent,
-    data: {
-      pageType: 'feature',
-      pageKey: 'collaborators',
     },
     resolve: {
       pageData: PageResolve,

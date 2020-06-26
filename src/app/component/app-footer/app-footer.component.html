@@ -1,21 +1,25 @@
-<div class="mat-toolbar footer-container px-2 sm:px-10 py-1 sm:py-4"
-  [ngClass]="{'mat-primary': !isXSmall, 'mat-primarylight': isXSmall}">
+<div
+  class="mat-toolbar footer-container px-2 sm:px-10 py-1 sm:py-4"
+  [ngClass]="{ 'mat-primary': !isXSmall, 'mat-primarylight': isXSmall }"
+>
   <div class="mat-body">
     <ng-container i18n>
       <!-- Powered by Infosys Wingspan -->
       <a routerLink="/public/tnc" name="helpAndContactButtonHomePage" i18n>Data Privacy</a> |
       <a routerLink="/public/tnc" name="helpAndContactButtonHomePage" i18n>Terms & Conditions</a> |
-      <a routerLink="/public/grievanceredressal" name="helpAndContactButtonHomePage" i18n>Grievance Redressal
-        Process</a>
+      <a routerLink="/public/grievanceredressal" name="helpAndContactButtonHomePage" i18n
+        >Grievance Redressal Process</a
+      >
     </ng-container>
   </div>
   <div class="mat-body">
     <!-- <span i18n>&copy; Infosys Ltd. 2019-2020.</span> |
-<a routerLink="/app/tnc" *ngIf="!termsOfUser" name="termOfUseButtonHomePage" i18n>Terms & Conditions</a>
-<a routerLink="/app/tnc" *ngIf="termsOfUser" name="termOfUseButtonHomePage" i18n>Terms of Use</a> |
-<a routerLink="/app/info/faq" name="helpAndContactButtonHomePage" i18n>Help & Contact</a> -->
+    <a routerLink="/app/tnc" *ngIf="!termsOfUser" name="termOfUseButtonHomePage" i18n>Terms & Conditions</a>
+    <a routerLink="/app/tnc" *ngIf="termsOfUser" name="termOfUseButtonHomePage" i18n>Terms of Use</a> |
+    <a routerLink="/app/info/faq" name="helpAndContactButtonHomePage" i18n>Help & Contact</a> -->
     <a routerLink="/public/licencepolicy" name="termOfUseButtonHomePage" i18n>License Policy</a> |
-    <a routerLink="/public/assetguidelines" name="termOfUseButtonHomePage" i18n>Asset Guidelines</a> |
+    <a routerLink="/public/assetguidelines" name="termOfUseButtonHomePage" i18n>Asset Guidelines</a>
+    |
     <a routerLink="/public/contact" name="helpAndContactButtonHomePage" i18n>Contact Us</a>
   </div>
 </div>

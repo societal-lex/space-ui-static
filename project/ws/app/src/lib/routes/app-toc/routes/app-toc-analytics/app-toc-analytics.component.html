@@ -4,7 +4,7 @@
 
 <ng-container *ngIf="fetchStatus === 'error'" [wsResolverWidget]="errorWidget"></ng-container>
 <div *ngIf="fetchStatus === 'done' && uniqueUsers === 0" class="text-center my-8">
-  <h2 i18n>We are gathering the data to provide insights! Coming soon ...</h2>
+  <h2 class="montserrat" i18n>We are gathering the data to provide insights! Coming soon ...</h2>
 </div>
 
 <div *ngIf="fetchStatus === 'done' && uniqueUsers > 0 && apiLinkAccess?.courseAnalytics" class="mt-4">

@@ -9,14 +9,15 @@ import { ConfigurationsService } from '../../../../library/ws-widget/utils/src/p
 })
 export class AppHomeComponent implements OnInit {
   appBanner: SafeUrl | null = null
-
+  loadText = false
   constructor(private configSvc: ConfigurationsService,
-              private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer) {
     const instanceConfig = this.configSvc.instanceConfig
     if (instanceConfig) {
       this.appBanner = this.domSanitizer.bypassSecurityTrustResourceUrl(
         instanceConfig.banners.mainBanner,
       )
+      this.loadText = true
     }
   }
   ngOnInit() {

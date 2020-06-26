@@ -23,6 +23,7 @@ export class EmptyRouteGuard implements CanActivate {
       return this.router.parseUrl('/page/home')
     }
     // logger.log('redirecting to login page as the user is not loggedIn');
-    return this.router.parseUrl('/public/home')
+    // return this.router.parseUrl('/public/home')
+    return true
   }
 }
