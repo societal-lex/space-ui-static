@@ -7,6 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: EditorComponent,
+    data: {
+      load: ['license'],
+    },
+    resolve: {
+      script: InitResolver,
+    },
     children: [
       {
         path: 'curate',
@@ -21,7 +27,7 @@ const routes: Routes = [
       {
         path: 'collection',
         data: {
-          load: ['collection', 'create',  'license'],
+          load: ['collection', 'create'],
         },
         resolve: {
           script: InitResolver,
