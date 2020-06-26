@@ -31,7 +31,7 @@
     [matMenuTriggerFor]="child.childMenu">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Create new Resource / Module">
       create_new_folder</mat-icon>
-    <ng-container i18n>Add new Resource / Module</ng-container>
+    <ng-container i18n>Add new Resource</ng-container>
     <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
       (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu>
   </button>

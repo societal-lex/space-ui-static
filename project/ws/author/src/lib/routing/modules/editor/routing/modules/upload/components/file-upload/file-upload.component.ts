@@ -63,6 +63,7 @@ export class FileUploadComponent implements OnInit {
   @Input() isCollectionEditor = false
   @Input() isSubmitPressed = false
   @Input() canTransCode = false
+  @Input() showIPRDeclaration = false
   isMobile = false
   @Output() data = new EventEmitter<any>()
 
@@ -113,7 +114,7 @@ export class FileUploadComponent implements OnInit {
     this.canUpdate = true
     this.fileUploadForm.markAsPristine()
     this.fileUploadForm.markAsUntouched()
-    if (meta.artifactUrl) {
+    if (meta.artifactUrl && this.showIPRDeclaration) {
       this.iprAccepted = true
     }
   }
@@ -136,7 +137,9 @@ export class FileUploadComponent implements OnInit {
       }
     })
     this.fileUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
-      this.iprAccepted = false
+      if (this.showIPRDeclaration) {
+        this.iprAccepted = false
+      }
     })
   }
 
@@ -249,7 +252,7 @@ export class FileUploadComponent implements OnInit {
         },
         duration: NOTIFICATION_TIME * 1000,
       })
-    } else if (!this.iprAccepted) {
+    } else if (this.showIPRDeclaration && !this.iprAccepted) {
       this.snackBar.openFromComponent(NotificationComponent, {
         data: {
           type: Notify.IPR_DECLARATION,

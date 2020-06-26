@@ -145,7 +145,7 @@ export class CollectionStoreService {
     dropNode: IContentTreeNode,
     adjacentId?: number,
     dropLocation: 'above' | 'below' = 'below',
-  ): Promise<boolean> {
+  ): Promise<object> {
     try {
       const contents = await this.editorService.readMultipleContent(ids).toPromise()
       const contentDataMap = new Map<string, NSContent.IContentMeta>()
@@ -166,10 +166,10 @@ export class CollectionStoreService {
           index === ids.length - 1,
         )
       })
-      return true
+      return { done: true, createdNodes: contents }
     } catch (ex) {
       this.logger.error(ex)
-      return false
+      return { done: false }
     }
   }
 
@@ -178,7 +178,7 @@ export class CollectionStoreService {
     dropNode: IContentTreeNode,
     adjacentId?: number,
     dropLocation: 'above' | 'below' = 'below',
-  ): Promise<boolean> {
+  ): Promise<object> {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
       const requestBody = {
@@ -206,10 +206,12 @@ export class CollectionStoreService {
         this.lexIdMap,
       )
       this.dragAndDrop(treeStructure, dropNode, adjacentId, dropLocation)
-      return true
+      return {
+        done: true, createdNode: content,
+      }
     } catch (ex) {
       this.logger.error(ex)
-      return false
+      return { done: false }
     }
   }
 

@@ -28,6 +28,7 @@ export class UrlUploadComponent implements OnInit {
   @Input() isCollectionEditor = false
   @Input() isSubmitPressed = false
   @Output() data = new EventEmitter<string>()
+  @Input() showIPRDeclaration = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -76,7 +77,9 @@ export class UrlUploadComponent implements OnInit {
     this.urlUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
       if (this.canUpdate) {
         this.check()
-        this.iprAccepted = false
+        if (this.showIPRDeclaration) {
+          this.iprAccepted = false
+        }
       }
     })
   }
@@ -92,7 +95,7 @@ export class UrlUploadComponent implements OnInit {
     this.urlUploadForm.controls.isInIntranet.setValue(meta.isInIntranet || false)
     this.urlUploadForm.controls.isExternal.setValue(true)
     this.canUpdate = true
-    if (meta.artifactUrl) {
+    if (meta.artifactUrl &&  this.showIPRDeclaration) {
       this.iprAccepted = true
     }
     if (meta.artifactUrl) {
@@ -119,7 +122,7 @@ export class UrlUploadComponent implements OnInit {
   }
 
   submit() {
-    if (this.urlUploadForm.controls.artifactUrl.value && !this.iprAccepted) {
+    if (this.urlUploadForm.controls.artifactUrl.value &&  this.showIPRDeclaration && !this.iprAccepted) {
       this.snackBar.openFromComponent(NotificationComponent, {
         data: {
           type: Notify.IPR_DECLARATION,
