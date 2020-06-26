@@ -67,7 +67,7 @@
         (mouseleave)="dragHoverEnd($event)"
         (cdkDragStarted)="dragStart(node)"
         (cdkDragReleased)="dragEnd()"
-        (click)="onNodeSelect(node, true)"
+        (click)="onNodeSelect(node)"
       >
         <div
           *ngIf="draggingPosition === 'above' && node === dropContainer && node.parentId"
