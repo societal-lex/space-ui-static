@@ -67,11 +67,12 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
   get showSubtitleOnBanner() {
     return this.tocSharedSvc.subtitleOnBanners
   }
+
   get showDescription() {
-    if (this.content && !this.content.body) {
-      return true
-    }
-    return this.tocSharedSvc.showDescription
+    // if (this.content && !this.content.body) {
+    return true
+    // }
+    // return this.tocSharedSvc.showDescription
   }
 
   private initData(data: Data) {

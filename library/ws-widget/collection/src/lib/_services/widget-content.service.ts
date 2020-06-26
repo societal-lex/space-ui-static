@@ -38,7 +38,7 @@ export class WidgetContentService {
   constructor(
     private http: HttpClient,
     private configSvc: ConfigurationsService
-    ) { }
+  ) { }
 
   fetchMarkAsCompleteMeta(identifier: string): Promise<any> {
     const url = API_END_POINTS.MARK_AS_COMPLETE_META(identifier)
@@ -47,14 +47,17 @@ export class WidgetContentService {
 
   fetchContent(
     contentId: string,
-    hierarchyType: 'all' | 'minimal' | 'detail' = 'detail',
-    additionalFields: string[] = [],
+    _hierarchyType: 'all' | 'minimal' | 'detail' = 'detail',
+    _additionalFields: string[] = [],
   ): Observable<NsContent.IContent> {
-    const url = `${API_END_POINTS.CONTENT}/${contentId}?hierarchyType=${hierarchyType}`
+    const url = `/apis/authApi/action/content/hierarchy/${contentId}?rootOrg=${
+      this.configSvc.rootOrg || 'Infosys'
+      }&org=${this.configSvc.activeOrg || 'Infosys Ltd'}`
     return this.http
-      .post<NsContent.IContent>(url, { additionalFields })
+      .get<NsContent.IContent>(url)
       .pipe(retry(1))
   }
+
   fetchAuthoringContent(contentId: string): Observable<NsContent.IContent> {
     const url = `${API_END_POINTS.AUTHORING_CONTENT}/${contentId}`
     return this.http.get<NsContent.IContent>(url).pipe(retry(1))

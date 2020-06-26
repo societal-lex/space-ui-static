@@ -271,41 +271,43 @@
 <div class="flex flex-between flex-wrapped mt-4">
   <div class="meta-section">
     <!-- Description : Conditional : If not shown here, will be shown over banner -->
-    <mat-card *ngIf="showDescription && showSubtitleOnBanner && content?.description" class="unit-meta-item">
+    <mat-card *ngIf="showDescription && content?.description" class="unit-meta-item">
       <h2 i18n>Description</h2>
       <mat-card-content>
         <div class="mat-subheading-1" [innerHTML]="content?.description"></div>
       </mat-card-content>
     </mat-card>
+
     <!-- Content Body -->
 
-    <mat-card *ngIf="content?.body" class="unit-meta-item">
+    <!-- <mat-card *ngIf="content?.body" class="unit-meta-item">
       <h2 i18n>Details</h2>
       <mat-card-content>
         <div class="break-words" [innerHTML]="body"></div>
       </mat-card-content>
-    </mat-card>
+    </mat-card> -->
+
     <!-- Learning objective -->
-    <mat-card *ngIf="content?.learningObjective" class="unit-meta-item">
+    <!-- <mat-card *ngIf="content?.learningObjective" class="unit-meta-item">
       <h2 i18n>What you will learn</h2>
       <mat-card-content>
         <p class="mat-subheading-1" [innerHTML]="content?.learningObjective"></p>
       </mat-card-content>
-    </mat-card>
+    </mat-card> -->
 
     <!-- Registration instructions -->
-    <mat-card *ngIf="content?.registrationInstructions" class="unit-meta-item">
+    <!-- <mat-card *ngIf="content?.registrationInstructions" class="unit-meta-item">
       <h2 i18n>Instructions</h2>
       <mat-card-content>
         <div class="mat-subheading-1 break-words" [innerHTML]="content?.registrationInstructions"></div>
       </mat-card-content>
-    </mat-card>
-    <mat-card *ngIf="content?.studyMaterials" class="unit-meta-item">
+    </mat-card> -->
+    <!-- <mat-card *ngIf="content?.studyMaterials" class="unit-meta-item">
       <h2 i18n>Study Materials</h2>
       <mat-card-content>
         <div class="mat-subheading-1 break-words" [innerHTML]="content?.studyMaterials"></div>
       </mat-card-content>
-    </mat-card>
+    </mat-card> -->
     <!-- Skills -->
     <mat-card *ngIf="content?.skills?.length" class="unit-meta-item mat-app-background">
       <h2 i18n>Skills you will gain</h2>
