@@ -16,7 +16,7 @@
   <div class="example-header">
     <mat-form-field>
       <button mat-button matPrefix mat-icon-button>
-        <mat-icon>search</mat-icon>
+        <mat-icon color= "primary">search</mat-icon>
       </button>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
     </mat-form-field>
@@ -27,22 +27,22 @@
 
 
   <ng-container matColumnDef="SlNo">
-    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text" > Sl No. </th>
+    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text font-text" > Sl No. </th>
     <td mat-cell *matCellDef="let element; let i = index "> {{i+1}} </td>
   </ng-container>
 
   <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text" mat-sort-header> Name </th>
+    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text font-text" mat-sort-header> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text" mat-sort-header> Email </th>
+    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text font-text" mat-sort-header> Email </th>
     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Actions" stickyEnd>
-    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text">Actions</th>
+    <th mat-header-cell *matHeaderCellDef class="ws-mat-primary-text font-text">Actions</th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
@@ -69,7 +69,7 @@
 
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-  <mat-paginator [pageSizeOptions]="[100,200,300,400,500,600,700,800,900,1000]" showFirstLastButtons></mat-paginator>
+  <!-- <mat-paginator [pageSizeOptions]="[100,200,300,400,500,600,700,800,900,1000]" showFirstLastButtons></mat-paginator> -->
   </div>
   </div>
 
