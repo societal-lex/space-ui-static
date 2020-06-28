@@ -38,6 +38,9 @@
     flex-wrap: wrap;
     width: 40%;
 }
+.font-text{
+  font-size: 1rem;
+}
 
 @media only screen and (max-width: 425px) {
     .example-header{
@@ -85,7 +88,7 @@
     }
 
      td.mat-cell {
-      padding: 16px 0 16px 0;
+      padding: 8px 0 8px 0;
       border-bottom: 20px ;
       border-top: 14px solid #f4f6f6;
 
