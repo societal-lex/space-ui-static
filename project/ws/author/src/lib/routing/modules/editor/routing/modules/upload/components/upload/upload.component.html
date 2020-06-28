@@ -66,7 +66,7 @@
           add</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let lang of allLanguages" (click)="createInAnotherLanguage(lang.srclang)">
+        <button mat-menu-item *ngFor="let lang of allLanguages" (click)="createInAnotherLanguage(lang.srclang)" [disabled]="!languageSelectorEnabled">
           {{ lang.label | uppercase }}
         </button>
       </mat-menu>

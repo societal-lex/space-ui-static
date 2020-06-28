@@ -137,9 +137,7 @@ export class FileUploadComponent implements OnInit {
       }
     })
     this.fileUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
-      if (this.showIPRDeclaration) {
-        this.iprAccepted = false
-      }
+      this.iprAccepted = !this.showIPRDeclaration
     })
   }
 

@@ -76,10 +76,8 @@ export class UrlUploadComponent implements OnInit {
     })
     this.urlUploadForm.controls.artifactUrl.valueChanges.subscribe(() => {
       if (this.canUpdate) {
+        this.iprAccepted = !this.showIPRDeclaration
         this.check()
-        if (this.showIPRDeclaration) {
-          this.iprAccepted = false
-        }
       }
     })
   }
