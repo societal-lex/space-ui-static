@@ -48,7 +48,7 @@
 
 .small-font-size {
   @include breakpoint-xs {
-    font-size: smaller !important;
+    font-size: 10px !important;
   }
 }
 
