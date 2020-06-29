@@ -79,7 +79,7 @@ export class UserDashboardComponent implements OnInit {
         this.userdefaultRoles = data.pageData.data.defaultRoles.roles,
         this.errorMessage = data.pageData.data.user_list.errorMessage
 
-        this.userDashboardSvc.setUserDashboardConfig(this.userDashboardData)
+      this.userDashboardSvc.setUserDashboardConfig(this.userDashboardData)
       this.getRootOrg = data.pageData.data.root_org,
         this.getOrg = data.pageData.data.org
       this.navBackground = this.configSvc.pageNavBar
@@ -121,19 +121,21 @@ export class UserDashboardComponent implements OnInit {
         this.userListArray = userListResponse.DATA
         this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.enableFilter(this.userListArray))
         if (this.dataSource != null) {
-           this.isLoad = false
+          this.isLoad = false
         }
-        setTimeout(() => {this.dataSource.paginator = this.paginator
-                   // tslint:disable-next-line: brace-style
-                   this.dataSource.sort = this.sort})
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator
+          // tslint:disable-next-line: brace-style
+          this.dataSource.sort = this.sort
+        })
       }
     }
   }
 
- enableFilter(userData: any) {
+  enableFilter(userData: any) {
     // tslint:disable-next-line: no-boolean-literal-compare
     return userData.filter((items: { emailVerified: boolean }) => items.emailVerified === true)
- }
+  }
 
   async changeRole(element: any) {
 
@@ -146,7 +148,7 @@ export class UserDashboardComponent implements OnInit {
         this.roles = this.getUserData.roles
         this.widUser = data[0].id
       } else {
-      this.roles = []
+        this.roles = []
       }
       const getAllRoles = await this.userDashboardSvc.getAllRoles(this.getRootOrg, this.widLoggedinUser, this.getOrg)
       if (getAllRoles && this.roles) {
@@ -166,7 +168,6 @@ export class UserDashboardComponent implements OnInit {
           }
         })
       }
-
     })
   }
   async  changeUserRoles(roles: any, getwid: any) {
@@ -174,10 +175,15 @@ export class UserDashboardComponent implements OnInit {
     this.headersForChangeUserRole.org = this.getOrg
     this.headersForChangeUserRole.wid_OrgAdmin = this.widLoggedinUser
     this.paramsForChangeRole.wid = getwid,
-      this.paramsForChangeRole.roles = []
+    this.paramsForChangeRole.roles = []
     this.paramsForChangeRole.roles = roles
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
     if (userChangedRoleResponse.ok) {
+      this.paramsForChangeRole.wid = ''
+      this.paramsForChangeRole.roles = []
+      this.widUser = ''
+      this.roles = []
+      this.getUserData.roles = []
       // tslint:disable-next-line: no-non-null-assertion
       this.snackBar.open(userChangedRoleResponse.MESSAGE, '', {
         duration: 3000,

@@ -232,8 +232,8 @@ export class UserDashboardService {
       }
       return { ok: false, error: null, MESSAGE: this.userData.change_roles.errorMessage }
     } catch (ex) {
-      this.logger.error('User roles could not be updated')
-      this.logger.error(ex)
+      // this.logger.error('User roles could not be updated')
+      // this.logger.error(ex)
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
@@ -261,7 +261,6 @@ export class UserDashboardService {
       })
     }
     // tslint:disable-next-line: no-console
-    console.log('did not recieve anything ')
     return of([])
   }
   filterPublishers = () => (source: Observable<any>) => {
