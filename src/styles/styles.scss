@@ -54,6 +54,9 @@ p {
 .mat-button-wrapper {
   font-size: 16px;
   font-weight: bolder;
+  @include breakpoint-xs {
+    font-size: 9px;
+  }
 }
 ::-moz-selection {
   background-color: #e0f2f1;

@@ -22,6 +22,11 @@
     font-size: unset !important;
   }
 }
+@media (max-width: 750px) {
+  #display-responsive {
+    margin-bottom: 3rem;
+  }
+}
 @media (min-width: 972px) {
   #display-responsive {
     display: none;

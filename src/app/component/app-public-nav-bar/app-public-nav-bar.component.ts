@@ -23,7 +23,7 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   objectKeys = Object.keys
 
   constructor(private domSanitizer: DomSanitizer, private configSvc: ConfigurationsService,
-              private activateRoute: ActivatedRoute, private authSvc: AuthKeycloakService,
+    private activateRoute: ActivatedRoute, private authSvc: AuthKeycloakService,
   ) { }
 
   public get showPublicNavbar(): boolean {
@@ -33,7 +33,7 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.configSvc.instanceConfig) {
       this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
-        this.configSvc.instanceConfig.logos.appTransparent,
+        this.configSvc.instanceConfig.logos.app,
       )
       this.appName = this.configSvc.instanceConfig.details.appName
       this.navBar = this.configSvc.primaryNavBar
