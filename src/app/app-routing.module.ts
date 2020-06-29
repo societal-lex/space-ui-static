@@ -154,7 +154,7 @@ const routes: Routes = [
     canActivate: [GeneralGuard],
   },
   {
-    path: 'app/user_dashboard',
+    path: 'app/user-dashboard',
     data: {
       requiredRoles: [
         'org-admin',
