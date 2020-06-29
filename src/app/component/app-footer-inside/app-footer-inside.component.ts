@@ -3,9 +3,10 @@ import { ConfigurationsService, ValueService } from '@ws-widget/utils'
 @Component({
   selector: 'ws-app-footer-inside',
   templateUrl: './app-footer-inside.component.html',
-  styleUrls: ['./app-footer-inside.component.scss']
+  styleUrls: ['./app-footer-inside.component.scss'],
 })
 export class AppFooterInsideComponent {
+
   isXSmall = false
   termsOfUser = true
 
@@ -22,6 +23,4 @@ export class AppFooterInsideComponent {
       this.isXSmall = isXSmall
     })
   }
-
-
 }

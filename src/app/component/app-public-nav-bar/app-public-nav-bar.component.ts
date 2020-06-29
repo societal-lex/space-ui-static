@@ -22,8 +22,11 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   private redirectUrl = ''
   objectKeys = Object.keys
 
-  constructor(private domSanitizer: DomSanitizer, private configSvc: ConfigurationsService,
-    private activateRoute: ActivatedRoute, private authSvc: AuthKeycloakService,
+  constructor(
+    private domSanitizer: DomSanitizer,
+    private configSvc: ConfigurationsService,
+    private activateRoute: ActivatedRoute,
+    private authSvc: AuthKeycloakService,
   ) { }
 
   public get showPublicNavbar(): boolean {
