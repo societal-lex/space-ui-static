@@ -16,6 +16,7 @@ import { CustomTourService } from '../_common/tour-guide/tour-guide.service'
 export class PageComponent extends WidgetBaseComponent
   implements OnInit, AfterViewInit, OnDestroy, NsWidgetResolver.IWidgetData<NsPage.IPage | null> {
   @Input() widgetData: NsPage.IPage | null = null
+  appIcon: SafeUrl | null = null
   pageData: NsPage.IPage | null = null
   oldData: NsPage.IPage | null = null
   private responseSubscription: Subscription | null = null
@@ -51,6 +52,9 @@ export class PageComponent extends WidgetBaseComponent
           this.configSvc.instanceConfig.logos.navbarLogo,
         )
       }
+      this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
+        this.configSvc.instanceConfig.logos.app,
+      )
       if (this.configSvc.restrictedFeatures) {
         this.isHlpMenuXs = this.configSvc.restrictedFeatures.has('helpMenuXs')
       }

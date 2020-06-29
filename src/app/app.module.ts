@@ -63,7 +63,8 @@ import { LicencepolicyComponent } from './routes/public/licencepolicy/licencepol
 
 import { AppHomeComponent } from './component/app-home/app-home.component'
 import { PublicCollaboratorsModule } from './routes/public/public-collaborators/public-collaborators.module'
-import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
+import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component';
+import { AppFooterInsideComponent } from './component/app-footer-inside/app-footer-inside.component'
 // import { ServiceWorkerModule } from '@angular/service-worker'
 // import { environment } from '../environments/environment'
 
@@ -104,6 +105,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     LicencepolicyComponent,
     AppHomeComponent,
     AppCollaboratorsComponent,
+    AppFooterInsideComponent,
   ],
   imports: [
     FormsModule,
