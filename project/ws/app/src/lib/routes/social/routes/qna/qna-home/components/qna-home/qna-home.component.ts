@@ -43,8 +43,6 @@ export class QnaHomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(_combinedResult => {
       // tslint:disable-next-line: max-line-length
-
-      debugger;
       const isAllowed = this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.QnA, _combinedResult[0].socialData.data.rolesNotAllowed.QnA)
         this.allowedToAsk = isAllowed
         this.allowedToEdit = isAllowed
