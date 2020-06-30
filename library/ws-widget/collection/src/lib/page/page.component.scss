@@ -6,6 +6,22 @@
 .navbar {
   display: none;
 }
+#display-text {
+  color: white !important;
+}
+#secondary-navbar {
+  background: #865ba0 !important;
+}
+@media (min-width: 1025px) {
+  #secondary-navbar {
+    display: none !important;
+  }
+}
+@media (max-width: 765px) {
+  #secondary-navbar {
+    background: white !important;
+  }
+}
 @media only screen and (min-width: 312px) and (max-width: 650px) {
   #display-text {
     display: none;

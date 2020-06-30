@@ -43,9 +43,9 @@ li {
   .error-message {
     text-align: center;
   }
-//   .report-issue{
-//   margin-top:$size-m
-// }
+  //   .report-issue{
+  //   margin-top:$size-m
+  // }
   .error-logo {
     width: 100%;
     height: 40%;
@@ -60,4 +60,8 @@ li {
   .error-not-found {
     padding: $size-m;
   }
+}
+a {
+  color: white !important;
+  background: #865ba0 !important;
 }

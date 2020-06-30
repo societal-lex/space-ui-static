@@ -9,7 +9,7 @@ $mat-muave: (
   400: #c3add0,
   500: #795290,
   600: #cfbdd9,
-  700: #464980,
+  700: #c6bcb8,
   800: #c380c6,
   900: #9a5c9a,
   A100: #8e388e,
@@ -78,11 +78,13 @@ $theme-accent: mat-palette($mat-orange, 50, 700);
 // The warn palette is optional (defaults to red).
 $theme-warn: mat-palette($mat-red);
 
+$background-color: #865ba0;
 .theme-muave {
   &.day-mode {
     $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
     @include angular-material-theme($theme);
     @include theme-based-configurations($theme);
+    $background: $background-color;
   }
 
   &.night-mode {

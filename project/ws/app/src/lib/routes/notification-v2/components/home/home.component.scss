@@ -4,10 +4,19 @@
   @extend %page-center;
 }
 
-.text-right{
+.text-right {
   float: right !important;
 }
-
+button {
+  color: white !important;
+  background: #865ba0 !important;
+}
+button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
 // mat-icon {
 //   font-size: 40px;
 // }
