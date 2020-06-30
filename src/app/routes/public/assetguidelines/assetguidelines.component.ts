@@ -9,8 +9,6 @@ import { SafeUrl, DomSanitizer } from '@angular/platform-browser'
 })
 export class AssetguidelinesComponent implements OnInit {
   assetguidelines: SafeUrl | null = null
-
-
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   constructor(private configSvc: ConfigurationsService, private domSanitizer: DomSanitizer) {
