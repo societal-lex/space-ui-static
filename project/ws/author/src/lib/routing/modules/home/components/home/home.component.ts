@@ -31,7 +31,8 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
     this.allowRestore = this.accessService.authoringConfig.allowRestore
     this.allowExpiry = this.accessService.authoringConfig.allowExpiry
     this.allowReview = this.canShow('review') && this.accessService.authoringConfig.allowReview
-    this.allowPublish = this.canShow('publish') && this.accessService.authoringConfig.allowPublish
+    // this.allowPublish = this.canShow('publish') && this.accessService.authoringConfig.allowPublish
+    this.allowPublish = this.canShow('publish')
     this.defaultSideNavBarOpenedSubscription = this.isLtMedium$.subscribe(isLtMedium => {
       this.sideNavBarOpened = !isLtMedium
       this.screenSizeIsLtMedium = isLtMedium
@@ -45,10 +46,12 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
   }
 
   canShow(role: string): boolean {
+    console.log('checking for roles', role)
     switch (role) {
       case 'review':
         return this.accessService.hasRole(REVIEW_ROLE)
       case 'publish':
+        console.log('user has rike ', this.accessService.hasRole(PUBLISH_ROLE))
         return this.accessService.hasRole(PUBLISH_ROLE)
       case 'author':
         return this.accessService.hasRole(CREATE_ROLE)
