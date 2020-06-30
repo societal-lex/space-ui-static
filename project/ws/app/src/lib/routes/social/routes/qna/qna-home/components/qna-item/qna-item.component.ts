@@ -11,6 +11,7 @@ import { MatSnackBar, MatDialog } from '@angular/material'
 export class QnaItemComponent implements OnInit {
 
   @Input() item!: NsDiscussionForum.ITimelineResult
+  @Input() allowedToEdit= true
   userId = ''
   showSocialLike = false
   ePostStatus = NsDiscussionForum.EPostStatus

@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute, Data, Router } from '@angular/router'
-import { Subscription } from 'rxjs'
+import { Subscription, combineLatest } from 'rxjs'
 import { TFetchStatus, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { NsError, ROOT_WIDGET_CONFIG, NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
 import { MatButtonToggleChange } from '@angular/material'
+import { ForumService } from '../../../../forums/service/forum.service'
 
 @Component({
   selector: 'ws-app-qna-home',
@@ -29,16 +30,25 @@ export class QnaHomeComponent implements OnInit, OnDestroy {
   currentTab = NsDiscussionForum.ETimelineType.ALL
   fetchStatus: TFetchStatus | null = null
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
+  allowedToAsk = true
+  allowedToEdit = true
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private discussionSvc: WsDiscussionForumService,
     private configSvc: ConfigurationsService,
+    private readonly forumSrvc: ForumService
   ) { }
 
   ngOnInit() {
-    this.queryParamsSubscription = this.activatedRoute.queryParamMap.subscribe(qParams => {
-      const queryParams = qParams.get('tab')
+    combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(_combinedResult => {
+      // tslint:disable-next-line: max-line-length
+
+      debugger;
+      const isAllowed = this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.QnA, _combinedResult[0].socialData.data.rolesNotAllowed.QnA)
+        this.allowedToAsk = isAllowed
+        this.allowedToEdit = isAllowed
+      const queryParams = _combinedResult[1].get('tab')
       if (queryParams) {
         this.currentTab = queryParams as NsDiscussionForum.ETimelineType
       }

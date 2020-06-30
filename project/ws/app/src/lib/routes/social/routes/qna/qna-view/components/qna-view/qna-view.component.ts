@@ -12,6 +12,7 @@ import {
   DialogSocialDeletePostComponent,
 } from '@ws-widget/collection'
 import { TFetchStatus, ConfigurationsService, LoggerService, ValueService, NsPage } from '@ws-widget/utils'
+import { ForumService } from '../../../../forums/service/forum.service'
 
 @Component({
   selector: 'ws-app-qna-view',
@@ -37,6 +38,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   commentFetchStatus!: TFetchStatus
   isPostingComment = false
   isPostingReply = false
+  allowedToEdit = false
 
   commentAddRequest: NsDiscussionForum.IPostCommentRequest = {
     postKind: NsDiscussionForum.EReplyKind.COMMENT,
@@ -88,6 +90,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private valueSvc: ValueService,
+    private readonly forumSrvc: ForumService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
@@ -118,6 +121,12 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   private initData() {
     this.ngOnDestroy()
     this.routeSubscription = this.activatedRoute.data.subscribe((response: Data) => {
+      if (response.socialData.error) {
+        this.allowedToEdit = false
+      } else {
+        // tslint:disable-next-line: max-line-length
+        this.allowedToEdit = this.forumSrvc.isVisibileAccToRoles(response.socialData.data.rolesAllowed.QnA, response.socialData.data.rolesNotAllowed.QnA)
+      }
       if (response.resolveData.error) {
         this.errorFetchingTimeline = true
       } else {

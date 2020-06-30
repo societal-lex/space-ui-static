@@ -31,7 +31,7 @@
           <h2 *ngIf="!item.postContent.title && !item.postContent.abstract" class="ws-mat-primary-text question-text" [innerHTML]="item.postContent.body | pipeLimitTo: 120">
           </h2>
         </a>
-        <mat-icon *ngIf="userId === item.postCreator.postCreatorId" class="cursor-pointer" role="button" [matMenuTriggerFor]="editMenu">more_vertical</mat-icon>
+        <mat-icon *ngIf="userId === item.postCreator.postCreatorId && allowedToEdit" class="cursor-pointer" role="button" [matMenuTriggerFor]="editMenu">more_vertical</mat-icon>
       </div>
       <div class="meta-details">
         <div class="width-auto margin-right-xs">

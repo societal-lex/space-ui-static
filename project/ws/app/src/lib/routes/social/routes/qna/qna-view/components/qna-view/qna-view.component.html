@@ -29,7 +29,7 @@
             <span>{{ qnaConversation.mainPost.dtCreated | date }}</span>
           </div>
         </div>
-        <button type="button" [matMenuTriggerFor]="editMenu" *ngIf="userId === qnaConversation.mainPost.postCreator.postCreatorId"
+        <button type="button" [matMenuTriggerFor]="editMenu" *ngIf="userId === qnaConversation.mainPost.postCreator.postCreatorId && allowedToEdit"
           mat-icon-button>
           <mat-icon>more_vertical</mat-icon>
         </button>
