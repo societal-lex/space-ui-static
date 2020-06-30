@@ -99,7 +99,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   jobProfileList: any[] = []
   regionList: any[] = []
   accessPathList: any[] = []
-  infoType = 'appIcon'
+  infoType = ''
   isClient1 = false
   isClient2 = false
   fetchTagsStatus: 'done' | 'fetching' | null = null
