@@ -8,6 +8,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 })
 export class TermsofuseComponent implements OnInit {
 
+
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   constructor(private configSvc: ConfigurationsService) { }

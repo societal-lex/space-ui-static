@@ -1,45 +1,59 @@
-<mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
-  <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+<div class="header">
+  <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
 
-  <span i18n class="margin-left-xs">Recent Blogs</span>
-  <span class="spacer"></span>
-  <div class="flex items-center border search border-solid search-border" style="width: 100%;
-    max-width: 500px;
+    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+
+    <span i18n class="margin-left-xs">Recent Blogs</span>
+    <!-- <span class="spacer"></span> -->
+    <div id="blogsearchbar" class="flex items-center border search border-solid search-border" style="width: 100%;
+    max-width: 300px;
     box-sizing: border-box;
     border-radius: 50px;
-    max-height: 50px;">
+    max-height: 40px;
 
-    <div class="w-full search">
+    margin-right: 0;
+    margin: 4px auto;
+    ">
 
-      <mat-form-field appearance="none" class="autocomplete-form" color="primary" style="width:100%;;"
-        [floatLabel]="'never'">
-        <input type="search" class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none"
-          i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
-          style="width:90%;margin-left: 10%;" matInput [(ngModel)]="queryEntered" />
+      <div class="w-full search">
 
-      </mat-form-field>
+        <mat-form-field appearance="none" class="autocomplete-form" color="primary" style="width:100%;;"
+          [floatLabel]="'never'">
+          <input type="search" class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none"
+            i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
+            style="width:90%;margin-left: 10%;" matInput [(ngModel)]="queryEntered" />
 
-    </div>
-    <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{search:queryEntered}">
-      <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
-        <mat-icon>search</mat-icon>
+        </mat-form-field>
+
       </div>
-    </a>
-  </div>
-  <ng-container *ngIf="(isXSmall$ | async) === true">
-    <a mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vertical</mat-icon>
-    </a>
-    <mat-menu #menu="matMenu">
-      <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
-      <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
-    </mat-menu>
-  </ng-container>
-  <ng-container *ngIf="(isXSmall$ | async) === false">
-    <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
-    <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
-  </ng-container>
-</mat-toolbar>
+      <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{search:queryEntered}">
+        <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+          <mat-icon>search</mat-icon>
+        </div>
+      </a>
+    </div>
+    <ng-container *ngIf="(isXSmall$ | async) === true">
+      <a class="vertcheck" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vertical</mat-icon>
+      </a>
+
+      <mat-menu #menu="matMenu">
+
+        <a i18n mat-menu-item>Search</a>
+
+
+        <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
+        <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
+      </mat-menu>
+    </ng-container>
+
+    <ng-container *ngIf="(isXSmall$ | async) === false">
+      <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
+      <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
+    </ng-container>
+
+  </mat-toolbar>
+</div>
 
 <section class="blogs-container">
   <mat-card class="margin-bottom-s" *ngFor="let result of timelineData?.result">

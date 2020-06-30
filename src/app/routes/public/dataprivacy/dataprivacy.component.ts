@@ -12,6 +12,7 @@ export class DataprivacyComponent implements OnInit {
 
   constructor(private configSvc: ConfigurationsService) { }
 
+
   ngOnInit() {
   }
 

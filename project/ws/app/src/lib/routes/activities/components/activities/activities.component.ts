@@ -46,11 +46,15 @@ export class ActivitiesComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (this.showActivities) {
+
       this.activitiesSvc.fetchActivites().then((result: IActivity) => {
+
         if (result.activities.length !== 0) {
           this.activityCards = result.activities
           this.activityCards.forEach(activityCard => {
+
             if (!(this.keyTag.includes(activityCard.tag))) {
               this.keyTag.push(activityCard.tag)
             }
@@ -64,6 +68,7 @@ export class ActivitiesComponent implements OnInit {
         }
       }).catch(() => {
         this.showActivities = false
+
         this.snackBar.open('Failed to load activities')
       })
     }
