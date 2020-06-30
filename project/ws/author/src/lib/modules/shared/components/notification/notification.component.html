@@ -252,3 +252,7 @@
   <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Notification">error</mat-icon>
   <span i18n>Unable to submit your request. Try again </span>
 </p>
+<p *ngIf="type === notify.URL_UPLOAD_LINK_FAIL">
+  <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Failure">error</mat-icon>
+  <span i18n>Cannot proceed further without entering a valid url </span>
+</p>

@@ -12,7 +12,10 @@
         </mat-form-field>
       </div> -->
       <div class="margin-top-xl">
-        <p class="font-weight-bold margin-remove-bottom" i18n>
+        <p 
+        class="font-weight-bold margin-remove-bottom" i18n
+        [ngClass]="{ required: checkCondition('artifactUrl', 'required') }"
+        >
           Link
         </p>
         <mat-form-field appearance="outline" class="margin-top-xs" style="width: 80%;">
@@ -22,6 +25,7 @@
             formControlName="artifactUrl"
             i18n-placeholder
             placeholder="Enter or paste URL here"
+            [required]="checkCondition('artifactUrl', 'required')"
           />
           <mat-error *ngIf="showError(urlUploadForm.controls.artifactUrl)" i18n>
             URL is mandatory

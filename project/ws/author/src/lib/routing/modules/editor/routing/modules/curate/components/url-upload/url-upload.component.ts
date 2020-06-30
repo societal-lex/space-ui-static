@@ -119,7 +119,11 @@ export class UrlUploadComponent implements OnInit {
     this.iprAccepted = !this.iprAccepted
   }
 
-  submit() {
+  submit(event?: Event) {
+    if (event) {
+      console.log('captured event')
+      event.preventDefault()
+    }
     if (this.urlUploadForm.controls.artifactUrl.value &&  this.showIPRDeclaration && !this.iprAccepted) {
       this.snackBar.openFromComponent(NotificationComponent, {
         data: {
@@ -128,8 +132,17 @@ export class UrlUploadComponent implements OnInit {
         duration: NOTIFICATION_TIME * 1000,
       })
     } else {
-      this.storeData()
-      this.data.emit('next')
+      if (this.urlUploadForm.controls.artifactUrl.valid) {
+        this.storeData()
+        this.data.emit('next')
+      } else {
+        this.snackBar.openFromComponent(NotificationComponent, {
+          data: {
+            type: Notify.URL_UPLOAD_LINK_FAIL,
+          },
+          duration: NOTIFICATION_TIME * 1000,
+        })
+      }
     }
   }
 

@@ -12,6 +12,13 @@
   color: #fff;
 }
 
+.required {
+  &::after {
+    color: red;
+    content: ' *';
+  }
+}
+
 ul li {
   margin: 20px 0;
 }
