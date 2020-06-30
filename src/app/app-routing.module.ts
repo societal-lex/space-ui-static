@@ -203,6 +203,13 @@ const routes: Routes = [
     path: 'app/social',
     loadChildren: () =>
       import('./routes/route-social-app.module').then(u => u.RouteSocialAppModule),
+      data: {
+        pageType: 'feature',
+        pageKey: 'social',
+      },
+      resolve: {
+        socialData: PageResolve,
+      },
     canActivate: [GeneralGuard],
   },
   {

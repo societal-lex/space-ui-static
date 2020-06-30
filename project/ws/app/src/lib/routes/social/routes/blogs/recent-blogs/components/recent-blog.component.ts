@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { TFetchStatus, ValueService, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
+import { ActivatedRoute } from '@angular/router'
+import { ForumService } from '../../../forums/service/forum.service'
 
 @Component({
   selector: 'ws-app-recent-blog',
@@ -13,6 +15,8 @@ export class RecentBlogComponent implements OnInit {
     hits: 0,
     result: [],
   }
+  allowedToCreateBlogs = false
+  allowedToViewMyBlogs = false
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   timelineRequest: NsDiscussionForum.ITimelineRequest = {
     pgNo: -1,
@@ -31,6 +35,8 @@ export class RecentBlogComponent implements OnInit {
     private discussionSvc: WsDiscussionForumService,
     private configSvc: ConfigurationsService,
     private valueSvc: ValueService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly forumSvc: ForumService
 
   ) {
     this.isXSmall$ = this.valueSvc.isXSmall$
@@ -40,6 +46,16 @@ export class RecentBlogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe(_data => {
+      // tslint:disable-next-line: max-line-length
+      if (this.forumSvc.isVisibileAccToRoles(_data.socialData.data.rolesAllowed.blogs, _data.socialData.data.rolesNotAllowed.blogs)) {
+        this.allowedToCreateBlogs = true
+        this.allowedToViewMyBlogs = true
+      } else {
+        this.allowedToCreateBlogs = false
+        this.allowedToViewMyBlogs = false
+      }
+    })
     this.fetchTimelineData()
     this.showSocialLike = (this.configSvc.restrictedFeatures && !this.configSvc.restrictedFeatures.has('socialLike')) || false
 

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { MatSnackBar, MatDialog } from '@angular/material'
 import { TFetchStatus, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { DialogSocialDeletePostComponent, NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
+import { combineLatest } from 'rxjs'
+import { ForumService } from '../service/forum.service'
 
 @Component({
   selector: 'ws-app-post-view',
@@ -32,6 +34,8 @@ export class PostViewComponent implements OnInit {
   resetEditor = false
   userEmail = ''
   userId = ''
+  allowedToCreateBlogs = false
+  allowedToViewMyBlogs = false
 
   constructor(
     public dialog: MatDialog,
@@ -40,6 +44,7 @@ export class PostViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private discussionSvc: WsDiscussionForumService,
+    private readonly forumSrvc: ForumService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
@@ -49,7 +54,16 @@ export class PostViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    combineLatest([this.route.data, this.route.paramMap]).subscribe(_combinedResult => {
+      // tslint:disable-next-line: max-line-length
+      if (!this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.blogs, _combinedResult[0].socialData.data.rolesNotAllowed.blogs)) {
+        this.allowedToCreateBlogs = false
+        this.allowedToViewMyBlogs = false
+      } else {
+        this.allowedToCreateBlogs = true
+        this.allowedToViewMyBlogs = true
+      }
+      const params = _combinedResult[1]
       const idVal = params.get('id')
       if (idVal) {
         this.conversationRequest.postId = idVal
@@ -57,7 +71,6 @@ export class PostViewComponent implements OnInit {
       }
     })
     this.showSocialLike = (this.configSvc.restrictedFeatures && !this.configSvc.restrictedFeatures.has('socialLike')) || false
-
   }
 
   fetchConversationData(forceNew = false) {
@@ -91,7 +104,7 @@ export class PostViewComponent implements OnInit {
             this.conversation.mainPost.postCreator &&
             this.userId === this.conversation.mainPost.postCreator.postCreatorId
           ) {
-            this.canUserEdit = true
+            this.canUserEdit = (this.allowedToCreateBlogs && this.allowedToViewMyBlogs) ? true : false
           }
           this.fetchStatus = 'done'
         } else if (this.isFirstConversationRequestDone) {

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { MatSnackBar, MatDialog } from '@angular/material'
 import { TFetchStatus, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { DialogSocialDeletePostComponent, NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
+import { combineLatest } from 'rxjs'
+import { ForumService } from '../../../forums/service/forum.service'
 
 @Component({
   selector: 'ws-app-blog-view',
@@ -13,6 +15,8 @@ export class BlogViewComponent implements OnInit {
   conversation: NsDiscussionForum.IPostResult | null = null
   isFirstConversationRequestDone = false
   showSocialLike = false
+  allowedToEditBlog = false
+  allowedToDeleteBlog = false
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   conversationRequest: NsDiscussionForum.IPostRequest = {
     postId: '',
@@ -40,6 +44,7 @@ export class BlogViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private discussionSvc: WsDiscussionForumService,
+    private readonly forumSrvc: ForumService
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
@@ -49,8 +54,17 @@ export class BlogViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const idVal = params.get('id')
+    // tslint:disable-next-line: deprecation
+    combineLatest(this.route.data, this.route.paramMap).subscribe(_combinedResult => {
+      // tslint:disable-next-line: max-line-length
+      if (this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.blogs, _combinedResult[0].socialData.data.rolesNotAllowed.blogs)) {
+          this.allowedToEditBlog = true
+          this.allowedToDeleteBlog = true
+      } else {
+          this.allowedToEditBlog = false
+          this.allowedToDeleteBlog = false
+      }
+      const idVal = _combinedResult[1].get('id')
       if (idVal) {
         this.conversationRequest.postId = idVal
         this.fetchConversationData()
@@ -91,7 +105,9 @@ export class BlogViewComponent implements OnInit {
             this.conversation.mainPost.postCreator &&
             this.userId === this.conversation.mainPost.postCreator.postCreatorId
           ) {
-            this.canUserEdit = true
+            if (this.allowedToEditBlog && this.allowedToDeleteBlog) {
+              this.canUserEdit = true
+            }
           }
           this.fetchStatus = 'done'
         } else if (this.isFirstConversationRequestDone) {

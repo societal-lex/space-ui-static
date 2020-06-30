@@ -26,18 +26,20 @@
       </div>
     </a>
   </div>
-  <ng-container *ngIf="(isXSmall$ | async) === true">
-    <a mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vertical</mat-icon>
-    </a>
-    <mat-menu #menu="matMenu">
-      <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
-      <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
-    </mat-menu>
-  </ng-container>
-  <ng-container *ngIf="(isXSmall$ | async) === false">
-    <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
-    <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
+  <ng-container *ngIf="allowedToCreateBlogs && allowedToViewMyBlogs">
+    <ng-container *ngIf="(isXSmall$ | async) === true">
+      <a mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vertical</mat-icon>
+      </a>
+      <mat-menu #menu="matMenu">
+        <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
+        <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
+      </mat-menu>
+    </ng-container>
+    <ng-container *ngIf="(isXSmall$ | async) === false">
+      <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
+      <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
+    </ng-container>
   </ng-container>
 </mat-toolbar>
 
