@@ -3,7 +3,9 @@
   [ngClass]="{ 'mat-elevation-z4': pageNavbar?.color !== primaryNavbar?.color, hidden: !canShow }"
   [ngStyle]="primaryNavbar?.styles"
 >
-  <mat-icon (click)="back()">arrow_back</mat-icon>
-  <span i18n="site header|An introduction header for the current mode">Authoring Tool</span>
+  <mat-icon (click)="back()" style="color: white;">arrow_back</mat-icon>
+  <span i18n="site header|An introduction header for the current mode" class="text-white"
+    >Authoring Tool</span
+  >
   <span class="spacer"></span>
 </mat-toolbar>

@@ -3,9 +3,9 @@
   background-color: white;
 }
 .app-logo {
-  min-width: 8rem;
-  margin-top: -1.4rem;
-  padding: 8px 0 0 8px;
+  // min-width: 8rem;
+  // margin-top: -1.4rem;
+  padding: 2px 0 0 8px;
 }
 .btn-size {
   padding: 0px 6px 0px 6px;
@@ -28,7 +28,7 @@
 @media only screen and (min-width: 312px) and (max-width: 359px) {
   .app-logo {
     width: 5rem !important;
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     min-width: auto !important;
   }
   .logosize {

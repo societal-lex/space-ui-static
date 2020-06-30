@@ -5,6 +5,7 @@
     navbar: !isXSmall && !pageData.navigationBar.pageBackLink && !pageData.navigationBar.pageTitle
   }"
   [color]="navBackground?.color"
+  id="secondary-navbar"
   [ngStyle]="navBackground?.styles"
 >
   <ws-widget-btn-page-back
@@ -20,7 +21,7 @@
         name="applicationLogo"
         class="logo-dim"
       >
-        <img [src]="appIcon" alt="Application Logo" class="mt-3" />
+        <img [src]="appIcon" alt="Application Logo" class="mt-3" style="width: 12rem;" />
       </a>
     </div>
   </ng-container>
