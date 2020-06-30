@@ -7,6 +7,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
   styleUrls: ['./dataprivacy.component.scss'],
 })
 export class DataprivacyComponent implements OnInit {
+
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   constructor(private configSvc: ConfigurationsService) { }
