@@ -66,14 +66,28 @@
 //   border-radius: 4px;
 // }
 
-// @media screen and (max-width: 425px) {
-//   #blogsearchbar{
-//     display: none;
-//   }
-// }
-// .vertcheck{
-//      border: thick double red;
+@media screen and (max-width: 425px) {
+  #blogsearchbar{
+    visibility: hidden;
+  }
+  .vertcheck{
+     border: thick double red;
+     padding-right: 0px;
+     justify-content: end;
 
-// }
+}
+}
+@media screen and (max-width: 375px) {
+  #blogsearchbar{
+    visibility: hidden;
+  }
+  .vertcheck{
+     border: thick double red;
+     padding-right: 0px;
+     justify-content: end;
+
+}
+}
+
 
 
