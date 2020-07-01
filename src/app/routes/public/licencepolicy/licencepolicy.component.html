@@ -1,74 +1,89 @@
-<mat-toolbar [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
+<!-- <mat-toolbar [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span class="margin-left-xs text-truncate">
     <span i18n="page title: licencepolicy" class="margin-left-xs">Licence Policy </span>
   </span>
-</mat-toolbar>
+</mat-toolbar> -->
+<section>
+  <div class="imgsize">
+    <img [src]="licensePolicy" id="cimage" />
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-12"></div>
+        <!-- <p class="text-center" id="textdec">Collaborators</p> -->
+      </div>
+    </div>
+  </div>
+  <div class="allignment">
 
-<div class="allignment">
-
-  <p class="p2">&nbsp;</p>
-  <p class="p3"><span class="s1">The EkStep<span class="Apple-converted-space">&nbsp; </span>Foundation (the
-      &ldquo;<strong>Foundation</strong>&rdquo;) believes that open Assets i.e. Asset that is available free and for
-      public use provide immense opportunities for improving access to scarce resources to create solutions and programs
-      for various societal challenges. Open Assets can be reused within the terms of the license and modified within the
-      terms of the license permitted.</span><span class="s2"> Source material is given appropriate credit and
-      attribution,
-      in accordance with the terms of its license. Accordingly, the Foundation follows the principles of open Assets
-      shared as public goods on its SPace Portal.</span></p>
-  <p class="p4"><span class="s1">Defined terms that are not defined here shall have the meaning ascribed to them in the
-      Terms of Use.</span></p>
-  <p class="p4"><span class="s1"><strong>What are the license options?</strong></span></p>
-  <p class="p3"><span class="s2">An Asset on the SPace Portal can mean or </span><span class="s1">refer to one or more
-      pieces of content and/or software codes bundled together</span><span class="s2"> as more clearly defined in the
-      Terms of Use. The licenses applicable for different types of Assets are as follows:</span></p>
-  <ol class="ol1">
-    <li class="li3"><span class="s1"><strong>Content based Asset</strong></span></li>
-    <!-- </ol> -->
-    <p class="p3"><span class="s1">All content based Assets on the SPace Portal are licensed under the <a
-          href="https://creativecommons.org/licenses/"><span class="s3">Creative Commons</span></a> license framework -
-        <a href="https://creativecommons.org/share-your-work/public-domain/cc0/"><span class="s3">CC0</span></a>, <a
-          href="https://creativecommons.org/licenses/by/4.0/"><span class="s3">CC-BY (4.0)</span></a>, <a
-          href="https://creativecommons.org/licenses/by-sa/4.0/"><span class="s3">CC-BY-SA (4.0)</span></a>, <a
-          href="https://creativecommons.org/licenses/by-nc/4.0/"><span class="s3">CC-BY-NC (4.0)</span></a>, <a
-          href="https://creativecommons.org/licenses/by-nd/4.0/"><span class="s3">CC-BY-ND (4.0)</span></a>, <a
-          href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><span class="s3">CC-BY-NC-SA (4.0)</span></a>, <a
-          href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><span class="s3">CC-BY-NC-ND (4.0)</span></a>.
-        Creative
-        Commons licenses allow the creators to retain copyright (except CC0) while allowing others to copy, distribute
-        and
-        make some use of the work under conditions specified for each license type, including attribution. Anyone can
-        use
-        a
-        content based Asset available on the SPace Portal for their work so long as they are adhering to the
-        requirements
-        of
-        the Creative Commons license as chosen by the Creator.</span></p>
-    <!-- <ol class="ol1"> -->
-    <li class="li3"><span class="s1"><strong>Software based Asset</strong></span></li>
-    <!-- </ol> -->
-    <p class="p5"><span class="s1">The SPace Portal requires that all software based Assets are licensed under either of
-        the<span class="Apple-converted-space">&nbsp; </span>license options below:</span></p>
-    <ul class="ul1">
-      <li class="li6"><span class="s1"><strong>MIT License <span
-              class="Apple-converted-space">&nbsp;</span></strong></span>
-      </li>
-    </ul>
-    <p class="p7"><span class="s1">A software Asset can be licensed under MIT License which is a permissive-free
-        software
-        license originating at the Massachusetts Institute of Technology.</span></p>
-    <p class="p8">&nbsp;</p>
-    <p class="p9"><span class="s2"><strong>Link to the license is available here -</strong> <a
-          href="http://opensource.org/licenses/MIT"><span class="s3">MIT license</span></a></span></p>
-    <ul class="ul1">
-      <li class="li6"><span class="s1"><strong>Apache License<span
-              class="Apple-converted-space">&nbsp;</span></strong></span></li>
-    </ul>
-    <p class="p7"><span class="s1">A software based Asset can also be licensed under the Apache License which
-      </span><span class="s2">is a permissive-free software license written by the Apache Software Foundation.</span>
-    </p>
-    <p class="p10">&nbsp;</p>
-    <p class="p11"><span class="s1"><strong>Link to the license is available here -</strong> <a
-          href="https://www.apache.org/licenses/"><span class="s4">Apache license</span></a></span></p>
-  </ol>
-</div>
+    <p class="p2">&nbsp;</p>
+    <p class="p3"><span class="s1">The EkStep<span class="Apple-converted-space">&nbsp; </span>Foundation (the
+        &ldquo;<strong>Foundation</strong>&rdquo;) believes that open Assets i.e. Asset that is available free and for
+        public use provide immense opportunities for improving access to scarce resources to create solutions and
+        programs
+        for various societal challenges. Open Assets can be reused within the terms of the license and modified within
+        the
+        terms of the license permitted.</span><span class="s2"> Source material is given appropriate credit and
+        attribution,
+        in accordance with the terms of its license. Accordingly, the Foundation follows the principles of open Assets
+        shared as public goods on its SPace Portal.</span></p>
+    <p class="p4"><span class="s1">Defined terms that are not defined here shall have the meaning ascribed to them in
+        the
+        Terms of Use.</span></p>
+    <p class="p4"><span class="s1"><strong>What are the license options?</strong></span></p>
+    <p class="p3"><span class="s2">An Asset on the SPace Portal can mean or </span><span class="s1">refer to one or more
+        pieces of content and/or software codes bundled together</span><span class="s2"> as more clearly defined in the
+        Terms of Use. The licenses applicable for different types of Assets are as follows:</span></p>
+    <ol class="ol1">
+      <li class="li3"><span class="s1"><strong>Content based Asset</strong></span></li>
+      <!-- </ol> -->
+      <p class="p3"><span class="s1">All content based Assets on the SPace Portal are licensed under the <a
+            href="https://creativecommons.org/licenses/"><span class="s3">Creative Commons</span></a> license framework
+          -
+          <a href="https://creativecommons.org/share-your-work/public-domain/cc0/"><span class="s3">CC0</span></a>, <a
+            href="https://creativecommons.org/licenses/by/4.0/"><span class="s3">CC-BY (4.0)</span></a>, <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/"><span class="s3">CC-BY-SA (4.0)</span></a>, <a
+            href="https://creativecommons.org/licenses/by-nc/4.0/"><span class="s3">CC-BY-NC (4.0)</span></a>, <a
+            href="https://creativecommons.org/licenses/by-nd/4.0/"><span class="s3">CC-BY-ND (4.0)</span></a>, <a
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><span class="s3">CC-BY-NC-SA (4.0)</span></a>, <a
+            href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><span class="s3">CC-BY-NC-ND (4.0)</span></a>.
+          Creative
+          Commons licenses allow the creators to retain copyright (except CC0) while allowing others to copy, distribute
+          and
+          make some use of the work under conditions specified for each license type, including attribution. Anyone can
+          use
+          a
+          content based Asset available on the SPace Portal for their work so long as they are adhering to the
+          requirements
+          of
+          the Creative Commons license as chosen by the Creator.</span></p>
+      <!-- <ol class="ol1"> -->
+      <li class="li3"><span class="s1"><strong>Software based Asset</strong></span></li>
+      <!-- </ol> -->
+      <p class="p5"><span class="s1">The SPace Portal requires that all software based Assets are licensed under either
+          of
+          the<span class="Apple-converted-space">&nbsp; </span>license options below:</span></p>
+      <ul class="ul1">
+        <li class="li6"><span class="s1"><strong>MIT License <span
+                class="Apple-converted-space">&nbsp;</span></strong></span>
+        </li>
+      </ul>
+      <p class="p7"><span class="s1">A software Asset can be licensed under MIT License which is a permissive-free
+          software
+          license originating at the Massachusetts Institute of Technology.</span></p>
+      <p class="p8">&nbsp;</p>
+      <p class="p9"><span class="s2"><strong>Link to the license is available here -</strong> <a
+            href="http://opensource.org/licenses/MIT"><span class="s3">MIT license</span></a></span></p>
+      <ul class="ul1">
+        <li class="li6"><span class="s1"><strong>Apache License<span
+                class="Apple-converted-space">&nbsp;</span></strong></span></li>
+      </ul>
+      <p class="p7"><span class="s1">A software based Asset can also be licensed under the Apache License which
+        </span><span class="s2">is a permissive-free software license written by the Apache Software Foundation.</span>
+      </p>
+      <p class="p10">&nbsp;</p>
+      <p class="p11"><span class="s1"><strong>Link to the license is available here -</strong> <a
+            href="https://www.apache.org/licenses/"><span class="s4">Apache license</span></a></span></p>
+    </ol>
+  </div>
+</section>

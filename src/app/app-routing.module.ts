@@ -26,6 +26,8 @@ import { LicencepolicyComponent } from './routes/public/licencepolicy/licencepol
 import { AppHomeComponent } from './component/app-home/app-home.component'
 import { PublicCollaboratorsComponent } from './routes/public/public-collaborators/public-collaborators.component'
 import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
+import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.component'
+import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -46,6 +48,14 @@ const routes: Routes = [
   },
   {
     path: 'app/activities',
+    data: {
+
+      pageType: 'feature',
+      pageKey: 'activities',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
     loadChildren: () => import('./routes/route-activities.module').then(u => u.RouteActivitiesModule),
     canActivate: [GeneralGuard],
   },
@@ -438,6 +448,15 @@ const routes: Routes = [
     path: 'public/licencepolicy',
     component: LicencepolicyComponent,
   },
+  {
+    path: 'public/dataprivacy',
+    component: DataprivacyComponent,
+  },
+  {
+    path: 'public/termsofuse',
+    component: TermsofuseComponent,
+  },
+
   {
     path: 'public/tnc',
     component: TncComponent,

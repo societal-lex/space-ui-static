@@ -137,6 +137,12 @@ export namespace NsInstanceConfig {
   export interface IBanners {
     mainBanner: string
     collaboratorBanner: string
+    licensePolicy: string
+    assetguidelines: string
+    dataprivacy: string
+    grievanceredressal: string
+    termsOfUse: string
+
   }
   export interface IMailIds {
     contactUs: string

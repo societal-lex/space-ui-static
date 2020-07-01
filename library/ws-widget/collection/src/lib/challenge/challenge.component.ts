@@ -17,19 +17,33 @@ export class ChallengeComponent implements OnInit {
   tag = ''
   heading = ''
   activities: IActivityCard[] = []
+  // activitiesChallenges: IChallenges = {} as any
+
   completedActivity: string[] = []
   moreActivities = false
   totalNumberOfActivities = 0
   completedActivityLength = 0
   mode: ProgressSpinnerMode = 'determinate'
-  constructor(private configSvc: ConfigurationsService, private router: Router) {}
+  // userActivityDataFromConfig: Subscription | null = null
+
+  constructor(private configSvc: ConfigurationsService, private router: Router) { }
 
   ngOnInit() {
+    // this.userActivityDataFromConfig = this.activateRoute.data.subscribe(data =>{
+    //   this.activitiesChallenges = data.pageData.data
+    //   const name = this.activitiesChallenges.tag
+    //   console.log("name++++",name)
+
+    // })
+
+      // todo
     if (this.configSvc.userPreference) {
       if (this.configSvc.userPreference.completedActivity) {
         this.completedActivity = this.configSvc.userPreference.completedActivity
       }
+
     }
+
     this.totalNumberOfActivities = this.widgetData.activities.length
     this.completedActivity.forEach(id => {
       this.widgetData.activities.forEach(activityId => {

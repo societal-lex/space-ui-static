@@ -10,7 +10,7 @@
 </ng-container>
 
 <ng-template #activities>
-  <div class="px-4 sm:px-8 md:px-10 py-4 my-1">
+  <div class="px-4 sm:px-8 md:px-10 py-4 my-1" *ngIf="activities.disabledactivities">
     <mat-accordion>
       <mat-expansion-panel name="exploreFeatureSection" [expanded]="true"
         class="expansion-panel ws-mat-primary-lite-background-on-day">
