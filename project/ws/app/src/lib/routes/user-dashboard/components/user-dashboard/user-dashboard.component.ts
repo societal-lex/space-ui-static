@@ -178,7 +178,7 @@ export class UserDashboardComponent implements OnInit {
     this.paramsForChangeRole.wid = getwid,
     this.paramsForChangeRole.roles = []
     this.paramsForChangeRole.roles = roles
-    this.paramsForChangeRole.roles.push('privilaged')
+    this.paramsForChangeRole.roles.push('privileged')
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
     if (userChangedRoleResponse.ok) {
       this.paramsForChangeRole.wid = ''
