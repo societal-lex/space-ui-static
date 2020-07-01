@@ -1,10 +1,12 @@
-<mat-toolbar [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles" id="secondary-navbar">
+<!-- <mat-toolbar [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles" id="secondary-navbar">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span class="margin-left-xs text-truncate">
     <span i18n="page title: about" class="margin-left-xs text-white">About</span>
   </span>
-</mat-toolbar>
-
+</mat-toolbar> -->
+<div _ngcontent-ihy-c20="" class="imgsize">
+  <img _ngcontent-ihy-c20="" id="cimage" [src]="aboutImage" />
+</div>
 <section class="about-content leading-relaxed" *ngIf="aboutPage?.detailaboutenable">
   <div
     class="about-info ws-primary-tinted-50"

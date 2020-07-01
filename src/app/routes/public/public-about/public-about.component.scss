@@ -2,6 +2,30 @@
 @import 'ws-common';
 @import 'ws-mixins';
 
+#cimage {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+.imgsize {
+  height: 22rem;
+  overflow-y: hidden;
+  margin-top: -3rem;
+}
+@media only screen and (max-width: 599px) {
+  .imgsize {
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+}
+::ng-deep {
+  .text {
+    font-size: 17px;
+    line-height: 2;
+    text-align: center;
+    font-weight: 400 !important;
+  }
+}
 .about-content {
   @extend %height-mat-toolbar-sibling;
 }
