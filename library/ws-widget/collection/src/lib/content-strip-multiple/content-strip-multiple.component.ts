@@ -288,6 +288,10 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
     contents: NsContent.IContent[],
     strip: NsContentStripMultiple.IContentStripUnit,
   ) {
+    if (strip.key === 'recentToPlaylists') {
+     // tslint:disable-next-line: no-parameter-reassignment
+     contents = this.enableFilterContent(contents)
+   }
     return (contents || []).map((content, idx) => ({
       widgetType: 'card',
       widgetSubType: 'cardContent',
@@ -301,6 +305,9 @@ export class ContentStripMultipleComponent extends WidgetBaseComponent
         contentTags: strip.stripConfig && strip.stripConfig.contentTags,
       },
     }))
+  }
+  enableFilterContent(contents: NsContent.IContent[]) {
+      return contents.filter((items: { hasAccess: boolean }) => items.hasAccess)
   }
 
   showAccordion(key: string) {

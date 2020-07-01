@@ -5,7 +5,7 @@ import { Subscription, Observable } from 'rxjs'
 import { NsUserDashboard } from '../../models/user-dashboard.model'
 import { FormControl } from '@angular/forms'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils/src/public-api'
-import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material'
+import { MatSort, MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material'
 import { AcceptUserDailogComponent } from '../accept-user-dailog/accept-user-dailog.component'
 import { DailogUserDashboardComponent } from '../dailog-user-dashboard/dailog-user-dashboard.component'
 
@@ -45,7 +45,7 @@ export class UserDashboardComponent implements OnInit {
   getRootOrg: string | any
   getOrg: string | any
   userListArray: NsUserDashboard.IUserListData[] = []
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator | any
+  // @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator | any
   @ViewChild(MatSort, { static: false }) sort!: MatSort
   dataSource: MatTableDataSource<NsUserDashboard.IUserListData> | any
   getUserData: NsUserDashboard.IGetUserData = {} as any
@@ -119,12 +119,13 @@ export class UserDashboardComponent implements OnInit {
         // this.enableFilter(this.userListArray)
         // tslint:disable-next-line: no-console
         this.userListArray = userListResponse.DATA
+        // the datasource contains email verified users.
         this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.enableFilter(this.userListArray))
         if (this.dataSource != null) {
           this.isLoad = false
         }
         setTimeout(() => {
-          this.dataSource.paginator = this.paginator
+          // this.dataSource.paginator = this.paginator
           // tslint:disable-next-line: brace-style
           this.dataSource.sort = this.sort
         })
@@ -177,6 +178,7 @@ export class UserDashboardComponent implements OnInit {
     this.paramsForChangeRole.wid = getwid,
     this.paramsForChangeRole.roles = []
     this.paramsForChangeRole.roles = roles
+    this.paramsForChangeRole.roles.push('privilaged')
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
     if (userChangedRoleResponse.ok) {
       this.paramsForChangeRole.wid = ''

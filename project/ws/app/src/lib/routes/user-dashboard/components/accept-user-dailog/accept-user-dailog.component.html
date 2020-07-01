@@ -5,10 +5,10 @@
 </div>
 <h2 class="ws-mat-primary-text">Please select the roles</h2>
 <li *ngFor="let item of ordersData">
-  <mat-checkbox [checked]="getSelection(item)" (change)="changeHandler(item, $event)" color = "primary">
+  <mat-checkbox [checked]="getSelection(item)" (change)="changeHandler(item, $event)" color = "primary" [disabled]="isDisabled(item)">
   <label class="text-sm font-normal">{{item.name}}</label>
   </mat-checkbox>
 </li>
 <div align="end">
-  <button mat-flat-button [disabled]="!selection.length" color="primary" (click)="save()">Change Role</button>
+  <button mat-flat-button [disabled]="!selection.length" color="primary" (click)="save()" class="button-color">Change Role</button>
 </div>

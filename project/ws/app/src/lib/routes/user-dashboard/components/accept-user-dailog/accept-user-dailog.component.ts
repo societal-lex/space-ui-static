@@ -18,7 +18,6 @@ export class AcceptUserDailogComponent implements OnInit {
   ordersData: any = []
   selection: any
   isTrue = false
-
   buttonName!: string
   userDashboardDataFromConfig: Subscription | null = null
   constructor(
@@ -34,6 +33,16 @@ export class AcceptUserDailogComponent implements OnInit {
     var jsonstr = '{"values":[]}'
     // tslint:disable-next-line: prefer-const
     let objForAllRoles = JSON.parse(jsonstr)
+      if (data.allRoles.length) {
+         data.allRoles.forEach((element:  string, index: any) => {
+           // tslint:disable-next-line: brace-style
+           // tslint:disable-next-line: align
+           if (element === 'privilaged') {
+
+           data.allRoles[index] = 'default'
+           }
+         })
+      }
     // tslint:disable-next-line: no-increment-decrement
     for (let i = 0; i < this.data.allRoles.length; i++) {
       // tslint:disable-next-line: object-literal-key-quotes
@@ -71,9 +80,15 @@ export class AcceptUserDailogComponent implements OnInit {
   }
 
 getSelection(item: any) {
-  return this.selection.findIndex((s: { id: any; }) => s.id === item.id) !== -1
+  if (item.name === 'default' || this.getSelectionsFromOtherItems(item)) {
+    return true
+  }
+  return false
+  // return this.selection.findIndex((s: { id: any; }) => s.id === item.id) !== -1
 }
-
+  getSelectionsFromOtherItems(item: any) {
+    return this.selection.findIndex((s: { id: any }) => s.id === item.id) !== -1
+  }
 changeHandler(item: any, _event: KeyboardEvent) {
   const id = item.id
 
@@ -91,4 +106,11 @@ save() {
   this.response = name
   this.dialogRef.close({ event: '', data: this.response })
 }
+
+  isDisabled(item: any) {
+    if (item.name === 'default') {
+      return true
+    }
+      return false
+  }
 }
