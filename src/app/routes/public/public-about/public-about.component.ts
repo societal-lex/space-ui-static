@@ -25,6 +25,7 @@ export class PublicAboutComponent implements OnInit, OnDestroy {
     .pipe(map(breakPointState => breakPointState.matches))
 
   videoLink: SafeResourceUrl | null = null
+  aboutImage: string
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -50,6 +51,7 @@ export class PublicAboutComponent implements OnInit, OnDestroy {
         (this.footerBanner = this.domSanitizer.bypassSecurityTrustStyle(
           `url('${this.configSvc.instanceConfig.logos.aboutFooter}')`,
         ))
+      this.aboutImage = this.configSvc.instanceConfig.banners.aboutBanner
     }
   }
 
