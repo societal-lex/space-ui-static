@@ -5,16 +5,7 @@ import { NsUserDashboard } from '../models/user-dashboard.model'
 import { Observable, of, forkJoin } from 'rxjs'
 import { switchMap, map, catchError, filter } from 'rxjs/operators'
 import { UserAutocompleteService } from '@ws-widget/collection'
-// const API_END_POINT = 'user/v1/'
 
-// const headers = new HttpHeaders({
-//   'Content-Type': 'application/json',
-//   // 'Authorization': this.basic,
-//   //wid
-//   //root_org
-//   //org
-//  });
-// const options = { headers }
 interface IResponse {
   ok: boolean
   error?: string | null,
@@ -83,50 +74,7 @@ export class UserDashboardService {
     }
   }
 
-  // tslint:disable-next-line: no-shadowed-variable
-  // async acceptUser(responseBody: NsUserDashboard.IAcceptRole, headers: NsUserDashboard.IHeaders): Promise<IResponse> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       // tslint:disable-next-line: object-literal-key-quotes
-  //       'rootorg' : headers.rootOrg,
-  //       // tslint:disable-next-line: object-literal-key-quotes
-  //       'wid_orgadmin': headers.wid_OrgAdmin,
-  //       // tslint:disable-next-line: object-literal-key-quotes
-  //       'org': headers.org,
-  //     }),
-  //   }
-  //   this.logger.info('Requested roles recieved', responseBody.roles)
-  //   const responseBodyAsJSON = {
-  //     roles: responseBody.roles ,
-  //   user_id: responseBody.user_id,
-  // username: responseBody.username}
-  //   // const url = '/usersubmission/user/v1/acceptuser'
-  //   const url = this.userData.user_accept.url
-  //    this.logger.info('Recieved request for accepting user,checking admin role and assigning role to user')
-  //    try {
-  //     const userAcceptedResponse = await this.http.post<IResponse>(url, responseBodyAsJSON, httpOptions).toPromise()
-  //          if (userAcceptedResponse) {
-  //           return Promise.resolve({
-  //              ok: true,
-  //              MESSAGE: this.userData.user_accept.successMessage,
-  //            })
-  //           }
-  //           return { ok: false, error: userAcceptedResponse, MESSAGE: this.userData.user_accept.errorMessage }
-
-  //    } catch (ex) {
-  //          this.logger.error('User cannot be accepted')
-  //          this.logger.error(ex)
-  //          if (ex) {
-  //            return Promise.resolve({
-  //              ok: false, error: ex,
-  //              MESSAGE: this.userData.user_accept.errorMessage,
-  //            })
-  //          }
-  //          return Promise.resolve({ ok: false, error: null, MESSAGE: this.userData.user_accept.errorMessage })
-  //    }
-  //  }
   async deleteUser(responseBody: NsUserDashboard.IDeclineUser, headers: NsUserDashboard.IHeaders): Promise<IResponse> {
-
     const httpOptions = {
       headers: new HttpHeaders({
         rootorg: headers.rootOrg,
@@ -136,7 +84,6 @@ export class UserDashboardService {
     }
 
     // tslint:disable-next-line: prefer-template
-    // const url = '/usersubmission/user/v1/decline';
     const responseBodyAsJSON = {
       email: responseBody.email,
       user_id: responseBody.user_Id,
@@ -146,7 +93,7 @@ export class UserDashboardService {
     try {
       // tslint:disable-next-line: max-line-length
       const userDeletedResponse = await this.http.post<IResponse>(this.userData.API_END_POINT + this.userData.delete_user.url, responseBodyAsJSON, httpOptions).toPromise()
-      if (userDeletedResponse) {
+      if (userDeletedResponse && userDeletedResponse.STATUS === 'OK') {
         return Promise.resolve({
           ok: true,
           MESSAGE: this.userData.delete_user.successMessage,
@@ -222,11 +169,11 @@ export class UserDashboardService {
     this.logger.info('Recieved request for changing role ')
     try {
       // tslint:disable-next-line: max-line-length
-      const userDeletedResponse = await this.http.put<IResponse>(this.userData.API_END_POINT + this.userData.change_roles.url, responseBodyAsJSON, httpOptions).toPromise()
-      if (userDeletedResponse) {
+      const userChangedRoleResponse = await this.http.put<IResponse>(this.userData.API_END_POINT + this.userData.change_roles.url, responseBodyAsJSON, httpOptions).toPromise()
+      if (userChangedRoleResponse && userChangedRoleResponse.STATUS === 'OK') {
         return Promise.resolve({
           ok: true,
-          DATA: userDeletedResponse.DATA,
+          DATA: userChangedRoleResponse.DATA,
           MESSAGE: this.userData.change_roles.successMessage,
         })
       }
