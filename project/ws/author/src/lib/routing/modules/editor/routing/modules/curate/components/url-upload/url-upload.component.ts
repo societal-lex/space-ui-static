@@ -121,7 +121,7 @@ export class UrlUploadComponent implements OnInit {
 
   submit(event?: Event) {
     if (event) {
-      console.log('captured event')
+      // console.log('captured event')
       event.preventDefault()
     }
     if (this.urlUploadForm.controls.artifactUrl.value &&  this.showIPRDeclaration && !this.iprAccepted) {

@@ -46,12 +46,10 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
   }
 
   canShow(role: string): boolean {
-    console.log('checking for roles', role)
     switch (role) {
       case 'review':
         return this.accessService.hasRole(REVIEW_ROLE)
       case 'publish':
-        console.log('user has rike ', this.accessService.hasRole(PUBLISH_ROLE))
         return this.accessService.hasRole(PUBLISH_ROLE)
       case 'author':
         return this.accessService.hasRole(CREATE_ROLE)
