@@ -7,7 +7,6 @@
     padding: $size-m $size-l;
   }
 }
-
 .toc-body {
   @extend %container-padding;
   padding-top: 0px !important;
@@ -58,10 +57,10 @@
   }
 }
 
-.detailBar{
+.detailBar {
   display: flex;
 }
-.editDetails{
+.editDetails {
   margin: auto;
-  display: flex
+  display: flex;
 }

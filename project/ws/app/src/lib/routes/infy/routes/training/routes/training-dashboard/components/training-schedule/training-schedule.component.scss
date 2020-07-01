@@ -1,5 +1,5 @@
-@import "ws-common";
-@import "ws-vars";
+@import 'ws-common';
+@import 'ws-vars';
 
 table {
   width: 100%;
@@ -28,7 +28,10 @@ table {
   text-decoration: underline !important;
   color: darkblue;
 }
-
+button {
+  color: white !important;
+  background: #865ba0 !important;
+}
 // .search-bar {
 //   width: 50%;
 // }

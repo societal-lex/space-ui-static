@@ -43,8 +43,8 @@
 }
 @media only screen and (min-width: 312px) and (max-width: 356px) {
   .app-logo {
-    width: 5rem !important;
-    margin-top: 1rem !important;
+    // width: 5rem !important;
+    margin-top: 1.5rem !important;
     min-width: auto !important;
   }
   .logosize {
@@ -63,8 +63,8 @@
 }
 @media only screen and (min-width: 693px) and (max-width: 795px) {
   .app-logo {
-    width: 6rem !important;
-    margin-top: auto !important;
+    width: 8rem !important;
+    margin-top: 4.5px !important;
     min-width: auto !important;
   }
   .logosize {
@@ -73,16 +73,16 @@
 }
 @media only screen and (min-width: 795px) and (max-width: 1024px) {
   .app-logo {
-    width: 9rem !important;
-    margin-top: -0.8rem !important;
+    // width: 9rem !important;
+    margin-top: -0.3rem !important;
     // min-width: auto !important;
   }
 }
 @media (min-width: 1025px) {
   .app-logo {
     min-width: auto !important;
-    width: 9rem !important;
-    margin-top: -0.8rem !important;
+    // width: 9rem !important;
+    margin-top: -0.5rem !important;
   }
 }
 .logosize {

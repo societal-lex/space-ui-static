@@ -1,9 +1,9 @@
 ws-app-home input {
-  line-height: 1.5
+  line-height: 1.5;
 }
 
 ws-app-home input {
-  padding-left: .5rem !important;
+  padding-left: 0.5rem !important;
 }
 
 ws-app-home .filter-button {
@@ -23,14 +23,16 @@ ws-app-home .search .mat-form-field-wrapper {
   }
 }
 
-
+ws-app-home #home-navbar-color {
+  background: #865ba0 !important;
+}
 
 ws-app-home .lang-btn {
   margin-right: 0 !important;
 }
 
 ws-app-home .search-border {
-  border-radius: .75rem;
+  border-radius: 0.75rem;
   border-color: #cecece;
 }
 
