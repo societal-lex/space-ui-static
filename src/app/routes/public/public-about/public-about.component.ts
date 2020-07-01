@@ -25,7 +25,7 @@ export class PublicAboutComponent implements OnInit, OnDestroy {
     .pipe(map(breakPointState => breakPointState.matches))
 
   videoLink: SafeResourceUrl | null = null
-  aboutImage: string
+  aboutImage: SafeStyle | null = null
 
   constructor(
     private breakpointObserver: BreakpointObserver,
