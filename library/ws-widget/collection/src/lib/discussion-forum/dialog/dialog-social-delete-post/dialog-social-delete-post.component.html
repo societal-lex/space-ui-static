@@ -13,7 +13,9 @@
     i18n-aria-label
   >
     <ng-container *ngIf="isDeleting" i18n>Please Wait...</ng-container>
-    <ng-container *ngIf="!isDeleting" i18n>Yes</ng-container>
+    <ng-container *ngIf="!isDeleting" style="color: white; background: #865ba0;" i18n
+      >Yes</ng-container
+    >
   </button>
   <button
     name="delete-post-no-button"

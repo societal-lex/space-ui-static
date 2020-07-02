@@ -18,7 +18,12 @@
     }
   }
 }
-
+::ng-deep {
+  .theme-muave.day-mode .ws-mat-primary-background {
+    background: #865ba0;
+    color: white;
+  }
+}
 .event-name {
   font-weight: 500;
 }
