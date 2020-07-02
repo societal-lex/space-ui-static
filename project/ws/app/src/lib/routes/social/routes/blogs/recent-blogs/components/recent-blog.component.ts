@@ -32,7 +32,7 @@ export class RecentBlogComponent implements OnInit {
   queryEntered = ''
   placeHolder: String = 'Type the blog name you are looking for'
   isEnabledSearch = false
-   constructor(
+  constructor(
     private discussionSvc: WsDiscussionForumService,
     private configSvc: ConfigurationsService,
     private valueSvc: ValueService,
@@ -89,9 +89,9 @@ export class RecentBlogComponent implements OnInit {
       },
     )
   }
-
   showSearchBar() {
-this.isEnabledSearch = true
+    this.isEnabledSearch = true
+
   }
   disableSearchbar() {
     this.isEnabledSearch = false

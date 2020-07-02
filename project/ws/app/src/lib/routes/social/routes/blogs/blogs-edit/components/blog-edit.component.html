@@ -1,6 +1,6 @@
 <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-  <span class="margin-left-xs">Write a Blog</span>
+  <span class="margin-left-xs text-white">Write a Blog</span>
   <span class="spacer"></span>
   <button *ngIf="editMode === 'update'" i18n-matTooltip matTooltip="Save"
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid" mat-raised-button
@@ -18,13 +18,13 @@
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid" mat-raised-button
     (click)="saveDraft(savedDraft.value, error.value)" type="button" i18n-matTooltip matTooltip="Save as draft">
     <ng-container i18n *ngIf="(isXSmall$ | async) === false"> Save as draft </ng-container>
-    <mat-icon *ngIf="(isXSmall$ | async) === true">drafts</mat-icon>
+    <mat-icon class="text-white" *ngIf="(isXSmall$ | async) === true">drafts</mat-icon>
   </button>
   <button *ngIf="editMode === 'create' || editMode === 'draft'" class="margin-left-xs"
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid" mat-raised-button
     (click)="publishBlog(publish.value, error.value)" type="button" i18n-matTooltip matTooltip="Publish">
     <ng-container i18n *ngIf="(isXSmall$ | async) === false"> Publish </ng-container>
-    <mat-icon *ngIf="(isXSmall$ | async) === true">publish</mat-icon>
+    <mat-icon class="text-white" *ngIf="(isXSmall$ | async) === true">publish</mat-icon>
   </button>
 </mat-toolbar>
 
