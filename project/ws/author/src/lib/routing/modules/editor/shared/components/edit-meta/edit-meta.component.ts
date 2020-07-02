@@ -1161,7 +1161,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
     dialogRef.afterClosed().subscribe((response: string[]) => {
       // const catalogs = this.removeCommonFromCatalog(response)
-      this.contentForm.controls.catalogPaths.setValue(response)
+      if (Array.isArray(response)) {
+        this.contentForm.controls.catalogPaths.setValue(response)
+      }
     })
   }
 

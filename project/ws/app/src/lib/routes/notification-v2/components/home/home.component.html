@@ -58,6 +58,7 @@
 
     <div class="mt-4">
       <button
+        class="color"
         mat-flat-button
         *ngIf="actionNotificationsNextPage && actionNotificationsNextPage !== '-1'"
         [disabled]="actionNotificationsFetchStatus === 'fetching'"
@@ -101,6 +102,7 @@
 
     <div class="mt-4">
       <button
+        class="color"
         mat-flat-button
         *ngIf="infoNotificationsNextPage && infoNotificationsNextPage !== '-1'"
         [disabled]="infoNotificationsFetchStatus === 'fetching'"

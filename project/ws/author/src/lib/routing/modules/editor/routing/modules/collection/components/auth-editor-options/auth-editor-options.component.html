@@ -27,7 +27,7 @@
     <ws-auth-collection-matmenu [type]="'createSibling'" [childType]="allowedSibling"
       (action)="click($event.action, $event.type)" #sibling></ws-auth-collection-matmenu>
   </button>
-  <button [disabled]="!allowedChild.length" [class.op500]="!allowedChild.length" mat-menu-item
+  <button *ngIf="node.category === 'Collection'" [disabled]="!allowedChild.length" [class.op500]="!allowedChild.length" mat-menu-item
     [matMenuTriggerFor]="child.childMenu">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Create new Resource / Module">
       create_new_folder</mat-icon>
@@ -35,11 +35,25 @@
     <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
       (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu>
   </button>
-  <button *ngIf="node.category !== 'Resource'" [disabled]="!canEdit || contentEditDisabled"
+  <button *ngIf="node.category === 'Course'" [disabled]="!allowedChild.length" [class.op500]="!allowedChild.length" mat-menu-item
+    [matMenuTriggerFor]="child.childMenu">
+    <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Create new Resource / Module">
+      create_new_folder</mat-icon>
+    <ng-container i18n>Add new Module</ng-container>
+    <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
+      (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu>
+  </button>
+  <button *ngIf="node.category === 'Collection'" [disabled]="!canEdit || contentEditDisabled"
     [class.op500]="!canEdit || contentEditDisabled" mat-menu-item (click)="click('addChild')">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Add Resource / Module">
       library_add</mat-icon>
-    <ng-container i18n>Add Resource / Module</ng-container>
+    <ng-container i18n>Add Resource</ng-container>
+  </button>
+  <button *ngIf="node.category === 'Course'" [disabled]="!canEdit || contentEditDisabled"
+    [class.op500]="!canEdit || contentEditDisabled" mat-menu-item (click)="click('addChild')">
+    <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Add Resource / Module">
+      library_add</mat-icon>
+    <ng-container i18n>Add Module</ng-contaigit ner>
   </button>
 </mat-menu>
 
