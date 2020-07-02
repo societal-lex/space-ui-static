@@ -617,7 +617,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceLicense', 'show')"
               [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
               <label>
                 <div class="margin-top-s flex flex-middle">
@@ -1248,7 +1248,7 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab>
+      <mat-tab *ngIf="checkCondition('assetType', 'show')">
         <ng-template
           mat-tab-label
           i18n

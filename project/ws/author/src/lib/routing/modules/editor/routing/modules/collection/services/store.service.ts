@@ -181,8 +181,9 @@ export class CollectionStoreService {
   ): Promise<object> {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
+      const stipulatedContentType = meta.contentType === 'Collection' ? 'Module' : meta.contentType
       const requestBody = {
-        name: 'Untitled Content',
+        name: `Untitled ${stipulatedContentType}`,
         description: '',
         mimeType: meta.mimeType,
         contentType: meta.contentType,
@@ -454,7 +455,7 @@ export class CollectionStoreService {
       } else {
         errorMap.set(id, {
           id,
-          name: content.name || 'Untitled Content',
+          name: content.name || `Untitled ${content.category ? content.category : 'Content'}`,
           message: errorMsg,
         })
       }

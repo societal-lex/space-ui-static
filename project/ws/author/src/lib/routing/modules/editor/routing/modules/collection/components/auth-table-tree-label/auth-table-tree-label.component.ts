@@ -13,6 +13,7 @@ export class AuthTableTreeLabelComponent implements OnInit {
   @Input() isDragging = false
   @Input() isInvalid = false
   name = ''
+  contentCategory = ''
   @Input() icon = ''
   constructor(
     private storeService: EditorContentService,
@@ -32,5 +33,6 @@ export class AuthTableTreeLabelComponent implements OnInit {
     const updatedMeta = this.storeService.getUpdatedMeta(this.identifier)
     this.name = updatedMeta.name
     this.icon = this.resolverService.getIcon(updatedMeta)
+    this.contentCategory = (updatedMeta.category === 'Collection') ? 'Module' : updatedMeta.category
   }
 }
