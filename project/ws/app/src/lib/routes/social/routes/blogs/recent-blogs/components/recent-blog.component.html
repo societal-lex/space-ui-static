@@ -1,23 +1,20 @@
-<div class="header">
+<!-- <div class="header">
   <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
     <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
 
     <span i18n class="margin-left-xs text-white">Recent Blogs</span>
-    <!-- <span class="spacer"></span> -->
-    <div
-      id="blogsearchbar"
-      class="flex items-center border search border-solid search-border text-white"
-      style="
+   <span class="spacer"></span>
+    <div class= "align-content">
+    <div id="blogsearchbar" class="flex items-center border search border-solid search-border text-white" style="
         width: 100%;
+        float: left;
         max-width: 300px;
         box-sizing: border-box;
         border-radius: 50px;
         max-height: 40px;
-
         margin-right: 0;
         margin: 4px auto;
-      "
-    >
+      ">
       <div class="w-full search">
         <mat-form-field
           appearance="none"
@@ -39,39 +36,67 @@
           />
         </mat-form-field>
       </div>
-      <a
-        [routerLink]="['/app/social/socialSearch/view-search']"
-        [queryParams]="{ search: queryEntered }"
-      >
+      <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{ search: queryEntered }">
         <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
           <mat-icon>search</mat-icon>
         </div>
       </a>
     </div>
-    <ng-container *ngIf="(isXSmall$ | async) === true">
-      <a class="vertcheck" mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vertical</mat-icon>
-      </a>
+    <ng-container *ngIf="allowedToCreateBlogs && allowedToViewMyBlogs">
+      <ng-container *ngIf="(isXSmall$ | async) === true">
+        <a class="vertcheck" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vertical</mat-icon>
+        </a>
 
-      <mat-menu #menu="matMenu">
-        <a i18n mat-menu-item>Search</a>
+        <mat-menu #menu="matMenu">
+          <a i18n mat-menu-item>Search</a>
 
-        <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
-        <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
-      </mat-menu>
-    </ng-container>
+          <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
+          <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
+        </mat-menu>
+      </ng-container>
     <ng-container *ngIf="(isXSmall$ | async) === false">
       <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s"
         >My Blogs</a
       >
       <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'"
         >Write a Blog</a
-      >
+        >
     </ng-container>
   </mat-toolbar>
 </div>
 
 <section class="blogs-container">
+<div *ngIf="isEnabledSearch === true">
+<div  class="flex items-center border search border-solid search-border text-white"
+ style="
+        width: 100%;
+        float: left;
+        max-width: 300px;
+        box-sizing: border-box;
+        border-radius: 50px;
+        max-height: 40px;
+        margin-right: 0;
+        margin: 4px auto;
+      "
+     >
+  <div class="w-full search">
+    <mat-form-field appearance="none" class="autocomplete-form" color="primary" style="width: 100%;"
+      [floatLabel]="'never'">
+      <input type="search" class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none"
+        i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
+        style="width: 90%; margin-left: 10%;" matInput [(ngModel)]="queryEntered" />
+    </mat-form-field>
+  </div>
+  <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{ search: queryEntered }">
+    <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+      <mat-icon>search</mat-icon>
+    </div>
+  </a>
+</div>
+</div>
+
+ <div>
   <mat-card class="margin-bottom-s" *ngFor="let result of timelineData?.result">
     <a [routerLink]="'/app/social/blogs/' + result.id">
       <h2 class="ws-mat-primary-text mat-h2 blog-title">{{ result.postContent.title }}</h2>
@@ -86,14 +111,11 @@
           {{ result.dtLastModified | date }}
         </div>
       </div>
-      <ws-widget-btn-social-like
-        *ngIf="showSocialLike"
-        [postId]="result.id"
-        [postCreatorId]="result?.postCreator?.postCreatorId"
-        [activity]="result.activity"
-      ></ws-widget-btn-social-like>
+      <ws-widget-btn-social-like *ngIf="showSocialLike" [postId]="result.id"
+        [postCreatorId]="result?.postCreator?.postCreatorId" [activity]="result.activity"></ws-widget-btn-social-like>
     </div>
   </mat-card>
+  </div>
   <h2 class="text-center margin-top-m" i18n *ngIf="timelineFetchStatus === 'none'">
     No blogs have been posted yet
   </h2>
@@ -106,4 +128,126 @@
       <ng-container>View More</ng-container>
     </button>
   </div>
+</section> -->
+
+
+<div class="header">
+  <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
+    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+
+    <span i18n class="margin-left-xs text-white">Recent Blogs</span>
+    <!-- <span class="spacer"></span> -->
+    <div id="blogsearchbar" class="flex items-center border search border-solid search-border text-white" style="
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+        border-radius: 50px;
+        max-height: 40px;
+
+        margin-right: 0;
+        margin: 4px auto;
+      ">
+      <div class="w-full search">
+        <mat-form-field appearance="none" class="autocomplete-form" color="primary" style="width: 100%;"
+          [floatLabel]="'never'">
+          <input type="search" class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none"
+            i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
+            style="width: 90%; margin-left: 10%;" matInput [(ngModel)]="queryEntered" />
+        </mat-form-field>
+      </div>
+      <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{ search: queryEntered }">
+        <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+          <mat-icon>search</mat-icon>
+        </div>
+      </a>
+    </div>
+    <ng-container *ngIf="allowedToCreateBlogs && allowedToViewMyBlogs">
+
+      <ng-container *ngIf="(isXSmall$ | async) === true">
+        <div class = "maticonallign">
+<button mat-icon-button  (click) = "showSearchBar()"><mat-icon class="text-color">search</mat-icon></button>
+
+        <a class="vertcheck" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon class = "text-white">more_vertical</mat-icon>
+        </a>
+</div>
+        <mat-menu #menu="matMenu">
+          <!-- <a i18n mat-menu-item>Search</a> -->
+
+          <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
+          <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
+        </mat-menu>
+      </ng-container>
+      <ng-container *ngIf="(isXSmall$ | async) === false">
+        <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
+        <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
+      </ng-container>
+    </ng-container>
+  </mat-toolbar>
+</div>
+
+<section class="blogs-container">
+<div *ngIf="(isXSmall$ | async) === true" class= "flex flex-between flex-middle">
+  <mat-card class="blogs-containers" *ngIf="isEnabledSearch === true">
+<div  class="flex">
+  <div class=" flex items-center border search border-solid search-border border-color width-xs">
+
+
+    <div class="w-full search">
+      <mat-form-field appearance="none" class="autocomplete-form" color="primary"
+        [floatLabel]="'never'">
+        <input type="search" class="border-2 border-gray-300  pr-16 ws-mat-primary-text rounded-lg .text-xs focus:outline-none"
+          i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
+          style="width:90%; margin-left: 10%;" matInput [(ngModel)]="queryEntered" />
+      </mat-form-field>
+    </div>
+    <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{ search: queryEntered }">
+      <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+        <mat-icon>search</mat-icon>
+      </div>
+    </a>
+
+
+  </div>
+  <div class="align-icon">
+<button mat-icon-button (click)="disableSearchbar()"><mat-icon>close</mat-icon></button>
+</div>
+  </div>
+  </mat-card>
+</div>
+<section class="blogs-container">
+<div>
+  <mat-card class="margin-bottom-s" *ngFor="let result of timelineData?.result">
+    <a [routerLink]="'/app/social/blogs/' + result.id">
+      <h2 class="ws-mat-primary-text mat-h2 blog-title">{{ result.postContent.title }}</h2>
+      <p class="mat-caption text-truncate">{{ result.postContent.abstract }}</p>
+    </a>
+    <div class="flex flex-between flex-middle">
+      <div>
+        <span class="ws-mat-primary-text">
+          {{ result.postCreator.name }}
+        </span>
+        <div i18n-matTooltip matTooltip="Updated on" class="mat-caption">
+          {{ result.dtLastModified | date }}
+        </div>
+      </div>
+      <ws-widget-btn-social-like *ngIf="showSocialLike" [postId]="result.id"
+        [postCreatorId]="result?.postCreator?.postCreatorId" [activity]="result.activity"></ws-widget-btn-social-like>
+    </div>
+  </mat-card>
+    </div>
+  <h2 class="text-center margin-top-m" i18n *ngIf="timelineFetchStatus === 'none'">
+    No blogs have been posted yet
+  </h2>
+  <div *ngIf="timelineFetchStatus === 'fetching'" class="text-center margin-top-s">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="timelineFetchStatus === 'hasMore'" class="text-center">
+    <button (click)="fetchTimelineData()" type="button" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>&nbsp;
+      <ng-container>View More</ng-container>
+    </button>
+
+  </div>
+  </section>
 </section>

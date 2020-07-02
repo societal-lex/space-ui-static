@@ -12,9 +12,9 @@
       width: 80%;
     }
   }
-  ::placeholder {
-    color: white;
-  }
+  // ::placeholder {
+  //   color:
+  // }
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: white;
@@ -80,26 +80,98 @@
 @media screen and (max-width: 425px) {
   #blogsearchbar {
     visibility: hidden;
+    display:none !important;
   }
-  .vertcheck {
-    border: thick double red;
-    padding-right: 0px;
-    justify-content: end;
-  }
+  .blogs-containers{
+   width: 350px;
+  margin: auto;
+  align-content: space-around;
+}
+.width-xs{
+  width:600px;
+}
+.maticonallign{
+    // border: thick double yellow;
+    margin-left: 130px;
+
+}
+  // .vertcheck {
+  //   border: thick double red;
+  //   padding-right: 0px;
+  //   justify-content: end;
+  // }
 }
 @media screen and (max-width: 375px) {
   #blogsearchbar {
     visibility: hidden;
+      display:none !important;
   }
-  .vertcheck {
-    border: thick double red;
-    padding-right: 0px;
-    justify-content: end;
+    .blogs-containers{
+   width: 300px;
+  margin: auto;
+  align-content: space-around;
+}
+.width-xs{
+  width:500px;
+}
+.maticonallign{
+    // border: thick double yellow;
+    margin-left: 80px;
+
+}
+
+  // .vertcheck {
+  //   border: thick double red;
+  //   padding-right: 0px;
+  //   justify-content: end;
+  // }
+}
+@media screen and (max-width: 320px) {
+  #blogsearchbar {
+    visibility: hidden;
+      display:none !important;
   }
+    .blogs-containers{
+   width: 240px;
+  margin: auto;
+  align-content: space-around;
+}
+.maticonallign{
+    // border: thick double yellow;
+    margin-left: 30px;
+
+}
+}
+.align-content{
+  justify-content: space-between !important;
+  align-self: end;
+   border: thick double blue;
+   height:10px;
 }
 .text-color{
   color:white;
 }
 ::placeholder{
   color: white;
+}
+.icon-color{
+  color:white;
+}
+.border-color{
+  color: #865ba0;
+  border-radius: 50px;
+  max-width: 300px;
+  box-sizing: border-box;
+   max-height: 40px;
+   justify-content:space-around;
+}
+.blogs-containers{
+    max-width: 900px;
+  margin: auto;
+  align-content: space-around;
+}
+.align-icon{
+margin-right: 0px;
+margin-left: auto;
+
 }

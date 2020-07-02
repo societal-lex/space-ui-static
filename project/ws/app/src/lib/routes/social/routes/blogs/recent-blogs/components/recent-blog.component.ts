@@ -31,7 +31,8 @@ export class RecentBlogComponent implements OnInit {
   isXSmall$: Observable<boolean>
   queryEntered = ''
   placeHolder: String = 'Type the blog name you are looking for'
-  constructor(
+  isEnabledSearch = false
+   constructor(
     private discussionSvc: WsDiscussionForumService,
     private configSvc: ConfigurationsService,
     private valueSvc: ValueService,
@@ -87,5 +88,12 @@ export class RecentBlogComponent implements OnInit {
         this.timelineFetchStatus = 'error'
       },
     )
+  }
+
+  showSearchBar() {
+this.isEnabledSearch = true
+  }
+  disableSearchbar() {
+    this.isEnabledSearch = false
   }
 }
