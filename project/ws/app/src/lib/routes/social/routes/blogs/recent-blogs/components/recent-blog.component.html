@@ -1,18 +1,11 @@
-<div class="header">
+<div class="header flex-header">
   <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
     <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-    <span i18n class="margin-left-xs text-white">Recent Blogs</span>
-    <!-- <span class="spacer"></span>  -->
-    <div id="blogsearchbar" class="flex items-center border search border-solid search-border text-white" style="
-        width: 100%;
-        /* float: left; */
-        max-width: 300px;
-        box-sizing: border-box;
-        border-radius: 50px;
-        max-height: 40px;
-        margin-right: 0;
-        margin: 4px auto;
-      ">
+<div>
+    <span i18n class="margin-left-xs text-white ">Recent Blogs</span></div>
+<div class="column-2">
+    <div id="blogsearchbar" class=" flex items-center border search border-solid search-border text-white justify-search"
+      >
       <div class="w-full search">
         <mat-form-field appearance="none" class="autocomplete-form" color="primary" style="width: 100%;"
           [floatLabel]="'never'">
@@ -40,14 +33,14 @@
 </div>
         <mat-menu #menu="matMenu">
           <!-- <a i18n mat-menu-item>Search</a> -->
-     <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
-          <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
+     <a i18n [routerLink]="'/app/social/blogs/me'"  mat-menu-item>My Blogs</a>
+          <a i18n [routerLink]="'/app/social/blogs/edit'"   mat-menu-item>Write a Blog</a>
         </mat-menu>
       </ng-container>
 <div class="column-3">
       <ng-container>
       <ng-container *ngIf="(isXSmall$ | async) === false" >
-        <a mat-raised-button [ngClass]="{'show_btn': allowedToCreateBlogs, 'hide_btn': !allowedToCreateBlogs}"  i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
+        <a mat-raised-button [ngClass]="{'show_btn': allowedToCreateBlogs, 'hide_btn': !allowedToCreateBlogs}"  i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s" >My Blogs</a>
         <a mat-raised-button [ngClass]="{'show_btn': allowedToViewMyBlogs, 'hide_btn': !allowedToViewMyBlogs}"  class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
       </ng-container>
       </ng-container>
@@ -89,12 +82,13 @@
       <p class="mat-caption text-truncate">{{ result.postContent.abstract }}</p>
     </a>
     <div class="flex flex-between flex-middle">
-      <div>
+      <!-- <div> -->
         <span class="ws-mat-primary-text">
           {{ result.postCreator.name }}
         </span>
         <div i18n-matTooltip matTooltip="Updated on" class="mat-caption">
           {{ result.dtLastModified | date }}
+        </div>
         </div>
       </mat-card>
     </div>

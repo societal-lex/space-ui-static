@@ -17,13 +17,13 @@
   <button *ngIf="editMode === 'create'" class="margin-left-xs"
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid" mat-raised-button
     (click)="saveDraft(savedDraft.value, error.value)" type="button" i18n-matTooltip matTooltip="Save as draft">
-    <ng-container i18n *ngIf="(isXSmall$ | async) === false"> Save as draft </ng-container>
+    <ng-container i18n *ngIf="(isXSmall$ | async) === false"> <span class="text-white">Save as drafts</span> </ng-container>
     <mat-icon class="text-white" *ngIf="(isXSmall$ | async) === true">drafts</mat-icon>
   </button>
   <button *ngIf="editMode === 'create' || editMode === 'draft'" class="margin-left-xs"
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid" mat-raised-button
     (click)="publishBlog(publish.value, error.value)" type="button" i18n-matTooltip matTooltip="Publish">
-    <ng-container i18n *ngIf="(isXSmall$ | async) === false"> Publish </ng-container>
+    <ng-container i18n *ngIf="(isXSmall$ | async) === false"> <span class="text-white">Publish</span> </ng-container>
     <mat-icon class="text-white" *ngIf="(isXSmall$ | async) === true">publish</mat-icon>
   </button>
 </mat-toolbar>
@@ -76,7 +76,7 @@
   </form>
 
   <div class="flex flex-middle flex-center margin-top-m">
-    <button *ngIf="editMode === 'create'" class="margin-right-s" (click)="saveDraft(savedDraft.value, error.value)"
+    <button *ngIf="editMode === 'create'" class="margin-right-s text-white" (click)="saveDraft(savedDraft.value, error.value)"
       [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid" mat-raised-button
       color="primary" i18n>
       Save as Draft
