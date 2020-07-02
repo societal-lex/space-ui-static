@@ -26,6 +26,7 @@ export class RecentBlogComponent implements OnInit {
     type: NsDiscussionForum.ETimelineType.ALL,
     userId: '',
   }
+
   timelineFetchStatus: TFetchStatus = 'none'
   showSocialLike = false
   isXSmall$: Observable<boolean>

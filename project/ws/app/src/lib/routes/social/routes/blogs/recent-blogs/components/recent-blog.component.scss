@@ -48,7 +48,7 @@
 
   .description-text {
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     height: $description-line-count * $description-line-height;
     line-height: $description-line-height;
   }
@@ -57,7 +57,7 @@
 .blog-title {
   font-weight: 600;
   line-height: 1.35;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 // .header {
@@ -92,7 +92,9 @@
 }
 .maticonallign{
     // border: thick double yellow;
-    margin-left: 130px;
+    // margin-left: 130px;
+    // margin-right:0px;
+        overflow-x: hidden;
 
 }
   // .vertcheck {
@@ -100,6 +102,44 @@
   //   padding-right: 0px;
   //   justify-content: end;
   // }
+}
+.justify-search{
+   width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+        border-radius: 50px;
+        max-height: 40px;
+        margin-right: 0;
+        margin: 4px auto;
+}
+.flex-header{
+  display: flex !important;
+}
+.column-1{
+  flex:1;
+}
+.column-2{
+  flex:1;
+  // padding-right:5rem;
+
+
+  // padding-left: 0.25rem;
+  // justify-content: space-around !important;
+}
+.hide_btn{
+  visibility: hidden;
+}
+.column-3{
+  // flex:1;
+      /* flex: 1; */
+    float: right;
+    justify-content: space-around;
+    display: flex;
+}
+.align-input{
+  width: 90%;
+   margin-left: 10%;
+   padding-top:10px;
 }
 @media screen and (max-width: 375px) {
   #blogsearchbar {
@@ -116,8 +156,10 @@
 }
 .maticonallign{
     // border: thick double yellow;
-    margin-left: 80px;
-
+       overflow-x: hidden;
+}
+::placeholder{
+  color: #865ba0 !important;
 }
 
   // .vertcheck {
@@ -138,8 +180,7 @@
 }
 .maticonallign{
     // border: thick double yellow;
-    margin-left: 30px;
-
+          overflow-x: hidden;
 }
 }
 .align-content{
@@ -152,7 +193,7 @@
   color:white;
 }
 ::placeholder{
-  color: white;
+  color: white !important;
 }
 .icon-color{
   color:white;
@@ -173,5 +214,9 @@
 .align-icon{
 margin-right: 0px;
 margin-left: auto;
+
+}
+.placeholder-color{
+  color: #865ba0 !important;
 
 }
