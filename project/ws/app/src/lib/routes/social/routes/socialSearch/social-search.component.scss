@@ -144,9 +144,9 @@ background-color: #3f51b5;
 	}
 
 	ul.avatars {
-	display: flex ; /* Causes LI items to display in row. */
+	display: flex ;
 	list-style-type: none ;
-	margin: auto ; /* Centers vertically / horizontally in flex container. */
+	margin: auto ;
 	padding: 0px 7px 0px 0px ;
 
 	/*
@@ -164,7 +164,7 @@ background-color: #3f51b5;
 	margin: 0px 0px 0px 0px ;
 	padding: 0px 0px 0px 0px ;
 	position: relative ;
-	width: 42px ; /* Forces flex items to be smaller than their contents. */
+	width: 42px ;
 	}
 
 	/*
