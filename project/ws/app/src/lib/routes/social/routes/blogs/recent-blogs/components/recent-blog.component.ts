@@ -26,11 +26,13 @@ export class RecentBlogComponent implements OnInit {
     type: NsDiscussionForum.ETimelineType.ALL,
     userId: '',
   }
+
   timelineFetchStatus: TFetchStatus = 'none'
   showSocialLike = false
   isXSmall$: Observable<boolean>
   queryEntered = ''
   placeHolder: String = 'Type the blog name you are looking for'
+  isEnabledSearch = false
   constructor(
     private discussionSvc: WsDiscussionForumService,
     private configSvc: ConfigurationsService,
@@ -87,5 +89,12 @@ export class RecentBlogComponent implements OnInit {
         this.timelineFetchStatus = 'error'
       },
     )
+  }
+  showSearchBar() {
+    this.isEnabledSearch = true
+
+  }
+  disableSearchbar() {
+    this.isEnabledSearch = false
   }
 }

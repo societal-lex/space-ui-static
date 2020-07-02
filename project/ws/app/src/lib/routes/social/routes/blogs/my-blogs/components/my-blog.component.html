@@ -7,21 +7,14 @@
 </mat-toolbar>
 
 <div class="my-blogs-container">
-  <mat-tab-group
-    dynamicHeight="true"
-    [color]="'accent'"
-    [selectedIndex]="activeTabIndex"
-    (selectedIndexChange)="updateActiveTab($event)"
-  >
+  <mat-tab-group dynamicHeight="true" [color]="'accent'" [selectedIndex]="activeTabIndex"
+    (selectedIndexChange)="updateActiveTab($event)">
     <mat-tab>
       <ng-template mat-tab-label>
         <ng-container 18n>Drafts</ng-container>
       </ng-template>
       <ng-template matTabContent>
-        <ws-app-blog-result
-          [blogMode]="'edit'"
-          [postRequest]="myDraftsRequest"
-        ></ws-app-blog-result>
+        <ws-app-blog-result [blogMode]="'edit'" [postRequest]="myDraftsRequest"></ws-app-blog-result>
       </ng-template>
     </mat-tab>
     <mat-tab>

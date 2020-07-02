@@ -125,9 +125,12 @@ example-radio-group {
 .line-height-username1 {
   line-height: 3.75rem;
 }
-.change_color_on_hover :hover {
-  background-color: #e7eaf3;
-  cursor: pointer;
+.border-color{
+  color:white;
+}
+.change_color_on_hover :hover{
+	background-color: #e7eaf3;
+	cursor: pointer;
 }
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
@@ -140,11 +143,11 @@ h1 {
   top: 0px;
 }
 
-ul.avatars {
-  display: flex; /* Causes LI items to display in row. */
-  list-style-type: none;
-  margin: auto; /* Centers vertically / horizontally in flex container. */
-  padding: 0px 7px 0px 0px;
+	ul.avatars {
+	display: flex ;
+	list-style-type: none ;
+	margin: auto ;
+	padding: 0px 7px 0px 0px ;
 
   /*
 	By using the row-reverse layout, the visual ordering will be opposite of
@@ -153,54 +156,121 @@ ul.avatars {
 	zIndex value. The MAJOR DOWNSIDE is that the HTML itself now reads
 	backwards, which super janky.
 	*/
-  flex-direction: row-reverse;
-}
+	flex-direction: row-reverse ;
+	}
 
-li.avatars__item {
-  height: 49px;
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-  position: relative;
-  width: 42px; /* Forces flex items to be smaller than their contents. */
-}
+	li.avatars__item {
+	height: 49px ;
+	margin: 0px 0px 0px 0px ;
+	padding: 0px 0px 0px 0px ;
+	position: relative ;
+	width: 42px ;
+	}
 
-/*
+	/*
 	These items are all 49px wide while the flex-item (in which they live) is
 	only 42px wide. As such, there will be several pixels of overflow content,
 	which will be stacked using the natural DOM-based stacking order.
 	*/
-img.avatars__img,
-span.avatars__initials,
-span.avatars__others {
-  background-color: #596376;
-  border: 2px solid #1f2532;
-  border-radius: 100px 100px 100px 100px;
-  color: #ffffff;
-  display: block;
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: 100;
-  height: 45px;
-  line-height: 45px;
-  text-align: center;
-  width: 45px;
+	img.avatars__img,
+	span.avatars__initials,
+	span.avatars__others {
+	background-color: #596376 ;
+	border: 2px solid #1F2532 ;
+	border-radius: 100px 100px 100px 100px ;
+	color: #FFFFFF ;
+	display: block ;
+	font-family: sans-serif ;
+	font-size: 12px ;
+	font-weight: 100 ;
+	height: 45px ;
+	line-height: 45px ;
+	text-align: center ;
+	width: 45px ;
+	}
+  @media screen and (max-width: 425px) {
+  #blogsearchbar {
+    visibility: hidden;
+    display:none !important;
+  }
+  .blogs-containers{
+   width: 350px;
+  margin: auto;
+  align-content: space-around;
+}
+.justify-search{
+  width:90%;
+  margin-left: 10%;
+  padding-top:10px;
+}
+// .width-xs{
+//   width:600px;
+// }
+// .maticonallign{
+//     // border: thick double yellow;
+//     // margin-left: 130px;
+//     // margin-right:0px;
+//         overflow-x: hidden;
+//     margin-right: 0px;
+//     padding-left: 150px;
+
+// }
+  // .vertcheck {
+  //   border: thick double red;
+  //   padding-right: 0px;
+  //   justify-content: end;
+  // }
+}
+@media screen and (max-width: 320px) {
+  .field-size{
+    width:50px;
+  }
+// //    .search-width{
+// // width:150px;
+// //  }
+//  .search-size{
+//    padding-left: 0px;
+//  }
+// //   .width-size{
+// //   max-width: 500px;
+// //     box-sizing: border-box;
+// //     border-radius: 50px;
+// //     max-height: 40px;
+// //    width: 150px;
+// //  }
+ .width-size{
+  max-width: 500px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    max-height: 40px;
+   min-width: 200px;
+ }
+
 }
 
-span.avatars__others {
-  background-color: #1e8fe1;
-}
-.line-height-username1 {
-  line-height: 3.75rem;
-}
-.example-card {
-  max-width: 400px;
-}
+ .width-size{
+  max-width: 500px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    max-height: 40px;
+    // min-width: 200px;
+    min-width: 150px;
+ }
+	span.avatars__others {
+	background-color: #1E8FE1 ;
+	}
+	.line-height-username1 {
+		line-height: 3.75rem;
+	}
+	.example-card {
+		max-width: 400px;
+	  }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-.hide-filter-btn {
+	  .example-header-image {
+		background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+		background-size: cover;
+	  }
+    .hide-filter-btn {
   visibility: hidden;
 }
 
