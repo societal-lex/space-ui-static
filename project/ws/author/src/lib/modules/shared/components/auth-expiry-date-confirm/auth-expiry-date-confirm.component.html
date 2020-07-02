@@ -1,16 +1,32 @@
 <div mat-dialog-title class="relative">
   <h2 i18n>Extend or Mark for Deletion</h2>
-  <button [disabled]="onAction" i18n-matTooltip [matTooltip]="'Close'" mat-button class="close-icon" mat-dialog-close>
+  <button
+    [disabled]="onAction"
+    i18n-matTooltip
+    [matTooltip]="'Close'"
+    mat-button
+    class="close-icon"
+    mat-dialog-close
+  >
     <mat-icon>close</mat-icon>
   </button>
 </div>
 <mat-dialog-content>
   <form [formGroup]="userActionForm">
     <mat-form-field appearance="fill" class="width-1-1">
-      <textarea rows="3" matInput placeholder=" For eg. This content is extended because..." name="name"
-        formControlName="comments" required></textarea>
-      <mat-error i18n *ngIf="isSubmitPressed && !userActionForm.controls.comments.value"
-        i18n="Comments Error|Explains Comments is mandatory field">
+      <textarea
+        rows="3"
+        matInput
+        placeholder=" For eg. This content is extended because..."
+        name="name"
+        formControlName="comments"
+        required
+      ></textarea>
+      <mat-error
+        i18n
+        *ngIf="isSubmitPressed && !userActionForm.controls.comments.value"
+        i18n="Comments Error|Explains Comments is mandatory field"
+      >
         Comments is mandatory
       </mat-error>
     </mat-form-field>
@@ -40,7 +56,10 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <div class="flex relative mat-form-field-appearance-fill padding-0" *ngIf="isSubmitPressed && showError">
+        <div
+          class="flex relative mat-form-field-appearance-fill padding-0"
+          *ngIf="isSubmitPressed && showError"
+        >
           <div class="mat-form-field-subscript-wrapper mat-error" i18n>
             Update expiry date
           </div>
@@ -50,19 +69,31 @@
     <div class="mat-form-field pt-2" *ngIf="!userActionForm.controls.isExtend.value">
       <div class="flex w-100">
         <mat-checkbox formControlName="action" i18n></mat-checkbox>
-        <div class="margin-left-s" i18n>I understand that by clicking "Proceed" will mark the
-          content for deletion. And the action is irreversible.</div>
+        <div class="margin-left-s" i18n>
+          I understand that by clicking "Proceed" will mark the content for deletion. And the action
+          is irreversible.
+        </div>
       </div>
-      <div class="flex relative mat-form-field-appearance-fill"
-        *ngIf="isSubmitPressed && !userActionForm.controls.action.value">
+      <div
+        class="flex relative mat-form-field-appearance-fill"
+        *ngIf="isSubmitPressed && !userActionForm.controls.action.value"
+      >
         <div class="mat-form-field-subscript-wrapper mat-error padding-0" i18n>
           Accept the declaration
         </div>
       </div>
     </div>
     <div class="margin-top-s margin-bottom-s right-align">
-      <button cdkFocusInitial mat-dialog-close [disabled]="onAction" mat-raised-button i18n>Cancel</button>
-      <button class="margin-left-s" (click)="submitData()" [disabled]="onAction" mat-raised-button color="primary">
+      <button cdkFocusInitial mat-dialog-close [disabled]="onAction" mat-raised-button i18n>
+        Cancel
+      </button>
+      <button
+        class="margin-left-s"
+        (click)="submitData()"
+        [disabled]="onAction"
+        mat-raised-button
+        style="color: white; background: #865ba0;"
+      >
         <mat-spinner [diameter]="25" color="primary" *ngIf="onAction"></mat-spinner>
         <ng-container *ngIf="!onAction" i18n>Proceed</ng-container>
       </button>

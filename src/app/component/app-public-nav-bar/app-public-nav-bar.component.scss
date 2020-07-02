@@ -4,7 +4,7 @@
 }
 .app-logo {
   // min-width: 8rem;
-  // margin-top: -1.4rem;
+  margin-top: -0.5rem;
   padding: 2px 0 0 8px;
 }
 .btn-size {
@@ -13,7 +13,7 @@
 @media only screen and (min-width: 360px) and (max-width: 599px) {
   .app-logo {
     width: 6rem !important;
-    margin-top: -0.1rem !important;
+    margin-top: 0.5rem !important;
     min-width: auto !important;
   }
 }
@@ -28,7 +28,7 @@
 @media only screen and (min-width: 312px) and (max-width: 359px) {
   .app-logo {
     width: 5rem !important;
-    margin-top: 1.5rem !important;
+    margin-top: 1.79rem !important;
     min-width: auto !important;
   }
   .logosize {

@@ -23,7 +23,7 @@
 }
 .app-logo {
   min-width: 8rem;
-  margin-top: -1.4rem;
+  margin-top: -1.1rem;
   padding: 8px 0 0 8px;
 }
 @media only screen and (min-width: 357px) and (max-width: 599px) {
@@ -63,7 +63,7 @@
 }
 @media only screen and (min-width: 693px) and (max-width: 795px) {
   .app-logo {
-    width: 8rem !important;
+    width: 6rem !important;
     margin-top: 4.5px !important;
     min-width: auto !important;
   }
@@ -71,18 +71,18 @@
     overflow-y: visible !important;
   }
 }
-@media only screen and (min-width: 795px) and (max-width: 1024px) {
-  .app-logo {
-    // width: 9rem !important;
-    margin-top: -0.3rem !important;
-    // min-width: auto !important;
-  }
-}
+// @media only screen and (min-width: 795px) and (max-width: 1024px) {
+//   .app-logo {
+//     width: 9rem !important;
+//     margin-top: -0.3rem !important;
+//     min-width: auto !important;
+//   }
+// }
 @media (min-width: 1025px) {
   .app-logo {
     min-width: auto !important;
     // width: 9rem !important;
-    margin-top: -0.5rem !important;
+    // margin-top: -0.5rem !important;
   }
 }
 .logosize {

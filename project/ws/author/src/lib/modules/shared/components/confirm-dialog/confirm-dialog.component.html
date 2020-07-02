@@ -5,31 +5,37 @@
         Are you sure you want to delete it?
       </ng-container>
       <ng-container i18n *ngIf="data === 'restoreDeleted'">
-        Are you sure you want to restore it by moving the content and all its children to Draft state?
+        Are you sure you want to restore it by moving the content and all its children to Draft
+        state?
       </ng-container>
       <ng-container i18n *ngIf="data === 'transcodeMessage'">
-        Video content takes some time to reflect after the upload is complete, depending on the size of the video. You can come back
-        later to this content to take further actions.
+        Video content takes some time to reflect after the upload is complete, depending on the size
+        of the video. You can come back later to this content to take further actions.
       </ng-container>
       <ng-container i18n *ngIf="data === 'publishMessage'">
-        Updated content may take between 5 to 30 minutes to take effect. You may also have to reload the web page to view the changes.
+        Updated content may take between 5 to 30 minutes to take effect. You may also have to reload
+        the web page to view the changes.
       </ng-container>
       <ng-container i18n *ngIf="data === 'directPublishMessage'">
-        As you are a publisher content will be published directly. Updated content may take between 5 to 30 minutes to take effect.
-        You may also have to reload the web page to view the changes.
+        As you are a publisher content will be published directly. Updated content may take between
+        5 to 30 minutes to take effect. You may also have to reload the web page to view the
+        changes.
       </ng-container>
       <ng-container i18n *ngIf="data === 'deleteTreeNode'">
         Are you sure you want to remove the mapping?
       </ng-container>
       <ng-container i18n *ngIf="data === 'dialog'">
-        Selecting this option will discard pre entered data of other options. Do you wish to continue ?
+        Selecting this option will discard pre entered data of other options. Do you wish to
+        continue ?
       </ng-container>
       <ng-container i18n *ngIf="data === 'unpublish'">
         Are you sure you want to unpublish it?
       </ng-container>
-      <ng-container *ngIf="data === 'retrieveParent'" i18n>Are you sure you want to retrieve this content and its children?
+      <ng-container *ngIf="data === 'retrieveParent'" i18n
+        >Are you sure you want to retrieve this content and its children?
       </ng-container>
-      <ng-container *ngIf="data === 'retrieveChild'" i18n>Are you sure you want to retrieve this content?
+      <ng-container *ngIf="data === 'retrieveChild'" i18n
+        >Are you sure you want to retrieve this content?
       </ng-container>
       <ng-container *ngIf="data.type === 'deleteQues'">
         <span i18n> Are you sure you want to delete Quiz</span>-{{ data.index }} ?
@@ -43,7 +49,14 @@
     </h3>
   </div>
   <div mat-dialog-actions class="flex-row-reverse">
-    <button i18n mat-raised-button color="primary" [mat-dialog-close]="true">Yes</button>
+    <button
+      i18n
+      mat-raised-button
+      style="color: white; background: #865ba0;"
+      [mat-dialog-close]="true"
+    >
+      Yes
+    </button>
     <button i18n mat-raised-button mat-dialog-close cdkFocusInitial>No</button>
   </div>
 </div>
