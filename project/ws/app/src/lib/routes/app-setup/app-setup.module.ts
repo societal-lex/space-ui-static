@@ -18,6 +18,7 @@ import {
   MatCheckboxModule,
   MatDividerModule,
   MatDialogModule,
+  MatProgressSpinnerModule,
 } from '@angular/material'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { SettingsModule } from '../profile/routes/settings/settings.module'
@@ -79,6 +80,7 @@ import { InterestModule } from '../profile/routes/interest/interest.module'
     LanguageSelectorModule,
     AppTourDialogModule,
     InterestModule,
+    MatProgressSpinnerModule,
   ],
   providers: [TncAppResolverService, Globals],
 })
