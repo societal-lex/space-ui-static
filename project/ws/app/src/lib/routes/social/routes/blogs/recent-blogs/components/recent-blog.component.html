@@ -22,13 +22,12 @@
         <mat-form-field
           appearance="none"
           class="autocomplete-form"
-          color="primary"
           style="width: 100%;"
           [floatLabel]="'never'"
         >
           <input
             type="search"
-            class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none"
+            class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none text-white"
             i18n-placeholder="search content"
             [placeholder]="placeHolder"
             i18-aria-label
@@ -53,23 +52,23 @@
         <a class="vertcheck" mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vertical</mat-icon>
         </a>
-  
+
         <mat-menu #menu="matMenu">
           <a i18n mat-menu-item>Search</a>
-  
+
           <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
           <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
         </mat-menu>
       </ng-container>
-    <ng-container *ngIf="(isXSmall$ | async) === false">
-      <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s"
-        >My Blogs</a
-      >
-      <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'"
-        >Write a Blog</a
-      >
+      <ng-container *ngIf="(isXSmall$ | async) === false">
+        <a mat-raised-button i18n [routerLink]="'/app/social/blogs/me'" class="margin-right-s"
+          >My Blogs</a
+        >
+        <a mat-raised-button class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'"
+          >Write a Blog</a
+        >
+      </ng-container>
     </ng-container>
-  </ng-container>
   </mat-toolbar>
 </div>
 

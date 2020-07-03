@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>{{ data.content.name }}</h1>
 <div mat-dialog-content>
-  <h3 class="mat-h3" i18n>Share with
+  <h3 class="mat-h3" i18n>
+    Share with
     <ng-container *ngIf="isSocialMediaShareEnabled">
       platform users
     </ng-container>
@@ -13,14 +14,28 @@
       [diameter]="30"
       [strokeWidth]="3"
     ></mat-spinner> -->
-    <textarea matInput i18n-placeholder placeholder="Your message ..." i18n-value
-      [value]="message ? message : 'Loading...'" class="text-area-input" rows="5" #txtBody></textarea>
+    <textarea
+      matInput
+      i18n-placeholder
+      placeholder="Your message ..."
+      i18n-value
+      [value]="message ? message : 'Loading...'"
+      class="text-area-input"
+      rows="5"
+      #txtBody
+    ></textarea>
   </mat-form-field>
 </div>
 <div mat-dialog-actions class="flex-row-reverse">
-  <button mat-raised-button (click)="contentShare(txtBody.value, successToast.value)" i18n i18n-aria-label
-    aria-label="Share this content with specified email address" [disabled]="users.length === 0 || sendInProgress"
-    [color]="'primary'">
+  <button
+    mat-raised-button
+    (click)="contentShare(txtBody.value, successToast.value)"
+    i18n
+    i18n-aria-label
+    aria-label="Share this content with specified email address"
+    [disabled]="users.length === 0 || sendInProgress"
+    color="primary"
+  >
     Share
   </button>
   <button mat-button [mat-dialog-close]="false" i18n>Close</button>
@@ -29,8 +44,12 @@
     Unable to share. Try later
   </div>
 </div>
-<input type="hidden" i18n-value="Toast msg after successfully sharing" value="Content successfully shared"
-  #successToast />
+<input
+  type="hidden"
+  i18n-value="Toast msg after successfully sharing"
+  value="Content successfully shared"
+  #successToast
+/>
 
 <!--
 <div *ngIf="isSocialMediaShareEnabled" class="pt-6">
