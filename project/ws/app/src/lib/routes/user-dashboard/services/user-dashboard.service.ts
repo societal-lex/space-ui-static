@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { LoggerService } from '@ws-widget/utils/src/public-api'
 import { NsUserDashboard } from '../models/user-dashboard.model'
 import { Observable, of, forkJoin } from 'rxjs'
 import { switchMap, map, catchError, filter } from 'rxjs/operators'
@@ -34,7 +33,6 @@ export class UserDashboardService {
   // url: any
 
   constructor(public http: HttpClient,
-              private readonly logger: LoggerService,
               private userAutoComplete: UserAutocompleteService) { }
 
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
@@ -48,7 +46,6 @@ export class UserDashboardService {
         org: headers.org,
       }),
     }
-    this.logger.info('Recieved request for fetching user list')
     try {
       // tslint:disable-next-line: prefer-template
       // tslint:disable-next-line: max-line-length
@@ -62,8 +59,6 @@ export class UserDashboardService {
       }
       return { ok: false, error: userList.MESSAGE, MESSAGE: userList.MESSAGE }
     } catch (ex) {
-      this.logger.error('User List not found')
-      this.logger.error(ex)
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
@@ -88,8 +83,6 @@ export class UserDashboardService {
       email: responseBody.email,
       user_id: responseBody.user_Id,
     }
-
-    this.logger.info('Recieved request for decline or delete user ')
     try {
       // tslint:disable-next-line: max-line-length
       const userDeletedResponse = await this.http.post<IResponse>(this.userData.API_END_POINT + this.userData.delete_user.url, responseBodyAsJSON, httpOptions).toPromise()
@@ -102,8 +95,6 @@ export class UserDashboardService {
       return { ok: false, error: null, MESSAGE: this.userData.delete_user.errorMessage }
 
     } catch (ex) {
-      this.logger.error('User cannot be deleted')
-      this.logger.error(ex)
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
@@ -127,7 +118,6 @@ export class UserDashboardService {
     }
     // tslint:disable-next-line: prefer-template
     // const url = '/usersubmission/user/v1/getallRoles';
-    this.logger.info('Recieved request for getting all roles')
     try {
       // tslint:disable-next-line: max-line-length
       const getAllRoles = await this.http.get<IResponseForGetRoles>(this.userData.API_END_POINT + this.userData.getAllRoles.url, httpOptions).toPromise()
@@ -139,8 +129,6 @@ export class UserDashboardService {
       }
       return { ok: false, error: null, MESSAGE: this.userData.getAllRoles.errorMessage, DATA: [] }
     } catch (ex) {
-      this.logger.error('User roles cannot be retrieved')
-      this.logger.error(ex)
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
@@ -166,7 +154,6 @@ export class UserDashboardService {
     }
 
     // const url = '/usersubmission/user/v1/changerole';
-    this.logger.info('Recieved request for changing role ')
     try {
       // tslint:disable-next-line: max-line-length
       const userChangedRoleResponse = await this.http.put<IResponse>(this.userData.API_END_POINT + this.userData.change_roles.url, responseBodyAsJSON, httpOptions).toPromise()
@@ -179,8 +166,6 @@ export class UserDashboardService {
       }
       return { ok: false, error: null, MESSAGE: this.userData.change_roles.errorMessage }
     } catch (ex) {
-      // this.logger.error('User roles could not be updated')
-      // this.logger.error(ex)
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
