@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { LoggerService } from '@ws-widget/utils/src/public-api'
 import { NsUserDashboard } from '../models/user-dashboard.model'
 import { Observable, of, forkJoin } from 'rxjs'
 import { switchMap, map, catchError, filter } from 'rxjs/operators'
@@ -34,7 +33,6 @@ export class UserDashboardService {
   // url: any
 
   constructor(public http: HttpClient,
-              private readonly logger: LoggerService,
               private userAutoComplete: UserAutocompleteService) { }
 
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
