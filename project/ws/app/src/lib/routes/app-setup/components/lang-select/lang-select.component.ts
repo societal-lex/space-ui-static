@@ -23,7 +23,7 @@ export class LangSelectComponent implements OnInit {
   lang = ''
   animalControl = new FormControl('', Validators.required)
   allowedLangCode: { [langCode: string]: NsInstanceConfig.ILocalsConfig } = {}
-
+  isLoad = false
   ngOnInit() {
     if (this.configSvc.userProfile) {
       this.userName = this.configSvc.userProfile.givenName || ''
@@ -87,6 +87,7 @@ export class LangSelectComponent implements OnInit {
   }
 
   async applyLang() {
+    this.isLoad = true
     if (this.selectedLang === 'en') {
       this.selectedLang = ''
     }
@@ -98,6 +99,7 @@ export class LangSelectComponent implements OnInit {
     if (this.configSvc.userUrl) {
       refAppend = `?ref=${encodeURIComponent(this.configSvc.userUrl)}`
     }
+    this.isLoad = false
     this.selectedLang === ''
       ? this.router.navigateByUrl('/app/setup/home/tnc')
       : location.assign(`${location.origin}/${this.selectedLang}/app/setup/home/tnc${refAppend}`)
