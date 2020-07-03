@@ -10,21 +10,20 @@ ws-app-search-input .autocomplete-form {
 }
 
 ws-app-search-input input {
-  padding-left: .5rem !important;
+  padding-left: 0.5rem !important;
 }
 
 ws-app-search-input .search .mat-form-field-wrapper {
-   padding-bottom: 0px;
-   .mat-form-field-infix{
-      border-top-width: 5px !important;
-      padding: 0px;
-      padding-bottom: 5px;
-   }
-
+  padding-bottom: 0px;
+  .mat-form-field-infix {
+    border-top-width: 5px !important;
+    padding: 0px;
+    padding-bottom: 5px;
+  }
 }
 
 ws-app-search-input .search-border {
-  border-radius: .75rem;
+  border-radius: 0.75rem;
   border-color: #cecece;
 }
 
@@ -32,11 +31,12 @@ ws-app-search-input .border-right {
   border-right: 1px solid #cecece;
 }
 
-
 ws-app-search-input .lang-btn {
   margin-right: 0 !important;
 }
-
+ws-app-search-input ::placeholder {
+  color: white !important;
+}
 ws-app-search-input .search-tabs-group {
   @extend %height-mat-toolbar-sibling;
 }

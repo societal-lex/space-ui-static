@@ -19,6 +19,7 @@
     [disabled]="!showMarkAsRead"
     mat-raised-button
     class="text-right"
+    color="primary"
     *ngIf="actionNotifications.length || infoNotifications.length"
     (click)="readAllNotifications()"
     i18n
