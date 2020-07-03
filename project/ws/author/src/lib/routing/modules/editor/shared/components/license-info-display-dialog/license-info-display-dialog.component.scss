@@ -1,23 +1,40 @@
+@import "src/themes/theme-muave.scss";
+$primary: $theme-primary;
+
+::ng-deep table {
+  .mat-header-cell {
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+  }
+  thead {
+    background-color: mat-color($primary) !important;
+  }
+}
+
 table {
-    width: 100%;
-    border: transparent;
-    box-shadow: none;
+  .snoCustom {
+    min-width: 50px;
   }
+  width: 100%;
+  border: transparent;
+  box-shadow: none;
+}
 
-  .header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-  .body {
-    padding: 0;
-  }
+.body {
+  padding: 0;
+}
 
-  .footer {
-    float: right;
-  }
+.footer {
+  float: right;
+}
 
-  /* td {
+/* td {
     text-align: center;
   }
 

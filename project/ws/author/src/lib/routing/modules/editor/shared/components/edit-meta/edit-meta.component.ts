@@ -1274,7 +1274,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.currentLicenseData) {
       this.dialog.open(LicenseInfoDisplayDialogComponent, {
         panelClass: 'license-class',
-        width: '50%',
+        width: '70%',
         data: {
           items: this.currentLicenseData,
         },
