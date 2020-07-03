@@ -1,5 +1,6 @@
 .highlight {
-  color: #f48024;
+  // color: #f48024;
+  color: #ffe22a !important;
 }
 
 .like-count {
@@ -8,4 +9,7 @@
   &:hover {
     text-decoration: underline;
   }
+}
+.like-clr {
+  color: #ffe22a !important;
 }
