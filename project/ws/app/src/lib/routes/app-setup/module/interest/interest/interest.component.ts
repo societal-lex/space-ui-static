@@ -22,13 +22,13 @@ export interface IInterest {
 export class InterestComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
-    private contentSvc: WidgetContentService,
-    private playlistSvc: BtnPlaylistService,
-    private configSvc: ConfigurationsService,
+              private contentSvc: WidgetContentService,
+              private playlistSvc: BtnPlaylistService,
+              private configSvc: ConfigurationsService,
     // private router: Router,
-    private interestSvc: InterestService,
-    private snackBar: MatSnackBar,
-    private events: EventService,
+              private interestSvc: InterestService,
+              private snackBar: MatSnackBar,
+              private events: EventService,
   ) { }
   @ViewChild('toastSuccess', { static: true }) toastSuccess!: ElementRef<any>
   @ViewChild('toastDuplicate', { static: true }) toastDuplicate!: ElementRef<
