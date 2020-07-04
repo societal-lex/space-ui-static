@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import { WidgetContentService, NsContent, BtnPlaylistService, NsPlaylist } from '@ws-widget/collection'
 import { TFetchStatus, NsPage, ConfigurationsService } from '../../../../../../../../../../library/ws-widget/utils/src/public-api'
 import { FormControl } from '@angular/forms'
@@ -22,13 +22,13 @@ export interface IInterest {
 export class InterestComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
-              private contentSvc: WidgetContentService,
-              private playlistSvc: BtnPlaylistService,
-              private configSvc: ConfigurationsService,
+    private contentSvc: WidgetContentService,
+    private playlistSvc: BtnPlaylistService,
+    private configSvc: ConfigurationsService,
     // private router: Router,
-              private interestSvc: InterestService,
-              private snackBar: MatSnackBar,
-              private events: EventService,
+    private interestSvc: InterestService,
+    private snackBar: MatSnackBar,
+    private events: EventService,
   ) { }
   @ViewChild('toastSuccess', { static: true }) toastSuccess!: ElementRef<any>
   @ViewChild('toastDuplicate', { static: true }) toastDuplicate!: ElementRef<
