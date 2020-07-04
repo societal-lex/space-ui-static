@@ -62,7 +62,7 @@ export class InterestComponent implements OnInit {
   removable = true
   addOnBlur = true
   readonly separatorKeysCodes: number[] = [ENTER, COMMA]
-  userinterests: Interest[] = [
+  userinterests: IInterest[] = [
     { name: 'solutions' },
     { name: 'governance' },
     { name: 'case studies' },
@@ -243,6 +243,7 @@ export class InterestComponent implements OnInit {
 
     if (index >= 0) {
       this.userinterests.splice(index, 1)
+
     }
   }
 
