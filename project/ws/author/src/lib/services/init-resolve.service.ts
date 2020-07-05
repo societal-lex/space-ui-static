@@ -56,6 +56,14 @@ export class InitResolver implements Resolve<NSContent.IContentMeta> {
       )
       pushedJobs.push('license')
     }
+    if (data.includes('assetType') && !this.authInitService.assetTypeMeta) {
+      forkProcess.push(
+        this.apiService.get<IFormMeta>(
+          `${this.configurationsService.baseUrl}/feature/asset-type-info.json`,
+        ),
+      )
+      pushedJobs.push('assetType')
+    }
     if (data.includes('ordinals') && !this.authInitService.ordinals) {
       forkProcess.push(
         this.apiService.get<IFormMeta>(`${ORDINALS}${this.accessService.orgRootOrgAsQuery}`),
@@ -94,6 +102,10 @@ export class InitResolver implements Resolve<NSContent.IContentMeta> {
 
         if (pushedJobs.includes('license')) {
           this.authInitService.licenseMeta = v[pushedJobs.indexOf('license')].details || []
+        }
+
+        if (pushedJobs.includes('assetType')) {
+          this.authInitService.assetTypeMeta = v[pushedJobs.indexOf('license')].details || []
         }
 
         if (pushedJobs.includes('meta')) {

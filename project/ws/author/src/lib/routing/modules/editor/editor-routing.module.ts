@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: EditorComponent,
     data: {
-      load: ['license'],
+      load: ['license', 'assetType'],
     },
     resolve: {
       script: InitResolver,

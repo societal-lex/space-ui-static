@@ -28,7 +28,7 @@ export class LicenseInfoDisplayDialogComponent implements OnInit {
     if (this.data.items.length) {
      this.dataSource = this.data.items.map((item, idx) => {
         return {
-          index: idx,
+          index: idx + 1,
           ...item,
         }
       })

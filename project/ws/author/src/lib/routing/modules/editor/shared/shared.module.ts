@@ -20,6 +20,7 @@ import { BaseComponent } from './components/editor/base/base.component'
 import { EditMetaV2Component } from './components/editor/edit-meta-v2/edit-meta-v2.component'
 import { MatTableModule } from '@angular/material/table'
 import { LicenseInfoDisplayDialogComponent } from './components/license-info-display-dialog/license-info-display-dialog.component'
+import { AssetTypeInfoDisplayDialogComponent } from './components/asset-type-info-display-dialog/asset-type-info-display-dialog.component'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LicenseInfoDisplayDialogComponent } from './components/license-info-dis
     BaseComponent,
     EditMetaV2Component,
     LicenseInfoDisplayDialogComponent,
+    AssetTypeInfoDisplayDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,7 @@ import { LicenseInfoDisplayDialogComponent } from './components/license-info-dis
     AuthEditorActionButtonsComponent,
     AuthPickerComponent,
   ],
-  entryComponents: [AuthPickerComponent, LicenseInfoDisplayDialogComponent],
+  entryComponents: [AuthPickerComponent, LicenseInfoDisplayDialogComponent, AssetTypeInfoDisplayDialogComponent],
   providers: [UploadService],
 })
 export class EditorSharedModule {}

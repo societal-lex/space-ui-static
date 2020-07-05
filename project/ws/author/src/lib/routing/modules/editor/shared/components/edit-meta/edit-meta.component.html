@@ -599,8 +599,13 @@
             </div>
           <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
               [ngClass]="{ disable: checkCondition('assetType', 'disabled') }">
-              <label [ngClass]="{ required: checkCondition('assetType', 'required') }">
-                <b *ngIf="!isSiemens" i18n>Type</b>
+              <labe >
+                <div class="margin-top-s flex flex-middle">
+                <b *ngIf="!isSiemens" [ngClass]="{ required: checkCondition('assetType', 'required') }" i18n>Type</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer" (click)="showAssetTypeDetails()">info
+                  </mat-icon>
+                </div>
               </label>
               <div class="margin-top-xs">
                 <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
