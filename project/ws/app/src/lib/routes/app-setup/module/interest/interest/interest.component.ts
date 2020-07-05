@@ -6,6 +6,12 @@ import { FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
 import { Subscription } from 'rxjs'
 import { InterestService } from '../../../../profile/routes/interest/services/interest.service'
+import { EventService } from '@ws-widget/utils'
+
+// displaying static interest
+// export interface IInterest {
+//   name: string
+// }
 
 @Component({
   selector: 'ws-app-interests',
@@ -13,6 +19,22 @@ import { InterestService } from '../../../../profile/routes/interest/services/in
   styleUrls: ['./interest.component.scss'],
 })
 export class InterestComponent implements OnInit {
+
+  constructor(private activateRoute: ActivatedRoute,
+              private contentSvc: WidgetContentService,
+              private playlistSvc: BtnPlaylistService,
+              private configSvc: ConfigurationsService,
+              private router: Router,
+              private interestSvc: InterestService,
+              private snackBar: MatSnackBar,
+              private events: EventService,
+  ) { }
+  @ViewChild('toastSuccess', { static: true }) toastSuccess!: ElementRef<any>
+  @ViewChild('toastDuplicate', { static: true }) toastDuplicate!: ElementRef<
+    any
+  >
+  @ViewChild('toastFailure', { static: true }) toastFailure!: ElementRef<any>
+
   interestsData: any
   selectedContent = 0
   selectedInterest = ''
@@ -26,17 +48,16 @@ export class InterestComponent implements OnInit {
   interestToAddMultiple: string[] = []
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   alreadyAddedInterest = new Set<string>()
-  constructor(private activateRoute: ActivatedRoute,
-              private contentSvc: WidgetContentService,
-              private playlistSvc: BtnPlaylistService,
-              private configSvc: ConfigurationsService,
-              private router: Router,
-              private interestSvc: InterestService,
-              private snackbar: MatSnackBar) { }
+
+  suggestedInterests: string[] = []
+  userInterests: string[] = []
   @ViewChild('createPlaylistSuccess', { static: true }) createPlaylistSuccessMessage!: ElementRef<any>
   @ViewChild('createPlaylistError', { static: true }) createPlaylistErrorMessage!: ElementRef<any>
   playlistsSubscription: Subscription | null = null
+
   ngOnInit() {
+    this.fetchSuggestedInterests()
+
     this.playlistsSubscription = this.playlistSvc
       .getAllPlaylists()
       .subscribe(
@@ -90,50 +111,133 @@ export class InterestComponent implements OnInit {
     return this.interestRES[interest].some((r: string) => Array.from(this.addedInterest).includes(r))
   }
 
-  addInterest() {
-    if (this.addedInterest.size || this.addedInterest.size === 0 && this.alreadyAddedInterest.size) {
-      if (this.playlistForInterest) {
-        const interestToRemove = Array.from(this.alreadyAddedInterest).filter(el => !Array.from(this.addedInterest).includes(el))
-        const interestToAdd = Array.from(this.addedInterest).filter(el => !Array.from(this.alreadyAddedInterest).includes(el))
-        this.interestsData.forEach((interest: string) => {
-          if (this.interestRES[interest].some((r: any) => Array.from(this.addedInterest).includes(r))) {
-            this.interestToAddMultiple.push(interest)
-          }
-        })
-        this.interestSvc.addUserMultipleInterest(this.interestToAddMultiple).subscribe()
-        if (interestToRemove.length) {
-          this.playlistSvc.deletePlaylistContent(this.playlistForInterest, interestToRemove).subscribe()
-        }
-        this.playlistSvc.addPlaylistContent(this.playlistForInterest, interestToAdd).subscribe(
-          () => {
-            this.snackbar.open(this.createPlaylistSuccessMessage.nativeElement.value)
-            this.router.navigate(['/app/setup/home/done'])
-          },
-          () => {
-            this.snackbar.open(this.createPlaylistErrorMessage.nativeElement.value)
-            this.router.navigate(['/app/setup/home/done'])
-          },
-        )
-      } else {
-        this.playlistSvc.upsertPlaylist({
-          playlist_title: this.playListName,
-          content_ids: Array.from(this.addedInterest),
-          visibility: NsPlaylist.EPlaylistVisibilityTypes.PRIVATE,
-        }).subscribe(
-          () => {
-            this.snackbar.open(this.createPlaylistSuccessMessage.nativeElement.value)
-            this.router.navigate(['/app/setup/home/done'])
-          },
-          () => {
-            this.snackbar.open(this.createPlaylistErrorMessage.nativeElement.value)
-            this.router.navigate(['/app/setup/home/done'])
-          },
-        )
-      }
+  // addInterest() {
+  //   if (this.addedInterest.size || this.addedInterest.size === 0 && this.alreadyAddedInterest.size) {
+  //     if (this.playlistForInterest) {
+  //       const interestToRemove = Array.from(this.alreadyAddedInterest).filter(el => !Array.from(this.addedInterest).includes(el))
+  //       const interestToAdd = Array.from(this.addedInterest).filter(el => !Array.from(this.alreadyAddedInterest).includes(el))
+  //       this.interestsData.forEach((interest: string) => {
+  //         if (this.interestRES[interest].some((r: any) => Array.from(this.addedInterest).includes(r))) {
+  //           this.interestToAddMultiple.push(interest)
+  //         }
+  //       })
+  //       this.interestSvc.addUserMultipleInterest(this.interestToAddMultiple).subscribe()
+  //       if (interestToRemove.length) {
+  //         this.playlistSvc.deletePlaylistContent(this.playlistForInterest, interestToRemove).subscribe()
+  //       }
+  //       this.playlistSvc.addPlaylistContent(this.playlistForInterest, interestToAdd).subscribe(
+  //         () => {
+  //           this.snackbar.open(this.createPlaylistSuccessMessage.nativeElement.value)
+  //           this.router.navigate(['/app/setup/home/done'])
+  //         },
+  //         () => {
+  //           this.snackbar.open(this.createPlaylistErrorMessage.nativeElement.value)
+  //           this.router.navigate(['/app/setup/home/done'])
+  //         },
+  //       )
+  //     } else {
+  //       this.playlistSvc.upsertPlaylist({
+  //         playlist_title: this.playListName,
+  //         content_ids: Array.from(this.addedInterest),
+  //         visibility: NsPlaylist.EPlaylistVisibilityTypes.PRIVATE,
+  //       }).subscribe(
+  //         () => {
+  //           this.snackbar.open(this.createPlaylistSuccessMessage.nativeElement.value)
+  //           this.router.navigate(['/app/setup/home/done'])
+  //         },
+  //         () => {
+  //           this.snackbar.open(this.createPlaylistErrorMessage.nativeElement.value)
+  //           this.router.navigate(['/app/setup/home/done'])
+  //         },
+  //       )
+  //     }
 
-    } else {
-      this.router.navigate(['/app/setup/home/done'])
+  //   } else {
+  //     this.router.navigate(['/app/setup/home/done'])
+  //   }
+  // }
+
+  private fetchSuggestedInterests() {
+    this.interestSvc.fetchSuggestedInterestV2().subscribe(data => {
+      // //console.log('Interest: ', data)
+      this.suggestedInterests = data
+
+      // this.removeAlreadyAddedFromRecommended()
+    })
+  }
+
+  addInterest(interest: string, fromSuggestions = false, recommendIndex = -1) {
+    const tempInterest = interest.trim()
+    if (!tempInterest.length) {
+      return
     }
+    const duplicate = this.userInterests.filter(
+      userTopic => userTopic.toLowerCase() === tempInterest.toLowerCase(),
+    )
+    if (duplicate.length) {
+      this.openSnackBar(this.toastDuplicate.nativeElement.value)
+      return
+    }
+    if (fromSuggestions) {
+      this.suggestedInterests = this.suggestedInterests.filter(
+        suggestedInterest => suggestedInterest !== tempInterest,
+      )
+    }
+    this.userInterests.splice(0, 0, tempInterest)
+    this.raiseTelemetry('add', tempInterest)
+    this.interestSvc.addUserInterest(tempInterest).subscribe(
+      _response => {
+        this.openSnackBar(this.toastSuccess.nativeElement.value)
+      },
+      _err => {
+        this.userInterests = this.userInterests.filter(
+          unitInterest => unitInterest !== interest,
+        )
+        if (fromSuggestions && recommendIndex > -1) {
+          this.suggestedInterests.splice(recommendIndex, 0, interest)
+        }
+        this.openSnackBar(this.toastFailure.nativeElement.value)
+      },
+    )
+  }
+
+  private openSnackBar(primaryMsg: string, duration: number = 4000) {
+    this.snackBar.open(primaryMsg, undefined, {
+      duration,
+    })
+  }
+
+  raiseTelemetry(action: 'add' | 'remove', interest: string) {
+    this.events.raiseInteractTelemetry('interest', action, { interest })
+  }
+
+  // add(event: MatChipInputEvent): void {
+  //   const input = event.input
+  //   const value = event.value
+
+  //   // Add our fruit
+  //   if ((value || '').trim()) {
+  //     this.userinterests.push({ name: value.trim() })
+  //   }
+
+  //   // Reset the input value
+  //   if (input) {
+  //     input.value = ''
+  //   }
+  // }
+
+  // remove(userInterest: IInterest): void {
+  //   const index = this.userinterests.indexOf(userInterest)
+
+  //   if (index >= 0) {
+  //     this.userinterests.splice(index, 1)
+
+  //   }
+  // }
+
+  gotoHomePage() {
+
+    this.router.navigate(['/page/home'])
   }
 
 }

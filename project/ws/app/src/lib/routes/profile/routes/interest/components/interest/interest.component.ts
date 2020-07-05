@@ -64,6 +64,7 @@ export class InterestComponent implements OnInit {
   ngOnInit() {
     // this.displayMode = this.route.snapshot.queryParamMap.get('mode')
     this.fetchSuggestedInterests()
+
     this.interestControl.setValue('')
 
     this.filteredOptions$ = this.interestControl.valueChanges.pipe(
