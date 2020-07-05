@@ -10,6 +10,7 @@ $primary: $theme-primary;
   thead {
     background-color: mat-color($primary) !important;
   }
+
 }
 
 table {
@@ -33,22 +34,10 @@ table {
 .footer {
   float: right;
 }
-
-td{
+.content-padding{
   padding-top: 20px;
-  padding-left:10px;
-  
+   padding-left: 10px;
 }
-/* td {
-    text-align: center;
-  }
-
-  th.mat-header-cell {
-    text-align: center;
-  }
-
-  td.mat-cell.cdk-column-Details.mat-column-Details {
-    text-align: left
-  } */
-
-
+// th{
+//   padding-left: 10px;
+// }

@@ -45,6 +45,7 @@ import {
 } from 'rxjs/operators'
 import { FeedbackFormComponent } from '@ws/author/src/lib/modules/shared/components/feedback-form/feedback-form.component'
 import { LicenseInfoDisplayDialogComponent } from '../license-info-display-dialog/license-info-display-dialog.component'
+import { AssetTypeInfoDisplayDialogComponent } from '../asset-type-info-display-dialog/asset-type-info-display-dialog.component'
 
 interface ILicenseMetaInfo {
   parent: string[],
@@ -56,6 +57,11 @@ interface ILicenseMetaInfo {
 interface ICurrentLicenseDialogInfo {
   details: string,
   name: string
+}
+
+interface IAssetTypeMetaInfo {
+  type: string,
+  description: string
 }
 
 @Component({
@@ -122,6 +128,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   minDate = new Date(new Date().setDate(new Date().getDate() + 1))
   licenseMetaList: ILicenseMetaInfo[] | any[] = []
   currentLicenseData: ICurrentLicenseDialogInfo[] | undefined = undefined
+  assestTypeMetaData: IAssetTypeMetaInfo[] | any[] = []
+  currentAssestTypeData: IAssetTypeMetaInfo[] | undefined = undefined
 
   @ViewChild('creatorContactsView', { static: false }) creatorContactsView!: ElementRef
   @ViewChild('trackContactsView', { static: false }) trackContactsView!: ElementRef
@@ -173,6 +181,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.jobProfileList = this.ordinals.jobProfile
     this.complexityLevelList = this.ordinals.audience
     this.processLicenseDetails()
+
+    this.processAssetTypeDetails()
 
     this.creatorContactsCtrl = new FormControl()
     this.trackContactsCtrl = new FormControl()
@@ -413,6 +423,11 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  processAssetTypeDetails() {
+    if (Array.isArray(this.authInitService.assetTypeMeta)) {
+      this.assestTypeMetaData = [...this.authInitService.assetTypeMeta] as never[]
+      }
+  }
   optionSelected(keyword: string) {
     this.keywordsCtrl.setValue(' ')
     // this.keywordsSearch.nativeElement.blur()
@@ -641,40 +656,40 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   storeData() {
     try {
       const originalMeta = this.contentService.getOriginalMeta(this.contentMeta.identifier)
-    if (originalMeta && this.isEditEnabled) {
-      const expiryDate = this.contentForm.value.expiryDate
-      const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
-      const meta = <any>{}
-      if (this.canExpiry) {
-        currentMeta.expiryDate = `${
-          expiryDate.toISOString().replace(/-/g, '').replace(/:/g, '').split('.')[0]
-          }+0000`
-      }
-      Object.keys(currentMeta).map(v => {
-        if (
-          JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
-          JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta])
-        ) {
-          if (
-            currentMeta[v as keyof NSContent.IContentMeta] ||
-            (this.authInitService.authConfig[v as keyof IFormMeta].type === 'boolean' &&
-              currentMeta[v as keyof NSContent.IContentMeta] === false)
-          ) {
-            meta[v as keyof NSContent.IContentMeta] = currentMeta[v as keyof NSContent.IContentMeta]
-          } else {
-            meta[v as keyof NSContent.IContentMeta] = JSON.parse(
-              JSON.stringify(
-                this.authInitService.authConfig[v as keyof IFormMeta].defaultValue[
-                  originalMeta.contentType
-                  // tslint:disable-next-line: ter-computed-property-spacing
-                ][0].value,
-              ),
-            )
-          }
+      if (originalMeta && this.isEditEnabled) {
+        const expiryDate = this.contentForm.value.expiryDate
+        const currentMeta: NSContent.IContentMeta = JSON.parse(JSON.stringify(this.contentForm.value))
+        const meta = <any>{}
+        if (this.canExpiry) {
+          currentMeta.expiryDate = `${
+            expiryDate.toISOString().replace(/-/g, '').replace(/:/g, '').split('.')[0]
+            }+0000`
         }
-      })
-      this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
-    }
+        Object.keys(currentMeta).map(v => {
+          if (
+            JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
+            JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta])
+          ) {
+            if (
+              currentMeta[v as keyof NSContent.IContentMeta] ||
+              (this.authInitService.authConfig[v as keyof IFormMeta].type === 'boolean' &&
+                currentMeta[v as keyof NSContent.IContentMeta] === false)
+            ) {
+              meta[v as keyof NSContent.IContentMeta] = currentMeta[v as keyof NSContent.IContentMeta]
+            } else {
+              meta[v as keyof NSContent.IContentMeta] = JSON.parse(
+                JSON.stringify(
+                  this.authInitService.authConfig[v as keyof IFormMeta].defaultValue[
+                    originalMeta.contentType
+                    // tslint:disable-next-line: ter-computed-property-spacing
+                  ][0].value,
+                ),
+              )
+            }
+          }
+        })
+        this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
+      }
     } catch (e) {
       throw new Error(e)
       // console.error('Error occured while saving data ', e)
@@ -1116,6 +1131,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateLicenseType(this.contentForm.controls.assetType.value)
       this.updateLicenceInfoTable(this.contentForm.controls.assetType.value)
       this.enableSpecificAssetForm(this.contentForm.controls.assetType.value)
+      this.updateAssetTypeInfoTable()
     })
 
     this.contentForm.valueChanges.pipe(debounceTime(500)).subscribe(() => {
@@ -1169,7 +1185,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   updateLicenseType(assetType: string) {
     if (assetType) {
-      const selectedLicense = this.ordinals.license.find((licenseObject: {parent: string, values: [string]}) => {
+      const selectedLicense = this.ordinals.license.find((licenseObject: { parent: string, values: [string] }) => {
         return licenseObject.parent.toLowerCase() === assetType.toLowerCase()
       })
       if (selectedLicense && selectedLicense.values.length) {
@@ -1186,7 +1202,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.knowledgeAssetFormEnabled = false
     if (assetType) {
       switch (assetType) {
-        case 'Technology' :
+        case 'Technology':
           this.technologyAssetFormEnabled = true
           break
         case 'Connection':
@@ -1298,4 +1314,25 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentLicenseData = undefined
     }
   }
+
+  updateAssetTypeInfoTable() {
+    if (this.assestTypeMetaData) {
+      this.currentAssestTypeData = this.assestTypeMetaData
+    } else {
+      this.currentAssestTypeData = undefined
+    }
+  }
+
+  showAssetTypeDetails() {
+    if (this.currentAssestTypeData) {
+      this.dialog.open(AssetTypeInfoDisplayDialogComponent, {
+        panelClass: 'asset-class',
+        width: '70%',
+        data: {
+          items: this.currentAssestTypeData,
+        },
+      })
+    }
+  }
+
 }
