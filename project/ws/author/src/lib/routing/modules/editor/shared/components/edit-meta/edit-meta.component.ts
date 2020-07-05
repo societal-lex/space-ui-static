@@ -1161,7 +1161,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
     dialogRef.afterClosed().subscribe((response: string[]) => {
       // const catalogs = this.removeCommonFromCatalog(response)
-      this.contentForm.controls.catalogPaths.setValue(response)
+      if (Array.isArray(response)) {
+        this.contentForm.controls.catalogPaths.setValue(response)
+      }
     })
   }
 
@@ -1272,7 +1274,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.currentLicenseData) {
       this.dialog.open(LicenseInfoDisplayDialogComponent, {
         panelClass: 'license-class',
-        width: '50%',
+        width: '70%',
         data: {
           items: this.currentLicenseData,
         },

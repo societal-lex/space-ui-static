@@ -1,22 +1,22 @@
 <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-  <span i18n="page title: playlist detail" class="margin-left-xs">Playlist</span>
+  <span i18n="page title: playlist detail" class="margin-left-xs text-white">Playlist</span>
   <div class="spacer"></div>
   <div class="hidden-xs">
-    <button name="add-more-button-playlist-detail" mat-button (click)="router.navigate([router.url, 'edit'])">
+    <button name="add-more-button-playlist-detail" class="text-white" mat-button (click)="router.navigate([router.url, 'edit'])">
       <mat-icon>add</mat-icon>&nbsp;
       <span i18n>Add More</span>
     </button>
-    <button name="share-button-playlist-detail" mat-button (click)="sharePlaylist()">
+    <button name="share-button-playlist-detail" class="text-white" mat-button (click)="sharePlaylist()">
       <mat-icon>share</mat-icon>&nbsp;
       <span i18n>Share</span>
     </button>
-    <button name="delete-button-playlist-detail" mat-button (click)="deletePlaylist()">
+    <button name="delete-button-playlist-detail" class="text-white" mat-button (click)="deletePlaylist()">
       <mat-icon>delete</mat-icon>&nbsp;
       <span i18n>Delete</span>
     </button>
   </div>
-  <button class="hidden-gt-xs" mat-icon-button [matMenuTriggerFor]="playlistMenu">
+  <button class="hidden-gt-xs text-white" mat-icon-button [matMenuTriggerFor]="playlistMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
 </mat-toolbar>

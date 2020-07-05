@@ -1,5 +1,4 @@
 <mat-toolbar [color]="pageNavbar.color" [ngStyle]="pageNavbar?.styles">
-
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span class="ml-2 text-white" i18n>Search</span>
   <span class="spacer"></span>
@@ -7,19 +6,17 @@
 
     <div class="w-full search">
 
-      <mat-form-field appearance="none" class="autocomplete-form field-size " color="primary"
-        [floatLabel]="'never'">
-        <input type="search" class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none  justify-search"
+      <mat-form-field appearance="none" class="autocomplete-form field-size " color="primary" [floatLabel]="'never'">
+        <input type="search"
+          class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none  justify-search"
           i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
           style="width:90%;margin-left: 10%;padding-top:10px;" matInput [(ngModel)]="queryEntered" />
       </mat-form-field>
-
     </div>
     <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer search-size">
       <mat-icon (click)="getSearchResults('firstCall')">search</mat-icon>
     </div>
   </div>
-
 </mat-toolbar>
 <!-- <span i18n="search route hits showing">Showing </span>
 <span>{{ searchResult.total}} </span>
@@ -35,12 +32,9 @@
 </button> -->
 
 <mat-sidenav-container autosize="true" class="sidenav-content-min-height">
-
   <mat-sidenav #sideNavBar [opened]="sideNavBarOpened" (closed)="closeFilter(false)"
     [mode]="screenSizeIsLtMedium ? 'over' : 'side'">
-
     <div class="w-full">
-
       <div *ngIf="showFilter && filterEnabled">
         <mat-card *ngIf="predefinedAdminFiltersExist">
           <mat-card-content>
@@ -56,9 +50,6 @@
                       Posts
                     </mat-checkbox>
                   </section> -->
-
-
-
           </mat-card-content>
         </mat-card>
 
@@ -66,18 +57,14 @@
           (filterClose)="closeFilter(false)" [filtersResetAble]="filtersResetAble">
         </ws-app-search-filter-display>
 
-
-
         <!--filters for admin end-->
-
       </div>
-
     </div>
   </mat-sidenav>
 
   <mat-sidenav-content class="sidenav-content-min-height">
     <span i18n="search route hits showing">Showing </span>
-    <span>{{ searchResult.total}} </span>
+    <span>{{ searchResult.total }} </span>
     <span *ngIf="searchResult.total > 1" i18n="search route hits results">results </span>
     <span *ngIf="searchResult.total <= 1" i18n="search route hits result">result </span>
     <!-- <div *ngIf="!showFilter && filterEnabled" class="text-right">
@@ -86,15 +73,15 @@
       </button></div> -->
 
     <button mat-icon-button class="width-auto" [ngClass]="{ 'hide-filter-btn': sideNavBarOpened }"
-      (click)="sideNavBarOpened = !sideNavBarOpened" (click)="showFilter = !showFilter;">
+      (click)="sideNavBarOpened = !sideNavBarOpened" (click)="showFilter = !showFilter">
       <mat-icon>filter_list</mat-icon>
     </button>
 
-    <mat-card style="padding-bottom: 0.5rem;margin-bottom:1%" *ngFor="let post of searchResult.result">
-      {{searchResult.result.postCreatorId}}
+    <mat-card style="padding-bottom: 0.5rem; margin-bottom: 1%;" *ngFor="let post of searchResult.result">
+      {{ searchResult.result.postCreatorId }}
 
       <div class="flex">
-        <div class="flex-auto  text-center " style="width:15%;" *ngIf="post.postKind!='Blog'">
+        <div class="flex-auto text-center" style="width: 15%;" *ngIf="post.postKind != 'Blog'">
           <div class="flex flex-col justify-center bg-grey-lighter" style="height: 100%;">
             <div class="text-grey-darker text-center px-4 py-2 m-2">
               <ws-widget-btn-social-vote class="block" [voteType]="'upVote'" [postId]="post.id"
@@ -104,18 +91,15 @@
             <div class="vote-count">
               {{ post.activity.activityData.upVote - post.activity.activityData.downVote }}
             </div>
-            <div class="text-grey-darker text-center  px-4 py-2 m-2">
+            <div class="text-grey-darker text-center px-4 py-2 m-2">
               <ws-widget-btn-social-vote class="block" [voteType]="'downVote'" [postId]="post.id"
                 [postCreatorId]="post?.postCreator?.postCreatorId" [activity]="post.activity" [iconType]="'triangle'">
               </ws-widget-btn-social-vote>
             </div>
-
           </div>
         </div>
-        <div class="flex-auto  " style="width:60%;">
-
+        <div class="flex-auto" style="width: 60%;">
           <div *ngIf="post" class="text-overwrap w-full">
-
             <a [routerLink]="'/app/social/forums/post/' + post.id" class="ws-mat-primary-text mat-title pb-2">
               {{ post.title }}
             </a>
@@ -125,7 +109,7 @@
             <div class="flex flex-middle">
               <mat-icon>account_circle</mat-icon>
               <div class="px-2 ws-mat-primary-text">
-                {{post.postCreator?.name}}
+                {{ post.postCreator?.name }}
               </div>
               <div class="px-2" *ngIf="post.source?.forumName && partOfRequired">
                 <span class="ws-mat-primary-text"><span i18n>Part Of: </span>{{ post?.source?.forumName }}</span>
@@ -139,11 +123,15 @@
                   [postCreatorId]="post.postCreator?.postCreatorId" [activity]="post.activity" [iconType]="'triangle'">
                 </ws-widget-btn-social-vote>
 
-                <span class="ws-mat-primary-text flex flex-middle">{{post.activity.activityData.upVote}}</span>
+                <span class="ws-mat-primary-text flex flex-middle">{{
+                  post.activity.activityData.upVote
+                }}</span>
                 <ws-widget-btn-social-vote class="block" [voteType]="'downVote'" [postId]="post.id"
                   [postCreatorId]="post?.postCreator?.postCreatorId" [activity]="post.activity" [iconType]="'triangle'">
                 </ws-widget-btn-social-vote>
-                <span class="ws-mat-primary-text flex flex-middle">{{post.activity.activityData.downVote}}</span>
+                <span class="ws-mat-primary-text flex flex-middle">{{
+                  post.activity.activityData.downVote
+                }}</span>
               </div>
               <span class="ws-mat-primary-text flex flex-middle">
                 <mat-icon class="px-2 grey-icons">comment</mat-icon>{{ post.replyCount }}
@@ -154,16 +142,12 @@
             <!-- <p class="mat-caption" class="mat-caption text-truncate">
               {{post.body}}
             </p> -->
-            <div [innerHTML]="truncateHTML(post.body)" class="mat-caption text-truncate">
-
-            </div>
+            <div [innerHTML]="truncateHTML(post.body)" class="mat-caption text-truncate"></div>
           </mat-card-content>
         </div>
-        <div *ngIf="false" class="flex-auto text-gray-700 text-center bg-gray-400 h-auto" style="width:25%;">
-
+        <div *ngIf="false" class="flex-auto text-gray-700 text-center bg-gray-400 h-auto" style="width: 25%;">
           <img src="https://images.yourstory.com/cs/wordpress/2018/03/coding-job.png?fm=png&auto=format"
-            class="h-full  w-full object-cover">
-
+            class="h-full w-full object-cover" />
         </div>
       </div>
     </mat-card>
@@ -175,11 +159,10 @@
       <mat-spinner></mat-spinner>
     </div>
     <div *ngIf="timelineFetchStatus === 'hasMore'" class="text-center">
-      <button (click)="  getSearchResults('subsequentCall')" type="button" mat-raised-button color="primary">
+      <button (click)="getSearchResults('subsequentCall')" type="button" mat-raised-button color="primary">
         <mat-icon>add</mat-icon>&nbsp;
         <ng-container>View More</ng-container>
       </button>
     </div>
-
   </mat-sidenav-content>
 </mat-sidenav-container>

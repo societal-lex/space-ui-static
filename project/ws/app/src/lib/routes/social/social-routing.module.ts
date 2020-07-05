@@ -25,6 +25,7 @@ const routes: Routes = [
     component: BlogEditComponent,
     data: {
       requiredFeatures: ['BLOGS'],
+      requiredRoles: ['publisher', 'content-creator', 'editor'],
     },
     canActivate: [GeneralGuard],
   },
@@ -33,6 +34,7 @@ const routes: Routes = [
     component: BlogEditComponent,
     data: {
       requiredFeatures: ['BLOGS'],
+      requiredRoles: ['publisher', 'content-creator', 'editor'],
     },
     canActivate: [GeneralGuard],
   },
@@ -49,6 +51,7 @@ const routes: Routes = [
     path: 'blogs/me/:tab',
     component: MyBlogComponent,
     data: {
+      requiredRoles: ['publisher', 'content-creator', 'editor'],
       requiredFeatures: ['BLOGS'],
     },
     canActivate: [GeneralGuard],
@@ -80,6 +83,7 @@ const routes: Routes = [
     component: QnaEditComponent,
     data: {
       requiredFeatures: ['QUESTION_AND_ANSWER'],
+      requiredRoles: ['publisher', 'content-creator', 'editor'],
     },
     canActivate: [GeneralGuard],
   },
@@ -91,6 +95,7 @@ const routes: Routes = [
     },
     data: {
       requiredFeatures: ['QUESTION_AND_ANSWER'],
+      requiredRoles: ['publisher', 'content-creator', 'editor'],
     },
     canActivate: [GeneralGuard],
   },

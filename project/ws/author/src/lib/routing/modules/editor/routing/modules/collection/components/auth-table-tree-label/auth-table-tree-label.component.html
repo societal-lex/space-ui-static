@@ -16,6 +16,7 @@
     <ng-container *ngIf="name">{{
       name.length > 25 ? name.slice(0, 22) + '...' : name
     }}</ng-container>
-    <ng-container i18n *ngIf="!name">Untitled Content</ng-container>
+    <ng-container i18n *ngIf="!name && !contentCategory">Untitled Content</ng-container>
+    <ng-container i18n *ngIf="!name && contentCategory">Untitled {{contentCategory}}</ng-container>
   </span>
 </div>

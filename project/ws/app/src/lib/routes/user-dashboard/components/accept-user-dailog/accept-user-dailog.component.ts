@@ -37,7 +37,7 @@ export class AcceptUserDailogComponent implements OnInit {
          data.allRoles.forEach((element:  string, index: any) => {
            // tslint:disable-next-line: brace-style
            // tslint:disable-next-line: align
-           if (element === 'privilaged') {
+           if (element === 'privileged') {
 
            data.allRoles[index] = 'default'
            }

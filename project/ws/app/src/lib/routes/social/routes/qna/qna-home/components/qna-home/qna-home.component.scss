@@ -15,7 +15,12 @@
 .margin-remove {
   margin: 0;
 }
-
-::ng-deep .mat-button-toggle-label-content{
+::ng-deep {
+  .theme-muave.day-mode .mat-button-toggle-checked {
+    // background: #865ba0 !important;
+    color: white !important;
+  }
+}
+::ng-deep .mat-button-toggle-label-content {
   line-height: 36px !important;
 }

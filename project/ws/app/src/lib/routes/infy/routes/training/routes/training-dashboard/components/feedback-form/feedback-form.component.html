@@ -99,7 +99,11 @@
 <ng-template #boolQuestion let-feedbackItem>
   <p class="mat-body">{{ feedbackItem.question.question }}</p>
   <mat-radio-group class="block" [(ngModel)]="feedbackItem.answer.rating">
-    <mat-radio-button color="primary" class="block margin-bottom-xs" i18n value="0"
+    <mat-radio-button
+      style="color: white; background: #865ba0;"
+      class="block margin-bottom-xs"
+      i18n
+      value="0"
       >Yes</mat-radio-button
     >
     <mat-radio-button color="primary" class="block margin-bottom-xs" i18n value="1"

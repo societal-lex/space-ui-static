@@ -151,6 +151,9 @@ export class CollectionStoreService {
       const contentDataMap = new Map<string, NSContent.IContentMeta>()
       contents.map((v, index) => {
         this.contentService.setOriginalMeta(v)
+        if (v.children.length) {
+          v.children.forEach(_child => this.contentService.setOriginalMeta(_child))
+        }
         const treeStructure = this.resolver.buildTreeAndMap(
           v,
           contentDataMap,
@@ -181,8 +184,9 @@ export class CollectionStoreService {
   ): Promise<object> {
     try {
       const meta = this.authInitService.creationEntity.get(type) as ICreateEntity
+      const stipulatedContentType = meta.contentType === 'Collection' ? 'Module' : meta.contentType
       const requestBody = {
-        name: 'Untitled Content',
+        name: `Untitled ${stipulatedContentType}`,
         description: '',
         mimeType: meta.mimeType,
         contentType: meta.contentType,
@@ -454,7 +458,7 @@ export class CollectionStoreService {
       } else {
         errorMap.set(id, {
           id,
-          name: content.name || 'Untitled Content',
+          name: content.name || `Untitled ${content.category ? content.category : 'Content'}`,
           message: errorMsg,
         })
       }

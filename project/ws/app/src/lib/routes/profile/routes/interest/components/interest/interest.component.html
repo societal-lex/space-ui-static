@@ -66,14 +66,14 @@
     </h4>
     <mat-chip-list>
       <mat-chip
-        color="primary"
+        style="background: #865ba0; color: white;"
         selected
         *ngFor="let userInterest of userInterests"
         [removable]="true"
         (removed)="removeInterest(userInterest)"
       >
         <a class="cursor-pointer" (click)="removeInterest(userInterest)">{{ userInterest }}</a>
-        <mat-icon matChipRemove>cancel</mat-icon>
+        <mat-icon matChipRemove class="clr">cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
 

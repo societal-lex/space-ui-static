@@ -20,7 +20,7 @@ export class AboutVideoComponent implements OnInit {
     IWidgetsPlayerMediaData
   > = {
       widgetData: {
-        url: '',
+        url: 'assets/instances/space/videos/intro_video.mp4',
         autoplay: true,
         identifier: '',
       },
