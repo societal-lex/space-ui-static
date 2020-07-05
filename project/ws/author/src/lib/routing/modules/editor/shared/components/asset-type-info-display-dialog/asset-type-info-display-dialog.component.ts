@@ -9,7 +9,7 @@ interface IDialogData {
 }
 
 @Component({
-  selector: 'ws-author-asset-type-info-display-dialog',
+  selector: 'ws-auth-asset-type-info-display-dialog',
   templateUrl: './asset-type-info-display-dialog.component.html',
   styleUrls: ['./asset-type-info-display-dialog.component.scss'],
 })
