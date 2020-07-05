@@ -8,6 +8,7 @@
     matTooltip="Like"
     i18n-matTooltip="Like Button"
     [disabled]="widgetData?.isDisabled || widgetData?.status === 'Deleted'"
+    class="highlight"
   >
     <mat-icon *ngIf="!showCount" class="like-clr">
       favorite_border
@@ -33,7 +34,7 @@
     i18n-matTooltip="UnLike Button"
     class="highlight"
   >
-    <mat-icon *ngIf="!showCount">favorite</mat-icon>
+    <mat-icon *ngIf="!showCount" class="like-clr">favorite</mat-icon>
     <mat-icon
       *ngIf="showCount"
       matBadge="{{ likesCount }}"

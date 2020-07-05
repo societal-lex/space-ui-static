@@ -98,6 +98,9 @@ export class BtnGoalsSelectionComponent implements OnInit {
     }
   }
 
+  isDoneDisabled() {
+    return this.selectedGoals.size > 0 ? false : true
+  }
   raiseTelemetry(action: 'add' | 'remove', goalId: string, contentId: string) {
     this.eventSvc.raiseInteractTelemetry('goal', `btn-goal-${action}`, {
       goalId,
