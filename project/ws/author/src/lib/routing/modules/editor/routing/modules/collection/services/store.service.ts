@@ -151,6 +151,9 @@ export class CollectionStoreService {
       const contentDataMap = new Map<string, NSContent.IContentMeta>()
       contents.map((v, index) => {
         this.contentService.setOriginalMeta(v)
+        if (v.children.length) {
+          v.children.forEach(_child => this.contentService.setOriginalMeta(_child))
+        }
         const treeStructure = this.resolver.buildTreeAndMap(
           v,
           contentDataMap,
