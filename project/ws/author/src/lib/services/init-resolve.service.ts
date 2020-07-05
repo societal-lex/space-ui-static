@@ -105,7 +105,7 @@ export class InitResolver implements Resolve<NSContent.IContentMeta> {
         }
 
         if (pushedJobs.includes('assetType')) {
-          this.authInitService.assetTypeMeta = v[pushedJobs.indexOf('license')].details || []
+          this.authInitService.assetTypeMeta = v[pushedJobs.indexOf('assetType')].details || []
         }
 
         if (pushedJobs.includes('meta')) {
