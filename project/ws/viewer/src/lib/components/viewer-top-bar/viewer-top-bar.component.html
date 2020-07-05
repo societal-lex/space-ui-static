@@ -13,7 +13,9 @@
         : (forPreview ? '/author' : '/app') + '/toc/' + resourceId + '/overview'
     }"
   ></ws-widget-btn-page-back>
-  <mat-icon style="cursor: pointer;" (click)="back()" *ngIf="forChannel">arrow_back</mat-icon>
+  <mat-icon style="cursor: pointer; color: white;" (click)="back()" *ngIf="forChannel"
+    >arrow_back</mat-icon
+  >
   <!-- <a *ngIf="logo" mat-button routerLink="/page/home" i18n-matTooltip matTooltip="Home">
     <img [src]="appIcon" i18n-alt alt="Application Logo" class="app-logo" />
   </a> -->
@@ -28,7 +30,7 @@
     queryParamsHandling="preserve"
     accesskey="<"
   >
-    <mat-icon>skip_previous</mat-icon>
+    <mat-icon style="color: white;">skip_previous</mat-icon>
   </a>
   <span class="width-expand text-center text-truncate text-white" [matTooltip]="resourceName">
     {{ resourceName }}
@@ -44,7 +46,7 @@
     queryParamsHandling="preserve"
     accesskey=">"
   >
-    <mat-icon>skip_next</mat-icon>
+    <mat-icon style="color: white;">skip_next</mat-icon>
   </a>
   <a mat-icon-button class="clr">
     <ws-widget-btn-fullscreen

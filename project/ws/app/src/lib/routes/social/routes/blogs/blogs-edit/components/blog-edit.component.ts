@@ -19,7 +19,7 @@ export class BlogEditComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   postId = ''
   conversation: NsDiscussionForum.IPostResult | null = null
-  editMode: 'create' | 'update' | 'draft' = 'create'
+  editMode: 'create' | 'update' | 'draft' | '' = ''
 
   title = ''
   abstract = ''

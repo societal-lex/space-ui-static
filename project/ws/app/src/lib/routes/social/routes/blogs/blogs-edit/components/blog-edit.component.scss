@@ -40,3 +40,7 @@
 .error-text {
   color: red;
 }
+.mat-raised-button[disabled] {
+  cursor: default;
+  color: white !important;
+}
