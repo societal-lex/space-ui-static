@@ -5,6 +5,14 @@ import { HorizontalScrollerModule } from '../../../../../../../../../library/ws-
 import { MatCardModule, MatProgressSpinnerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material'
 import { BtnPageBackModule } from '../../../../../../../../../library/ws-widget/collection/src/public-api'
 import { InterestService } from '../../../profile/routes/interest/services/interest.service'
+import { MatChipsModule } from '@angular/material/chips'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatSelectModule } from '@angular/material/select'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+// import { PipeLimitToModule } from '@ws-shared/util'
+
+import { PipeLimitToModule } from '@ws-widget/utils'
 
 @NgModule({
   declarations: [InterestComponent],
@@ -18,6 +26,13 @@ import { InterestService } from '../../../profile/routes/interest/services/inter
     MatIconModule,
     MatToolbarModule,
     BtnPageBackModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PipeLimitToModule,
 
   ],
   exports: [InterestComponent],
