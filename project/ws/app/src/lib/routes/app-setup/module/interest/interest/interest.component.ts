@@ -6,7 +6,6 @@ import { FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
 import { Subscription } from 'rxjs'
 import { InterestService } from '../../../../profile/routes/interest/services/interest.service'
-import { ENTER, COMMA } from '@angular/cdk/keycodes'
 import { EventService } from '@ws-widget/utils'
 
 // displaying static interest
@@ -56,17 +55,6 @@ export class InterestComponent implements OnInit {
   @ViewChild('createPlaylistError', { static: true }) createPlaylistErrorMessage!: ElementRef<any>
   playlistsSubscription: Subscription | null = null
 
-  // displaying static data
-  visible = true
-  selectable = true
-  removable = true
-  addOnBlur = true
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA]
-  // userinterests: IInterest[] = [
-  //   { name: 'solutions' },
-  //   { name: 'governance' },
-  //   { name: 'case studies' },
-  // ]
   ngOnInit() {
     this.fetchSuggestedInterests()
 
