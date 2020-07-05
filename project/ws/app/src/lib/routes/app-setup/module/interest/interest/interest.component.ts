@@ -1,18 +1,18 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { WidgetContentService, NsContent, BtnPlaylistService, NsPlaylist } from '@ws-widget/collection'
 import { TFetchStatus, NsPage, ConfigurationsService } from '../../../../../../../../../../library/ws-widget/utils/src/public-api'
 import { FormControl } from '@angular/forms'
-import { MatSnackBar, MatChipInputEvent } from '@angular/material'
+import { MatSnackBar } from '@angular/material'
 import { Subscription } from 'rxjs'
 import { InterestService } from '../../../../profile/routes/interest/services/interest.service'
 import { ENTER, COMMA } from '@angular/cdk/keycodes'
 import { EventService } from '@ws-widget/utils'
 
 // displaying static interest
-export interface IInterest {
-  name: string
-}
+// export interface IInterest {
+//   name: string
+// }
 
 @Component({
   selector: 'ws-app-interests',
@@ -22,13 +22,13 @@ export interface IInterest {
 export class InterestComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
-    private contentSvc: WidgetContentService,
-    private playlistSvc: BtnPlaylistService,
-    private configSvc: ConfigurationsService,
-    // private router: Router,
-    private interestSvc: InterestService,
-    private snackBar: MatSnackBar,
-    private events: EventService,
+              private contentSvc: WidgetContentService,
+              private playlistSvc: BtnPlaylistService,
+              private configSvc: ConfigurationsService,
+              private router: Router,
+              private interestSvc: InterestService,
+              private snackBar: MatSnackBar,
+              private events: EventService,
   ) { }
   @ViewChild('toastSuccess', { static: true }) toastSuccess!: ElementRef<any>
   @ViewChild('toastDuplicate', { static: true }) toastDuplicate!: ElementRef<
@@ -62,11 +62,11 @@ export class InterestComponent implements OnInit {
   removable = true
   addOnBlur = true
   readonly separatorKeysCodes: number[] = [ENTER, COMMA]
-  userinterests: IInterest[] = [
-    { name: 'solutions' },
-    { name: 'governance' },
-    { name: 'case studies' },
-  ]
+  // userinterests: IInterest[] = [
+  //   { name: 'solutions' },
+  //   { name: 'governance' },
+  //   { name: 'case studies' },
+  // ]
   ngOnInit() {
     this.fetchSuggestedInterests()
 
@@ -223,28 +223,33 @@ export class InterestComponent implements OnInit {
     this.events.raiseInteractTelemetry('interest', action, { interest })
   }
 
-  add(event: MatChipInputEvent): void {
-    const input = event.input
-    const value = event.value
+  // add(event: MatChipInputEvent): void {
+  //   const input = event.input
+  //   const value = event.value
 
-    // Add our fruit
-    if ((value || '').trim()) {
-      this.userinterests.push({ name: value.trim() })
-    }
+  //   // Add our fruit
+  //   if ((value || '').trim()) {
+  //     this.userinterests.push({ name: value.trim() })
+  //   }
 
-    // Reset the input value
-    if (input) {
-      input.value = ''
-    }
-  }
+  //   // Reset the input value
+  //   if (input) {
+  //     input.value = ''
+  //   }
+  // }
 
-  remove(fruit: IInterest): void {
-    const index = this.userinterests.indexOf(fruit)
+  // remove(userInterest: IInterest): void {
+  //   const index = this.userinterests.indexOf(userInterest)
 
-    if (index >= 0) {
-      this.userinterests.splice(index, 1)
+  //   if (index >= 0) {
+  //     this.userinterests.splice(index, 1)
 
-    }
+  //   }
+  // }
+
+  gotoHomePage() {
+
+    this.router.navigate(['/page/home'])
   }
 
 }

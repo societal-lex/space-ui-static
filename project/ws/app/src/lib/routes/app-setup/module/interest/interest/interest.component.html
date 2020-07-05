@@ -20,17 +20,17 @@
     <!-- <mat-spinner class="display-inline-block" [diameter]="30" [strokeWidth]="3"></mat-spinner> -->
 
     <!-- displaying static data -->
-    <h2 class="mat-h2 ws-mat-primary-text font-weight-bold margin-top-l montserrat" i18n>
-      My Interests</h2>
+    <!-- <h2 class="mat-h2 ws-mat-primary-text font-weight-bold margin-top-l montserrat" i18n>
+      My Interests</h2> -->
 
-    <mat-chip-list #chipList aria-label="Fruit selection">
+    <!-- <mat-chip-list #chipList aria-label="Fruit selection">
       <mat-chip *ngFor="let userInterest of userinterests" [selectable]="selectable" [removable]="removable"
         (removed)="remove(userInterest)">
         {{userInterest.name}}
         <mat-icon matChipRemove class="ws-mat-primary-text" *ngIf="removable">cancel</mat-icon>
       </mat-chip>
 
-    </mat-chip-list>
+    </mat-chip-list> -->
 
     <ng-container *ngIf="suggestedInterests?.length">
       <h2 class="mat-h2 ws-mat-primary-text font-weight-bold margin-top-l montserrat" i18n>
@@ -102,13 +102,15 @@
     </div>
   </div>
 
-  <!-- <button class="tnc-bottom-navbar" color="primary" (click)="addInterest()" mat-raised-button i18n>
+  <!-- <button class="tnc-bottom-navbar" color="primary" (click)="addInterest()" mat-raised-button routerLink="/page/home"
+    i18n>
     Done
   </button> -->
 
-  <a type="button" color="primary" mat-flat-button routerLink="/page/home" i18n>
+  <button class="tnc-bottom-navbar" color="primary" (click)="gotoHomePage()" mat-raised-button routerLink="/page/home"
+    i18n>
     Done
-  </a>
+  </button>
 
 
 </div>
