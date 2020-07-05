@@ -137,7 +137,7 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
     this.loaderService.changeLoad.next(false)
   }
 
-  onNodeSelect(node: IContentTreeNode | any, directClick = false) {
+  onNodeSelect(node: IContentTreeNode | any, directClick = false, isPreviewMode = false) {
     if (node.id !== this.selectedNode) {
       this.selectedNode = node.id
       this.editorStore.currentContent = node.identifier
@@ -146,6 +146,8 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
     }
     if (directClick) {
       this.action.emit({ type: 'editContent', identifier: node.identifier })
+    } else if (!isPreviewMode) {
+      this.action.emit({ type: 'editMeta', identifier: node.identifier })
     }
   }
 
@@ -393,7 +395,7 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
       case 'editMeta':
       case 'editContent':
       case 'preview':
-        this.onNodeSelect(node)
+        this.onNodeSelect(node, false, true)
         this.action.emit({ type: action, identifier: node.identifier })
         break
       case 'delete':
