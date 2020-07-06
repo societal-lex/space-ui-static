@@ -1,12 +1,16 @@
 <mat-toolbar [color]="navBackground?.color" [ngStyle]="navBackground?.styles">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-  <span class="margin-left-s" i18n>Goals</span>
+  <span class="margin-left-s text-white" i18n>Goals</span>
 </mat-toolbar>
 <div class="goals-header">
   <div class="banner-container">
     <div class="banner-overlay ws-primary-tinted-50">
       <div class="page-container mt-8">
-        <a name="pending-actions-button-goal-home"  routerLink="/app/goals/me/pending-actions" *ngIf="numNotifications">
+        <a
+          name="pending-actions-button-goal-home"
+          routerLink="/app/goals/me/pending-actions"
+          *ngIf="numNotifications"
+        >
           <mat-card
             class="flex flex-middle padding-remove padding-top-s padding-bottom-s margin-bottom-m"
           >
@@ -35,7 +39,7 @@
     </div>
     <div class="create-goal-fab width-1-1">
       <div class="page-container flex flex-row-reverse">
-        <a name="create-goal-link-goal-home"  routerLink="/app/goals/create" mat-fab>
+        <a name="create-goal-link-goal-home" routerLink="/app/goals/create" mat-fab>
           <mat-icon>add</mat-icon>
         </a>
       </div>

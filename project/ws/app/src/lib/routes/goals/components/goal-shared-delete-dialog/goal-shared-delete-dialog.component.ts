@@ -23,7 +23,7 @@ export class GoalSharedDeleteDialogComponent {
     private dialogRef: MatDialogRef<GoalSharedDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public goal: NsGoal.IGoal,
     private goalSvc: BtnGoalsService,
-  ) {}
+  ) { }
 
   deleteGoalForUser(selectedOptions: MatListOption[]) {
     const users = selectedOptions.map(option => option.value)
