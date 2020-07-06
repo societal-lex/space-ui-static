@@ -2,12 +2,27 @@
   <h2 class="mat-title" i18n>Why do you want to reject this goal</h2>
   <p>
     <mat-form-field appearance="fill" floatLabel="never" class="w-full">
-      <textarea  name="reject-input-goal-reject-dialog" required matInput [(ngModel)]="rejectMessage" rows="3" placeholder="For eg: I find this goal to be unattainable"
-        i18n-placeholder></textarea>
+      <textarea
+        name="reject-input-goal-reject-dialog"
+        required
+        matInput
+        [(ngModel)]="rejectMessage"
+        rows="3"
+        placeholder="For eg: I find this goal to be unattainable"
+        i18n-placeholder
+      ></textarea>
     </mat-form-field>
   </p>
   <div mat-dialog-actions class="flex flex-row-reverse">
-    <button  name="submit-button-goal-reject-dialog" r [disabled]="!rejectMessage?.length"mat-button (click)="rejectGoal()" i18n>
+    <button
+      name="submit-button-goal-reject-dialog"
+      r
+      [disabled]="!rejectMessage?.length"
+      color="primary"
+      mat-button
+      (click)="rejectGoal()"
+      i18n
+    >
       Submit
     </button>
   </div>

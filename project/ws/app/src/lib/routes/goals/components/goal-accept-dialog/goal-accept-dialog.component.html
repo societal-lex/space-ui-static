@@ -16,13 +16,13 @@
       <ng-container i18n> to track your progress for this goal.</ng-container>
     </li>
     <li *ngIf="showAlreadyGoalExistMessage" i18n>
-      You have already added this goal earlier. Your earlier goal will be
-      deleted to prevent duplicates.
+      You have already added this goal earlier. Your earlier goal will be deleted to prevent
+      duplicates.
     </li>
     <li i18n>You will not be able to edit or delete this goal.</li>
     <li *ngIf="goal?.duration">
       <ng-container i18n>Target completion date : </ng-container>
-      {{ goal?.duration}}
+      {{ goal?.duration }}
       <ng-container i18n> day(s) from now.</ng-container>
     </li>
   </ul>
@@ -30,13 +30,21 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="flex-row-reverse">
-
-  <button name="yes-button-goal-accept-dialog" mat-button [mat-dialog-close]="true" (click)="acceptGoal()" i18n>
+  <button
+    name="yes-button-goal-accept-dialog"
+    color="primary"
+    style="margin-left: 0.5rem;"
+    mat-button
+    [mat-dialog-close]="true"
+    (click)="acceptGoal()"
+    i18n
+  >
     Yes
   </button>
-  <button name="no-button-goal-accept-dialog" mat-button mat-dialog-close i18n>No</button>
+  <button name="no-button-goal-accept-dialog" color="primary" mat-button mat-dialog-close i18n>
+    No
+  </button>
 </mat-dialog-actions>
-
 
 <ng-template #fetching>
   <div class="flex items-center">

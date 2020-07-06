@@ -1,6 +1,6 @@
 <mat-toolbar [color]="configSvc?.pageNavBar?.color" [ngStyle]="configSvc?.pageNavBar?.styles">
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-  <span class="margin-left-s" i18n>Goals</span>
+  <span class="margin-left-s text-white" i18n>Goals</span>
 </mat-toolbar>
 <main class="max-w-3xl m-auto p-4" *ngIf="goals?.length; else emptySection">
   <div class="flex flex-middle margin-bottom-m">
@@ -10,8 +10,10 @@
     </p>
   </div>
   <mat-card class="flex margin-bottom-m" *ngFor="let goal of goals">
-    <div *ngIf="acceptRejectGoalStatus[goal.id] === 'fetching'; else goalCard"
-      class="flex flex-center width-1-1 margin-top-xl margin-bottom-xl">
+    <div
+      *ngIf="acceptRejectGoalStatus[goal.id] === 'fetching'; else goalCard"
+      class="flex flex-center width-1-1 margin-top-xl margin-bottom-xl"
+    >
       <mat-spinner></mat-spinner>
     </div>
     <ng-template #goalCard>
@@ -19,7 +21,7 @@
         <h2 class="mat-h2 margin-remove">{{ goal?.name }}</h2>
         <div class="mb-4">
           <div *ngIf="goal?.sharedBy">
-            <ng-container i18n>shared by </ng-container>{{goal?.sharedBy?.email}}
+            <ng-container i18n>shared by </ng-container>{{ goal?.sharedBy?.email }}
           </div>
           <ng-container *ngIf="goal?.duration">
             <ng-container i18n>Target completion date : </ng-container>
@@ -33,15 +35,27 @@
         </section>
       </div>
       <div>
-        <button name="more-button-goal-notification"  mat-icon-button [matMenuTriggerFor]="acceptRejectMenu">
+        <button
+          name="more-button-goal-notification"
+          mat-icon-button
+          [matMenuTriggerFor]="acceptRejectMenu"
+        >
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #acceptRejectMenu="matMenu" overlapTrigger="true">
-          <button name="accept-button-goal-notification" mat-menu-item (click)="openAcceptGoalDialog(goal)">
+          <button
+            name="accept-button-goal-notification"
+            mat-menu-item
+            (click)="openAcceptGoalDialog(goal)"
+          >
             <mat-icon>check</mat-icon>
             <span i18n>Accept</span>
           </button>
-          <button name="reject-button-goal-notification" mat-menu-item (click)="openRejectGoalDialog(goal)">
+          <button
+            name="reject-button-goal-notification"
+            mat-menu-item
+            (click)="openRejectGoalDialog(goal)"
+          >
             <mat-icon>close</mat-icon>
             <span i18n>Reject</span>
           </button>

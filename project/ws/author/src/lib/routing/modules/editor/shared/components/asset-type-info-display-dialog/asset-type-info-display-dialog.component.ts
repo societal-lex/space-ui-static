@@ -3,8 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 
 interface IDialogData {
   items: {
-      type: string,
-      description: string
+    type: string,
+    description: string
   }[],
 }
 
@@ -15,8 +15,9 @@ interface IDialogData {
 })
 export class AssetTypeInfoDisplayDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AssetTypeInfoDisplayDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IDialogData) { }
+  constructor(
+    public dialogRef: MatDialogRef<AssetTypeInfoDisplayDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: IDialogData) { }
   public dataSource: IDialogData['items'] = []
   public columnSequence = ['SlNo', 'Type', 'Description']
   ngOnInit() {
