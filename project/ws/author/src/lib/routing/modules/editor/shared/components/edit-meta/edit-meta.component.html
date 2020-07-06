@@ -641,7 +641,10 @@
                   </mat-select>
                   <mat-error *ngIf="showError('spaceLicense')" i18n>License is mandatory
                   </mat-error>
+                  <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n>Select Type First
+                  </mat-error>
                 </mat-form-field>
+                <p class="custom-error" *ngIf="!contentForm?.controls?.assetType.value && contentForm?.controls?.spaceLicense.value" i18n>Select Type First</p>
               </div>
             </div>
           </div>
@@ -1253,7 +1256,7 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab *ngIf="checkCondition('assetType', 'show')">
+      <mat-tab *ngIf="checkSpecificDetailsVisibility()">
         <ng-template
           mat-tab-label
           i18n
@@ -1266,6 +1269,11 @@
           <p class="mat-h5 margin-top-s margin-left-xl" *ngIf="checkCondition('audience', 'show')">
             * Provide meta details. Depending on the asset type, some properties will be visible.
           </p>
+          <ng-container *ngIf="promptUserForAssetType">
+            <p class="mat-h5 margin-top-s margin-left-xl">
+              * Fields will appear / disappear based on Type. Please select Type from the Classification section.
+            </p>
+          </ng-container>
           <div class="grid">
             <ng-container *ngIf="knowledgeAssetFormEnabled">
               <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('resourceType', 'show')"

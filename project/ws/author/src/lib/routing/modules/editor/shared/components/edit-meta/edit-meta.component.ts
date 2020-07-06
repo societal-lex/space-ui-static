@@ -72,6 +72,7 @@ interface IAssetTypeMetaInfo {
 export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   contentMeta!: NSContent.IContentMeta
   isMobile = false
+  promptUserForAssetType = false
   @Output() data = new EventEmitter<string>()
   @Input() isSubmitPressed = false
   @Input() nextAction = 'done'
@@ -1128,6 +1129,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.assetType.valueChanges.subscribe(() => {
+      this.setDefaultMessageonSpecificDetails(this.contentForm.controls.assetType.value)
       this.updateLicenseType(this.contentForm.controls.assetType.value)
       this.updateLicenceInfoTable(this.contentForm.controls.assetType.value)
       this.enableSpecificAssetForm(this.contentForm.controls.assetType.value)
@@ -1333,6 +1335,19 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         },
       })
     }
+  }
+
+  setDefaultMessageonSpecificDetails(assetTypeSelected: string) {
+    if (!assetTypeSelected) {
+      this.promptUserForAssetType = true
+    } else {
+      this.promptUserForAssetType = false
+    }
+  }
+
+  checkSpecificDetailsVisibility() {
+    // && this.contentForm?.controls?.assetType.value !== 'Data'
+    return this.checkCondition('assetType', 'show')
   }
 
 }

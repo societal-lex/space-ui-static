@@ -468,6 +468,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
       nodesModified,
       hierarchy: this.storeService.changedHierarchy,
     }
+    // console.log('save request created as ', requestBody)
     return this.editorService.updateContentV2(requestBody).pipe(
       tap(() => {
         this.storeService.changedHierarchy = {}
