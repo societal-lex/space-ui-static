@@ -1261,7 +1261,8 @@
         </ng-template>
         <div class="margin-top-xl">
           <div class="grid">
-            <div
+            <div class="margin-top-xs margin-left-xl">
+              <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('references', 'show')"
               [ngClass]="{ disable: checkCondition('references', 'disabled') }"
@@ -1333,6 +1334,24 @@
                 </mat-form-field>
                 <p class="custom-error" *ngIf="!contentForm?.controls?.assetType.value && contentForm?.controls?.spaceLicense.value" i18n>Select Type First</p>
               </div>
+            </div>
+            <div *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
+                [ngClass]="{ disable: checkCondition('spaceLicenseAttribution', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom margin-top-s"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('spaceLicenseAttribution', 'required') }">
+                  Attribution
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseAttribution') }">
+                  <input matInput #spaceLicenseAttribution formControlName="spaceLicenseAttribution" i18n-placeholder
+                    placeholder="Enter Attribution"
+                    [required]="checkCondition('spaceLicenseAttribution', 'required') ? true : null" />
+                  <mat-error *ngIf="showError('spaceLicenseAttribution')" i18n="Name Error|Explains attribution is required">
+                    Attribution is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
             </div>
             </div>
             <div class="margin-top-xs margin-left-xl">

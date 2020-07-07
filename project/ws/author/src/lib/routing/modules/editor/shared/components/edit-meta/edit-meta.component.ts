@@ -1086,6 +1086,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       spaceLicense: [],
       otherSourceName: [],
       otherSpaceLicense: [],
+      spaceLicenseAttribution: [],
       locale: [],
       mimeType: [],
       name: [],
