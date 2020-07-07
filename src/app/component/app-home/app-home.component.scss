@@ -70,13 +70,13 @@ img {
   padding: 0;
   color: #333;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 90%;
   transform: translate(-50%, -50%);
   font-weight: 500;
   font-size: 15px;
   /* text-shadow: 1px 1px 1px #000; */
-  width: 100%;
+  width: 160%;
 }
 @media (max-width: 767.98px) {
   .slide-details {
@@ -119,22 +119,24 @@ img {
   }
 }
 
-.text-white {
-  color: #fff !important;
-}
+// .text-white {
+//   color: #fff !important;
+// }
 .text-center {
   text-align: center;
 }
 .text {
-  width: 51rem;
+  width: 85rem;
   margin: auto;
   display: block;
-  font-size: 17px;
-  color: black;
+  font-size: 40px;
+  color:white;
   font-family: 'MontserratRegular_2';
   font-weight: 400;
 }
-
+.text-size{
+  font-size:70px;
+}
 p {
   /* margin: 0 0 1.53em; */
   line-height: 1.7em;

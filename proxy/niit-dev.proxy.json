@@ -1,0 +1,56 @@
+{
+  "/sample/*": {
+    "target": "http://localhost:3200",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/apis/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/content-api/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/content-store/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/chat-bot/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/mobile-apps/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/LA/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/assets/*": {
+    "target": "http://localhost:3007",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/usersubmission/*": {
+    "target": "https://learn.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

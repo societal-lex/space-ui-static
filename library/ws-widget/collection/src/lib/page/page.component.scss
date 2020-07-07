@@ -11,6 +11,7 @@
 }
 #secondary-navbar {
   background: #865ba0 !important;
+  color:white;
 }
 @media (min-width: 1025px) {
   #secondary-navbar {
@@ -19,7 +20,8 @@
 }
 @media (max-width: 765px) {
   #secondary-navbar {
-    background: white !important;
+     background: #865ba0 !important;
+  color:white;
   }
 }
 @media only screen and (min-width: 312px) and (max-width: 650px) {

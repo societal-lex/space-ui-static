@@ -48,7 +48,7 @@
       No interests
     </h4>
     <mat-chip-list>
-      <mat-chip style="background: #865ba0; color: white;" selected *ngFor="let userInterest of userInterests"
+      <mat-chip style=" color: white;" selected *ngFor="let userInterest of userInterests"
         [removable]="true" (removed)="removeInterest(userInterest)">
         <a class="cursor-pointer" (click)="removeInterest(userInterest)">{{ userInterest }}</a>
         <mat-icon matChipRemove class="clr">cancel</mat-icon>
