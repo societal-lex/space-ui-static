@@ -2363,7 +2363,7 @@
                       No user found. Please check the value entered.</mat-option
                     >
                     <mat-option *ngFor="let author of employeeList" [value]="author">
-                      {{ author.displayName }} | {{ author.mail }}
+                      {{ author.displayName }}
                       <span *ngIf="author.department">| {{ author.department }}</span>
                     </mat-option>
                   </mat-autocomplete>
