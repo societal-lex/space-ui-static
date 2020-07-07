@@ -131,6 +131,7 @@ export class HtmlComponent implements OnInit, OnChanges {
   }
 
   openInNewTab() {
+    const redirecturl = this.prepare()
     if (this.htmlContent) {
       if (this.mobAppSvc && this.mobAppSvc.isMobile) {
         // window.open(this.htmlContent.artifactUrl)
@@ -144,7 +145,7 @@ export class HtmlComponent implements OnInit, OnChanges {
         const width = window.outerWidth
         const height = window.outerHeight
         const isWindowOpen = window.open(
-          this.htmlContent.artifactUrl,
+          redirecturl,
           '_blank',
           `toolbar=yes,
              scrollbars=yes,
@@ -184,5 +185,24 @@ export class HtmlComponent implements OnInit, OnChanges {
         }
       })
     }
+  }
+
+  prepare() {
+
+    let link = ''
+    if (this.htmlContent) {
+      if (this.htmlContent.assetType === 'Knowledge') {
+
+        link = this.htmlContent.artifactUrl
+      } else if (this.htmlContent.assetType === 'Technology') {
+
+        link = this.htmlContent.codebase
+      }
+
+      link = (this.htmlContent.artifactUrl)
+    }
+
+    return link
+
   }
 }

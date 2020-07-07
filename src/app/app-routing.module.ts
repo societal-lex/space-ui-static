@@ -458,7 +458,7 @@ const routes: Routes = [
     component: TermsofuseComponent,
   },
   {
-    path: 'public/contentpolicyandcommunication',
+    path: 'public/content-policy-and-community-guidelines',
     component: ContentpolicyandcommunicationComponent,
   },
 
