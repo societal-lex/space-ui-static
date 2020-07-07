@@ -288,14 +288,14 @@
         </ng-container>
       </h3>
     </div>
-    <mat-divider *ngIf="content?.viewCount"></mat-divider>
+    <!-- <mat-divider *ngIf="content?.viewCount"></mat-divider> -->
     <div class="info-item" *ngIf="content?.sourceShortName">
       <h3 class="item-heading ws-mat-primary-text" i18n>Source</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.sourceShortName }}
       </h3>
     </div>
-    <mat-divider *ngIf="content?.sourceShortName"></mat-divider>
+    <!-- <mat-divider *ngIf="content?.sourceShortName"></mat-divider> -->
     <!-- Structure -->
 
     <div class="info-item" *ngIf="hasTocStructure && content?.children?.length">
@@ -374,14 +374,59 @@
     </div> -->
 
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-    <div class="info-item" *ngIf="content?.assetType">
-      <h3 class="item-heading ws-mat-primary-text" i18n>Type</h3>
-      <h3 class="ws-mat-accent-text width-expand">
-        {{ content?.assetType  }}
-      </h3>
+    <div>
+      <div class="info-item" *ngIf="content?.assetType">
+        <h3 class="item-heading ws-mat-primary-text" i18n>Type</h3>
+        <h3 class="ws-mat-accent-text width-expand">
+          {{ content?.assetType  }}
+        </h3>
+      </div>
+      <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+
+      <div class="info-item" *ngIf="content?.codebase && content?.assetType=='Technology'">
+        <h3 class="item-heading ws-mat-primary-text" i18n>Codebase</h3>
+        <h3 class="ws-mat-accent-text width-expand">
+          {{ content?.codebase  }}
+        </h3>
+
+      </div>
+      <!-- <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider> -->
+
+
+      <div class="info-item" *ngIf="content?.categoryType && content?.assetType=='Knowledge'">
+        <h3 class="item-heading ws-mat-primary-text" i18n>Format</h3>
+        <h3 class="ws-mat-accent-text width-expand">
+          {{ content?.categoryType  }}
+        </h3>
+
+      </div>
+      <!-- <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider> -->
+
+
+      <div class="info-item" *ngIf="content?.profile_link && content?.assetType=='Connection'">
+        <h3 class="item-heading ws-mat-primary-text" i18n>Profile Link</h3>
+        <h3 class="ws-mat-accent-text width-expand">
+          {{ content?.profile_link  }}
+        </h3>
+
+      </div>
     </div>
 
-    <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider> -->
     <div class="info-item" *ngIf="content?.spaceLicense">
       <h3 class="item-heading ws-mat-primary-text" i18n>Licence</h3>
       <h3 class="ws-mat-accent-text width-expand">
@@ -391,7 +436,7 @@
 
 
 
-    <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+    <!-- <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider> -->
     <div class="info-item" *ngIf="content?.sourceName">
       <h3 class="item-heading ws-mat-primary-text" i18n>Created By</h3>
       <h3 class="ws-mat-accent-text width-expand">
@@ -423,7 +468,7 @@
         </h3>
       </div> -->
 
-      <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+      <!-- <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider> -->
       <div class="info-item" *ngIf="content?.theme">
         <h3 class="item-heading ws-mat-primary-text" i18n>SDG</h3>
         <h3 class="ws-mat-accent-text width-expand">
@@ -431,7 +476,7 @@
         </h3>
       </div>
 
-      <mat-divider *ngIf="content?.learningMode"></mat-divider>
+      <!-- <mat-divider *ngIf="content?.learningMode"></mat-divider> -->
       <div class="info-item" *ngIf="content?.region?.length">
         <h3 class="item-heading ws-mat-primary-text" i18n>Region</h3>
         <h3 class="ws-mat-accent-text width-expand">
@@ -445,7 +490,7 @@
           {{ content?.locale | uppercase }}
         </h3>
       </div> -->
-      <mat-divider *ngIf="content?.locale"></mat-divider>
+      <!-- <mat-divider *ngIf="content?.locale"></mat-divider> -->
       <div class="info-item" *ngIf="content?.hasTranslations?.length || content?.isTranslationOf?.length">
         <h3 class="item-heading ws-mat-primary-text" i18n>Available in</h3>
         <h3 class="ws-mat-accent-text width-expand">
@@ -454,7 +499,7 @@
           </span>
         </h3>
       </div>
-      <mat-divider *ngIf="content?.hasTranslations?.length || content?.isTranslationOf?.length"></mat-divider>
+      <!-- <mat-divider *ngIf="content?.hasTranslations?.length || content?.isTranslationOf?.length"></mat-divider> -->
       <div class="info-item" *ngIf="content?.keywords?.length">
         <h3 class="item-heading ws-mat-primary-text" i18n>Keywords</h3>
         <h3 class="ws-mat-accent-text width-expand">
