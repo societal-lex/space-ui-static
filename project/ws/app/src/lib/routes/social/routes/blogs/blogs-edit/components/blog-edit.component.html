@@ -26,7 +26,7 @@
     <ng-container i18n *ngIf="(isXSmall$ | async) === false"> Save </ng-container>
     <mat-icon *ngIf="(isXSmall$ | async) === true">save</mat-icon>
   </button>
-  <button
+  <!-- <button
     *ngIf="editMode === 'create'"
     class="margin-left-xs cls"
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid"
@@ -40,8 +40,8 @@
       <span>Save as drafts</span>
     </ng-container>
     <mat-icon *ngIf="(isXSmall$ | async) === true">drafts</mat-icon>
-  </button>
-  <button
+  </button> -->
+  <!-- <button
     *ngIf="editMode === 'create' || editMode === 'draft'"
     class="margin-left-xs"
     [disabled]="isCreatingPost || !actionBtnsEnabled || blogTitle.invalid || blogAbstract.invalid"
@@ -55,7 +55,7 @@
       <span>Publish</span>
     </ng-container>
     <mat-icon *ngIf="(isXSmall$ | async) === true">publish</mat-icon>
-  </button>
+  </button> -->
 </mat-toolbar>
 
 <mat-card class="editor-wrapper">

@@ -111,8 +111,13 @@ const routes: Routes = [
   {
     path: 'interest',
     component: InterestComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'interest',
+    },
     resolve: {
       interests: InterestUserResolve,
+      pageData: PageResolve,
     },
   },
   {

@@ -454,6 +454,7 @@
             </div>
           </a>
           <div
+            *ngIf="widgetData.content?.displayContentType"
             class="mt-4 flex justify-between items-center absolute bottom-0 left-0 right-0 px-3 py-2"
           >
             <ws-widget-display-content-type
@@ -465,6 +466,31 @@
             >
             </ws-widget-display-content-type>
             <div class="flex items-center">
+              <ng-container [ngTemplateOutlet]="rating"></ng-container>
+              <button
+                type="button"
+                mat-icon-button
+                i18n-aria-label
+                aria-label="action items"
+                [matMenuTriggerFor]="cardMenu"
+              >
+                <mat-icon>more_vertical</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div
+            *ngIf="!widgetData.content?.displayContentType"
+            class="mt-4 justify-between items-center absolute bottom-0 left-0 right-0 px-3 py-2"
+          >
+            <ws-widget-display-content-type
+              i18n-title
+              title="Content Type"
+              *ngIf="widgetData.content?.displayContentType"
+              class="ws-mat-primary-text font-normal"
+              [displayContentType]="widgetData.content?.displayContentType"
+            >
+            </ws-widget-display-content-type>
+            <div class="float-right flex items-center">
               <ng-container [ngTemplateOutlet]="rating"></ng-container>
               <button
                 type="button"
