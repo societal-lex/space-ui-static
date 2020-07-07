@@ -28,6 +28,7 @@ import { PublicCollaboratorsComponent } from './routes/public/public-collaborato
 import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
 import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.component'
 import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
+import { ContentpolicyandcommunicationComponent } from './routes/public/contentpolicyandcommunication/contentpolicyandcommunication.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -213,13 +214,13 @@ const routes: Routes = [
     path: 'app/social',
     loadChildren: () =>
       import('./routes/route-social-app.module').then(u => u.RouteSocialAppModule),
-      data: {
-        pageType: 'feature',
-        pageKey: 'social',
-      },
-      resolve: {
-        socialData: PageResolve,
-      },
+    data: {
+      pageType: 'feature',
+      pageKey: 'social',
+    },
+    resolve: {
+      socialData: PageResolve,
+    },
     canActivate: [GeneralGuard],
   },
   {
@@ -456,6 +457,11 @@ const routes: Routes = [
     path: 'public/termsofuse',
     component: TermsofuseComponent,
   },
+  {
+    path: 'public/contentpolicyandcommunication',
+    component: ContentpolicyandcommunicationComponent,
+  },
+
 
   {
     path: 'public/tnc',
