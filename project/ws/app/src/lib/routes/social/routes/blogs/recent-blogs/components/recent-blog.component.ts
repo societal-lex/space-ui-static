@@ -105,7 +105,7 @@ export class RecentBlogComponent implements OnInit {
 
   triggerSearch() {
     this.router.navigate(['/app/social/socialSearch/view-search'],
-      { queryParams: { search: this.queryEntered } })
+                         { queryParams: { search: this.queryEntered } })
 
   }
 }
