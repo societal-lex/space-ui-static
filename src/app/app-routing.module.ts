@@ -462,7 +462,6 @@ const routes: Routes = [
     component: ContentpolicyandcommunicationComponent,
   },
 
-
   {
     path: 'public/tnc',
     component: TncComponent,
