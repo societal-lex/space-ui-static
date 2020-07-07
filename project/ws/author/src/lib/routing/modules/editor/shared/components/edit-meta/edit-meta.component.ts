@@ -1084,6 +1084,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       learningObjective: [],
       learningTrack: [],
       spaceLicense: [],
+      otherSourceName: [],
+      otherSpaceLicense: [],
       locale: [],
       mimeType: [],
       name: [],
@@ -1149,6 +1151,19 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     })
 
+    this.contentForm.controls.sourceName.valueChanges.subscribe(() => {
+      if (this.contentForm.controls.sourceName.value !== 'Other') {
+      this.contentForm.controls.otherSourceName.setValue('')
+      this.contentForm.controls.otherSourceName.markAsUntouched()
+      }
+    })
+
+    this.contentForm.controls.spaceLicense.valueChanges.subscribe(() => {
+      if (this.contentForm.controls.otherSpaceLicense.value !== 'Other') {
+      this.contentForm.controls.otherSpaceLicense.setValue('')
+      this.contentForm.controls.otherSpaceLicense.markAsUntouched()
+      }
+    })
     // to set the body same as description entered
     this.contentForm.controls.description.valueChanges.subscribe(_newDescription => {
       this.contentForm.controls.body.setValue(_newDescription)

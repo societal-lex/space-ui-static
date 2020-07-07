@@ -520,6 +520,23 @@
                   <mat-error *ngIf="showError('sourceName')" i18n>Created By is mandatory </mat-error>
                 </mat-form-field>
               </div>
+                <div class="margin-top-xs" *ngIf="checkCondition('otherSourceName', 'show')"
+                [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('otherSourceName', 'required') }">
+                  Created By (Other)
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('otherSourceName') }">
+                  <input matInput #otherSourceName formControlName="otherSourceName" i18n-placeholder
+                    placeholder="Enter Organisation Name"
+                    [required]="checkCondition('otherSourceName', 'required') ? true : null" />
+                  <mat-error *ngIf="showError('otherSourceName')" i18n="Name Error|Explains profile link is required">
+                    required if Created By is <b>Other</b>
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
             <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
             [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
@@ -622,7 +639,8 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceLicense', 'show')"
+            <div class="margin-top-xs margin-left-xl">
+              <div *ngIf="checkCondition('spaceLicense', 'show')"
               [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
               <label>
                 <div class="margin-top-s flex flex-middle">
@@ -641,11 +659,29 @@
                   </mat-select>
                   <mat-error *ngIf="showError('spaceLicense')" i18n>License is mandatory
                   </mat-error>
-                  <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n>Select Type First
+                  <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n>First select a value for 'Type' field
                   </mat-error>
                 </mat-form-field>
                 <p class="custom-error" *ngIf="!contentForm?.controls?.assetType.value && contentForm?.controls?.spaceLicense.value" i18n>Select Type First</p>
               </div>
+            </div>
+            <div class="margin-top-xs" *ngIf="checkCondition('otherSpaceLicense', 'show') && contentForm?.controls?.spaceLicense.value === 'Other'"
+                [ngClass]="{ disable: checkCondition('otherSpaceLicense', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('otherSpaceLicense', 'required') }">
+                  License (Other)
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('otherSpaceLicense') }">
+                  <input matInput #otherSpaceLicense formControlName="otherSpaceLicense" i18n-placeholder
+                    placeholder="Enter License Name"
+                    [required]="checkCondition('otherSpaceLicense', 'required') ? true : null" />
+                  <mat-error *ngIf="showError('otherSpaceLicense')" i18n="Name Error|Explains profile link is required">
+                    required if License is <b>Other</b>
+                  </mat-error>
+                </mat-form-field>
+            </div>
             </div>
           </div>
           <div class="grid">
@@ -1271,7 +1307,7 @@
           </p>
           <ng-container *ngIf="promptUserForAssetType">
             <p class="mat-h5 margin-top-s margin-left-xl">
-              * Fields will appear / disappear based on Type. Please select Type from the Classification section.
+              * First select a value for 'Type' field in the <b>Classification</b> tab
             </p>
           </ng-container>
           <div class="grid">
@@ -1421,7 +1457,7 @@
                     placeholder="Enter Profile link"
                     [required]="checkCondition('profile_link', 'required') ? true : null" />
                   <mat-hint align="end">{{ profile_link?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('codebase')" i18n="Name Error|Explains profile link is required">
+                  <mat-error *ngIf="showError('profile_link')" i18n="Name Error|Explains profile link is required">
                     Profile Link is mandatory
                   </mat-error>
                 </mat-form-field>
