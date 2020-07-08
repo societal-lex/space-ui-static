@@ -1413,7 +1413,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         this.displayPolicyForm = true
         this.spaceLicenseTnCAgreed = false
       } else {
-        console.log('here')
         this.displayPolicyForm = false
         this.spaceLicenseTnCAgreed = true
         this.contentForm.controls.spaceLicenseTnCAgreed.setValue(true)
