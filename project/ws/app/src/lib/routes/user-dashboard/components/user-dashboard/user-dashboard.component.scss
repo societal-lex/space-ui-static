@@ -23,11 +23,13 @@
   }
  .allignment{
     display: flex;
-    align-items: baseline;
+    // align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
     padding-left:10px;
     padding-right:10px;
+    padding-top:30px;
+    padding-bottom: 20px;
 }
 .paddingforuserlist{
     padding-top:20px;
@@ -44,6 +46,7 @@
   .example-header{
       display: inline-flex;
     flex-wrap: wrap;
+    // flex:1;
     width: 40%;
 }
 .font-text{
@@ -166,9 +169,11 @@
   right: 0;
 
     }
-    .allignment{
-      padding-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-    }
+    // .allignment{
+    //   padding-top: 20px;
+    //   display: flex;
+    //   // flex-wrap: wrap;
+    //   flex-direction: column;
+    //     justify-content: space-between;
+    // }
+

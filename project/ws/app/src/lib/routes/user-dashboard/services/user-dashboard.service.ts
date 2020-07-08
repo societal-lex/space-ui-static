@@ -144,6 +144,7 @@ export class UserDashboardService {
     const responseBodyAsJSON = {
       wid: responseBody.wid,
       roles: responseBody.roles,
+      email: responseBody.email,
     }
     const httpOptions = {
       headers: new HttpHeaders({

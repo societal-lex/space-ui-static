@@ -8,6 +8,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils/src/public-api'
 import { MatSort, MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material'
 import { AcceptUserDailogComponent } from '../accept-user-dailog/accept-user-dailog.component'
 import { DailogUserDashboardComponent } from '../dailog-user-dashboard/dailog-user-dashboard.component'
+import { SelectionModel } from '@angular/cdk/collections'
 
 @Component({
   selector: 'ws-app-user-dashboard',
@@ -20,11 +21,12 @@ export class UserDashboardComponent implements OnInit {
   userDashboardData: NsUserDashboard.IUserData | any
 
   navBackground: Partial<NsPage.INavBackground> | null = null
+  selectedRow: NsUserDashboard.IUserListData[] = []
   constructor(private userDashboardSvc: UserDashboardService,
-              public snackBar: MatSnackBar,
-              public dialog: MatDialog,
-              private activateRoute: ActivatedRoute,
-              private configSvc: ConfigurationsService
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private activateRoute: ActivatedRoute,
+    private configSvc: ConfigurationsService
   ) {
 
     const instanceConfig = this.configSvc.userProfile
@@ -48,9 +50,11 @@ export class UserDashboardComponent implements OnInit {
   // @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator | any
   @ViewChild(MatSort, { static: false }) sort!: MatSort
   dataSource: MatTableDataSource<NsUserDashboard.IUserListData> | any
+  selection = new SelectionModel<NsUserDashboard.IUserListData>(true, [])
+
   getUserData: NsUserDashboard.IGetUserData = {} as any
   displayedColumns =
-    ['SlNo', 'firstName', 'email', 'Actions']
+    ['select', 'SlNo', 'firstName', 'email', 'Actions']
   allroles!: NsUserDashboard.IRoles
   paramsForChangeRole: NsUserDashboard.IChangeRole = {} as any
   roles: string[] = []
@@ -63,6 +67,14 @@ export class UserDashboardComponent implements OnInit {
   headersForRejectUser: NsUserDashboard.IHeaders = {} as any
   isLoad = false
   errorMessage!: string
+  email = ''
+  // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
+  // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
+  // dataSource = new MatTableDataSource(this.searchForName);
+  //  public userListDataForTable: NsUserDashboard.IUserListData
+  //  | undefined
+  //  public userListDataForTable: NsUserDashboard.IUserListData
+
   // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
   // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
   // dataSource = new MatTableDataSource(this.searchForName);
@@ -97,6 +109,27 @@ export class UserDashboardComponent implements OnInit {
   // ngOnDestroy() {
   //   this.loaderService.changeLoad.next(false)
   // }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length
+    const numRows = this.dataSource.data.length
+    return numSelected === numRows
+  }
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach((row: NsUserDashboard.IUserListData) => this.selection.select(row))
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: NsUserDashboard.IUserListData): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.email}`
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase() // Datasource defaults to lowercase matches
@@ -147,6 +180,8 @@ export class UserDashboardComponent implements OnInit {
         this.getUserData = data[0]
         this.getUserData.roles = data[0].roles
         this.roles = this.getUserData.roles
+        this.email = data[0].mail
+        console.log('this.roles', this.roles)
         this.widUser = data[0].id
       } else {
         this.roles = []
@@ -176,13 +211,16 @@ export class UserDashboardComponent implements OnInit {
     this.headersForChangeUserRole.org = this.getOrg
     this.headersForChangeUserRole.wid_OrgAdmin = this.widLoggedinUser
     this.paramsForChangeRole.wid = getwid,
-    this.paramsForChangeRole.roles = []
+      this.paramsForChangeRole.roles = []
     this.paramsForChangeRole.roles = roles
     this.paramsForChangeRole.roles.push('privileged')
+ this.paramsForChangeRole.email = this.email
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
     if (userChangedRoleResponse.ok) {
       this.paramsForChangeRole.wid = ''
       this.paramsForChangeRole.roles = []
+      this.paramsForChangeRole.email = ''
+      this.email = ''
       this.widUser = ''
       this.roles = []
       this.getUserData.roles = []
@@ -237,5 +275,33 @@ export class UserDashboardComponent implements OnInit {
       })
     }
 
+  }
+
+  async bulkChangeRole() {
+    this.isLoad = true
+    this.selectedRow = this.selection.selected
+    const getAllRolesForBulkChangeRole = await this.userDashboardSvc.getAllRoles(this.getRootOrg, this.widLoggedinUser, this.getOrg)
+    console.log('getallrolws', getAllRolesForBulkChangeRole)
+
+    if (getAllRolesForBulkChangeRole) {
+      this.isLoad = false
+      const dialogResponseForChangeRoles = this.dialog.open(AcceptUserDailogComponent, {
+        width: '400px',
+        // height: '300px',
+        data: {
+          allRoles: getAllRolesForBulkChangeRole.DATA,
+          defaultValueToBeChecked: [],
+        },
+      })
+      dialogResponseForChangeRoles.afterClosed().subscribe(result => {
+        this.allroles = result.data
+        if (this.allroles) {
+          console.log('roles', this.allroles)
+          // this.changeUserRoles(this.allroles, this.widUser)
+        }
+      })
+    }
+    // console.log('allseected', this.selection.isSelected)
+    console.log('this.selewctedrow', this.selectedRow, typeof this.selectedRow)
   }
 }
