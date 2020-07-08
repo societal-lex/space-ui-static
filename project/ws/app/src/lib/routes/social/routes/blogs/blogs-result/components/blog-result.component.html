@@ -14,7 +14,9 @@
   </div>
   <mat-menu #editMenu="matMenu">
     <ng-template matMenuContent>
-      <a [routerLink]="'/app/social/blogs/edit/' + blog.id" mat-menu-item i18n>Edit Blog</a>
+      <a [routerLink]="'/app/social/blogs/edit/' + blog.id" class="aStyle" mat-menu-item i18n
+        >Edit Blog</a
+      >
       <button (click)="deleteBlog(blog.id, deleteMsg.value)" mat-menu-item i18n>Delete Blog</button>
     </ng-template>
   </mat-menu>
