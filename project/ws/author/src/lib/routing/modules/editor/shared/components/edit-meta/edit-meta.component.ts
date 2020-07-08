@@ -1409,9 +1409,15 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.displayPolicyForm = true
       this.contentForm.controls.spaceLicenseTnCAgreed.setValue(false)
     } else {
-      this.displayPolicyForm = true
-      this.spaceLicenseTnCAgreed = true
-      this.contentForm.controls.spaceLicenseTnCAgreed.setValue(true)
+      if (this.contentMeta.contentType !== 'Resource') {
+        this.displayPolicyForm = true
+        this.spaceLicenseTnCAgreed = false
+      } else {
+        console.log('here')
+        this.displayPolicyForm = false
+        this.spaceLicenseTnCAgreed = true
+        this.contentForm.controls.spaceLicenseTnCAgreed.setValue(true)
+      }
     }
     this.contentForm.controls.spaceLicense.setValue('')
     this.contentForm.controls.spaceLicenseAttribution.setValue('')

@@ -7,6 +7,7 @@ import { IConditionsV2 } from './../../../../interface/conditions-v2'
 import { IFormMeta } from './../../../../interface/form'
 import { AuthInitService } from './../../../../services/init.service'
 import { EditorService } from './editor.service'
+import { LoggerService } from '@ws-widget/utils/src/public-api'
 @Injectable()
 export class EditorContentService {
   originalContent: { [key: string]: NSContent.IContentMeta } = {}
@@ -22,6 +23,7 @@ export class EditorContentService {
     private accessService: AccessControlService,
     private editorService: EditorService,
     private authInitService: AuthInitService,
+    private readonly logger: LoggerService,
   ) { }
 
   getOriginalMeta(id: string): NSContent.IContentMeta {
@@ -142,7 +144,7 @@ export class EditorContentService {
     let isValid = true
     Object.keys(this.authInitService.authConfig).map(v => {
       if (this.checkCondition(id, v, 'required') && !this.isPresent(v, id)) {
-        // console.log('validation failed for ', v)
+        this.logger.info(`validation failed for ${v}`)
         isValid = false
       }
     })
