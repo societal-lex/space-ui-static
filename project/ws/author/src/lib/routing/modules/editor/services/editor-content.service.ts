@@ -191,6 +191,7 @@ export class EditorContentService {
               ) {
                 childReturnValue = true
               } else if (
+                data[childMeta as keyof NSContent.IContentMeta] &&
                 condition[childMeta as keyof typeof condition].indexOf(
                   data[childMeta as keyof NSContent.IContentMeta],
                 ) > -1
