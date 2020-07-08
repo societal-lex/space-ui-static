@@ -21,7 +21,7 @@ line-height: 1.7;
 }
 
 .font-style{
-  font-family: Montserrat, sans-serif !important;
+  font-family: montserrat, sans-serif !important;
   font-size: 17px;
 }
 .font-text{
@@ -29,5 +29,18 @@ line-height: 1.7;
 
   font-family: campaign, sans-serif !important;
   font-size: 17px;
+
+}
+
+@media screen and (max-width: 450px) {
+  .spaceallign{
+  padding-left:0.8em;
+}
+
+}
+@media screen and (max-width: 380px) {
+  .spaceallignment{
+  padding-left:0em;
+}
 
 }

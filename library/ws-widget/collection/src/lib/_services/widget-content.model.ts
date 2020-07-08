@@ -8,8 +8,6 @@ export namespace NsContent {
     addedOn: string
     appIcon: string
     artifactUrl: string
-    codebase: string
-    assetType: string
     averageRating?: any
     body?: string
     certificationList?: IRelatedContentMeta[]
@@ -125,8 +123,6 @@ export namespace NsContent {
   export interface IContentMinimal {
     appIcon: string
     artifactUrl: string
-    codebase: string
-    assetType: string
     complexityLevel: string
     contentType: EContentTypes
     description: string
@@ -196,8 +192,6 @@ export namespace NsContent {
   interface IResourcePlayground {
     appIcon: string
     artifactUrl: string
-    codebase: string
-    assetType: string
     identifier: string
     name: string
   }

@@ -414,7 +414,7 @@
 
 
 
-
+    <!-- added licence policy details -->
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
     <div class="info-item" *ngIf="content?.spaceLicense">
       <h3 class="item-heading ws-mat-primary-text" i18n>Licence</h3>
@@ -423,6 +423,30 @@
       </h3>
     </div>
 
+    <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+    <div class="info-item" *ngIf="content?.spaceLicenseAttribution">
+      <h3 class="item-heading ws-mat-primary-text" i18n>Attributions</h3>
+      <h3 class="ws-mat-accent-text width-expand">
+        {{ content?.spaceLicenseAttribution  }}
+      </h3>
+    </div>
+
+    <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+    <div class="info-item" *ngIf="content?. spaceLicenseCopyright">
+      <h3 class="item-heading ws-mat-primary-text" i18n>Copyright</h3>
+      <h3 class="ws-mat-accent-text width-expand">
+        {{ content?.spaceLicenseCopyright  }}
+      </h3>
+    </div>
+
+    <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
+    <div class="info-item" *ngIf="content?. spaceAreaOfExpertise">
+      <h3 class="item-heading ws-mat-primary-text" i18n>Areas of Expertise</h3>
+      <h3 class="ws-mat-accent-text width-expand">
+        {{ content?.spaceAreaOfExpertise}}
+      </h3>
+    </div>
+    <!-- till here -->
 
 
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>

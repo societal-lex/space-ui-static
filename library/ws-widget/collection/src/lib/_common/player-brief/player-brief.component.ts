@@ -35,7 +35,8 @@ export class PlayerBriefComponent implements OnInit {
   isDownloadableDesktop = false
   isDownloadableIos = false
   isDownloadableAndroid = false
-  disablefield = false
+
+  // disablefield = false
 
   ngOnInit() {
     this.getTocConfig()

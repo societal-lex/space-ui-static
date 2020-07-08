@@ -143,6 +143,8 @@ export namespace NsInstanceConfig {
     grievanceredressal: string
     termsOfUse: string
     aboutBanner: string
+    contentpolicy: string
+
   }
   export interface IMailIds {
     contactUs: string

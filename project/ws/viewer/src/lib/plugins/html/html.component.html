@@ -51,8 +51,8 @@
       [value]="progress"></mat-progress-bar>
 
     <div class="flex flex-between padding-top-s">
-      <a type="button" [ngClass]="mobAppSvc?.isMobile ? 'block' : 'hidden'" mat-button [href]="prepare()"
-        target="_blank" #mobileOpenInNewTab>Open in New Tab</a>
+      <a type="button" [ngClass]="mobAppSvc?.isMobile ? 'block' : 'hidden'" mat-button
+        [href]="this.htmlContent?.artifactUrl" target="_blank" #mobileOpenInNewTab>Open in New Tab</a>
 
       <button [ngClass]="!mobAppSvc?.isMobile ? 'block' : 'hidden'" class="btn-clr" mat-raised-button color="primary"
         type="button" i18n mat-button (click)="openInNewTab()">

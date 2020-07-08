@@ -1,10 +1,30 @@
+@import 'ws-mixins';
+
+
 .allignment{
 padding: 8px 20px;
 line-height: 1.7;
 
 }
+
+#cimage {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  // height: 22rem;
+}
+.imgsize {
+  height: 26rem;
+  overflow-y: hidden;
+  margin-top: -3rem;
+  @include breakpoint-xs {
+    height: auto !important;
+    margin-top: 0em !important;
+  }
+}
+
 .font-style{
-  font-family: Montserrat, sans-serif !important;
+  font-family: montserrat, sans-serif !important;
   font-size: 17px;
 }
 .font-text{
@@ -12,5 +32,18 @@ line-height: 1.7;
 
   font-family: campaign, sans-serif !important;
   font-size: 17px;
+
+}
+
+@media screen and (max-width: 450px) {
+  .spaceallign{
+  padding-left:0.8em;
+}
+
+}
+@media screen and (max-width: 380px) {
+  .spaceallignment{
+  padding-left:0em;
+}
 
 }
