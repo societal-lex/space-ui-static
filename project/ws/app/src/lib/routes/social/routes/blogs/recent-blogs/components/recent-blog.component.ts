@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { TFetchStatus, ValueService, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { ForumService } from '../../../forums/service/forum.service'
 
 @Component({
@@ -38,7 +38,8 @@ export class RecentBlogComponent implements OnInit {
     private configSvc: ConfigurationsService,
     private valueSvc: ValueService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly forumSvc: ForumService
+    private readonly forumSvc: ForumService,
+    private readonly router: Router
 
   ) {
     this.isXSmall$ = this.valueSvc.isXSmall$
@@ -51,6 +52,7 @@ export class RecentBlogComponent implements OnInit {
     this.activatedRoute.data.subscribe(_data => {
       // tslint:disable-next-line: max-line-length
       if (this.forumSvc.isVisibileAccToRoles(_data.socialData.data.rolesAllowed.blogs, _data.socialData.data.rolesNotAllowed.blogs)) {
+
         this.allowedToCreateBlogs = true
         this.allowedToViewMyBlogs = true
       } else {
@@ -66,6 +68,7 @@ export class RecentBlogComponent implements OnInit {
   fetchTimelineData() {
     if (this.timelineFetchStatus === 'done') {
       return
+
     }
     this.timelineFetchStatus = 'fetching';
 
@@ -91,10 +94,19 @@ export class RecentBlogComponent implements OnInit {
     )
   }
   showSearchBar() {
+
     this.isEnabledSearch = true
 
   }
   disableSearchbar() {
+
     this.isEnabledSearch = false
+  }
+
+  triggerSearch() {
+
+    this.router.navigate(['/app/social/socialSearch/view-search'],
+                         { queryParams: { search: this.queryEntered } })
+
   }
 }

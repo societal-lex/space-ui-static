@@ -1,11 +1,12 @@
 @import 'ws-mixins';
 
+
 .allignment{
 padding: 8px 20px;
 line-height: 1.7;
-font-family: Montressat,sans-serif;
 
 }
+
 #cimage {
   background-size: cover;
   background-position: center;
@@ -13,7 +14,7 @@ font-family: Montressat,sans-serif;
   // height: 22rem;
 }
 .imgsize {
-  height: 22rem;
+  height: 26rem;
   overflow-y: hidden;
   margin-top: -3rem;
   @include breakpoint-xs {
@@ -33,7 +34,6 @@ font-family: Montressat,sans-serif;
   font-size: 17px;
 
 }
-
 
 @media screen and (max-width: 450px) {
   .spaceallign{

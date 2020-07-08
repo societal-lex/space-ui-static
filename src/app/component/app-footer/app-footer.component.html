@@ -1,50 +1,41 @@
-<!-- web view  -->
-<div
-  id="display-item"
-  class="mat-toolbar footer-container px-2 sm:px-10 py-1 sm:py-4"
-  [ngClass]="{ 'mat-primary': !isXSmall, 'mat-primarylight': isXSmall }"
->
+<div id="display-item" class="mat-toolbar footer-container px-2 sm:px-10 py-1 sm:py-4"
+  [ngClass]="{ 'mat-primary': !isXSmall, 'mat-primarylight': isXSmall }">
   <div class="mat-body" id="display">
     <ng-container i18n>
       <a routerLink="/public/dataprivacy" name="helpAndContactButtonHomePage" i18n>Data Privacy</a>
       |
-      <a routerLink="public/termsofuse" name="helpAndContactButtonHomePage" i18n
-        >Terms & Conditions</a
-      >
+      <a routerLink="public/termsofuse" name="helpAndContactButtonHomePage" i18n>Terms & Conditions</a>
       |
-      <a routerLink="/public/contentpolicyandcommunication" name="helpAndContactButtonHomePage" i18n
-        >Grievance Redressal Process</a
-      >
+      <a routerLink="/public/content-policy-and-community-guidelines" name="helpAndContactButtonHomePage" i18n>Content
+        Policy and
+        Community Guidelines
+        <!-- Process -->
+      </a>
     </ng-container>
   </div>
   <div class="mat-body" id="display">
     <a routerLink="/public/licencepolicy" name="termOfUseButtonHomePage" i18n>License Policy</a> |
-    <a routerLink="/public/assetguidelines" name="termOfUseButtonHomePage" i18n>Asset Guidelines</a
-    >|
+    <a routerLink="/public/assetguidelines" name="termOfUseButtonHomePage" i18n>Asset Guidelines</a>|
     <a routerLink="/public/contact" name="helpAndContactButtonHomePage" i18n>Contact Us</a>
   </div>
 </div>
-<!-- mobile view -->
-<div
-  id="display-responsive"
-  class="mat-toolbar px-2 sm:px-10 py-1 sm:py-4"
-  [ngClass]="{ 'mat-primary': !isXSmall, 'mat-primarylight': isXSmall }"
->
+
+<div id="display-responsive" class="mat-toolbar px-2 sm:px-10 py-1 sm:py-4"
+  [ngClass]="{ 'mat-primary': !isXSmall, 'mat-primarylight': isXSmall }">
   <!-- <div class="mat-body" id="display"> -->
   <ng-container i18n>
     <a routerLink="/public/dataprivacy" name="helpAndContactButtonHomePage" i18n>Data Privacy</a>
     <br />
-    <a routerLink="public/termsofuse" name="helpAndContactButtonHomePage" i18n
-      >Terms & Conditions</a
-    >
+    <a routerLink="public/termsofuse" name="helpAndContactButtonHomePage" i18n>Terms & Conditions</a>
     <br />
-    <a routerLink="/public/contentpolicyandcommunication" name="helpAndContactButtonHomePage" i18n
-      >Grievance Redressal Process</a
-    ><br />
+    <a routerLink="/public/content-policy-and-community-guidelines" name="helpAndContactButtonHomePage" i18n>Content
+      Policy and
+      Community Guidelines
+      <!-- Process -->
+    </a><br />
     <a routerLink="/public/licencepolicy" name="termOfUseButtonHomePage" i18n>License Policy</a>
     <br />
-    <a routerLink="/public/assetguidelines" name="termOfUseButtonHomePage" i18n>Asset Guidelines</a
-    ><br />
+    <a routerLink="/public/assetguidelines" name="termOfUseButtonHomePage" i18n>Asset Guidelines</a><br />
     <a routerLink="/public/contact" name="helpAndContactButtonHomePage" i18n>Contact Us</a>
   </ng-container>
   <!-- </div> -->
