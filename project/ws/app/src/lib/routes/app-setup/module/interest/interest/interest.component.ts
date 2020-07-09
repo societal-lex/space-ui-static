@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
 import { ActivatedRoute, Router } from '@angular/router'
-import { ConfigurationsService, EventService } from '@ws-widget/utils'
+import { ConfigurationsService, EventService, NsPage } from '@ws-widget/utils'
 // import { startWith, map } from 'rxjs/operators'
 import { IResolveResponse } from 'library/ws-widget/utils/src/lib/resolvers/resolver.model'
 import { Observable, of, Subscription } from 'rxjs'
@@ -50,6 +50,8 @@ export class InterestComponent implements OnInit {
   interestControl = new FormControl('')
   filteredOptions$: Observable<string[]> = of([])
   appName!: string
+  pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
+
   constructor(
     private events: EventService,
     private route: ActivatedRoute,
