@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material'
-
+import { RouterModule } from '@angular/router'
 import { BtnCatalogComponent } from './btn-catalog.component'
 import { TreeCatalogModule } from '../tree-catalog/tree-catalog.module'
 
@@ -13,6 +13,7 @@ import { TreeCatalogModule } from '../tree-catalog/tree-catalog.module'
     MatIconModule,
     MatMenuModule,
     TreeCatalogModule,
+    RouterModule,
   ],
   entryComponents: [BtnCatalogComponent],
 })

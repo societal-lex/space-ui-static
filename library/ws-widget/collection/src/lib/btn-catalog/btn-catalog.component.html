@@ -4,6 +4,11 @@
   <span class="padding-left-xs" i18n>Explore</span>
 </button>
 
+<button mat-button i18n-matTooltip matTooltip="Search" name="searchButtonHomePage" [routerLink]="'/app/search/home'">
+  <mat-icon>search</mat-icon>
+  <span class="padding-left-xs" i18n>Search</span>
+</button>
+
 <ws-widget-tree-catalog-menu #rootMenu [rootTrigger]="rootTrigger" [catalogItems]="catalogItems | slice: 0:10"
   [fetchStatus]="catalogFetchStatus" isRoot="true">
 </ws-widget-tree-catalog-menu>
