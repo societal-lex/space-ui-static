@@ -53,8 +53,8 @@
       </div>
       <mat-menu #menu="matMenu">
         <!-- <a i18n mat-menu-item>Search</a> -->
-        <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item class="btn">My Blogs</a>
-        <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item class="btn">Write a Blog</a>
+        <a i18n [routerLink]="'/app/social/blogs/me'" mat-menu-item>My Blogs</a>
+        <a i18n [routerLink]="'/app/social/blogs/edit'" mat-menu-item>Write a Blog</a>
       </mat-menu>
     </ng-container>
     <div class="column-3">
@@ -66,15 +66,19 @@
             i18n
             [routerLink]="'/app/social/blogs/me'"
             class="margin-right-s btn"
-            >My Blogs</a
           >
+            <mat-icon class="mat-icon-color"> insert_drive_file </mat-icon
+            ><span>&nbsp;My Blogs</span></a
+          >
+
           <a
             mat-raised-button
             [ngClass]="{ show_btn: allowedToViewMyBlogs, hide_btn: !allowedToViewMyBlogs }"
             class="margin-left-s btn"
             i18n
             [routerLink]="'/app/social/blogs/edit'"
-            >Write a Blog</a
+          >
+            <mat-icon class="mat-icon-color"> create </mat-icon><span>&nbsp;Write a Blog</span></a
           >
         </ng-container>
       </ng-container>

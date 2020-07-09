@@ -23,6 +23,7 @@
     <mat-menu #editMenu="matMenu">
       <ng-template matMenuContent>
         <a
+          class="aStyle"
           i18n-aria-label
           aria-label="Edit Post"
           [routerLink]="'/app/social/forums/post/edit/' + conversationRequest?.postId"

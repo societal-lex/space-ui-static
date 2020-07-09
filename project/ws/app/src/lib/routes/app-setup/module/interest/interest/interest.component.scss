@@ -1,117 +1,53 @@
 @import 'ws-vars';
 @import 'ws-mixins';
 
-.small-height-toolbar{
-  @include breakpoint-xs {
-    height: 32px;
-    padding: 8px;
+.interest-holder {
+  width: 90%;
+  display: block;
+  margin: auto;
+  margin-bottom: 24px;
+}
+.search-holder {
+  display: block;
+  margin-left: 5%;
+}
+
+.search-width {
+  width: 50% !important;
+}
+
+.suggestions-chip {
+  background-color: transparent !important;
+}
+.montserrat {
+  font-family: montserrat, sans-serif !important;
+}
+.clr {
+  color: white !important;
+}
+.clr-clr {
+  color: #865ba0 !important;
+}
+::ng-deep {
+  .mat-grid-tile .mat-figure {
+    align-items: baseline !important;
+    justify-content: start !important;
   }
 }
-
-.center-align{
-  position: relative;
-  left: 50%;
-  transform: translate(-50%,0);
-  @include breakpoint-xs {
-    transform: translate(0,0);
-    left: inherit;
-  }
+.mat-standard-chip {
+  height: auto !important;
 }
-
-.item-icon {
-      $icon-size: 15px;
-      width: $icon-size;
-      height: $icon-size;
-      font-size: $icon-size;
-    }
-
-.status-danger {
-  position: absolute;
-  top: 16px;
-  left: 16px;
+.mat-grid-tile {
+  overflow: overlay !important;
 }
-
-.concept {
-  text-align: center;
-  margin-right: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-  white-space: nowrap;
-  cursor: pointer;
+.padding {
+  margin-bottom: 1rem;
 }
-
-.flex-container {
-   max-width: 1000px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-
-
-
+mat-panel-title {
+  color: #865ba0 !important;
+  font-size: large;
 }
-
-.flex-container > div {
-  margin: 10px;
-}
-
-.display-contents {
-  opacity: 0.7;
-}
-
-.card-container{
-  $card-padding: $size-m;
-  padding: 0 0 0 16px;
-  $action-btn-size: 2.5 * $size-m;
-  position: relative;
-  $card-width: 194px;
-  width: $card-width;
-  height: 194px;
-  overflow: hidden;
-  box-sizing: border-box;
-
-}
-
-%content-status {
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  border-radius: 50%;
-  top: 16px;
-  right: 16px;
-  z-index: 999;
-}
-
-.status-danger {
-  @extend %content-status;
-  // background: #ce3939;
-}
-
-.card-img {
-    height: 130px;
-    display: block;
-  }
-
-  .tnc-bottom-navbar {
-      margin: 24px 0;
-    position: absolute;
-    right: 5%;
-}
-
-.hide{
-  visibility: hidden;
-}
-
-.show {
-  visibility: visible;
-}
-
-
-.example-chip-list {
-  width: 100%;
+.view {
+  padding-right: 2rem;
+  color: #865ba0;
 }
