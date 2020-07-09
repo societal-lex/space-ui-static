@@ -15,3 +15,16 @@
 .margin-bottom-zero {
   margin-bottom: 0px;
 }
+.mat-icon {
+  color: white;
+}
+::ng-deep {
+  .mat-step-icon-state-done {
+    background: #865ba0 !important;
+    color: white !important;
+  }
+  .mat-step-icon-state-edit {
+    background: #865ba0 !important;
+    color: white !important;
+  }
+}

@@ -1,12 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
-import { WidgetContentService, NsContent, BtnPlaylistService, NsPlaylist } from '@ws-widget/collection'
-import { TFetchStatus, NsPage, ConfigurationsService } from '../../../../../../../../../../library/ws-widget/utils/src/public-api'
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
-import { Subscription } from 'rxjs'
-import { InterestService } from '../../../../profile/routes/interest/services/interest.service'
-import { EventService } from '@ws-widget/utils'
+import { ActivatedRoute, Router } from '@angular/router'
+import { ConfigurationsService, EventService } from '@ws-widget/utils'
+// import { startWith, map } from 'rxjs/operators'
+import { IResolveResponse } from 'library/ws-widget/utils/src/lib/resolvers/resolver.model'
+import { Observable, of, Subscription } from 'rxjs'
+import { debounceTime, distinctUntilChanged, startWith, switchMap } from 'rxjs/operators'
+import { InterestService } from '../../../../../routes/profile/routes/interest/services/interest.service'
+import { IUserInterestData } from '../../../../../routes/profile/routes/interest/models/interest.model'
 
 // displaying static interest
 // export interface IInterest {
@@ -20,152 +22,148 @@ import { EventService } from '@ws-widget/utils'
 })
 export class InterestComponent implements OnInit {
 
-  constructor(private activateRoute: ActivatedRoute,
-              private contentSvc: WidgetContentService,
-              private playlistSvc: BtnPlaylistService,
-              private configSvc: ConfigurationsService,
-              private router: Router,
-              private interestSvc: InterestService,
-              private snackBar: MatSnackBar,
-              private events: EventService,
-  ) { }
   @ViewChild('toastSuccess', { static: true }) toastSuccess!: ElementRef<any>
   @ViewChild('toastDuplicate', { static: true }) toastDuplicate!: ElementRef<
     any
   >
   @ViewChild('toastFailure', { static: true }) toastFailure!: ElementRef<any>
-
-  interestsData: any
-  selectedContent = 0
-  selectedInterest = ''
-  playListName = 'Learn Later'
-  contentLangForm: FormControl = new FormControl()
-  interestRES: any
-  fetchStatus: TFetchStatus = 'none'
-  playlistForInterest: NsPlaylist.IPlaylist | null = null
-  interestContent: NsContent.IContent[] = []
-  addedInterest = new Set<string>()
-  interestToAddMultiple: string[] = []
-  pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
-  alreadyAddedInterest = new Set<string>()
-
-  suggestedInterests: string[] = []
+  @ViewChild('interestSearch', { static: true }) interestSearch!: ElementRef<
+    any
+  >
+  userInterestsDataFromConfig: Subscription | null = null
+  userInterestsData: IUserInterestData | any
+  userInterestsResponse: IResolveResponse<string[]> = this.route.snapshot.data
+    .interests
   userInterests: string[] = []
-  @ViewChild('createPlaylistSuccess', { static: true }) createPlaylistSuccessMessage!: ElementRef<any>
-  @ViewChild('createPlaylistError', { static: true }) createPlaylistErrorMessage!: ElementRef<any>
-  playlistsSubscription: Subscription | null = null
-
+  suggestedInterests: string[] = []
+  sdgs: string[] = []
+  region: string[] = []
+  others: string[] = []
+  sdgsSuggestionsLimit = 3
+  regionSuggestionsLimit = 3
+  othersSuggestionsLimit = 3
+  displayMode = ''
+  isFetchingUserInterests = false
+  userInterestsFetchError = false
+  showInfo = true
+  autocompleteInterests: string[] = []
+  interestControl = new FormControl('')
+  filteredOptions$: Observable<string[]> = of([])
+  appName!: string
+  constructor(
+    private events: EventService,
+    private route: ActivatedRoute,
+    private interestSvc: InterestService,
+    private snackBar: MatSnackBar,
+    private configSvc: ConfigurationsService,
+    private router: Router,
+  ) {
+    if (
+      this.userInterestsResponse &&
+      this.userInterestsResponse.data != null &&
+      !this.userInterestsResponse.error
+    ) {
+      this.userInterests = this.userInterestsResponse.data
+    } else if (this.userInterestsResponse && this.userInterestsResponse.error) {
+      this.userInterestsFetchError = true
+    }
+    if (this.configSvc.instanceConfig && this.configSvc.instanceConfig.details.appName) {
+      this.appName = this.configSvc.instanceConfig.details.appName
+    }
+  }
   ngOnInit() {
-    this.fetchSuggestedInterests()
-
-    this.playlistsSubscription = this.playlistSvc
-      .getAllPlaylists()
-      .subscribe(
-        _playlists => {
-          _playlists.forEach(element => {
-            if (element.name === this.playListName) {
-              this.playlistForInterest = element
-              this.playlistForInterest.contents.forEach(ele => {
-                this.addedInterest.add(ele.identifier)
-                this.alreadyAddedInterest.add(ele.identifier)
-              })
-              return
-            }
-          })
-        })
-
-    this.activateRoute.data.subscribe(data => {
-      this.interestRES = data.pageData.data
-      this.interestsData = Object.keys(this.interestRES)
+    this.userInterestsDataFromConfig = this.route.data.subscribe(data => {
+      this.userInterestsData = data.pageData.data
     })
-
-    this.selectInterest()
-  }
-
-  selectInterest(index: number = 0) {
-    if (this.fetchStatus === 'fetching') {
-      return
-    }
-    this.fetchStatus = 'fetching'
-    this.selectedContent = index
-    this.contentSvc.fetchMultipleContent(this.interestRES[this.interestsData[this.selectedContent]]).subscribe(
-      data => {
-        this.interestContent = data
-        this.fetchStatus = 'done'
-      },
-      _ => {
-        this.fetchStatus = 'error'
-      }
+    // this.displayMode = this.route.snapshot.queryParamMap.get('mode')
+    this.fetchSuggestedInterests()
+    this.interestControl.setValue('')
+    this.filteredOptions$ = this.interestControl.valueChanges.pipe(
+      startWith(this.interestControl.value),
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(value => this.interestSvc.fetchAutocompleteInterestsV2(value)),
     )
-    this.selectedInterest = this.interestsData[this.selectedContent]
+    // this.filteredOptions$ = this.interestControl.valueChanges.pipe()
+    // this.interestSvc.fetchSuggestedInterestV2().subscribe(data => {
+    //   this.autocompleteInterests = Array.from(new Set(data)).sort()
+    //   this.filteredOptions$ = this.interestControl.valueChanges.pipe(
+    //     startWith(''),
+    //     map(value => value.toLowerCase()),
+    //     map(value => {
+    //       return this.autocompleteInterests
+    //         .map(interest => {
+    //           const lowerInterest = interest.toLowerCase()
+    //           let score = 0
+    //           if (lowerInterest === value) {
+    //             score = 100
+    //           } else if (lowerInterest.startsWith(value)) {
+    //             score = 50
+    //           } else if (lowerInterest.includes(value)) {
+    //             score = 10
+    //           }
+    //           return { interest, score }
+    //         })
+    //         .filter(interestScore => interestScore.score > 0)
+    //         .sort((a, b) => b.score - a.score)
+    //         .map(interestScore => interestScore.interest)
+    //     }),
+    //   )
+    // })
   }
-
-  interestAdd(identifier: string, checked: boolean) {
-    if (checked) {
-      this.addedInterest.add(identifier)
-    } else {
-      this.addedInterest.delete(identifier)
-    }
+  /**
+   * Below function is added to fetch user interests from parent comp or in
+   * some other case if it is req in this component itself in the future
+   */
+  fetchUserInterests() {
+    this.isFetchingUserInterests = true
+    this.interestSvc.fetchUserInterestsV2().subscribe(
+      data => {
+        this.isFetchingUserInterests = false
+        this.userInterests = data
+      },
+      () => {
+        this.isFetchingUserInterests = false
+        this.userInterestsFetchError = true
+      },
+    )
   }
-  isInterestAdded(interest: string) {
-    return this.interestRES[interest].some((r: string) => Array.from(this.addedInterest).includes(r))
-  }
-
-  // addInterest() {
-  //   if (this.addedInterest.size || this.addedInterest.size === 0 && this.alreadyAddedInterest.size) {
-  //     if (this.playlistForInterest) {
-  //       const interestToRemove = Array.from(this.alreadyAddedInterest).filter(el => !Array.from(this.addedInterest).includes(el))
-  //       const interestToAdd = Array.from(this.addedInterest).filter(el => !Array.from(this.alreadyAddedInterest).includes(el))
-  //       this.interestsData.forEach((interest: string) => {
-  //         if (this.interestRES[interest].some((r: any) => Array.from(this.addedInterest).includes(r))) {
-  //           this.interestToAddMultiple.push(interest)
-  //         }
-  //       })
-  //       this.interestSvc.addUserMultipleInterest(this.interestToAddMultiple).subscribe()
-  //       if (interestToRemove.length) {
-  //         this.playlistSvc.deletePlaylistContent(this.playlistForInterest, interestToRemove).subscribe()
-  //       }
-  //       this.playlistSvc.addPlaylistContent(this.playlistForInterest, interestToAdd).subscribe(
-  //         () => {
-  //           this.snackbar.open(this.createPlaylistSuccessMessage.nativeElement.value)
-  //           this.router.navigate(['/app/setup/home/done'])
-  //         },
-  //         () => {
-  //           this.snackbar.open(this.createPlaylistErrorMessage.nativeElement.value)
-  //           this.router.navigate(['/app/setup/home/done'])
-  //         },
-  //       )
-  //     } else {
-  //       this.playlistSvc.upsertPlaylist({
-  //         playlist_title: this.playListName,
-  //         content_ids: Array.from(this.addedInterest),
-  //         visibility: NsPlaylist.EPlaylistVisibilityTypes.PRIVATE,
-  //       }).subscribe(
-  //         () => {
-  //           this.snackbar.open(this.createPlaylistSuccessMessage.nativeElement.value)
-  //           this.router.navigate(['/app/setup/home/done'])
-  //         },
-  //         () => {
-  //           this.snackbar.open(this.createPlaylistErrorMessage.nativeElement.value)
-  //           this.router.navigate(['/app/setup/home/done'])
-  //         },
-  //       )
-  //     }
-
-  //   } else {
-  //     this.router.navigate(['/app/setup/home/done'])
-  //   }
-  // }
-
   private fetchSuggestedInterests() {
     this.interestSvc.fetchSuggestedInterestV2().subscribe(data => {
-      // //console.log('Interest: ', data)
       this.suggestedInterests = data
-
-      // this.removeAlreadyAddedFromRecommended()
+      this.groupingInterest()
+      this.removeAlreadyAddedFromRecommended()
     })
   }
-
+  private groupingInterest() {
+    // console.log('Interest: ', data, this.userInterestsData.sdgs.keyword)
+    this.sdgs = this.userInterestsData.sdgs.keyword
+    this.region = this.userInterestsData.region.keyword
+    this.others = this.userInterestsData.others.keyword
+  }
+  private removeAlreadyAddedFromRecommended() {
+    if (this.userInterests.length && this.suggestedInterests.length) {
+      // console.log('user interest: ', this.suggestedInterests)
+      const userTopicHash = new Set(this.userInterests)
+      this.suggestedInterests = this.suggestedInterests.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+      this.sdgs = this.sdgs.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+      this.region = this.region.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+      this.others = this.others.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+    }
+  }
+  optionSelected(interest: string) {
+    this.interestControl.setValue('')
+    this.interestSearch.nativeElement.blur()
+    this.addInterest(interest, true)
+  }
   addInterest(interest: string, fromSuggestions = false, recommendIndex = -1) {
     const tempInterest = interest.trim()
     if (!tempInterest.length) {
@@ -182,6 +180,15 @@ export class InterestComponent implements OnInit {
       this.suggestedInterests = this.suggestedInterests.filter(
         suggestedInterest => suggestedInterest !== tempInterest,
       )
+      this.sdgs = this.sdgs.filter(
+        sdgs => sdgs !== tempInterest,
+      )
+      this.region = this.region.filter(
+        region => region !== tempInterest,
+      )
+      this.others = this.others.filter(
+        others => others !== tempInterest,
+      )
     }
     this.userInterests.splice(0, 0, tempInterest)
     this.raiseTelemetry('add', tempInterest)
@@ -195,49 +202,38 @@ export class InterestComponent implements OnInit {
         )
         if (fromSuggestions && recommendIndex > -1) {
           this.suggestedInterests.splice(recommendIndex, 0, interest)
+          this.sdgs.splice(recommendIndex, 0, interest)
+          this.region.splice(recommendIndex, 0, interest)
+          this.others.splice(recommendIndex, 0, interest)
         }
         this.openSnackBar(this.toastFailure.nativeElement.value)
       },
     )
   }
-
+  removeInterest(interest: string) {
+    this.raiseTelemetry('remove', interest)
+    const interestIndex = this.userInterests.indexOf(interest)
+    this.userInterests.splice(interestIndex, 1)
+    this.interestSvc.removeUserInterest(interest).subscribe(
+      _response => {
+        this.fetchSuggestedInterests()
+        this.openSnackBar(this.toastSuccess.nativeElement.value)
+      },
+      _err => {
+        this.userInterests.splice(interestIndex, 0, interest)
+        this.openSnackBar(this.toastFailure.nativeElement.value)
+      },
+    )
+  }
   private openSnackBar(primaryMsg: string, duration: number = 4000) {
     this.snackBar.open(primaryMsg, undefined, {
       duration,
     })
   }
-
+  gotoHomePage() {
+    this.router.navigateByUrl('/page/home')
+  }
   raiseTelemetry(action: 'add' | 'remove', interest: string) {
     this.events.raiseInteractTelemetry('interest', action, { interest })
   }
-
-  // add(event: MatChipInputEvent): void {
-  //   const input = event.input
-  //   const value = event.value
-
-  //   // Add our fruit
-  //   if ((value || '').trim()) {
-  //     this.userinterests.push({ name: value.trim() })
-  //   }
-
-  //   // Reset the input value
-  //   if (input) {
-  //     input.value = ''
-  //   }
-  // }
-
-  // remove(userInterest: IInterest): void {
-  //   const index = this.userinterests.indexOf(userInterest)
-
-  //   if (index >= 0) {
-  //     this.userinterests.splice(index, 1)
-
-  //   }
-  // }
-
-  gotoHomePage() {
-
-    this.router.navigate(['/page/home'])
-  }
-
 }
