@@ -93,7 +93,8 @@ export namespace NsUserDashboard {
     export interface IChangeRole {
       wid: String,
       roles: string[],
-      email: string
+      email: string,
+      name: string,
     }
     export interface IAcceptRole {
       roles: string[],
