@@ -101,7 +101,8 @@
           <span class="ws-mat-primary-text">{{ dpTnc?.acceptedVersion }}</span>
         </div> -->
       </div>
-      <article [innerHTML]="dpTnc?.content | pipeSafeSanitizer: 'html'" class="text-justify font-style"></article>
+      <article [innerHTML]="dpTnc?.content | pipeSafeSanitizer: 'html'" class="text-justify font-style font-text">
+      </article>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
