@@ -27,3 +27,29 @@
   align-items: center;
   margin: 0;
 }
+
+.font-style{
+  font-family: montserrat, sans-serif !important;
+  font-size: 17px !important;
+}
+.font-text{
+
+
+  font-family: campaign, sans-serif !important;
+  font-size: 17px;
+
+}
+
+
+@media screen and (max-width: 450px) {
+  .spaceallign{
+  padding-left:0.8em;
+}
+
+}
+@media screen and (max-width: 380px) {
+  .spaceallignment{
+  padding-left:0em;
+}
+
+}
