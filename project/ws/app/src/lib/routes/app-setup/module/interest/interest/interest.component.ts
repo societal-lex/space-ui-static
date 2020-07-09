@@ -52,6 +52,8 @@ export class InterestComponent implements OnInit {
   interestControl = new FormControl('')
   filteredOptions$: Observable<string[]> = of([])
   appName!: string
+  pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
+
   constructor(
     private events: EventService,
     private route: ActivatedRoute,

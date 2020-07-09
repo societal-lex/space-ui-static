@@ -4,14 +4,27 @@
     Notifications
   </span>
   <span class="spacer"></span>
-  <a
-    [routerLink]="'/app/profile/settings'"
-    [queryParams]="{ tab: 'notifications' }"
-    mat-icon-button
-    style="color: white;"
-  >
-    <mat-icon>settings</mat-icon>
-  </a>
+  <ng-container *ngIf="(isXSmall$ | async) === false">
+    <a
+      [routerLink]="'/app/profile/settings'"
+      [queryParams]="{ tab: 'notifications' }"
+      mat-icon-button
+      style="color: white; padding-right: 6rem;"
+    >
+      <mat-icon>settings</mat-icon>&nbsp;Settings
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="(isXSmall$ | async) === true">
+    <a
+      [routerLink]="'/app/profile/settings'"
+      [queryParams]="{ tab: 'notifications' }"
+      mat-icon-button
+      style="color: white; padding-right: 5rem;"
+    >
+      <mat-icon>settings</mat-icon>
+    </a>
+  </ng-container>
 </mat-toolbar>
 
 <section class="my-4 pt-4 pb-8 pl-4 pr-4 container-balanced">
