@@ -59,3 +59,31 @@ padding: 8px 20px;
 line-height: 1.7;
 
 }
+
+// ol li span strong {
+//     /* font-weight: bold; */
+//     font-size: 20px;
+//     font-family: campaign sans-serif;
+
+// }
+
+// p{
+//     font-family: montserrat, sans-serif !important;
+// }
+::ng-deep {
+  .tnc-container li {
+    font-family: montserrat, sans-serif !important;
+  }
+
+  ol li span strong {
+    /* font-weight: bold; */
+    font-size: 20px;
+    font-family: campaign sans-serif !important;
+
+}
+p strong {
+  font-size: 20px;
+  font-family: campaign sans-serif !important;
+}
+
+}
