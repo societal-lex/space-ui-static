@@ -97,6 +97,7 @@
     // justify-content: space-around;
     margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 20px;
     // border:1px solid rgb(43, 226, 83);
 
     /* border-collapse:separate;
@@ -169,8 +170,12 @@
   right: 0;
 
     }
+
+    .padding-checkbox{
+  padding-right: 10px;
+}
     .checkbox-white{
-      color:white;
+      // color:white !important;
       background-color: white;
     }
     // .allignment{
