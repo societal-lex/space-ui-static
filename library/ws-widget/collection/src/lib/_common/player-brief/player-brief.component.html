@@ -288,14 +288,14 @@
         </ng-container>
       </h3>
     </div>
-    <mat-divider *ngIf="content?.viewCount"></mat-divider>
+    <!-- <mat-divider *ngIf="content?.viewCount"></mat-divider>
     <div class="info-item" *ngIf="content?.sourceShortName">
       <h3 class="item-heading ws-mat-primary-text" i18n>Source</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.sourceShortName }}
       </h3>
     </div>
-    <mat-divider *ngIf="content?.sourceShortName"></mat-divider>
+    <mat-divider *ngIf="content?.sourceShortName"></mat-divider> -->
     <!-- Structure -->
 
     <div class="info-item" *ngIf="hasTocStructure && content?.children?.length">
@@ -418,7 +418,7 @@
 
     <!-- added licence policy details -->
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-    <div class="info-item" *ngIf="content?.spaceLicense">
+    <div class="info-item" *ngIf="content?.spaceLicense?.length">
       <h3 class="item-heading ws-mat-primary-text" i18n>Licence</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.spaceLicense  }}
@@ -427,7 +427,7 @@
     <mat-divider></mat-divider>
 
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-    <div class="info-item" *ngIf="content?.spaceLicenseAttribution">
+    <div class="info-item" *ngIf="content?.spaceLicenseAttribution?.length">
       <h3 class="item-heading ws-mat-primary-text" i18n>Attributions</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.spaceLicenseAttribution  }}
@@ -436,7 +436,7 @@
     <mat-divider></mat-divider>
 
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-    <div class="info-item" *ngIf="content?. spaceLicenseCopyright">
+    <div class="info-item" *ngIf="content?. spaceLicenseCopyright?.length">
       <h3 class="item-heading ws-mat-primary-text" i18n>Copyright</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.spaceLicenseCopyright  }}
@@ -445,7 +445,7 @@
     <mat-divider></mat-divider>
 
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-    <div class="info-item" *ngIf="content?. spaceAreaOfExpertise">
+    <div class="info-item" *ngIf="content?. spaceAreaOfExpertise?.length">
       <h3 class="item-heading ws-mat-primary-text" i18n>Areas of Expertise</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.spaceAreaOfExpertise}}
@@ -456,7 +456,7 @@
 
 
     <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-    <div class="info-item" *ngIf="content?.sourceName">
+    <div class="info-item" *ngIf="content?.sourceName?.length">
       <h3 class="item-heading ws-mat-primary-text" i18n>Created By</h3>
       <h3 class="ws-mat-accent-text width-expand">
         {{ content?.sourceName  }}
@@ -489,7 +489,7 @@
       </div> -->
 
       <mat-divider *ngIf="hasTocStructure && content?.children?.length"></mat-divider>
-      <div class="info-item" *ngIf="content?.theme">
+      <div class="info-item" *ngIf="content?.theme?.length">
         <h3 class="item-heading ws-mat-primary-text" i18n>SDG</h3>
         <h3 class="ws-mat-accent-text width-expand">
           {{ content?.theme  }}
