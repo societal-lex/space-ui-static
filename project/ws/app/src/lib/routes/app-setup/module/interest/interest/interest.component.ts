@@ -134,7 +134,6 @@ export class InterestComponent implements OnInit {
   }
   private fetchSuggestedInterests() {
     this.interestSvc.fetchSuggestedInterestV2().subscribe(data => {
-      console.log('data2 : ', data)
       this.suggestedInterests = data
       this.groupingInterest()
       this.removeAlreadyAddedFromRecommended()
