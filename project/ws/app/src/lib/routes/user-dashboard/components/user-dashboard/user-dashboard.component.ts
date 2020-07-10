@@ -212,6 +212,7 @@ export class UserDashboardComponent implements OnInit {
     })
   }
   async  changeUserRoles(roles: any, getwid: any, displayName: string) {
+    this.isLoad = true
     this.headersForChangeUserRole.rootOrg = this.getRootOrg
     this.headersForChangeUserRole.org = this.getOrg
     this.headersForChangeUserRole.wid_OrgAdmin = this.widLoggedinUser
@@ -222,6 +223,7 @@ export class UserDashboardComponent implements OnInit {
     this.paramsForChangeRole.email = this.email
     this.paramsForChangeRole.name = displayName
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
+    this.isLoad = false
     if (userChangedRoleResponse.ok) {
       this.paramsForChangeRole.wid = ''
       this.paramsForChangeRole.roles = []
