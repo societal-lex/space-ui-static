@@ -76,6 +76,7 @@ export class InterestComponent implements OnInit {
   }
   ngOnInit() {
     this.userInterestsDataFromConfig = this.route.data.subscribe(data => {
+      // console.log('data : ', data)
       this.userInterestsData = data.pageData.data
     })
     // this.displayMode = this.route.snapshot.queryParamMap.get('mode')
