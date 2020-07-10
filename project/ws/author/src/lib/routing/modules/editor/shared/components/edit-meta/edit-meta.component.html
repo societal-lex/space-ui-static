@@ -1252,8 +1252,535 @@
           </div>
         </div>
       </mat-tab>
+      <mat-tab *ngIf="checkSpecificDetailsVisibility()" (click)="formNext(2)">
+        <ng-template
+          mat-tab-label
+          i18n
+          id="ws-auth-edit-meta-tab-intended-for"
+          name="ws-auth-edit-meta-tab-intended-for"
+        >
+          Specific Details
+        </ng-template>
+        <div class="margin-top-xl">
+          <p class="mat-h5 margin-top-s margin-left-xl" *ngIf="checkCondition('audience', 'show')">
+            * Provide meta details. Depending on the asset type, some properties will be visible.
+          </p>
+          <ng-container *ngIf="promptUserForAssetType">
+            <p class="mat-h5 margin-top-s margin-left-xl">
+              * First select a value for 'Type' field in the <b>Classification</b> tab
+            </p>
+          </ng-container>
+          <div class="grid">
+            <ng-container *ngIf="knowledgeAssetFormEnabled">
+              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('resourceType', 'show')"
+              [ngClass]="{ disable: checkCondition('resourceType', 'disabled') }">
+              <label [ngClass]="{ required: checkCondition('resourceType', 'required') }">
+                <b i18n>Format</b>
+                <!-- <b *ngIf="!isSiemens" i18n>Category Type</b> -->
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('resourceType') }">
+                  <mat-select formControlName="resourceType" placeholder="--Select--"
+                    [required]="checkCondition('resourceType', 'required')">
+                    <mat-option *ngIf="!checkCondition('resourceType', 'required')" i18n [value]="null">None
+                    </mat-option>
+                    <mat-option *ngFor="let resource of ordinals.categoryType" [value]="resource">
+                      {{ resource }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="showError('resourceType')" i18n>Format is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            </ng-container>
+            <ng-container *ngIf="technologyAssetFormEnabled">
+              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('interface_api', 'show')"
+              [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }">
+              <div class="margin-top-xs" *ngIf="checkCondition('interface_api', 'show')"
+                [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('interface_api', 'required') }">
+                  Interface / API
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('interface_api') }">
+                  <input matInput #interface_api formControlName="interface_api" maxlength="500" i18n-placeholder
+                    placeholder="Enter interface / API link"
+                    [required]="checkCondition('interface_api', 'required') ? true : null" />
+                  <mat-hint align="end">{{ interface_api?.value.length }} / 500</mat-hint>
+                  <mat-error *ngIf="showError('interface_api')" i18n="Name Error|Explains interface / API is required">
+                    Interface / API is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('codebase', 'show')"
+              [ngClass]="{ disable: checkCondition('codebase', 'disabled') }">
+              <div class="margin-top-xs" *ngIf="checkCondition('codebase', 'show')"
+                [ngClass]="{ disable: checkCondition('codebase', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('codebase', 'required') }">
+                  Codebase
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('codebase') }">
+                  <input matInput #codebase formControlName="codebase" maxlength="500" i18n-placeholder
+                    placeholder="Enter Codebase link"
+                    [required]="checkCondition('codebase', 'required') ? true : null" />
+                  <mat-hint align="end">{{ codebase?.value.length }} / 500</mat-hint>
+                  <mat-error *ngIf="showError('codebase')" i18n="Name Error|Explains codebase is required">
+                    Codebase is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('documentation', 'show')"
+              [ngClass]="{ disable: checkCondition('documentation', 'disabled') }">
+              <div class="margin-top-xs" *ngIf="checkCondition('documentation', 'show')"
+                [ngClass]="{ disable: checkCondition('documentation', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('documentation', 'required') }">
+                  Documentation
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('documentation') }">
+                  <input matInput #documentation formControlName="documentation" maxlength="500" i18n-placeholder
+                    placeholder="Enter Documentation link"
+                    [required]="checkCondition('documentation', 'required') ? true : null" />
+                  <mat-hint align="end">{{ documentation?.value.length }} / 500</mat-hint>
+                  <mat-error *ngIf="showError('documentation')" i18n="Name Error|Explains documentation is required">
+                    Documentation is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('sandbox', 'show')"
+              [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }">
+              <div class="margin-top-xs" *ngIf="checkCondition('sandbox', 'show')"
+                [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('sandbox', 'required') }">
+                  Sandbox
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('sandbox') }">
+                  <input matInput #sandbox formControlName="sandbox" maxlength="500" i18n-placeholder
+                    placeholder="Enter Sandbox link"
+                    [required]="checkCondition('sandbox', 'required') ? true : null" />
+                  <mat-hint align="end">{{ sandbox?.value.length }} / 500</mat-hint>
+                  <mat-error *ngIf="showError('sandbox')" i18n="Name Error|Explains Sandbox is required">
+                    Sandbox is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            </ng-container>
+            <ng-container *ngIf="connectionAssetFormEnabled">
+              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('email_id', 'show')"
+              [ngClass]="{ disable: checkCondition('email_id', 'disabled') }">
+              <div class="margin-top-xs" *ngIf="checkCondition('email_id', 'show')"
+                [ngClass]="{ disable: checkCondition('email_id', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('email_id', 'required') }">
+                  Email ID
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('email_id') }">
+                  <input matInput #email_id formControlName="email_id" maxlength="500" i18n-placeholder
+                    placeholder="Enter interface / API"
+                    [required]="checkCondition('email_id', 'required') ? true : null" />
+                  <mat-hint align="end">{{ email_id?.value.length }} / 500</mat-hint>
+                  <mat-error *ngIf="showError('email_id')" i18n="Name Error|Explains email id is required">
+                    Email ID is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('profile_link', 'show')"
+              [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
+              <div class="margin-top-xs" *ngIf="checkCondition('profile_link', 'show')"
+                [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
+                <p class="font-weight-bold margin-remove-bottom"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('profile_link', 'required') }">
+                  Profile Link
+                </p>
+                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('profile_link') }">
+                  <input matInput #profile_link formControlName="profile_link" maxlength="500" i18n-placeholder
+                    placeholder="Enter Profile link"
+                    [required]="checkCondition('profile_link', 'required') ? true : null" />
+                  <mat-hint align="end">{{ profile_link?.value.length }} / 500</mat-hint>
+                  <mat-error *ngIf="showError('profile_link')" i18n="Name Error|Explains profile link is required">
+                    Profile Link is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceAreaOfExpertise', 'show')"
+                  [ngClass]="{ disable: checkCondition('spaceAreaOfExpertise', 'disabled') }">
+                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('spaceAreaOfExpertise', 'required') }">
+                    Area Of Expertise
+                  </p>
+                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceAreaOfExpertise') }">
+                    <input matInput #spaceAreaOfExpertise formControlName="spaceAreaOfExpertise" i18n-placeholder
+                      placeholder="Enter Area of Expertise"
+                      [required]="checkCondition('spaceAreaOfExpertise', 'required') ? true : null" />
+                    <mat-error *ngIf="showError('spaceAreaOfExpertise')" i18n="Name Error|Explains attribution is required">
+                      Area Of Expertise is required
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+            </ng-container>
+            <div
+              class="margin-top-xs margin-left-xl"
+              *ngIf="checkCondition('audience', 'show')"
+              [ngClass]="{ disable: checkCondition('audience', 'disabled') }"
+            >
+              <label>
+                <div class="margin-top-xs flex flex-middle">
+                  <b i18n>Audience</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer"
+                    (click)="showInfo('audience')"
+                    >info
+                  </mat-icon>
+                </div>
+                <span i18n *ngIf="infoType === 'audience'">
+                  Add one or more targeted listeners for whom this content is intended for
+                </span>
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs width-90"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('audience') }"
+                >
+                  <mat-chip-list #audienceChipList i18n-aria-label aria-label="Audience selection">
+                    <mat-chip
+                      *ngFor="let job of contentForm.controls.audience.value"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="removeFromFormControl(job, 'audience')"
+                    >
+                      {{ job }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      i18n-placeholder
+                      placeholder="--Select--"
+                      #audienceView
+                      [formControl]="audienceCtrl"
+                      [matChipInputFor]="audienceChipList"
+                      [matAutocomplete]="audienceAuto"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="false"
+                      (matChipInputTokenEnd)="removeField($event)"
+                    />
+                  </mat-chip-list>
+                  <mat-autocomplete
+                    #audienceAuto="matAutocomplete"
+                    (optionSelected)="addToFormControl($event, 'audience')"
+                  >
+                    <mat-option *ngIf="!checkCondition('audience', 'required')" i18n [value]="null"
+                      >None
+                    </mat-option>
+                    <mat-option *ngFor="let job of audienceList" [value]="job">
+                      {{ job }}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error class="error-font" *ngIf="showError('audience')" i18n
+                    >Audience is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div
+              class="margin-right-xl"
+              *ngIf="checkCondition('org', 'show')"
+              [ngClass]="{ disable: checkCondition('org', 'disabled') }"
+            >
+              <label>
+                <div class="margin-top-xs flex flex-middle">
+                  <b i18n>Organisation</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer"
+                    (click)="showInfo('organisation')"
+                    >info
+                  </mat-icon>
+                </div>
+                <span i18n *ngIf="infoType === 'organisation'">
+                  Select your organisation below
+                </span>
+              </label>
+              <div class="margin-top-s">
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs width-90"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('org') }"
+                >
+                  <mat-select
+                    formControlName="org"
+                    i18n-placeholder
+                    placeholder="--Select--"
+                    multiple
+                  >
+                    <mat-select-trigger>
+                      {{ contentForm.controls.org.value ? contentForm.controls.org.value[0] : '' }}
+                      <span
+                        *ngIf="contentForm.controls.org.value"
+                        class="example-additional-selection"
+                      >
+                        (+{{ contentForm.controls.org.value.length - 1 }}
+                        <ng-container *ngIf="contentForm.controls.org.value.length === 2" i18n
+                          >other</ng-container
+                        >
+                        <ng-container *ngIf="contentForm.controls.org.value.length > 2" i18n
+                          >others</ng-container
+                        >
+                        )
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let org of ordinals.org" [value]="org"
+                      >{{ org }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="showError('org')" i18n>Organisation is mandatory </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <!--
+            <div class="margin-top-xs margin-left-xl">
+              <div class="margin-top-xs margin-bottom-s flex flex-middle">
+                <div
+                  class="margin-top-xs width-90"
+                  *ngIf="checkCondition('region', 'show')"
+                  [ngClass]="{ disable: checkCondition('region', 'disabled') }"
+                >
+                  <label>
+                    <b class="margin-remove-bottom" i18n>Region</b>
+                  </label>
+                  <div class="margin-top-xs">
+                    <mat-form-field
+                      appearance="outline"
+                      class="margin-top-xs"
+                      [ngClass]="{ 'mat-form-field-invalid': showError('region') }"
+                    >
+                      <mat-chip-list #regionChipList i18n-aria-label aria-label="Region selection">
+                        <mat-chip
+                          *ngFor="let region of contentForm.controls.region.value"
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="removeFromFormControl(region, 'region')"
+                        >
+                          {{ region }}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                          i18n-placeholder
+                          placeholder="Search by region"
+                          #regionView
+                          [formControl]="regionCtrl"
+                          [matChipInputFor]="regionChipList"
+                          [matAutocomplete]="regionAuto"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="false"
+                          (matChipInputTokenEnd)="removeField($event)"
+                        />
+                      </mat-chip-list>
+                      <mat-autocomplete
+                        #regionAuto="matAutocomplete"
+                        (optionSelected)="addToFormControl($event, 'region')"
+                      >
+                        <mat-option *ngFor="let region of regionList" [value]="region">
+                          {{ region }}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <mat-error class="error-font" *ngIf="showError('region')" i18n
+                        >Region is mandatory
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          -->
+          <!--
+            <div
+              class="margin-top-xs margin-right-xl"
+              *ngIf="checkCondition('accessPaths', 'show')"
+              [ngClass]="{ disable: checkCondition('accessPaths', 'disabled') }"
+            >
+              <label>
+                <div class="margin-top-xs flex flex-middle">
+                  <b i18n>Access Restrictions</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer"
+                    (click)="showInfo('accessPaths')"
+                    >info
+                  </mat-icon>
+                </div>
+                <span i18n *ngIf="infoType === 'accessPaths'">
+                  Restrict access to your content by choosing your preference below
+                </span>
+              </label>
+              <div class="margin-top-s">
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('accessPaths') }"
+                >
+                  <mat-chip-list #accessPathChipList i18n-aria-label aria-label="Region selection">
+                    <mat-chip
+                      *ngFor="let path of contentForm.controls.accessPaths.value; let i = index"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="remove(i, 'accessPaths')"
+                    >
+                      {{ path }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      i18n-placeholder
+                      placeholder="Accessible by everyone"
+                      #accessPathsView
+                      [formControl]="accessPathsCtrl"
+                      [matChipInputFor]="accessPathChipList"
+                      [matAutocomplete]="accessPathAuto"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="false"
+                      (matChipInputTokenEnd)="removeField($event)"
+                    />
+                  </mat-chip-list>
+                  <mat-autocomplete
+                    #accessPathAuto="matAutocomplete"
+                    (optionSelected)="addToFormControl($event, 'accessPaths')"
+                  >
+                    <mat-option *ngIf="fetchTagsStatus === 'fetching'" i18n>Fetching...</mat-option>
+                    <mat-option *ngIf="fetchTagsStatus === 'done' && !accessPathList.length" i18n>
+                      No match found. Please check the value entered.</mat-option
+                    >
+                    <mat-option *ngFor="let path of accessPathList" [value]="path">
+                      {{ path }}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error class="error-font" *ngIf="showError('accessPaths')" i18n
+                    >Access Restriction is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          -->
+          </div>
+          <div class="grid">
+            <div
+              class="margin-top-xs margin-left-xl"
+              *ngIf="checkCondition('jobProfile', 'show')"
+              [ngClass]="{ disable: checkCondition('jobProfile', 'disabled') }"
+            >
+              <label>
+                <div class="margin-top-xs flex flex-middle">
+                  <b i18n>Job Profiles</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer"
+                    (click)="showInfo('jobProfile')"
+                    >info
+                  </mat-icon>
+                </div>
+                <span i18n *ngIf="infoType === 'jobProfile'">
+                  Add one or more targeted listeners for whom this content is intended for
+                </span>
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs width-90"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('jobProfile') }"
+                >
+                  <mat-chip-list
+                    #jobProfileChipList
+                    i18n-aria-label
+                    aria-label="Job profile selection"
+                  >
+                    <mat-chip
+                      *ngFor="let job of contentForm.controls.jobProfile.value"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="removeFromFormControl(job, 'jobProfile')"
+                    >
+                      {{ job }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      i18n-placeholder
+                      placeholder="--Select--"
+                      #jobProfileView
+                      [formControl]="jobProfileCtrl"
+                      [matChipInputFor]="jobProfileChipList"
+                      [matAutocomplete]="jobProfileAuto"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="false"
+                      (matChipInputTokenEnd)="removeField($event)"
+                    />
+                  </mat-chip-list>
+                  <mat-autocomplete
+                    #jobProfileAuto="matAutocomplete"
+                    (optionSelected)="addToFormControl($event, 'jobProfile')"
+                  >
+                    <mat-option
+                      *ngIf="!checkCondition('jobProfile', 'required')"
+                      i18n
+                      [value]="null"
+                      >None
+                    </mat-option>
+                    <mat-option *ngFor="let job of jobProfileList" [value]="job">
+                      {{ job }}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error class="error-font" *ngIf="showError('jobProfile')" i18n
+                    >Job Profile is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-end margin-top-l margin-bottom-l margin-right-l">
+            <button
+              mat-raised-button
+              type="button"
+              id="ws-auth-edit-save-tab-three"
+              name="ws-auth-edit-save-tab-three"
+              class="text-white ws-mat-primary-background text-white margin-right-m"
+              (click)="data.emit('save')"
+            >
+              <span class="text-white" i18n>Save</span>
+            </button>
+            <button
+              mat-raised-button
+              type="button"
+              class="text-white ws-mat-primary-background text-white"
+              (click)="formNext(3)"
+              id="ws-auth-edit-next-tab-three"
+              name="ws-auth-edit-next-tab-three"
+            >
+              <span class="text-white" i18n>Next</span>
+            </button>
+          </div>
+        </div>
+      </mat-tab>
       <ng-container *ngIf="displayPolicyForm">
-        <mat-tab (click)="formNext(2)">
+        <mat-tab (click)="formNext(3)">
           <ng-template
             mat-tab-label
             id="ws-auth-edit-meta-tab-related-optional"
@@ -1835,7 +2362,7 @@
                 mat-raised-button
                 type="button"
                 class="text-white ws-mat-primary-background text-white"
-                (click)="formNext(3)"
+                (click)="formNext(4)"
               >
                 <span class="text-white" i18n>Next</span>
               </button>
@@ -1843,533 +2370,6 @@
           </div>
         </mat-tab>
       </ng-container>
-      <mat-tab *ngIf="checkSpecificDetailsVisibility()" (click)="formNext(3)">
-        <ng-template
-          mat-tab-label
-          i18n
-          id="ws-auth-edit-meta-tab-intended-for"
-          name="ws-auth-edit-meta-tab-intended-for"
-        >
-          Specific Details
-        </ng-template>
-        <div class="margin-top-xl">
-          <p class="mat-h5 margin-top-s margin-left-xl" *ngIf="checkCondition('audience', 'show')">
-            * Provide meta details. Depending on the asset type, some properties will be visible.
-          </p>
-          <ng-container *ngIf="promptUserForAssetType">
-            <p class="mat-h5 margin-top-s margin-left-xl">
-              * First select a value for 'Type' field in the <b>Classification</b> tab
-            </p>
-          </ng-container>
-          <div class="grid">
-            <ng-container *ngIf="knowledgeAssetFormEnabled">
-              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('resourceType', 'show')"
-              [ngClass]="{ disable: checkCondition('resourceType', 'disabled') }">
-              <label [ngClass]="{ required: checkCondition('resourceType', 'required') }">
-                <b i18n>Format</b>
-                <!-- <b *ngIf="!isSiemens" i18n>Category Type</b> -->
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('resourceType') }">
-                  <mat-select formControlName="resourceType" placeholder="--Select--"
-                    [required]="checkCondition('resourceType', 'required')">
-                    <mat-option *ngIf="!checkCondition('resourceType', 'required')" i18n [value]="null">None
-                    </mat-option>
-                    <mat-option *ngFor="let resource of ordinals.categoryType" [value]="resource">
-                      {{ resource }}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="showError('resourceType')" i18n>Format is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            </ng-container>
-            <ng-container *ngIf="technologyAssetFormEnabled">
-              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('interface_api', 'show')"
-              [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('interface_api', 'show')"
-                [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('interface_api', 'required') }">
-                  Interface / API
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('interface_api') }">
-                  <input matInput #interface_api formControlName="interface_api" maxlength="500" i18n-placeholder
-                    placeholder="Enter interface / API link"
-                    [required]="checkCondition('interface_api', 'required') ? true : null" />
-                  <mat-hint align="end">{{ interface_api?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('interface_api')" i18n="Name Error|Explains interface / API is required">
-                    Interface / API is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('codebase', 'show')"
-              [ngClass]="{ disable: checkCondition('codebase', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('codebase', 'show')"
-                [ngClass]="{ disable: checkCondition('codebase', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('codebase', 'required') }">
-                  Codebase
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('codebase') }">
-                  <input matInput #codebase formControlName="codebase" maxlength="500" i18n-placeholder
-                    placeholder="Enter Codebase link"
-                    [required]="checkCondition('codebase', 'required') ? true : null" />
-                  <mat-hint align="end">{{ codebase?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('codebase')" i18n="Name Error|Explains codebase is required">
-                    Codebase is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('documentation', 'show')"
-              [ngClass]="{ disable: checkCondition('documentation', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('documentation', 'show')"
-                [ngClass]="{ disable: checkCondition('documentation', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('documentation', 'required') }">
-                  Documentation
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('documentation') }">
-                  <input matInput #documentation formControlName="documentation" maxlength="500" i18n-placeholder
-                    placeholder="Enter Documentation link"
-                    [required]="checkCondition('documentation', 'required') ? true : null" />
-                  <mat-hint align="end">{{ documentation?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('documentation')" i18n="Name Error|Explains documentation is required">
-                    Documentation is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('sandbox', 'show')"
-              [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('sandbox', 'show')"
-                [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('sandbox', 'required') }">
-                  Sandbox
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('sandbox') }">
-                  <input matInput #sandbox formControlName="sandbox" maxlength="500" i18n-placeholder
-                    placeholder="Enter Sandbox link"
-                    [required]="checkCondition('sandbox', 'required') ? true : null" />
-                  <mat-hint align="end">{{ sandbox?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('sandbox')" i18n="Name Error|Explains Sandbox is required">
-                    Sandbox is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            </ng-container>
-            <ng-container *ngIf="connectionAssetFormEnabled">
-              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('email_id', 'show')"
-              [ngClass]="{ disable: checkCondition('email_id', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('email_id', 'show')"
-                [ngClass]="{ disable: checkCondition('email_id', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('email_id', 'required') }">
-                  Email ID
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('email_id') }">
-                  <input matInput #email_id formControlName="email_id" maxlength="500" i18n-placeholder
-                    placeholder="Enter interface / API"
-                    [required]="checkCondition('email_id', 'required') ? true : null" />
-                  <mat-hint align="end">{{ email_id?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('email_id')" i18n="Name Error|Explains email id is required">
-                    Email ID is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('profile_link', 'show')"
-              [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('profile_link', 'show')"
-                [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('profile_link', 'required') }">
-                  Profile Link
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('profile_link') }">
-                  <input matInput #profile_link formControlName="profile_link" maxlength="500" i18n-placeholder
-                    placeholder="Enter Profile link"
-                    [required]="checkCondition('profile_link', 'required') ? true : null" />
-                  <mat-hint align="end">{{ profile_link?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('profile_link')" i18n="Name Error|Explains profile link is required">
-                    Profile Link is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceAreaOfExpertise', 'show')"
-                  [ngClass]="{ disable: checkCondition('spaceAreaOfExpertise', 'disabled') }">
-                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
-                    i18n="Title label|Label which explains the user to enter title"
-                    [ngClass]="{ required: checkCondition('spaceAreaOfExpertise', 'required') }">
-                    Area Of Expertise
-                  </p>
-                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceAreaOfExpertise') }">
-                    <input matInput #spaceAreaOfExpertise formControlName="spaceAreaOfExpertise" i18n-placeholder
-                      placeholder="Enter Area of Expertise"
-                      [required]="checkCondition('spaceAreaOfExpertise', 'required') ? true : null" />
-                    <mat-error *ngIf="showError('spaceAreaOfExpertise')" i18n="Name Error|Explains attribution is required">
-                      Area Of Expertise is required
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-            </ng-container>
-            <div
-              class="margin-top-xs margin-left-xl"
-              *ngIf="checkCondition('audience', 'show')"
-              [ngClass]="{ disable: checkCondition('audience', 'disabled') }"
-            >
-              <label>
-                <div class="margin-top-xs flex flex-middle">
-                  <b i18n>Audience</b>
-                  <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer"
-                    (click)="showInfo('audience')"
-                    >info
-                  </mat-icon>
-                </div>
-                <span i18n *ngIf="infoType === 'audience'">
-                  Add one or more targeted listeners for whom this content is intended for
-                </span>
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs width-90"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('audience') }"
-                >
-                  <mat-chip-list #audienceChipList i18n-aria-label aria-label="Audience selection">
-                    <mat-chip
-                      *ngFor="let job of contentForm.controls.audience.value"
-                      [selectable]="selectable"
-                      [removable]="removable"
-                      (removed)="removeFromFormControl(job, 'audience')"
-                    >
-                      {{ job }}
-                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input
-                      i18n-placeholder
-                      placeholder="--Select--"
-                      #audienceView
-                      [formControl]="audienceCtrl"
-                      [matChipInputFor]="audienceChipList"
-                      [matAutocomplete]="audienceAuto"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      [matChipInputAddOnBlur]="false"
-                      (matChipInputTokenEnd)="removeField($event)"
-                    />
-                  </mat-chip-list>
-                  <mat-autocomplete
-                    #audienceAuto="matAutocomplete"
-                    (optionSelected)="addToFormControl($event, 'audience')"
-                  >
-                    <mat-option *ngIf="!checkCondition('audience', 'required')" i18n [value]="null"
-                      >None
-                    </mat-option>
-                    <mat-option *ngFor="let job of audienceList" [value]="job">
-                      {{ job }}
-                    </mat-option>
-                  </mat-autocomplete>
-                  <mat-error class="error-font" *ngIf="showError('audience')" i18n
-                    >Audience is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div
-              class="margin-right-xl"
-              *ngIf="checkCondition('org', 'show')"
-              [ngClass]="{ disable: checkCondition('org', 'disabled') }"
-            >
-              <label>
-                <div class="margin-top-xs flex flex-middle">
-                  <b i18n>Organisation</b>
-                  <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer"
-                    (click)="showInfo('organisation')"
-                    >info
-                  </mat-icon>
-                </div>
-                <span i18n *ngIf="infoType === 'organisation'">
-                  Select your organisation below
-                </span>
-              </label>
-              <div class="margin-top-s">
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs width-90"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('org') }"
-                >
-                  <mat-select
-                    formControlName="org"
-                    i18n-placeholder
-                    placeholder="--Select--"
-                    multiple
-                  >
-                    <mat-select-trigger>
-                      {{ contentForm.controls.org.value ? contentForm.controls.org.value[0] : '' }}
-                      <span
-                        *ngIf="contentForm.controls.org.value"
-                        class="example-additional-selection"
-                      >
-                        (+{{ contentForm.controls.org.value.length - 1 }}
-                        <ng-container *ngIf="contentForm.controls.org.value.length === 2" i18n
-                          >other</ng-container
-                        >
-                        <ng-container *ngIf="contentForm.controls.org.value.length > 2" i18n
-                          >others</ng-container
-                        >
-                        )
-                      </span>
-                    </mat-select-trigger>
-                    <mat-option *ngFor="let org of ordinals.org" [value]="org"
-                      >{{ org }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="showError('org')" i18n>Organisation is mandatory </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-          <div class="grid">
-            <!--
-            <div class="margin-top-xs margin-left-xl">
-              <div class="margin-top-xs margin-bottom-s flex flex-middle">
-                <div
-                  class="margin-top-xs width-90"
-                  *ngIf="checkCondition('region', 'show')"
-                  [ngClass]="{ disable: checkCondition('region', 'disabled') }"
-                >
-                  <label>
-                    <b class="margin-remove-bottom" i18n>Region</b>
-                  </label>
-                  <div class="margin-top-xs">
-                    <mat-form-field
-                      appearance="outline"
-                      class="margin-top-xs"
-                      [ngClass]="{ 'mat-form-field-invalid': showError('region') }"
-                    >
-                      <mat-chip-list #regionChipList i18n-aria-label aria-label="Region selection">
-                        <mat-chip
-                          *ngFor="let region of contentForm.controls.region.value"
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="removeFromFormControl(region, 'region')"
-                        >
-                          {{ region }}
-                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input
-                          i18n-placeholder
-                          placeholder="Search by region"
-                          #regionView
-                          [formControl]="regionCtrl"
-                          [matChipInputFor]="regionChipList"
-                          [matAutocomplete]="regionAuto"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          [matChipInputAddOnBlur]="false"
-                          (matChipInputTokenEnd)="removeField($event)"
-                        />
-                      </mat-chip-list>
-                      <mat-autocomplete
-                        #regionAuto="matAutocomplete"
-                        (optionSelected)="addToFormControl($event, 'region')"
-                      >
-                        <mat-option *ngFor="let region of regionList" [value]="region">
-                          {{ region }}
-                        </mat-option>
-                      </mat-autocomplete>
-                      <mat-error class="error-font" *ngIf="showError('region')" i18n
-                        >Region is mandatory
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-          -->
-          <!--
-            <div
-              class="margin-top-xs margin-right-xl"
-              *ngIf="checkCondition('accessPaths', 'show')"
-              [ngClass]="{ disable: checkCondition('accessPaths', 'disabled') }"
-            >
-              <label>
-                <div class="margin-top-xs flex flex-middle">
-                  <b i18n>Access Restrictions</b>
-                  <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer"
-                    (click)="showInfo('accessPaths')"
-                    >info
-                  </mat-icon>
-                </div>
-                <span i18n *ngIf="infoType === 'accessPaths'">
-                  Restrict access to your content by choosing your preference below
-                </span>
-              </label>
-              <div class="margin-top-s">
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('accessPaths') }"
-                >
-                  <mat-chip-list #accessPathChipList i18n-aria-label aria-label="Region selection">
-                    <mat-chip
-                      *ngFor="let path of contentForm.controls.accessPaths.value; let i = index"
-                      [selectable]="selectable"
-                      [removable]="removable"
-                      (removed)="remove(i, 'accessPaths')"
-                    >
-                      {{ path }}
-                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input
-                      i18n-placeholder
-                      placeholder="Accessible by everyone"
-                      #accessPathsView
-                      [formControl]="accessPathsCtrl"
-                      [matChipInputFor]="accessPathChipList"
-                      [matAutocomplete]="accessPathAuto"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      [matChipInputAddOnBlur]="false"
-                      (matChipInputTokenEnd)="removeField($event)"
-                    />
-                  </mat-chip-list>
-                  <mat-autocomplete
-                    #accessPathAuto="matAutocomplete"
-                    (optionSelected)="addToFormControl($event, 'accessPaths')"
-                  >
-                    <mat-option *ngIf="fetchTagsStatus === 'fetching'" i18n>Fetching...</mat-option>
-                    <mat-option *ngIf="fetchTagsStatus === 'done' && !accessPathList.length" i18n>
-                      No match found. Please check the value entered.</mat-option
-                    >
-                    <mat-option *ngFor="let path of accessPathList" [value]="path">
-                      {{ path }}
-                    </mat-option>
-                  </mat-autocomplete>
-                  <mat-error class="error-font" *ngIf="showError('accessPaths')" i18n
-                    >Access Restriction is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-          -->
-          </div>
-          <div class="grid">
-            <div
-              class="margin-top-xs margin-left-xl"
-              *ngIf="checkCondition('jobProfile', 'show')"
-              [ngClass]="{ disable: checkCondition('jobProfile', 'disabled') }"
-            >
-              <label>
-                <div class="margin-top-xs flex flex-middle">
-                  <b i18n>Job Profiles</b>
-                  <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer"
-                    (click)="showInfo('jobProfile')"
-                    >info
-                  </mat-icon>
-                </div>
-                <span i18n *ngIf="infoType === 'jobProfile'">
-                  Add one or more targeted listeners for whom this content is intended for
-                </span>
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs width-90"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('jobProfile') }"
-                >
-                  <mat-chip-list
-                    #jobProfileChipList
-                    i18n-aria-label
-                    aria-label="Job profile selection"
-                  >
-                    <mat-chip
-                      *ngFor="let job of contentForm.controls.jobProfile.value"
-                      [selectable]="selectable"
-                      [removable]="removable"
-                      (removed)="removeFromFormControl(job, 'jobProfile')"
-                    >
-                      {{ job }}
-                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input
-                      i18n-placeholder
-                      placeholder="--Select--"
-                      #jobProfileView
-                      [formControl]="jobProfileCtrl"
-                      [matChipInputFor]="jobProfileChipList"
-                      [matAutocomplete]="jobProfileAuto"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      [matChipInputAddOnBlur]="false"
-                      (matChipInputTokenEnd)="removeField($event)"
-                    />
-                  </mat-chip-list>
-                  <mat-autocomplete
-                    #jobProfileAuto="matAutocomplete"
-                    (optionSelected)="addToFormControl($event, 'jobProfile')"
-                  >
-                    <mat-option
-                      *ngIf="!checkCondition('jobProfile', 'required')"
-                      i18n
-                      [value]="null"
-                      >None
-                    </mat-option>
-                    <mat-option *ngFor="let job of jobProfileList" [value]="job">
-                      {{ job }}
-                    </mat-option>
-                  </mat-autocomplete>
-                  <mat-error class="error-font" *ngIf="showError('jobProfile')" i18n
-                    >Job Profile is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-end margin-top-l margin-bottom-l margin-right-l">
-            <button
-              mat-raised-button
-              type="button"
-              id="ws-auth-edit-save-tab-three"
-              name="ws-auth-edit-save-tab-three"
-              class="text-white ws-mat-primary-background text-white margin-right-m"
-              (click)="data.emit('save')"
-            >
-              <span class="text-white" i18n>Save</span>
-            </button>
-            <button
-              mat-raised-button
-              type="button"
-              class="text-white ws-mat-primary-background text-white"
-              (click)="formNext(4)"
-              id="ws-auth-edit-next-tab-three"
-              name="ws-auth-edit-next-tab-three"
-            >
-              <span class="text-white" i18n>Next</span>
-            </button>
-          </div>
-        </div>
-      </mat-tab>
       <mat-tab (click)="formNext(4)">
         <ng-template
           mat-tab-label
