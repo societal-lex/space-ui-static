@@ -493,7 +493,8 @@
                 </mat-form-field>
               </div>
             </div> -->
-            <div
+            <div class="margin-top-xs marginlef-xl">
+              <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('sourceName', 'show')"
               [ngClass]="{ disable: checkCondition('sourceName', 'disabled') }"
@@ -520,12 +521,40 @@
                   <mat-error *ngIf="showError('sourceName')" i18n>Created By is mandatory </mat-error>
                 </mat-form-field>
               </div>
-                <div class="margin-top-xs" *ngIf="checkCondition('otherSourceName', 'show')"
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
+              [ngClass]="{ disable: checkCondition('assetType', 'disabled') }">
+              <label>
+                <div class="margin-top-s flex flex-middle">
+                <b *ngIf="!isSiemens" [ngClass]="{ required: checkCondition('assetType', 'required') }" i18n>Type</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer" (click)="showAssetTypeDetails()">info
+                  </mat-icon>
+                </div>
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('assetType') }">
+                  <mat-select formControlName="assetType" placeholder="--Select--"
+                    [required]="checkCondition('assetType', 'required')">
+                    <mat-option *ngIf="!checkCondition('assetType', 'required')" i18n [value]="null">None
+                    </mat-option>
+                    <mat-option *ngFor="let assetTypeEntry of ordinals.assetType" [value]="assetTypeEntry">
+                      {{  assetTypeEntry }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            </div>
+            <div class="margin-top-xs marginlef-xl">
+              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSourceName', 'show')"
                 [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }">
                 <p class="font-weight-bold margin-remove-bottom"
                   i18n="Title label|Label which explains the user to enter title"
                   [ngClass]="{ required: checkCondition('otherSourceName', 'required') }">
-                  Created By (Other)
+                  Other
                 </p>
                 <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
                   [ngClass]="{ 'mat-form-field-invalid': showError('otherSourceName') }">
@@ -537,8 +566,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
+              <div class="margin-top-xl margin-left-xl" *ngIf="checkCondition('theme', 'show')"
             [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
             <label [ngClass]="{ required: checkCondition('theme', 'required') }">
               <b i18n>SDG (Sustainable Development Goals)</b>
@@ -558,6 +586,7 @@
               </mat-form-field>
             </div>
           </div>
+            </div>
           </div>
           <div class="grid">
             <div
@@ -610,31 +639,6 @@
                   </mat-select>
                   <mat-error *ngIf="showError('complexityLevel')" i18n
                     >Knowledge Level is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-          <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
-              [ngClass]="{ disable: checkCondition('assetType', 'disabled') }">
-              <label>
-                <div class="margin-top-s flex flex-middle">
-                <b *ngIf="!isSiemens" [ngClass]="{ required: checkCondition('assetType', 'required') }" i18n>Type</b>
-                  <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer" (click)="showAssetTypeDetails()">info
-                  </mat-icon>
-                </div>
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('assetType') }">
-                  <mat-select formControlName="assetType" placeholder="--Select--"
-                    [required]="checkCondition('assetType', 'required')">
-                    <mat-option *ngIf="!checkCondition('assetType', 'required')" i18n [value]="null">None
-                    </mat-option>
-                    <mat-option *ngFor="let assetTypeEntry of ordinals.assetType" [value]="assetTypeEntry">
-                      {{  assetTypeEntry }}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -1435,7 +1439,7 @@
                   <p class="font-weight-bold margin-remove-bottom margin-top-s"
                     i18n="Title label|Label which explains the user to enter title"
                     [ngClass]="{ required: checkCondition('otherSpaceLicense', 'required') }">
-                    License (Other)
+                    Other
                   </p>
                   <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
                     [ngClass]="{ 'mat-form-field-invalid': showError('otherSpaceLicense') }">
