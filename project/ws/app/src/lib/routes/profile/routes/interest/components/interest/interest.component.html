@@ -14,17 +14,30 @@
         recommendations. The more often you use
       </ng-container>
       {{ appName }}
-      <ng-container i18n>, the better the recommendations will be. Take the first step to your personalized learning
-        experience!</ng-container>
+      <ng-container i18n
+        >, the better the recommendations will be. Take the first step to your personalized learning
+        experience!</ng-container
+      >
     </h3>
     <mat-form-field class="width-1-1 search-width" floatLabel="never" appearance="outline">
-      <input type="text" placeholder="Search Topics" i18n-placeholder="interest search" matInput
-        [formControl]="interestControl" [matAutocomplete]="auto" i18n-aria-label aria-label="search topics"
-        #interestSearch />
+      <input
+        type="text"
+        placeholder="Search Topics"
+        i18n-placeholder="interest search"
+        matInput
+        [formControl]="interestControl"
+        [matAutocomplete]="auto"
+        i18n-aria-label
+        aria-label="search topics"
+        #interestSearch
+      />
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption
-      (optionSelected)="optionSelected($event.option.value)">
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      autoActiveFirstOption
+      (optionSelected)="optionSelected($event.option.value)"
+    >
       <mat-option *ngIf="interestSearch.value" [value]="interestSearch.value">{{
         interestSearch.value
       }}</mat-option>
@@ -44,51 +57,239 @@
     <h4 *ngIf="!isFetchingUserInterests && userInterestsFetchError" class="montserrat" i18n>
       Unable to fetch interests
     </h4>
-    <h4 *ngIf="!isFetchingUserInterests && !userInterests?.length && !userInterestsFetchError" i18n class="montserrat">
+    <h4
+      *ngIf="!isFetchingUserInterests && !userInterests?.length && !userInterestsFetchError"
+      i18n
+      class="montserrat"
+    >
       No interests
     </h4>
     <mat-chip-list>
-      <mat-chip style="background: #865ba0; color: white;" selected *ngFor="let userInterest of userInterests"
-        [removable]="true" (removed)="removeInterest(userInterest)">
+      <mat-chip
+        style="background: #865ba0; color: white;"
+        selected
+        *ngFor="let userInterest of userInterests"
+        [removable]="true"
+        (removed)="removeInterest(userInterest)"
+      >
         <a class="cursor-pointer" (click)="removeInterest(userInterest)">{{ userInterest }}</a>
         <mat-icon matChipRemove class="clr">cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
 
-
-
-
-
     <ng-container *ngIf="suggestedInterests?.length">
       <h2 class="mat-h2 ws-mat-primary-text font-weight-bold margin-top-l montserrat" i18n>
         Our Suggestions
       </h2>
-      <mat-chip-list>
-        <mat-chip #selectedChip class="ws-mat-primary-border-bold suggestions-chip" *ngFor="
-            let suggestedInterest of suggestedInterests | pipeLimitTo: suggestionsLimit;
-            let i = index
-          " (removed)="addInterest(suggestedInterest, true, i)">
-          <a class="cursor-pointer montserrat" (click)="addInterest(suggestedInterest, true, i)">{{
-            suggestedInterest
-          }}</a>
-          <mat-icon matChipRemove class="ws-mat-primary-text">add_circle</mat-icon>
-        </mat-chip>
-      </mat-chip-list>
-      <div class="text-right padding-top-xs padding-bottom-l" [hidden]="suggestionsLimit >= suggestedInterests.length">
-        <button class="ws-mat-primary-text font-weight-bold" type="button" i18n-aria-label
-          aria-label="see more interests" mat-button (click)="suggestionsLimit = suggestedInterests.length">
-          <ng-container class="montserrat" i18n>View </ng-container>
-          <ng-container>
-            {{ suggestedInterests.length - suggestionsLimit }}
-          </ng-container>
-          <ng-container i18n> more</ng-container>
-        </button>
+      <div class="">
+        <!-- <mat-grid-list cols="3"> -->
+        <div class="padding">
+          <mat-accordion>
+            <mat-expansion-panel #mep="matExpansionPanel" [expanded]="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>SDGs </mat-panel-title>
+                <span class="view"> ( {{ sdgs.length }} )</span>
+              </mat-expansion-panel-header>
+              <mat-chip-list>
+                <mat-chip
+                  #selectedChip
+                  class="ws-mat-primary-border-bold suggestions-chip"
+                  *ngFor="
+                    let suggestedInterest of sdgs | pipeLimitTo: sdgsSuggestionsLimit;
+                    let i = index
+                  "
+                  (removed)="addInterest(suggestedInterest, true, i)"
+                >
+                  <a
+                    class="cursor-pointer montserrat"
+                    (click)="addInterest(suggestedInterest, true, i)"
+                    >{{ suggestedInterest }}</a
+                  >
+                  <mat-icon matChipRemove class="ws-mat-primary-text">add_circle</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+              <mat-action-row>
+                <div class="text-right" [hidden]="sdgsSuggestionsLimit >= sdgs.length">
+                  <button
+                    class="font-weight-bold"
+                    type="button"
+                    color="primary"
+                    i18n-aria-label
+                    aria-label="see more sdgs interests"
+                    mat-button
+                    (click)="sdgsSuggestionsLimit = sdgs.length"
+                  >
+                    <ng-container class="montserrat" i18n>View </ng-container>
+                    <ng-container>
+                      {{ sdgs.length - sdgsSuggestionsLimit }}
+                    </ng-container>
+                    <ng-container i18n> more</ng-container>
+                  </button>
+                </div>
+                <div class="text-right">
+                  <button
+                    class="font-weight-bold"
+                    type="button"
+                    color="primary"
+                    i18n-aria-label
+                    aria-label="close panel"
+                    mat-button
+                    (click)="mep.expanded = false"
+                  >
+                    <ng-container class="montserrat" i18n>Close </ng-container>
+                  </button>
+                </div>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+
+        <div class="padding">
+          <mat-accordion>
+            <mat-expansion-panel #mep1="matExpansionPanel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>Region </mat-panel-title>
+                <span class="view"> ( {{ region.length }} )</span>
+              </mat-expansion-panel-header>
+              <mat-chip-list>
+                <mat-chip
+                  #selectedChip
+                  class="ws-mat-primary-border-bold suggestions-chip"
+                  *ngFor="
+                    let suggestedInterest of region | pipeLimitTo: regionSuggestionsLimit;
+                    let i = index
+                  "
+                  (removed)="addInterest(suggestedInterest, true, i)"
+                >
+                  <a
+                    class="cursor-pointer montserrat"
+                    (click)="addInterest(suggestedInterest, true, i)"
+                    >{{ suggestedInterest }}</a
+                  >
+                  <mat-icon matChipRemove class="ws-mat-primary-text">add_circle</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+              <mat-action-row>
+                <div class="text-right" [hidden]="regionSuggestionsLimit >= region.length">
+                  <button
+                    class="div-header font-weight-bold"
+                    type="button"
+                    i18n-aria-label
+                    aria-label="see more region interests"
+                    mat-button
+                    color="primary"
+                    (click)="regionSuggestionsLimit = region.length"
+                  >
+                    <ng-container class="montserrat" i18n>View </ng-container>
+                    <ng-container>
+                      {{ region.length - regionSuggestionsLimit }}
+                    </ng-container>
+                    <ng-container i18n> more</ng-container>
+                  </button>
+                </div>
+                <div class="text-right">
+                  <button
+                    class="font-weight-bold"
+                    type="button"
+                    color="primary"
+                    i18n-aria-label
+                    aria-label="close panel"
+                    mat-button
+                    (click)="mep1.expanded = false"
+                  >
+                    <ng-container class="montserrat" i18n>Close </ng-container>
+                  </button>
+                </div>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <div class="padding">
+          <mat-accordion>
+            <mat-expansion-panel #mep2="matExpansionPanel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>Others </mat-panel-title>
+                <span class="view"> ( {{ others.length }} )</span>
+              </mat-expansion-panel-header>
+              <mat-chip-list>
+                <mat-chip
+                  #selectedChip
+                  class="ws-mat-primary-border-bold suggestions-chip"
+                  *ngFor="
+                    let suggestedInterest of others | pipeLimitTo: othersSuggestionsLimit;
+                    let i = index
+                  "
+                  (removed)="addInterest(suggestedInterest, true, i)"
+                >
+                  <a
+                    class="cursor-pointer montserrat"
+                    (click)="addInterest(suggestedInterest, true, i)"
+                    >{{ suggestedInterest }}</a
+                  >
+                  <mat-icon matChipRemove class="ws-mat-primary-text">add_circle</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+              <mat-action-row>
+                <div class="text-right" [hidden]="othersSuggestionsLimit >= others.length">
+                  <button
+                    class="div-header font-weight-bold"
+                    type="button"
+                    i18n-aria-label
+                    aria-label="see more other interests"
+                    mat-button
+                    color="primary"
+                    (click)="othersSuggestionsLimit = others.length"
+                  >
+                    <ng-container class="montserrat" i18n>View </ng-container>
+                    <ng-container>
+                      {{ others.length - othersSuggestionsLimit }}
+                    </ng-container>
+                    <ng-container i18n> more</ng-container>
+                  </button>
+                </div>
+                <div class="text-right">
+                  <button
+                    class="font-weight-bold"
+                    type="button"
+                    color="primary"
+                    i18n-aria-label
+                    aria-label="close panel"
+                    mat-button
+                    (click)="mep2.expanded = false"
+                  >
+                    <ng-container class="montserrat" i18n>Close </ng-container>
+                  </button>
+                </div>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <!-- </mat-grid-list> -->
       </div>
     </ng-container>
   </div>
-  <input type="hidden" i18-value i18-aria-value aria-value="Interests add successful" value="Saved" #toastSuccess />
+  <input
+    type="hidden"
+    i18-value
+    i18-aria-value
+    aria-value="Interests add successful"
+    value="Saved"
+    #toastSuccess
+  />
 </div>
-<input type="hidden" i18-value i18-aria-value aria-value="Duplicate interest in user list"
-  value="Interest already present" #toastDuplicate />
-<input type="hidden" i18-value i18-aria-value aria-value="Unable to save interests" value="Interests update failed"
-  #toastFailure />
+<input
+  type="hidden"
+  i18-value
+  i18-aria-value
+  aria-value="Duplicate interest in user list"
+  value="Interest already present"
+  #toastDuplicate
+/>
+<input
+  type="hidden"
+  i18-value
+  i18-aria-value
+  aria-value="Unable to save interests"
+  value="Interests update failed"
+  #toastFailure
+/>

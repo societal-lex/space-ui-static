@@ -76,6 +76,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() data = new EventEmitter<string>()
   @Input() isSubmitPressed = false
   @Input() nextAction = 'done'
+  spaceLicenseTnCAgreed = false
+  displayPolicyForm = false
   location = CONTENT_BASE_STATIC
   selectable = true
   removable = true
@@ -667,6 +669,12 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             }+0000`
         }
         Object.keys(currentMeta).map(v => {
+          if (v === 'sourceName') {
+            meta[v] = currentMeta[v]
+          }
+          if (v === 'spaceLicense') {
+            meta[v] = currentMeta[v]
+          }
           if (
             JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
             JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta])
@@ -703,7 +711,20 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   formNext(index: number) {
-    this.selectedIndex = index
+    if (index >= 4 && !this.contentForm.controls.spaceLicenseTnCAgreed.value) {
+      this.triggerLTNCNotification()
+    } else {
+      this.selectedIndex = index
+    }
+  }
+
+  triggerLTNCNotification() {
+    this.snackBar.openFromComponent(NotificationComponent, {
+      data: {
+        type: Notify.ACCEPT_LICENSE_TNC,
+      },
+      duration: NOTIFICATION_TIME * 1000,
+    })
   }
 
   addKeyword(event: MatChipInputEvent): void {
@@ -898,6 +919,13 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   showError(meta: string) {
+    /* if (meta === 'sourceName') {
+      console.log('required ', this.contentService.checkCondition(this.contentMeta.identifier, meta, 'required'))
+      console.log('isnotPresent ', !this.contentService.isPresent(meta, this.contentMeta.identifier))
+      console.log('isSubmitted ', this.isSubmitPressed)
+      console.log('meta value ', this.contentForm.controls[meta].value)
+      console.log('istouched ', this.contentForm.controls[meta].touched)
+    } */
     if (
       this.contentService.checkCondition(this.contentMeta.identifier, meta, 'required') &&
       !this.contentService.isPresent(meta, this.contentMeta.identifier)
@@ -1084,6 +1112,12 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       learningObjective: [],
       learningTrack: [],
       spaceLicense: [],
+      otherSourceName: [],
+      otherSpaceLicense: [],
+      spaceLicenseAttribution: [],
+      spaceLicenseCopyright: [],
+      spaceLicenseTnCAgreed: [],
+      spaceAreaOfExpertise: [],
       locale: [],
       mimeType: [],
       name: [],
@@ -1130,6 +1164,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.contentForm.controls.assetType.valueChanges.subscribe(() => {
       this.setDefaultMessageonSpecificDetails(this.contentForm.controls.assetType.value)
+      this.setPolicyForm(this.contentForm.controls.assetType.value)
       this.updateLicenseType(this.contentForm.controls.assetType.value)
       this.updateLicenceInfoTable(this.contentForm.controls.assetType.value)
       this.enableSpecificAssetForm(this.contentForm.controls.assetType.value)
@@ -1149,6 +1184,19 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     })
 
+    this.contentForm.controls.sourceName.valueChanges.subscribe(() => {
+      if (this.contentForm.controls.sourceName.value !== 'Other') {
+      this.contentForm.controls.otherSourceName.setValue('')
+      this.contentForm.controls.otherSourceName.markAsUntouched()
+      }
+    })
+
+    this.contentForm.controls.spaceLicense.valueChanges.subscribe(() => {
+      if (this.contentForm.controls.otherSpaceLicense.value !== 'Other') {
+      this.contentForm.controls.otherSpaceLicense.setValue('')
+      this.contentForm.controls.otherSpaceLicense.markAsUntouched()
+      }
+    })
     // to set the body same as description entered
     this.contentForm.controls.description.valueChanges.subscribe(_newDescription => {
       this.contentForm.controls.body.setValue(_newDescription)
@@ -1350,4 +1398,46 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.checkCondition('assetType', 'show')
   }
 
+  updateLicenseTnCAgreed(_checkboxEvent: any) {
+    this.contentForm.controls.spaceLicenseTnCAgreed.setValue(_checkboxEvent.checked || false)
+  }
+
+  openLicenseTnc() {
+    window.open('/public/termsofuse', '_blank')
+  }
+
+  get isTnCFoLicenseAgreed() {
+    return this.contentForm.controls.spaceLicenseTnCAgreed.value || false
+  }
+
+  setPolicyForm(_assetTypeValue: string) {
+    if (_assetTypeValue && _assetTypeValue !== 'Connection') {
+      this.displayPolicyForm = true
+      this.contentForm.controls.spaceLicenseTnCAgreed.setValue(false)
+    } else {
+      if (this.contentMeta.contentType !== 'Resource') {
+        this.displayPolicyForm = true
+        this.spaceLicenseTnCAgreed = false
+      } else {
+        this.displayPolicyForm = false
+        this.spaceLicenseTnCAgreed = true
+        this.contentForm.controls.spaceLicenseTnCAgreed.setValue(true)
+      }
+    }
+    this.contentForm.controls.spaceLicense.setValue('')
+    this.contentForm.controls.spaceLicenseAttribution.setValue('')
+    this.contentForm.controls.spaceLicenseCopyright.setValue('')
+    this.contentForm.controls.spaceLicense.markAsUntouched()
+    this.contentForm.controls.spaceLicenseAttribution.markAsUntouched()
+    this.contentForm.controls.spaceLicenseCopyright.markAsUntouched()
+  }
+
+  emitPushEvent() {
+    if (this.contentForm.controls.spaceLicenseTnCAgreed.value) {
+      this.data.emit('push')
+      this.isSubmitPressed = true
+    } else {
+      this.triggerLTNCNotification()
+    }
+  }
 }

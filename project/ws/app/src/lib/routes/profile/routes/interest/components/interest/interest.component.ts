@@ -5,10 +5,10 @@ import { ActivatedRoute } from '@angular/router'
 import { ConfigurationsService, EventService } from '@ws-widget/utils'
 // import { startWith, map } from 'rxjs/operators'
 import { IResolveResponse } from 'library/ws-widget/utils/src/lib/resolvers/resolver.model'
-import { Observable, of } from 'rxjs'
+import { Observable, of, Subscription } from 'rxjs'
 import { debounceTime, distinctUntilChanged, startWith, switchMap } from 'rxjs/operators'
 import { InterestService } from '../../services/interest.service'
-
+import { IUserInterestData } from '../../models/interest.model'
 @Component({
   selector: 'ws-app-interest',
   templateUrl: './interest.component.html',
@@ -23,23 +23,26 @@ export class InterestComponent implements OnInit {
   @ViewChild('interestSearch', { static: true }) interestSearch!: ElementRef<
     any
   >
+  userInterestsDataFromConfig: Subscription | null = null
+  userInterestsData: IUserInterestData | any
   userInterestsResponse: IResolveResponse<string[]> = this.route.snapshot.data
     .interests
   userInterests: string[] = []
   suggestedInterests: string[] = []
-  suggestionsLimit = 15
+  sdgs: string[] = []
+  region: string[] = []
+  others: string[] = []
+  sdgsSuggestionsLimit = 3
+  regionSuggestionsLimit = 3
+  othersSuggestionsLimit = 3
   displayMode = ''
   isFetchingUserInterests = false
   userInterestsFetchError = false
   showInfo = true
-
   autocompleteInterests: string[] = []
-
   interestControl = new FormControl('')
-
   filteredOptions$: Observable<string[]> = of([])
   appName!: string
-
   constructor(
     private events: EventService,
     private route: ActivatedRoute,
@@ -60,22 +63,20 @@ export class InterestComponent implements OnInit {
       this.appName = this.configSvc.instanceConfig.details.appName
     }
   }
-
   ngOnInit() {
+    this.userInterestsDataFromConfig = this.route.data.subscribe(data => {
+      this.userInterestsData = data.pageData.data
+    })
     // this.displayMode = this.route.snapshot.queryParamMap.get('mode')
     this.fetchSuggestedInterests()
-
     this.interestControl.setValue('')
-
     this.filteredOptions$ = this.interestControl.valueChanges.pipe(
       startWith(this.interestControl.value),
       debounceTime(500),
       distinctUntilChanged(),
       switchMap(value => this.interestSvc.fetchAutocompleteInterestsV2(value)),
     )
-
     // this.filteredOptions$ = this.interestControl.valueChanges.pipe()
-
     // this.interestSvc.fetchSuggestedInterestV2().subscribe(data => {
     //   this.autocompleteInterests = Array.from(new Set(data)).sort()
     //   this.filteredOptions$ = this.interestControl.valueChanges.pipe(
@@ -102,7 +103,6 @@ export class InterestComponent implements OnInit {
     //   )
     // })
   }
-
   /**
    * Below function is added to fetch user interests from parent comp or in
    * some other case if it is req in this component itself in the future
@@ -120,19 +120,33 @@ export class InterestComponent implements OnInit {
       },
     )
   }
-
   private fetchSuggestedInterests() {
     this.interestSvc.fetchSuggestedInterestV2().subscribe(data => {
-      // //console.log('Interest: ', data)
       this.suggestedInterests = data
+      this.groupingInterest()
       this.removeAlreadyAddedFromRecommended()
     })
   }
-
+  private groupingInterest() {
+    // console.log('Interest: ', data, this.userInterestsData.sdgs.keyword)
+    this.sdgs = this.userInterestsData.sdgs.keyword
+    this.region = this.userInterestsData.region.keyword
+    this.others = this.userInterestsData.others.keyword
+  }
   private removeAlreadyAddedFromRecommended() {
     if (this.userInterests.length && this.suggestedInterests.length) {
+      // console.log('user interest: ', this.suggestedInterests)
       const userTopicHash = new Set(this.userInterests)
       this.suggestedInterests = this.suggestedInterests.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+      this.sdgs = this.sdgs.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+      this.region = this.region.filter(
+        topic => !Boolean(userTopicHash.has(topic)),
+      )
+      this.others = this.others.filter(
         topic => !Boolean(userTopicHash.has(topic)),
       )
     }
@@ -142,7 +156,6 @@ export class InterestComponent implements OnInit {
     this.interestSearch.nativeElement.blur()
     this.addInterest(interest, true)
   }
-
   addInterest(interest: string, fromSuggestions = false, recommendIndex = -1) {
     const tempInterest = interest.trim()
     if (!tempInterest.length) {
@@ -159,6 +172,15 @@ export class InterestComponent implements OnInit {
       this.suggestedInterests = this.suggestedInterests.filter(
         suggestedInterest => suggestedInterest !== tempInterest,
       )
+      this.sdgs = this.sdgs.filter(
+        sdgs => sdgs !== tempInterest,
+      )
+      this.region = this.region.filter(
+        region => region !== tempInterest,
+      )
+      this.others = this.others.filter(
+        others => others !== tempInterest,
+      )
     }
     this.userInterests.splice(0, 0, tempInterest)
     this.raiseTelemetry('add', tempInterest)
@@ -172,6 +194,9 @@ export class InterestComponent implements OnInit {
         )
         if (fromSuggestions && recommendIndex > -1) {
           this.suggestedInterests.splice(recommendIndex, 0, interest)
+          this.sdgs.splice(recommendIndex, 0, interest)
+          this.region.splice(recommendIndex, 0, interest)
+          this.others.splice(recommendIndex, 0, interest)
         }
         this.openSnackBar(this.toastFailure.nativeElement.value)
       },
@@ -192,13 +217,11 @@ export class InterestComponent implements OnInit {
       },
     )
   }
-
   private openSnackBar(primaryMsg: string, duration: number = 4000) {
     this.snackBar.open(primaryMsg, undefined, {
       duration,
     })
   }
-
   raiseTelemetry(action: 'add' | 'remove', interest: string) {
     this.events.raiseInteractTelemetry('interest', action, { interest })
   }

@@ -28,3 +28,26 @@
 .clr-clr {
   color: #865ba0 !important;
 }
+::ng-deep {
+  .mat-grid-tile .mat-figure {
+    align-items: baseline !important;
+    justify-content: start !important;
+  }
+}
+.mat-standard-chip {
+  height: auto !important;
+}
+.mat-grid-tile {
+  overflow: overlay !important;
+}
+.padding {
+  margin-bottom: 1rem;
+}
+mat-panel-title {
+  color: #865ba0 !important;
+  font-size: large;
+}
+.view {
+  padding-right: 2rem;
+  color: #865ba0;
+}

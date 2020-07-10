@@ -18,6 +18,13 @@ const routes: Routes = []
         path: '',
         component: AppSetupHomeComponent,
         children: routes,
+        data: {
+          pageType: 'feature',
+          pageKey: 'interest',
+        },
+        resolve: {
+          pageData: PageResolve,
+        },
       },
       {
         path: 'home',
