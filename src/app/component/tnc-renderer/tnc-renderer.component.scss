@@ -60,6 +60,16 @@ line-height: 1.7;
 
 }
 
+// ol li span strong {
+//     /* font-weight: bold; */
+//     font-size: 20px;
+//     font-family: campaign sans-serif;
+
+// }
+
+// p{
+//     font-family: montserrat, sans-serif !important;
+// }
 ::ng-deep {
   .tnc-container li {
     font-family: montserrat, sans-serif !important;
@@ -74,6 +84,16 @@ line-height: 1.7;
 p strong {
   font-size: 20px;
   font-family: campaign sans-serif !important;
+}
+.boldcolor{
+  color: #865ba0 !important;
+}
+
+.alphastyle{
+  list-style-type: lower-alpha;
+}
+.romanstyle{
+  list-style-type: lower-roman;
 }
 
 }
