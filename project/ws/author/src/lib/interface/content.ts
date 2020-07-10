@@ -160,6 +160,7 @@ export namespace NSContent {
     studyDuration: number
     sampleCertificates: IInternalReference[],
     iprDeclaration: object,
+    spaceLicense: string,
   }
 
   export interface IClient {

@@ -669,6 +669,12 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             }+0000`
         }
         Object.keys(currentMeta).map(v => {
+          if (v === 'sourceName') {
+            meta[v] = currentMeta[v]
+          }
+          if (v === 'spaceLicense') {
+            meta[v] = currentMeta[v]
+          }
           if (
             JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
             JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta])
@@ -705,7 +711,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   formNext(index: number) {
-    if (index >= 3 && !this.contentForm.controls.spaceLicenseTnCAgreed.value) {
+    if (index >= 4 && !this.contentForm.controls.spaceLicenseTnCAgreed.value) {
       this.triggerLTNCNotification()
     } else {
       this.selectedIndex = index

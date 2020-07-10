@@ -493,7 +493,8 @@
                 </mat-form-field>
               </div>
             </div> -->
-            <div
+            <div class="margin-top-xs marginlef-xl">
+              <div
               class="margin-top-xs margin-left-xl"
               *ngIf="checkCondition('sourceName', 'show')"
               [ngClass]="{ disable: checkCondition('sourceName', 'disabled') }"
@@ -520,12 +521,40 @@
                   <mat-error *ngIf="showError('sourceName')" i18n>Created By is mandatory </mat-error>
                 </mat-form-field>
               </div>
-                <div class="margin-top-xs" *ngIf="checkCondition('otherSourceName', 'show')"
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
+              [ngClass]="{ disable: checkCondition('assetType', 'disabled') }">
+              <label>
+                <div class="margin-top-s flex flex-middle">
+                <b *ngIf="!isSiemens" [ngClass]="{ required: checkCondition('assetType', 'required') }" i18n>Type</b>
+                  <mat-icon
+                    class="ws-mat-primary-text margin-left-xs pointer" (click)="showAssetTypeDetails()">info
+                  </mat-icon>
+                </div>
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('assetType') }">
+                  <mat-select formControlName="assetType" placeholder="--Select--"
+                    [required]="checkCondition('assetType', 'required')">
+                    <mat-option *ngIf="!checkCondition('assetType', 'required')" i18n [value]="null">None
+                    </mat-option>
+                    <mat-option *ngFor="let assetTypeEntry of ordinals.assetType" [value]="assetTypeEntry">
+                      {{  assetTypeEntry }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            </div>
+            <div class="margin-top-xs marginlef-xl">
+              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSourceName', 'show')"
                 [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }">
                 <p class="font-weight-bold margin-remove-bottom"
                   i18n="Title label|Label which explains the user to enter title"
                   [ngClass]="{ required: checkCondition('otherSourceName', 'required') }">
-                  Created By (Other)
+                  Other
                 </p>
                 <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
                   [ngClass]="{ 'mat-form-field-invalid': showError('otherSourceName') }">
@@ -537,8 +566,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
+              <div class="margin-top-xl margin-left-xl" *ngIf="checkCondition('theme', 'show')"
             [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
             <label [ngClass]="{ required: checkCondition('theme', 'required') }">
               <b i18n>SDG (Sustainable Development Goals)</b>
@@ -558,6 +586,7 @@
               </mat-form-field>
             </div>
           </div>
+            </div>
           </div>
           <div class="grid">
             <div
@@ -610,31 +639,6 @@
                   </mat-select>
                   <mat-error *ngIf="showError('complexityLevel')" i18n
                     >Knowledge Level is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-          <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
-              [ngClass]="{ disable: checkCondition('assetType', 'disabled') }">
-              <label>
-                <div class="margin-top-s flex flex-middle">
-                <b *ngIf="!isSiemens" [ngClass]="{ required: checkCondition('assetType', 'required') }" i18n>Type</b>
-                  <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer" (click)="showAssetTypeDetails()">info
-                  </mat-icon>
-                </div>
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('assetType') }">
-                  <mat-select formControlName="assetType" placeholder="--Select--"
-                    [required]="checkCondition('assetType', 'required')">
-                    <mat-option *ngIf="!checkCondition('assetType', 'required')" i18n [value]="null">None
-                    </mat-option>
-                    <mat-option *ngFor="let assetTypeEntry of ordinals.assetType" [value]="assetTypeEntry">
-                      {{  assetTypeEntry }}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -1248,598 +1252,7 @@
           </div>
         </div>
       </mat-tab>
-      <ng-container *ngIf="displayPolicyForm">
-        <mat-tab (click)="formNext(2)">
-          <ng-template
-            mat-tab-label
-            id="ws-auth-edit-meta-tab-related-optional"
-            name="ws-auth-edit-meta-tab-related-optional"
-          >
-            <span i18n>Policy Details</span>
-            <!-- <small class="margin-left-xs">
-              <em i18n>(Optional)</em>
-            </small> -->
-          </ng-template>
-          <div class="margin-top-xl">
-            <div class="grid">
-              <div class="margin-top-xs margin-left-xl">
-                <div
-                class="margin-top-xs margin-left-xl"
-                *ngIf="checkCondition('references', 'show')"
-                [ngClass]="{ disable: checkCondition('references', 'disabled') }"
-              >
-                <label>
-                  <div class="margin-top-xs flex flex-middle">
-                    <b i18n>External References</b>
-                    <mat-icon
-                      class="ws-mat-primary-text margin-left-xs pointer"
-                      (click)="showInfo('references')"
-                      >info
-                    </mat-icon>
-                  </div>
-                  <span i18n *ngIf="infoType === 'references'"
-                    >Add Urls of external links as reference
-                  </span>
-                </label>
-                <div class="margin-top-xs flex margin-right-xl">
-                  <mat-form-field
-                    class="keywords-chip-list margin-top-xs flex-grow80"
-                    appearance="outline"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('references') }"
-                  >
-                    <mat-chip-list #references aria-label="References selection">
-                      <mat-chip
-                        *ngFor="let key of contentForm.controls.references.value; let i = index"
-                        [selectable]="selectable"
-                        [removable]="removable"
-                        (removed)="remove(i, 'references')"
-                      >
-                        {{ key.url }}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                      </mat-chip>
-                      <input
-                        i18n-placeholder
-                        placeholder="Enter Link"
-                        #keywordsView
-                        [matChipInputFor]="references"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="true"
-                        (matChipInputTokenEnd)="addReferences($event)"
-                      />
-                    </mat-chip-list>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="margin-top-xs margin-left-xl">
-                <div *ngIf="checkCondition('spaceLicense', 'show')"
-                [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
-                <label>
-                  <div class="margin-top-s flex flex-middle">
-                    <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('spaceLicense', 'required') }">License</b>
-                    <mat-icon  *ngIf="licenseMetaList?.length && currentLicenseData?.length" class="ws-mat-primary-text margin-left-xs pointer" (click)="showLicenseDetails()">info
-                    </mat-icon>
-                  </div>
-                </label>
-                <div class="margin-top-xs">
-                  <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }">
-                    <mat-select formControlName="spaceLicense" placeholder="--Select--"
-                      [required]="checkCondition('spaceLicense', 'required')">
-                      <mat-option *ngIf="contentForm?.controls?.contentType.value !== 'Resource'" [value]="'CC-BY-ND 4.0'">CC-BY-ND 4.0</mat-option>
-                      <mat-option *ngFor="let licenseEntry of currentLicenseList" [value]="licenseEntry">
-                        {{  licenseEntry }}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="showError('spaceLicense')" i18n>License is mandatory
-                    </mat-error>
-                    <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n>First select a value for 'Type' field
-                    </mat-error>
-                  </mat-form-field>
-                  <p class="custom-error" *ngIf="contentForm?.controls?.contentType.value === 'Resource' && !contentForm?.controls?.assetType.value && contentForm?.controls?.spaceLicense.value" i18n>Select Type First</p>
-                </div>
-              </div>
-              <div *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
-                  [ngClass]="{ disable: checkCondition('spaceLicenseAttribution', 'disabled') }">
-                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
-                    i18n="Title label|Label which explains the user to enter title"
-                    [ngClass]="{ required: checkCondition('spaceLicenseAttribution', 'required') }">
-                    Attribution
-                  </p>
-                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseAttribution') }">
-                    <input matInput #spaceLicenseAttribution formControlName="spaceLicenseAttribution" i18n-placeholder
-                      placeholder="Enter Attribution"
-                      [required]="checkCondition('spaceLicenseAttribution', 'required') ? true : null" />
-                    <mat-error *ngIf="showError('spaceLicenseAttribution')" i18n="Name Error|Explains attribution is required">
-                      Attribution is required
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-              </div>
-              </div>
-              <div class="margin-top-xs margin-left-xl">
-                <div
-                  class="margin-top-xs margin-left-xl"
-                  *ngIf="checkCondition('preContents', 'show')"
-                  [ngClass]="{ disable: checkCondition('preContents', 'disabled') }"
-                >
-                  <label>
-                    <div class="margin-top-xs flex flex-middle">
-                      <b i18n>Learn Before</b>
-                      <mat-icon
-                        class="ws-mat-primary-text margin-left-xs pointer"
-                        (click)="showInfo('learnBefore')"
-                        >info
-                      </mat-icon>
-                    </div>
-                    <span i18n *ngIf="infoType === 'learnBefore'"
-                      >Published content to learn before attempting</span
-                    >
-                  </label>
-                  <div class="margin-top-xs flex margin-right-xl">
-                    <mat-form-field
-                      class="keywords-chip-list margin-top-xs flex-grow80"
-                      appearance="outline"
-                      [ngClass]="{ 'mat-form-field-invalid': showError('preContents') }"
-                    >
-                      <mat-chip-list #preContents aria-label="PreContents selection">
-                        <mat-chip
-                          *ngFor="
-                            let content of contentForm.controls.preContents.value;
-                            let i = index
-                          "
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="remove(i, 'preContents')"
-                        >
-                          {{ content.name }}
-                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input
-                          i18n-placeholder
-                          [formControl]="prePostContentsCtrl"
-                          [matAutocomplete]="preContentsAuto"
-                          placeholder="Search Content"
-                          [matChipInputFor]="preContents"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          [matChipInputAddOnBlur]="false"
-                          (matChipInputTokenEnd)="preContentsSearch.value = ''"
-                          #preContentsSearch
-                          id="preContents"
-                          name="preContents"
-                        />
-                      </mat-chip-list>
-                    </mat-form-field>
-                    <mat-autocomplete
-                      #preContentsAuto="matAutocomplete"
-                      autoActiveFirstOption
-                      (optionSelected)="
-                        addContent($event, 'preContents'); preContentsSearch.value = ''
-                      "
-                    >
-                      <mat-option *ngIf="fetchTagsStatus === 'done' && !contentList.length" i18n>
-                        No user found. Please check the value entered.</mat-option
-                      >
-                      <mat-option
-                        [matTooltip]="content.identifier"
-                        *ngFor="let content of contentList"
-                        [value]="content"
-                      >
-                        {{ content.name }} | {{ content.category }}
-                        <span *ngIf="content.categoryType">| {{ content.categoryType }}</span>
-                      </mat-option>
-                    </mat-autocomplete>
-                  </div>
-                </div>
-                <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSpaceLicense', 'show')"
-                  [ngClass]="{ disable: checkCondition('otherSpaceLicense', 'disabled') }">
-                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
-                    i18n="Title label|Label which explains the user to enter title"
-                    [ngClass]="{ required: checkCondition('otherSpaceLicense', 'required') }">
-                    License (Other)
-                  </p>
-                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('otherSpaceLicense') }">
-                    <input matInput #otherSpaceLicense formControlName="otherSpaceLicense" i18n-placeholder
-                      placeholder="Enter License Name"
-                      [required]="checkCondition('otherSpaceLicense', 'required') ? true : null" />
-                    <mat-error *ngIf="showError('otherSpaceLicense')" i18n="Name Error|Explains profile link is required">
-                      required if License is <b>Other</b>
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-                <div
-                  class="margin-top-xl margin-left-xl"
-                  *ngIf="checkCondition('postContents', 'show')"
-                  [ngClass]="{ disable: checkCondition('postContents', 'disabled') }"
-                >
-                  <label>
-                    <div class="margin-top-xs flex flex-middle">
-                      <b i18n>Learn After</b>
-                      <mat-icon
-                        class="ws-mat-primary-text margin-left-xs pointer"
-                        (click)="showInfo('learnAfter')"
-                        >info
-                      </mat-icon>
-                    </div>
-                    <span i18n *ngIf="infoType === 'learnAfter'"
-                      >Published content to follow up after learning this content
-                    </span>
-                  </label>
-                  <div class="margin-top-xs flex margin-right-xl">
-                    <mat-form-field
-                      class="keywords-chip-list margin-top-xs flex-grow80"
-                      appearance="outline"
-                      [ngClass]="{ 'mat-form-field-invalid': showError('postContents') }"
-                    >
-                      <mat-chip-list #postContents aria-label="postContents selection">
-                        <mat-chip
-                          *ngFor="
-                            let content of contentForm.controls.postContents.value;
-                            let i = index
-                          "
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="remove(i, 'postContents')"
-                        >
-                          {{ content.name }}
-                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input
-                          i18n-placeholder
-                          [formControl]="prePostContentsCtrl"
-                          [matAutocomplete]="postContentsAuto"
-                          placeholder="Search Content"
-                          [matChipInputFor]="postContents"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          [matChipInputAddOnBlur]="false"
-                          (matChipInputTokenEnd)="postContentsSearch.value = ''"
-                          #postContentsSearch
-                          id="postContents"
-                          name="postContents"
-                        />
-                      </mat-chip-list>
-                    </mat-form-field>
-                    <mat-autocomplete
-                      #postContentsAuto="matAutocomplete"
-                      autoActiveFirstOption
-                      (optionSelected)="
-                        addContent($event, 'postContents'); postContentsSearch.value = ''
-                      "
-                    >
-                      <mat-option *ngIf="fetchTagsStatus === 'done' && !contentList.length" i18n>
-                        No user found. Please check the value entered.</mat-option
-                      >
-                      <mat-option
-                        [matTooltip]="content.identifier"
-                        *ngFor="let content of contentList"
-                        [value]="content"
-                      >
-                        {{ content.name }} | {{ content.category }}
-                        <span *ngIf="content.categoryType">| {{ content.categoryType }}</span>
-                      </mat-option>
-                    </mat-autocomplete>
-                  </div>
-                </div>
-                <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceLicenseCopyright', 'show')"
-                  [ngClass]="{ disable: checkCondition('spaceLicenseCopyright', 'disabled') }">
-                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
-                    i18n="Title label|Label which explains the user to enter title"
-                    [ngClass]="{ required: checkCondition('spaceLicenseCopyright', 'required') }">
-                    Copyright
-                  </p>
-                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseCopyright') }">
-                    <input matInput #spaceLicenseCopyright formControlName="spaceLicenseCopyright" i18n-placeholder
-                      placeholder="Enter Copyright"
-                      [required]="checkCondition('spaceLicenseCopyright', 'required') ? true : null" />
-                    <mat-error *ngIf="showError('spaceLicenseCopyright')" i18n="Name Error|Explains copyright is required">
-                      Copyright is required
-                    </mat-error>
-                  </mat-form-field>
-              </div>
-              </div>
-            </div>
-            <div class="grid">
-              <div
-                class="margin-top-xs margin-left-xl"
-                *ngIf="checkCondition('systemRequirements', 'show')"
-                [ngClass]="{ disable: checkCondition('systemRequirements', 'disabled') }"
-              >
-                <label>
-                  <b i18n>Hardware Requirements</b>
-                </label>
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs"
-                  style="width: 90%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('systemRequirements') }"
-                >
-                  <textarea
-                    name="systemRequirements"
-                    class="resize-none"
-                    matInput
-                    rows="6"
-                    formControlName="systemRequirements"
-                    placeholder="Enter the hardware requirements needed for learning the content. For e.g. The system should have atleast 4GB of RAM installed"
-                  >
-                  </textarea>
-                  <mat-error *ngIf="showError('systemRequirements')" i18n
-                    >Hardware Requirements is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="flex flex-column">
-                <div
-                  class="margin-top-xl margin-left-xl"
-                  *ngIf="checkCondition('kArtifacts', 'show')"
-                  [ngClass]="{ disable: checkCondition('kArtifacts', 'disabled') }"
-                >
-                  <label>
-                    <div class="margin-top-xs flex flex-middle">
-                      <b i18n>Knowledge Artifacts</b>
-                      <mat-icon
-                        class="ws-mat-primary-text margin-left-xs pointer"
-                        (click)="showInfo('knowledgeArtifact')"
-                        >info</mat-icon
-                      >
-                    </div>
-                    <span i18n *ngIf="infoType === 'knowledgeArtifact'">
-                      Knowledge Artifacts that supplement the content
-                    </span>
-                  </label>
-                  <div
-                    class="margin-top-l flex margin-right-xl"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('kArtifacts') }"
-                  >
-                    <p class="margin-remove-bottom mat-h3 op30 margin-left-s">
-                      {{ selectedSkills.length }} content selected
-                    </p>
-                    <span
-                      class="ws-mat-primary-text font-weight-500 flex flex-middle margin-left-s cursor-pointer"
-                    >
-                      <mat-icon>add</mat-icon>ADD CONTENT
-                    </span>
-                  </div>
-                </div>
-                <div
-                  class="margin-top-xl margin-left-xl"
-                  *ngIf="checkCondition('playgroundResources', 'show')"
-                  [ngClass]="{ disable: checkCondition('playgroundResources', 'disabled') }"
-                >
-                  <label>
-                    <div class="margin-top-xs flex flex-middle">
-                      <b i18n>Playgrounds</b>
-                      <mat-icon
-                        class="ws-mat-primary-text margin-left-xs pointer"
-                        (click)="showInfo('playground')"
-                        >info
-                      </mat-icon>
-                    </div>
-                    <span i18n *ngIf="infoType === 'playground'"
-                      >Playgrounds to supplement this content</span
-                    >
-                  </label>
-                  <div
-                    class="margin-top-l flex margin-right-xl"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('playgroundResources') }"
-                  >
-                    <p class="margin-remove-bottom mat-h3 op30 margin-left-s">
-                      {{ selectedSkills.length }} content selected
-                    </p>
-                    <span
-                      class="ws-mat-primary-text font-weight-500 flex flex-middle margin-left-s cursor-pointer"
-                    >
-                      <mat-icon>add</mat-icon>ADD CONTENT
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="grid">
-              <div
-                class="margin-left-xl"
-                *ngIf="checkCondition('softwareRequirements', 'show')"
-                [ngClass]="{ disable: checkCondition('softwareRequirements', 'disabled') }"
-              >
-                <label>
-                  <b i18n>Software Requirements</b>
-                </label>
-                <mat-form-field
-                  appearance="outline"
-                  class="margin-top-xs"
-                  style="width: 90%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('softwareRequirements') }"
-                >
-                  <textarea
-                    name="softwareRequirements"
-                    class="resize-none"
-                    matInput
-                    rows="6"
-                    formControlName="softwareRequirements"
-                    placeholder="Enter the software requirements needed for learning the content. For e.g. Jupyter Notebook should be installed in your system"
-                  >
-                  </textarea>
-                  <mat-error *ngIf="showError('softwareRequirements')" i18n
-                    >Software Requirements is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="grid">
-              <div
-                class="margin-top-m margin-left-xl"
-                *ngIf="checkCondition('introductoryVideoIcon', 'show')"
-                [ngClass]="{ disable: checkCondition('introductoryVideoIcon', 'disabled') }"
-              >
-                <label>
-                  <div class="margin-top-xs flex flex-middle">
-                    <b i18n>Introductory Video Thumbnail</b>
-                    <mat-icon
-                      class="ws-mat-primary-text margin-left-xs pointer"
-                      (click)="showInfo('introVideoThumbnail')"
-                      >info</mat-icon
-                    >
-                  </div>
-                  <span i18n *ngIf="infoType === 'introVideoThumbnail'">
-                    Maximum file size - 1 MB
-                  </span>
-                </label>
-                <div
-                  class="margin-top-xs"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('introductoryVideoIcon') }"
-                >
-                  <img
-                    class="image"
-                    [src]="contentForm.controls.introductoryVideo.value"
-                    (error)="changeToDefaultImg($event)"
-                  />
-                  <div class="photo mat-elevation-z4">
-                    <mat-icon class="photo-icon ws-mat-primary-text">photo_camera</mat-icon>
-                    <input type="file" #uploadImage id="upload" style="display: none;" placeholder="Upload file" accept="image/*" />
-                  </div>
-                  <mat-error class="error-font" *ngIf="showError('introductoryVideo')" i18n
-                    >Video Thumbnail is mandatory
-                  </mat-error>
-                </div>
-              </div>
-              <div
-                class="margin-top-m"
-                *ngIf="checkCondition('introductoryVideo', 'show')"
-                [ngClass]="{ disable: checkCondition('introductoryVideo', 'disabled') }"
-              >
-                <label>
-                  <div class="margin-top-xs flex flex-middle">
-                    <b i18n>Introductory Video </b>
-                    <mat-icon
-                      class="ws-mat-primary-text margin-left-xs pointer"
-                      (click)="showInfo('introVideo')"
-                      >info
-                    </mat-icon>
-                  </div>
-                  <span i18n *ngIf="infoType === 'introVideo'"
-                    >Upload a video to introduce your content (Max. file size - 200MB)
-                  </span>
-                </label>
-                <div
-                  class="upload-box flex flex-middle justify-center p-20"
-                  wsAuthDragDrop
-                  [ngClass]="{ 'mat-form-field-invalid': showError('introductoryVideo') }"
-                >
-                  <span class="font-weight-500" *ngIf="!isFileUploaded">
-                    <input type="file" name="file" id="file" class="inputfile cursor-pointer" accept=".mp4" (change)="handleFileInput($event.target.files)"
-                    />
-                    <label
-                      for="file"
-                      class="mat-h2 ws-mat-primary-text flex flex-middle justify-center"
-                    >
-                      <mat-icon>add</mat-icon>Browse
-                    </label>
-                  </span>
-                  <div *ngIf="isFileUploaded" class="flex flex-middle justify-center">
-                    <mat-icon
-                      class="ws-mat-primary-text"
-                      *ngIf="fileUploadForm.controls['content'].value[0].name.includes('pdf')"
-                      >picture_as_pdf</mat-icon
-                    >
-                    <mat-icon
-                      class="ws-mat-primary-text"
-                      *ngIf="fileUploadForm.controls['content'].value[0].name.includes('mp4')"
-                      >videocam</mat-icon
-                    >
-                    <mat-icon
-                      class="ws-mat-primary-text"
-                      *ngIf="fileUploadForm.controls['content'].value[0].name.includes('mp3')"
-                      >music_note</mat-icon
-                    >
-                    <p class="margin-left-xs mat-h4 font-weight-500 margin-remove-bottom">
-                      {{
-                        fileUploadForm.controls['content'] &&
-                        fileUploadForm.controls['content'].value &&
-                        fileUploadForm.controls['content'].value[0]
-                          ? fileUploadForm.controls['content'].value[0].name
-                          : ''
-                      }}
-                    </p>
-                    <button
-                      mat-icon-button
-                      class="close-button padding-remove ws-mat-primary-background-op30 text-white"
-                    >
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex margin-xl padding-left-l">
-              <mat-checkbox [checked]="isTnCFoLicenseAgreed" (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
-              <p class="margin-left-xs margin-remove-bottom">
-                I agree that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform. <br>I have made sure that I do not violate others’ copyright, privacy or third party rights. Visit
-                <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()"
-                  >Terms of Use policy</span
-                >
-                page for more details
-              </p>
-            </div>
-            <div class="flex">
-              <div
-                class="margin-top-l margin-left-xl"
-                *ngIf="checkCondition('references', 'show')"
-                [ngClass]="{ disable: checkCondition('references', 'disabled') }"
-              >
-                <label>
-                  <div class="margin-top-xs flex flex-middle">
-                    <b i18n>References</b>
-                    <mat-icon
-                      class="ws-mat-primary-text margin-left-xs pointer"
-                      (click)="showInfo('references')"
-                      >info
-                    </mat-icon>
-                  </div>
-                  <span *ngIf="infoType === 'references'">
-                    Add any references you used while making this content
-                  </span>
-                </label>
-                <div
-                  class="margin-top-l flex margin-right-xl"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('references') }"
-                >
-                  <p class="margin-remove-bottom mat-h3 op30 margin-left-s">
-                    {{ selectedSkills.length }}
-                    <span i18n> references added</span>
-                  </p>
-                  <span
-                    class="ws-mat-primary-text font-weight-500 flex flex-middle margin-left-s cursor-pointer"
-                  >
-                    <mat-icon>add</mat-icon>
-                    <span i18n>ADD REFERENCE</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-end margin-top-l margin-bottom-l margin-right-l">
-              <button
-                mat-raised-button
-                type="button"
-                id="ws-auth-edit-save-tab-three"
-                name="ws-auth-edit-save-tab-three"
-                class="text-white ws-mat-primary-background text-white margin-right-m"
-                (click)="data.emit('save')"
-              >
-                <span class="text-white" i18n>Save</span>
-              </button>
-              <button
-                mat-raised-button
-                type="button"
-                class="text-white ws-mat-primary-background text-white"
-                (click)="formNext(3)"
-              >
-                <span class="text-white" i18n>Next</span>
-              </button>
-            </div>
-          </div>
-        </mat-tab>
-      </ng-container>
-      <mat-tab *ngIf="checkSpecificDetailsVisibility()" (click)="formNext(3)">
+      <mat-tab *ngIf="checkSpecificDetailsVisibility()" (click)="formNext(2)">
         <ng-template
           mat-tab-label
           i18n
@@ -2357,7 +1770,7 @@
               mat-raised-button
               type="button"
               class="text-white ws-mat-primary-background text-white"
-              (click)="formNext(4)"
+              (click)="formNext(3)"
               id="ws-auth-edit-next-tab-three"
               name="ws-auth-edit-next-tab-three"
             >
@@ -2366,6 +1779,597 @@
           </div>
         </div>
       </mat-tab>
+      <ng-container *ngIf="displayPolicyForm">
+        <mat-tab (click)="formNext(3)">
+          <ng-template
+            mat-tab-label
+            id="ws-auth-edit-meta-tab-related-optional"
+            name="ws-auth-edit-meta-tab-related-optional"
+          >
+            <span i18n>Policy Details</span>
+            <!-- <small class="margin-left-xs">
+              <em i18n>(Optional)</em>
+            </small> -->
+          </ng-template>
+          <div class="margin-top-xl">
+            <div class="grid">
+              <div class="margin-top-xs margin-left-xl">
+                <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('references', 'show')"
+                [ngClass]="{ disable: checkCondition('references', 'disabled') }"
+              >
+                <label>
+                  <div class="margin-top-xs flex flex-middle">
+                    <b i18n>External References</b>
+                    <mat-icon
+                      class="ws-mat-primary-text margin-left-xs pointer"
+                      (click)="showInfo('references')"
+                      >info
+                    </mat-icon>
+                  </div>
+                  <span i18n *ngIf="infoType === 'references'"
+                    >Add Urls of external links as reference
+                  </span>
+                </label>
+                <div class="margin-top-xs flex margin-right-xl">
+                  <mat-form-field
+                    class="keywords-chip-list margin-top-xs flex-grow80"
+                    appearance="outline"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('references') }"
+                  >
+                    <mat-chip-list #references aria-label="References selection">
+                      <mat-chip
+                        *ngFor="let key of contentForm.controls.references.value; let i = index"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(i, 'references')"
+                      >
+                        {{ key.url }}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input
+                        i18n-placeholder
+                        placeholder="Enter Link"
+                        #keywordsView
+                        [matChipInputFor]="references"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="true"
+                        (matChipInputTokenEnd)="addReferences($event)"
+                      />
+                    </mat-chip-list>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="margin-top-xs margin-left-xl">
+                <div *ngIf="checkCondition('spaceLicense', 'show')"
+                [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
+                <label>
+                  <div class="margin-top-s flex flex-middle">
+                    <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('spaceLicense', 'required') }">License</b>
+                    <mat-icon  *ngIf="licenseMetaList?.length && currentLicenseData?.length" class="ws-mat-primary-text margin-left-xs pointer" (click)="showLicenseDetails()">info
+                    </mat-icon>
+                  </div>
+                </label>
+                <div class="margin-top-xs">
+                  <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }">
+                    <mat-select formControlName="spaceLicense" placeholder="--Select--"
+                      [required]="checkCondition('spaceLicense', 'required')">
+                      <mat-option *ngIf="contentForm?.controls?.contentType.value !== 'Resource'" [value]="'CC-BY-ND 4.0'">CC-BY-ND 4.0</mat-option>
+                      <mat-option *ngFor="let licenseEntry of currentLicenseList" [value]="licenseEntry">
+                        {{  licenseEntry }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="showError('spaceLicense')" i18n>License is mandatory
+                    </mat-error>
+                    <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n>First select a value for 'Type' field
+                    </mat-error>
+                  </mat-form-field>
+                  <p class="custom-error" *ngIf="contentForm?.controls?.contentType.value === 'Resource' && !contentForm?.controls?.assetType.value && contentForm?.controls?.spaceLicense.value" i18n>Select Type First</p>
+                </div>
+              </div>
+              <div *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
+                  [ngClass]="{ disable: checkCondition('spaceLicenseAttribution', 'disabled') }">
+                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('spaceLicenseAttribution', 'required') }">
+                    Attribution
+                  </p>
+                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseAttribution') }">
+                    <input matInput #spaceLicenseAttribution formControlName="spaceLicenseAttribution" i18n-placeholder
+                      placeholder="Enter Attribution"
+                      [required]="checkCondition('spaceLicenseAttribution', 'required') ? true : null" />
+                    <mat-error *ngIf="showError('spaceLicenseAttribution')" i18n="Name Error|Explains attribution is required">
+                      Attribution is required
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+              </div>
+              </div>
+              <div class="margin-top-xs margin-left-xl">
+                <div
+                  class="margin-top-xs margin-left-xl"
+                  *ngIf="checkCondition('preContents', 'show')"
+                  [ngClass]="{ disable: checkCondition('preContents', 'disabled') }"
+                >
+                  <label>
+                    <div class="margin-top-xs flex flex-middle">
+                      <b i18n>Learn Before</b>
+                      <mat-icon
+                        class="ws-mat-primary-text margin-left-xs pointer"
+                        (click)="showInfo('learnBefore')"
+                        >info
+                      </mat-icon>
+                    </div>
+                    <span i18n *ngIf="infoType === 'learnBefore'"
+                      >Published content to learn before attempting</span
+                    >
+                  </label>
+                  <div class="margin-top-xs flex margin-right-xl">
+                    <mat-form-field
+                      class="keywords-chip-list margin-top-xs flex-grow80"
+                      appearance="outline"
+                      [ngClass]="{ 'mat-form-field-invalid': showError('preContents') }"
+                    >
+                      <mat-chip-list #preContents aria-label="PreContents selection">
+                        <mat-chip
+                          *ngFor="
+                            let content of contentForm.controls.preContents.value;
+                            let i = index
+                          "
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="remove(i, 'preContents')"
+                        >
+                          {{ content.name }}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                          i18n-placeholder
+                          [formControl]="prePostContentsCtrl"
+                          [matAutocomplete]="preContentsAuto"
+                          placeholder="Search Content"
+                          [matChipInputFor]="preContents"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="false"
+                          (matChipInputTokenEnd)="preContentsSearch.value = ''"
+                          #preContentsSearch
+                          id="preContents"
+                          name="preContents"
+                        />
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <mat-autocomplete
+                      #preContentsAuto="matAutocomplete"
+                      autoActiveFirstOption
+                      (optionSelected)="
+                        addContent($event, 'preContents'); preContentsSearch.value = ''
+                      "
+                    >
+                      <mat-option *ngIf="fetchTagsStatus === 'done' && !contentList.length" i18n>
+                        No user found. Please check the value entered.</mat-option
+                      >
+                      <mat-option
+                        [matTooltip]="content.identifier"
+                        *ngFor="let content of contentList"
+                        [value]="content"
+                      >
+                        {{ content.name }} | {{ content.category }}
+                        <span *ngIf="content.categoryType">| {{ content.categoryType }}</span>
+                      </mat-option>
+                    </mat-autocomplete>
+                  </div>
+                </div>
+                <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSpaceLicense', 'show')"
+                  [ngClass]="{ disable: checkCondition('otherSpaceLicense', 'disabled') }">
+                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('otherSpaceLicense', 'required') }">
+                    Other
+                  </p>
+                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('otherSpaceLicense') }">
+                    <input matInput #otherSpaceLicense formControlName="otherSpaceLicense" i18n-placeholder
+                      placeholder="Enter License Name"
+                      [required]="checkCondition('otherSpaceLicense', 'required') ? true : null" />
+                    <mat-error *ngIf="showError('otherSpaceLicense')" i18n="Name Error|Explains profile link is required">
+                      required if License is <b>Other</b>
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+                <div
+                  class="margin-top-xl margin-left-xl"
+                  *ngIf="checkCondition('postContents', 'show')"
+                  [ngClass]="{ disable: checkCondition('postContents', 'disabled') }"
+                >
+                  <label>
+                    <div class="margin-top-xs flex flex-middle">
+                      <b i18n>Learn After</b>
+                      <mat-icon
+                        class="ws-mat-primary-text margin-left-xs pointer"
+                        (click)="showInfo('learnAfter')"
+                        >info
+                      </mat-icon>
+                    </div>
+                    <span i18n *ngIf="infoType === 'learnAfter'"
+                      >Published content to follow up after learning this content
+                    </span>
+                  </label>
+                  <div class="margin-top-xs flex margin-right-xl">
+                    <mat-form-field
+                      class="keywords-chip-list margin-top-xs flex-grow80"
+                      appearance="outline"
+                      [ngClass]="{ 'mat-form-field-invalid': showError('postContents') }"
+                    >
+                      <mat-chip-list #postContents aria-label="postContents selection">
+                        <mat-chip
+                          *ngFor="
+                            let content of contentForm.controls.postContents.value;
+                            let i = index
+                          "
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="remove(i, 'postContents')"
+                        >
+                          {{ content.name }}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                          i18n-placeholder
+                          [formControl]="prePostContentsCtrl"
+                          [matAutocomplete]="postContentsAuto"
+                          placeholder="Search Content"
+                          [matChipInputFor]="postContents"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="false"
+                          (matChipInputTokenEnd)="postContentsSearch.value = ''"
+                          #postContentsSearch
+                          id="postContents"
+                          name="postContents"
+                        />
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <mat-autocomplete
+                      #postContentsAuto="matAutocomplete"
+                      autoActiveFirstOption
+                      (optionSelected)="
+                        addContent($event, 'postContents'); postContentsSearch.value = ''
+                      "
+                    >
+                      <mat-option *ngIf="fetchTagsStatus === 'done' && !contentList.length" i18n>
+                        No user found. Please check the value entered.</mat-option
+                      >
+                      <mat-option
+                        [matTooltip]="content.identifier"
+                        *ngFor="let content of contentList"
+                        [value]="content"
+                      >
+                        {{ content.name }} | {{ content.category }}
+                        <span *ngIf="content.categoryType">| {{ content.categoryType }}</span>
+                      </mat-option>
+                    </mat-autocomplete>
+                  </div>
+                </div>
+                <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceLicenseCopyright', 'show')"
+                  [ngClass]="{ disable: checkCondition('spaceLicenseCopyright', 'disabled') }">
+                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('spaceLicenseCopyright', 'required') }">
+                    Copyright
+                  </p>
+                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseCopyright') }">
+                    <input matInput #spaceLicenseCopyright formControlName="spaceLicenseCopyright" i18n-placeholder
+                      placeholder="Enter Copyright"
+                      [required]="checkCondition('spaceLicenseCopyright', 'required') ? true : null" />
+                    <mat-error *ngIf="showError('spaceLicenseCopyright')" i18n="Name Error|Explains copyright is required">
+                      Copyright is required
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+              </div>
+            </div>
+            <div class="grid">
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('systemRequirements', 'show')"
+                [ngClass]="{ disable: checkCondition('systemRequirements', 'disabled') }"
+              >
+                <label>
+                  <b i18n>Hardware Requirements</b>
+                </label>
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs"
+                  style="width: 90%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('systemRequirements') }"
+                >
+                  <textarea
+                    name="systemRequirements"
+                    class="resize-none"
+                    matInput
+                    rows="6"
+                    formControlName="systemRequirements"
+                    placeholder="Enter the hardware requirements needed for learning the content. For e.g. The system should have atleast 4GB of RAM installed"
+                  >
+                  </textarea>
+                  <mat-error *ngIf="showError('systemRequirements')" i18n
+                    >Hardware Requirements is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="flex flex-column">
+                <div
+                  class="margin-top-xl margin-left-xl"
+                  *ngIf="checkCondition('kArtifacts', 'show')"
+                  [ngClass]="{ disable: checkCondition('kArtifacts', 'disabled') }"
+                >
+                  <label>
+                    <div class="margin-top-xs flex flex-middle">
+                      <b i18n>Knowledge Artifacts</b>
+                      <mat-icon
+                        class="ws-mat-primary-text margin-left-xs pointer"
+                        (click)="showInfo('knowledgeArtifact')"
+                        >info</mat-icon
+                      >
+                    </div>
+                    <span i18n *ngIf="infoType === 'knowledgeArtifact'">
+                      Knowledge Artifacts that supplement the content
+                    </span>
+                  </label>
+                  <div
+                    class="margin-top-l flex margin-right-xl"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('kArtifacts') }"
+                  >
+                    <p class="margin-remove-bottom mat-h3 op30 margin-left-s">
+                      {{ selectedSkills.length }} content selected
+                    </p>
+                    <span
+                      class="ws-mat-primary-text font-weight-500 flex flex-middle margin-left-s cursor-pointer"
+                    >
+                      <mat-icon>add</mat-icon>ADD CONTENT
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="margin-top-xl margin-left-xl"
+                  *ngIf="checkCondition('playgroundResources', 'show')"
+                  [ngClass]="{ disable: checkCondition('playgroundResources', 'disabled') }"
+                >
+                  <label>
+                    <div class="margin-top-xs flex flex-middle">
+                      <b i18n>Playgrounds</b>
+                      <mat-icon
+                        class="ws-mat-primary-text margin-left-xs pointer"
+                        (click)="showInfo('playground')"
+                        >info
+                      </mat-icon>
+                    </div>
+                    <span i18n *ngIf="infoType === 'playground'"
+                      >Playgrounds to supplement this content</span
+                    >
+                  </label>
+                  <div
+                    class="margin-top-l flex margin-right-xl"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('playgroundResources') }"
+                  >
+                    <p class="margin-remove-bottom mat-h3 op30 margin-left-s">
+                      {{ selectedSkills.length }} content selected
+                    </p>
+                    <span
+                      class="ws-mat-primary-text font-weight-500 flex flex-middle margin-left-s cursor-pointer"
+                    >
+                      <mat-icon>add</mat-icon>ADD CONTENT
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid">
+              <div
+                class="margin-left-xl"
+                *ngIf="checkCondition('softwareRequirements', 'show')"
+                [ngClass]="{ disable: checkCondition('softwareRequirements', 'disabled') }"
+              >
+                <label>
+                  <b i18n>Software Requirements</b>
+                </label>
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs"
+                  style="width: 90%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('softwareRequirements') }"
+                >
+                  <textarea
+                    name="softwareRequirements"
+                    class="resize-none"
+                    matInput
+                    rows="6"
+                    formControlName="softwareRequirements"
+                    placeholder="Enter the software requirements needed for learning the content. For e.g. Jupyter Notebook should be installed in your system"
+                  >
+                  </textarea>
+                  <mat-error *ngIf="showError('softwareRequirements')" i18n
+                    >Software Requirements is mandatory
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="grid">
+              <div
+                class="margin-top-m margin-left-xl"
+                *ngIf="checkCondition('introductoryVideoIcon', 'show')"
+                [ngClass]="{ disable: checkCondition('introductoryVideoIcon', 'disabled') }"
+              >
+                <label>
+                  <div class="margin-top-xs flex flex-middle">
+                    <b i18n>Introductory Video Thumbnail</b>
+                    <mat-icon
+                      class="ws-mat-primary-text margin-left-xs pointer"
+                      (click)="showInfo('introVideoThumbnail')"
+                      >info</mat-icon
+                    >
+                  </div>
+                  <span i18n *ngIf="infoType === 'introVideoThumbnail'">
+                    Maximum file size - 1 MB
+                  </span>
+                </label>
+                <div
+                  class="margin-top-xs"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('introductoryVideoIcon') }"
+                >
+                  <img
+                    class="image"
+                    [src]="contentForm.controls.introductoryVideo.value"
+                    (error)="changeToDefaultImg($event)"
+                  />
+                  <div class="photo mat-elevation-z4">
+                    <mat-icon class="photo-icon ws-mat-primary-text">photo_camera</mat-icon>
+                    <input type="file" #uploadImage id="upload" style="display: none;" placeholder="Upload file" accept="image/*" />
+                  </div>
+                  <mat-error class="error-font" *ngIf="showError('introductoryVideo')" i18n
+                    >Video Thumbnail is mandatory
+                  </mat-error>
+                </div>
+              </div>
+              <div
+                class="margin-top-m"
+                *ngIf="checkCondition('introductoryVideo', 'show')"
+                [ngClass]="{ disable: checkCondition('introductoryVideo', 'disabled') }"
+              >
+                <label>
+                  <div class="margin-top-xs flex flex-middle">
+                    <b i18n>Introductory Video </b>
+                    <mat-icon
+                      class="ws-mat-primary-text margin-left-xs pointer"
+                      (click)="showInfo('introVideo')"
+                      >info
+                    </mat-icon>
+                  </div>
+                  <span i18n *ngIf="infoType === 'introVideo'"
+                    >Upload a video to introduce your content (Max. file size - 200MB)
+                  </span>
+                </label>
+                <div
+                  class="upload-box flex flex-middle justify-center p-20"
+                  wsAuthDragDrop
+                  [ngClass]="{ 'mat-form-field-invalid': showError('introductoryVideo') }"
+                >
+                  <span class="font-weight-500" *ngIf="!isFileUploaded">
+                    <input type="file" name="file" id="file" class="inputfile cursor-pointer" accept=".mp4" (change)="handleFileInput($event.target.files)"
+                    />
+                    <label
+                      for="file"
+                      class="mat-h2 ws-mat-primary-text flex flex-middle justify-center"
+                    >
+                      <mat-icon>add</mat-icon>Browse
+                    </label>
+                  </span>
+                  <div *ngIf="isFileUploaded" class="flex flex-middle justify-center">
+                    <mat-icon
+                      class="ws-mat-primary-text"
+                      *ngIf="fileUploadForm.controls['content'].value[0].name.includes('pdf')"
+                      >picture_as_pdf</mat-icon
+                    >
+                    <mat-icon
+                      class="ws-mat-primary-text"
+                      *ngIf="fileUploadForm.controls['content'].value[0].name.includes('mp4')"
+                      >videocam</mat-icon
+                    >
+                    <mat-icon
+                      class="ws-mat-primary-text"
+                      *ngIf="fileUploadForm.controls['content'].value[0].name.includes('mp3')"
+                      >music_note</mat-icon
+                    >
+                    <p class="margin-left-xs mat-h4 font-weight-500 margin-remove-bottom">
+                      {{
+                        fileUploadForm.controls['content'] &&
+                        fileUploadForm.controls['content'].value &&
+                        fileUploadForm.controls['content'].value[0]
+                          ? fileUploadForm.controls['content'].value[0].name
+                          : ''
+                      }}
+                    </p>
+                    <button
+                      mat-icon-button
+                      class="close-button padding-remove ws-mat-primary-background-op30 text-white"
+                    >
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex margin-xl padding-left-l">
+              <mat-checkbox [checked]="isTnCFoLicenseAgreed" (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
+              <p class="margin-left-xs margin-remove-bottom">
+                I agree that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform. <br>I have made sure that I do not violate others’ copyright, privacy or third party rights. Visit
+                <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()"
+                  >Terms of Use policy</span
+                >
+                page for more details
+              </p>
+            </div>
+            <div class="flex">
+              <div
+                class="margin-top-l margin-left-xl"
+                *ngIf="checkCondition('references', 'show')"
+                [ngClass]="{ disable: checkCondition('references', 'disabled') }"
+              >
+                <label>
+                  <div class="margin-top-xs flex flex-middle">
+                    <b i18n>References</b>
+                    <mat-icon
+                      class="ws-mat-primary-text margin-left-xs pointer"
+                      (click)="showInfo('references')"
+                      >info
+                    </mat-icon>
+                  </div>
+                  <span *ngIf="infoType === 'references'">
+                    Add any references you used while making this content
+                  </span>
+                </label>
+                <div
+                  class="margin-top-l flex margin-right-xl"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('references') }"
+                >
+                  <p class="margin-remove-bottom mat-h3 op30 margin-left-s">
+                    {{ selectedSkills.length }}
+                    <span i18n> references added</span>
+                  </p>
+                  <span
+                    class="ws-mat-primary-text font-weight-500 flex flex-middle margin-left-s cursor-pointer"
+                  >
+                    <mat-icon>add</mat-icon>
+                    <span i18n>ADD REFERENCE</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-end margin-top-l margin-bottom-l margin-right-l">
+              <button
+                mat-raised-button
+                type="button"
+                id="ws-auth-edit-save-tab-three"
+                name="ws-auth-edit-save-tab-three"
+                class="text-white ws-mat-primary-background text-white margin-right-m"
+                (click)="data.emit('save')"
+              >
+                <span class="text-white" i18n>Save</span>
+              </button>
+              <button
+                mat-raised-button
+                type="button"
+                class="text-white ws-mat-primary-background text-white"
+                (click)="formNext(4)"
+              >
+                <span class="text-white" i18n>Next</span>
+              </button>
+            </div>
+          </div>
+        </mat-tab>
+      </ng-container>
       <mat-tab (click)="formNext(4)">
         <ng-template
           mat-tab-label
