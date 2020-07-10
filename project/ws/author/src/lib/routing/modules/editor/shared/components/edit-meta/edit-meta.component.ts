@@ -669,6 +669,12 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             }+0000`
         }
         Object.keys(currentMeta).map(v => {
+          if (v === 'sourceName') {
+            meta[v] = currentMeta[v]
+          }
+          if (v === 'spaceLicense') {
+            meta[v] = currentMeta[v]
+          }
           if (
             JSON.stringify(currentMeta[v as keyof NSContent.IContentMeta]) !==
             JSON.stringify(originalMeta[v as keyof NSContent.IContentMeta])
