@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core'
 import { TreeCatalogService } from '../tree-catalog/tree-catalog.service'
 import { TFetchStatus, ConfigurationsService } from '@ws-widget/utils'
 import { FormControl } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
 import { ISearchAutoComplete, ISearchQuery } from '../../../../../../project/ws/app/src/lib/routes/search/models/search.model'
 import { SearchServService } from '../../../../../../project/ws/app/src/lib/routes/search/services/search-serv.service'
 import { NSSearch } from '../_services/widget-search.model'
@@ -27,8 +26,8 @@ export class BtnCatalogComponent extends WidgetBaseComponent
   autoCompleteResults: ISearchAutoComplete[] = []
 
   constructor(private catalogSvc: TreeCatalogService,
-              private searchSvc: SearchServService,
-              private configSvc: ConfigurationsService) {
+    private searchSvc: SearchServService,
+    private configSvc: ConfigurationsService) {
     super()
   }
 
