@@ -11,33 +11,21 @@
             <button mat-icon-button (click)="onClickBtnShare()" matTooltip="Share" i18n-matTooltip>
               <mat-icon>share</mat-icon>
             </button>
-            <button
-              mat-icon-button
-              class="btn-training-menu absolute"
-              [matMenuTriggerFor]="trainingOptionsMenu"
-            >
+            <button mat-icon-button class="btn-training-menu absolute" [matMenuTriggerFor]="trainingOptionsMenu">
               <mat-icon>more_vert</mat-icon>
             </button>
           </div>
         </div>
       </div>
       <mat-menu #trainingOptionsMenu>
-        <button
-          mat-menu-item
-          [matMenuTriggerFor]="educatorsMenu"
-          *ngIf="training.sessions && training.sessions.length"
-        >
+        <button mat-menu-item [matMenuTriggerFor]="educatorsMenu" *ngIf="training.sessions && training.sessions.length">
           <mat-icon>school</mat-icon>
           <span i18n>Educators</span>
         </button>
       </mat-menu>
       <mat-menu #educatorsMenu>
         <ng-template matMenuContent>
-          <a
-            mat-menu-item
-            *ngFor="let educator of training.sessions[0].educator"
-            href="mailto:{{ educator.email }}"
-          >
+          <a mat-menu-item *ngFor="let educator of training.sessions[0].educator" href="mailto:{{ educator.email }}">
             <mat-icon>email</mat-icon>
             {{ educator.name }}
           </a>
@@ -75,10 +63,7 @@
         </div>
       </div>
 
-      <div
-        class="margin-bottom-xs margin-top-xs flex"
-        *ngIf="training.deliveryType === 'Classroom'"
-      >
+      <div class="margin-bottom-xs margin-top-xs flex" *ngIf="training.deliveryType === 'Classroom'">
         <div>
           <mat-icon>location_on</mat-icon>
         </div>
@@ -102,12 +87,7 @@
           <div class="text-truncate">
             <span class="mat-body-2" i18n="assessment; exam">Assessment: </span>
             <span class="mat-body">
-              <ng-container
-                *ngIf="training.hasAssessment"
-                style="color: white;"
-                i18n
-                >Yes</ng-container
-              >
+              <ng-container *ngIf="training.hasAssessment" i18n>Yes</ng-container>
               <ng-container *ngIf="!training.hasAssessment" i18n>No</ng-container>
             </span>
           </div>
@@ -136,10 +116,7 @@
       <div class="flex margin-bottom-xs" *ngIf="!training.eligible">
         <mat-icon>warning</mat-icon>
         <div class="margin-left-xs mat-caption">
-          <ng-container
-            [ngTemplateOutlet]="ineligibleForTraining"
-            [ngTemplateOutletContext]="{ $implicit: training }"
-          >
+          <ng-container [ngTemplateOutlet]="ineligibleForTraining" [ngTemplateOutletContext]="{ $implicit: training }">
           </ng-container>
         </div>
       </div>
@@ -148,49 +125,27 @@
 
   <div class="flex flex-center">
     <div [ngClass]="{ 'mr-4': trainingPrivileges.canNominate }" *ngIf="!training.registered">
-      <button
-        mat-flat-button
-        color="primary"
-        class="inline-block"
-        (click)="onClickBtnRegister(training)"
-        [disabled]="
+      <button mat-flat-button color="primary" class="inline-block" (click)="onClickBtnRegister(training)" [disabled]="
           !(training.slots_available && training.eligible) || registerStatus === 'sending'
-        "
-        i18n
-      >
+        " i18n>
         Register
       </button>
     </div>
 
     <div [ngClass]="{ 'mr-4': trainingPrivileges.canNominate }" *ngIf="training.registered">
-      <button
-        mat-flat-button
-        color="primary"
-        class="inline-block"
-        (click)="onClickBtnDeregister(training)"
-        [disabled]="deregisterStatus === 'sending'"
-        [ngClass]="{ 'mr-4': trainingPrivileges.canNominate }"
-        i18n
-      >
+      <button mat-flat-button color="primary" class="inline-block" (click)="onClickBtnDeregister(training)"
+        [disabled]="deregisterStatus === 'sending'" [ngClass]="{ 'mr-4': trainingPrivileges.canNominate }" i18n>
         De-Register
       </button>
     </div>
 
     <div *ngIf="trainingPrivileges.canNominate">
-      <button
-        mat-stroked-button
-        color="primary"
-        class="inline-block"
-        [disabled]="
+      <button mat-stroked-button color="primary" class="inline-block" [disabled]="
           !training.slots_available ||
           registerStatus === 'sending' ||
           deregisterStatus === 'sending'
-        "
-        (click)="onClickBtnNominate()"
-        i18n="nominate"
-        matTooltip="Nominate other users to undergo this training."
-        i18n-matTooltip
-      >
+        " (click)="onClickBtnNominate()" i18n="nominate" matTooltip="Nominate other users to undergo this training."
+        i18n-matTooltip>
         Nominate
       </button>
     </div>

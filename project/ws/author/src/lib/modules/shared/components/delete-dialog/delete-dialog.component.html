@@ -1,32 +1,16 @@
 <div mat-dialog-title class="relative">
   <h2 mat-dialog-title i18n>Delete</h2>
-  <button
-    [disabled]="onAction"
-    i18n-matTooltip
-    [matTooltip]="'Close'"
-    mat-button
-    class="close-icon"
-    mat-dialog-close
-  >
+  <button [disabled]="onAction" i18n-matTooltip [matTooltip]="'Close'" mat-button class="close-icon" mat-dialog-close>
     <mat-icon>close</mat-icon>
   </button>
 </div>
 <mat-dialog-content>
   <form [formGroup]="commentsForm">
     <mat-form-field appearance="fill" class="width-1-1">
-      <textarea
-        rows="3"
-        matInput
-        placeholder=" For eg. This content is deleted because..."
-        name="name"
-        formControlName="comments"
-        required
-      ></textarea>
-      <mat-error
-        i18n
-        *ngIf="isSubmitPressed && !commentsForm.controls.comments.value"
-        i18n="Comments Error|Explains Comments is mandatory field"
-      >
+      <textarea rows="3" matInput placeholder=" For eg. This content is deleted because..." name="name"
+        formControlName="comments" required></textarea>
+      <mat-error i18n *ngIf="isSubmitPressed && !commentsForm.controls.comments.value"
+        i18n="Comments Error|Explains Comments is mandatory field">
         Comments is mandatory
       </mat-error>
     </mat-form-field>
@@ -39,10 +23,8 @@
           later} other {The content can be restored later from Deleted section}}.
         </div>
       </div>
-      <div
-        class="flex relative mat-form-field-appearance-fill mt-4"
-        *ngIf="isSubmitPressed && !commentsForm.controls.action.value"
-      >
+      <div class="flex relative mat-form-field-appearance-fill mt-4"
+        *ngIf="isSubmitPressed && !commentsForm.controls.action.value">
         <div class="mat-form-field-subscript-wrapper mat-error no-padding" i18n>
           Accept the declaration
         </div>
@@ -52,13 +34,7 @@
       <button cdkFocusInitial mat-dialog-close [disabled]="onAction" mat-raised-button i18n>
         Cancel
       </button>
-      <button
-        class="margin-left-s"
-        (click)="submitData()"
-        [disabled]="onAction"
-        mat-raised-button
-        style="color: white;"
-      >
+      <button class="margin-left-s" (click)="submitData()" [disabled]="onAction" mat-raised-button>
         <mat-spinner [diameter]="25" color="primary" *ngIf="onAction"></mat-spinner>
         <ng-container *ngIf="!onAction" i18n>Yes</ng-container>
       </button>

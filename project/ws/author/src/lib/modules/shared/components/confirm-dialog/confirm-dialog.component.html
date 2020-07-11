@@ -31,11 +31,10 @@
       <ng-container i18n *ngIf="data === 'unpublish'">
         Are you sure you want to unpublish it?
       </ng-container>
-      <ng-container *ngIf="data === 'retrieveParent'" i18n
-        >Are you sure you want to retrieve this content and its children?
+      <ng-container *ngIf="data === 'retrieveParent'" i18n>Are you sure you want to retrieve this content and its
+        children?
       </ng-container>
-      <ng-container *ngIf="data === 'retrieveChild'" i18n
-        >Are you sure you want to retrieve this content?
+      <ng-container *ngIf="data === 'retrieveChild'" i18n>Are you sure you want to retrieve this content?
       </ng-container>
       <ng-container *ngIf="data.type === 'deleteQues'">
         <span i18n> Are you sure you want to delete Quiz</span>-{{ data.index }} ?
@@ -49,12 +48,7 @@
     </h3>
   </div>
   <div mat-dialog-actions class="flex-row-reverse">
-    <button
-      i18n
-      mat-raised-button
-      style="color: white;"
-      [mat-dialog-close]="true"
-    >
+    <button i18n mat-raised-button [mat-dialog-close]="true">
       Yes
     </button>
     <button i18n mat-raised-button mat-dialog-close cdkFocusInitial>No</button>
