@@ -5,7 +5,8 @@
   <meta charset="utf-8" />
   <title>NIIT</title>
   <base href="/" />
-  <meta id="id-app-description" name="Description" content="NIIT is a leading Skills and Talent Development Corporation that is building a manpower pool for global industry requirements." />
+  <meta id="id-app-description" name="Description"
+    content="NIIT is a leading Skills and Talent Development Corporation that is building a manpower pool for global industry requirements." />
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link id="id-app-x-icon" rel="icon" type="x-icon" />
@@ -25,6 +26,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        border: 5px solid transparent;
       }
 
       .loader-ripple {
@@ -63,12 +65,14 @@
           opacity: 0;
         }
       }
+
     </style>
     <div class="loader-container">
-      <div class="loader-ripple">
+      <img style="width: 100%;" src="/assets/instances/space/fav_icons/loader.gif">
+      <!-- <div class="loader-ripple">
         <div></div>
         <div></div>
-      </div>
+      </div> -->
     </div>
   </ws-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
@@ -80,6 +84,7 @@
     document.body.innerHTML =
       '<h1 style="margin-top: 50px; text-align: center">IE 11 and lesser version browsers are not supported.</h1><h3 style="margin-top: 16px; text-align: center">For best experience, use Google Chrome</h3>'
   }
+
 </script>
 
 </html>
