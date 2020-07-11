@@ -390,11 +390,14 @@ export class UserDashboardComponent implements OnInit {
   }
   // returnEmail(failedResponseEmail: any) {
   //   // tslint:disable-next-line: prefer-template
-    //   // tslint:disable-next-line: prefer-template
+  //   // tslint:disable-next-line: prefer-template
   // const data = failedResponseEmail.reduce((acc: any, current: any) => acc + ',' + current.ErrorResponseData)
   // return data
 
   //   // console.log('dta', data)
   //   // return data
   // }
+  removeSelectedFromCheckbox() {
+    this.selection.clear()
+  }
 }
