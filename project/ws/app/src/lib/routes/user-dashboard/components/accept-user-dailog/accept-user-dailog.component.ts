@@ -37,9 +37,9 @@ export class AcceptUserDailogComponent implements OnInit {
          data.allRoles.forEach((element:  string, index: any) => {
            // tslint:disable-next-line: brace-style
            // tslint:disable-next-line: align
-           if (element === 'privileged') {
+           if (element === 'learner') {
 
-           data.allRoles[index] = 'default'
+             data.allRoles[index] = 'learner'
            }
          })
       }
@@ -80,7 +80,7 @@ export class AcceptUserDailogComponent implements OnInit {
   }
 
 getSelection(item: any) {
-  if (item.name === 'default' || this.getSelectionsFromOtherItems(item)) {
+  if (item.name === 'learner' || this.getSelectionsFromOtherItems(item)) {
     return true
   }
   return false
@@ -108,7 +108,7 @@ save() {
 }
 
   isDisabled(item: any) {
-    if (item.name === 'default') {
+    if (item.name === 'learner') {
       return true
     }
       return false

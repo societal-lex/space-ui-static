@@ -11,6 +11,12 @@ interface IResponse {
   DATA?: [NsUserDashboard.IUserListData],
   STATUS?: string,
   MESSAGE: string,
+  ErrorResponseData?: string,
+  API_ID?: string,
+  STATUS_CODE?: number,
+  TIME_STAMP?: any,
+  wid?: string,
+  email?: string,
 }
 interface IResponseForGetRoles {
   ok: boolean
@@ -19,6 +25,7 @@ interface IResponseForGetRoles {
   STATUS?: string,
   MESSAGE?: string,
 }
+
 @Injectable({
   providedIn: 'root',
 })
@@ -141,9 +148,14 @@ export class UserDashboardService {
   }
   async changeRoles(responseBody: NsUserDashboard.IChangeRole, headers: NsUserDashboard.IHeaders): Promise<IResponse> {
     // tslint:disable-next-line: prefer-template
+
+    // tslint:disable-next-line: prefer-const
+    let email = responseBody.email
     const responseBodyAsJSON = {
       wid: responseBody.wid,
       roles: responseBody.roles,
+      email: responseBody.email,
+      name: responseBody.name,
     }
     const httpOptions = {
       headers: new HttpHeaders({
@@ -164,17 +176,57 @@ export class UserDashboardService {
           MESSAGE: this.userData.change_roles.successMessage,
         })
       }
-      return { ok: false, error: null, MESSAGE: this.userData.change_roles.errorMessage }
+      return {
+        ok: false, error: null,
+        MESSAGE: this.userData.change_roles.errorMessage,
+        DATA: userChangedRoleResponse.DATA, ErrorResponseData: email,
+      }
     } catch (ex) {
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
           MESSAGE: this.userData.change_roles.errorMessage,
+          ErrorResponseData: email,
         })
       }
-      return Promise.resolve({ ok: false, error: null, MESSAGE: this.userData.change_roles.errorMessage })
+      return Promise.resolve({
+        ok: false, error: null,
+        MESSAGE: this.userData.change_roles.errorMessage,
+        ErrorResponseData: email,
+      })
     }
   }
+  // changeRoleForUser(responseBody: NsUserDashboard.IChangeRole, headers: NsUserDashboard.IHeaders): Observable<IResponse> {
+  //   // tslint:disable-next-line: prefer-template
+  //   const responseBodyAsJSON = {
+  //     wid: responseBody.wid,
+  //     roles: responseBody.roles,
+  //     email: responseBody.email,
+  //     name: responseBody.name,
+  //   }
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       rootorg: headers.rootOrg,
+  //       wid_orgadmin: headers.wid_OrgAdmin,
+  //       org: headers.org,
+  //     }),
+  //   }
+
+  //   // const url = '/usersubmission/user/v1/changerole';
+  //   // try {
+  //   // tslint:disable-next-line: max-line-length
+  //   return this.http.put<IResponse>(this.userData.API_END_POINT + this.userData.change_roles.url, responseBodyAsJSON, httpOptions)
+  //     .pipe(
+  //       tap((data: any) => {
+  //         // tslint:disable-next-line: no-console
+  //         console.log('data', data)
+  //       }),
+  //       catchError(err => {
+  //         // tslint:disable-next-line: prefer-template
+  //         throw new Error('Error in source. Details: ' + err) // Use console.log(err) for detail
+  //       })
+  //     )
+  // }
   generateDetailsRequests(originalData: object[]) {
     if (originalData.length) {
       return originalData.map((user: any) => {
@@ -245,6 +297,7 @@ export class UserDashboardService {
       catchError(
 
         _ => {
+
           return of([])
         })
     )
