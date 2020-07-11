@@ -1,13 +1,13 @@
 <button i18n-aria-label aria-label="Apps" style="color: black;" *ngIf="!widgetData?.showTitle" mat-icon-button
   [matMenuTriggerFor]="appsMenu" [ngClass]="{ 'ws-mat-accent-text': isUrlOpened }" i18n-matTooltip matTooltip="Apps"
   name="appsIconHomePage">
-  <mat-icon>apps
-  </mat-icon>
+  <img style="width:30px;height:30px;color:black;" src="/assets/instances/space/fav_icons/tools.jpg" />
+
 </button>
 <a role="button" style="color: black;" matRipple *ngIf="widgetData?.showTitle"
   [ngClass]="{ 'ws-mat-accent-text': isUrlOpened }"
   class="flex items-center flex-col cursor-pointer px-2 box-sizing-box" [matMenuTriggerFor]="appsMenu">
-  <mat-icon>apps</mat-icon>
+  <mat-icon><img src="/assets/instances/space/fav_icons/features-icon-3.png" /></mat-icon>
   <span [ngClass]="instanceVal === 'RootOrg' ? 'title font-sans' : 'mat-caption'" i18n>Apps</span>
 </a>
 <mat-menu #appsMenu="matMenu" xPosition="before" yPosition="above">

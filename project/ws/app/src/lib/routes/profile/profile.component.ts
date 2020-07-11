@@ -46,6 +46,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.tabName = this.enabledTabs.featureUsage.displayName
     } else if (tab === 'settings') {
       this.tabName = this.enabledTabs.settings.displayName
+    } else if (tab === 'goalsForProfile') {
+      this.tabName = this.enabledTabs.goalsForProfile.displayName
     }
     this.defaultSideNavBarOpenedSubscription = this.isLtMedium$.subscribe((isLtMedium: boolean) => {
       this.screenSizeIsLtMedium = isLtMedium

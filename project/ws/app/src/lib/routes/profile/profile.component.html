@@ -153,6 +153,14 @@
           {{ enabledTabs?.settings?.displayName }}</span
         >
       </a>
+          <a mat-list-item *ngIf="enabledTabs?.goalsForProfile?.enabled" routerLinkActive="mat-toolbar" (click)="
+                    tabUpdate(enabledTabs?.goalsForProfile?.displayName);
+                    screenSizeIsLtMedium ? sideNavBar.toggle() : null
+                  " routerLink="/app/goals/me/all" matTooltip="{{ enabledTabs?.goalsForProfile?.displayName }}">
+            <mat-icon>adjust</mat-icon>
+            <span *ngIf="showText || screenSizeIsLtMedium" class="padding-left-s">
+              {{ enabledTabs?.goalsForProfile?.displayName }}</span>
+          </a>
     </mat-nav-list>
   </mat-sidenav>
 

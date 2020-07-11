@@ -92,7 +92,6 @@
         (click)="submitData()"
         [disabled]="onAction"
         mat-raised-button
-        style="color: white; background: #865ba0;"
       >
         <mat-spinner [diameter]="25" color="primary" *ngIf="onAction"></mat-spinner>
         <ng-container *ngIf="!onAction" i18n>Proceed</ng-container>
@@ -100,3 +99,4 @@
     </div>
   </form>
 </mat-dialog-content>
+    <!-- style="color: white; background: #865ba0; -->

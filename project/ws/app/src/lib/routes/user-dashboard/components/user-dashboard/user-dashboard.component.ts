@@ -346,7 +346,7 @@ export class UserDashboardComponent implements OnInit {
             // if (responseWithWidAndEmail) {
             this.paramsForChangeRoleForBulkUser.wid = responseWithWidAndEmail[0].id,
               this.paramsForChangeRoleForBulkUser.roles.push('learner')
-            this.paramsForChangeRoleForBulkUser.email = responseWithWidAndEmail[0].mail
+          this.paramsForChangeRoleForBulkUser.email = responseWithWidAndEmail[0].mail
             this.paramsForChangeRoleForBulkUser.name = responseWithWidAndEmail[0].displayName
             // tslint:disable-next-line: no-console
             // tslint:disable-next-line: max-line-length

@@ -31,14 +31,14 @@
   background: transparent !important;
   color: rgba(0, 0, 0, 0.38) !important;
 }
-::ng-deep {
-  .theme-muave.day-mode .mat-raised-button,
-  .theme-muave.day-mode .mat-fab,
-  .theme-muave.day-mode .mat-mini-fab {
-    color: white;
-    background: #865ba0;
-  }
-}
+// ::ng-deep {
+//   .theme-muave.day-mode .mat-raised-button,
+//   .theme-muave.day-mode .mat-fab,
+//   .theme-muave.day-mode .mat-mini-fab {
+//     color: white;
+//     background: #865ba0;
+//   }
+// }
 
 ws-widget-user-image {
   $image-size: 50px;
