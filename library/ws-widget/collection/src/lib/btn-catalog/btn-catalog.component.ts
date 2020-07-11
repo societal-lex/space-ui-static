@@ -26,8 +26,8 @@ export class BtnCatalogComponent extends WidgetBaseComponent
   autoCompleteResults: ISearchAutoComplete[] = []
 
   constructor(private catalogSvc: TreeCatalogService,
-    private searchSvc: SearchServService,
-    private configSvc: ConfigurationsService) {
+              private searchSvc: SearchServService,
+              private configSvc: ConfigurationsService) {
     super()
   }
 
