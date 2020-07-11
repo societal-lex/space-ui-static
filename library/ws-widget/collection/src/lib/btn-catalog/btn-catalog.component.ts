@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { TreeCatalogService } from '../tree-catalog/tree-catalog.service'
 import { TFetchStatus, ConfigurationsService } from '@ws-widget/utils'
+import { Router } from '@angular/router'
 import { FormControl } from '@angular/forms'
 import { ISearchAutoComplete, ISearchQuery } from '../../../../../../project/ws/app/src/lib/routes/search/models/search.model'
 import { SearchServService } from '../../../../../../project/ws/app/src/lib/routes/search/services/search-serv.service'
@@ -26,8 +27,9 @@ export class BtnCatalogComponent extends WidgetBaseComponent
   autoCompleteResults: ISearchAutoComplete[] = []
 
   constructor(private catalogSvc: TreeCatalogService,
-              private searchSvc: SearchServService,
-              private configSvc: ConfigurationsService) {
+    private searchSvc: SearchServService,
+    private router: Router,
+    private configSvc: ConfigurationsService) {
     super()
   }
 
@@ -41,6 +43,19 @@ export class BtnCatalogComponent extends WidgetBaseComponent
       this.autoCompleteResults = results
     }).catch(() => {
 
+    })
+  }
+
+  search(query?: string) {
+    this.router.navigate(['/app/search/home'], {
+      queryParams: { lang: this.searchQuery.l, q: query || this.searchQuery.q },
+    }).then(() => {
+      this.router.navigate(['/app/search/learning'], {
+        queryParams: {
+          q: query || this.searchQuery.q,
+          lang: this.searchQuery.l,
+        },
+      })
     })
   }
 
