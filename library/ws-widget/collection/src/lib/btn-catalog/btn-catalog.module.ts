@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material'
-
+import {
+  MatButtonModule, MatIconModule, MatFormFieldModule,
+  MatMenuModule, MatAutocompleteModule, MatInputModule,
+} from '@angular/material'
+import { RouterModule } from '@angular/router'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BtnCatalogComponent } from './btn-catalog.component'
 import { TreeCatalogModule } from '../tree-catalog/tree-catalog.module'
 
@@ -12,7 +16,13 @@ import { TreeCatalogModule } from '../tree-catalog/tree-catalog.module'
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatInputModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
     TreeCatalogModule,
+    RouterModule,
   ],
   entryComponents: [BtnCatalogComponent],
 })

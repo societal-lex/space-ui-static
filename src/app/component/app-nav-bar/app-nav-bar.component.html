@@ -13,7 +13,7 @@
       <span class="spacer"></span>
       <button i18n-aria-label aria-label="Help" class="home-help" name="helpIconHomePage" mat-icon-button id='helper'
         [matMenuTriggerFor]="helpMenu" *ngIf="!isHelpMenuRestricted">
-        <mat-icon>help_outline</mat-icon>
+        <mat-icon>info</mat-icon>
       </button>
       <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
         *ngFor="let item of primaryNavbarConfig?.mediumScreen?.right">

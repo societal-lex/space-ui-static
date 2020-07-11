@@ -1,8 +1,29 @@
-<button mat-button i18n-matTooltip matTooltip="Explore" (click)="getCatalog()" #rootTrigger="matMenuTrigger"
-  name="exploreButtonHomePage" [matMenuTriggerFor]="rootMenu.childMenu">
-  <mat-icon>apps</mat-icon>
-  <span class="padding-left-xs" i18n>Explore</span>
-</button>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <div>
+    <button mat-button i18n-matTooltip matTooltip="Explore" (click)="getCatalog()" #rootTrigger="matMenuTrigger"
+      name="exploreButtonHomePage" [matMenuTriggerFor]="rootMenu.childMenu">
+      <mat-icon>apps</mat-icon>
+      <span class="button-style" i18n>Explore</span>
+    </button>
+  </div>
+  <div>
+    <form (submit)="search(query.value)" class="w-full flex">
+      <mat-form-field class="w-full" appearance="none" style="padding-top: 7px;">
+        <input name="searchQuery" class="search-input" [formControl]="query" type="text" matInput placeholder="Search"
+          i18-aria-label aria-label="Query" i18n-placeholder="search content" />
+        <mat-icon class="search-icon">search</mat-icon>
+      </mat-form-field>
+      <mat-autocomplete (optionSelected)="search($event.option.value)" #auto="matAutocomplete">
+        <mat-option *ngIf="query.value" [value]="query.value">{{ query.value }}</mat-option>
+      </mat-autocomplete>
+    </form>
+  </div>
+</div>
+
+<!-- <button mat-button i18n-matTooltip matTooltip="Search" name="searchButtonHomePage" [routerLink]="'/app/search/home'">
+  <mat-icon>search</mat-icon>
+  <span class="button-style" i18n>Search</span>
+</button> -->
 
 <ws-widget-tree-catalog-menu #rootMenu [rootTrigger]="rootTrigger" [catalogItems]="catalogItems | slice: 0:10"
   [fetchStatus]="catalogFetchStatus" isRoot="true">
