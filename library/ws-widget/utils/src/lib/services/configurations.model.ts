@@ -225,7 +225,8 @@ export namespace NsAppsConfig {
     badgeEndpoint?: string
     mobileAppFunction?: string
     color?: string
-    target?: string
+    target?: string,
+    allowedRoles?: string[],
   }
 }
 
