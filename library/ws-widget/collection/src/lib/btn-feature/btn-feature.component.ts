@@ -55,7 +55,7 @@ export class BtnFeatureComponent extends WidgetBaseComponent
   ) {
     super()
   }
-
+  allowedWidgetData?: NsPage.INavLink
   updateBadge() {
     if (this.widgetData.actionBtn && this.widgetData.actionBtn.badgeEndpoint) {
       this.btnFeatureSvc
@@ -69,11 +69,14 @@ export class BtnFeatureComponent extends WidgetBaseComponent
             this.badgeCount = ''
           }
         })
-        .catch(_err => {})
+        .catch(_err => { })
     }
   }
 
   ngOnInit() {
+    if (this.isAllowedForDisplay()) {
+      this.removeWidgetData()
+    }
     this.instanceVal = this.configSvc.rootOrg || ''
     if (this.configSvc.restrictedFeatures) {
       this.isPinFeatureAvailable = !this.configSvc.restrictedFeatures.has('pinFeatures')
@@ -155,8 +158,26 @@ export class BtnFeatureComponent extends WidgetBaseComponent
       this.configurationsSvc.pinnedApps.next(newPinnedApps)
     })
   }
-
   startTour() {
     this.tour.startTour()
+  }
+  isAllowedForDisplay() {
+    if (this.widgetData.actionBtn) {
+      if (this.widgetData.actionBtn.allowedRoles) {
+        const requiredRolePreset = this.widgetData.actionBtn.allowedRoles.some(item =>
+          (this.configSvc.userRoles || new Set()).has(item),
+        )
+       if (!requiredRolePreset) {
+        this.allowedWidgetData = this.widgetData
+        return true
+      }
+      }
+    }
+    return false
+  }
+  removeWidgetData() {
+      if (this.allowedWidgetData) {
+          this.widgetData = {} as NsPage.INavLink
+      }
   }
 }
