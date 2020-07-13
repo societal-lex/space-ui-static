@@ -66,7 +66,7 @@
             [ngClass]="{ show_btn: allowedToCreateBlogs, hide_btn: !allowedToCreateBlogs }"
             i18n
             [routerLink]="'/app/social/blogs/me'"
-            class="margin-right-s btn"
+            class="btn"
           >
             <mat-icon class="mat-icon-color"> insert_drive_file </mat-icon
             ><span>&nbsp;My Blogs</span></a
@@ -75,7 +75,7 @@
           <a
             mat-raised-button
             [ngClass]="{ show_btn: allowedToViewMyBlogs, hide_btn: !allowedToViewMyBlogs }"
-            class="margin-left-s btn"
+            class="btn"
             i18n
             [routerLink]="'/app/social/blogs/edit'"
           >
