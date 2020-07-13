@@ -3,10 +3,11 @@
   height: 100%;
 
   .next-button{
-    position: absolute;
+    position: relative;
     bottom: 0;
     right: 0;
-    margin: 32px;
+    top:50%;
+    // margin: 32px;
   }
 }
 
@@ -16,4 +17,10 @@
 
 .padding-top{
   padding-top: 88px;
+}
+.button-top{
+  padding-top: 150px;
+}
+.load-height{
+  min-height: 20px;
 }
