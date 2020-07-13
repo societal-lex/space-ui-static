@@ -4,15 +4,18 @@
   <h3 class="mat-body" i18n>What language do you prefer?</h3>
   <ws-widget-language-selector (langChangedEvent)="langChanged($event)" class="language-drop-down-width">
   </ws-widget-language-selector>
-
-
+<div *ngIf="isLoad" class="load-height">
+  <mat-spinner class="spinner" color="primary"></mat-spinner>
+</div>
+<div class = "button-top">
   <a mat-raised-button color='primary' class="next-button" (click)="applyLang()">
     <span i18n class="text-white">Next</span>&nbsp;
 
   </a>
+  </div>
 
-<div *ngIf="isLoad">
+<!-- <div *ngIf="isLoad">
   <mat-spinner class="spinner" color="primary"></mat-spinner>
-</div>
+</div> -->
 
 </div>

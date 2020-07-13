@@ -40,6 +40,7 @@ export class TncComponent implements OnInit, OnDestroy {
       errorType: 'internalServer',
     },
   }
+  acceptData = false
   expectedUrl = ''
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -170,6 +171,7 @@ export class TncComponent implements OnInit, OnDestroy {
             this.accepted = true
             // this.router.navigate(['page', 'home'])
           }
+
         },
         (err: any) => {
           this.loggerSvc.error('ERROR ACCEPTING TNC:', err)
@@ -184,5 +186,25 @@ export class TncComponent implements OnInit, OnDestroy {
   }
   postProcess() {
     this.http.patch('/apis/protected/v8/user/tnc/postprocessing', {}).subscribe()
+  }
+  acceptDataForNewUser() {
+    this.acceptTnc()
+    if (this.acceptData) {
+      if (this.tncData) {
+        this.tncData.isAccepted = true
+      }
+    }
+  }
+  isDisabled() {
+  if (this.tncData) {
+    if (this.tncData.isNewUser) {
+      if (!this.acceptData) {
+        return true
+      }
+    } else if (!this.tncData.isAccepted) {
+      return true
+    }
+  }
+  return false
   }
 }
