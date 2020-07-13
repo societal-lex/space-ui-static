@@ -7,9 +7,9 @@
     </button>
   </div>
   <div>
-    <form (submit)="search(query.value)" class="w-full flex">
+    <form (submit)="search(query.value)" class="w-full flex" style="margin-bottom: -0.5em;">
       <mat-form-field class="w-full" appearance="none" style="padding-top: 7px;">
-        <input name="searchQuery" class="search-input" [formControl]="query" type="text" matInput placeholder="Search"
+        <input name="searchQuery" class="search-input" [formControl]="query" type="text" matInput placeholder=" Search"
           i18-aria-label aria-label="Query" i18n-placeholder="search content" />
         <mat-icon class="search-icon">search</mat-icon>
       </mat-form-field>
