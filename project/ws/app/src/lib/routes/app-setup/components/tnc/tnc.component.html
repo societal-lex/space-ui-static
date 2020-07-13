@@ -14,12 +14,12 @@
 
   </mat-checkbox>
 
-  <mat-checkbox *ngIf="this.tncData.isNewUser" class="width-full-wrapped"  [(ngModel)]="acceptData"   (ngModelChange)="acceptDataForNewUser()"
-    [color]="'primary'" i18n class="ml-3">
+  <mat-checkbox *ngIf="this.tncData.isNewUser" class="width-full-wrapped" [(ngModel)]="acceptData"
+    (ngModelChange)="acceptDataForNewUser()" [color]="'primary'" i18n class="ml-3">
     <span class="font-size-small">I agree to the terms & conditions</span>
 
   </mat-checkbox>
-  <a [disabled]="isDisabled()" class="margin-right-xs width-full-wrapped button-color" type="button"
-    color="primary" mat-flat-button routerLink="/app/setup/home/about-video" i18n>Next
+  <a [disabled]="isDisabled()" class="margin-right-xs width-full-wrapped button-color" type="button" color="primary"
+    mat-flat-button routerLink="/app/setup/home/about-video" (click)="acceptTnc()" i18n>Next
   </a>
 </div>
