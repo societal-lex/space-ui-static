@@ -8,12 +8,16 @@
 }
 
 .search-input {
-  border: 1px solid grey;
+  border: 1px solid #cecece;
+  border-radius: 15px;
   font-size: 16px;
   margin-bottom: 5px;
   padding-right: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .search-icon {
   margin-left: -25px;
+  padding-bottom: 7px;
 }

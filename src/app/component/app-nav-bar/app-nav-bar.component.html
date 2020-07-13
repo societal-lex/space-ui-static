@@ -1,5 +1,5 @@
 <mat-toolbar [hidden]="!showAppNavBar" [color]="primaryNavbarBackground?.color"
-  [ngStyle]="primaryNavbarBackground?.styles" id="appWhiteNavbar" class="mat-elevation-z3">
+  [ngStyle]="primaryNavbarBackground?.styles" class="mat-elevation-z3">
   <ng-container *ngIf="mode === 'top'">
     <div class="logosize">
       <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" name="applicationLogo" class="logo-dim">
@@ -57,9 +57,33 @@
 </ng-template>
 
 <mat-menu aria-label="helpMenu" #helpMenu="matMenu" name="helpOptionsListContainerHomePage">
-  <div mat-menu-item class="padding-remove" *ngIf="featureApps.indexOf('feature_aboutUs') > -1">
+  <div mat-menu-item class="padding-remove">
     <ws-widget-btn-feature [widgetData]="{
           actionBtnId: 'feature_Q&A',
+          config: {
+            type: 'mat-menu-item'
+          }
+        }"></ws-widget-btn-feature>
+  </div>
+  <div mat-menu-item class="padding-remove">
+    <ws-widget-btn-feature [widgetData]="{
+          actionBtnId: 'feature_playlist',
+          config: {
+            type: 'mat-menu-item'
+          }
+        }"></ws-widget-btn-feature>
+  </div>
+  <div mat-menu-item class="padding-remove">
+    <ws-widget-btn-feature [widgetData]="{
+          actionBtnId: 'feature_blogs',
+          config: {
+            type: 'mat-menu-item'
+          }
+        }"></ws-widget-btn-feature>
+  </div>
+  <div mat-menu-item class="padding-remove">
+    <ws-widget-btn-feature [widgetData]="{
+          actionBtnId: 'feature_goals',
           config: {
             type: 'mat-menu-item'
           }
