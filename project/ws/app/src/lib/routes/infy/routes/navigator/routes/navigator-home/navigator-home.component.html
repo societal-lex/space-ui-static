@@ -1,4 +1,8 @@
-<mat-toolbar class="ws-mat-light-background" [ngStyle]="configSvc?.pageNavBar?.styles">
+<mat-toolbar
+  class="ws-mat-light-background"
+  [ngStyle]="configSvc?.pageNavBar?.styles"
+  [color]="configSvc?.pageNavBar?.color"
+>
   <ws-widget-btn-page-back [widgetData]="{ url: '/page/home' }"></ws-widget-btn-page-back>
   <span class="margin-left-s" i18n>Navigator</span>
 </mat-toolbar>

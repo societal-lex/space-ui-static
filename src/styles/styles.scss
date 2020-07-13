@@ -54,7 +54,18 @@ p {
 a[target='_blank'] {
   color: #865ba0 !important;
 }
-
+mat-toolbar span {
+  color: white;
+}
+.mat-toolbar-style span {
+  color: black;
+}
+// mat-toolbar mat-form-field {
+//   color: white !important;
+// }
+// mat-form-field {
+//   color: black !important;
+// }
 [color|='primary'] {
   background: #865ba0 !important;
   color: white !important;
