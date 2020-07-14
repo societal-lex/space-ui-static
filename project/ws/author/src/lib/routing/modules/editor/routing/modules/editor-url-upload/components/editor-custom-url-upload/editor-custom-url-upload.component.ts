@@ -151,9 +151,9 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
     } else {
       if (this.urlUploadForm.controls.artifactLinkUrl.valid) {
         this.storeData()
-        console.log('data saved ', this.contentService.getUpdatedMeta(this.currentContent).artifactLinkUrl)
+        // console.log('data saved ', this.contentService.getUpdatedMeta(this.currentContent).artifactLinkUrl)
         // this.data.emit('next')
-      } else if (this.urlUploadForm.controls.artifactLinkUrl.touched){
+      } else if (this.urlUploadForm.controls.artifactLinkUrl.touched) {
         this.snackBar.openFromComponent(NotificationComponent, {
           data: {
             type: Notify.URL_UPLOAD_LINK_FAIL,

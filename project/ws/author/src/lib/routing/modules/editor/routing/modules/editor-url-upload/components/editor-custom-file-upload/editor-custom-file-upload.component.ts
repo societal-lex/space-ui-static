@@ -36,7 +36,7 @@ import { AuthInitService } from './../../../../../../../../services/init.service
   // tslint:disable-next-line: component-selector
   selector: 'ws-author-editor-custom-file-upload',
   templateUrl: './editor-custom-file-upload.component.html',
-  styleUrls: ['./editor-custom-file-upload.component.scss']
+  styleUrls: ['./editor-custom-file-upload.component.scss'],
 })
 export class EditorCustomFileUploadComponent implements OnInit {
   @ViewChild('guideline', { static: false }) guideline!: TemplateRef<HTMLElement>
