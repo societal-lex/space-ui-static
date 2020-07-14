@@ -7,6 +7,7 @@ import { NsGoal } from '../btn-goals/btn-goals.model'
 import { NsPlaylist } from '../btn-playlist/btn-playlist.model'
 import { NsContent } from '../_services/widget-content.model'
 import { NsCardContent } from './card-content.model'
+import { WidgetContentService } from '../_services/widget-content.service'
 
 @Component({
   selector: 'ws-widget-card-content',
@@ -31,11 +32,13 @@ export class CardContentComponent extends WidgetBaseComponent
     private configSvc: ConfigurationsService,
     private utilitySvc: UtilityService,
     private snackBar: MatSnackBar,
+    private contentService: WidgetContentService,
   ) {
     super()
   }
 
   ngOnInit() {
+    // console.log('widget data: ', this.widgetData)
     this.isIntranetAllowedSettings = this.configSvc.isIntranetAllowed
     this.prefChangeSubscription = this.configSvc.prefChangeNotifier.subscribe(() => {
       this.isIntranetAllowedSettings = this.configSvc.isIntranetAllowed
@@ -185,18 +188,21 @@ export class CardContentComponent extends WidgetBaseComponent
   }
 
   private modifySensibleContentRating() {
-    if (
-      this.widgetData.content &&
-      this.widgetData.content.averageRating &&
-      typeof this.widgetData.content.averageRating !== 'number'
-    ) {
-      // tslint:disable-next-line: ter-computed-property-spacing
-      this.widgetData.content.averageRating = (this.widgetData.content.averageRating as any)[
-        this.configSvc.rootOrg || ''
+    this.contentService.fetchContentRating(this.widgetData.content.identifier).subscribe(data => {
+      if (
+        this.widgetData.content &&
+        this.widgetData.content.averageRating &&
+        typeof this.widgetData.content.averageRating !== 'number'
+      ) {
         // tslint:disable-next-line: ter-computed-property-spacing
-      ]
-    }
-    this.widgetData.content.averageRating = this.widgetData.content.averageRating || 0
+        this.widgetData.content.averageRating = (data.rating as any)[
+          this.configSvc.rootOrg || ''
+          // tslint:disable-next-line: ter-computed-property-spacing
+        ]
+      }
+      this.widgetData.content.averageRating = data.rating || 0
+      // console.log('rating : ', data, data.rating)
+    })
   }
 
   // private assignThumbnail() {
