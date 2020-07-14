@@ -42,6 +42,7 @@ import {
   startWith,
   switchMap,
   map,
+  pairwise,
 } from 'rxjs/operators'
 import { FeedbackFormComponent } from '@ws/author/src/lib/modules/shared/components/feedback-form/feedback-form.component'
 import { LicenseInfoDisplayDialogComponent } from '../license-info-display-dialog/license-info-display-dialog.component'
@@ -76,6 +77,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() data = new EventEmitter<string>()
   @Input() isSubmitPressed = false
   @Input() nextAction = 'done'
+  displayRadioSystem = false
+  previousAssetType = ''
+  clearArtifactForm = false
   spaceLicenseTnCAgreed = false
   displayPolicyForm = false
   location = CONTENT_BASE_STATIC
@@ -697,12 +701,21 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             }
           }
         })
-        this.contentService.setUpdatedMeta(meta, this.contentMeta.identifier)
+        // handle mimeType status for different assetType
+        const newMeta = this.handleMimeTypeBeforeStore(meta) as NSContent.IContentMeta
+        this.contentService.setUpdatedMeta(newMeta, this.contentMeta.identifier)
       }
     } catch (e) {
       throw new Error(e)
       // console.error('Error occured while saving data ', e)
     }
+  }
+
+  handleMimeTypeBeforeStore(meta: NSContent.IContentMeta) {
+    if (['Connection', 'Technology'].includes(this.contentForm.controls.assetType.value)) {
+      meta.mimeType = 'application/html'
+    }
+    return meta
   }
 
   updateContentService(meta: string, value: any, event = false) {
@@ -1160,15 +1173,22 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       verifiers: [],
       visibility: [],
       isSearchable: [],
+      spaceAssetType: [],
     })
 
-    this.contentForm.controls.assetType.valueChanges.subscribe(() => {
-      this.setDefaultMessageonSpecificDetails(this.contentForm.controls.assetType.value)
-      this.setPolicyForm(this.contentForm.controls.assetType.value)
-      this.updateLicenseType(this.contentForm.controls.assetType.value)
-      this.updateLicenceInfoTable(this.contentForm.controls.assetType.value)
-      this.enableSpecificAssetForm(this.contentForm.controls.assetType.value)
+    this.contentForm.controls.assetType.valueChanges.pipe(startWith(null), pairwise())
+    .subscribe((_assetValueArray: [string, string]) => {
+      // this.contentForm.controls.assetType.setValue(_assetValueArray[1])
+      // console.log('meta before sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
+      this.setDefaultMessageonSpecificDetails(_assetValueArray[1])
+      this.setPolicyForm(_assetValueArray[1])
+      this.updateLicenseType(_assetValueArray[1])
+      this.updateLicenceInfoTable(_assetValueArray[1])
       this.updateAssetTypeInfoTable()
+      if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource' && _assetValueArray[1]) {
+        this.enableSpecificAssetForm([_assetValueArray[0], _assetValueArray[1]])
+      }
+      // console.log('meta after sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
     })
 
     this.contentForm.valueChanges.pipe(debounceTime(500)).subscribe(() => {
@@ -1181,6 +1201,31 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       const selectedThemeValues = this.contentForm.controls.theme.value
       if (selectedThemeValues.length > 1 && selectedThemeValues.includes('None')) {
         this.contentForm.controls.theme.setValue(['None'])
+      }
+    })
+
+    this.contentForm.controls.profile_link.valueChanges.subscribe((_profileText: string) => {
+      this.updateArtifactUrl(_profileText)
+    })
+
+    this.contentForm.controls.codebase.valueChanges.subscribe((_codebaseText: string) => {
+      this.updateArtifactUrl(_codebaseText)
+    })
+
+    this.contentForm.controls.spaceAssetType.valueChanges.pipe(
+      startWith(''),
+      pairwise(),
+      ).subscribe((_spaceAssetTypeArray: [string, string]) => {
+      if (_spaceAssetTypeArray[0]) {
+        const newMeta = {
+          spaceAssetType: _spaceAssetTypeArray[1],
+          artifactLinkUrl: '',
+          artifactUploadUrl: '',
+        } as NSContent.IContentMeta
+        if (_spaceAssetTypeArray[1] === 'asset_link') {
+          newMeta.mimeType = 'application/html'
+        }
+        this.contentService.setUpdatedMeta(newMeta, this.contentService.currentContent)
       }
     })
 
@@ -1233,6 +1278,17 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
+  updateArtifactUrl(textToUpdate: string) {
+    if (textToUpdate && this.contentForm.controls.contentType.value === 'Resource') {
+      const meta = {
+        artifactUrl: textToUpdate,
+        isIframeSupported: 'No',
+        isInIntranet: false,
+      } as NSContent.IContentMeta
+      this.contentService.setUpdatedMeta(meta, this.contentService.currentContent)
+    }
+  }
+
   updateLicenseType(assetType: string) {
     if (assetType) {
       const selectedLicense = this.ordinals.license.find((licenseObject: { parent: string, values: [string] }) => {
@@ -1246,12 +1302,14 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLicenseList[0] = 'N/A'
   }
 
-  enableSpecificAssetForm(assetType: string) {
+  enableSpecificAssetForm(assetTypeArray: [string, string]) {
     this.technologyAssetFormEnabled = false
     this.connectionAssetFormEnabled = false
     this.knowledgeAssetFormEnabled = false
-    if (assetType) {
-      switch (assetType) {
+    this.displayRadioSystem = false
+    this.cleanAssetRelatedFields(assetTypeArray[1], assetTypeArray[0])
+    if (assetTypeArray[1]) {
+      switch (assetTypeArray[1]) {
         case 'Technology':
           this.technologyAssetFormEnabled = true
           break
@@ -1260,14 +1318,42 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           break
         case 'Knowledge':
           this.knowledgeAssetFormEnabled = true
+          this.displayRadioSystem = true
+          break
+        case 'Protocol':
+        case 'Data':
+          this.displayRadioSystem = true
           break
         default:
           {
             this.technologyAssetFormEnabled = false
             this.connectionAssetFormEnabled = false
             this.knowledgeAssetFormEnabled = false
+            this.displayRadioSystem = false
           }
       }
+    }
+  }
+
+  cleanAssetRelatedFields(assetTypeNext: string, assetTypePrev?: string) {
+    // console.log('here')
+    if (assetTypePrev) {
+      const newMeta = {
+        artifactLinkUrl: '',
+        artifactUploadUrl: '',
+        artifactUrl: '',
+        profile_link: '',
+        codebase: '',
+        resourceType: '',
+        assetType: assetTypeNext,
+        // tslint:disable-next-line: max-line-length
+        spaceAssetType: ['Connection', 'Technology'].includes(this.contentForm.controls.assetType.value) ? '' : this.contentForm.controls.assetType.value,
+      } as NSContent.IContentMeta
+      this.contentForm.controls.codebase.setValue(null)
+      this.contentForm.controls.profile_link.setValue(null)
+      this.contentForm.controls.resourceType.setValue('')
+      this.clearArtifactForm = true
+      this.contentService.setUpdatedMeta(newMeta, this.contentService.currentContent)
     }
   }
 
@@ -1432,12 +1518,94 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.contentForm.controls.spaceLicenseCopyright.markAsUntouched()
   }
 
-  emitPushEvent() {
+  emitPushEvent(_event: string) {
+    const updatedMeta = this.contentService.getUpdatedMeta(this.contentService.currentContent) as NSContent.IContentMeta
+    // const meta = { } as NSContent.IContentMeta
+    let allOk = true
+    // console.log('updated meta before updation looks like ', updatedMeta)
+    if (this.contentForm.controls.contentType.value === 'Resource') {
+      if (['Protocol', 'Knowledge', 'Data'].includes(this.contentForm.controls.assetType.value)) {
+        switch (this.contentForm.controls.spaceAssetType.value) {
+          case '': {
+            allOk = false
+            this.snackBar.openFromComponent(NotificationComponent, {
+              data: {
+                type: Notify.FILL_SPACE_ASSET_TYPE,
+              },
+              duration: NOTIFICATION_TIME * 1000,
+            })
+          }
+            break
+          case 'asset_link':
+            {
+              if (!updatedMeta.artifactLinkUrl || !updatedMeta.artifactLinkUrl.length) {
+                allOk = false
+                this.snackBar.openFromComponent(NotificationComponent, {
+                  data: {
+                    type: Notify.VALID_ASSET_LINK_URL_FAILURE,
+                  },
+                  duration: NOTIFICATION_TIME * 1000,
+                })
+              }
+            }
+            break
+          case 'asset_upload': {
+              if (!updatedMeta.artifactUploadUrl || !updatedMeta.artifactUploadUrl.length) {
+                allOk = false
+                this.snackBar.openFromComponent(NotificationComponent, {
+                  data: {
+                    type: Notify.VALID_ASSET_UPLOAD_URL_FAILURE,
+                  },
+                  duration: NOTIFICATION_TIME * 1000,
+                })
+              }
+            }
+        }
+        // update spaceAssetType for proper sync
+        if (this.contentForm.controls.spaceAssetType.value) {
+          // tslint:disable-next-line: max-line-length
+          const spaceAssetTypeMeta = { spaceAssetType: this.contentForm.controls.spaceAssetType.value } as NSContent.IContentMeta
+          this.contentService.setUpdatedMeta(spaceAssetTypeMeta, this.contentService.currentContent)
+        }
+      } /* else {
+        switch (this.contentForm.controls.assetType.value) {
+          case 'Connection':
+            {
+              if (updatedMeta.profile_link && updatedMeta.profile_link !== meta.artifactUrl) {
+                meta.artifactUrl = updatedMeta.profile_link
+                allOk = true
+              } else {
+                allOk = false
+              }
+            }
+            break
+          case 'Technology':
+            {
+              if (updatedMeta.codebase && updatedMeta.codebase !== meta.artifactUrl) {
+                meta.artifactUrl = updatedMeta.codebase
+                allOk = true
+              } else {
+                allOk = false
+              }
+            }
+            break
+        }
+      } */
+      // console.log('values to update look like ', meta)
+      // this.contentService.setUpdatedMeta(meta, this.contentService.currentContent)
+      // console.log('updated meta looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
+    }
     if (this.contentForm.controls.spaceLicenseTnCAgreed.value) {
-      this.data.emit('push')
-      this.isSubmitPressed = true
+      if (allOk) {
+        this.data.emit('push')
+        this.isSubmitPressed = true
+      }
     } else {
       this.triggerLTNCNotification()
     }
+  }
+
+  updateArtifactData(_inputEvent: any, _eventForArtifactType: 'link' | 'asset_upload') {
+    // console.log('input recieved as ', _inputEvent, eventForArtifactType)
   }
 }

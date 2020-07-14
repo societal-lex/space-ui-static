@@ -161,6 +161,12 @@ export namespace NSContent {
     sampleCertificates: IInternalReference[],
     iprDeclaration: object,
     spaceLicense: string,
+    profile_link: string,
+    codebase: string,
+    artifactLinkUrl: string,
+    artifactUploadUrl: string,
+    spaceAssetType: string,
+    assetType: string,
   }
 
   export interface IClient {

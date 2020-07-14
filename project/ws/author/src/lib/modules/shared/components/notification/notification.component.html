@@ -261,3 +261,15 @@
   <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Failure">error</mat-icon>
   <span i18n>Cannot proceed further without entering a valid url </span>
 </p>
+<p *ngIf="type === notify.FILL_SPACE_ASSET_TYPE">
+  <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Notification">error</mat-icon>
+  <span i18n>Select either Attach a Link or Upload Asset in Specific Details</span>
+</p>
+<p *ngIf="type === notify.VALID_ASSET_LINK_URL_FAILURE">
+  <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Notification">error</mat-icon>
+  <span i18n>Enter a valid asset link in Specific Details</span>
+</p>
+<p *ngIf="type === notify.VALID_ASSET_UPLOAD_URL_FAILURE">
+  <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Notification">error</mat-icon>
+  <span i18n>Upload an asset in Specific Details</span>
+</p>

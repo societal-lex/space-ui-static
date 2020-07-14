@@ -21,6 +21,7 @@ import { EditMetaV2Component } from './components/editor/edit-meta-v2/edit-meta-
 import { MatTableModule } from '@angular/material/table'
 import { LicenseInfoDisplayDialogComponent } from './components/license-info-display-dialog/license-info-display-dialog.component'
 import { AssetTypeInfoDisplayDialogComponent } from './components/asset-type-info-display-dialog/asset-type-info-display-dialog.component'
+import { EditorUrlUploadModule } from '../routing/modules/editor-url-upload/editor-curate.module'
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AssetTypeInfoDisplayDialogComponent } from './components/asset-type-inf
     AceEditorModule,
     MatTableModule,
     CatalogSelectModule,
+    EditorUrlUploadModule,
   ],
   exports: [
     MatQuillComponent,

@@ -20,7 +20,7 @@
         <span class="border border-solid text-gray-500 mx-3"
           [ngClass]="{ 'ws-mat-primary-text': currentStep >= 2 }"></span>
       </div>
-      <div class="stepper-grid">
+      <!-- <div class="stepper-grid">
         <div class="ws-mat-primary-background-op30 stepper-container text-white cursor-pointer"
           [ngClass]="{ 'ws-mat-primary-background': currentStep >= 2 }" (click)="customStepper(2)" i18n>
           2
@@ -33,11 +33,11 @@
         </p>
         <span class="border border-solid text-gray-500 mx-3"
           [ngClass]="{ 'ws-mat-primary-text': currentStep === 3 }"></span>
-      </div>
+      </div> -->
       <div class="flex flex-middle">
         <div class="ws-mat-primary-background-op30 stepper-container text-white cursor-pointer"
           [ngClass]="{ 'ws-mat-primary-background': currentStep === 3 }" (click)="customStepper(3)" i18n>
-          3
+          2
         </div>
         <p class="margin-left-xs margin-remove-bottom font-weight-500 op30 cursor-pointer" [ngClass]="{
             'ws-mat-primary-text op100': currentStep === 3,

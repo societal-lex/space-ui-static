@@ -29,10 +29,15 @@ export class EntityCardComponent implements OnInit {
   }
 
   entityClicked(content: ICreateEntity) {
-    if (content.url) {
+    /* if (content.url) {
       this.router.navigateByUrl(content.url)
     } else if (content.name === 'Resource') {
       this.resourceClicked = !this.resourceClicked
+    } else if (!this.notEnabled) {
+      this.step.emit(content)
+    } */
+    if (content.url) {
+      this.router.navigateByUrl(content.url)
     } else if (!this.notEnabled) {
       this.step.emit(content)
     }
