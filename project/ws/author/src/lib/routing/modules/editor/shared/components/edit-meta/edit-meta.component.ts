@@ -1518,7 +1518,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.contentForm.controls.spaceLicenseCopyright.markAsUntouched()
   }
 
-  emitPushEvent(_event: string) {
+  emitPushEvent(_event?: string) {
     const updatedMeta = this.contentService.getUpdatedMeta(this.contentService.currentContent) as NSContent.IContentMeta
     // const meta = { } as NSContent.IContentMeta
     let allOk = true
