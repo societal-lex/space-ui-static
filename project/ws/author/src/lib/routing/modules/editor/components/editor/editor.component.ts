@@ -133,12 +133,12 @@ export class EditorComponent implements OnInit, OnDestroy {
             contents[0].content.mimeType,
           ) > -1
         ) {
-          this.route.navigate(['upload'], { relativeTo: this.router })
+          this.route.navigate(['curate'], { relativeTo: this.router })
         } else if (
           contents[0].content.mimeType === 'application/html' &&
           !contents[0].content.isExternal
         ) {
-          this.route.navigate(['upload'], { relativeTo: this.router })
+          this.route.navigate(['curate'], { relativeTo: this.router })
         } else if (contents[0].content.mimeType === 'application/iap-assessment') {
           this.route.navigate(['iap-assessment'], { relativeTo: this.router })
         } else if (

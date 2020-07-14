@@ -68,12 +68,12 @@ export class CreateComponent implements OnInit, OnDestroy {
       .subscribe(
         (id: string) => {
           this.loaderService.changeLoad.next(false)
-          this.snackBar.openFromComponent(NotificationComponent, {
+          /* this.snackBar.openFromComponent(NotificationComponent, {
             data: {
               type: Notify.CONTENT_CREATE_SUCCESS,
             },
             duration: NOTIFICATION_TIME * 1000,
-          })
+          }) */
           this.router.navigateByUrl(`/author/editor/${id}`)
         },
         error => {

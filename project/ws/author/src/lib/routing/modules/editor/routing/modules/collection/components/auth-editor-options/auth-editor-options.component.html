@@ -2,12 +2,12 @@
   [class.ws-mat-primary-text]="!isInvalid" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()" i18n-aria-label
   aria-label="Menu for content">more_vert</mat-icon>
 <mat-menu #menu="matMenu">
-  <button *ngIf="node.category === 'Resource'" [class.op500]="!canEdit" [matMenuTriggerFor]="edit" mat-menu-item
+  <!-- <button *ngIf="node.category === 'Resource'" [class.op500]="!canEdit" [matMenuTriggerFor]="edit" mat-menu-item
     [disabled]="!canEdit || (metaEditDisabled && contentEditDisabled)">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Edit content">edit
     </mat-icon>
     <ng-container i18n>Edit</ng-container>
-  </button>
+  </button> -->
   <button *ngIf="node.category === 'Resource'" mat-menu-item (click)="click('preview')">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label aria-label="Preview">
       remove_red_eye</mat-icon>
@@ -29,22 +29,23 @@
       (action)="click($event.action, $event.type)" #sibling></ws-auth-collection-matmenu>
   </button>
   <button *ngIf="node.category === 'Collection'" [disabled]="!allowedChild.length" [class.op500]="!allowedChild.length"
-    mat-menu-item [matMenuTriggerFor]="child.childMenu">
+    (click)="click('createChild', 'web')"
+    mat-menu-item>
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label
       aria-label="Create new Resource / Module">
       create_new_folder</mat-icon>
     <ng-container i18n>Add new Resource</ng-container>
-    <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
-      (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu>
+    <!-- <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
+      (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu> -->
   </button>
   <button *ngIf="node.category === 'Course'" [disabled]="!allowedChild.length" [class.op500]="!allowedChild.length"
-    mat-menu-item [matMenuTriggerFor]="child.childMenu">
+    mat-menu-item (click)="click('createChild', 'collection')">
     <mat-icon aria-hidden="false" class="node-icon ws-mat-primary-text" i18n-aria-label
       aria-label="Create new Resource / Module">
       create_new_folder</mat-icon>
     <ng-container i18n>Add new Module</ng-container>
-    <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
-      (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu>
+    <!-- <ws-auth-collection-matmenu [type]="'createChild'" [childType]="allowedChild"
+      (action)="click($event.action, $event.type)" #child></ws-auth-collection-matmenu> -->
   </button>
   <button *ngIf="node.category === 'Collection'" [disabled]="!canEdit || contentEditDisabled"
     [class.op500]="!canEdit || contentEditDisabled" mat-menu-item (click)="click('addChild')">

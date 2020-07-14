@@ -30,7 +30,7 @@ import { VIEWER_ROUTE_FROM_MIME } from '@ws-widget/collection'
 export class CurateComponent implements OnInit, OnDestroy {
   contents: NSContent.IContentMeta[] = []
   currentContent = ''
-  currentStep = 2
+  currentStep = 3
   allLanguages!: any[]
   disableCursor = false
   previewMode = false

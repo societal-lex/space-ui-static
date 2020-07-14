@@ -16,6 +16,12 @@
   border-radius: 5px;
 }
 
+mat-radio-group {
+  mat-radio-button {
+    margin: 50px;
+  }
+}
+
 .custom-error {
   margin: 0;
   font-size: 75%;

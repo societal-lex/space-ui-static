@@ -74,7 +74,7 @@
     <mat-divider></mat-divider>
     <mat-progress-bar
       mode="determinate"
-      *ngIf="progress > 0 && htmlContent?.isIframeSupported.toLowerCase() === 'no'"
+      *ngIf="progress > 0 && htmlContent?.isIframeSupported?.toLowerCase() === 'no'"
       [value]="progress"
     ></mat-progress-bar>
 

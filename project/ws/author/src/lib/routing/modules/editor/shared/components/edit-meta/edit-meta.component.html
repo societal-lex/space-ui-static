@@ -2146,6 +2146,19 @@
               </div>
             </div>
           </div>
+          <ng-container *ngIf="displayRadioSystem">
+            <mat-radio-group formControlName="spaceAssetType">
+              <mat-radio-button value="asset_link">Attach a Link</mat-radio-button>
+              <mat-radio-button value="asset_upload">Upload Asset</mat-radio-button>
+            </mat-radio-group>
+            <ng-container *ngIf="contentForm?.controls?.spaceAssetType.value === 'asset_link'">
+              <ws-author-editor-custom-url-upload [showIPRDeclaration]="false" [clearArtifactForm]="clearArtifactForm" (data)="updateArtifactData($event, 'link')"></ws-author-editor-custom-url-upload>
+            </ng-container>
+            <ng-container *ngIf="contentForm?.controls?.spaceAssetType.value === 'asset_upload'">
+              <ws-author-editor-custom-file-upload (data)="updateArtifactData($event, 'asset_upload')">
+              </ws-author-editor-custom-file-upload>
+            </ng-container>
+          </ng-container>
           <div class="grid">
             <!--
             <div class="margin-top-xs margin-left-xl">

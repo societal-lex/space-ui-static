@@ -516,9 +516,9 @@ export class CollectionComponent implements OnInit, OnDestroy {
       case 'editContent':
         const content = this.contentService.getUpdatedMeta(event.identifier)
         if (['application/pdf', 'application/x-mpegURL'].includes(content.mimeType)) {
-          this.viewMode = 'upload'
+          this.viewMode = 'meta'
         } else if (content.mimeType === 'application/html') {
-          this.viewMode = 'curate'
+          this.viewMode = 'meta'
         }
         break
       case 'preview':
