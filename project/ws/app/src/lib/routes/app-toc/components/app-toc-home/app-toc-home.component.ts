@@ -21,7 +21,7 @@ export class AppTocHomeComponent implements OnInit, OnDestroy {
   banners: NsAppToc.ITocBanner | null = null
   content: NsContent.IContent | null = null
   errorCode: NsAppToc.EWsTocErrorCode | null = null
-  resumeData: NsContent.IContinueLearningData | null = null
+  resumeData?: NsContent.IContinueLearningData | null = null
   routeSubscription: Subscription | null = null
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   isCohortsRestricted = false
