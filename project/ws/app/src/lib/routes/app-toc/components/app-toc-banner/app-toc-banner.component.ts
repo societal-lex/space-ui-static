@@ -29,7 +29,7 @@ import { MobileAppsService } from 'src/app/services/mobile-apps.service'
 export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() banners: NsAppToc.ITocBanner | null = null
   @Input() content: NsContent.IContent | null = null
-  @Input() resumeData: NsContent.IContinueLearningData | null = null
+  @Input() resumeData?: NsContent.IContinueLearningData
   @Input() analytics: NsAnalytics.IAnalytics | null = null
   @Input() forPreview = false
   contentProgress = 0
@@ -63,6 +63,8 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   contextId?: string
   contextPath?: string
   tocConfig: any = null
+  toResume = false
+  isLoad = true
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -76,9 +78,11 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
     private utilitySvc: UtilityService,
     private mobileAppsSvc: MobileAppsService,
     private authAccessService: AccessControlService,
+    private contentService: WidgetContentService,
   ) { }
 
   ngOnInit() {
+    this.getContentHistory()
     this.route.data.subscribe(data => {
       this.tocConfig = data.pageData.data
       if (this.content && this.isPostAssessment) {
@@ -442,5 +446,16 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
     } catch (e) {
       return true
     }
+  }
+  getContentHistory() {
+    this.contentService.fetchContentHistory(this.route.snapshot.params.id).subscribe(data => {
+      if (data) {
+        this.isLoad = false
+        this.toResume = true
+      } else {
+        this.isLoad = false
+        this.toResume = false
+      }
+    })
   }
 }
