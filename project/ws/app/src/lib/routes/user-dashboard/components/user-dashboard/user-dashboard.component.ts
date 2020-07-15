@@ -24,10 +24,10 @@ export class UserDashboardComponent implements OnInit {
   navBackground: Partial<NsPage.INavBackground> | null = null
   selectedRow: NsUserDashboard.IUserListData[] = []
   constructor(private userDashboardSvc: UserDashboardService,
-    public snackBar: MatSnackBar,
-    public dialog: MatDialog,
-    private activateRoute: ActivatedRoute,
-    private configSvc: ConfigurationsService
+              public snackBar: MatSnackBar,
+              public dialog: MatDialog,
+              private activateRoute: ActivatedRoute,
+              private configSvc: ConfigurationsService
   ) {
 
     const instanceConfig = this.configSvc.userProfile
