@@ -24,10 +24,10 @@ export class UserDashboardComponent implements OnInit {
   navBackground: Partial<NsPage.INavBackground> | null = null
   selectedRow: NsUserDashboard.IUserListData[] = []
   constructor(private userDashboardSvc: UserDashboardService,
-              public snackBar: MatSnackBar,
-              public dialog: MatDialog,
-              private activateRoute: ActivatedRoute,
-              private configSvc: ConfigurationsService
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private activateRoute: ActivatedRoute,
+    private configSvc: ConfigurationsService
   ) {
 
     const instanceConfig = this.configSvc.userProfile
@@ -259,23 +259,25 @@ export class UserDashboardComponent implements OnInit {
     dialogResponse.afterClosed().subscribe(result => {
       this.isConfirmed = result
       if (this.isConfirmed) {
-        this.deleteUser(this.paramsForDecline, element)
+        this.deleteUser(element)
       }
     })
   }
 
-  async deleteUser(paramsForDecline: NsUserDashboard.IDeclineUser, element: any) {
+  async deleteUser(element: any) {
     this.isLoad = true
 
-    if (typeof (paramsForDecline.email) === 'undefined') {
-      paramsForDecline.email = element.email
-      paramsForDecline.user_Id = element.id
+    if (typeof (this.paramsForDecline.email) === 'undefined') {
+      this.paramsForDecline.email = element.email
+      this.paramsForDecline.user_Id = element.id
     }
     this.headersForRejectUser.rootOrg = this.getRootOrg
     this.headersForRejectUser.org = this.getOrg
     this.headersForRejectUser.wid_OrgAdmin = this.widLoggedinUser
-    const userDeletedResponse = await this.userDashboardSvc.deleteUser(paramsForDecline, this.headersForRejectUser)
+    const userDeletedResponse = await this.userDashboardSvc.deleteUser(this.paramsForDecline, this.headersForRejectUser)
     this.isLoad = false
+    this.paramsForDecline = {} as any
+    this.headersForRejectUser = {} as any
     if (userDeletedResponse.ok) {
       // tslint:disable-next-line: no-non-null-assertion
       this.snackBar.open(userDeletedResponse.MESSAGE, '', {
