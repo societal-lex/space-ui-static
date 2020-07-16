@@ -520,7 +520,8 @@
                   <mat-error *ngIf="showError('sourceName')" i18n>Created By is mandatory </mat-error>
                 </mat-form-field>
               </div>
-                <div class="margin-top-xs" *ngIf="checkCondition('otherSourceName', 'show')"
+            </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSourceName', 'show')"
                 [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }">
                 <p class="font-weight-bold margin-remove-bottom"
                   i18n="Title label|Label which explains the user to enter title"
@@ -537,27 +538,6 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
-            [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
-            <label [ngClass]="{ required: checkCondition('theme', 'required') }">
-              <b i18n>SDG (Sustainable Development Goals)</b>
-            </label>
-            <div class="margin-top-xs">
-              <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                [ngClass]="{ 'mat-form-field-invalid': showError('theme') }">
-                <mat-select formControlName="theme" placeholder="--Select--"
-                  [required]="checkCondition('theme', 'required')" multiple>
-                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'">None
-                  </mat-option>
-                  <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
-                    {{ resource }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="showError('theme')" i18n>SDG is mandatory
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
           </div>
           <div class="grid">
             <div
@@ -639,6 +619,26 @@
                 </mat-form-field>
               </div>
             </div>
+            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
+            [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
+            <label [ngClass]="{ required: checkCondition('theme', 'required') }">
+              <b i18n>SDG (Sustainable Development Goals)</b>
+            </label>
+            <div class="margin-top-xs">
+              <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
+                [ngClass]="{ 'mat-form-field-invalid': showError('theme') }">
+                <mat-select formControlName="theme" placeholder="--Select--"
+                  [required]="checkCondition('theme', 'required')" multiple>
+                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'">None
+                  </mat-option>
+                  <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
+                    {{ resource }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="showError('theme')" i18n>SDG is mandatory
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
           </div>
           <div class="grid">
             <div
