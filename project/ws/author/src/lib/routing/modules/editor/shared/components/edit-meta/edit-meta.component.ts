@@ -718,7 +718,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   formNext(index: number) {
-    if (index >= 3 && !this.contentForm.controls.spaceLicenseTnCAgreed.value) {
+    if (index >= 4 && !this.contentForm.controls.spaceLicenseTnCAgreed.value) {
       this.triggerLTNCNotification()
     } else {
       this.selectedIndex = index
