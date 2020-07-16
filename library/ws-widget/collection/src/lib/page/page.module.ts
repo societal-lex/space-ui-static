@@ -4,6 +4,7 @@ import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatToo
 import { RouterModule } from '@angular/router'
 import { WidgetResolverModule } from '@ws-widget/resolver'
 import { BtnPageBackModule } from '../btn-page-back/btn-page-back.module'
+import { BtnPageBackMobileModule } from '../btn-page-back-mobile/btn-page-back-mobile.module'
 import { TourModule } from '../_common/tour-guide/tour-guide.module'
 import { PageComponent } from './page.component'
 import { BtnFeatureModule } from '../btn-feature/btn-feature.module'
@@ -15,6 +16,7 @@ import { BtnFeatureModule } from '../btn-feature/btn-feature.module'
     RouterModule,
     WidgetResolverModule,
     BtnPageBackModule,
+    BtnPageBackMobileModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
