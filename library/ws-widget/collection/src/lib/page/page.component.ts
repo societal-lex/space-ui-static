@@ -22,6 +22,7 @@ export class PageComponent extends WidgetBaseComponent
   private responseSubscription: Subscription | null = null
   alreadyRaised = false
   error: any
+  isXSmall$ = this.valueSvc.isXSmall$
   isXSmall = false
   navbarIcon?: SafeUrl
   isTourGuideAvailable = false

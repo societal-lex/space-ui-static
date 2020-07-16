@@ -1,19 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { NsWidgetResolver, WidgetBaseComponent } from '@ws-widget/resolver'
-import { BtnPageBackService } from './btn-page-back.service'
+import { BtnPageBackMobileService } from './btn-page-back-mobile.service'
 type TUrl = undefined | 'none' | 'back' | string
 @Component({
-  selector: 'ws-widget-btn-page-back',
-  templateUrl: './btn-page-back.component.html',
-  styleUrls: ['./btn-page-back.component.scss'],
+  selector: 'ws-widget-btn-page-back-mobile',
+  templateUrl: './btn-page-back-mobile.component.html',
+  styleUrls: ['./btn-page-back-mobile.component.scss'],
 })
-export class BtnPageBackComponent extends WidgetBaseComponent
+export class BtnPageBackMobileComponent extends WidgetBaseComponent
   implements OnInit, NsWidgetResolver.IWidgetData<{ url: TUrl }> {
   @Input() widgetData: { url: TUrl } = { url: 'none' }
   presentUrl = ''
   constructor(
-    private btnBackSvc: BtnPageBackService,
+    private btnBackSvc: BtnPageBackMobileService,
     private router: Router,
   ) {
     super()
