@@ -11,7 +11,7 @@
   <mat-spinner class="spinner" color="primary"></mat-spinner>
 </div>
 
-<div *ngIf="userListArray?.length > 0">
+<div *ngIf="userListArray?.length > 0" class="mat-drawer-container mat-drawer-container-has-open mat-drawer-transition">
   <div class="allignment">
     <div class="example-header">
       <mat-form-field>
@@ -22,8 +22,8 @@
       </mat-form-field>
     </div>
     <div>
-      <button mat-flat-button [disabled]="!selection.selected?.length" color="primary" class="button-color"
-        (click)="bulkChangeRole()">
+      <button mat-flat-button [disabled]="!selection.selected?.length" color="primary" (click)="bulkChangeRole()"
+        class="mat-button mat-button-base mat-primary">
         Bulk Change Role
       </button>
     </div>
@@ -51,8 +51,8 @@
           </mat-checkbox>
         </th>
         <td mat-cell *matCellDef="let row">
-          <mat-checkbox (change)="$event ? selection.toggle(row) : null"
-            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          <mat-checkbox (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)">
           </mat-checkbox>
         </td>
       </ng-container>

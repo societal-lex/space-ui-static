@@ -205,7 +205,8 @@ export namespace NsAppsConfig {
     name: string
     toolTip: string
     featureIds: string[]
-    stripBackground?: string
+    stripBackground?: string,
+    allowedRoles?: string[],
   }
 
   // export interface IGroupWithFeatures extends IGroup {

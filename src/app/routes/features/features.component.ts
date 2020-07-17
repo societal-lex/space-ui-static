@@ -23,6 +23,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   isTourGuideAvailable = false
   isXSmall = false
   pageNavbar: Partial<NsPage.INavBackground> = this.configurationSvc.pageNavBar
+  rolesBasedFeatureGroups: IGroupWithFeatureWidgets[] = []
   private queryChangeSubs: Subscription | null = null
   constructor(
     private dialog: MatDialog,
@@ -76,6 +77,8 @@ export class FeaturesComponent implements OnInit, OnDestroy {
       .subscribe((query: string) => {
         this.router.navigate([], { queryParams: { q: query || null } })
         this.featureGroups = this.filteredFeatures(query)
+        this.rolesBasedFeatureGroups = this.featureGroups
+        this.isAllowedForDisplay()
       })
     this.configurationSvc.tourGuideNotifier.subscribe(canShow => {
       if (
@@ -133,6 +136,23 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     if (this.responseSubscription) {
       this.respondSvc.unsubscribeResponse()
       this.responseSubscription.unsubscribe()
+    }
+  }
+  isAllowedForDisplay() {
+    if (this.featureGroups) {
+      this.rolesBasedFeatureGroups = []
+      this.featureGroups.forEach(data => {
+        if (data.allowedRoles) {
+          const requiredRolePreset = data.allowedRoles.some(item =>
+            (this.configurationSvc.userRoles || new Set()).has(item),
+        )
+        if (requiredRolePreset) {
+          this.rolesBasedFeatureGroups.push(data)
+        }
+      } else {
+        this.rolesBasedFeatureGroups.push(data)
+      }
+      })
     }
   }
 }

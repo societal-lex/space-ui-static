@@ -12,7 +12,7 @@ import { EditorContentService } from '@ws/author/src/lib/routing/modules/editor/
 import { IFormMeta } from './../../../../../../../../interface/form'
 import { AuthInitService } from './../../../../../../../../services/init.service'
 import { URLCheckerClass } from './../../../curate/components/url-upload/url-upload.helper'
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { distinctUntilChanged } from 'rxjs/operators'
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -88,7 +88,6 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
       }
     })
     this.urlUploadForm.controls.artifactLinkUrl.valueChanges.pipe(
-      debounceTime(800),
       distinctUntilChanged(),
       ).subscribe(() => {
       if (this.canUpdate) {
@@ -194,7 +193,10 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
         }
       }
     })
-    meta.artifactUrl = this.urlUploadForm.controls.artifactLinkUrl.value || ''
+    if (currentMeta.mimeType === 'application/html' && this.urlUploadForm.controls.artifactLinkUrl.value) {
+      meta.artifactUrl = this.urlUploadForm.controls.artifactLinkUrl.value
+      // console.log('artifact url updated from artifact link ', meta.artifactUrl)
+    }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
   }
 

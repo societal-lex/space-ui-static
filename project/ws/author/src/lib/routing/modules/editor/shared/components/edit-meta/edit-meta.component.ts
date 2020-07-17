@@ -77,7 +77,11 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() data = new EventEmitter<string>()
   @Input() isSubmitPressed = false
   @Input() nextAction = 'done'
+  contentTracker = {
+    previousContent: '',
+  }
   displayRadioSystem = false
+  assetRelatedTabsUpdated = false
   previousAssetType = ''
   clearArtifactForm = false
   spaceLicenseTnCAgreed = false
@@ -168,7 +172,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     private authInitService: AuthInitService,
     private accessService: AccessControlService,
     private valueSvc: ValueService,
-  ) { }
+  ) {
+    this.contentTracker.previousContent = this.contentService.currentContent
+  }
 
   ngAfterViewInit() {
     this.ref.detach()
@@ -410,10 +416,13 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       )
 
     this.contentService.changeActiveCont.subscribe(data => {
+      this.content = this.contentService.getUpdatedMeta(data)
+      if (!this.assetRelatedTabsUpdated) {
+        this.setDefaultTabsAndFormConfigs()
+      }
       if (this.contentMeta && this.canUpdate) {
         this.storeData()
       }
-      this.content = this.contentService.getUpdatedMeta(data)
     })
 
     this.filteredOptions$ = this.keywordsCtrl.valueChanges.pipe(
@@ -613,7 +622,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.contentForm.controls.contentType.value === 'Course') {
       this.contentForm.controls.mimeType.setValue('application/vnd.ekstep.content-collection')
     } else {
-      this.contentForm.controls.mimeType.setValue('application/html')
+      // this.contentForm.controls.mimeType.setValue('application/html')
       if (
         this.configSvc.instanceConfig &&
         this.configSvc.instanceConfig.authoring &&
@@ -1176,7 +1185,15 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       spaceAssetType: [],
     })
 
-    this.contentForm.controls.assetType.valueChanges.pipe(startWith(null), pairwise())
+    this.contentForm.controls.assetType.valueChanges.pipe(
+      startWith(null),
+      pairwise()
+      /* filter((_values: [string, string]) => {
+        if ((_values[1] && (_values[0] || !_values[0]))) {
+          return true
+        }
+        return false
+      })*/)
     .subscribe((_assetValueArray: [string, string]) => {
       // this.contentForm.controls.assetType.setValue(_assetValueArray[1])
       // console.log('meta before sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
@@ -1185,6 +1202,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateLicenseType(_assetValueArray[1])
       this.updateLicenceInfoTable(_assetValueArray[1])
       this.updateAssetTypeInfoTable()
+      // tslint:disable-next-line: max-line-length
       if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource' && _assetValueArray[1]) {
         this.enableSpecificAssetForm([_assetValueArray[0], _assetValueArray[1]])
       }
@@ -1192,6 +1210,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.valueChanges.pipe(debounceTime(500)).subscribe(() => {
+      this.contentForm.markAsPristine()
       if (this.canUpdate) {
         this.storeData()
       }
@@ -1213,18 +1232,22 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.spaceAssetType.valueChanges.pipe(
-      startWith(''),
+      startWith(null),
       pairwise(),
+      filter((_v: [string, string]) => _v[0] !== _v[1])
       ).subscribe((_spaceAssetTypeArray: [string, string]) => {
       if (_spaceAssetTypeArray[0]) {
         const newMeta = {
           spaceAssetType: _spaceAssetTypeArray[1],
-          artifactLinkUrl: '',
-          artifactUploadUrl: '',
         } as NSContent.IContentMeta
+        if (!this.contentForm.controls.spaceAssetType.pristine) {
+          newMeta.artifactLinkUrl = ''
+          newMeta.artifactUploadUrl = ''
+        }
         if (_spaceAssetTypeArray[1] === 'asset_link') {
           newMeta.mimeType = 'application/html'
         }
+        // console.log(this.contentService.getUpdatedMeta(this.contentService.currentContent))
         this.contentService.setUpdatedMeta(newMeta, this.contentService.currentContent)
       }
     })
@@ -1302,12 +1325,26 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLicenseList[0] = 'N/A'
   }
 
-  enableSpecificAssetForm(assetTypeArray: [string, string]) {
+  setDefaultTabsAndFormConfigs() {
     this.technologyAssetFormEnabled = false
     this.connectionAssetFormEnabled = false
     this.knowledgeAssetFormEnabled = false
     this.displayRadioSystem = false
-    this.cleanAssetRelatedFields(assetTypeArray[1], assetTypeArray[0])
+    this.assetRelatedTabsUpdated = true
+    window.setTimeout(
+      () => {
+        this.assetRelatedTabsUpdated = false
+      // tslint:disable-next-line: align
+      }, 0)
+  }
+
+  enableSpecificAssetForm(assetTypeArray: [string, string]) {
+    if (!this.assetRelatedTabsUpdated) {
+      this.setDefaultTabsAndFormConfigs()
+    }
+    if (!this.contentForm.controls.assetType.pristine && assetTypeArray[0] !== assetTypeArray[1]) {
+      this.cleanAssetRelatedFields(assetTypeArray[1], assetTypeArray[0])
+    }
     if (assetTypeArray[1]) {
       switch (assetTypeArray[1]) {
         case 'Technology':
@@ -1325,36 +1362,32 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           this.displayRadioSystem = true
           break
         default:
-          {
-            this.technologyAssetFormEnabled = false
-            this.connectionAssetFormEnabled = false
-            this.knowledgeAssetFormEnabled = false
-            this.displayRadioSystem = false
+          if (!this.assetRelatedTabsUpdated) {
+            this.setDefaultTabsAndFormConfigs()
           }
       }
     }
   }
 
-  cleanAssetRelatedFields(assetTypeNext: string, assetTypePrev?: string) {
+  cleanAssetRelatedFields(assetTypeNext: string, _assetTypePrev?: string) {
+    this.contentForm.controls.assetType.markAsPristine()
     // console.log('here')
-    if (assetTypePrev) {
-      const newMeta = {
-        artifactLinkUrl: '',
-        artifactUploadUrl: '',
-        artifactUrl: '',
-        profile_link: '',
-        codebase: '',
-        resourceType: '',
-        assetType: assetTypeNext,
-        // tslint:disable-next-line: max-line-length
-        spaceAssetType: ['Connection', 'Technology'].includes(this.contentForm.controls.assetType.value) ? '' : this.contentForm.controls.assetType.value,
-      } as NSContent.IContentMeta
-      this.contentForm.controls.codebase.setValue(null)
-      this.contentForm.controls.profile_link.setValue(null)
-      this.contentForm.controls.resourceType.setValue('')
-      this.clearArtifactForm = true
-      this.contentService.setUpdatedMeta(newMeta, this.contentService.currentContent)
-    }
+    const newMeta = {
+      artifactLinkUrl: '',
+      artifactUploadUrl: '',
+      artifactUrl: '',
+      profile_link: '',
+      codebase: '',
+      resourceType: '',
+      assetType: assetTypeNext,
+      // tslint:disable-next-line: max-line-length
+      spaceAssetType: ['Connection', 'Technology'].includes(this.contentForm.controls.assetType.value) ? '' : this.contentForm.controls.spaceAssetType.value,
+    } as NSContent.IContentMeta
+    this.contentForm.controls.codebase.setValue(null)
+    this.contentForm.controls.profile_link.setValue(null)
+    this.contentForm.controls.resourceType.setValue('')
+    this.clearArtifactForm = false
+    this.contentService.setUpdatedMeta(newMeta, this.contentService.currentContent)
   }
 
   removeSkill(skill: string) {
@@ -1492,10 +1525,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     window.open('/public/termsofuse', '_blank')
   }
 
-  get isTnCFoLicenseAgreed() {
-    return this.contentForm.controls.spaceLicenseTnCAgreed.value || false
-  }
-
   setPolicyForm(_assetTypeValue: string) {
     if (_assetTypeValue && _assetTypeValue !== 'Connection') {
       this.displayPolicyForm = true
@@ -1567,33 +1596,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           const spaceAssetTypeMeta = { spaceAssetType: this.contentForm.controls.spaceAssetType.value } as NSContent.IContentMeta
           this.contentService.setUpdatedMeta(spaceAssetTypeMeta, this.contentService.currentContent)
         }
-      } /* else {
-        switch (this.contentForm.controls.assetType.value) {
-          case 'Connection':
-            {
-              if (updatedMeta.profile_link && updatedMeta.profile_link !== meta.artifactUrl) {
-                meta.artifactUrl = updatedMeta.profile_link
-                allOk = true
-              } else {
-                allOk = false
-              }
-            }
-            break
-          case 'Technology':
-            {
-              if (updatedMeta.codebase && updatedMeta.codebase !== meta.artifactUrl) {
-                meta.artifactUrl = updatedMeta.codebase
-                allOk = true
-              } else {
-                allOk = false
-              }
-            }
-            break
-        }
-      } */
-      // console.log('values to update look like ', meta)
-      // this.contentService.setUpdatedMeta(meta, this.contentService.currentContent)
-      // console.log('updated meta looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
+      }
     }
     if (this.contentForm.controls.spaceLicenseTnCAgreed.value) {
       if (allOk) {

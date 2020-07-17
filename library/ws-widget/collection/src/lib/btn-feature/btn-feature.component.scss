@@ -25,7 +25,10 @@
   height: $icon-size;
   width: $icon-size;
 }
-
+.btnDisabled{
+  pointer-events: none;
+  color: #e1e1e1;
+}
 .feature-icon {
   width: 36px;
   height: 36px;

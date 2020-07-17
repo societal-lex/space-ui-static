@@ -2,7 +2,9 @@
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span i18n="page title: playlist create" class="margin-left-xs text-white">Create Playlist</span>
 </mat-toolbar>
-<main class="page-container margin-top-xl margin-bottom-xl">
+<main
+  class="page-container margin-top-xl margin-bottom-xl mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <form #playlistForm [formGroup]="createPlaylistForm">
     <h2 class="mat-h2 margin-bottom-xs" i18n>Enter Playlist Details</h2>
     <mat-form-field class="width-1-1 margin-bottom-m" appearance="fill">

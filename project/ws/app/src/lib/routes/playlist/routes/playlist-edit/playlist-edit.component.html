@@ -4,7 +4,9 @@
   ></ws-widget-btn-page-back>
   <span i18n="page title: playlist edit" class="margin-left-xs text-white">Edit Playlist</span>
 </mat-toolbar>
-<div class="page-container margin-top-xl margin-bottom-xl">
+<div
+  class="page-container margin-top-xl margin-bottom-xl mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <ws-widget-picker-content
     [widgetData]="{ preselected: selectedContentIds, availableFilters: 'contentType' }"
     (change)="contentChanged($event?.content, $event?.checked)"

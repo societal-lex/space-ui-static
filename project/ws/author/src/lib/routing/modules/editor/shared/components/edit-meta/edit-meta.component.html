@@ -526,7 +526,7 @@
                 <p class="font-weight-bold margin-remove-bottom"
                   i18n="Title label|Label which explains the user to enter title"
                   [ngClass]="{ required: checkCondition('otherSourceName', 'required') }">
-                  Created By (Other)
+                  Other
                 </p>
                 <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
                   [ngClass]="{ 'mat-form-field-invalid': showError('otherSourceName') }">
@@ -2311,7 +2311,7 @@
               </div>
             </div>
             <div class="flex margin-xl padding-left-l">
-              <mat-checkbox [checked]="isTnCFoLicenseAgreed" (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
+              <mat-checkbox [checked]="contentForm?.controls.spaceLicenseTnCAgreed.value" (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
               <p class="margin-left-xs margin-remove-bottom">
                 I agree that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform. <br>I have made sure that I do not violate others’ copyright, privacy or third party rights. Visit
                 <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()"
