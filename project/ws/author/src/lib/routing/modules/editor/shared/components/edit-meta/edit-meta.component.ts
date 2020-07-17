@@ -78,6 +78,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() data = new EventEmitter<string>()
   @Input() isSubmitPressed = false
   @Input() nextAction = 'done'
+  contentTracker = {
+    previousContent: '',
+  }
   displayRadioSystem = false
   assetRelatedTabsUpdated = false
   previousAssetType = ''
@@ -170,7 +173,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     private authInitService: AuthInitService,
     private accessService: AccessControlService,
     private valueSvc: ValueService,
-  ) { }
+  ) {
+    this.contentTracker.previousContent = this.contentService.currentContent
+  }
 
   ngAfterViewInit() {
     this.ref.detach()
@@ -1182,7 +1187,15 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       spaceAssetType: [],
     })
 
-    this.contentForm.controls.assetType.valueChanges.pipe(startWith(null), pairwise())
+    this.contentForm.controls.assetType.valueChanges.pipe(
+      startWith(null),
+      pairwise()
+      /* filter((_values: [string, string]) => {
+        if ((_values[1] && (_values[0] || !_values[0]))) {
+          return true
+        }
+        return false
+      })*/)
     .subscribe((_assetValueArray: [string, string]) => {
       // this.contentForm.controls.assetType.setValue(_assetValueArray[1])
       // console.log('meta before sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
@@ -1191,8 +1204,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateLicenseType(_assetValueArray[1])
       this.updateLicenceInfoTable(_assetValueArray[1])
       this.updateAssetTypeInfoTable()
-      // tslint:disable-next-line: max-line-length
-      if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource' && _assetValueArray[1]) {
+      if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource') {
         this.enableSpecificAssetForm([_assetValueArray[0], _assetValueArray[1]])
       }
       // console.log('meta after sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
@@ -1221,8 +1233,15 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.spaceAssetType.valueChanges.pipe(
-      startWith(''),
+      startWith(null),
       pairwise(),
+      filter((_values: [string, string]) => {
+        // tslint:disable-next-line: max-line-length
+        if ((this.contentTracker.previousContent === this.contentService.currentContent  && _values[1] && (_values[0] || !_values[0]) && (_values[0] !== _values[1]))) {
+          return true
+        }
+        return false
+      })
       ).subscribe((_spaceAssetTypeArray: [string, string]) => {
       if (_spaceAssetTypeArray[0]) {
         const newMeta = {
@@ -1511,10 +1530,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openLicenseTnc() {
     window.open('/public/termsofuse', '_blank')
-  }
-
-  get isTnCFoLicenseAgreed() {
-    return this.contentForm.controls.spaceLicenseTnCAgreed.value || false
   }
 
   setPolicyForm(_assetTypeValue: string) {
