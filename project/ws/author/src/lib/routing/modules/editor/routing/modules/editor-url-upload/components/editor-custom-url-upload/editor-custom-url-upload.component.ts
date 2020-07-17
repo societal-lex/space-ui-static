@@ -88,7 +88,6 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
       }
     })
     this.urlUploadForm.controls.artifactLinkUrl.valueChanges.pipe(
-      debounceTime(800),
       distinctUntilChanged(),
       ).subscribe(() => {
       if (this.canUpdate) {
@@ -194,7 +193,7 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
         }
       }
     })
-    if (meta.mimeType === 'application/html' && this.urlUploadForm.controls.artifactLinkUrl.value) {
+    if (currentMeta.mimeType === 'application/html' && this.urlUploadForm.controls.artifactLinkUrl.value) {
       meta.artifactUrl = this.urlUploadForm.controls.artifactLinkUrl.value
       // console.log('artifact url updated from artifact link ', meta.artifactUrl)
     }
