@@ -624,7 +624,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.contentForm.controls.contentType.value === 'Course') {
       this.contentForm.controls.mimeType.setValue('application/vnd.ekstep.content-collection')
     } else {
-      this.contentForm.controls.mimeType.setValue('application/html')
+      // this.contentForm.controls.mimeType.setValue('application/html')
       if (
         this.configSvc.instanceConfig &&
         this.configSvc.instanceConfig.authoring &&
@@ -1236,13 +1236,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.contentForm.controls.spaceAssetType.valueChanges.pipe(
       startWith(null),
       pairwise(),
-      filter((_values: [string, string]) => {
-        // tslint:disable-next-line: max-line-length
-        if ((this.contentTracker.previousContent === this.contentService.currentContent  && _values[1] && (_values[0] || !_values[0]) && (_values[0] !== _values[1]))) {
-          return true
-        }
-        return false
-      })
+      filter((_v: [string,string]) => _v[0] !== _v[1])
       ).subscribe((_spaceAssetTypeArray: [string, string]) => {
       if (_spaceAssetTypeArray[0]) {
         const newMeta = {
@@ -1351,7 +1345,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.assetRelatedTabsUpdated) {
       this.setDefaultTabsAndFormConfigs()
     }
-    if (!this.contentForm.controls.assetType.pristine) {
+    if (!this.contentForm.controls.assetType.pristine && assetTypeArray[0] !== assetTypeArray[1]) {
       this.cleanAssetRelatedFields(assetTypeArray[1], assetTypeArray[0])
     }
     if (assetTypeArray[1]) {
@@ -1379,6 +1373,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cleanAssetRelatedFields(assetTypeNext: string, _assetTypePrev?: string) {
+    this.contentForm.controls.assetType.markAsPristine()
     // console.log('here')
     const newMeta = {
       artifactLinkUrl: '',

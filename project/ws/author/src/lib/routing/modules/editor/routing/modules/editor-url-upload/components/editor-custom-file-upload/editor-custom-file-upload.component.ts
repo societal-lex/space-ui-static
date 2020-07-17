@@ -50,6 +50,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
   enableUpload = true
   duration = 0
   canUpdate = true
+  fileName = ''
   fileUploadCondition = {
     fileName: false,
     eval: false,
@@ -106,6 +107,8 @@ export class EditorCustomFileUploadComponent implements OnInit {
     }
     this.canUpdate = false
     this.fileUploadForm.controls.artifactUploadUrl.setValue(meta.artifactUploadUrl || '')
+    this.fileName = this.fileUploadForm.controls.artifactUploadUrl.value
+    console.log('name is ', this.fileName.split('/').pop(), ` ${this.fileUploadForm.controls.artifactUploadUrl.value}`)
     this.fileUploadForm.controls.mimeType.setValue(meta.mimeType || 'application/pdf')
     this.fileUploadForm.controls.isIframeSupported.setValue(meta.isIframeSupported || 'Yes')
     this.fileUploadForm.controls.isInIntranet.setValue(meta.isInIntranet || false)

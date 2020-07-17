@@ -35,7 +35,7 @@
               {{ file?.name }}
             </ng-container>
             <ng-template #elseBlock>
-              {{ fileUploadForm.controls.artifactUploadUrl.value.split('/').pop() }}
+              {{ fileName.split('/').pop() }}
               <ng-container> </ng-container>
             </ng-template>
           </p>
