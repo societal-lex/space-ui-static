@@ -17,7 +17,7 @@ export class PageComponent extends WidgetBaseComponent
   implements OnInit, AfterViewInit, OnDestroy, NsWidgetResolver.IWidgetData<NsPage.IPage | null> {
   @Input() widgetData: NsPage.IPage | null = null
   appIcon: SafeUrl | null = null
-  pageData: NsPage.IPage | null = null
+  pageData?: NsPage.IPage | null = null
   oldData: NsPage.IPage | null = null
   private responseSubscription: Subscription | null = null
   alreadyRaised = false

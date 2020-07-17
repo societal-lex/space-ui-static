@@ -2,7 +2,9 @@
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span class="margin-left-s text-white" i18n>Track Goal</span>
 </mat-toolbar>
-<main class="max-w-3xl m-auto p-4">
+<main
+  class="max-w-3xl m-auto p-4 mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <h2 class="mat-title margin-bottom-xs">{{ goal?.name }}</h2>
   <div *ngIf="goal?.duration">
     <ng-container i18n>Target time for completion</ng-container>

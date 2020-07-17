@@ -28,7 +28,10 @@
   </button>
 </mat-toolbar>
 
-<section class="padding-m" *ngFor="let group of featureGroups">
+<section
+  class="padding-m mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+  *ngFor="let group of featureGroups"
+>
   <div
     [ngClass]="{ pad: group?.stripBackground }"
     [ngStyle]="{ 'background-color': group?.stripBackground }"
@@ -45,12 +48,18 @@
     </div>
   </div>
 </section>
-<section *ngIf="featureGroups !== null" [hidden]="featureGroups?.length" class="mat-card warn-card">
+<section
+  *ngIf="featureGroups !== null"
+  [hidden]="featureGroups?.length"
+  class="mat-card warn-card mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <mat-icon class="warn-icon" color="warn">warning</mat-icon>
   <span i18n>No features matches your query</span>
 </section>
 
-<div class="my-4 mx-6 flex flex-wrapped">
+<div
+  class="flex flex-wrapped mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <!-- <div class="flex items-center mr-4">
     <mat-icon class="mr-2" color="primary">
       brightness_1
