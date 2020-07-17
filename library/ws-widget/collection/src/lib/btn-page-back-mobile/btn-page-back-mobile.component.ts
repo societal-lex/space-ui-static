@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit, Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { NsWidgetResolver, WidgetBaseComponent } from '@ws-widget/resolver'
 import { BtnPageBackMobileService } from './btn-page-back-mobile.service'
@@ -8,6 +8,7 @@ type TUrl = undefined | 'none' | 'back' | string
   templateUrl: './btn-page-back-mobile.component.html',
   styleUrls: ['./btn-page-back-mobile.component.scss'],
 })
+@Injectable()
 export class BtnPageBackMobileComponent extends WidgetBaseComponent
   implements OnInit, NsWidgetResolver.IWidgetData<{ url: TUrl }> {
   @Input() widgetData: { url: TUrl } = { url: 'none' }

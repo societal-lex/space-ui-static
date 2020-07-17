@@ -2,7 +2,10 @@
   <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
   <span i18n="page title: playlist" class="margin-left-xs text-white">Playlist</span>
 </mat-toolbar>
-<div *ngIf="!error; else errorPage" class="max-w-3xl mx-auto p-4 mt-6">
+<div
+  *ngIf="!error; else errorPage"
+  class="max-w-3xl mx-auto p-4 mt-6 mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <a
     name="accept-reject-link-playlist-home"
     routerLink="/app/playlist/notification"
@@ -76,7 +79,9 @@
 </div>
 
 <ng-template #create>
-  <div class="w-1/2 sm:w-1/3">
+  <div
+    class="w-1/2 sm:w-1/3 mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+  >
     <section class="px-2 mt-2 mb-3">
       <a routerLink="/app/playlist/create">
         <div class="create-new-card flex flex-middle flex-center">

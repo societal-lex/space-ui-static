@@ -9,8 +9,8 @@
       mat-button
       (click)="router.navigate([router.url, 'edit'])"
     >
-      <mat-icon class="text-white">add</mat-icon>&nbsp;
-      <span i18n class="text-white">Add More</span>
+      <mat-icon>add</mat-icon>&nbsp;
+      <span i18n>Add More</span>
     </button>
     <button
       name="share-button-playlist-detail"
@@ -18,8 +18,8 @@
       mat-button
       (click)="sharePlaylist()"
     >
-      <mat-icon class="text-white">share</mat-icon>&nbsp;
-      <span i18n class="text-white">Share</span>
+      <mat-icon>share</mat-icon>&nbsp;
+      <span i18n>Share</span>
     </button>
     <button
       name="delete-button-playlist-detail"
@@ -27,15 +27,18 @@
       mat-button
       (click)="deletePlaylist()"
     >
-      <mat-icon class="text-white">delete</mat-icon>&nbsp;
-      <span i18n class="text-white">Delete</span>
+      <mat-icon>delete</mat-icon>&nbsp;
+      <span i18n>Delete</span>
     </button>
   </div>
   <button class="hidden-gt-xs text-white" mat-icon-button [matMenuTriggerFor]="playlistMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
 </mat-toolbar>
-<div *ngIf="!error; else errorPage">
+<div
+  *ngIf="!error; else errorPage"
+  class="mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+>
   <div class="playlist-header" *ngIf="playlist">
     <div class="banner-container">
       <div class="banner-overlay ws-primary-tinted-50">
@@ -180,7 +183,9 @@
 </mat-menu>
 
 <ng-template #contentView let-content>
-  <div class="flex flex-middle padding-top-s padding-bottom-xs">
+  <div
+    class="flex flex-middle padding-top-s padding-bottom-xs mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+  >
     <div
       class="status-danger"
       role="note"

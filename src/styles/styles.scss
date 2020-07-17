@@ -87,7 +87,7 @@ mat-toolbar span {
   // background: rgba(0, 0, 0, 0.12) !important;
   // color: rgba(0, 0, 0, 0.87) !important;
   background: transparent !important;
-  color: rgba(0, 0, 0, 0.38) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
 }
 // #mat-slide-toggle-1 {
 //   background: transparent !important;
@@ -95,8 +95,15 @@ mat-toolbar span {
 // }
 .example-radio-group {
   background: none !important;
-  color: black !important;
+  // color: black !important;
 }
+.theme-muave.night-mode .mat-button.mat-primary[disabled],
+.theme-muave.night-mode .mat-button.mat-accent[disabled],
+.theme-muave.night-mode .mat-button.mat-warn[disabled],
+.theme-muave.night-mode .mat-button[disabled][disabled] {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
 // #mat-slide-toggle-2 {
 //   background: transparent !important;
 //   color: rgba(0, 0, 0, 0.87) !important;

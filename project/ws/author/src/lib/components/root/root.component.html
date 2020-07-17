@@ -1,4 +1,7 @@
-<div class="outer" [ngClass]="{ 'dim' : isLoading}">
+<div
+  class="outer mat-drawer-container mat-drawer-container-has-open mat-drawer-transition"
+  [ngClass]="{ dim: isLoading }"
+>
   <ws-auth-root-navigation></ws-auth-root-navigation>
   <router-outlet></router-outlet>
 </div>
