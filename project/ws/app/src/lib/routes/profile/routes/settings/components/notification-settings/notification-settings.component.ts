@@ -31,6 +31,7 @@ export class NotificationSettingsComponent implements OnInit {
     this.settingsSvc.fetchNotificationSettings().subscribe(
       data => {
         this.notificationSettings = data
+        this.eventNameChange()
         this.notificationsFetchStatus = 'done'
       },
       _ => {
@@ -66,5 +67,14 @@ export class NotificationSettingsComponent implements OnInit {
 
   getSupportedModes(notificationEvent: NsSettings.INotificationEvent): NsSettings.INotificationMode[] {
     return notificationEvent.recipients[0].modes
+  }
+  eventNameChange() {
+    this.notificationSettings.forEach(data => {
+      if (data.events) {
+        data.events.forEach(event => {
+          event.event_name = event.event_name.replace('Author', 'Creator')
+        })
+      }
+    })
   }
 }
