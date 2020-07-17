@@ -143,6 +143,8 @@ export namespace NsInstanceConfig {
     grievanceredressal: string
     termsOfUse: string
     aboutBanner: string
+    contentpolicy: string
+
   }
   export interface IMailIds {
     contactUs: string
@@ -225,7 +227,8 @@ export namespace NsAppsConfig {
     badgeEndpoint?: string
     mobileAppFunction?: string
     color?: string
-    target?: string
+    target?: string,
+    allowedRoles?: string[],
   }
 }
 

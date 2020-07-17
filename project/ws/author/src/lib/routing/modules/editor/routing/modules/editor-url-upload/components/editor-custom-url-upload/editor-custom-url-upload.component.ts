@@ -151,9 +151,9 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
     } else {
       if (this.urlUploadForm.controls.artifactLinkUrl.valid) {
         this.storeData()
-        console.log('data saved ', this.contentService.getUpdatedMeta(this.currentContent).artifactLinkUrl)
+        // console.log('data saved ', this.contentService.getUpdatedMeta(this.currentContent).artifactLinkUrl)
         // this.data.emit('next')
-      } else if (this.urlUploadForm.controls.artifactLinkUrl.touched){
+      } else if (this.urlUploadForm.controls.artifactLinkUrl.touched) {
         this.snackBar.openFromComponent(NotificationComponent, {
           data: {
             type: Notify.URL_UPLOAD_LINK_FAIL,
@@ -194,7 +194,10 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
         }
       }
     })
-    meta.artifactUrl = this.urlUploadForm.controls.artifactLinkUrl.value || ''
+    if (meta.mimeType === 'application/html' && this.urlUploadForm.controls.artifactLinkUrl.value) {
+      meta.artifactUrl = this.urlUploadForm.controls.artifactLinkUrl.value
+      // console.log('artifact url updated from artifact link ', meta.artifactUrl)
+    }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
   }
 

@@ -50,7 +50,6 @@ export class HtmlComponent implements OnInit, OnChanges {
       ? this.configSvc.instanceConfig.intranetIframeUrls
       : []
 
-    // //console.log(this.htmlContent)
     let iframeSupport: boolean | string | null =
       this.htmlContent && this.htmlContent.isIframeSupported
     if (this.htmlContent && this.htmlContent.artifactUrl) {
@@ -91,13 +90,10 @@ export class HtmlComponent implements OnInit, OnChanges {
       // if (this.htmlContent.isInIntranet || this.isIntranetUrl) {
       //   this.checkIfIntranet().subscribe(
       //     data => {
-      //       //console.log(data)
       //       this.isUserInIntranet = data ? true : false
-      //       //console.log(this.isUserInIntranet)
       //     },
       //     () => {
       //       this.isUserInIntranet = false
-      //       //console.log(this.isUserInIntranet)
       //     },
       //   )
       // }
@@ -131,6 +127,7 @@ export class HtmlComponent implements OnInit, OnChanges {
   }
 
   openInNewTab() {
+    const redirecturl = this.prepare()
     if (this.htmlContent) {
       if (this.mobAppSvc && this.mobAppSvc.isMobile) {
         // window.open(this.htmlContent.artifactUrl)
@@ -144,7 +141,7 @@ export class HtmlComponent implements OnInit, OnChanges {
         const width = window.outerWidth
         const height = window.outerHeight
         const isWindowOpen = window.open(
-          this.htmlContent.artifactUrl,
+          redirecturl,
           '_blank',
           `toolbar=yes,
              scrollbars=yes,
@@ -185,4 +182,23 @@ export class HtmlComponent implements OnInit, OnChanges {
       })
     }
   }
+
+  prepare() {
+    let link = ''
+    if (this.htmlContent) {
+      if (this.htmlContent.assetType === 'Knowledge') {
+        link = this.htmlContent.artifactUrl
+
+      } else if (this.htmlContent.assetType === 'Technology') {
+        link = this.htmlContent.codebase
+
+      } else if (this.htmlContent.assetType === 'Connection') {
+        link = this.htmlContent.profile_link
+      } else {
+        link = (this.htmlContent.artifactUrl)
+      }
+    }
+    return link
+  }
+
 }

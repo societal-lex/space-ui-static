@@ -167,13 +167,13 @@
         </mat-chip-list>
       </div>
       <div class="flex items-center search border border-solid search-border">
-        <div class="border-right flex items-center" *ngIf="allLanguages?.length">
+        <!-- <div class="border-right flex items-center" *ngIf="allLanguages?.length">
           <button mat-button [matMenuTriggerFor]="sortLang">
             <span *ngIf="searchLanguage">{{ searchLanguage | uppercase }}</span>
             <span *ngIf="!searchLanguage" i18n>ALL</span>
             <mat-icon>arrow_drop_down</mat-icon>
           </button>
-        </div>
+        </div> -->
         <div class="width-3-4 pl-2">
           <mat-form-field class="w-full" appearance="none" [floatLabel]="'never'">
             <input

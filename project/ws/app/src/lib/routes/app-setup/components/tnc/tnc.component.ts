@@ -31,6 +31,7 @@ export class TncComponent implements OnInit, OnDestroy {
   isPublic = false
   selectedLocale = ''
   checked = false
+  accepted = false
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   errorWidget: NsWidgetResolver.IRenderConfigWithTypedData<NsError.IWidgetErrorResolver> = {
     widgetType: ROOT_WIDGET_CONFIG.errorResolver._type,
@@ -39,6 +40,7 @@ export class TncComponent implements OnInit, OnDestroy {
       errorType: 'internalServer',
     },
   }
+  acceptData = false
   expectedUrl = ''
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,7 +51,7 @@ export class TncComponent implements OnInit, OnDestroy {
     private tncProtectedSvc: TncAppResolverService,
     private tncPublicSvc: TncPublicResolverService,
     private globals: Globals,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((response: Data) => {
@@ -166,8 +168,10 @@ export class TncComponent implements OnInit, OnDestroy {
             !this.globals.firstTimeSetupDone
           ) {
           } else {
-            this.router.navigate(['page', 'home'])
+            this.accepted = true
+            // this.router.navigate(['page', 'home'])
           }
+
         },
         (err: any) => {
           this.loggerSvc.error('ERROR ACCEPTING TNC:', err)
@@ -182,5 +186,24 @@ export class TncComponent implements OnInit, OnDestroy {
   }
   postProcess() {
     this.http.patch('/apis/protected/v8/user/tnc/postprocessing', {}).subscribe()
+  }
+  acceptDataForNewUser() {
+    if (this.acceptData) {
+      if (this.tncData) {
+        this.tncData.isAccepted = true
+      }
+    }
+  }
+  isDisabled() {
+  if (this.tncData) {
+    if (this.tncData.isNewUser) {
+      if (!this.acceptData) {
+        return true
+      }
+    } else if (!this.tncData.isAccepted) {
+      return true
+    }
+  }
+  return false
   }
 }

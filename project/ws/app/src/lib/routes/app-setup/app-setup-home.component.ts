@@ -49,7 +49,7 @@ export class AppSetupHomeComponent implements OnInit, AfterViewInit {
     | SettingsComponent
     | undefined = undefined
 
-  constructor(private configSvc: ConfigurationsService, private matDialog: MatDialog) {}
+  constructor(private configSvc: ConfigurationsService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     // if (this.configSvc.restrictedFeatures) {

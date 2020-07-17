@@ -36,6 +36,8 @@ export class PlayerBriefComponent implements OnInit {
   isDownloadableIos = false
   isDownloadableAndroid = false
 
+  // disablefield = false
+
   ngOnInit() {
     this.getTocConfig()
     if (this.configSvc.restrictedFeatures) {

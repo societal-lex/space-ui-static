@@ -12,6 +12,8 @@ import {
   MatInputModule,
   MatAutocompleteModule,
   MatProgressSpinnerModule,
+  MatGridListModule,
+  MatExpansionModule,
 } from '@angular/material'
 import { PipeLimitToModule } from '@ws-widget/utils'
 
@@ -29,8 +31,10 @@ import { PipeLimitToModule } from '@ws-widget/utils'
     MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatGridListModule,
     PipeLimitToModule,
+    MatExpansionModule,
   ],
   exports: [InterestComponent],
 })
-export class InterestModule {}
+export class InterestModule { }

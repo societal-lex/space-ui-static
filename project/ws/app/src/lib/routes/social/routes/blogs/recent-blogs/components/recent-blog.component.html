@@ -10,7 +10,7 @@
         <div class="w-full search">
           <mat-form-field appearance="none" class="autocomplete-form" color="primary" style="width: 100%;"
             [floatLabel]="'never'">
-            <input type="search"
+            <input type="search" (keydown.enter)="triggerSearch()"
               class="border-2 border-gray-300 align-input bg-white pr-16 rounded-lg text-sm text-white focus:outline-none"
               i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query" matInput
               [(ngModel)]="queryEntered" />
@@ -45,9 +45,14 @@
       <ng-container>
         <ng-container *ngIf="(isXSmall$ | async) === false">
           <a mat-raised-button [ngClass]="{ show_btn: allowedToCreateBlogs, hide_btn: !allowedToCreateBlogs }" i18n
-            [routerLink]="'/app/social/blogs/me'" class="margin-right-s">My Blogs</a>
+            [routerLink]="'/app/social/blogs/me'" class="btn">
+            <mat-icon class="mat-icon-color"> insert_drive_file </mat-icon><span>&nbsp;My Blogs</span>
+          </a>
+
           <a mat-raised-button [ngClass]="{ show_btn: allowedToViewMyBlogs, hide_btn: !allowedToViewMyBlogs }"
-            class="margin-left-s" i18n [routerLink]="'/app/social/blogs/edit'">Write a Blog</a>
+            class="btn" i18n [routerLink]="'/app/social/blogs/edit'">
+            <mat-icon class="mat-icon-color"> create </mat-icon><span>&nbsp;Write a Blog</span>
+          </a>
         </ng-container>
       </ng-container>
     </div>
@@ -61,7 +66,7 @@
         <div class="flex items-center border search border-solid search-border border-color width-xs">
           <div class="w-full search">
             <mat-form-field appearance="none" class="autocomplete-form" color="primary" [floatLabel]="'never'">
-              <input type="search"
+              <input type="search" (keydown.enter)="triggerSearch()"
                 class="border-2 border-gray-300 pr-16 ws-mat-primary-text rounded-lg .text-xs focus:outline-none placeholder-color"
                 i18n-placeholder="search content" [placeholder]="placeHolder" i18-aria-label aria-label="Query"
                 style="width: 90%; margin-left: 10%; padding-top: 8px;" matInput [(ngModel)]="queryEntered" />

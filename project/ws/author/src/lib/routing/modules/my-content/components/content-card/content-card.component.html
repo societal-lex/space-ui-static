@@ -105,12 +105,12 @@
     <mat-icon>reply</mat-icon>
     <span i18n>Send content to previous state</span>
   </a>
-  <ng-container>
+  <!-- <ng-container>
     <a *ngIf="showMenuItem('lang')" mat-menu-item [matMenuTriggerFor]="langMenu">
       <mat-icon>translate</mat-icon>
       <span i18n>Languages</span>
     </a>
-  </ng-container>
+  </ng-container> -->
 </mat-menu>
 <mat-menu #langMenu="matMenu">
   <ng-container *ngIf="translationArray && translationArray.length">

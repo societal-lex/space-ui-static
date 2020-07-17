@@ -39,7 +39,7 @@ button {
 a {
   font-family: $font-family-montserrat !important;
 }
-span {
+mat-toolbar span {
   font-family: $font-family-campaign !important;
 }
 p {
@@ -54,7 +54,21 @@ p {
 a[target='_blank'] {
   color: #865ba0 !important;
 }
-
+mat-toolbar span {
+  color: white;
+}
+.mobileview span {
+  color: black !important;
+}
+.mat-toolbar-style span {
+  color: black;
+}
+// mat-toolbar mat-form-field {
+//   color: white !important;
+// }
+// mat-form-field {
+//   color: black !important;
+// }
 [color|='primary'] {
   background: #865ba0 !important;
   color: white !important;

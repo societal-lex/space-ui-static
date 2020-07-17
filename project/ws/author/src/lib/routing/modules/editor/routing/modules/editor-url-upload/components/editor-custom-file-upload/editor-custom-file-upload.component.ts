@@ -8,6 +8,8 @@ import {
   Output,
   ViewChild,
   TemplateRef,
+  ChangeDetectorRef,
+  ViewRef,
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
@@ -36,7 +38,7 @@ import { AuthInitService } from './../../../../../../../../services/init.service
   // tslint:disable-next-line: component-selector
   selector: 'ws-author-editor-custom-file-upload',
   templateUrl: './editor-custom-file-upload.component.html',
-  styleUrls: ['./editor-custom-file-upload.component.scss']
+  styleUrls: ['./editor-custom-file-upload.component.scss'],
 })
 export class EditorCustomFileUploadComponent implements OnInit {
   @ViewChild('guideline', { static: false }) guideline!: TemplateRef<HTMLElement>
@@ -78,6 +80,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
     private authInitService: AuthInitService,
     private valueSvc: ValueService,
     private accessService: AccessControlService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -106,6 +109,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
     }
     this.canUpdate = false
     this.fileUploadForm.controls.artifactUploadUrl.setValue(meta.artifactUploadUrl || '')
+    // console.log('name is ', this.fileName.split('/').pop(), ` ${this.fileUploadForm.controls.artifactUploadUrl.value}`)
     this.fileUploadForm.controls.mimeType.setValue(meta.mimeType || 'application/pdf')
     this.fileUploadForm.controls.isIframeSupported.setValue(meta.isIframeSupported || 'Yes')
     this.fileUploadForm.controls.isInIntranet.setValue(meta.isInIntranet || false)
@@ -117,6 +121,10 @@ export class EditorCustomFileUploadComponent implements OnInit {
     this.fileUploadForm.markAsUntouched()
     if (meta.artifactUploadUrl && this.showIPRDeclaration) {
       this.iprAccepted = true
+    }
+    if (!(this.cdr as ViewRef).destroyed) {
+      // console.log('detecting changes')
+      this.cdr.detectChanges()
     }
   }
 
@@ -372,7 +380,10 @@ export class EditorCustomFileUploadComponent implements OnInit {
         }
       }
     })
-    meta.artifactUrl = this.fileUploadForm.controls.artifactUploadUrl.value || ''
+    if (meta.mimeType !== 'application/html') {
+      meta.artifactUrl = this.fileUploadForm.controls.artifactUploadUrl.value || ''
+      // console.log('artifact url updated from artifact link ', meta.artifacUrl)
+    }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
   }
 
