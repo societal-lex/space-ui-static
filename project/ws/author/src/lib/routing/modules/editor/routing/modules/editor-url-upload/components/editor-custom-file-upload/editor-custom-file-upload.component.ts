@@ -8,6 +8,7 @@ import {
   Output,
   ViewChild,
   TemplateRef,
+  ChangeDetectorRef,
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
@@ -79,6 +80,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
     private authInitService: AuthInitService,
     private valueSvc: ValueService,
     private accessService: AccessControlService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -121,6 +123,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
     if (meta.artifactUploadUrl && this.showIPRDeclaration) {
       this.iprAccepted = true
     }
+    this.cdr.detectChanges()
   }
 
   createForm() {

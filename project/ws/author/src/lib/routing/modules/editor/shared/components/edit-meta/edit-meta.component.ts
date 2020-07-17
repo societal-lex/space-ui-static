@@ -43,7 +43,6 @@ import {
   switchMap,
   map,
   pairwise,
-  tap,
 } from 'rxjs/operators'
 import { FeedbackFormComponent } from '@ws/author/src/lib/modules/shared/components/feedback-form/feedback-form.component'
 import { LicenseInfoDisplayDialogComponent } from '../license-info-display-dialog/license-info-display-dialog.component'
