@@ -39,7 +39,7 @@ button {
 a {
   font-family: $font-family-montserrat !important;
 }
-span {
+mat-toolbar span {
   font-family: $font-family-campaign !important;
 }
 p {
@@ -54,7 +54,24 @@ p {
 a[target='_blank'] {
   color: #865ba0 !important;
 }
-
+mat-toolbar span {
+  color: white;
+}
+#page-toolbar span {
+  color: black;
+}
+.mobileview span {
+  color: black !important;
+}
+.mat-toolbar-style span {
+  color: black;
+}
+// mat-toolbar mat-form-field {
+//   color: white !important;
+// }
+// mat-form-field {
+//   color: black !important;
+// }
 [color|='primary'] {
   background: #865ba0 !important;
   color: white !important;
@@ -70,20 +87,27 @@ a[target='_blank'] {
   // background: rgba(0, 0, 0, 0.12) !important;
   // color: rgba(0, 0, 0, 0.87) !important;
   background: transparent !important;
-  color: rgba(0, 0, 0, 0.38) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
 }
-#mat-slide-toggle-1 {
-  background: transparent !important;
-  color: rgba(0, 0, 0, 0.87) !important;
-}
+// #mat-slide-toggle-1 {
+//   background: transparent !important;
+//   color: rgba(0, 0, 0, 0.87) !important;
+// }
 .example-radio-group {
   background: none !important;
-  color: black !important;
+  // color: black !important;
 }
-#mat-slide-toggle-2 {
-  background: transparent !important;
-  color: rgba(0, 0, 0, 0.87) !important;
+.theme-muave.night-mode .mat-button.mat-primary[disabled],
+.theme-muave.night-mode .mat-button.mat-accent[disabled],
+.theme-muave.night-mode .mat-button.mat-warn[disabled],
+.theme-muave.night-mode .mat-button[disabled][disabled] {
+  color: rgba(255, 255, 255, 0.3) !important;
 }
+
+// #mat-slide-toggle-2 {
+//   background: transparent !important;
+//   color: rgba(0, 0, 0, 0.87) !important;
+// }
 .theme-muave.day-mode .mat-flat-button.mat-primary[disabled],
 .theme-muave.day-mode .mat-flat-button[disabled][disabled] {
   background-color: rgba(0, 0, 0, 0.12) !important;

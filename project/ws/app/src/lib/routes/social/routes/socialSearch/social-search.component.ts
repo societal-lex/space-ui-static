@@ -3,7 +3,7 @@ import { NsPage, ConfigurationsService, ValueService, TFetchStatus } from '../..
 import { Subscription, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { SocialForum } from '../forums/models/SocialForumposts.model'
 import { ForumHandlerService } from '../forums/service/EmitterService/forum-handler.service'
@@ -24,6 +24,7 @@ export class SocialSearchComponent implements OnInit {
     private activated: ActivatedRoute,
 
     private socialServ: SocialSearchService,
+    private readonly router: Router
 
   ) {
     this.isXSmall$ = this.valueSvc.isXSmall$
@@ -89,7 +90,6 @@ export class SocialSearchComponent implements OnInit {
 
     this._eventEmiter.dataStr.subscribe(data => this.filtersResponse = data
     )
-    // console.log('the filter data is' + this.filtersResponse)
   }
   truncateHTML(text: string): string {
 
@@ -225,6 +225,12 @@ export class SocialSearchComponent implements OnInit {
       this.getSearchResults('firstCall')
     })
     this.setDataStr()
+  }
+
+  triggerSearch() {
+    this.router.navigate(['/app/social/socialSearch/view-search'],
+                         { queryParams: { search: this.queryEntered } })
+
   }
 
 }

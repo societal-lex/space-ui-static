@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { ConfigurationsService, NsPage, TFetchStatus } from '@ws-widget/utils'
-
+import { ConfigurationsService, NsPage, TFetchStatus, ValueService } from '@ws-widget/utils'
 import { NotificationApiService } from '../../services/notification-api.service'
 import { ENotificationType, INotification } from '../../models/notifications.model'
 import { NotificationService } from '../../services/notification.service'
-import { noop } from 'rxjs'
+import { noop, Observable } from 'rxjs'
 import { Router } from '@angular/router'
 
 @Component({
@@ -22,13 +21,16 @@ export class HomeComponent implements OnInit {
   actionNotificationsNextPage?: string
   infoNotificationsNextPage?: string
   private pageSize: number
+  isXSmall$: Observable<boolean>
 
   constructor(
     private configSvc: ConfigurationsService,
     private notificationApi: NotificationApiService,
     private notificationSvc: NotificationService,
     private router: Router,
+    private valueSvc: ValueService,
   ) {
+    this.isXSmall$ = this.valueSvc.isXSmall$
     this.pageSize = 5
     this.actionNotifications = []
     this.infoNotifications = []
@@ -82,11 +84,8 @@ export class HomeComponent implements OnInit {
     if (!notification.seen) {
       this.notificationApi
         .updateNotificationSeenStatus(notification.notificationId, notification.classifiedAs)
-        .subscribe(() => {
-          notification.seen = true
-        },         noop)
+        .subscribe(() => { notification.seen = true }, noop)
     }
-
     this.notificationSvc.mapRoute(notification)
   }
 

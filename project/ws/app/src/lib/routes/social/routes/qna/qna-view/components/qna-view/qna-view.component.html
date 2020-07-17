@@ -253,7 +253,7 @@
 <input type="hidden" i8n-value value="Successfully deleted" #deleteMsg />
 <mat-menu #editMenu="matMenu">
   <ng-template matMenuContent>
-    <a [routerLink]="'../edit/' + qnaConversationRequest.postId" mat-menu-item i18n
+    <a [routerLink]="'../edit/' + qnaConversationRequest.postId" mat-menu-item i18n class="aStyle"
       >Edit Question</a
     >
     <button (click)="deletePost(deleteMsg.value)" mat-menu-item i18n>Delete Question</button>

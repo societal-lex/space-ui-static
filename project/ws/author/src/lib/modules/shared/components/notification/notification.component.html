@@ -18,6 +18,11 @@
   <span i18n>Invalid format</span>
 </p>
 
+<p *ngIf="type === notify.ACCEPT_LICENSE_TNC">
+  <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Fail">error</mat-icon>
+  <span i18n>Accept the Terms of Use Policy</span>
+</p>
+
 <p *ngIf="type === notify.DELETED">
   <mat-icon class="icon" aria-hidden="false" i18n-aria-label aria-label="Fail">error</mat-icon>
   <span i18n>Content was already deleted</span>

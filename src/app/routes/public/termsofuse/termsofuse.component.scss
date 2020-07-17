@@ -3,6 +3,7 @@
 .allignment{
 padding: 8px 20px;
 line-height: 1.7;
+font-family: Montressat,sans-serif;
 
 }
 #cimage {
@@ -19,4 +20,37 @@ line-height: 1.7;
     height: auto !important;
     margin-top: 0em !important;
   }
+}
+
+.font-style{
+  font-family: montserrat, sans-serif !important;
+  font-size: 17px;
+}
+.font-text{
+
+
+  font-family: campaign, sans-serif !important;
+  font-size: 17px;
+
+}
+
+
+@media screen and (max-width: 450px) {
+  .spaceallign{
+  padding-left:0.8em;
+}
+
+}
+@media screen and (max-width: 380px) {
+  .spaceallignment{
+  padding-left:0em;
+}
+
+}
+.colortheme{
+  color:#865ba0;
+
+}
+.boldcolor{
+  color: #865ba0 !important;
 }

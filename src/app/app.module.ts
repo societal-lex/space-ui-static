@@ -67,6 +67,7 @@ import { AppCollaboratorsComponent } from './component/app-collaborators/app-col
 import { AppFooterInsideComponent } from './component/app-footer-inside/app-footer-inside.component'
 import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
 import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.component'
+import { ContentpolicyandcommunicationComponent } from './routes/public/contentpolicyandcommunication/contentpolicyandcommunication.component'
 // import { ServiceWorkerModule } from '@angular/service-worker'
 // import { environment } from '../environments/environment'
 
@@ -110,6 +111,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     AppFooterInsideComponent,
     TermsofuseComponent,
     DataprivacyComponent,
+    ContentpolicyandcommunicationComponent,
 
   ],
   imports: [

@@ -1,0 +1,8 @@
+::ng-deep {
+  .theme-muave.night-mode .mat-raised-button.mat-primary[disabled],
+  .theme-muave.night-mode .mat-raised-button.mat-accent[disabled],
+  .theme-muave.night-mode .mat-raised-button.mat-warn[disabled],
+  .theme-muave.night-mode .mat-raised-button[disabled][disabled] {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+}
