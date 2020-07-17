@@ -1204,7 +1204,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateLicenseType(_assetValueArray[1])
       this.updateLicenceInfoTable(_assetValueArray[1])
       this.updateAssetTypeInfoTable()
-      if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource') {
+      // tslint:disable-next-line: max-line-length
+      if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource' && _assetValueArray[1]) {
         this.enableSpecificAssetForm([_assetValueArray[0], _assetValueArray[1]])
       }
       // console.log('meta after sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
