@@ -28,7 +28,8 @@
   </button>
 </mat-toolbar>
 
-<section class="padding-m" *ngFor="let group of featureGroups">
+<!-- <section class="padding-m" *ngFor="let group of featureGroups"> -->
+  <section class="padding-m" *ngFor="let group of rolesBasedFeatureGroups">
   <div
     [ngClass]="{ pad: group?.stripBackground }"
     [ngStyle]="{ 'background-color': group?.stripBackground }"

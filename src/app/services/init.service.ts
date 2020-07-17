@@ -1,5 +1,5 @@
 import { APP_BASE_HREF } from '@angular/common'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Inject, Injectable } from '@angular/core'
 import { MatIconRegistry } from '@angular/material'
 import { DomSanitizer } from '@angular/platform-browser'
@@ -20,11 +20,24 @@ import {
   UserPreferenceService,
 } from '@ws-widget/utils'
 import { environment } from '../../environments/environment'
-
 interface IDetailsResponse {
   tncStatus: boolean
   roles: string[]
   group: string[]
+}
+
+interface IResponse {
+  ok: boolean
+  error?: string | null,
+  DATA?: string
+  STATUS?: string,
+  MESSAGE: string,
+  ErrorResponseData?: string,
+  API_ID?: string,
+  STATUS_CODE?: number,
+  TIME_STAMP?: any,
+  wid?: string,
+  email?: string,
 }
 
 interface IFeaturePermissionConfigs {
@@ -34,6 +47,7 @@ interface IFeaturePermissionConfigs {
 const endpoint = {
   profilePid: '/apis/protected/v8/user/details/wtoken',
   details: `/apis/protected/v8/user/details?ts=${Date.now()}`,
+  userdetails: `/usersubmission/user/v2/userdetails?wid=`,
 }
 
 @Injectable({
@@ -41,6 +55,7 @@ const endpoint = {
 })
 export class InitService {
   private baseUrl = this.configSvc.baseUrl
+  private token = ''
   constructor(
     private logger: LoggerService,
     private configSvc: ConfigurationsService,
@@ -256,6 +271,7 @@ export class InitService {
               : false,
           // userName: `${userPidProfile.user.first_name} ${userPidProfile.user.last_name}`,
         }
+        this.updateDepartmentDetails(this.configSvc.userProfile.userId)
       }
     }
     const details: IDetailsResponse = await this.http
@@ -397,4 +413,36 @@ export class InitService {
       }
     }
   }
+
+  async updateDepartmentDetails(wid: string) {
+    if (this.authSvc.token) {
+      this.token = this.authSvc.token
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        authorization: this.token,
+      }),
+    }
+
+    try {
+      const updatedUserData = await this.http.patch<IResponse>(endpoint.userdetails + wid, '', httpOptions).toPromise()
+      this.token = ''
+      if (updatedUserData && updatedUserData.STATUS === 'OK') {
+        return Promise.resolve({
+          ok: true,
+          DATA: updatedUserData.DATA,
+          MESSAGE: updatedUserData.MESSAGE,
+        })
+      }
+      return { ok: false, error: updatedUserData.MESSAGE, MESSAGE: updatedUserData.MESSAGE }
+    } catch (ex) {
+      if (ex) {
+        return Promise.resolve({
+          ok: false, error: ex,
+        })
+      }
+      return Promise.resolve({ ok: false, error: null })
+    }
+  }
+
 }
