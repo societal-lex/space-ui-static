@@ -196,6 +196,7 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
     })
     if (meta.mimeType === 'application/html' && this.urlUploadForm.controls.artifactLinkUrl.value) {
       meta.artifactUrl = this.urlUploadForm.controls.artifactLinkUrl.value
+      // console.log('artifact url updated from artifact link ', meta.artifactUrl)
     }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
   }

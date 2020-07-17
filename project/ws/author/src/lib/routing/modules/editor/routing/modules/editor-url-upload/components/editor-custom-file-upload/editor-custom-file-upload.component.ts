@@ -9,6 +9,7 @@ import {
   ViewChild,
   TemplateRef,
   ChangeDetectorRef,
+  ViewRef,
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
@@ -51,7 +52,6 @@ export class EditorCustomFileUploadComponent implements OnInit {
   enableUpload = true
   duration = 0
   canUpdate = true
-  fileName = ''
   fileUploadCondition = {
     fileName: false,
     eval: false,
@@ -109,8 +109,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
     }
     this.canUpdate = false
     this.fileUploadForm.controls.artifactUploadUrl.setValue(meta.artifactUploadUrl || '')
-    this.fileName = this.fileUploadForm.controls.artifactUploadUrl.value
-    console.log('name is ', this.fileName.split('/').pop(), ` ${this.fileUploadForm.controls.artifactUploadUrl.value}`)
+    // console.log('name is ', this.fileName.split('/').pop(), ` ${this.fileUploadForm.controls.artifactUploadUrl.value}`)
     this.fileUploadForm.controls.mimeType.setValue(meta.mimeType || 'application/pdf')
     this.fileUploadForm.controls.isIframeSupported.setValue(meta.isIframeSupported || 'Yes')
     this.fileUploadForm.controls.isInIntranet.setValue(meta.isInIntranet || false)
@@ -123,7 +122,10 @@ export class EditorCustomFileUploadComponent implements OnInit {
     if (meta.artifactUploadUrl && this.showIPRDeclaration) {
       this.iprAccepted = true
     }
-    this.cdr.detectChanges()
+    if (!(this.cdr as ViewRef).destroyed) {
+      // console.log('detecting changes')
+      this.cdr.detectChanges()
+    }
   }
 
   createForm() {
@@ -378,7 +380,10 @@ export class EditorCustomFileUploadComponent implements OnInit {
         }
       }
     })
-    meta.artifactUrl = this.fileUploadForm.controls.artifactUploadUrl.value || ''
+    if (meta.mimeType !== 'application/html') {
+      meta.artifactUrl = this.fileUploadForm.controls.artifactUploadUrl.value || ''
+      // console.log('artifact url updated from artifact link ', meta.artifacUrl)
+    }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
   }
 

@@ -417,7 +417,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.contentService.changeActiveCont.subscribe(data => {
       this.content = this.contentService.getUpdatedMeta(data)
-      debugger
       if (!this.assetRelatedTabsUpdated) {
         this.setDefaultTabsAndFormConfigs()
       }
@@ -1235,7 +1234,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     this.contentForm.controls.spaceAssetType.valueChanges.pipe(
       startWith(null),
       pairwise(),
-      filter((_v: [string,string]) => _v[0] !== _v[1])
+      filter((_v: [string, string]) => _v[0] !== _v[1])
       ).subscribe((_spaceAssetTypeArray: [string, string]) => {
       if (_spaceAssetTypeArray[0]) {
         const newMeta = {
@@ -1340,7 +1339,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   enableSpecificAssetForm(assetTypeArray: [string, string]) {
-    debugger
     if (!this.assetRelatedTabsUpdated) {
       this.setDefaultTabsAndFormConfigs()
     }
