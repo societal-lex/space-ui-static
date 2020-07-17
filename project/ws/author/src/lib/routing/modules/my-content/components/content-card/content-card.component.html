@@ -43,7 +43,16 @@
       <!-- <span class="background-color">Last updated on {{ data.lastPublishedOn }}</span> -->
     </mat-card-content>
     <mat-card-actions>
-      <span class="ws-mat-primary-text uppercase font-weight-500">{{ data.contentType }}</span>
+      <span
+        class="ws-mat-primary-text uppercase font-weight-500"
+        *ngIf="data.contentType !== 'Collection'"
+        >{{ data.contentType }}</span
+      >
+      <span
+        class="ws-mat-primary-text uppercase font-weight-500"
+        *ngIf="data.contentType === 'Collection'"
+        >Module</span
+      >
       <p class="mat-h5 margin-remove font-weight-bold">
         {{ data.locale | uppercase }}
       </p>

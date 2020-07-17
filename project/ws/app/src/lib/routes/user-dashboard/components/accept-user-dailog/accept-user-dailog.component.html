@@ -4,14 +4,15 @@
   </button>
 </div>
 <h2 class="ws-mat-primary-text">Please select the roles</h2>
-<li *ngFor="let item of ordersData">
+<li *ngFor="let item of ordersData" class="text-sm font-normal" >
   <mat-checkbox
     [checked]="getSelection(item)"
     (change)="changeHandler(item, $event)"
     [disabled]="isDisabled(item)"
     class="mat-primary"
   >
-    <label class="text-sm font-normal">{{ item.name }}</label>
+   {{ item.name }}
+    <!-- <label class="text-sm font-normal">{{ item.name }}</label> -->
   </mat-checkbox>
 </li>
 <div align="end">
