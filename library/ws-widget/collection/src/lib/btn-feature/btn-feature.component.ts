@@ -7,6 +7,7 @@ import { take } from 'rxjs/operators'
 import { MobileAppsService } from '../../../../../../src/app/services/mobile-apps.service'
 import { CustomTourService } from '../_common/tour-guide/tour-guide.service'
 import { BtnFeatureService } from './btn-feature.service'
+import { UtilityService } from '@ws-widget/utils/src/public-api'
 
 export const typeMap = {
   cardFull: 'card-full',
@@ -52,6 +53,7 @@ export class BtnFeatureComponent extends WidgetBaseComponent
     private mobileSvc: MobileAppsService,
     private configSvc: ConfigurationsService,
     private tour: CustomTourService,
+    private utilitySvc: UtilityService
   ) {
     super()
   }
@@ -112,6 +114,14 @@ export class BtnFeatureComponent extends WidgetBaseComponent
     }
   }
 
+  isMobile(name: string): boolean {
+    if (this.utilitySvc.isMobile && name === 'Create') {
+      return true
+    }
+      return false
+
+  }
+
   get featureStatusColor() {
     if (this.widgetData.actionBtn) {
       switch (this.widgetData.actionBtn.status) {
@@ -167,17 +177,17 @@ export class BtnFeatureComponent extends WidgetBaseComponent
         const requiredRolePreset = this.widgetData.actionBtn.allowedRoles.some(item =>
           (this.configSvc.userRoles || new Set()).has(item),
         )
-       if (!requiredRolePreset) {
-        this.allowedWidgetData = this.widgetData
-        return true
-      }
+        if (!requiredRolePreset) {
+          this.allowedWidgetData = this.widgetData
+          return true
+        }
       }
     }
     return false
   }
   removeWidgetData() {
-      if (this.allowedWidgetData) {
-          this.widgetData = {} as NsPage.INavLink
-      }
+    if (this.allowedWidgetData) {
+      this.widgetData = {} as NsPage.INavLink
+    }
   }
 }

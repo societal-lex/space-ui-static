@@ -12,6 +12,7 @@ import { AuthInitService } from '@ws/author/src/lib/services/init.service'
 import { LoaderService } from '@ws/author/src/lib/services/loader.service'
 import { Subscription } from 'rxjs'
 import { CreateService } from './create.service'
+import { UtilityService } from '@ws-widget/utils/src/public-api'
 
 @Component({
   selector: 'ws-auth-generic',
@@ -35,6 +36,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     private accessControlSvc: AccessControlService,
     private authInitService: AuthInitService,
     private dialog: MatDialog,
+    private utilitySvc: UtilityService
   ) {}
 
   ngOnInit() {
@@ -54,6 +56,9 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.loaderService.changeLoad.next(false)
+  }
+  get isMobile(): boolean {
+    return this.utilitySvc.isMobile
   }
 
   contentClicked(content: ICreateEntity) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { map } from 'rxjs/operators'
-import { ValueService } from '@ws-widget/utils/src/public-api'
+import { ValueService, UtilityService } from '@ws-widget/utils/src/public-api'
 import { AccessControlService } from '@ws/author/src/lib/modules/shared/services/access-control.service'
 import { REVIEW_ROLE, PUBLISH_ROLE, CREATE_ROLE } from '@ws/author/src/lib/constants/content-role'
 
@@ -23,7 +23,7 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
   private defaultSideNavBarOpenedSubscription: any
   mode$ = this.isLtMedium$.pipe(map(isMedium => (isMedium ? 'over' : 'side')))
   public screenSizeIsLtMedium = false
-  constructor(private valueSvc: ValueService, private accessService: AccessControlService) {}
+  constructor(private valueSvc: ValueService, private accessService: AccessControlService, private utilitySvc: UtilityService) {}
 
   ngOnInit() {
     this.allowAuthor = this.canShow('author')
@@ -39,6 +39,10 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
     })
     this.isNewDesign = this.accessService.authoringConfig.newDesign
   }
+  isMobile(): boolean {
+    return this.utilitySvc.isMobile
+  }
+
   ngOnDestroy() {
     if (this.defaultSideNavBarOpenedSubscription) {
       this.defaultSideNavBarOpenedSubscription.unsubscribe()
