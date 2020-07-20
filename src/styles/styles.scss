@@ -92,8 +92,10 @@ p {
 .mat-button-wrapper {
   font-size: 16px;
   font-weight: bolder;
+
   @include breakpoint-xs {
     font-size: 9px;
+    color: white !important;
   }
 }
 ::-moz-selection {
@@ -211,6 +213,7 @@ p {
   transition: transform linear 0.25s;
   z-index: 1;
 
+
   &.scrolled-down {
     position: sticky;
     top: 0;
@@ -267,6 +270,8 @@ mat-toolbar {
   &.mat-toolbar-row,
   &.mat-toolbar-single-row {
     height: 56px;
+    color:white !important
+
   }
 }
 
@@ -570,4 +575,11 @@ h3.shepherd-title {
   @include breakpoint-xs {
     width: 100% !important;
   }
+}
+
+[color|='primary'] {
+  color: white !important;
+}
+ .mat-button-toggle-checked {
+  color: white !important;
 }

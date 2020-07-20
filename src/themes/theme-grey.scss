@@ -1,5 +1,76 @@
 @import '~@angular/material/theming';
 @import './theme-mixins';
+
+
+
+
+$mat-grey: (
+  50: #9E9E9E,
+  100: #A6A6A6,
+  200: #AEAEAE,
+  300: #B6B6B6,
+  400: #BEBEBE,
+  500: #C6C6C6,
+  600: #CECECE,
+  700: #D6D6D6,
+  800: #DEDEDE,
+  900: #E6E6E6,
+  A100: #909090,
+  A200: #EEEEEE,
+  A400: #828282,
+  A700: #747474,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  ),
+);
+
+$mat-orange: (
+  50: #fff3e0,
+  100: #ffe0b2,
+  200: #ffcc80,
+  300: #ffb74d,
+  400: #ffa726,
+  500: #fc4c02,
+  600: #fb8c00,
+  700: #f57c00,
+  800: #ef6c00,
+  900: #fc4c02,
+  A100: #ffd180,
+  A200: #ffab40,
+  A400: #ff9100,
+  A700: #ff6d00,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: black,
+  ),
+);
+
+
 // Plus imports for other components in your app.
 @include mat-core();
 // Include the common styles for Angular Material. We include this here so that you only
@@ -9,6 +80,7 @@ $theme-primary: mat-palette($mat-grey);
 $theme-accent: mat-palette($mat-blue-grey);
 $theme-warn: mat-palette($mat-red);
 
+// $background-color: #f5f5f5;
 .theme-grey {
   &.day-mode {
     $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);

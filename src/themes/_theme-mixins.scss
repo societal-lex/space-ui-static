@@ -228,7 +228,8 @@
 
   .mat-button-toggle-checked {
     background-color: mat-color($primary);
-    color: mat-color($primary, default-contrast) !important;
+    // color: mat-color($primary, default-contrast) !important;
+    color: white !important;
   }
 
   .ws-primary-tinted-50 {
