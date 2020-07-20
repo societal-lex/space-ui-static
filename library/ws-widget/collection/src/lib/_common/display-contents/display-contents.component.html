@@ -26,7 +26,15 @@
     <span class="px-1">|</span>
 
     <span class="mat-caption ws-mat-primary-text">
-      {{ content?.resourceType ? content?.resourceType : content?.contentType }}
+      {{
+        content?.resourceType
+          ? content?.resourceType === 'Collection'
+            ? 'Module'
+            : content?.resourceType
+          : content?.contentType === 'Collection'
+          ? 'Module'
+          : content?.contentType
+      }}
     </span>
   </div>
   <div class="ws-mat-warn-text mat-caption">

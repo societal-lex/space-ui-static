@@ -29,7 +29,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 export class EditorService {
 
   detail = {
-    endpoint : `/apis/protected/v8/user/details?ts=${Date.now()}`,
+    endpoint: `/apis/protected/v8/user/details?ts=${Date.now()}`,
   }
 
   accessPath: string[] = []
@@ -152,7 +152,7 @@ export class EditorService {
   filterPublishers = () => (source: Observable<any>) => {
     return new Observable(observer => {
       return source.pipe(
-        switchMap((originalData: any) =>  {
+        switchMap((originalData: any) => {
           const roleRequests = this.generateDetailsRequests(originalData)
           return forkJoin(roleRequests).pipe(
             map((rolesResponse: object[]) => {
@@ -160,18 +160,18 @@ export class EditorService {
                 return roleObj.hasOwnProperty('roles') && Array.isArray(roleObj.roles) && roleObj.roles.includes('publisher')
               })
             })
-            )
+          )
         })
       ).subscribe({
-          next(data) {
-            observer.next([...data])
-          },
-          error(e) {
-            observer.error(e)
-          },
-          complete() {
-            observer.complete()
-          },
+        next(data) {
+          observer.next([...data])
+        },
+        error(e) {
+          observer.error(e)
+        },
+        complete() {
+          observer.complete()
+        },
       })
     })
   }
@@ -179,17 +179,18 @@ export class EditorService {
   parseDetailsOfPublishers(combinedDetails: any[]) {
     // console.log('total users are ', combinedDetails)
     const allUsers = combinedDetails[0] // contains other meta of user
-        const publisherRoleUsers = combinedDetails[1]  // contains roles of user
-        return publisherRoleUsers.map((publisher: any) => {
-          const foundUser = allUsers.find((user: any) => user.wid === publisher.wid)
-          if (foundUser) {
-            return {
-            displayName: `${foundUser.first_name || ''} ${foundUser.last_name || ''}`,
-            id: foundUser.wid,
-            mail: foundUser.email,
-            }
-          } return null
-        })
+    const publisherRoleUsers = combinedDetails[1]  // contains roles of user
+    return publisherRoleUsers.map((publisher: any) => {
+      const foundUser = allUsers.find((user: any) => user.wid === publisher.wid)
+      if (foundUser) {
+        return {
+          displayName: `${foundUser.first_name || ''} ${foundUser.last_name || ''}`,
+          id: foundUser.wid,
+          mail: foundUser.email,
+          department: foundUser.department_name,
+        }
+      } return null
+    })
   }
 
   fetchPublishersList(data: string): Observable<any> {
@@ -197,7 +198,7 @@ export class EditorService {
     const filteredPublishersDetails$ = allMatchingUsers$.pipe(
       this.filterPublishers(),
       catchError(_ => of([]))
-      )
+    )
     const finalPublishers$ = forkJoin([allMatchingUsers$, filteredPublishersDetails$]).pipe(
       map((combinedDetails: any[]) => {
         return this.parseDetailsOfPublishers(combinedDetails)
