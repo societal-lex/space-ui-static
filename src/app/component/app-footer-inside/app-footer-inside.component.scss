@@ -5,6 +5,7 @@
   justify-content: space-between;
   text-align: justify;
 
+
   @include breakpoint-xs {
     flex-direction: column;
     min-height: 80px;

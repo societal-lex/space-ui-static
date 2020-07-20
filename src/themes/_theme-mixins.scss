@@ -231,11 +231,7 @@
     // color: mat-color($primary, default-contrast) !important;
     color: white !important;
   }
-  .mat-button-wrapper {
-    // background-color: mat-color($primary);
-    color: white !important;
 
-  }
 
   .ws-primary-tinted-50 {
     @include color-background-opacity($colorPrimary, 0.5);
