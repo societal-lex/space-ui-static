@@ -25,7 +25,8 @@
 <ws-app-footer *ngIf="(authSvc.isLoggedIn$ | async) === false" class="app-footer"
   [ngClass]="{ 'padding-bottom: 56px': !isSetupPage }"></ws-app-footer>
 <ws-app-footer-inside class="app-footer" *ngIf="(authSvc.isLoggedIn$ | async) === true"
-  [ngClass]="{ 'padding-bottom: 56px': !isSetupPage }"></ws-app-footer-inside>
+  [ngClass]="{ 'padding-bottom: 56px': !isSetupPage }">
+</ws-app-footer-inside>
 <ws-app-nav-bar class="bottom-nav-bar" [hidden]="!showNavbar"
   *ngIf="isNavBarRequired && (isXSmall$ | async) === true && (authSvc.isLoggedIn$ | async) === true" [mode]="'bottom'">
 </ws-app-nav-bar>
