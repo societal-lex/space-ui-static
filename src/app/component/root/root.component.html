@@ -18,7 +18,7 @@
 ></ws-app-nav-bar>
 <!-- </ws-widget-sticky-header> -->
 <div
-  class="height-adjust"
+  class="height-adjust mat-drawer-container"
   [ngClass]="{
     'height-on-bottom custom-scroll':
       (isXSmall$ | async) === true && (authSvc.isLoggedIn$ | async) === true && showNavbar,

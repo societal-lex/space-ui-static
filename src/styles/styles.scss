@@ -66,33 +66,38 @@ mat-toolbar span {
 .mat-toolbar-style span {
   color: black;
 }
-// mat-toolbar mat-form-field {
-//   color: white !important;
-// }
-// mat-form-field {
-//   color: black !important;
-// }
+
 [color|='primary'] {
   background: #865ba0 !important;
   color: white !important;
 }
-// .theme-muave.day-mode .mat-toolbar.mat-primary {
-//   background: #865ba0 !important;
-//   color: white !important;
-// }
+
 .mat-form-field-type-mat-input {
   background: transparent !important;
 }
 [disabled|='true'] {
-  // background: rgba(0, 0, 0, 0.12) !important;
-  // color: rgba(0, 0, 0, 0.87) !important;
+  background: rgba(0, 0, 0, 0.12) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  // background: transparent !important;
+  // color: rgba(255, 255, 255, 0.3) !important;
+}
+.theme-muave.night-mode .mobileview span {
+  color: white !important;
+}
+.theme-muave.night-mode .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #ffe22a !important;
+}
+.theme-muave.night-mode .mat-pseudo-checkbox-checked {
+  background: #ffe22a !important;
+}
+.theme-muave.day-mode .mat-primary .mat-pseudo-checkbox-checked {
+  background: #ffe22a !important;
+}
+.theme-muave.night-mode [disabled|='true'] {
   background: transparent !important;
   color: rgba(255, 255, 255, 0.3) !important;
 }
-// #mat-slide-toggle-1 {
-//   background: transparent !important;
-//   color: rgba(0, 0, 0, 0.87) !important;
-// }
+
 .example-radio-group {
   background: none !important;
   // color: black !important;
@@ -104,10 +109,6 @@ mat-toolbar span {
   color: rgba(255, 255, 255, 0.3) !important;
 }
 
-// #mat-slide-toggle-2 {
-//   background: transparent !important;
-//   color: rgba(0, 0, 0, 0.87) !important;
-// }
 .theme-muave.day-mode .mat-flat-button.mat-primary[disabled],
 .theme-muave.day-mode .mat-flat-button[disabled][disabled] {
   background-color: rgba(0, 0, 0, 0.12) !important;

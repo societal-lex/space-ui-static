@@ -21,6 +21,12 @@
     color: white !important;
   }
 }
+::ng-deep {
+  .theme-muave.night-mode .mat-button-toggle-checked {
+    background-color: #865ba0;
+    color: white !important;
+  }
+}
 ::ng-deep .mat-button-toggle-label-content {
   line-height: 36px !important;
 }

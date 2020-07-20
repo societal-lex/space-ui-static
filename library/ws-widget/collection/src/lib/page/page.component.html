@@ -156,9 +156,7 @@
     color="primary"
     [ngStyle]="navBackground?.styles"
   >
-    <ws-widget-btn-page-back
-      [widgetData]="{ url: pageData?.navigationBar?.pageBackLink }"
-    ></ws-widget-btn-page-back>
+    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
     <ng-container *ngIf="!navbarIcon">
       <span class="ml-4" id="display-text">{{ pageData?.navigationBar?.pageTitle }}</span>
       <div class="" id="display-image">
