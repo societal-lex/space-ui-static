@@ -23,6 +23,7 @@
         [formControl]="currentPage"
         matInput
         style="color: white;"
+        (keyleft)="onKeyleft($event)"
       />
       <span class="text-white" matSuffix>of {{ totalPages }}</span>
     </mat-form-field>

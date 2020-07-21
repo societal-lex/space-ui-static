@@ -5,13 +5,8 @@
   </span>
   <span class="spacer"></span>
   <ng-container *ngIf="(isXSmall$ | async) === false">
-    <a
-      [routerLink]="'/app/profile/settings'"
-      [queryParams]="{ tab: 'notifications' }"
-      mat-icon-button
-      style="color: white; padding-right: 6rem;"
-    >
-      <mat-icon>settings</mat-icon>&nbsp;Settings
+    <a [routerLink]="'/app/profile/settings'" [queryParams]="{ tab: 'notifications' }" mat-button>
+      <mat-icon>settings</mat-icon>&nbsp;<span>Settings</span>
     </a>
   </ng-container>
 

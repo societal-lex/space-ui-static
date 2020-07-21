@@ -53,6 +53,11 @@ export class PlayerPdfComponent extends WidgetBaseComponent
   current: string[] = []
   identifier: string | null = null
   enableTelemetry = false
+  leftKey = 37
+  upKey = 38
+  rightKey = 39
+  downKey = 40
+
   private pdfInstance: PDFJS.PDFDocumentProxy | null = null
   private activityStartedAt: Date | null = null
   private renderSubject = new Subject()
@@ -63,6 +68,7 @@ export class PlayerPdfComponent extends WidgetBaseComponent
   private runnerSubs: Subscription | null = null
   private routerSubs: Subscription | null = null
   public isInFullScreen = false
+  keystate: any
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -74,7 +80,6 @@ export class PlayerPdfComponent extends WidgetBaseComponent
   ) {
     super()
   }
-
   changeScale(val: 'zoomin' | 'zoomout') {
     const currentZoom = this.zoom.value
     const step = 0.1
@@ -150,6 +155,18 @@ export class PlayerPdfComponent extends WidgetBaseComponent
       })
       this.eventDispatcher(WsEvents.EnumTelemetrySubType.Init)
     }
+
+    document.addEventListener('keydown', event => {
+      event.preventDefault()
+      const key = event.key // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
+      if (key === 'ArrowRight') {
+        this.loadPageNum(this.currentPage.value + 1)
+      }
+      if (key === 'ArrowLeft') {
+
+        this.loadPageNum(this.currentPage.value - 1)
+      }
+    })
   }
   ngOnChanges() {
     // if (this.widgetData !== this.oldData) {

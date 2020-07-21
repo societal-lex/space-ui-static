@@ -512,32 +512,52 @@
                     formControlName="sourceName"
                     i18n-placeholder
                     placeholder="--Select--"
+                    multiple
                   >
                     <mat-option *ngFor="let sourceName of ordinals.sourceName" [value]="sourceName">
                       {{ sourceName }}</mat-option
                     >
                   </mat-select>
-                  <mat-error *ngIf="showError('sourceName')" i18n>Created By is mandatory </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSourceName', 'show')"
-                [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('otherSourceName', 'required') }">
-                  Other
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('otherSourceName') }">
-                  <input matInput #otherSourceName formControlName="otherSourceName" i18n-placeholder
-                    placeholder="Enter Organisation Name"
-                    [required]="checkCondition('otherSourceName', 'required') ? true : null" />
-                  <mat-error *ngIf="showError('otherSourceName')" i18n="Name Error|Explains profile link is required">
-                    required if Created By is <b>Other</b>
+                  <mat-error *ngIf="showError('sourceName')" i18n
+                    >Created By is mandatory
                   </mat-error>
                 </mat-form-field>
               </div>
+            </div>
+            <div
+              class="margin-top-xs margin-left-xl"
+              *ngIf="checkCondition('otherSourceName', 'show')"
+              [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }"
+            >
+              <p
+                class="font-weight-bold margin-remove-bottom"
+                i18n="Title label|Label which explains the user to enter title"
+                [ngClass]="{ required: checkCondition('otherSourceName', 'required') }"
+              >
+                Other
+              </p>
+              <mat-form-field
+                appearance="outline"
+                class="margin-top-xs"
+                style="width: 60%;"
+                [ngClass]="{ 'mat-form-field-invalid': showError('otherSourceName') }"
+              >
+                <input
+                  matInput
+                  #otherSourceName
+                  formControlName="otherSourceName"
+                  i18n-placeholder
+                  placeholder="Enter Organisation Name"
+                  [required]="checkCondition('otherSourceName', 'required') ? true : null"
+                />
+                <mat-error
+                  *ngIf="showError('otherSourceName')"
+                  i18n="Name Error|Explains profile link is required"
+                >
+                  required if Created By is <b>Other</b>
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
           <div class="grid">
             <div
@@ -594,51 +614,84 @@
                 </mat-form-field>
               </div>
             </div>
-          <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('assetType', 'show')"
-              [ngClass]="{ disable: checkCondition('assetType', 'disabled') }">
+            <div
+              class="margin-top-xs margin-left-xl"
+              *ngIf="checkCondition('assetType', 'show')"
+              [ngClass]="{ disable: checkCondition('assetType', 'disabled') }"
+            >
               <label>
                 <div class="margin-top-s flex flex-middle">
-                <b *ngIf="!isSiemens" [ngClass]="{ required: checkCondition('assetType', 'required') }" i18n>Type</b>
+                  <b
+                    *ngIf="!isSiemens"
+                    [ngClass]="{ required: checkCondition('assetType', 'required') }"
+                    i18n
+                    >Type</b
+                  >
                   <mat-icon
-                    class="ws-mat-primary-text margin-left-xs pointer" (click)="showAssetTypeDetails()">info
+                    class="ws-mat-primary-text margin-left-xs pointer"
+                    (click)="showAssetTypeDetails()"
+                    >info
                   </mat-icon>
                 </div>
               </label>
               <div class="margin-top-xs">
-                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('assetType') }">
-                  <mat-select formControlName="assetType" placeholder="--Select--"
-                    [required]="checkCondition('assetType', 'required')">
-                    <mat-option *ngIf="!checkCondition('assetType', 'required')" i18n [value]="null">None
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-s"
+                  style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('assetType') }"
+                >
+                  <mat-select
+                    formControlName="assetType"
+                    placeholder="--Select--"
+                    [required]="checkCondition('assetType', 'required')"
+                  >
+                    <mat-option *ngIf="!checkCondition('assetType', 'required')" i18n [value]="null"
+                      >None
                     </mat-option>
-                    <mat-option *ngFor="let assetTypeEntry of ordinals.assetType" [value]="assetTypeEntry">
-                      {{  assetTypeEntry }}</mat-option>
+                    <mat-option
+                      *ngFor="let assetTypeEntry of ordinals.assetType"
+                      [value]="assetTypeEntry"
+                    >
+                      {{ assetTypeEntry }}</mat-option
+                    >
                   </mat-select>
-                  <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory
-                  </mat-error>
+                  <mat-error *ngIf="showError('assetType')" i18n>Type is mandatory </mat-error>
                 </mat-form-field>
               </div>
             </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('theme', 'show')"
-            [ngClass]="{ disable: checkCondition('theme,', 'disabled') }">
-            <label [ngClass]="{ required: checkCondition('theme', 'required') }">
-              <b i18n>SDG (Sustainable Development Goals)</b>
-            </label>
-            <div class="margin-top-xs">
-              <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                [ngClass]="{ 'mat-form-field-invalid': showError('theme') }">
-                <mat-select formControlName="theme" placeholder="--Select--"
-                  [required]="checkCondition('theme', 'required')" multiple>
-                  <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'">None
-                  </mat-option>
-                  <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
-                    {{ resource }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="showError('theme')" i18n>SDG is mandatory
-                </mat-error>
-              </mat-form-field>
+            <div
+              class="margin-top-xs margin-left-xl"
+              *ngIf="checkCondition('theme', 'show')"
+              [ngClass]="{ disable: checkCondition('theme,', 'disabled') }"
+            >
+              <label [ngClass]="{ required: checkCondition('theme', 'required') }">
+                <b i18n>SDG (Sustainable Development Goals)</b>
+              </label>
+              <div class="margin-top-xs">
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-s"
+                  style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('theme') }"
+                >
+                  <mat-select
+                    formControlName="theme"
+                    placeholder="--Select--"
+                    [required]="checkCondition('theme', 'required')"
+                    multiple
+                  >
+                    <mat-option *ngIf="!checkCondition('theme', 'required')" i18n [value]="'None'"
+                      >None
+                    </mat-option>
+                    <mat-option *ngFor="let resource of ordinals.theme" [value]="resource">
+                      {{ resource }}</mat-option
+                    >
+                  </mat-select>
+                  <mat-error *ngIf="showError('theme')" i18n>SDG is mandatory </mat-error>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
           </div>
           <div class="grid">
             <div
@@ -724,7 +777,7 @@
               *ngIf="checkCondition('isSearchable', 'show')"
               [ngClass]="{ disable: checkCondition('isSearchable', 'disabled') }"
             >
-            <!--NEW TERM : WAS NOT PRESENT IN EARLIER VERSION-->
+              <!--NEW TERM : WAS NOT PRESENT IN EARLIER VERSION-->
               <label>
                 <div class="margin-top-xs flex flex-middle">
                   <b [ngClass]="{ required: checkCondition('isSearchable', 'required') }" i18n
@@ -1268,173 +1321,332 @@
           </ng-container>
           <div class="grid">
             <ng-container *ngIf="knowledgeAssetFormEnabled">
-              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('resourceType', 'show')"
-              [ngClass]="{ disable: checkCondition('resourceType', 'disabled') }">
-              <label [ngClass]="{ required: checkCondition('resourceType', 'required') }">
-                <b i18n>Format</b>
-                <!-- <b *ngIf="!isSiemens" i18n>Category Type</b> -->
-              </label>
-              <div class="margin-top-xs">
-                <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('resourceType') }">
-                  <mat-select formControlName="resourceType" placeholder="--Select--"
-                    [required]="checkCondition('resourceType', 'required')">
-                    <mat-option *ngIf="!checkCondition('resourceType', 'required')" i18n [value]="null">None
-                    </mat-option>
-                    <mat-option *ngFor="let resource of ordinals.categoryType" [value]="resource">
-                      {{ resource }}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="showError('resourceType')" i18n>Format is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            </ng-container>
-            <ng-container *ngIf="technologyAssetFormEnabled">
-              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('interface_api', 'show')"
-              [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('interface_api', 'show')"
-                [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('interface_api', 'required') }">
-                  Interface / API
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('interface_api') }">
-                  <input matInput #interface_api formControlName="interface_api" maxlength="500" i18n-placeholder
-                    placeholder="Enter interface / API link"
-                    [required]="checkCondition('interface_api', 'required') ? true : null" />
-                  <mat-hint align="end">{{ interface_api?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('interface_api')" i18n="Name Error|Explains interface / API is required">
-                    Interface / API is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('codebase', 'show')"
-              [ngClass]="{ disable: checkCondition('codebase', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('codebase', 'show')"
-                [ngClass]="{ disable: checkCondition('codebase', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('codebase', 'required') }">
-                  Codebase
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('codebase') }">
-                  <input matInput #codebase formControlName="codebase" maxlength="500" i18n-placeholder
-                    placeholder="Enter Codebase link"
-                    [required]="checkCondition('codebase', 'required') ? true : null" />
-                  <mat-hint align="end">{{ codebase?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('codebase')" i18n="Name Error|Explains codebase is required">
-                    Codebase is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('documentation', 'show')"
-              [ngClass]="{ disable: checkCondition('documentation', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('documentation', 'show')"
-                [ngClass]="{ disable: checkCondition('documentation', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('documentation', 'required') }">
-                  Documentation
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('documentation') }">
-                  <input matInput #documentation formControlName="documentation" maxlength="500" i18n-placeholder
-                    placeholder="Enter Documentation link"
-                    [required]="checkCondition('documentation', 'required') ? true : null" />
-                  <mat-hint align="end">{{ documentation?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('documentation')" i18n="Name Error|Explains documentation is required">
-                    Documentation is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('sandbox', 'show')"
-              [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('sandbox', 'show')"
-                [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('sandbox', 'required') }">
-                  Sandbox
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('sandbox') }">
-                  <input matInput #sandbox formControlName="sandbox" maxlength="500" i18n-placeholder
-                    placeholder="Enter Sandbox link"
-                    [required]="checkCondition('sandbox', 'required') ? true : null" />
-                  <mat-hint align="end">{{ sandbox?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('sandbox')" i18n="Name Error|Explains Sandbox is required">
-                    Sandbox is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            </ng-container>
-            <ng-container *ngIf="connectionAssetFormEnabled">
-              <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('email_id', 'show')"
-              [ngClass]="{ disable: checkCondition('email_id', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('email_id', 'show')"
-                [ngClass]="{ disable: checkCondition('email_id', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('email_id', 'required') }">
-                  Email ID
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('email_id') }">
-                  <input matInput #email_id formControlName="email_id" maxlength="500" i18n-placeholder
-                    placeholder="Enter interface / API"
-                    [required]="checkCondition('email_id', 'required') ? true : null" />
-                  <mat-hint align="end">{{ email_id?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('email_id')" i18n="Name Error|Explains email id is required">
-                    Email ID is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('profile_link', 'show')"
-              [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
-              <div class="margin-top-xs" *ngIf="checkCondition('profile_link', 'show')"
-                [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
-                <p class="font-weight-bold margin-remove-bottom"
-                  i18n="Title label|Label which explains the user to enter title"
-                  [ngClass]="{ required: checkCondition('profile_link', 'required') }">
-                  Profile Link
-                </p>
-                <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('profile_link') }">
-                  <input matInput #profile_link formControlName="profile_link" maxlength="500" i18n-placeholder
-                    placeholder="Enter Profile link"
-                    [required]="checkCondition('profile_link', 'required') ? true : null" />
-                  <mat-hint align="end">{{ profile_link?.value.length }} / 500</mat-hint>
-                  <mat-error *ngIf="showError('profile_link')" i18n="Name Error|Explains profile link is required">
-                    Profile Link is mandatory
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceAreaOfExpertise', 'show')"
-                  [ngClass]="{ disable: checkCondition('spaceAreaOfExpertise', 'disabled') }">
-                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
-                    i18n="Title label|Label which explains the user to enter title"
-                    [ngClass]="{ required: checkCondition('spaceAreaOfExpertise', 'required') }">
-                    Area Of Expertise
-                  </p>
-                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceAreaOfExpertise') }">
-                    <input matInput #spaceAreaOfExpertise formControlName="spaceAreaOfExpertise" i18n-placeholder
-                      placeholder="Enter Area of Expertise"
-                      [required]="checkCondition('spaceAreaOfExpertise', 'required') ? true : null" />
-                    <mat-error *ngIf="showError('spaceAreaOfExpertise')" i18n="Name Error|Explains attribution is required">
-                      Area Of Expertise is required
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('resourceType', 'show')"
+                [ngClass]="{ disable: checkCondition('resourceType', 'disabled') }"
+              >
+                <label [ngClass]="{ required: checkCondition('resourceType', 'required') }">
+                  <b i18n>Format</b>
+                  <!-- <b *ngIf="!isSiemens" i18n>Category Type</b> -->
+                </label>
+                <div class="margin-top-xs">
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-s"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('resourceType') }"
+                  >
+                    <mat-select
+                      formControlName="resourceType"
+                      placeholder="--Select--"
+                      [required]="checkCondition('resourceType', 'required')"
+                    >
+                      <mat-option
+                        *ngIf="!checkCondition('resourceType', 'required')"
+                        i18n
+                        [value]="null"
+                        >None
+                      </mat-option>
+                      <mat-option *ngFor="let resource of ordinals.categoryType" [value]="resource">
+                        {{ resource }}</mat-option
+                      >
+                    </mat-select>
+                    <mat-error *ngIf="showError('resourceType')" i18n
+                      >Format is mandatory
                     </mat-error>
                   </mat-form-field>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="technologyAssetFormEnabled">
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('interface_api', 'show')"
+                [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }"
+              >
+                <div
+                  class="margin-top-xs"
+                  *ngIf="checkCondition('interface_api', 'show')"
+                  [ngClass]="{ disable: checkCondition('interface_api', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('interface_api', 'required') }"
+                  >
+                    Interface / API
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('interface_api') }"
+                  >
+                    <input
+                      matInput
+                      #interface_api
+                      formControlName="interface_api"
+                      maxlength="500"
+                      i18n-placeholder
+                      placeholder="Enter interface / API link"
+                      [required]="checkCondition('interface_api', 'required') ? true : null"
+                    />
+                    <mat-hint align="end">{{ interface_api?.value.length }} / 500</mat-hint>
+                    <mat-error
+                      *ngIf="showError('interface_api')"
+                      i18n="Name Error|Explains interface / API is required"
+                    >
+                      Interface / API is mandatory
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('codebase', 'show')"
+                [ngClass]="{ disable: checkCondition('codebase', 'disabled') }"
+              >
+                <div
+                  class="margin-top-xs"
+                  *ngIf="checkCondition('codebase', 'show')"
+                  [ngClass]="{ disable: checkCondition('codebase', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('codebase', 'required') }"
+                  >
+                    Codebase
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('codebase') }"
+                  >
+                    <input
+                      matInput
+                      #codebase
+                      formControlName="codebase"
+                      maxlength="500"
+                      i18n-placeholder
+                      placeholder="Enter Codebase link"
+                      [required]="checkCondition('codebase', 'required') ? true : null"
+                    />
+                    <mat-hint align="end">{{ codebase?.value.length }} / 500</mat-hint>
+                    <mat-error
+                      *ngIf="showError('codebase')"
+                      i18n="Name Error|Explains codebase is required"
+                    >
+                      Codebase is mandatory
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('documentation', 'show')"
+                [ngClass]="{ disable: checkCondition('documentation', 'disabled') }"
+              >
+                <div
+                  class="margin-top-xs"
+                  *ngIf="checkCondition('documentation', 'show')"
+                  [ngClass]="{ disable: checkCondition('documentation', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('documentation', 'required') }"
+                  >
+                    Documentation
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('documentation') }"
+                  >
+                    <input
+                      matInput
+                      #documentation
+                      formControlName="documentation"
+                      maxlength="500"
+                      i18n-placeholder
+                      placeholder="Enter Documentation link"
+                      [required]="checkCondition('documentation', 'required') ? true : null"
+                    />
+                    <mat-hint align="end">{{ documentation?.value.length }} / 500</mat-hint>
+                    <mat-error
+                      *ngIf="showError('documentation')"
+                      i18n="Name Error|Explains documentation is required"
+                    >
+                      Documentation is mandatory
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('sandbox', 'show')"
+                [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }"
+              >
+                <div
+                  class="margin-top-xs"
+                  *ngIf="checkCondition('sandbox', 'show')"
+                  [ngClass]="{ disable: checkCondition('sandbox', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('sandbox', 'required') }"
+                  >
+                    Sandbox
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('sandbox') }"
+                  >
+                    <input
+                      matInput
+                      #sandbox
+                      formControlName="sandbox"
+                      maxlength="500"
+                      i18n-placeholder
+                      placeholder="Enter Sandbox link"
+                      [required]="checkCondition('sandbox', 'required') ? true : null"
+                    />
+                    <mat-hint align="end">{{ sandbox?.value.length }} / 500</mat-hint>
+                    <mat-error
+                      *ngIf="showError('sandbox')"
+                      i18n="Name Error|Explains Sandbox is required"
+                    >
+                      Sandbox is mandatory
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="connectionAssetFormEnabled">
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('email_id', 'show')"
+                [ngClass]="{ disable: checkCondition('email_id', 'disabled') }"
+              >
+                <div
+                  class="margin-top-xs"
+                  *ngIf="checkCondition('email_id', 'show')"
+                  [ngClass]="{ disable: checkCondition('email_id', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('email_id', 'required') }"
+                  >
+                    Email ID
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('email_id') }"
+                  >
+                    <input
+                      matInput
+                      #email_id
+                      formControlName="email_id"
+                      maxlength="500"
+                      i18n-placeholder
+                      placeholder="Enter interface / API"
+                      [required]="checkCondition('email_id', 'required') ? true : null"
+                    />
+                    <mat-hint align="end">{{ email_id?.value.length }} / 500</mat-hint>
+                    <mat-error
+                      *ngIf="showError('email_id')"
+                      i18n="Name Error|Explains email id is required"
+                    >
+                      Email ID is mandatory
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('profile_link', 'show')"
+                [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }"
+              >
+                <div
+                  class="margin-top-xs"
+                  *ngIf="checkCondition('profile_link', 'show')"
+                  [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('profile_link', 'required') }"
+                  >
+                    Profile Link
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('profile_link') }"
+                  >
+                    <input
+                      matInput
+                      #profile_link
+                      formControlName="profile_link"
+                      maxlength="500"
+                      i18n-placeholder
+                      placeholder="Enter Profile link"
+                      [required]="checkCondition('profile_link', 'required') ? true : null"
+                    />
+                    <mat-hint align="end">{{ profile_link?.value.length }} / 500</mat-hint>
+                    <mat-error
+                      *ngIf="showError('profile_link')"
+                      i18n="Name Error|Explains profile link is required"
+                    >
+                      Profile Link is mandatory
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div
+                class="margin-top-xs margin-left-xl"
+                *ngIf="checkCondition('spaceAreaOfExpertise', 'show')"
+                [ngClass]="{ disable: checkCondition('spaceAreaOfExpertise', 'disabled') }"
+              >
+                <p
+                  class="font-weight-bold margin-remove-bottom margin-top-s"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('spaceAreaOfExpertise', 'required') }"
+                >
+                  Area Of Expertise
+                </p>
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs"
+                  style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('spaceAreaOfExpertise') }"
+                >
+                  <input
+                    matInput
+                    #spaceAreaOfExpertise
+                    formControlName="spaceAreaOfExpertise"
+                    i18n-placeholder
+                    placeholder="Enter Area of Expertise"
+                    [required]="checkCondition('spaceAreaOfExpertise', 'required') ? true : null"
+                  />
+                  <mat-error
+                    *ngIf="showError('spaceAreaOfExpertise')"
+                    i18n="Name Error|Explains attribution is required"
+                  >
+                    Area Of Expertise is required
+                  </mat-error>
+                </mat-form-field>
               </div>
             </ng-container>
             <div
@@ -1561,10 +1773,16 @@
               <mat-radio-button value="asset_upload">Upload Asset</mat-radio-button>
             </mat-radio-group>
             <ng-container *ngIf="contentForm?.controls?.spaceAssetType.value === 'asset_link'">
-              <ws-author-editor-custom-url-upload [showIPRDeclaration]="false" [clearArtifactForm]="clearArtifactForm" (data)="updateArtifactData($event, 'link')"></ws-author-editor-custom-url-upload>
+              <ws-author-editor-custom-url-upload
+                [showIPRDeclaration]="false"
+                [clearArtifactForm]="clearArtifactForm"
+                (data)="updateArtifactData($event, 'link')"
+              ></ws-author-editor-custom-url-upload>
             </ng-container>
             <ng-container *ngIf="contentForm?.controls?.spaceAssetType.value === 'asset_upload'">
-              <ws-author-editor-custom-file-upload (data)="updateArtifactData($event, 'asset_upload')">
+              <ws-author-editor-custom-file-upload
+                (data)="updateArtifactData($event, 'asset_upload')"
+              >
               </ws-author-editor-custom-file-upload>
             </ng-container>
           </ng-container>
@@ -1625,7 +1843,7 @@
               </div>
             </div>
           -->
-          <!--
+            <!--
             <div
               class="margin-top-xs margin-right-xl"
               *ngIf="checkCondition('accessPaths', 'show')"
@@ -1690,8 +1908,7 @@
                 </mat-form-field>
               </div>
             </div>
-          -->
-          </div>
+          --></div>
           <div class="grid">
             <div
               class="margin-top-xs margin-left-xl"
@@ -1804,80 +2021,118 @@
             <div class="grid">
               <div class="margin-top-xs margin-left-xl">
                 <div
-                class="margin-top-xs margin-left-xl"
-                *ngIf="checkCondition('references', 'show')"
-                [ngClass]="{ disable: checkCondition('references', 'disabled') }"
-              >
-                <label>
-                  <div class="margin-top-xs flex flex-middle">
-                    <b i18n>External References</b>
-                    <mat-icon
-                      class="ws-mat-primary-text margin-left-xs pointer"
-                      (click)="showInfo('references')"
-                      >info
-                    </mat-icon>
+                  class="margin-top-xs margin-left-xl"
+                  *ngIf="checkCondition('references', 'show')"
+                  [ngClass]="{ disable: checkCondition('references', 'disabled') }"
+                >
+                  <label>
+                    <div class="margin-top-xs flex flex-middle">
+                      <b i18n>External References</b>
+                      <mat-icon
+                        class="ws-mat-primary-text margin-left-xs pointer"
+                        (click)="showInfo('references')"
+                        >info
+                      </mat-icon>
+                    </div>
+                    <span i18n *ngIf="infoType === 'references'"
+                      >Add Urls of external links as reference
+                    </span>
+                  </label>
+                  <div class="margin-top-xs flex margin-right-xl">
+                    <mat-form-field
+                      class="keywords-chip-list margin-top-xs flex-grow80"
+                      appearance="outline"
+                      [ngClass]="{ 'mat-form-field-invalid': showError('references') }"
+                    >
+                      <mat-chip-list #references aria-label="References selection">
+                        <mat-chip
+                          *ngFor="let key of contentForm.controls.references.value; let i = index"
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (removed)="remove(i, 'references')"
+                        >
+                          {{ key.url }}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input
+                          i18n-placeholder
+                          placeholder="Enter Link"
+                          #keywordsView
+                          [matChipInputFor]="references"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="true"
+                          (matChipInputTokenEnd)="addReferences($event)"
+                        />
+                      </mat-chip-list>
+                    </mat-form-field>
                   </div>
-                  <span i18n *ngIf="infoType === 'references'"
-                    >Add Urls of external links as reference
-                  </span>
-                </label>
-                <div class="margin-top-xs flex margin-right-xl">
-                  <mat-form-field
-                    class="keywords-chip-list margin-top-xs flex-grow80"
-                    appearance="outline"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('references') }"
+                </div>
+                <div class="margin-top-xs margin-left-xl">
+                  <div
+                    *ngIf="checkCondition('spaceLicense', 'show')"
+                    [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }"
                   >
-                    <mat-chip-list #references aria-label="References selection">
-                      <mat-chip
-                        *ngFor="let key of contentForm.controls.references.value; let i = index"
-                        [selectable]="selectable"
-                        [removable]="removable"
-                        (removed)="remove(i, 'references')"
+                    <label>
+                      <div class="margin-top-s flex flex-middle">
+                        <b
+                          *ngIf="!isSiemens"
+                          i18n
+                          [ngClass]="{ required: checkCondition('spaceLicense', 'required') }"
+                          >License</b
+                        >
+                        <mat-icon
+                          *ngIf="licenseMetaList?.length && currentLicenseData?.length"
+                          class="ws-mat-primary-text margin-left-xs pointer"
+                          (click)="showLicenseDetails()"
+                          >info
+                        </mat-icon>
+                      </div>
+                    </label>
+                    <div class="margin-top-xs">
+                      <mat-form-field
+                        appearance="outline"
+                        class="margin-top-s"
+                        style="width: 60%;"
+                        [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }"
                       >
-                        {{ key.url }}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                      </mat-chip>
-                      <input
-                        i18n-placeholder
-                        placeholder="Enter Link"
-                        #keywordsView
-                        [matChipInputFor]="references"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="true"
-                        (matChipInputTokenEnd)="addReferences($event)"
-                      />
-                    </mat-chip-list>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="margin-top-xs margin-left-xl">
-                <div *ngIf="checkCondition('spaceLicense', 'show')"
-                [ngClass]="{ disable: checkCondition('spaceLicense', 'disabled') }">
-                <label>
-                  <div class="margin-top-s flex flex-middle">
-                    <b *ngIf="!isSiemens" i18n [ngClass]="{ required: checkCondition('spaceLicense', 'required') }">License</b>
-                    <mat-icon  *ngIf="licenseMetaList?.length && currentLicenseData?.length" class="ws-mat-primary-text margin-left-xs pointer" (click)="showLicenseDetails()">info
-                    </mat-icon>
+                        <mat-select
+                          formControlName="spaceLicense"
+                          placeholder="--Select--"
+                          [required]="checkCondition('spaceLicense', 'required')"
+                        >
+                          <mat-option
+                            *ngIf="contentForm?.controls?.contentType.value !== 'Resource'"
+                            [value]="'CC-BY-ND 4.0'"
+                            >CC-BY-ND 4.0</mat-option
+                          >
+                          <mat-option
+                            *ngFor="let licenseEntry of currentLicenseList"
+                            [value]="licenseEntry"
+                          >
+                            {{ licenseEntry }}</mat-option
+                          >
+                        </mat-select>
+                        <mat-error *ngIf="showError('spaceLicense')" i18n
+                          >License is mandatory
+                        </mat-error>
+                        <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n
+                          >First select a value for 'Type' field
+                        </mat-error>
+                      </mat-form-field>
+                      <p
+                        class="custom-error"
+                        *ngIf="
+                          contentForm?.controls?.contentType.value === 'Resource' &&
+                          !contentForm?.controls?.assetType.value &&
+                          contentForm?.controls?.spaceLicense.value
+                        "
+                        i18n
+                      >
+                        Select Type First
+                      </p>
+                    </div>
                   </div>
-                </label>
-                <div class="margin-top-xs">
-                  <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicense') }">
-                    <mat-select formControlName="spaceLicense" placeholder="--Select--"
-                      [required]="checkCondition('spaceLicense', 'required')">
-                      <mat-option *ngIf="contentForm?.controls?.contentType.value !== 'Resource'" [value]="'CC-BY-ND 4.0'">CC-BY-ND 4.0</mat-option>
-                      <mat-option *ngFor="let licenseEntry of currentLicenseList" [value]="licenseEntry">
-                        {{  licenseEntry }}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="showError('spaceLicense')" i18n>License is mandatory
-                    </mat-error>
-                    <mat-error *ngIf="!contentForm?.controls?.assetType.value" i18n>First select a value for 'Type' field
-                    </mat-error>
-                  </mat-form-field>
-                  <p class="custom-error" *ngIf="contentForm?.controls?.contentType.value === 'Resource' && !contentForm?.controls?.assetType.value && contentForm?.controls?.spaceLicense.value" i18n>Select Type First</p>
-                </div>
-              </div>
-              <!-- <div *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
+                  <!-- <div *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
                   [ngClass]="{ disable: checkCondition('spaceLicenseAttribution', 'disabled') }">
                   <p class="font-weight-bold margin-remove-bottom margin-top-s"
                     i18n="Title label|Label which explains the user to enter title"
@@ -1894,7 +2149,7 @@
                     </mat-error>
                   </mat-form-field>
               </div> -->
-              </div>
+                </div>
               </div>
               <div class="margin-top-xs margin-left-xl">
                 <div
@@ -1970,23 +2225,40 @@
                     </mat-autocomplete>
                   </div>
                 </div>
-                <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSpaceLicense', 'show')"
-                  [ngClass]="{ disable: checkCondition('otherSpaceLicense', 'disabled') }">
-                  <p class="font-weight-bold margin-remove-bottom margin-top-s"
+                <div
+                  class="margin-top-xs margin-left-xl"
+                  *ngIf="checkCondition('otherSpaceLicense', 'show')"
+                  [ngClass]="{ disable: checkCondition('otherSpaceLicense', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom margin-top-s"
                     i18n="Title label|Label which explains the user to enter title"
-                    [ngClass]="{ required: checkCondition('otherSpaceLicense', 'required') }">
+                    [ngClass]="{ required: checkCondition('otherSpaceLicense', 'required') }"
+                  >
                     Other
                   </p>
-                  <mat-form-field appearance="outline" class="margin-top-xs" style="width:60%;"
-                    [ngClass]="{ 'mat-form-field-invalid': showError('otherSpaceLicense') }">
-                    <input matInput #otherSpaceLicense formControlName="otherSpaceLicense" i18n-placeholder
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('otherSpaceLicense') }"
+                  >
+                    <input
+                      matInput
+                      #otherSpaceLicense
+                      formControlName="otherSpaceLicense"
+                      i18n-placeholder
                       placeholder="Enter License Name"
-                      [required]="checkCondition('otherSpaceLicense', 'required') ? true : null" />
-                    <mat-error *ngIf="showError('otherSpaceLicense')" i18n="Name Error|Explains profile link is required">
+                      [required]="checkCondition('otherSpaceLicense', 'required') ? true : null"
+                    />
+                    <mat-error
+                      *ngIf="showError('otherSpaceLicense')"
+                      i18n="Name Error|Explains profile link is required"
+                    >
                       required if License is <b>Other</b>
                     </mat-error>
                   </mat-form-field>
-              </div>
+                </div>
                 <div
                   class="margin-top-xl margin-left-xl"
                   *ngIf="checkCondition('postContents', 'show')"
@@ -2081,81 +2353,81 @@
             </div>
             <div class="grid">
               <div class="margin-top-xs margin-left-xl">
+                <div
+                  class="margin-top-xs margin-left-xl"
+                  *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
+                  [ngClass]="{ disable: checkCondition('spaceLicenseAttribution', 'disabled') }"
+                >
+                  <p
+                    class="font-weight-bold margin-remove-bottom margin-top-s"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{
+                      required: checkCondition('spaceLicenseAttribution', 'required')
+                    }"
+                  >
+                    Attribution
+                  </p>
+                  <mat-form-field
+                    appearance="outline"
+                    class="margin-top-xs"
+                    style="width: 60%;"
+                    [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseAttribution') }"
+                  >
+                    <input
+                      matInput
+                      #spaceLicenseAttribution
+                      formControlName="spaceLicenseAttribution"
+                      i18n-placeholder
+                      placeholder="Enter Attribution"
+                      [required]="
+                        checkCondition('spaceLicenseAttribution', 'required') ? true : null
+                      "
+                    />
+                    <mat-error
+                      *ngIf="showError('spaceLicenseAttribution')"
+                      i18n="Name Error|Explains attribution is required"
+                    >
+                      Attribution is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
               <div
-              class="margin-top-xs margin-left-xl"
-              *ngIf="checkCondition('spaceLicenseAttribution', 'show')"
-              [ngClass]="{ disable: checkCondition('spaceLicenseAttribution', 'disabled') }"
+                class="margin-top-xs margin-left-40"
+                *ngIf="checkCondition('spaceLicenseCopyright', 'show')"
+                [ngClass]="{ disable: checkCondition('spaceLicenseCopyright', 'disabled') }"
               >
-              <p
-              class="font-weight-bold margin-remove-bottom margin-top-s"
-              i18n="Title label|Label which explains the user to enter title"
-              [ngClass]="{
-              required: checkCondition('spaceLicenseAttribution', 'required')
-              }"
-              >
-              Attribution
-              </p>
-              <mat-form-field
-              appearance="outline"
-              class="margin-top-xs"
-              style="width: 60%;"
-              [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseAttribution') }"
-              >
-              <input
-              matInput
-              #spaceLicenseAttribution
-              formControlName="spaceLicenseAttribution"
-              i18n-placeholder
-              placeholder="Enter Attribution"
-              [required]="
-              checkCondition('spaceLicenseAttribution', 'required') ? true : null
-              "
-              />
-              <mat-error
-              *ngIf="showError('spaceLicenseAttribution')"
-              i18n="Name Error|Explains attribution is required"
-              >
-              Attribution is required
-              </mat-error>
-              </mat-form-field>
+                <p
+                  class="font-weight-bold margin-remove-bottom margin-top-s"
+                  i18n="Title label|Label which explains the user to enter title"
+                  [ngClass]="{ required: checkCondition('spaceLicenseCopyright', 'required') }"
+                >
+                  Copyright
+                </p>
+                <mat-form-field
+                  appearance="outline"
+                  class="margin-top-xs"
+                  style="width: 60%;"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseCopyright') }"
+                >
+                  <input
+                    matInput
+                    #spaceLicenseCopyright
+                    formControlName="spaceLicenseCopyright"
+                    i18n-placeholder
+                    placeholder="Enter Copyright"
+                    [required]="checkCondition('spaceLicenseCopyright', 'required') ? true : null"
+                  />
+                  <mat-error
+                    *ngIf="showError('spaceLicenseCopyright')"
+                    i18n="Name Error|Explains copyright is required"
+                  >
+                    Copyright is required
+                  </mat-error>
+                </mat-form-field>
               </div>
-              </div>
-              
-              <div
-              class="margin-top-xs margin-left-40"
-              *ngIf="checkCondition('spaceLicenseCopyright', 'show')"
-              [ngClass]="{ disable: checkCondition('spaceLicenseCopyright', 'disabled') }"
-              >
-              <p
-              class="font-weight-bold margin-remove-bottom margin-top-s"
-              i18n="Title label|Label which explains the user to enter title"
-              [ngClass]="{ required: checkCondition('spaceLicenseCopyright', 'required') }"
-              >
-              Copyright
-              </p>
-              <mat-form-field
-              appearance="outline"
-              class="margin-top-xs"
-              style="width: 60%;"
-              [ngClass]="{ 'mat-form-field-invalid': showError('spaceLicenseCopyright') }"
-              >
-              <input
-              matInput
-              #spaceLicenseCopyright
-              formControlName="spaceLicenseCopyright"
-              i18n-placeholder
-              placeholder="Enter Copyright"
-              [required]="checkCondition('spaceLicenseCopyright', 'required') ? true : null"
-              />
-              <mat-error
-              *ngIf="showError('spaceLicenseCopyright')"
-              i18n="Name Error|Explains copyright is required"
-              >
-              Copyright is required
-              </mat-error>
-              </mat-form-field>
-              </div>
-              </div>
+            </div>
             <div class="grid">
               <div
                 class="margin-top-xs margin-left-xl"
@@ -2312,7 +2584,14 @@
                   />
                   <div class="photo mat-elevation-z4">
                     <mat-icon class="photo-icon ws-mat-primary-text">photo_camera</mat-icon>
-                    <input type="file" #uploadImage id="upload" style="display: none;" placeholder="Upload file" accept="image/*" />
+                    <input
+                      type="file"
+                      #uploadImage
+                      id="upload"
+                      style="display: none;"
+                      placeholder="Upload file"
+                      accept="image/*"
+                    />
                   </div>
                   <mat-error class="error-font" *ngIf="showError('introductoryVideo')" i18n
                     >Video Thumbnail is mandatory
@@ -2343,7 +2622,13 @@
                   [ngClass]="{ 'mat-form-field-invalid': showError('introductoryVideo') }"
                 >
                   <span class="font-weight-500" *ngIf="!isFileUploaded">
-                    <input type="file" name="file" id="file" class="inputfile cursor-pointer" accept=".mp4" (change)="handleFileInput($event.target.files)"
+                    <input
+                      type="file"
+                      name="file"
+                      id="file"
+                      class="inputfile cursor-pointer"
+                      accept=".mp4"
+                      (change)="handleFileInput($event.target.files)"
                     />
                     <label
                       for="file"
@@ -2388,10 +2673,17 @@
               </div>
             </div>
             <div class="flex margin-xl padding-left-l">
-              <mat-checkbox [checked]="contentForm?.controls.spaceLicenseTnCAgreed.value" (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
+              <mat-checkbox
+                [checked]="contentForm?.controls.spaceLicenseTnCAgreed.value"
+                (change)="updateLicenseTnCAgreed($event)"
+              ></mat-checkbox>
               <p class="margin-left-xs margin-remove-bottom">
-                I agree that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform. <br>I have made sure that I do not violate others’ copyright, privacy or third party rights. Visit
-                <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()"
+                I agree that by submitting / publishing this Content, I confirm that this Content
+                complies with the terms and policies of the SPace Platform. <br />I have made sure
+                that I do not violate others’ copyright, privacy or third party rights. Visit
+                <span
+                  class="ws-mat-primary-text font-weight-bold cursor-pointer"
+                  (click)="openLicenseTnc()"
                   >Terms of Use policy</span
                 >
                 page for more details
@@ -2474,7 +2766,9 @@
             >
               <label>
                 <div class="margin-top-xs flex flex-middle">
-                  <b i18n [ngClass]="{ required: checkCondition('creatorContacts', 'required') }">Curators</b>
+                  <b i18n [ngClass]="{ required: checkCondition('creatorContacts', 'required') }"
+                    >Curators</b
+                  >
                   <mat-icon
                     class="ws-mat-primary-text margin-left-xs pointer"
                     (click)="showInfo('coAuthors')"
@@ -2504,7 +2798,7 @@
                     </mat-chip>
                     <input
                       i18n-placeholder
-                      placeholder="Search by name / mail"
+                      placeholder="search by name"
                       #creatorContactsView
                       [formControl]="creatorContactsCtrl"
                       [matChipInputFor]="creatorChipList"
@@ -2642,7 +2936,7 @@
                     </mat-chip>
                     <input
                       i18n-placeholder
-                      placeholder="Search by mail"
+                      placeholder="search by name"
                       #creatorDetailsView
                       [formControl]="creatorDetailsCtrl"
                       [matChipInputFor]="creatorDetailsChipList"
@@ -2710,7 +3004,7 @@
                     </mat-chip>
                     <input
                       i18n-placeholder
-                      placeholder="Search by mail"
+                      placeholder="search by name"
                       #creatorContactsView
                       [formControl]="creatorContactsCtrl"
                       [matChipInputFor]="creatorChipList"
@@ -2782,7 +3076,7 @@
                     </mat-chip>
                     <input
                       i18n-placeholder
-                      placeholder="Search by mail"
+                      placeholder="search by name"
                       #trackContactsView
                       [formControl]="trackContactsCtrl"
                       [matChipInputFor]="reviewerChipList"
@@ -2870,7 +3164,7 @@
                     </mat-chip>
                     <input
                       i18n-placeholder
-                      placeholder="Search by mail"
+                      placeholder="search by name"
                       #publisherDetailsView
                       [formControl]="publisherDetailsCtrl"
                       [matChipInputFor]="publisherChipList"
