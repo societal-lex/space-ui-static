@@ -22,9 +22,9 @@
 </div>
 <!-- <ws-app-footer class="app-footer" [ngClass]="{ 'padding-bottom: 56px': !isSetupPage}"
   *ngIf="(authSvc.isLoggedIn$ | async) === true && showNavbar"></ws-app-footer> -->
-<ws-app-footer *ngIf="(authSvc.isLoggedIn$ | async) === false" class="app-footer"
+<ws-app-footer *ngIf="(authSvc.isLoggedIn$ | async) === false" class="app-footer banner-clr"
   [ngClass]="{ 'padding-bottom: 56px': !isSetupPage }"></ws-app-footer>
-<ws-app-footer-inside class="app-footer" *ngIf="(authSvc.isLoggedIn$ | async) === true"
+<ws-app-footer-inside class="app-footer banner-clr" *ngIf="(authSvc.isLoggedIn$ | async) === true"
   [ngClass]="{ 'padding-bottom: 56px': !isSetupPage }">
 </ws-app-footer-inside>
 <ws-app-nav-bar class="bottom-nav-bar" [hidden]="!showNavbar"
