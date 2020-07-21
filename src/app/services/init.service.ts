@@ -20,6 +20,7 @@ import {
   UserPreferenceService,
 } from '@ws-widget/utils'
 import { environment } from '../../environments/environment'
+import { NsUserDashboard } from '../../../project/ws/app/src/lib/routes/user-dashboard/models/user-dashboard.model'
 interface IDetailsResponse {
   tncStatus: boolean
   roles: string[]
@@ -47,7 +48,6 @@ interface IFeaturePermissionConfigs {
 const endpoint = {
   profilePid: '/apis/protected/v8/user/details/wtoken',
   details: `/apis/protected/v8/user/details?ts=${Date.now()}`,
-  userdetails: `/usersubmission/user/v2/userdetails?wid=`,
 }
 
 @Injectable({
@@ -56,6 +56,8 @@ const endpoint = {
 export class InitService {
   private baseUrl = this.configSvc.baseUrl
   private token = ''
+  userData: NsUserDashboard.IUserData = {} as NsUserDashboard.IUserData
+  widUser = ''
   constructor(
     private logger: LoggerService,
     private configSvc: ConfigurationsService,
@@ -271,7 +273,10 @@ export class InitService {
               : false,
           // userName: `${userPidProfile.user.first_name} ${userPidProfile.user.last_name}`,
         }
-        this.updateDepartmentDetails(this.configSvc.userProfile.userId)
+        this.userData = await this.fetchUserDataFromConfigAndUpdateUser()
+        if (this.userData) {
+          this.assignDetailsForUser(this.userData)
+        }
       }
     }
     const details: IDetailsResponse = await this.http
@@ -285,7 +290,12 @@ export class InitService {
     this.configSvc.hasAcceptedTnc = details.tncStatus
     return details
   }
-
+  private async fetchUserDataFromConfigAndUpdateUser(): Promise<NsUserDashboard.IUserData> {
+    const userConfig = await this.http
+      .get<NsUserDashboard.IUserData>(`${this.baseUrl}/feature/user-dashboard.json`)
+      .toPromise()
+    return userConfig
+  }
   private async fetchInstanceConfig(): Promise<NsInstanceConfig.IConfig> {
     // TODO: use the rootOrg and org to fetch the instance
     const publicConfig = await this.http
@@ -413,8 +423,16 @@ export class InitService {
       }
     }
   }
-
-  async updateDepartmentDetails(wid: string) {
+  assignDetailsForUser(userData: NsUserDashboard.IUserData) {
+    const url = userData.API_END_POINT + userData.API_FOR_USER_DETAILS
+    this.updateDepartmentDetails(url)
+  }
+  async updateDepartmentDetails(url: string) {
+    if (this.configSvc.userProfile) {
+      if (this.configSvc.userProfile.userId) {
+        this.widUser = this.configSvc.userProfile.userId
+      }
+    }
     if (this.authSvc.token) {
       this.token = this.authSvc.token
     }
@@ -425,7 +443,7 @@ export class InitService {
     }
 
     try {
-      const updatedUserData = await this.http.patch<IResponse>(endpoint.userdetails + wid, '', httpOptions).toPromise()
+      const updatedUserData = await this.http.patch<IResponse>(url + this.widUser, '', httpOptions).toPromise()
       this.token = ''
       if (updatedUserData && updatedUserData.STATUS === 'OK') {
         return Promise.resolve({

@@ -32,7 +32,6 @@ export class BtnPageBackComponent extends WidgetBaseComponent
     //     routeUrl: '/page/home',
     //   }
     // }
-
     if (this.widgetData.url === 'doubleBack') {
       return {
         fragment: this.btnBackSvc.getLastUrl(2).fragment,

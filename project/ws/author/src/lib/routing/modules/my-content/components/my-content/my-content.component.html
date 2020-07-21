@@ -39,15 +39,27 @@
         [ngClass]="{
           hidden:
             (status === 'draft' && node.displayName === 'Published Date') ||
-            (status === 'inreview' && node.displayName === 'Published Date')
+            (status === 'inreview' && node.displayName === 'Published Date') ||
+            node.displayName === 'Costs' || node.displayName === 'Catalog'
         }"
         class="border-bottom"
         *matTreeNodeDef="let node; when: hasChild"
         matTreeNodePadding
       >
         <div class="grid">
-          <h5 class="font-size-m margin-top-xs margin-remove-bottom" matTreeNodeToggle>
+          <h5
+            class="font-size-m margin-top-xs margin-remove-bottom"
+            *ngIf="node.displayName !== 'Source'"
+            matTreeNodeToggle
+          >
             {{ node.displayName }}
+          </h5>
+          <h5
+            class="font-size-m margin-top-xs margin-remove-bottom"
+            *ngIf="node.displayName === 'Source'"
+            matTreeNodeToggle
+          >
+            Created By
           </h5>
           <button
             mat-icon-button

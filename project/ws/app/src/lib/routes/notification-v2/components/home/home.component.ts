@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         notifications => {
           this.actionNotifications = this.actionNotifications.concat(notifications.data)
+          this.notification(this.actionNotifications)
           this.actionNotificationsNextPage = notifications.page
           this.actionNotificationsFetchStatus = 'done'
         },
@@ -60,6 +61,14 @@ export class HomeComponent implements OnInit {
       )
   }
 
+  notification(message: any[]) {
+    message.forEach(element => {
+      if (element.message) {
+        element.message = element.message.replace('Collection', 'Module')
+      }
+    })
+
+  }
   fetchInfoNotifications() {
     this.infoNotificationsFetchStatus = 'fetching'
     this.notificationApi
@@ -71,6 +80,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         notifications => {
           this.infoNotifications = this.infoNotifications.concat(notifications.data)
+          this.notification(this.infoNotifications)
           this.infoNotificationsNextPage = notifications.page
           this.infoNotificationsFetchStatus = 'done'
         },
