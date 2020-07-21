@@ -136,3 +136,9 @@
     display: block;
   }
 }
+::ng-deep {
+  .theme-muave.night-mode .banner-clr-night-mode {
+    background: #c6bcb8;
+    color: black;
+  }
+}
