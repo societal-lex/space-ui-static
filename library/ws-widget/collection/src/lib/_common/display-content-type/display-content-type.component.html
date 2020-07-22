@@ -1,6 +1,8 @@
 <ng-container *ngIf="displayContentType">
-  <ng-container *ngIf="displayContentType !== 'Collection'">{{ displayContentType }}</ng-container>
-  <ng-container *ngIf="displayContentType === 'Collection'">Module</ng-container>
+  <ng-container *ngIf="displayContentType !== 'Collection' && displayContentType !== 'Course'">{{ displayContentType }}
+  </ng-container>
+  <ng-container *ngIf="displayContentType === 'Collection'">Asset</ng-container>
+  <ng-container *ngIf="displayContentType === 'Course'">Collection</ng-container>
 </ng-container>
 <!-- <span [ngSwitch]="displayContentType">
   <ng-container *ngSwitchCase="displayContentTypeEnum.ASSESSMENT" i18n>Assessment</ng-container>
