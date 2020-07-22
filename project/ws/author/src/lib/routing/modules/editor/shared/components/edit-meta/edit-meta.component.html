@@ -2784,7 +2784,7 @@
                   appearance="outline"
                   class="margin-top-xs"
                   class="margin-top-xs"
-                  [ngClass]="{ 'mat-form-field-invalid': showError('creatorContacts') }"
+                  [ngClass]="{ 'mat-form-field-invalid': showError('creatorContacts'), 'disable': checkCondition('creatorContacts', 'disabled') }"
                 >
                   <mat-chip-list #creatorChipList aria-label="Creator selection">
                     <mat-chip
