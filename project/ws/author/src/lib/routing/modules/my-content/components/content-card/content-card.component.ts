@@ -44,7 +44,7 @@ export class ContentCardComponent implements OnInit {
     switch (menuType) {
       case 'edit':
       case 'delete':
-        if (this.data.status === 'Draft' || this.data.status === 'Live') {
+        if (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished') {
           returnValue = this.accessService.hasAccess(this.data)
         }
         if (this.data.authoringDisabled && menuType === 'edit') {

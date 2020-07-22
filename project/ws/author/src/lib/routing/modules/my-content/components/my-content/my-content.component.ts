@@ -481,7 +481,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
   }
 
   allowAccordingToStatus(status: string, actionType?: string) {
-    if (actionType ) {
+    if (actionType) {
       if (actionType === 'unpublish') {
         return true
       }
@@ -591,6 +591,10 @@ export class MyContentComponent implements OnInit, OnDestroy {
     }
   }
 
+  resolveNavigationAction(event: { data: NSContent.IContentMeta; type: string }) {
+    this.router.navigateByUrl(`/author/editor/${event.data.identifier}`)
+  }
+
   action(event: { data: NSContent.IContentMeta; type: string }) {
     switch (event.type) {
       case 'create':
@@ -600,7 +604,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
       case 'review':
       case 'publish':
       case 'edit':
-        this.router.navigateByUrl(`/author/editor/${event.data.identifier}`)
+        this.resolveNavigationAction(event)
         break
       case 'remove':
         this.cardContent = (this.cardContent || []).filter(
