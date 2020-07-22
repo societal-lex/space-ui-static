@@ -53,6 +53,7 @@ export class ContentCardComponent implements OnInit {
         break
       case 'moveToDraft':
         if (
+          this.data.status === 'Live' ||
           this.data.status === 'InReview' ||
           this.data.status === 'Unpublished' ||
           this.data.status === 'Reviewed' ||

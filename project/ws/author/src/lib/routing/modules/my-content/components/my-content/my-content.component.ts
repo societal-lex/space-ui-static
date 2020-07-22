@@ -470,9 +470,9 @@ export class MyContentComponent implements OnInit, OnDestroy {
           this.restoreContent(content.data)
         } else if (
           content.type === 'unpublish' ||
-          (content.type === 'moveToDraft' && content.data.status === 'Unpublished')
+          (content.type === 'moveToDraft' || (content.type === 'moveToDraft' && content.data.status === 'Unpublished'))
         ) {
-          this.unPublishOrDraft(content.data)
+          this.unPublishOrDraft(content.data, content.type)
         } else {
           this.forwardBackward(content)
         }
@@ -480,9 +480,21 @@ export class MyContentComponent implements OnInit, OnDestroy {
     })
   }
 
-  unPublishOrDraft(request: NSContent.IContentMeta) {
+  allowAccordingToStatus(status: string, actionType?: string) {
+    if (actionType ) {
+      if (actionType === 'unpublish') {
+        return true
+      }
+      if (actionType === 'moveToDraft') {
+        return false
+      }
+    }
+    return status !== 'Unpublished'
+  }
+
+  unPublishOrDraft(request: NSContent.IContentMeta, actionType?: string) {
     this.loadService.changeLoad.next(true)
-    this.myContSvc.upPublishOrDraft(request.identifier, request.status !== 'Unpublished').subscribe(
+    this.myContSvc.upPublishOrDraft(request.identifier, this.allowAccordingToStatus(request.status, actionType)).subscribe(
       () => {
         this.loadService.changeLoad.next(false)
         this.snackBar.openFromComponent(NotificationComponent, {
