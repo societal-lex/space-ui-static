@@ -1,11 +1,7 @@
-<section
-  *ngFor="let content of contents | pipeLimitTo: (viewMore ? contents.length : MIN_CONTENT_DISPLAY)"
-  class="truncate mb-4"
->
-  <a
-    [ngClass]="{ 'greyed-out': isGreyedOut(content) }"
-    [routerLink]="!isGreyedOut(content) ? '/app/toc/' + content?.identifier + '/overview' : null"
-  >
+<section *ngFor="let content of contents | pipeLimitTo: (viewMore ? contents.length : MIN_CONTENT_DISPLAY)"
+  class="truncate mb-4">
+  <a [ngClass]="{ 'greyed-out': isGreyedOut(content) }"
+    [routerLink]="!isGreyedOut(content) ? '/app/toc/' + content?.identifier + '/overview' : null">
     <span class="mat-body-strong">{{ content?.name }}</span>
   </a>
 
@@ -27,33 +23,20 @@
 
     <span class="mat-caption ws-mat-primary-text">
       {{
-        content?.resourceType
-          ? content?.resourceType === 'Collection'
-            ? 'Module'
-            : content?.resourceType
-          : content?.contentType === 'Collection'
-          ? 'Module'
-          : content?.contentType
+        content?.resourceType ?
+        content?.resourceType === 'Collection' ? 'Asset': content?.resourceType === 'Course' ? 'Collection': content?.resourceType
+        : content?.contentType === 'Collection'? 'Asset' : content?.contentType === 'Course' ? 'Collection': content?.contentType
       }}
     </span>
   </div>
   <div class="ws-mat-warn-text mat-caption">
-    <ng-container i18n *ngIf="isDeletedOrExpired(content)"
-      >Content maybe expired or deleted.</ng-container
-    >
-    <ng-container i18n *ngIf="isInIntranetMobile(content)"
-      >Content can only be viewed in intranet.</ng-container
-    >
-    <ng-container i18n *ngIf="hasNoAccess(content)"
-      >You no longer have access to this content</ng-container
-    >
+    <ng-container i18n *ngIf="isDeletedOrExpired(content)">Content maybe expired or deleted.</ng-container>
+    <ng-container i18n *ngIf="isInIntranetMobile(content)">Content can only be viewed in intranet.</ng-container>
+    <ng-container i18n *ngIf="hasNoAccess(content)">You no longer have access to this content</ng-container>
   </div>
 
-  <mat-progress-bar
-    class="content-progress"
-    mode="determinate"
-    value="{{ (content?.progress || 0) * 100 | number: '1.0-0' }}"
-  >
+  <mat-progress-bar class="content-progress" mode="determinate"
+    value="{{ (content?.progress || 0) * 100 | number: '1.0-0' }}">
   </mat-progress-bar>
 </section>
 <section *ngIf="contents?.length > MIN_CONTENT_DISPLAY" class="flex flex-row-reverse">
