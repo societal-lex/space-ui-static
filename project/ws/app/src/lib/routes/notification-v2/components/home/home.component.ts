@@ -64,7 +64,8 @@ export class HomeComponent implements OnInit {
   notification(message: any[]) {
     message.forEach(element => {
       if (element.message) {
-        element.message = element.message.replace('Collection', 'Module')
+        element.message = element.message.replace('Collection', 'Asset')
+        element.message = element.message.replace('Course', 'Collection')
       }
     })
 

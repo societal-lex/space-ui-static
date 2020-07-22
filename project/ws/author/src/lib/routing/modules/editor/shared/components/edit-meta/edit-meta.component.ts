@@ -442,7 +442,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   processAssetTypeDetails() {
     if (Array.isArray(this.authInitService.assetTypeMeta)) {
       this.assestTypeMetaData = [...this.authInitService.assetTypeMeta] as never[]
-      }
+    }
   }
   optionSelected(keyword: string) {
     this.keywordsCtrl.setValue(' ')
@@ -1194,20 +1194,20 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         return false
       })*/)
-    .subscribe((_assetValueArray: [string, string]) => {
-      // this.contentForm.controls.assetType.setValue(_assetValueArray[1])
-      // console.log('meta before sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
-      this.setDefaultMessageonSpecificDetails(_assetValueArray[1])
-      this.setPolicyForm(_assetValueArray[1])
-      this.updateLicenseType(_assetValueArray[1])
-      this.updateLicenceInfoTable(_assetValueArray[1])
-      this.updateAssetTypeInfoTable()
-      // tslint:disable-next-line: max-line-length
-      if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource' && _assetValueArray[1]) {
-        this.enableSpecificAssetForm([_assetValueArray[0], _assetValueArray[1]])
-      }
-      // console.log('meta after sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
-    })
+      .subscribe((_assetValueArray: [string, string]) => {
+        // this.contentForm.controls.assetType.setValue(_assetValueArray[1])
+        // console.log('meta before sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
+        this.setDefaultMessageonSpecificDetails(_assetValueArray[1])
+        this.setPolicyForm(_assetValueArray[1])
+        this.updateLicenseType(_assetValueArray[1])
+        this.updateLicenceInfoTable(_assetValueArray[1])
+        this.updateAssetTypeInfoTable()
+        // tslint:disable-next-line: max-line-length
+        if (this.contentService.getUpdatedMeta(this.contentService.currentContent).contentType === 'Resource' && _assetValueArray[1]) {
+          this.enableSpecificAssetForm([_assetValueArray[0], _assetValueArray[1]])
+        }
+        // console.log('meta after sequence looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
+      })
 
     this.contentForm.valueChanges.pipe(debounceTime(500)).subscribe(() => {
       this.contentForm.markAsPristine()
@@ -1235,7 +1235,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       startWith(null),
       pairwise(),
       filter((_v: [string, string]) => _v[0] !== _v[1])
-      ).subscribe((_spaceAssetTypeArray: [string, string]) => {
+    ).subscribe((_spaceAssetTypeArray: [string, string]) => {
       if (_spaceAssetTypeArray[0]) {
         const newMeta = {
           spaceAssetType: _spaceAssetTypeArray[1],
@@ -1253,16 +1253,23 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.sourceName.valueChanges.subscribe(() => {
-      if (this.contentForm.controls.sourceName.value !== 'Other') {
-      this.contentForm.controls.otherSourceName.setValue('')
-      this.contentForm.controls.otherSourceName.markAsUntouched()
+      const selectedsourceNameValues = this.contentForm.controls.sourceName.value
+      if (selectedsourceNameValues.length > 1 && selectedsourceNameValues.includes('N/A')) {
+        this.contentForm.controls.sourceName.setValue(['N/A'])
+      }
+      if (!this.contentForm.controls.sourceName.value.includes('Other')) {
+        this.contentForm.controls.otherSourceName.setValue('')
+        this.contentForm.controls.otherSourceName.markAsUntouched()
+      }
+      if (selectedsourceNameValues.length > 1 && this.contentForm.controls.sourceName.value.includes('Other')) {
+        this.contentForm.controls.sourceName.setValue(['Other'])
       }
     })
 
     this.contentForm.controls.spaceLicense.valueChanges.subscribe(() => {
       if (this.contentForm.controls.otherSpaceLicense.value !== 'Other') {
-      this.contentForm.controls.otherSpaceLicense.setValue('')
-      this.contentForm.controls.otherSpaceLicense.markAsUntouched()
+        this.contentForm.controls.otherSpaceLicense.setValue('')
+        this.contentForm.controls.otherSpaceLicense.markAsUntouched()
       }
     })
     // to set the body same as description entered
@@ -1334,7 +1341,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     window.setTimeout(
       () => {
         this.assetRelatedTabsUpdated = false
-      // tslint:disable-next-line: align
+        // tslint:disable-next-line: align
       }, 0)
   }
 
@@ -1579,16 +1586,16 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
             }
             break
           case 'asset_upload': {
-              if (!updatedMeta.artifactUploadUrl || !updatedMeta.artifactUploadUrl.length) {
-                allOk = false
-                this.snackBar.openFromComponent(NotificationComponent, {
-                  data: {
-                    type: Notify.VALID_ASSET_UPLOAD_URL_FAILURE,
-                  },
-                  duration: NOTIFICATION_TIME * 1000,
-                })
-              }
+            if (!updatedMeta.artifactUploadUrl || !updatedMeta.artifactUploadUrl.length) {
+              allOk = false
+              this.snackBar.openFromComponent(NotificationComponent, {
+                data: {
+                  type: Notify.VALID_ASSET_UPLOAD_URL_FAILURE,
+                },
+                duration: NOTIFICATION_TIME * 1000,
+              })
             }
+          }
         }
         // update spaceAssetType for proper sync
         if (this.contentForm.controls.spaceAssetType.value) {
