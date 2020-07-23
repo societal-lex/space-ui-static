@@ -33,6 +33,7 @@ export class AuthTableTreeLabelComponent implements OnInit {
     const updatedMeta = this.storeService.getUpdatedMeta(this.identifier)
     this.name = updatedMeta.name
     this.icon = this.resolverService.getIcon(updatedMeta)
-    this.contentCategory = (updatedMeta.category === 'Collection') ? 'Module' : updatedMeta.category
+    this.contentCategory = (updatedMeta.category === 'Collection') ? 'Asset'
+      : (updatedMeta.category === 'Course') ? 'Collection' : updatedMeta.category
   }
 }
