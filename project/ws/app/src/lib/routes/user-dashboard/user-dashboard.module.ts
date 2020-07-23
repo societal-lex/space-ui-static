@@ -24,7 +24,7 @@ import { LoaderService } from '@ws/author/src/lib/services/loader.service'
 import { CreateUserDailogComponent } from './components/create-user-dailog/create-user-dailog.component'
 import { RegisterUserComponent } from './components/register-user/register-user.component'
 import { UploadFileComponent } from './components/upload-file/upload-file.component'
-import { DisplayErrorComponent } from './components/display-error/display-error.component';
+import { DisplayErrorComponent } from './components/display-error/display-error.component'
 import { BulkUserDragDropDirective } from './directives/bulk-user-drag-drop.directive'
 
 @NgModule({

@@ -7,8 +7,7 @@
 </section>
 
 <div class="flex-align margin-bottom-xl top-heading">
-  <div class="upload-box flex flex-middle flex-col justify-center p-20 cursor-pointer" (click)="fileInput.click()"
-  wsAppBulkUserDragDrop (fileDropped)="onDrop($event)" >
+  <div class="upload-box flex flex-middle flex-col justify-center p-20 cursor-pointer" (click)="fileInput.click()" >
     <button *ngIf="file" mat-icon-button class="close-button padding-remove ws-mat-primary-background-op30 text-white"
       (click)="clearUploadedFile(); $event.stopPropagation()">
       <mat-icon>close</mat-icon>
