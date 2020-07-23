@@ -1,5 +1,5 @@
 @import "src/themes/theme-muave.scss";
-$primary: $theme-primary;
+// $primary: $theme-primary;
 
 ::ng-deep table {
   .mat-header-cell {
@@ -7,9 +7,9 @@ $primary: $theme-primary;
     font-size: 16px !important;
     font-weight: 700 !important;
   }
-  thead {
-    background-color: mat-color($primary) !important;
-  }
+  // thead {
+  //   background-color: mat-color($primary) !important;
+  // }
 }
 
 table {
@@ -37,7 +37,7 @@ table {
 td{
   padding-top: 20px;
   padding-left:10px;
-  
+
 }
 /* td {
     text-align: center;
@@ -51,4 +51,79 @@ td{
     text-align: left
   } */
 
+::ng-deep{
+  // for dark mode
+.theme-teal.night-mode .header-clr {
+background: #005F87!important;
+// color: black;
+}
+.theme-muave.night-mode .header-clr{
+  background: #865BA0!important;
+  // color: black;
 
+}
+.theme-lite-blue.night-mode .header-clr{
+background: #03A9F4!important;
+// color: black;
+}
+
+.theme-blue.night-mode .header-clr{
+background: #0072CE!important;
+// color: black;
+}
+.theme-grey.night-mode .header-clr{
+background: #C6C6C6!important;
+// color: black;
+}
+.theme-deep-purple.night-mode .header-clr{
+background: #673AB7!important;
+// color: black;
+}
+.theme-orange.night-mode .header-clr{
+background: #FF9800!important;
+// color: black;
+}
+.theme-indigo.night-mode .header-clr{
+background: #3F51B5!important;
+// color: black;
+}
+// for day mode
+
+.theme-teal.day-mode .header-clr {
+background: #005F87!important;
+// color: black;
+}
+.theme-muave.day-mode .header-clr{
+  background: #865BA0!important;
+  // color: black;
+
+}
+.theme-lite-blue.day-mode .header-clr{
+background: #03A9F4!important;
+// color: black;
+}
+
+.theme-blue.day-mode .header-clr{
+background: #0072CE!important;
+// color: black;
+}
+.theme-grey.day-mode .header-clr{
+background: #C6C6C6!important;
+// color: black;
+}
+.theme-deep-purple.day-mode .header-clr{
+background: #673AB7!important;
+// color: black;
+}
+.theme-orange.day-mode .header-clr{
+background: #FF9800!important;
+// color: black;
+}
+.theme-indigo.day-mode .header-clr{
+background: #3F51B5!important;
+// color: black;
+}
+
+
+
+}
