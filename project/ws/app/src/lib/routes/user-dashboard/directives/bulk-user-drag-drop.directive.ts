@@ -1,15 +1,13 @@
 import {
-  Directive,
-  Output,
+  Directive, Output,
   EventEmitter,
   HostListener,
-  HostBinding,
-} from '@angular/core'
-
+  HostBinding } from '@angular/core'
 @Directive({
-  selector: '[wsAuthDragDrop]',
+  selector: '[wsAppBulkUserDragDrop]',
 })
-export class DragDropDirective {
+
+export class BulkUserDragDropDirective {
   @Output() fileDropped = new EventEmitter<any>()
   @HostBinding('style.opacity') public opacity = '1'
 

@@ -277,6 +277,7 @@ export class UserDashboardComponent implements OnInit {
     this.headersForRejectUser.org = this.getOrg
     this.headersForRejectUser.wid_OrgAdmin = this.widLoggedinUser
     const userDeletedResponse = await this.userDashboardSvc.deleteUser(paramsForDecline, this.headersForRejectUser)
+    this.paramsForDecline = {} as NsUserDashboard.IDeclineUser
     this.isLoad = false
     if (userDeletedResponse.ok) {
       // tslint:disable-next-line: no-non-null-assertion
