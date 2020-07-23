@@ -75,12 +75,19 @@
 //     background-color: mat-color($primary) !important;
 //   }
 // }
+ button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc !important;
+  color: white!important;
+}
 ::ng-deep{
 // for dark mode
 .theme-teal.night-mode .header-clr {
 background: #005F87!important;
 // color: black;
 }
+
 .theme-muave.night-mode .header-clr{
   background: #865BA0!important;
   // color: black;

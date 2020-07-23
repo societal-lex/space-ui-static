@@ -15,7 +15,7 @@ button:disabled,
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc;
-  color: #666666;
+  color: white !important;
 }
 // mat-icon {
 //   font-size: 40px;
@@ -28,7 +28,7 @@ button[disabled] {
 // button[disabled] {
 //   border: 1px solid #999999;
 //   background-color: #cccccc !important;
-//   color: #666666 !important;
+//   color: white !important;
 // }
 
 .theme-orange.day-mode .mat-flat-button, .theme-orange.day-mode .mat-raised-button, .theme-orange.day-mode .mat-fab, .theme-orange.day-mode .mat-mini-fab {
@@ -40,7 +40,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-orange.night-mode .mat-flat-button, .theme-orange.night-mode .mat-raised-button, .theme-orange.night-mode .mat-fab, .theme-orange.night-mode .mat-mini-fab {
@@ -51,7 +51,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 
@@ -63,7 +63,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-muave.night-mode .mat-flat-button, .theme-muave.night-mode .mat-raised-button, .theme-muave.night-mode .mat-fab, .theme-muave.night-mode .mat-mini-fab {
     background-color: #865BA0 !important;
@@ -73,7 +73,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-lite-blue.day-mode .mat-flat-button, .theme-lite-blue.day-mode .mat-raised-button, .theme-lite-blue.day-mode .mat-fab, .theme-lite-blue.day-mode .mat-mini-fab {
@@ -84,7 +84,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-lite-blue.night-mode .mat-flat-button, .theme-lite-blue.night-mode .mat-raised-button, .theme-lite-blue.night-mode .mat-fab, .theme-lite-blue.night-mode .mat-mini-fab {
     background-color: #03A9F4 !important;
@@ -94,7 +94,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-blue.day-mode .mat-flat-button, .theme-blue.day-mode .mat-raised-button, .theme-blue.day-mode .mat-fab, .theme-blue.day-mode .mat-mini-fab {
@@ -105,7 +105,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-blue.night-mode .mat-flat-button, .theme-blue.night-mode .mat-raised-button, .theme-blue.night-mode .mat-fab, .theme-blue.night-mode .mat-mini-fab {
     background-color: #0072CE !important;
@@ -115,7 +115,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-grey.day-mode .mat-flat-button, .theme-grey.day-mode .mat-raised-button, .theme-grey.day-mode .mat-fab, .theme-grey.day-mode .mat-mini-fab {
@@ -126,7 +126,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-grey.night-mode .mat-flat-button, .theme-grey.night-mode .mat-raised-button, .theme-grey.night-mode .mat-fab, .theme-grey.night-mode .mat-mini-fab {
     background-color: #C6C6C6 !important;
@@ -136,7 +136,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-deep-purple.day-mode .mat-flat-button, .theme-deep-purple.day-mode .mat-raised-button, .theme-deep-purple.day-mode .mat-fab, .theme-deep-purple.day-mode .mat-mini-fab {
@@ -147,7 +147,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-deep-purple.night-mode .mat-flat-button, .theme-deep-purple.night-mode .mat-raised-button, .theme-deep-purple.night-mode .mat-fab, .theme-deep-purple.night-mode .mat-mini-fab {
     background-color: #673AB7 !important;
@@ -157,7 +157,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-indigo.day-mode .mat-flat-button, .theme-indigo.day-mode .mat-raised-button, .theme-indigo.day-mode .mat-fab, .theme-indigo.day-mode .mat-mini-fab {
@@ -168,7 +168,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-indigo.night-mode .mat-flat-button, .theme-indigo.night-mode .mat-raised-button, .theme-indigo.night-mode .mat-fab, .theme-indigo.night-mode .mat-mini-fab {
     background-color: #3F51B5 !important;
@@ -178,7 +178,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 .theme-teal.day-mode .mat-flat-button, .theme-teal.day-mode .mat-raised-button, .theme-teal.day-mode .mat-fab, .theme-teal.day-mode .mat-mini-fab {
@@ -189,7 +189,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 .theme-teal.night-mode .mat-flat-button, .theme-teal.night-mode .mat-raised-button, .theme-teal.night-mode .mat-fab, .theme-teal.night-mode .mat-mini-fab {
     background-color: #005F87 !important;
@@ -199,7 +199,7 @@ button[disabled] {
 button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc !important;
-  color: #666666 !important;
+  color: white !important;
 }
 
 
