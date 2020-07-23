@@ -1,0 +1,16 @@
+.apply-flex{
+display:flex;
+flex-wrap: wrap;
+justify-content: space-around;
+  padding-top: 20px;
+}
+.wrapper{
+  width:100% !important;
+}
+.flex-align{
+  display: flex;
+  justify-content: space-between;
+}
+.font-size{
+  font-size:20px;
+}

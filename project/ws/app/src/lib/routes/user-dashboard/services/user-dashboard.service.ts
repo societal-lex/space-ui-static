@@ -45,6 +45,9 @@ export class UserDashboardService {
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
     this.userData = userDataFromConfig
   }
+  getUserDashboardConfig() {
+    return this.userData
+  }
   async getAllUsers(value: string, headers: NsUserDashboard.IHeaders): Promise<IResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -196,6 +199,49 @@ export class UserDashboardService {
       })
     }
   }
+
+  async createUserApi(responseBody: NsUserDashboard.IHeader): Promise<IResponse> {
+   // tslint:disable-next-line: prefer-template
+   const completeName = responseBody.firstName + ' ' + responseBody.lastName
+    // tslint:disable-next-line: prefer-const
+    const responseBodyAsJSON = {
+      name: completeName,
+      email: responseBody.email,
+      organisation: responseBody.organisation,
+    }
+    try {
+      // tslint:disable-next-line: max-line-length
+      const userCreatedResponse = await this.http.post<IResponse>(this.userData.API_END_POINT + this.userData.createUser.url, responseBodyAsJSON).toPromise()
+      if (userCreatedResponse && (userCreatedResponse.STATUS === 'CREATED')) {
+        return Promise.resolve({
+          ok: true,
+          DATA: userCreatedResponse.DATA,
+          MESSAGE: this.userData.createUser.successMessage,
+          STATUS_CODE: userCreatedResponse.STATUS_CODE,
+          STATUS: userCreatedResponse.STATUS,
+        })
+      }
+      return {
+        ok: false, error: null,
+        MESSAGE: this.userData.createUser.errorMessage,
+        DATA: userCreatedResponse.DATA,
+        STATUS_CODE: userCreatedResponse.STATUS_CODE,
+        STATUS: userCreatedResponse.STATUS,
+      }
+    } catch (ex) {
+      if (ex) {
+        return Promise.resolve({
+          ok: false, error: ex,
+          MESSAGE: this.userData.createUser.errorMessage,
+        })
+      }
+      return Promise.resolve({
+        ok: false, error: null,
+        MESSAGE: this.userData.createUser.errorMessage,
+      })
+    }
+  }
+
   // changeRoleForUser(responseBody: NsUserDashboard.IChangeRole, headers: NsUserDashboard.IHeaders): Observable<IResponse> {
   //   // tslint:disable-next-line: prefer-template
   //   const responseBodyAsJSON = {

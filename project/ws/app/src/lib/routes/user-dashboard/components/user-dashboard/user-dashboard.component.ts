@@ -10,6 +10,7 @@ import { AcceptUserDailogComponent } from '../accept-user-dailog/accept-user-dai
 import { DailogUserDashboardComponent } from '../dailog-user-dashboard/dailog-user-dashboard.component'
 import { SelectionModel } from '@angular/cdk/collections'
 import { catchError } from 'rxjs/operators'
+import { CreateUserDailogComponent } from '../create-user-dailog/create-user-dailog.component'
 
 @Component({
   selector: 'ws-app-user-dashboard',
@@ -158,7 +159,8 @@ export class UserDashboardComponent implements OnInit {
         // tslint:disable-next-line: no-console
         this.userListArray = userListResponse.DATA
         // the datasource contains email verified users.
-        this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.enableFilter(this.userListArray))
+        // this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.enableFilter(this.userListArray))
+        this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray)
         if (this.dataSource != null) {
           this.isLoad = false
         }
@@ -171,10 +173,10 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  enableFilter(userData: any) {
-    // tslint:disable-next-line: no-boolean-literal-compare
-    return userData.filter((items: { emailVerified: boolean }) => items.emailVerified === true)
-  }
+  // enableFilter(userData: any) {
+  //   // tslint:disable-next-line: no-boolean-literal-compare
+  //   return userData.filter((items: { emailVerified: boolean }) => items.emailVerified === true)
+  // }
 
   async changeRole(element: any) {
 
@@ -399,5 +401,17 @@ export class UserDashboardComponent implements OnInit {
   // }
   removeSelectedFromCheckbox() {
     this.selection.clear()
+  }
+
+  openDailogForCreateUser() {
+
+     this.dialog.open(CreateUserDailogComponent, {
+     width: '700px',
+
+    })
+
+    // dialogRef.afterClosed().subscribe(() => {
+    //   console.log('The dialog was closed')
+    // })
   }
 }

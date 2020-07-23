@@ -11,22 +11,30 @@
   <mat-spinner class="spinner" color="primary"></mat-spinner>
 </div>
 
-<div *ngIf="userListArray?.length > 0">
+<div *ngIf="userListArray?.length > 0" class="mat-drawer-container mat-drawer-container-has-open mat-drawer-transition">
   <div class="allignment">
     <div class="example-header">
       <mat-form-field>
         <button mat-button matPrefix mat-icon-button>
           <mat-icon>search</mat-icon>
         </button>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search by name or email" />
+        <input matInput class= "width-input" (keyup)="applyFilter($event.target.value)" placeholder="Search by name or email" />
       </mat-form-field>
     </div>
-    <div>
-      <button mat-flat-button [disabled]="!selection.selected?.length" color="primary" class="button-color"
-        (click)="bulkChangeRole()">
+    <div class = "flex-column2">
+            <div>
+              <button mat-flat-button color="primary" matTooltip="Create single or multiple users" (click)="openDailogForCreateUser()" class="mat-button mat-button-base mat-primary padding-button">
+                Create User
+              </button>
+            </div>
+    <div class="padding-left">
+      <button mat-flat-button [disabled]="!selection.selected?.length"  matTooltip="Change role for bulk userr" color="primary" (click)="bulkChangeRole()"
+        class="mat-button mat-button-base mat-primary">
         Bulk Change Role
       </button>
     </div>
+
+        </div>
   </div>
   <div class="example-container mat-elevation-z8">
 
@@ -102,4 +110,5 @@
     </table>
     <!-- <mat-paginator [pageSizeOptions]="[100,200,300,400,500,600,700,800,900,1000]" showFirstLastButtons></mat-paginator> -->
 
+  </div>
   </div>

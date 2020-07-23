@@ -1,0 +1,46 @@
+<section class="padding-top">
+
+  <div>
+    <h4 class="ws-mat-primary-text font-size" i18n>{{uploadFileData.templateHeading}}</h4>
+    <p [innerHTML]="uploadFileData.templateBody"></p>
+  </div>
+</section>
+
+<div class="flex-align margin-bottom-xl top-heading">
+  <div class="upload-box flex flex-middle flex-col justify-center p-20 cursor-pointer" (click)="fileInput.click()" >
+    <button *ngIf="file" mat-icon-button class="close-button padding-remove ws-mat-primary-background-op30 text-white"
+      (click)="clearUploadedFile(); $event.stopPropagation()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <span class="font-weight-500" [hidden]="file">
+      <input type="file" #fileInput class="inputfile" accept=".csv, .xlsx"
+        (change)="onDrop($event.target.files[0]); fileInput.value = null" />
+      <label for="file" class="mat-h2 ws-mat-primary-text flex flex-middle justify-center">
+        <mat-icon style="margin-right:4px">add</mat-icon>
+        <span i18n>Browse the file</span>
+      </label>
+    </span>
+    <div *ngIf="file" class="flex flex-middle justify-center">
+      <p class="margin-left-xs mat-h3 font-weight-500 margin-remove-bottom">
+        <ng-container *ngIf="file">
+          {{ file?.name }}
+        </ng-container>
+      </p>
+    </div>
+  </div>
+    <div *ngIf="isLoad">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+  <div class="information">
+    <button type="button"  mat-raised-button class="ws-mat-primary-background margin-top-xl width-button"
+      [ngClass]="{ disable: !file }" (click)="triggerUpload()">
+      <div class="flex flex-middle justify-center">
+        <mat-icon class="text-white">publish</mat-icon>
+        <p class="text-white margin-left-s margin-remove-bottom">
+          <span i18n>Upload</span>
+        </p>
+      </div>
+    </button>
+  </div>
+
+</div>

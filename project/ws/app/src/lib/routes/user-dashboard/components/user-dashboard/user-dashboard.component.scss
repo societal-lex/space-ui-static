@@ -46,8 +46,8 @@
   .example-header{
       display: inline-flex;
     flex-wrap: wrap;
-    // flex:1;
-    width: 40%;
+    flex:1;
+    // width: 40%;
 }
 .font-text{
   font-size: 1rem;
@@ -57,18 +57,20 @@
 }
 
 @media only screen and (max-width: 425px) {
-    .example-header{
-        display: inline-flex;
-      flex-wrap: wrap;
-      width: 65%;
-  }
+ .example-header{
+      display: inline-flex;
+    flex-wrap: wrap;
+    flex:1;
+    // width: 40%;
+}
   }
   @media only screen and (max-width: 375px) {
-    .example-header{
-        display: inline-flex;
-      flex-wrap: wrap;
-      width: 65%;
-  }
+  .example-header{
+      display: inline-flex;
+    flex-wrap: wrap;
+    flex:2;
+    // width: 40%;
+}
 }
 ::ng-deep table{
   thead{
@@ -186,3 +188,23 @@
     //     justify-content: space-between;
     // }
 
+.flex-column2{
+  flex:1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  // justify-content: space-between;
+}
+
+.width-input{
+  width:50px;
+}
+// .flex-column3{
+//   flex:1;
+// }
+.padding-button{
+  padding-left:10px;
+}
+.padding-left{
+  padding-left: 10px;
+}

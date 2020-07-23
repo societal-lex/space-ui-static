@@ -1,0 +1,34 @@
+  @import 'src/themes/theme-muave.scss';
+
+ $primary: $theme-primary;
+.border-color{
+    border-top-style: solid;
+    border-top-width: 10px;
+    border-top-color:  mat-color($theme-primary) !important;
+        border-bottom-style: solid;
+    border-bottom-width: 10px;
+   border-bottom-color:  mat-color($theme-primary) !important;
+}
+
+.apply-flex-form{
+  // display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding-top: 25px;
+  flex:1;
+  width:100%;
+  // align-items: center;
+}
+mat-form-field{
+  width : w-full;
+}
+.flex-middle{
+  display: flex;
+  justify-content: center;
+}
+.width-button{
+  width:200px;
+}
+.margin-top{
+  padding-top: 5px;
+}

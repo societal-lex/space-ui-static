@@ -8,18 +8,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material'
   styleUrls: ['./dailog-user-dashboard.component.scss'],
 })
 export class DailogUserDashboardComponent implements OnInit {
-  // userDashboardDataForDailog: NsUserDashboard.IDailogData | null = null
   constructor(
     public dialogRef: MatDialogRef<DailogUserDashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: NsUserDashboard.IDailogData) {
     }
 
   ngOnInit() {
-
-    // this.userDashboardDataFromConfig = this.activateRoute.data.subscribe(data => {
-    //   // todo
-    //   this.userDashboardDataForDailog = data.pageData.data
-    // })
   }
   onNoClick(): void {
     this.dialogRef.close()

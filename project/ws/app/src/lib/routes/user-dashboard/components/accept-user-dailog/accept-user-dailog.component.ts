@@ -33,16 +33,16 @@ export class AcceptUserDailogComponent implements OnInit {
     var jsonstr = '{"values":[]}'
     // tslint:disable-next-line: prefer-const
     let objForAllRoles = JSON.parse(jsonstr)
-      if (data.allRoles.length) {
-         data.allRoles.forEach((element:  string, index: any) => {
-           // tslint:disable-next-line: brace-style
-           // tslint:disable-next-line: align
-           if (element === 'learner') {
+    if (data.allRoles.length) {
+      data.allRoles.forEach((element: string, index: any) => {
+        // tslint:disable-next-line: brace-style
+        // tslint:disable-next-line: align
+        if (element === 'privileged') {
 
-             data.allRoles[index] = 'learner'
-           }
-         })
-      }
+          data.allRoles[index] = 'learner'
+        }
+      })
+    }
     // tslint:disable-next-line: no-increment-decrement
     for (let i = 0; i < this.data.allRoles.length; i++) {
       // tslint:disable-next-line: object-literal-key-quotes
@@ -75,42 +75,42 @@ export class AcceptUserDailogComponent implements OnInit {
     let obj2 = JSON.parse(jsonstr)
     this.selection = obj2.values
   }
-   ngOnInit() {
+  ngOnInit() {
 
   }
 
-getSelection(item: any) {
-  if (item.name === 'learner' || this.getSelectionsFromOtherItems(item)) {
-    return true
+  getSelection(item: any) {
+    if (item.name === 'learner' || this.getSelectionsFromOtherItems(item)) {
+      return true
+    }
+    return false
+    // return this.selection.findIndex((s: { id: any; }) => s.id === item.id) !== -1
   }
-  return false
-  // return this.selection.findIndex((s: { id: any; }) => s.id === item.id) !== -1
-}
   getSelectionsFromOtherItems(item: any) {
     return this.selection.findIndex((s: { id: any }) => s.id === item.id) !== -1
   }
-changeHandler(item: any, _event: KeyboardEvent) {
-  const id = item.id
+  changeHandler(item: any, _event: KeyboardEvent) {
+    const id = item.id
 
-  const index = this.selection.findIndex((u: { id: any; }) => u.id === id)
-  if (index === -1) {
-    this.selection = [...this.selection, item]
-  } else {
-    this.selection = this.selection.filter((user: { id: any; }) => user.id !== item.id)
+    const index = this.selection.findIndex((u: { id: any }) => u.id === id)
+    if (index === -1) {
+      this.selection = [...this.selection, item]
+    } else {
+      this.selection = this.selection.filter((user: { id: any }) => user.id !== item.id)
+    }
   }
-}
 
-save() {
- const name = this.selection.map((v: any, i: any) => v ? this.selection[i]['name'] : null)
-    .filter((v: null) => v !== null)
-  this.response = name
-  this.dialogRef.close({ event: '', data: this.response })
-}
+  save() {
+    const name = this.selection.map((v: any, i: any) => v ? this.selection[i]['name'] : null)
+      .filter((v: null) => v !== null)
+    this.response = name
+    this.dialogRef.close({ event: '', data: this.response })
+  }
 
   isDisabled(item: any) {
     if (item.name === 'learner') {
       return true
     }
-      return false
+    return false
   }
 }

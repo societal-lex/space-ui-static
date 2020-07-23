@@ -6,7 +6,7 @@ import { UserDashboardRoutingModule } from './user-dashboard-routing.module'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { BtnPageBackModule } from '@ws-widget/collection'
-import { MatCardModule , MatTableModule, MatInputModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material'
+import { MatCardModule, MatTableModule, MatInputModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material'
 import { MatIconModule } from '@angular/material/icon'
 import { MatMenuModule } from '@angular/material/menu'
 import { DailogUserDashboardComponent } from './components/dailog-user-dashboard/dailog-user-dashboard.component'
@@ -17,12 +17,18 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatButtonModule } from '@angular/material/button'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatRadioModule } from '@angular/material/radio'
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { LoaderService } from '@ws/author/src/lib/services/loader.service'
+import { CreateUserDailogComponent } from './components/create-user-dailog/create-user-dailog.component'
+import { RegisterUserComponent } from './components/register-user/register-user.component'
+import { UploadFileComponent } from './components/upload-file/upload-file.component'
+import { DisplayErrorComponent } from './components/display-error/display-error.component'
 
 @NgModule({
-  declarations: [UserDashboardComponent, DailogUserDashboardComponent, AcceptUserDailogComponent],
+  declarations: [UserDashboardComponent, DailogUserDashboardComponent, AcceptUserDailogComponent,
+   CreateUserDailogComponent, RegisterUserComponent, UploadFileComponent, DisplayErrorComponent],
   imports: [
     CommonModule,
     UserDashboardRoutingModule,
@@ -45,11 +51,14 @@ import { LoaderService } from '@ws/author/src/lib/services/loader.service'
     FormsModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatRadioModule,
   ],
-  entryComponents : [DailogUserDashboardComponent,
-    AcceptUserDailogComponent],
-    providers: [
-      LoaderService,
+  entryComponents: [DailogUserDashboardComponent,
+    AcceptUserDailogComponent, CreateUserDailogComponent,
+    DisplayErrorComponent,
+    ],
+  providers: [
+    LoaderService,
   ],
 })
 export class UserDashboardModule { }
