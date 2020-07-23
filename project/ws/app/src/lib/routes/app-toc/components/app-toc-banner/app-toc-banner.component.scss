@@ -136,3 +136,55 @@
     display: block;
   }
 }
+// Themes of banner for dark mode
+::ng-deep{
+.theme-muave.night-mode .banner-clr{
+  background: #c6bcb8 !important;
+  color: black;
+
+}
+.theme-lite-blue.night-mode .banner-clr{
+background: #b3e5fc !important;
+color: black;
+}
+
+.theme-blue.night-mode .banner-clr{
+background: #d2dde8 !important;
+color: black;
+}
+.theme-grey.night-mode .banner-clr{
+background: #a6a6a6 !important;
+color: black;
+}
+.theme-deep-purple.night-mode .banner-clr{
+background: #d1c4e9!important;
+color: black;
+}
+.theme-orange.night-mode .banner-clr{
+background: #ffe0b2 !important;
+color: black;
+}
+.theme-indigo.night-mode .banner-clr{
+background: #e8eaf6 !important;
+color: black;
+}
+.theme-teal.night-mode .banner-clr{
+background: #e0f2f1!important;
+color: black;
+}
+
+.theme-orange.night-mode .btn{
+    color: white !important;
+  }
+
+.btn{
+  color: white !important;
+}
+ .mat-flat-button.mat-primary {
+     color: white !important;
+}
+
+}
+
+
+

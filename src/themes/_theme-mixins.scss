@@ -186,6 +186,7 @@
     border: 1px solid $colorAccent;
   }
 
+
   .ws-mat-text-block-fade-gradient {
     position: relative;
 
@@ -228,8 +229,10 @@
 
   .mat-button-toggle-checked {
     background-color: mat-color($primary);
-    color: mat-color($primary, default-contrast) !important;
+    // color: mat-color($primary, default-contrast) !important;
+    color: white !important;
   }
+
 
   .ws-primary-tinted-50 {
     @include color-background-opacity($colorPrimary, 0.5);

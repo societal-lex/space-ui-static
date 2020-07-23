@@ -5,6 +5,7 @@
   justify-content: space-between;
   text-align: justify;
 
+
   @include breakpoint-xs {
     flex-direction: column;
     min-height: 80px;
@@ -19,10 +20,13 @@
   // background-color: #c6bcb8 !important;
   background-color: black;
   color: white;
+
+
 }
 
 #display-responsive {
-  background-color: #c6bcb8 !important;
+  background-color: #c6bcb8;
+
 }
 
 @media (max-width: 971px) and (min-width: 312px) {
@@ -34,12 +38,14 @@
     text-align: center;
     font-size: unset !important;
   }
+
 }
 
 @media (max-width: 750px) {
   #display-responsive {
     margin-bottom: 3rem;
   }
+
 }
 
 @media (min-width: 972px) {
@@ -47,4 +53,85 @@
     display: none;
     justify-content: center;
   }
+
+}
+::ng-deep{
+
+// for night mode
+.theme-orange.night-mode .banner-clr{
+background: #ffe0b2 !important;
+color: black;
+}
+.theme-muave.night-mode .banner-clr{
+  background: #c6bcb8 !important;
+  color: black;
+
+}
+.theme-lite-blue.night-mode .banner-clr{
+background: #b3e5fc !important;
+color: black;
+}
+
+.theme-blue.night-mode .banner-clr{
+background: #d2dde8 !important;
+color: black;
+}
+.theme-grey.night-mode .banner-clr{
+background: #a6a6a6 !important;
+color: black;
+}
+.theme-deep-purple.night-mode .banner-clr{
+background: #d1c4e9!important;
+color: black;
+}
+.theme-indigo.night-mode .banner-clr{
+background: #e8eaf6 !important;
+color: black;
+}
+.theme-teal.night-mode .banner-clr{
+background: #e0f2f1!important;
+color: black;
+}
+// for day mode
+
+.theme-orange.day-mode .banner-clr{
+background: #ffe0b2 !important;
+color: black;
+}
+.theme-muave.day-mode .banner-clr{
+  background: #c6bcb8 !important;
+  color: black;
+
+}
+.theme-lite-blue.day-mode .banner-clr{
+background: #b3e5fc !important;
+color: black;
+}
+
+.theme-blue.day-mode .banner-clr{
+background: #d2dde8 !important;
+color: black;
+}
+.theme-grey.day-mode .banner-clr{
+background: #a6a6a6 !important;
+color: black;
+}
+.theme-deep-purple.day-mode .banner-clr{
+background: #d1c4e9!important;
+color: black;
+}
+.theme-indigo.day-mode .banner-clr{
+background: #e8eaf6 !important;
+color: black;
+}
+.theme-teal.day-mode .banner-clr{
+background: #e0f2f1!important;
+color: black;
+}
+
+}
+
+
+a{
+  color: black !important;
 }

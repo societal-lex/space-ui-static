@@ -4,13 +4,12 @@
   </ws-tnc-renderer>
 </div>
 
-<div class="tnc-bottom-navbar" *ngIf="!isPublic && tncData">
-  <button *ngIf="!tncData?.isAccepted" [disabled]="isAcceptInProgress" (click)="acceptTnc(confirm)"
-    style="color: white; " mat-flat-button>
-    <ng-container *ngIf="!isAcceptInProgress" i18n>Accept & Proceed</ng-container>
-    <ng-container *ngIf="isAcceptInProgress" i18n>Please Wait...</ng-container>
+<div class="tnc-bottom-navbar " *ngIf="!isPublic && tncData">
+  <button *ngIf="!tncData?.isAccepted" [disabled]="isAcceptInProgress" (click)="acceptTnc(confirm)" mat-flat-button>
+    <ng-container *ngIf="!isAcceptInProgress" class="btn-clr" i18n>Accept & Proceed</ng-container>
+    <ng-container *ngIf="isAcceptInProgress" class="btn-clr" i18n>Please Wait...</ng-container>
   </button>
-  <a *ngIf="tncData?.isAccepted" type="button" mat-flat-button routerLink="/app/features" i18n>
+  <a *ngIf="tncData?.isAccepted" class="btn-clr" type="button" mat-flat-button routerLink="/app/features" i18n>
     Done
   </a>
 </div>
@@ -20,10 +19,10 @@
     Click Yes to take you to the link you tried to access
   </div>
   <div mat-dialog-actions class="flex-row-reverse">
-    <button mat-flat-button [mat-dialog-close]="true" i18n>
+    <button mat-flat-button [mat-dialog-close]="true" class="btn-clr" i18n>
       Yes
     </button>
-    <button mat-button class="margin-right-xs" [mat-dialog-close]="false" cdkFocusInitial i18n>
+    <button mat-button class="margin-right-xs btn-clr" [mat-dialog-close]="false" cdkFocusInitial i18n>
       No
     </button>
   </div>
