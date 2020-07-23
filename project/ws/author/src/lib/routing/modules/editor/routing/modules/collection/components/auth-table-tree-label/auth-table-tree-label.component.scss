@@ -20,3 +20,11 @@
 div {
   display: flex;
 }
+::ng-deep {
+  [disabled|='true'] {
+  background: transparent !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  // background: transparent !important;
+  // color: rgba(255, 255, 255, 0.3) !important;
+}
+}
