@@ -1253,17 +1253,17 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.sourceName.valueChanges.subscribe(() => {
-      const selectedsourceNameValues = this.contentForm.controls.sourceName.value
-      if (selectedsourceNameValues.length > 1 && selectedsourceNameValues.includes('N/A')) {
-        this.contentForm.controls.sourceName.setValue(['N/A'])
-      }
+      // const selectedsourceNameValues = this.contentForm.controls.sourceName.value
+      // if (selectedsourceNameValues.length > 1 && selectedsourceNameValues.includes('N/A')) {
+      //   this.contentForm.controls.sourceName.setValue(['N/A'])
+      // }
       if (!this.contentForm.controls.sourceName.value.includes('Other')) {
         this.contentForm.controls.otherSourceName.setValue('')
         this.contentForm.controls.otherSourceName.markAsUntouched()
       }
-      if (selectedsourceNameValues.length > 1 && this.contentForm.controls.sourceName.value.includes('Other')) {
-        this.contentForm.controls.sourceName.setValue(['Other'])
-      }
+      // if (selectedsourceNameValues.length > 1 && this.contentForm.controls.sourceName.value.includes('Other')) {
+      //   this.contentForm.controls.sourceName.setValue(['Other'])
+      // }
     })
 
     this.contentForm.controls.spaceLicense.valueChanges.subscribe(() => {
