@@ -7,36 +7,36 @@
       <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- License Sequence -->
-        <ng-container matColumnDef="Sno">
-          <th mat-header-cell *matHeaderCellDef class="snoCustom"> Sno. </th>
-          <td mat-cell *matCellDef="let element"> {{element?.index}} </td>
-        </ng-container>
+      <!-- License Sequence -->
+      <ng-container matColumnDef="Sno">
+        <th mat-header-cell *matHeaderCellDef class="snoCustom header-clr"> Sno. </th>
+        <td mat-cell *matCellDef="let element"> {{element?.index}} </td>
+      </ng-container>
 
-        <!-- License Name -->
-        <ng-container matColumnDef="License">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element?.name}} </td>
-        </ng-container>
+      <!-- License Name -->
+      <ng-container matColumnDef="License">
+        <th mat-header-cell *matHeaderCellDef class="header-clr"> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element?.name}} </td>
+      </ng-container>
 
-        <!-- License Details -->
-        <ng-container matColumnDef="Details">
-          <th mat-header-cell *matHeaderCellDef> Details </th>
-          <td mat-cell *matCellDef="let element" [innerHTML]="element?.details"></td>
-        </ng-container>
+      <!-- License Details -->
+      <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef class="header-clr"> Details </th>
+        <td mat-cell *matCellDef="let element" [innerHTML]="element?.details"></td>
+      </ng-container>
 
-        <ng-container matColumnDef="Link">
-          <th mat-header-cell *matHeaderCellDef> Link </th>
-          <td mat-cell *matCellDef="let element" [innerHTML]="element?.link"></td>
-        </ng-container>
+      <ng-container matColumnDef="Link">
+        <th mat-header-cell *matHeaderCellDef class="header-clr"> Link </th>
+        <td mat-cell *matCellDef="let element" [innerHTML]="element?.link"></td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="columnSequence"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnSequence;"></tr>
-      </table>
-    </div>
-    <div class="footer" mat-dialog-actions>
-      <button mat-dialog-close mat-raised-button type="button" class="text-white ws-mat-primary-background text-white">
-                <span class="text-white" i18n>Close</span>
-      </button>
-    </div>
+      <tr mat-header-row *matHeaderRowDef="columnSequence"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnSequence;"></tr>
+    </table>
   </div>
+  <div class="footer" mat-dialog-actions>
+    <button mat-dialog-close mat-raised-button type="button" class="text-white ws-mat-primary-background text-white">
+      <span class="text-white" i18n>Close</span>
+    </button>
+  </div>
+</div>

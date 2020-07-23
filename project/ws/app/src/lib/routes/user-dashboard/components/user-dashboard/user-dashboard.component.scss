@@ -1,7 +1,7 @@
 
   @import 'src/themes/theme-muave.scss';
 
- $primary: $theme-primary;
+//  $primary: $theme-primary;
 
 .padding-top{
     padding-top:30px;
@@ -72,10 +72,93 @@
     // width: 40%;
 }
 }
-::ng-deep table{
-  thead{
-    background-color: mat-color($primary) !important;
-  }
+// ::ng-deep table{
+//   thead{
+//     background-color: mat-color($primary) !important;
+//   }
+// }
+ button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc !important;
+  color: white!important;
+}
+::ng-deep{
+// for dark mode
+.theme-teal.night-mode .header-clr {
+background: #005F87!important;
+// color: black;
+}
+
+.theme-muave.night-mode .header-clr{
+  background: #865BA0!important;
+  // color: black;
+
+}
+.theme-lite-blue.night-mode .header-clr{
+background: #03A9F4!important;
+// color: black;
+}
+
+.theme-blue.night-mode .header-clr{
+background: #0072CE!important;
+// color: black;
+}
+.theme-grey.night-mode .header-clr{
+background: #C6C6C6!important;
+// color: black;
+}
+.theme-deep-purple.night-mode .header-clr{
+background: #673AB7!important;
+// color: black;
+}
+.theme-orange.night-mode .header-clr{
+background: #FF9800!important;
+// color: black;
+}
+.theme-indigo.night-mode .header-clr{
+background: #3F51B5!important;
+// color: black;
+}
+// for day mode
+
+.theme-teal.day-mode .header-clr {
+background: #005F87!important;
+// color: black;
+}
+.theme-muave.day-mode .header-clr{
+  background: #865BA0!important;
+  // color: black;
+
+}
+.theme-lite-blue.day-mode .header-clr{
+background: #03A9F4!important;
+// color: black;
+}
+
+.theme-blue.day-mode .header-clr{
+background: #0072CE!important;
+// color: black;
+}
+.theme-grey.day-mode .header-clr{
+background: #C6C6C6!important;
+// color: black;
+}
+.theme-deep-purple.day-mode .header-clr{
+background: #673AB7!important;
+// color: black;
+}
+.theme-orange.day-mode .header-clr{
+background: #FF9800!important;
+// color: black;
+}
+.theme-indigo.day-mode .header-clr{
+background: #3F51B5!important;
+// color: black;
+}
+
+
+
 }
 
 ::ng-deep .mat-sort-header-arrow{
