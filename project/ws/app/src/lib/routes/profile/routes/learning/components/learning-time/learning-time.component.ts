@@ -123,7 +123,7 @@ export class LearningTimeComponent implements OnInit, AfterViewInit, OnDestroy {
     Nov: '11',
     Dec: '12',
   }
-
+  lastUpdatedDate = ''
   trackGraphDataLabel = ''
   trackWiseData: NSLearningGraph.ITrackWiseData | null = null
   trackWiseLabels: string[] = []
@@ -215,7 +215,9 @@ export class LearningTimeComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!data) {
         return
       }
+      debugger;
       this.timeSpentData = data.timeSpentData.data
+      this.lastUpdatedDate = data.timeSpentData.end
       this.pickerValue1 = data.timeSpentData.start
       this.pickerValue2 = data.timeSpentData.end
       const uavg = data.timeSpentData.data.userAvg / 60 || 0
