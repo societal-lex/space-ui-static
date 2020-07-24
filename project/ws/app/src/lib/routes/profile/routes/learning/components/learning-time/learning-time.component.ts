@@ -215,7 +215,6 @@ export class LearningTimeComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!data) {
         return
       }
-      debugger;
       this.timeSpentData = data.timeSpentData.data
       this.lastUpdatedDate = data.timeSpentData.end
       this.pickerValue1 = data.timeSpentData.start
