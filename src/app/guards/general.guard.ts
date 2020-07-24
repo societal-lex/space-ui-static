@@ -37,7 +37,7 @@ export class GeneralGuard implements CanActivate {
         refAppend = `?ref=${encodeURIComponent(state.url)}`
       }
 
-      return this.router.parseUrl(`/public/home${refAppend}`)
+      return this.router.parseUrl(`/login${refAppend}`)
     }
     // If invalid user
     if (
