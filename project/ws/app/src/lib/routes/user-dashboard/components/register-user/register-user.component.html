@@ -63,7 +63,7 @@
   <mat-spinner></mat-spinner>
 </div>
     <mat-card-actions class="flex-middle">
-          <button color="primary" class="width-button" [disabled]="!signupForm.valid" mat-flat-button>Create</button>
+          <button color="primary" class="width-button"  [ngClass]="{ disable:!signupForm.valid }"  mat-flat-button>Create</button>
     </mat-card-actions>
       </form>
     <!-- </mat-card> -->

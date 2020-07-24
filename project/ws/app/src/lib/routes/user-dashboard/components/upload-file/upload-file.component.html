@@ -2,7 +2,8 @@
 
   <div>
     <h4 class="ws-mat-primary-text font-size" i18n>{{uploadFileData.templateHeading}}</h4>
-    <p [innerHTML]="uploadFileData.templateBody"></p>
+    <p [innerHTML]="uploadFileData.templateBody"><button mat-flat-button color="primary" (click)=downloadFile()>Sample File</button></p>
+    <p class="flex-align"><button mat-flat-button color="primary" (click)=downloadFile()>Sample File</button></p>
   </div>
 </section>
 

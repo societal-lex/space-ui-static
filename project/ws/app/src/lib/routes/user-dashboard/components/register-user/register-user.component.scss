@@ -32,3 +32,8 @@ mat-form-field{
 .margin-top{
   padding-top: 5px;
 }
+.disable {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: none;
+}
