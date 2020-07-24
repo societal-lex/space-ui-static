@@ -43,17 +43,20 @@ export class ContentCardComponent implements OnInit {
     let returnValue = false
     switch (menuType) {
       case 'edit':
-      case 'delete':
-        if (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished') {
+        if (this.data.status === 'Draft' || this.data.status === 'Live') {
           returnValue = this.accessService.hasAccess(this.data)
         }
         if (this.data.authoringDisabled && menuType === 'edit') {
           returnValue = false
         }
         break
+      case 'delete':
+        if (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished') {
+          returnValue = this.accessService.hasAccess(this.data)
+        }
+        break
       case 'moveToDraft':
         if (
-          this.data.status === 'Live' ||
           this.data.status === 'InReview' ||
           this.data.status === 'Unpublished' ||
           this.data.status === 'Reviewed' ||
