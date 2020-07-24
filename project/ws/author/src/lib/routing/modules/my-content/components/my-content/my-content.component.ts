@@ -189,6 +189,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
         },
         visibleFilters: {
           duration: { displayName: 'Duration' },
+          contentType: { displayName: 'Content Type' },
           assetType: { displayName: 'Type' },
           theme: { displayName: 'SDGs' },
           sourceShortName: { displayName: 'Created By' },
@@ -360,6 +361,16 @@ export class MyContentComponent implements OnInit, OnDestroy {
           })
         },
       )
+  }
+
+  modifyFilterDisplayName(name: string) {
+    if (name === 'Module') {
+      return 'Asset'
+    }
+    if (name === 'Course') {
+      return 'Collection'
+    }
+    return name
   }
 
   restoreContent(request: NSContent.IContentMeta) {

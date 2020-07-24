@@ -31,7 +31,7 @@
             (change)="filterApplyEvent(node)"
             [(ngModel)]="node.checked"
             class="checklist-leaf-node"
-            >{{ node.displayName + ' (' + node.count + ')' }}
+            >{{ modifyFilterDisplayName(node.displayName) }} {{' (' + node.count + ')' }}
           </mat-checkbox>
         </ng-container>
       </mat-tree-node>
@@ -173,7 +173,7 @@
             [removable]="true"
             (removed)="filterApplyEvent(item)"
           >
-            <span class="ws-mat-primary-text">{{ item.displayName }}</span>
+            <span class="ws-mat-primary-text">{{ modifyFilterDisplayName(item.displayName) }}</span>
             <mat-icon [color]="'primary'" matChipRemove>cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>

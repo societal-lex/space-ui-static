@@ -20,7 +20,7 @@
         </mat-tab>
         <mat-tab *ngIf="enabledTabs?.courses">
           <ng-template mat-tab-label>
-            <span accesskey="2" i18n>Courses</span>
+            <span accesskey="2" i18n>Collections</span>
           </ng-template>
           <ng-container *ngIf="lhContent[1]">
             <ng-container *ngTemplateOutlet="historyView; context: { $implicit: lhContent[1] }"></ng-container>
@@ -28,7 +28,7 @@
         </mat-tab>
         <mat-tab *ngIf="enabledTabs?.modules">
           <ng-template mat-tab-label>
-            <span accesskey="3" i18n>Learning Modules</span>
+            <span accesskey="3" i18n>Learning Assets</span>
           </ng-template>
           <ng-container *ngIf="lhContent[2]">
             <ng-container *ngTemplateOutlet="historyView; context: { $implicit: lhContent[2] }"></ng-container>
@@ -145,13 +145,13 @@
     <mat-tab-group mat-align-tabs="center" (selectedIndexChange)="onTabChangeClient($event)">
       <mat-tab *ngIf="enabledTabs?.courses">
         <ng-template mat-tab-label>
-          <span accesskey="1" class="font-bold" i18n>Courses</span>
+          <span accesskey="1" class="font-bold" i18n>Collections</span>
         </ng-template>
         <div *ngIf="courseFetchStatus === 'done'">
           <mat-card *ngIf="!screenSizeIsLtMedium">
             <mat-grid-list cols="5" rowHeight="35px">
               <mat-grid-tile class="mat-body-strong" i18n>
-                <p class="text-inside-grid">Courses</p>
+                <p class="text-inside-grid">Collections</p>
               </mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>My Progress</mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>
@@ -167,7 +167,7 @@
           <mat-card *ngIf="screenSizeIsLtMedium">
             <mat-grid-list cols="4" rowHeight="35px">
               <mat-grid-tile class="mat-body-strong" i18n>
-                <p class="text-inside-grid">Courses</p>
+                <p class="text-inside-grid">Collections</p>
               </mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>My Progress</mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>
@@ -189,7 +189,7 @@
           <div *ngIf="progressData.length === 0" class="progress">
             <div class="progress-container">
               <div class="progress-content flex flex-center flex-wrapped margin-top-xl">
-                <h4 i18n>No courses found</h4>
+                <h4 i18n>No collections found</h4>
               </div>
             </div>
           </div>
@@ -205,13 +205,13 @@
       </mat-tab>
       <mat-tab *ngIf="enabledTabs?.modules">
         <ng-template mat-tab-label>
-          <span accesskey="2" class="font-bold" i18n>Modules</span>
+          <span accesskey="2" class="font-bold" i18n>Assets</span>
         </ng-template>
         <ng-container *ngIf="modulesFetchStatus === 'done'">
           <mat-card *ngIf="!screenSizeIsLtMedium">
             <mat-grid-list cols="5" rowHeight="35px">
               <mat-grid-tile class="mat-body-strong" i18n>
-                <p class="text-inside-grid">Modules</p>
+                <p class="text-inside-grid">Assets</p>
               </mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>My Progress</mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>
@@ -227,7 +227,7 @@
           <mat-card *ngIf="screenSizeIsLtMedium">
             <mat-grid-list cols="4" rowHeight="35px">
               <mat-grid-tile class="mat-body-strong" i18n>
-                <p class="text-inside-grid">Modules</p>
+                <p class="text-inside-grid">Assets</p>
               </mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>My Progress</mat-grid-tile>
               <mat-grid-tile class="mat-body-strong" i18n>
@@ -249,7 +249,7 @@
           <div *ngIf="progressData.length === 0" class="progress">
             <div class="progress-container">
               <div class="progress-content flex flex-center margin-top-xl">
-                <h4 i18n>No modules found</h4>
+                <h4 i18n>No assets found</h4>
               </div>
             </div>
           </div>
