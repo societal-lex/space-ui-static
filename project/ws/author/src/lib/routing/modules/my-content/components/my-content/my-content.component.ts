@@ -187,6 +187,13 @@ export class MyContentComponent implements OnInit, OnDestroy {
           isMetaEditingDisabled: [false],
           isContentEditingDisabled: [false],
         },
+        visibleFilters: {
+          duration: { displayName: 'Duration' },
+          assetType: { displayName: 'Type' },
+          theme: { displayName: 'SDGs' },
+          sourceShortName: { displayName: 'Created By' },
+          region: { displayName: 'Region' },
+        },
         pageNo: loadMoreFlag ? this.pagination.offset : 0,
         sort: [{ lastUpdatedOn: 'desc' }],
         pageSize: this.pagination.limit,
