@@ -42,7 +42,8 @@ export class BtnMailUserComponent extends WidgetBaseComponent
       BtnMailUserDialogComponent,
       {
         data: this.widgetData,
-      },
+        width: '50%',
+      }
     )
   }
 

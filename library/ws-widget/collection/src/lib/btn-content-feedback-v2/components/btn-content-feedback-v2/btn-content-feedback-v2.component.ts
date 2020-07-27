@@ -29,7 +29,7 @@ export class BtnContentFeedbackV2Component extends WidgetBaseComponent
     if (!this.forPreview) {
       this.dialog.open<BtnContentFeedbackDialogV2Component, IWidgetBtnContentFeedbackV2>(
         BtnContentFeedbackDialogV2Component,
-        { data: this.widgetData, minWidth: '320px', width: '500px' },
+        { data: this.widgetData, minWidth: '320px', width: '50%' },
       )
     }
   }

@@ -1,3 +1,11 @@
 .spinner {
   display: inline-block;
 }
+// ::ng-deep {
+//   .cdk-overlay-pane {
+//     width: 50%;
+//   }
+// }
+.mat-form-field {
+    display: contents !important;
+}
