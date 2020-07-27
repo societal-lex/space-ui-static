@@ -137,6 +137,7 @@ export namespace NsUserDashboard {
     errorMessageForInvalidFileFormat: string,
     errorMessageForFileSize: string,
     errorMesageForFileReader: string
+    sampleFile: string[][]
   }
   export interface ICreateUser {
     successMessage: string,

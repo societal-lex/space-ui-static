@@ -1,7 +1,16 @@
-<h4>Below Users could not be created, please verify if users have already been created</h4>
-<ul *ngFor="let eachemail of email;">
-  <li>{{eachemail}}</li>
-</ul>
-<div class="flex-middle">
-  <button mat-flat-button color="primary" [mat-dialog-close]="false">OK</button>
+<div align="end">
+  <button mat-icon-button [mat-dialog-close]="false">
+    <mat-icon>close</mat-icon>
+  </button>
+  </div>
+  <div>
+<span><p>Please download the <a type="button" (click)="displayUsers()"><b>FailedUsers.xlsx</b></a> file to view list of emails of failed users.</p>
+   <p>Also verify if the users are already created</p></span>
 </div>
+<!-- <ul *ngFor="let eachemail of email;">
+  <li>{{eachemail}}</li>
+</ul> -->
+<!-- <div class="flex-middle">
+  <a type="button"  (click)="displayUsers()">FailedUsers.xlsx</a>
+<button mat-flat-button color="primary" (click)="displayUsers()">User Details</button>
+</div> -->

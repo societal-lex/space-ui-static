@@ -1,10 +1,12 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core'
+import { Component, OnInit} from '@angular/core'
 import { NsUserDashboard } from '../../models/user-dashboard.model'
 import { UserDashboardService } from '../../services/user-dashboard.service'
 import { forkJoin } from 'rxjs'
 import { MatSnackBar, MatDialog } from '@angular/material'
 import { DisplayErrorComponent } from '../display-error/display-error.component'
+import * as XLSX from 'xlsx'
 
+type AOA = any[][]
 @Component({
   selector: 'ws-app-upload-file',
   templateUrl: './upload-file.component.html',
@@ -15,9 +17,11 @@ export class UploadFileComponent implements OnInit {
   constructor(private userDashboardSvc: UserDashboardService,
               public snackBar: MatSnackBar,
               public dialog: MatDialog) { }
-  @Output()
-  closeDailog = new EventEmitter()
+  // @Output()
+  // closeDailog = new EventEmitter()
+
   records: any[] = []
+  recordsForXlsx: any[] = []
   isDisplayInstruction = false
   fileUploadeData?: NsUserDashboard.IHeader
   validFileExtensions: string[] = []
@@ -43,6 +47,7 @@ export class UploadFileComponent implements OnInit {
     this.uploadFileData.errorMessageForFileUpload = this.userDashboardData.upload_file.errorMessageForFileUpload
     this.uploadFileData.errorMesageForFileReader = this.userDashboardData.upload_file.errorMesageForFileReader
     this.uploadFileData.successMessageForFileUpload = this.userDashboardData.upload_file.successMessageForFileUpload
+    this.uploadFileData.sampleFile = this.userDashboardData.upload_file.sampleFile
 
   }
 
@@ -65,25 +70,55 @@ export class UploadFileComponent implements OnInit {
       this.snackBar.open(this.uploadFileData.successMessageForFileUpload, '', {
         duration: 2000,
       })
-
+      if (this.file.name.toLowerCase().endsWith('.csv')) {
+        this.csvUploadFile(this.file)
+      } else if (this.file.name.toLowerCase().endsWith('.xlsx')) {
+        this.xslUploadFile(this.file)
+      }
       // let input = $event.target
-      const reader = new FileReader()
-      reader.readAsText(this.file)
 
-      reader.onload = () => {
-        const csvData = reader.result
-        const csvRecordsArray = (<string>csvData).split(/\r\n|\n/)
-
-        const headersRow = this.getHeaderArray(csvRecordsArray)
-        this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length)
-        this.createBulkUsers()
-      }
-
-      reader.onerror = function () {
-        return 'error'
-      }
     }
 
+  }
+
+  csvUploadFile(file: File) {
+    this.records = []
+    const reader = new FileReader()
+    reader.readAsText(file)
+
+    reader.onload = () => {
+      const csvData = reader.result
+      const csvRecordsArray = (<string>csvData).split(/\r\n|\n/)
+
+      const headersRow = this.getHeaderArray((<string>csvRecordsArray[0]).split(','))
+      this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length)
+      this.createBulkUsers(this.records)
+    }
+
+    reader.onerror = function () {
+      return 'error'
+    }
+  }
+  xslUploadFile(file: File) {
+    this.recordsForXlsx = []
+    const reader: FileReader = new FileReader()
+    reader.onload = (e: any) => {
+      /* read workbook */
+      const bstr: string = e.target.result
+      const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' })
+
+      /* grab first sheet */
+      const wsname: string = wb.SheetNames[0]
+      const ws: XLSX.WorkSheet = wb.Sheets[wsname]
+
+      /* save data */
+      // this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }))
+      const data = XLSX.utils.sheet_to_json(ws, { header: 1 })
+      const headerRow = this.getHeaderArray(data[0])
+      this.recordsForXlsx = this.getDataFromXlsx(data, headerRow.length)
+      this.createBulkUsers(this.recordsForXlsx)
+    }
+    reader.readAsBinaryString(file)
   }
 
   getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) {
@@ -120,35 +155,36 @@ export class UploadFileComponent implements OnInit {
   clearUploadedFile() {
     this.file = null
     this.records = []
+    this.recordsForXlsx = []
   }
-  // getDataRecordsArrayFromCSVFiles(csvRecordsArray: any, headerRow: any) {
+  getDataFromXlsx(data: any, headerLength: any) {
+    this.isLoad = true
+    // tslint:disable-next-line: prefer-const
+    let xlsxArr = []
 
-  //   // tslint:disable-next-line: prefer-const
-  //   let csvRecord: NsUserDashboard.IHeader = {} as NsUserDashboard.IHeader
+    // tslint:disable-next-line: no-increment-decrement
+    for (let i = 1; i < data.length; i++) {
+      // tslint:disable-next-line: prefer-const
+      let curruntRecord = data[i]
+      if (curruntRecord.length === headerLength) {
+        // tslint:disable-next-line: prefer-const
+        let xlsxRecord: any = new Object()
+        if (curruntRecord) {
+          xlsxRecord.firstName = curruntRecord[0]
+          xlsxRecord.lastName = curruntRecord[1]
+          xlsxRecord.email = curruntRecord[2]
+          xlsxRecord.organisation = curruntRecord[3]
+          xlsxArr.push(xlsxRecord)
+        }
+      }
+    }
+    return xlsxArr
 
-  //   // tslint:disable-next-line: no-increment-decrement
-  //   for (let i = 1; i < csvRecordsArray.length; i++) {
-  //     // console.log("csvarray", csvRecordsArray)
-  //     // tslint:disable-next-line: prefer-const
-  //     let currentRecord = (<string>csvRecordsArray[i]).split(',')
-  //     if (currentRecord.length === headerRow.length) {
-  //       if (currentRecord) {
-  //         csvRecord.firstName = currentRecord[0].trim()
-  //         csvRecord.lastName = currentRecord[1].trim()
-  //         csvRecord.email = currentRecord[2].trim()
-  //         csvRecord.organisation = currentRecord[3].trim()
-  //         console.log('currentrecors', csvRecord)
-  //         this.userData.push(csvRecord)
-  //         console.log("1 time", this.userData)
-  //       }
-  //     }
-  //   }
-  //   return this.userData
-  // }
-  createBulkUsers() {
+  }
+  createBulkUsers(recordsArray: any[]) {
 
-    if (this.records) {
-      const responseData = this.records.map(eachRow => {
+    if (recordsArray) {
+      const responseData = recordsArray.map(eachRow => {
         this.paramsForBulkUsers.firstName = eachRow.firstName
         this.paramsForBulkUsers.lastName = eachRow.lastName
         this.paramsForBulkUsers.email = eachRow.email
@@ -166,30 +202,30 @@ export class UploadFileComponent implements OnInit {
           return ''
         })
         if (failedResponseEmail.length > 0) {
-        // tslint:disable-next-line: prefer-const
-        // tslint:disable-next-line: one-variable-per-declaration
-        // tslint:disable-next-line: prefer-const
-        let email: string[] = []
-        failedResponseEmail.forEach((data: any) => {
-          if (data.error) {
-            if (data.error.error.DATA) {
-              email.push(data.error.error.DATA.Email)
+          // tslint:disable-next-line: prefer-const
+          // tslint:disable-next-line: one-variable-per-declaration
+          // tslint:disable-next-line: prefer-const
+          let email: string[] = []
+          failedResponseEmail.forEach((data: any) => {
+            if (data.error) {
+              if (data.error.error.DATA) {
+                email.push(data.error.error.DATA.Email)
+              }
             }
-          }
-        })
-        if (email) {
-
-          this.file = null
-          this.closeDailog.emit('true')
-          this.openDailogToDisplayFailedUsers(email)
-        } else {
-          this.file = null
-          this.closeDailog.emit('true')
-          // tslint:disable-next-line: prefer-template
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 3000,
           })
-        }
+          if (email) {
+
+            this.file = null
+            // this.closeDailog.emit('true')
+            this.openDailogToDisplayFailedUsers(email)
+          } else {
+            this.file = null
+            // this.closeDailog.emit('true')
+            // tslint:disable-next-line: prefer-template
+            this.snackBar.open(this.errorMessage, '', {
+              duration: 3000,
+            })
+          }
         } else {
           this.file = null
           this.snackBar.open(this.successMessage, '', {
@@ -201,7 +237,8 @@ export class UploadFileComponent implements OnInit {
   }
 
   getHeaderArray(csvRecordsArr: any) {
-    const headers = (<string>csvRecordsArr[0]).split(',')
+    //  const headers = (<string>csvRecordsArr[0]).split(',')
+    const headers = csvRecordsArr
     const headerArray = []
     // tslint:disable-next-line: no-increment-decrement
     for (let j = 0; j < headers.length; j++) {
@@ -239,12 +276,32 @@ export class UploadFileComponent implements OnInit {
   fileReset() {
     // this.csvReader.nativeElement.value = ""
     this.records = []
+    this.recordsForXlsx = []
   }
   openDailogToDisplayFailedUsers(email: string[]) {
     this.dialog.open(DisplayErrorComponent, {
-      width: '300px',
+      width: '500px',
       data: email,
     })
+  }
+
+  downloadFile() {
+    // tslint:disable-next-line: prefer-const
+    let data = this.uploadFileData.sampleFile
+    this.export(data, 'Sample.xlsx')
+  }
+
+  export(data: AOA, fileName: string): void {
+
+    /* generate worksheet */
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(data)
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, 'UserDetails')
+
+    /* save to file */
+    XLSX.writeFile(wb, fileName)
   }
 
   // onDrop(file: any) {
