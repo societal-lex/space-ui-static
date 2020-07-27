@@ -41,7 +41,7 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
     private authAccessControlSvc: AccessControlService,
   ) {
     if (this.configSvc.restrictedFeatures) {
-      this.askAuthorEnabled = !this.configSvc.restrictedFeatures.has('askAuthor')
+      this.askAuthorEnabled = this.configSvc.restrictedFeatures.has('askAuthor')
       this.trainingLHubEnabled = !this.configSvc.restrictedFeatures.has('trainingLHub')
     }
   }

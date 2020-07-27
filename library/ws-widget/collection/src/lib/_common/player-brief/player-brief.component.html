@@ -303,13 +303,13 @@
       <div class="ws-mat-accent-text width-expand">
         <h3 *ngIf="tocStructure?.course > 0">
           <ng-container>{{ tocStructure?.course }}</ng-container>
-          <ng-container *ngIf="tocStructure?.course === 1" i18n> Course</ng-container>
-          <ng-container *ngIf="tocStructure?.course > 1" i18n> Courses</ng-container>
+          <ng-container *ngIf="tocStructure?.course === 1" i18n> Collection</ng-container>
+          <ng-container *ngIf="tocStructure?.course > 1" i18n> Collections</ng-container>
         </h3>
         <h3 *ngIf="tocStructure?.learningModule > 0">
           <ng-container>{{ tocStructure?.learningModule }}</ng-container>
-          <ng-container *ngIf="tocStructure?.learningModule === 1" i18n> Module</ng-container>
-          <ng-container *ngIf="tocStructure?.learningModule > 1" i18n> Modules</ng-container>
+          <ng-container *ngIf="tocStructure?.learningModule === 1" i18n> Asset</ng-container>
+          <ng-container *ngIf="tocStructure?.learningModule > 1" i18n> Assets</ng-container>
         </h3>
         <h3 *ngIf="tocStructure?.video > 0">
           <ng-container>{{ tocStructure?.video }}</ng-container>
@@ -340,8 +340,8 @@
         </h3>
         <h3 *ngIf="tocStructure?.webModule > 0">
           <ng-container>{{ tocStructure?.webModule }}</ng-container>
-          <ng-container *ngIf="tocStructure?.webModule === 1" i18n> Web Module</ng-container>
-          <ng-container *ngIf="tocStructure?.webModule > 1" i18n> Web Modules</ng-container>
+          <ng-container *ngIf="tocStructure?.webModule === 1" i18n> Web Asset</ng-container>
+          <ng-container *ngIf="tocStructure?.webModule > 1" i18n> Web Assets</ng-container>
         </h3>
         <h3 *ngIf="tocStructure?.webPage > 0">
           <ng-container>{{ tocStructure?.webPage }}</ng-container>
