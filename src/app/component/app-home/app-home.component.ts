@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser'
 import { ConfigurationsService } from '../../../../library/ws-widget/utils/src/public-api'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'ws-app-home',
@@ -9,7 +10,7 @@ import { ConfigurationsService } from '../../../../library/ws-widget/utils/src/p
 })
 export class AppHomeComponent implements OnInit {
   appBanner: SafeUrl | null = null
-  // appbanner1: SafeUrl | null = null
+  appbanner1: SafeUrl | null = null
   loadText = false
 
   constructor(private configSvc: ConfigurationsService, private domSanitizer: DomSanitizer) {
@@ -19,6 +20,11 @@ export class AppHomeComponent implements OnInit {
       this.appBanner = this.domSanitizer.bypassSecurityTrustResourceUrl(
         instanceConfig.banners.mainBanner,
       )
+      this.appbanner1 = this.domSanitizer.bypassSecurityTrustResourceUrl(
+        instanceConfig.banners.mainBannermobile,
+
+      )
+
       this.loadText = true
     }
 
@@ -31,6 +37,10 @@ export class AppHomeComponent implements OnInit {
 
   }
   ngOnInit() {
+  }
+  resolvedomain(domain: string) {
+    return environment.sitePath.split('.').includes(domain)
+
   }
 
 }

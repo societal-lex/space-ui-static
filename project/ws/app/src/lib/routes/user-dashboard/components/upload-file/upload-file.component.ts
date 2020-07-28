@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { NsUserDashboard } from '../../models/user-dashboard.model'
 import { UserDashboardService } from '../../services/user-dashboard.service'
 import { forkJoin } from 'rxjs'
@@ -15,8 +15,8 @@ type AOA = any[][]
 export class UploadFileComponent implements OnInit {
 
   constructor(private userDashboardSvc: UserDashboardService,
-              public snackBar: MatSnackBar,
-              public dialog: MatDialog) { }
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
   // @Output()
   // closeDailog = new EventEmitter()
 
@@ -305,7 +305,8 @@ export class UploadFileComponent implements OnInit {
   }
 
   // onDrop(file: any) {
-  //   console.log("selcet", file)
+
+
   //   // tslint:disable-next-line: prefer-const
   // // const files = evt.target.files // FileList object
   // //   const file = files[0]
@@ -343,8 +344,8 @@ export class UploadFileComponent implements OnInit {
   //     }
   //     this.test.push(orderDetails)
   //   }
-  //   // console.log(this.test);
-  //   console.log('Parsed: k', results.data)
+  //
+
   // }
   // })
   // }
@@ -352,12 +353,11 @@ export class UploadFileComponent implements OnInit {
 
   // }
   // ConvertCSVtoJSON() {
-  //   console.log(JSON.stringify(this.test))
+
   //   // let csvData = '"Hello","World!"';
   //   // this.papa.parse(csvData, {
   //   //   complete: (results) => {
-  //   //     console.log('Parsed  : ', results.data[0][1]);
-  //   //     // console.log(results.data.length);
+  //   //
   //   //   }
   //   // });
   // }

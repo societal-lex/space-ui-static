@@ -8,7 +8,7 @@
               <div class="full-image">
                 <img [src]="appBanner" alt="The Last of us" />
               </div>
-              <div class="slide-details text-center text-white">
+              <div *ngIf="resolvedomain('learn')" class="slide-details text-center text-white">
                 <div class="container-1">
                   <p class="text">
                     <span class="text-size">Knowledge Center </span>
@@ -26,13 +26,13 @@
     </div>
   </div>
 </div>
-<div class="display-text container-fluid">
+<div class="display-text imageclass">
   <!-- <h1 class="h1-style">Welcome To NIIT</h1> -->
   <!-- <img style="height: 80vh;" [src]="appBanner" /> -->
   <!-- <img style="height: 80vh;" [src]="appbanner1" /> -->
 
-  <img style="height: 80vh;" [src]="appBanner" />
-  <div style="color: white;font-size: 25px !important;" class="centered"><strong class="bold">Knowledge
+  <img [src]="appbanner1" />
+  <div style="color: black;font-size: 20px !important;" class="centered"><strong class="bold">Knowledge
       Center</strong><br />
     Prepare yourself to be <br />
     #FutureReady</div>
