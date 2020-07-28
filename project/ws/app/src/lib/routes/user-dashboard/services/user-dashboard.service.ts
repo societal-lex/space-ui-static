@@ -8,7 +8,8 @@ import { UserAutocompleteService } from '@ws-widget/collection'
 interface IResponse {
   ok: boolean
   error?: string | null,
-  DATA?: [NsUserDashboard.IUserListData],
+  // DATA?: [NsUserDashboard.IUserListData],
+  DATA?: [NsUserDashboard.IUserListDataFromUserTable],
   STATUS?: string,
   MESSAGE: string,
   ErrorResponseData?: string,
@@ -45,7 +46,7 @@ export class UserDashboardService {
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
     this.userData = userDataFromConfig
   }
-  async getAllUsers(value: string, headers: NsUserDashboard.IHeaders): Promise<IResponse> {
+  async getAllUsers(headers: NsUserDashboard.IHeaders): Promise<IResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
         rootorg: headers.rootOrg,
@@ -56,7 +57,7 @@ export class UserDashboardService {
     try {
       // tslint:disable-next-line: prefer-template
       // tslint:disable-next-line: max-line-length
-      const userList = await this.http.get<IResponse>(this.userData.API_END_POINT + this.userData.user_list.url + value, httpOptions).toPromise()
+      const userList = await this.http.get<IResponse>(this.userData.API_END_POINT + this.userData.user_list_userTable.url, httpOptions).toPromise()
       if (userList && userList.STATUS === 'OK') {
         return Promise.resolve({
           ok: true,
@@ -69,10 +70,10 @@ export class UserDashboardService {
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
-          MESSAGE: this.userData.user_list.errorMessage,
+          MESSAGE: this.userData.user_list_userTable.errorMessage,
         })
       }
-      return Promise.resolve({ ok: false, error: null, MESSAGE: this.userData.user_list.errorMessage })
+      return Promise.resolve({ ok: false, error: null, MESSAGE: this.userData.user_list_userTable.errorMessage })
     }
   }
 
@@ -89,6 +90,7 @@ export class UserDashboardService {
     const responseBodyAsJSON = {
       email: responseBody.email,
       user_id: responseBody.user_Id,
+      wid: responseBody.wid,
     }
     try {
       // tslint:disable-next-line: max-line-length
@@ -191,7 +193,7 @@ export class UserDashboardService {
       }
       return Promise.resolve({
         ok: false, error: null,
-         MESSAGE: this.userData.change_roles.errorMessage,
+        MESSAGE: this.userData.change_roles.errorMessage,
         ErrorResponseData: email,
       })
     }

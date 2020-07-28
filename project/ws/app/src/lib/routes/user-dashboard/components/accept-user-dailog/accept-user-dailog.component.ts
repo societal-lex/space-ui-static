@@ -19,12 +19,14 @@ export class AcceptUserDailogComponent implements OnInit {
   selection: any
   isTrue = false
   buttonName!: string
+  username = ''
   userDashboardDataFromConfig: Subscription | null = null
   constructor(
     public dialogRef: MatDialogRef<AcceptUserDailogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
   ) {
+    this.username = this.data.userName
     this.form = this.formBuilder.group({
       orders: new FormArray([], Validators.required),
     })

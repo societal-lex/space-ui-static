@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
   userDashboardData: NsUserDashboard.IUserData | any
 
   navBackground: Partial<NsPage.INavBackground> | null = null
-  selectedRow: NsUserDashboard.IUserListData[] = []
+  selectedRow: NsUserDashboard.IUserListDataFromUserTable[] = []
   constructor(private userDashboardSvc: UserDashboardService,
               public snackBar: MatSnackBar,
               public dialog: MatDialog,
@@ -35,7 +35,7 @@ export class UserDashboardComponent implements OnInit {
       this.widLoggedinUser = instanceConfig.userId
     }
   }
-  public userList!: NsUserDashboard.IUserListData | undefined
+  public userList!: NsUserDashboard.IUserListDataFromUserTable | undefined
   employees = this.userList
   //  public userListArray: NsUserDashboard.IUserListData[] =[]
   public selectedVal: string | any
@@ -47,15 +47,15 @@ export class UserDashboardComponent implements OnInit {
   widLoggedinUser: string | any
   getRootOrg: string | any
   getOrg: string | any
-  userListArray: NsUserDashboard.IUserListData[] = []
+  userListArray: NsUserDashboard.IUserListDataFromUserTable[] = []
   // @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator | any
   @ViewChild(MatSort, { static: false }) sort!: MatSort
-  dataSource: MatTableDataSource<NsUserDashboard.IUserListData> | any
-  selection = new SelectionModel<NsUserDashboard.IUserListData>(true, [])
+  dataSource: MatTableDataSource<NsUserDashboard.IUserListDataFromUserTable> | any
+  selection = new SelectionModel<NsUserDashboard.IUserListDataFromUserTable>(true, [])
 
   getUserData: NsUserDashboard.IGetUserData = {} as any
   displayedColumns =
-    ['select', 'SlNo', 'firstName', 'email', 'Actions']
+    ['select', 'SlNo', 'first_name', 'email', 'Actions']
   allroles!: NsUserDashboard.IRoles
   allrolesForBulkChangeRole: NsUserDashboard.IRoles | null = null
   paramsForChangeRole: NsUserDashboard.IChangeRole = {} as any
@@ -102,7 +102,7 @@ export class UserDashboardComponent implements OnInit {
       this.navBackground = this.configSvc.pageNavBar
     })
     this.selectedVal = 'all'
-    this.getAllUsers(this.selectedVal)
+    this.getAllUsers()
 
   }
 
@@ -125,11 +125,11 @@ export class UserDashboardComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach((row: NsUserDashboard.IUserListData) => this.selection.select(row))
+      this.dataSource.data.forEach((row: NsUserDashboard.IUserListDataFromUserTable) => this.selection.select(row))
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: NsUserDashboard.IUserListData): string {
+  checkboxLabel(row?: NsUserDashboard.IUserListDataFromUserTable): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`
     }
@@ -141,7 +141,7 @@ export class UserDashboardComponent implements OnInit {
     this.dataSource.filter = filterValue
 
   }
-  async getAllUsers(value: string) {
+  async getAllUsers() {
     this.isLoad = true
     this.headersForAllUsers.rootOrg = this.getRootOrg
     this.headersForAllUsers.org = this.getOrg
@@ -150,15 +150,16 @@ export class UserDashboardComponent implements OnInit {
     // this.selectedVal = value
     // console.log("selectedvalue", this.selectedVal)
 
-    const userListResponse = await this.userDashboardSvc.getAllUsers(value, this.headersForAllUsers)
+    const userListResponse = await this.userDashboardSvc.getAllUsers(this.headersForAllUsers)
     if (userListResponse.ok) {
       if (userListResponse.DATA != null) {
         this.userListArray = userListResponse.DATA
         // this.enableFilter(this.userListArray)
         // tslint:disable-next-line: no-console
-        this.userListArray = userListResponse.DATA
+        // this.userListArray = userListResponse.DATA
+
         // the datasource contains email verified users.
-        this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.enableFilter(this.userListArray))
+        this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListDataFromUserTable>(this.userListArray)
         if (this.dataSource != null) {
           this.isLoad = false
         }
@@ -200,6 +201,8 @@ export class UserDashboardComponent implements OnInit {
           data: {
             allRoles: getAllRoles.DATA,
             defaultValueToBeChecked: this.roles,
+            // tslint:disable-next-line: prefer-template
+            userName: element.first_name + '' + element.last_name,
           },
         })
         dialogResponseForChangeRoles.afterClosed().subscribe(result => {
@@ -251,7 +254,8 @@ export class UserDashboardComponent implements OnInit {
       data: {
         title: this.userDashboardDataForDailog.title,
         body: this.userDashboardDataForDailog.body,
-        userName: element.firstName + element.lastName,
+        // tslint:disable-next-line: prefer-template
+        userName: element.first_name + '' + element.last_name,
         email: element.email,
       },
     })
@@ -269,7 +273,8 @@ export class UserDashboardComponent implements OnInit {
 
     if (typeof (this.paramsForDecline.email) === 'undefined') {
       this.paramsForDecline.email = element.email
-      this.paramsForDecline.user_Id = element.id
+      this.paramsForDecline.user_Id = element.kid
+      this.paramsForDecline.wid = element.wid
     }
     this.headersForRejectUser.rootOrg = this.getRootOrg
     this.headersForRejectUser.org = this.getOrg
@@ -313,7 +318,7 @@ export class UserDashboardComponent implements OnInit {
       })
     }
   }
-  changeRoleForEachUser(selectedRow: NsUserDashboard.IUserListData[], rolesForAllUsers: any) {
+  changeRoleForEachUser(selectedRow: NsUserDashboard.IUserListDataFromUserTable[], rolesForAllUsers: any) {
     this.isLoad = true
     this.headersForChangeUserRoleForBulkUser.rootOrg = this.getRootOrg
     this.headersForChangeUserRoleForBulkUser.org = this.getOrg
