@@ -231,3 +231,19 @@ font-family: 'montserrat sans-serif'
 //   background-size: cover;
 //   background-repeat: no-repeat;
 // }
+@media (max-width: 971px) and (min-width: 768px){
+  .centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 191%);
+}
+}
+@media (max-width: 700px) and (min-width: 425px){
+  .centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}
+}
