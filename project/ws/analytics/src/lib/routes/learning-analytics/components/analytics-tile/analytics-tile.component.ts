@@ -17,6 +17,10 @@ export class AnalyticsTileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    this.description = this.description.replace('collections', 'assets')
+    this.description = this.description.replace('courses', 'collections')
+    this.description = this.description.replace('modules', 'assets')
   }
   onClick(type: string) {
     this.clickEvent.emit(type)
