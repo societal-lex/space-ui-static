@@ -1607,13 +1607,18 @@
             <div class="flex margin-xl padding-left-l">
               <mat-checkbox [checked]="contentForm?.controls.spaceLicenseTnCAgreed.value"
                 (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
-              <p class="margin-left-xs margin-remove-bottom">
+              <p class="margin-left-xs margin-remove-bottom" *ngIf="contentForm?.controls.assetType.value !== 'Connection'">
                 I agree that by submitting / publishing this Content, I confirm that this Content
                 complies with the terms and policies of the SPace Platform. <br />I have made sure
                 that I do not violate others’ copyright, privacy or third party rights. Visit
                 <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()">Terms of
                   Use policy</span>
                 page for more details
+              </p>
+              <p class="margin-left-xs margin-remove-bottom" *ngIf="contentForm?.controls.assetType.value === 'Connection'">
+                I agree that by that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform. 
+                I have made sure that I have taken appropriate consent in writing from the person or entity whose information is being shared as a connection resource. 
+                Visit <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()">Terms of Terms of Use policy</span> page for more details.
               </p>
             </div>
             <div class="flex">

@@ -1533,7 +1533,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setPolicyForm(_assetTypeValue: string) {
-    if (_assetTypeValue && _assetTypeValue !== 'Connection') {
+    if (_assetTypeValue) {
       this.displayPolicyForm = true
       this.contentForm.controls.spaceLicenseTnCAgreed.setValue(false)
     } else {
