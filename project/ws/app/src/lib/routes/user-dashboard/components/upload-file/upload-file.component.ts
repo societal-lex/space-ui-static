@@ -15,8 +15,8 @@ type AOA = any[][]
 export class UploadFileComponent implements OnInit {
 
   constructor(private userDashboardSvc: UserDashboardService,
-    public snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+              public snackBar: MatSnackBar,
+              public dialog: MatDialog) { }
   // @Output()
   // closeDailog = new EventEmitter()
 
@@ -305,7 +305,6 @@ export class UploadFileComponent implements OnInit {
   }
 
   // onDrop(file: any) {
-
 
   //   // tslint:disable-next-line: prefer-const
   // // const files = evt.target.files // FileList object
