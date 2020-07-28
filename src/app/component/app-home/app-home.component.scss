@@ -169,6 +169,7 @@ p {
   .text {
     display: none !important;
   }
+
 }
 
 @media (max-width: 767.98px) {
@@ -182,10 +183,10 @@ p {
     display: none;
   }
 
-  .display-text {
-    text-align: center;
-    padding-top: 10rem;
-  }
+  // .display-text {
+  //   text-align: center;
+  //   padding-top: 10rem;
+  // }
 
   .h1-style {
     font-weight: 600;
@@ -199,9 +200,9 @@ p {
 }
 
 @media (min-width: 765px) and (max-width: 770px) {
-  .display-text {
-    padding-top: 16rem;
-  }
+  // .display-text {
+  //   padding-top: 16rem;
+  // }
 
   .h1-style {
     font-size: 30px;
@@ -211,4 +212,16 @@ p {
   .p-style {
     font-size: 24px;
   }
+}
+// .mobileheight{
+//   height:80vh;
+// }
+.centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bold{
+font-family: 'montserrat sans-serif'
 }

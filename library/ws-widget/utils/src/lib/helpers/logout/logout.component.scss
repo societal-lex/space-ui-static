@@ -1,3 +1,299 @@
 .hide-overflow{
   overflow: hidden;
 }
+// .btn-clr{
+// color: white !important;
+// }
+::ng-deep{
+//    .mat-button-wrapper .btn-clr {
+//     font-size: 9px;
+//     color: black!important;
+// }
+// // @media only screen and (max-width: 599px){
+// //  .mat-button-wrapper {
+// //     font-size: 9px;
+// //     color: black!important;
+// // }
+// // }
+
+// for teal
+
+.theme-teal.night-mode .mat-flat-button, .theme-teal.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-teal.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-teal.day-mode .mat-flat-button, .theme-teal.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-teal.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+
+//mauve
+
+.theme-muave.night-mode .mat-flat-button, .theme-muave.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+
+
+.theme-muave.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-muave.day-mode .mat-flat-button, .theme-muave.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-muave.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-muave.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+// lite-blue
+.theme-lite-blue.night-mode .mat-flat-button, .theme-lite-blue.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-lite-blue.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-lite-blue.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-lite-blue.day-mode .mat-flat-button, .theme-lite-blue.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-lite-blue.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+// blue
+.theme-blue.night-mode .mat-flat-button, .theme-blue.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-blue.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-blue.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-blue.day-mode .mat-flat-button, .theme-blue.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-blue.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+//grey
+.theme-grey.night-mode .mat-flat-button, .theme-grey.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-grey.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-grey.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-grey.day-mode .mat-flat-button, .theme-grey.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-grey.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+//deep-purple
+.theme-deep-purple.night-mode .mat-flat-button, .theme-deep-purple.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-deep-purple.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-deep-purple.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-deep-purple.day-mode .mat-flat-button, .theme-deep-purple.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-deep-purple.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+//orange
+.theme-orange.night-mode .mat-flat-button, .theme-orange.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-orange.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-orange.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-orange.day-mode .mat-flat-button, .theme-orange.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-orange.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+//indigo
+.theme-indigo.night-mode .mat-flat-button, .theme-indigo.night-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-indigo.day-mode .mat-flat-button.btn-clrs{
+  background-color:#eb780a !important ;
+   color: black !important;
+}
+.theme-indigo.night-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: white !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+.theme-indigo.day-mode .mat-flat-button, .theme-indigo.day-mode .mat-raised-button {
+  @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    background-color:#eb780a !important ;
+}
+}
+}
+.theme-indigo.day-mode .mat-button.btn-clr{
+    @media only screen and (max-width: 599px) {.mat-button-wrapper{
+    color: black !important;
+    // background-color:#eb780a !important ;
+}
+}
+}
+
+
+
+
+
+}

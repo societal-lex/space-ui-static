@@ -143,6 +143,7 @@ export namespace NsInstanceConfig {
     grievanceredressal: string
     termsOfUse: string
     aboutBanner: string
+    // mainBannermobile: string
   }
   export interface IMailIds {
     contactUs: string

@@ -3,3 +3,23 @@
   line-height: 26px !important;
   font-weight: 300 !important;
 }
+
+// ::ng-deep{
+//   @media (max-width: 900px) {
+// .theme-teal.day-mode .logout-clr{
+//   color: #F44336 !important;
+// }
+// }}
+::ng-deep{
+//   .theme-teal.day-mode .mat-button.mat-warn .logout-clr, .theme-teal.day-mode .mat-icon-button.mat-warn .logout-clr, .theme-teal.day-mode .mat-stroked-button.mat-warn .logout-clr {
+//     // color: #eb780a !important;
+// }
+
+
+@media only screen and (max-width: 599px){
+ .mat-button-wrapper {
+    font-size: 9px;
+    color: #eb780a!important;
+}
+}
+}
