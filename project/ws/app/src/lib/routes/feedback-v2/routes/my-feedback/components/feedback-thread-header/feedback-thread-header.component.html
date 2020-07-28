@@ -7,8 +7,8 @@
   <div class="mat-body-2 uppercase my-auto">
     <ng-container [ngSwitch]="threadHead.contentType">
       <ng-container *ngSwitchCase="contentTypes.PROGRAM" i18n>Program</ng-container>
-      <ng-container *ngSwitchCase="contentTypes.COURSE" i18n>Course</ng-container>
-      <ng-container *ngSwitchCase="contentTypes.MODULE" i18n>Module</ng-container>
+      <ng-container *ngSwitchCase="contentTypes.COURSE" i18n>Collection</ng-container>
+      <ng-container *ngSwitchCase="contentTypes.MODULE" i18n>Asset</ng-container>
       <ng-container *ngSwitchCase="contentTypes.RESOURCE" i18n>Resource</ng-container>
       <ng-container *ngSwitchDefault i18n>Content</ng-container>
     </ng-container>
