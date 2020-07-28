@@ -25,8 +25,41 @@
 .app-logo {
   min-width: 8rem;
   // margin-top: -1.1rem;
-  padding: 8px 0 0 8px;
 }
+// @media only screen and (min-width: 312px) and (max-width: 1020px) {
+//  .logosize-mobile {
+//   display: contents;
+// }
+// .logosize-ios {
+//   display: none;
+// }
+// .logosize {
+//   display: none;
+// }
+// }
+// @media only screen and (min-width: 1020px) and (max-width: 1025px) {
+// .logosize-mobile {
+//   display: none;
+// }
+// .logosize-ios {
+//   display: contents;
+// }
+// .logosize {
+//   display: none;
+// }
+// }
+// @media only screen and (min-width: 1026px)  {
+// .logosize-mobile {
+//   display: none;
+// }
+// .logosize-ios {
+//   display: none;
+// }
+// .logosize {
+//   display: contents;
+// }
+// }
+
 @media only screen and (min-width: 357px) and (max-width: 599px) {
   .app-logo {
     width: 6rem !important;
@@ -38,8 +71,10 @@
   .app-logo {
     width: 7rem !important;
     margin-top: auto !important;
-    padding: 4px 0px 0px 8px;
     min-width: auto !important;
+  }
+  .logosize {
+        padding: 4px 0px 0px 8px;
   }
 }
 @media only screen and (min-width: 312px) and (max-width: 356px) {
@@ -50,6 +85,18 @@
   }
   .logosize {
     height: 5rem !important;
+     padding: 4px 0px 0px 8px;
+  }
+}
+@media only screen and (min-width: 250px) and (max-width: 311px) {
+  .app-logo {
+    // width: 5rem !important;
+    margin-top: 1.5rem !important;
+    min-width: auto !important;
+  }
+  .logosize {
+    height: 5rem !important;
+   padding: 4px 0px 0px 0px;
   }
 }
 @media only screen and (min-width: 599px) and (max-width: 692px) {
@@ -89,6 +136,7 @@
 .logosize {
   overflow-y: hidden;
   // height: 3rem;
+  padding: 8px 0 0 8px;
 }
 .title {
   font-size: 12px !important;

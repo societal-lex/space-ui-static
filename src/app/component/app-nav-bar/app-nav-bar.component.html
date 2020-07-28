@@ -6,6 +6,16 @@
         <img [src]="appIcon" alt="Application Logo" class="app-logo" />
       </a>
     </div>
+    <!-- <div class="logosize-mobile">
+      <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" name="applicationLogo" class="logo-dim">
+        <img src="/assets/instances/space/SPaceLogoFavicon/SPTSpacelogo512x512.png" alt="Application Logo" class="app-logo" />
+      </a>
+    </div>
+    <div class="logosize-ios">
+      <a routerLink="/page/home" i18n-matTooltip matTooltip="Home" name="applicationLogo" class="logo-dim">
+        <img src="/assets/instances/space/SPaceLogoFavicon/SPTSpacelogo1024x1024.png" alt="Application Logo" class="app-logo" />
+      </a>
+    </div> -->
     <ng-container *ngIf="primaryNavbarConfig?.mediumScreen">
       <ng-container [ngTemplateOutlet]="navbarSide" [ngTemplateOutletContext]="{ item: item }"
         *ngFor="let item of primaryNavbarConfig?.mediumScreen?.left">

@@ -5,7 +5,7 @@
 .app-logo {
   // min-width: 8rem;
   // margin-top: -0.5rem;
-  padding: 2px 0 0 8px;
+  // padding: 8px 0 0 8px;
 }
 .btn-size {
   padding: 0px 6px 0px 6px;
@@ -16,13 +16,27 @@
     // margin-top: 0.5rem !important;
     min-width: auto !important;
   }
+  .logosize {
+    padding: 4px 0 0 8px !important;
+  }
+}
+@media only screen and (min-width: 250px) and (max-width: 311px) {
+  .app-logo {
+   min-width: auto !important;
+    width: 3rem;
+  }
+  .logosize {
+    padding: 4px 0px 0px 0px !important;
+  }
 }
 @media only screen and (min-width: 599px) and (max-width: 629px) {
   .app-logo {
     width: 7rem !important;
     margin-top: auto !important;
-    padding: 4px 0px 0px 8px;
     min-width: auto !important;
+  }
+  .logosize {
+        padding: 4px 0px 0px 8px !important;
   }
 }
 @media only screen and (min-width: 312px) and (max-width: 359px) {
@@ -30,15 +44,18 @@
     width: 5rem !important;
     // margin-top: 1.79rem !important;
     min-width: auto !important;
+
   }
   .logosize {
     // height: 5rem !important;
+    padding: 4px 0 0 8px !important;
     overflow-y: visible !important;
   }
 }
 .logosize {
   overflow-y: hidden;
   // height: 3rem;
+    padding: 8px 0 0 8px ;
 }
 .title-app {
   @include breakpoint-xs {

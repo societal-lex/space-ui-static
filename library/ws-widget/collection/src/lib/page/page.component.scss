@@ -22,7 +22,7 @@
     background: white !important;
   }
 }
-@media only screen and (min-width: 312px) and (max-width: 650px) {
+@media only screen and (min-width: 250px) and (max-width: 650px) {
   #display-text {
     display: none;
   }
@@ -54,6 +54,16 @@
   }
 }
 @media only screen and (min-width: 312px) and (max-width: 356px) {
+  .app-logo {
+    width: 5rem !important;
+    margin-top: 1rem !important;
+    min-width: auto !important;
+  }
+  .logosize {
+    height: 5rem !important;
+  }
+}
+@media only screen and (min-width: 250px) and (max-width: 311px) {
   .app-logo {
     width: 5rem !important;
     margin-top: 1rem !important;
