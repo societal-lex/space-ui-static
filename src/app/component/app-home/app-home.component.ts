@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser'
 import { ConfigurationsService } from '../../../../library/ws-widget/utils/src/public-api'
-import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'ws-app-home',
@@ -39,8 +38,10 @@ export class AppHomeComponent implements OnInit {
   ngOnInit() {
   }
   resolvedomain(domain: string) {
-    return environment.sitePath.split('.').includes(domain)
-
+    if (Array.isArray(this.configSvc.org))
+      return this.configSvc.org[0].toLowerCase() === domain
+    // return window.location.hostname.split('.').includes(domain)
+    return false
   }
 
 }
