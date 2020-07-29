@@ -30,7 +30,7 @@ ws-app-nav-bar {
   bottom: 0;
 }
 .height-adjust {
-  background: white;
+  background: white !important;
   min-height: calc(100vh - (0px + 52px));
   @include breakpoint-xs {
     min-height: calc(100vh - (56px + 72px));
