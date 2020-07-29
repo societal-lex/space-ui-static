@@ -87,8 +87,13 @@ img {
 
 @media only screen and (min-width: 768px) {
   .slide-details {
-    transform: translate(-12%, 30%);
+    transform: translate(10%, 30%);
   }
+}
+@media only screen and (min-width: 1023px) and (max-width: 1024px){
+.slide-details {
+    transform: translate(8%, 30%);
+}
 }
 @media only screen and (min-width: 768px) {
   .slide-details {
@@ -97,7 +102,7 @@ img {
     left: 0;
     bottom: 0;
     width: auto;
-    padding: 20px 30px;
+    padding: 20px 0px;
   }
 }
 @media (max-width: 971px) and (min-width: 768px) {
