@@ -6,7 +6,6 @@ import { APP_BASE_HREF } from '@angular/common'
 import { Inject, Injectable } from '@angular/core'
 import { ConfigurationsService, NsInstanceConfig } from '@ws-widget/utils'
 import { NSContent } from '@ws/author/src/lib/interface/content'
-import { creator } from 'd3'
 
 @Injectable()
 export class AccessControlService {
