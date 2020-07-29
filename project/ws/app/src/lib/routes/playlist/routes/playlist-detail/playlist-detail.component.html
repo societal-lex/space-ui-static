@@ -111,7 +111,7 @@
               <span class="margin-left-xxs">
                 {{ playlist?.duration | pipeDurationTransform: 'hms' | titlecase }}
               </span>
-              <span class="mx-2">|</span>
+              <span class="mx-2" *ngIf="playlist?.duration">|</span>
             </ng-container>
             <mat-icon>group</mat-icon>
             <span class="margin-left-xxs">
@@ -220,7 +220,7 @@
         <p class="flex flex-middle margin-remove-top">
           <mat-icon>access_time</mat-icon>
           <span class="margin-left-xxs">
-            <ng-container
+            <ng-container *ngIf="content?.duration"
               >{{ content?.duration | pipeDurationTransform: 'hms' }}&nbsp; | &nbsp;</ng-container
             >
             <ws-widget-display-content-type [displayContentType]="content?.contentType">
@@ -228,7 +228,6 @@
           </span>
         </p>
       </div>
-    </div>
     <button
       name="delete-content-button-playlist-detail"
       *ngIf="playlist?.contents?.length > 1"
@@ -238,6 +237,7 @@
     >
       <mat-icon>delete</mat-icon>
     </button>
+   </div>
   </div>
 </ng-template>
 <ng-template #errorPage>

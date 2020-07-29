@@ -13,7 +13,7 @@
   </div>
 </div>
 <div mat-dialog-actions class="flex-row-reverse">
-  <button mat-raised-button [disabled]="mailSendInProgress || !mailBody.value" [color]="'primary'"
+  <button mat-raised-button [disabled]="mailSendInProgress || !mailBody.value" color='primary'
     (click)="send(mailBody.value, successToast.value, errorToast.value, invalidIdToast.value)" i18n-aria-label
     aria-label="Send Your Query" i18n>
     Send Mail

@@ -145,6 +145,9 @@ export class AccessControlService {
     if (forPreview && meta.visibility === 'Public') {
       returnValue = true
     }
+    if (meta.status === 'Unpublished' && meta.creatorContacts.length > 0 && this.hasRole(['content-creator'])) {
+      returnValue = meta.creatorContacts.some(creatorContact => creatorContact.id === this.userId)
+    }
     return returnValue
   }
 

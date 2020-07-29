@@ -1,5 +1,5 @@
 <mat-chip-list *ngIf="widgetData?.showChips" class="mb-4 block">
-  <mat-chip *ngFor="let chipId of selectedContentIds" [value]="chipId" [removable]="true"
+  <mat-chip *ngFor="let chipId of selectedContentIds" [value]="chipId" [removable]="true" class="style-chip"
     (removed)="selectedContentChanged(chipId, false)">
     {{ widgetData.chipNamesHash[chipId] }}
     <mat-icon matChipRemove>cancel</mat-icon>
@@ -23,11 +23,11 @@
       </div>
       <div *ngIf="searchableContentTypes.includes(appContentTypes.MODULE)" mat-menu-item>
         <mat-checkbox name="module-checkbox" [checked]="selectedContentTypes.includes(appContentTypes.MODULE)"
-          (change)="filterChanged(appContentTypes.MODULE, $event.checked)" i18n>Module</mat-checkbox>
+          (change)="filterChanged(appContentTypes.MODULE, $event.checked)" i18n>Asset</mat-checkbox>
       </div>
       <div *ngIf="searchableContentTypes.includes(appContentTypes.COURSE)" mat-menu-item>
         <mat-checkbox name="course-checkbox" [checked]="selectedContentTypes.includes(appContentTypes.COURSE)"
-          (change)="filterChanged(appContentTypes.COURSE, $event.checked)" i18n>Course</mat-checkbox>
+          (change)="filterChanged(appContentTypes.COURSE, $event.checked)" i18n>Collection</mat-checkbox>
       </div>
       <div *ngIf="searchableContentTypes.includes(appContentTypes.PROGRAM)" mat-menu-item>
         <mat-checkbox name="program-checkbox" [checked]="selectedContentTypes.includes(appContentTypes.PROGRAM)"
@@ -102,7 +102,7 @@
       <p class="margin-remove-bottom margin-left-xs margin-right-xs">
         <ws-widget-display-content-type *ngIf="content.displayContentType"
           [displayContentType]="content.displayContentType" class="uppercase"></ws-widget-display-content-type>
-        <ng-container *ngIf="content.displayContentType">&nbsp; | &nbsp;</ng-container>
+        <ng-container *ngIf="content?.duration">&nbsp; | &nbsp;</ng-container>
         <ng-container *ngIf="content?.duration">{{ content.duration | pipeDurationTransform: 'hms' }}
         </ng-container>
       </p>

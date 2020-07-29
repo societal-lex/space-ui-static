@@ -435,8 +435,10 @@
               >
                 Newly Added
               </div>
-              <div *ngIf="widgetData.content.duration" class="duration" i18n-title title="Duration">
-                {{ widgetData.content.duration | pipeDurationTransform: 'hms' }}
+              <div class="duration" i18n-title title="Duration" style="height: 1rem;">
+                <ng-container *ngIf="widgetData.content.duration">
+                  {{ widgetData.content.duration | pipeDurationTransform: 'hms' }}
+                </ng-container>
               </div>
             </div>
             <div
@@ -1139,8 +1141,10 @@
           i18n-aria-label
         >
           <div class="text-gray-600 complexity flex-between flex-center">
-            <div *ngIf="widgetData.content.duration" class="duration" i18n-title title="Duration">
+            <div class="duration" i18n-title title="Duration" style="height: 1rem;">
+              <ng-container  *ngIf="widgetData.content.duration">
               {{ widgetData.content.duration | pipeDurationTransform: 'hms' }}
+              </ng-container>
             </div>
           </div>
           <div class="ws-mat-primary-text mat-title title-text title-truncate">

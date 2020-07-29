@@ -123,7 +123,7 @@
     </div>
     <div mat-line class="flex" *ngIf="feedback.feedbackType === feedbackTypes.Content">
       <span class="truncate m-0 mat-body-2">
-        {{ feedback.contentTitle }}
+        {{ feedback.contentTitle.replace('module', 'asset') }}
       </span>
     </div>
     <div mat-line class="flex">

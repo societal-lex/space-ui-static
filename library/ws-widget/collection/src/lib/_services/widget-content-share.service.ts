@@ -80,23 +80,23 @@ export class WidgetContentShareService {
           : [
             {
               name: user.name,
-              email: user.email,
+              email: 'kamaleeswary@stackroute.in',
             },
           ],
       emailTo:
         type === 'attachment'
-          ? [
+          ? userMailIds
+          : [
             {
               name: user.name,
-              email: user.email,
+              email: 'kamaleeswary@stackroute.in',
             },
-          ]
-          : userMailIds,
+          ],
       emailType: type,
       sharedBy: [
         {
           name: user.name,
-          email: user.email,
+          email: 'kamaleeswary@stackroute.in',
         },
       ],
       timestamp: Date.now(),
