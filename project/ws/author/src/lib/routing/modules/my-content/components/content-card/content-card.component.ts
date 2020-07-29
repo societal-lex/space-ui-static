@@ -50,16 +50,19 @@ export class ContentCardComponent implements OnInit {
           returnValue = false
         }
         break
-      case 'delete':
-        if (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished') {
+      case 'delete': {
+        if (
+            // tslint:disable-next-line: max-line-length
+            (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished' || this.data.status === 'Reviewed') && this.accessService.hasRole(['editor', 'admin', 'content-creator'])
+          ) {
           returnValue = this.accessService.hasAccess(this.data)
         }
         break
+      }
       case 'moveToDraft':
         if (
-          this.data.status === 'Live' ||
+          this.data.status === 'Live' || this.data.status === 'Unpublished' ||
           this.data.status === 'InReview' ||
-          this.data.status === 'Unpublished' ||
           this.data.status === 'Reviewed' ||
           this.data.status === 'QualityReview'
         ) {
@@ -72,12 +75,12 @@ export class ContentCardComponent implements OnInit {
         }
         break
       case 'publish':
-        if (this.data.status === 'Reviewed') {
+        if (this.data.status === 'Reviewed' && this.accessService.hasRole(['publisher'])) {
           returnValue = this.accessService.hasAccess(this.data)
         }
         break
       case 'unpublish':
-        if (this.data.status === 'Live') {
+        if (this.data.status === 'Live' && this.accessService.hasRole(['editor', 'admin', 'publisher'])) {
           returnValue = this.accessService.hasAccess(this.data)
         }
         break
