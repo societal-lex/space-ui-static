@@ -102,7 +102,7 @@
       <p class="margin-remove-bottom margin-left-xs margin-right-xs">
         <ws-widget-display-content-type *ngIf="content.displayContentType"
           [displayContentType]="content.displayContentType" class="uppercase"></ws-widget-display-content-type>
-        <ng-container *ngIf="content.displayContentType">&nbsp; | &nbsp;</ng-container>
+        <ng-container *ngIf="content?.duration">&nbsp; | &nbsp;</ng-container>
         <ng-container *ngIf="content?.duration">{{ content.duration | pipeDurationTransform: 'hms' }}
         </ng-container>
       </p>

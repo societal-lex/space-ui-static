@@ -19,8 +19,7 @@
         Completed!
       </ng-container>
     </span>
-    <span class="px-1">|</span>
-
+    <span class="px-1" *ngIf="content?.duration || content?.timeLeft">|</span>
     <span class="mat-caption ws-mat-primary-text">
       {{
         content?.resourceType ?
