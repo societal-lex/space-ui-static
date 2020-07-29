@@ -145,7 +145,8 @@ export class AccessControlService {
     if (forPreview && meta.visibility === 'Public') {
       returnValue = true
     }
-    if (meta.status === 'Unpublished' && meta.creatorContacts.length > 0 && this.hasRole(['content-creator'])) {
+    // tslint:disable-next-line: max-line-length
+    if ((meta.status === 'Unpublished' || meta.status === 'Reviewed') && meta.creatorContacts.length > 0 && this.hasRole(['content-creator'])) {
       returnValue = meta.creatorContacts.some(creatorContact => creatorContact.id === this.userId)
     }
     return returnValue
