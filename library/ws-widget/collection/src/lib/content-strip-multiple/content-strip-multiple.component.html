@@ -35,7 +35,7 @@
                 <button *ngIf="stripsResultDataMap[key]?.stripInfo?.icon" type="button" mat-icon-button
                   (click)="toggleInfo(stripsResultDataMap[key])" i18n-matTooltip matTooltip="info"
                   class="margin-left-xs">
-                  <mat-icon>{{ stripsResultDataMap[key]?.stripInfo?.icon.icon }}</mat-icon>
+                  <mat-icon style="color: #865ba0">{{ stripsResultDataMap[key]?.stripInfo?.icon.icon }}</mat-icon>
                 </button>
               </div>
               <button mat-icon-button (click)="setHiddenForStrip(key)" *ngIf="stripsResultDataMap[key]?.canHideStrip">
