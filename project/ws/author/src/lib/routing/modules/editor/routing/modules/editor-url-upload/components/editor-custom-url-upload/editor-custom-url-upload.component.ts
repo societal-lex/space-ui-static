@@ -107,7 +107,7 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
     this.urlUploadForm.controls.mimeType.setValue(meta.mimeType || 'application/html')
     this.urlUploadForm.controls.isIframeSupported.setValue(meta.isIframeSupported || 'No')
     this.urlUploadForm.controls.isInIntranet.setValue(meta.isInIntranet || false)
-    this.urlUploadForm.controls.isExternal.setValue(true)
+    this.urlUploadForm.controls.isExternal.setValue(false)
     this.canUpdate = true
     if (meta.artifactLinkUrl &&  this.showIPRDeclaration) {
       this.iprAccepted = true
