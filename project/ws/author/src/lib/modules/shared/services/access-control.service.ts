@@ -149,6 +149,10 @@ export class AccessControlService {
     if ((meta.status === 'Unpublished' || meta.status === 'Reviewed') && meta.creatorContacts.length > 0 && this.hasRole(['content-creator'])) {
       returnValue = meta.creatorContacts.some(creatorContact => creatorContact.id === this.userId)
     }
+    // tslint:disable-next-line: max-line-length
+    if (meta.hasOwnProperty('publisherDetails') && Array.isArray(meta.publisherDetails) && meta.publisherDetails.length && this.hasRole(['publisher']) && ['Live', 'Unpublished'].includes(meta.status)) {
+      returnValue = meta.publisherDetails.some(publisherContact => publisherContact.id === this.userId)
+    }
     return returnValue
   }
 
