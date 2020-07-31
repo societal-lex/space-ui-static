@@ -29,13 +29,29 @@ ws-app-nav-bar {
   width: 100%;
   bottom: 0;
 }
+
+.theme-muave.night-mode .mat-drawer-container {
+  background-color: white !important;
+}
+
+::ng-deep {
+  .theme-muave.day-mode .mat-drawer-container {
+    background-color: white !important;
+  }
+}
+
 .height-adjust {
-  background: white !important;
+  /* background: white !important; */
   min-height: calc(100vh - (0px + 52px));
   @include breakpoint-xs {
     min-height: calc(100vh - (56px + 72px));
   }
 }
+
+.theme-muave.day-mode .height-adjust {
+  background: white !important;
+}
+
 .app-footer {
   display: block;
   @include breakpoint-gt-xs {
