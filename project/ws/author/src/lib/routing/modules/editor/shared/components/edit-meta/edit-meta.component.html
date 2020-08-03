@@ -288,7 +288,7 @@
               <div class="margin-top-l">
                 <mat-form-field appearance="outline" class="margin-top-s" style="width: 60%;"
                   [ngClass]="{ 'mat-form-field-invalid': showError('sourceName') }">
-                  <mat-select formControlName="sourceName" i18n-placeholder placeholder="--Select--">
+                  <mat-select formControlName="sourceName" i18n-placeholder placeholder="--Select--" multiple>
 
                     <mat-option *ngFor="let sourceName of ordinals.sourceName" [value]="sourceName">
                       {{ sourceName }}</mat-option>
@@ -298,7 +298,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('otherSourceName', 'show')"
+            <div class="margin-top-xs margin-left-xl" *ngIf="showOther"
               [ngClass]="{ disable: checkCondition('otherSourceName', 'disabled') }">
               <p class="font-weight-bold margin-remove-bottom"
                 i18n="Title label|Label which explains the user to enter title"
@@ -1616,8 +1616,8 @@
                 page for more details
               </p>
               <p class="margin-left-xs margin-remove-bottom" *ngIf="contentForm?.controls.assetType.value === 'Connection'">
-                I agree that by that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform. 
-                I have made sure that I have taken appropriate consent in writing from the person or entity whose information is being shared as a connection resource. 
+                I agree that by that by submitting / publishing this Content, I confirm that this Content complies with the terms and policies of the SPace Platform.
+                I have made sure that I have taken appropriate consent in writing from the person or entity whose information is being shared as a connection resource.
                 Visit <span class="ws-mat-primary-text font-weight-bold cursor-pointer" (click)="openLicenseTnc()">Terms of Use policy</span> page for more details.
               </p>
             </div>
