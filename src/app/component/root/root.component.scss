@@ -30,12 +30,25 @@ ws-app-nav-bar {
   bottom: 0;
 }
 .height-adjust {
-  background: white !important;
+  // background-color: white;
   min-height: calc(100vh - (0px + 52px));
   @include breakpoint-xs {
     min-height: calc(100vh - (56px + 72px));
   }
 }
+.theme-muave.night-mode .mat-drawer-container {
+  background-color: black !important;
+}
+
+::ng-deep {
+  .theme-muave.day-mode .mat-drawer-container {
+    background-color: white !important;
+  }
+}
+.theme-muave.day-mode .height-adjust {
+  background: white !important;
+}
+
 .app-footer {
   display: block;
   @include breakpoint-gt-xs {

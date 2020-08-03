@@ -418,6 +418,26 @@ export class InitService {
             ; (xIconElem as HTMLLinkElement).href = this.configSvc.instanceConfig.indexHtmlMeta.xIcon
           }
         }
+        if (this.configSvc.instanceConfig.indexHtmlMeta.appleTouchIcon180) {
+          const xIconx180Elem = document.getElementById('id-app-appleTouchIcon180')
+          if (xIconx180Elem) {
+            // tslint:disable-next-line: semicolon // tslint:disable-next-line: whitespace
+            ; (xIconx180Elem as HTMLLinkElement).href = this.configSvc.instanceConfig.indexHtmlMeta.appleTouchIcon180
+          }
+        }
+        if (this.configSvc.instanceConfig.indexHtmlMeta.icon16) {
+          const xIconx16Elem = document.getElementById('id-app-icon16')
+          if (xIconx16Elem) {
+            // tslint:disable-next-line: semicolon // tslint:disable-next-line: whitespace
+            ; (xIconx16Elem as HTMLLinkElement).href = this.configSvc.instanceConfig.indexHtmlMeta.icon16
+          }
+        } if (this.configSvc.instanceConfig.indexHtmlMeta.icon32) {
+          const xIconx32Elem = document.getElementById('id-app-icon32')
+          if (xIconx32Elem) {
+            // tslint:disable-next-line: semicolon // tslint:disable-next-line: whitespace
+            ; (xIconx32Elem as HTMLLinkElement).href = this.configSvc.instanceConfig.indexHtmlMeta.icon32
+          }
+        }
       } catch (error) {
         this.logger.error('Error updating index html meta >', error)
       }

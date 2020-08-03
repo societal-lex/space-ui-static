@@ -77,6 +77,9 @@ export namespace NsInstanceConfig {
     webmanifest: string
     xIcon?: string
     pngIcon?: string
+    appleTouchIcon180: string
+    icon16: string
+    icon32: string
   }
   export interface IFontSize {
     baseFontSize: string

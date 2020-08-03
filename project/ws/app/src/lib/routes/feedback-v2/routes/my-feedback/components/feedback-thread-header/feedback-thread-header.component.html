@@ -1,7 +1,7 @@
 <section class="mb-2" *ngIf="threadHead.feedbackType === feedbackTypes.Content">
   <div>
     <a [routerLink]="['/app/toc', threadHead.contentId]">
-      <h2 class="mat-title content-name">{{ threadHead.contentTitle.replace('module', 'assets') }}</h2>
+      <h2 class="mat-title content-name">{{ threadHead.contentTitle }}</h2>
     </a>
   </div>
   <div class="mat-body-2 uppercase my-auto">

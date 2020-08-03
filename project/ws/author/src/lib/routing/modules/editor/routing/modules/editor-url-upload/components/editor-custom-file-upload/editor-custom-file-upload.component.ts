@@ -10,6 +10,8 @@ import {
   TemplateRef,
   ChangeDetectorRef,
   ViewRef,
+  HostBinding,
+  HostListener,
 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
@@ -41,6 +43,20 @@ import { AuthInitService } from './../../../../../../../../services/init.service
   styleUrls: ['./editor-custom-file-upload.component.scss'],
 })
 export class EditorCustomFileUploadComponent implements OnInit {
+  // @Input() fileDropped = new EventEmitter<any>()
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private contentService: EditorContentService,
+    private uploadService: UploadService,
+    private loaderService: LoaderService,
+    private authInitService: AuthInitService,
+    private valueSvc: ValueService,
+    private accessService: AccessControlService,
+    private readonly cdr: ChangeDetectorRef,
+  ) {}
   @ViewChild('guideline', { static: false }) guideline!: TemplateRef<HTMLElement>
   @ViewChild('errorFile', { static: false }) errorFile!: TemplateRef<HTMLElement>
   @ViewChild('selectFile', { static: false }) selectFile!: TemplateRef<HTMLElement>
@@ -69,19 +85,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
   @Input() showIPRDeclaration = false
   isMobile = false
   @Output() data = new EventEmitter<any>()
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-    private contentService: EditorContentService,
-    private uploadService: UploadService,
-    private loaderService: LoaderService,
-    private authInitService: AuthInitService,
-    private valueSvc: ValueService,
-    private accessService: AccessControlService,
-    private readonly cdr: ChangeDetectorRef,
-  ) {}
+  @HostBinding('style.opacity') public opacity = '1'
 
   ngOnInit() {
     this.valueSvc.isXSmall$.subscribe(isMobile => (this.isMobile = isMobile))
@@ -92,7 +96,29 @@ export class EditorCustomFileUploadComponent implements OnInit {
       this.triggerDataChange()
     })
   }
+  // Dragover listener
+  @HostListener('dragover', ['$event']) onDragOver(evt: Event) {
+    evt.preventDefault()
+    evt.stopPropagation()
+    this.opacity = '0.4'
+  }
+  // Dragleave listener
+  @HostListener('dragleave', ['$event']) public onDragLeave(evt: Event) {
+    evt.preventDefault()
+    evt.stopPropagation()
+    this.opacity = '1.0'
+  }
+  // Drop listener
+  @HostListener('drop', ['$event']) public ondrop(evt: any) {
+    evt.preventDefault()
+    evt.stopPropagation()
+    const files = evt.dataTransfer.files[0]
+    this.opacity = '1.0'
 
+    if (files) {
+      this.onDrop(files)
+    }
+  }
   triggerDataChange() {
     const updatedMeta = this.contentService.getUpdatedMeta(this.currentContent)
     if (

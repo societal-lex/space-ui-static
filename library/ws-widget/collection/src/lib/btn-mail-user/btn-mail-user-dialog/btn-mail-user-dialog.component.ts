@@ -38,7 +38,7 @@ export class BtnMailUserDialogComponent implements OnInit {
       .subscribe(
         data => {
           this.mailSendInProgress = false
-          if (data.response === 'Request Accepted!' && (!data.invalidIds || data.invalidIds.length === 0)) {
+          if (data.response === 'Success' && (!data.invalidIds || data.invalidIds.length === 0)) {
             this.sendStatus = 'SUCCESS'
             this.snackBar.open(
               successMsg,

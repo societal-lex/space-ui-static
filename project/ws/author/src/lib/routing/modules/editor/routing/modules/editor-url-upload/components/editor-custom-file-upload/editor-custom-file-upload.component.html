@@ -1,7 +1,7 @@
 <div class="margin-top-m margin-left-xl">
     <div class="flex mt-8 margin-bottom-xl top-heading">
-      <div class="upload-box flex flex-middle flex-col justify-center p-20 cursor-pointer" (click)="fileInput.click()"
-        wsAuthDragDrop (fileDropped)="onDrop($event)">
+      <div id="dropzone" class="upload-box flex flex-middle flex-col justify-center p-20 cursor-pointer" (click)="fileInput.click()"
+         >
         <button *ngIf="file || fileUploadForm.controls.artifactUploadUrl.value" mat-icon-button
           class="close-button padding-remove ws-mat-primary-background-op30 text-white"
           (click)="clearUploadedFile(); $event.stopPropagation()">
@@ -41,7 +41,7 @@
           </p>
         </div>
       </div>
-  
+
       <div class="information">
         <p class="ws-mat-primary-text font-weight-500" i18n>Instructions to upload a file</p>
         <ul>
@@ -76,8 +76,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <ng-template #guideline>
     <div class="margin-top-m margin-bottom-m">
       <div style="position: relative;">
@@ -170,7 +170,7 @@
       </button>
     </div>
   </ng-template>
-  
+
   <ng-template #errorFile>
     <div class="margin-top-m margin-bottom-m">
       <div style="position: relative;">
@@ -193,7 +193,7 @@
       </button>
     </div>
   </ng-template>
-  
+
   <ng-template #selectFile>
     <div class="margin-top-m margin-bottom-m">
       <div style="position: relative;">
@@ -221,4 +221,3 @@
       </button>
     </div>
   </ng-template>
-  

@@ -50,6 +50,12 @@ export class FeedbackThreadHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.feedbackCategory = this.threadHead.feedbackCategory
+    if (this.threadHead.contentTitle === 'module') {
+      this.threadHead.contentTitle = 'asset'
+    }
+    if (this.threadHead.contentTitle === 'course') {
+      this.threadHead.contentTitle = 'collection'
+    }
   }
 
   updateCategory(category: string) {

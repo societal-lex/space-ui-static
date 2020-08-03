@@ -141,6 +141,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   currentLicenseData: ICurrentLicenseDialogInfo[] | undefined = undefined
   assestTypeMetaData: IAssetTypeMetaInfo[] | any[] = []
   currentAssestTypeData: IAssetTypeMetaInfo[] | undefined = undefined
+  // showOther = false
 
   @ViewChild('creatorContactsView', { static: false }) creatorContactsView!: ElementRef
   @ViewChild('trackContactsView', { static: false }) trackContactsView!: ElementRef
@@ -1184,7 +1185,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       isSearchable: [],
       spaceAssetType: [],
     })
-
     this.contentForm.controls.assetType.valueChanges.pipe(
       startWith(null),
       pairwise()
@@ -1254,15 +1254,20 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.contentForm.controls.sourceName.valueChanges.subscribe(() => {
       // const selectedsourceNameValues = this.contentForm.controls.sourceName.value
+      // console.log('value ', this.contentForm.controls.sourceName, this.contentForm.controls.otherSourceName)
       // if (selectedsourceNameValues.length > 1 && selectedsourceNameValues.includes('N/A')) {
       //   this.contentForm.controls.sourceName.setValue(['N/A'])
       // }
       if (!this.contentForm.controls.sourceName.value.includes('Other')) {
         this.contentForm.controls.otherSourceName.setValue('')
         this.contentForm.controls.otherSourceName.markAsUntouched()
+        // this.showOther = false
       }
       // if (selectedsourceNameValues.length > 1 && this.contentForm.controls.sourceName.value.includes('Other')) {
       //   this.contentForm.controls.sourceName.setValue(['Other'])
+      // }
+      // if (this.contentForm.controls.sourceName.value.includes('Other')) {
+      //   this.showOther = true
       // }
     })
 
