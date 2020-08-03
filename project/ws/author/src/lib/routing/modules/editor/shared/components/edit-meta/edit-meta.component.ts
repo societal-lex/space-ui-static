@@ -141,7 +141,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   currentLicenseData: ICurrentLicenseDialogInfo[] | undefined = undefined
   assestTypeMetaData: IAssetTypeMetaInfo[] | any[] = []
   currentAssestTypeData: IAssetTypeMetaInfo[] | undefined = undefined
-  // showOther = false
+  showOther = false
 
   @ViewChild('creatorContactsView', { static: false }) creatorContactsView!: ElementRef
   @ViewChild('trackContactsView', { static: false }) trackContactsView!: ElementRef
@@ -714,6 +714,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         // handle mimeType status for different assetType
         const newMeta = this.handleMimeTypeBeforeStore(meta) as NSContent.IContentMeta
         this.contentService.setUpdatedMeta(newMeta, this.contentMeta.identifier)
+        // cons?ole.log(newMeta)
       }
     } catch (e) {
       throw new Error(e)
@@ -1253,22 +1254,25 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.contentForm.controls.sourceName.valueChanges.subscribe(() => {
-      // const selectedsourceNameValues = this.contentForm.controls.sourceName.value
+      const selectedsourceNameValues = this.contentForm.controls.sourceName.value
       // console.log('value ', this.contentForm.controls.sourceName, this.contentForm.controls.otherSourceName)
-      // if (selectedsourceNameValues.length > 1 && selectedsourceNameValues.includes('N/A')) {
-      //   this.contentForm.controls.sourceName.setValue(['N/A'])
-      // }
+      if (selectedsourceNameValues.length > 1 && selectedsourceNameValues.includes('N/A')) {
+        this.contentForm.controls.sourceName.setValue(['N/A'])
+      }
       if (!this.contentForm.controls.sourceName.value.includes('Other')) {
         this.contentForm.controls.otherSourceName.setValue('')
         this.contentForm.controls.otherSourceName.markAsUntouched()
-        // this.showOther = false
+        this.showOther = false
       }
-      // if (selectedsourceNameValues.length > 1 && this.contentForm.controls.sourceName.value.includes('Other')) {
-      //   this.contentForm.controls.sourceName.setValue(['Other'])
-      // }
-      // if (this.contentForm.controls.sourceName.value.includes('Other')) {
-      //   this.showOther = true
-      // }
+      if (selectedsourceNameValues.length > 1 && this.contentForm.controls.sourceName.value.includes('Other')) {
+        this.contentForm.controls.sourceName.setValue(['Other'])
+      }
+      if (this.contentForm.controls.sourceName.value.includes('Other')) {
+        this.showOther = true
+      }
+      this.contentForm.controls.sourceShortName = this.contentForm.controls.sourceName
+      // console.log('source name ', this.contentForm.controls.sourceName.value)
+      // console.log(this.contentService.getUpdatedMeta(this.contentService.currentContent))
     })
 
     this.contentForm.controls.spaceLicense.valueChanges.subscribe(() => {
