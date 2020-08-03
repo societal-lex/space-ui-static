@@ -2,13 +2,13 @@
     <div class="flex mt-8 margin-bottom-xl top-heading">
       <div class="upload-box flex flex-middle flex-col justify-center p-20 cursor-pointer" (click)="fileInput.click()"
         wsAuthDragDrop (fileDropped)="onDrop($event)">
-        <button *ngIf="file || fileUploadForm.controls.artifactUploadUrl.value" mat-icon-button
+        <button *ngIf="(file || fileUploadForm.controls.artifactUploadUrl.value) && allowedToEdit" mat-icon-button
           class="close-button padding-remove ws-mat-primary-background-op30 text-white"
           (click)="clearUploadedFile(); $event.stopPropagation()">
           <mat-icon>close</mat-icon>
         </button>
         <span class="font-weight-500" [hidden]="file">
-          <input type="file" #fileInput class="inputfile" accept=".mp3,.mp4,.pdf,.zip"
+          <input type="file" #fileInput class="inputfile" accept=".mp3,.mp4,.pdf,.zip" [disabled]="!allowedToEdit"
             (change)="onDrop($event.target.files[0]); fileInput.value = null" />
           <label for="file" class="mat-h2 ws-mat-primary-text flex flex-middle justify-center">
             <mat-icon style="margin-right:4px">add</mat-icon>
@@ -54,7 +54,7 @@
           <li i18n>Files allowed - pdf, mp3, mp4, zip</li>
           <li i18n>Max. file size - 200MB</li>
         </ul>
-        <button type="button" mat-raised-button class="ws-mat-primary-background margin-top-xl" [disabled]="!enableUpload"
+        <button *ngIf="allowedToEdit" type="button" mat-raised-button class="ws-mat-primary-background margin-top-xl" [disabled]="!enableUpload"
           (click)="triggerUpload()">
           <div class="flex flex-middle justify-center">
             <mat-icon class="text-white">publish</mat-icon>

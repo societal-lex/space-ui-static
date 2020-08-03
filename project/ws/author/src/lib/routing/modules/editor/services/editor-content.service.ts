@@ -82,6 +82,14 @@ export class EditorContentService {
     return this.accessService.hasAccess(meta, forPreview, parentMeta)
   }
 
+  isAllowedToEdit(
+    meta: NSContent.IContentMeta,
+    forPreview = false,
+    parentMeta?: NSContent.IContentMeta,
+  ) {
+    return this.accessService.isAllowedToEdit(meta, forPreview, parentMeta)
+  }
+
   isLangPresent(lang: string): boolean {
     let isPresent = false
     Object.keys(this.originalContent).map(v => {

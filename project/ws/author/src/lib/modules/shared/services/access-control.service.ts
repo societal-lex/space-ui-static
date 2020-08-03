@@ -156,6 +156,27 @@ export class AccessControlService {
     return returnValue
   }
 
+  isAllowedToEdit(
+    meta: NSContent.IContentMeta,
+    _forPreview = false,
+    _parentMeta?: NSContent.IContentMeta,
+  ): boolean {
+    if (this.hasRole(['editor', 'admin'])) {
+      return true
+    }
+    // tslint:disable-next-line: max-line-length
+    if (this.hasRole(['publisher']) && meta.hasOwnProperty('publisherDetails') && Array.isArray(meta.publisherDetails) && meta.publisherDetails.length) {
+      if (meta.publisherDetails.some(contentPublisher => contentPublisher.id === this.userId)) {
+        return true
+      }
+    } else if (this.hasRole(['content-creator']) && meta.creatorContacts.length) {
+      if (meta.creatorContacts.some(contentCreator => contentCreator.id === this.userId)) {
+        return true
+      }
+    }
+    return false
+  }
+
   convertToISODate(date = ''): Date {
     try {
       return new Date(
