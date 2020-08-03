@@ -25,6 +25,7 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
   iprAccepted = false
   currentContent = ''
   canUpdate = true
+  allowedToEdit = true
   showOpensInNewTab = false
   showIntranetOptions = false
   @Input() isCollectionEditor = false
@@ -103,11 +104,12 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
       this.createForm()
     }
     this.canUpdate = false
+    this.allowedToEdit = this.contentService.isAllowedToEdit(meta)
     this.urlUploadForm.controls.artifactLinkUrl.setValue(meta.artifactLinkUrl || '')
     this.urlUploadForm.controls.mimeType.setValue(meta.mimeType || 'application/html')
     this.urlUploadForm.controls.isIframeSupported.setValue(meta.isIframeSupported || 'No')
     this.urlUploadForm.controls.isInIntranet.setValue(meta.isInIntranet || false)
-    this.urlUploadForm.controls.isExternal.setValue(true)
+    this.urlUploadForm.controls.isExternal.setValue(false)
     this.canUpdate = true
     if (meta.artifactLinkUrl &&  this.showIPRDeclaration) {
       this.iprAccepted = true

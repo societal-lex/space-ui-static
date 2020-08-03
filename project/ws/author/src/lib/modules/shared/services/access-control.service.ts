@@ -149,7 +149,32 @@ export class AccessControlService {
     if ((meta.status === 'Unpublished' || meta.status === 'Reviewed') && meta.creatorContacts.length > 0 && this.hasRole(['content-creator'])) {
       returnValue = meta.creatorContacts.some(creatorContact => creatorContact.id === this.userId)
     }
+    // tslint:disable-next-line: max-line-length
+    if (meta.hasOwnProperty('publisherDetails') && Array.isArray(meta.publisherDetails) && meta.publisherDetails.length && this.hasRole(['publisher']) && ['Live', 'Unpublished'].includes(meta.status)) {
+      returnValue = meta.publisherDetails.some(publisherContact => publisherContact.id === this.userId)
+    }
     return returnValue
+  }
+
+  isAllowedToEdit(
+    meta: NSContent.IContentMeta,
+    _forPreview = false,
+    _parentMeta?: NSContent.IContentMeta,
+  ): boolean {
+    if (this.hasRole(['editor', 'admin'])) {
+      return true
+    }
+    // tslint:disable-next-line: max-line-length
+    if (this.hasRole(['publisher']) && meta.hasOwnProperty('publisherDetails') && Array.isArray(meta.publisherDetails) && meta.publisherDetails.length) {
+      if (meta.publisherDetails.some(contentPublisher => contentPublisher.id === this.userId)) {
+        return true
+      }
+    } else if (this.hasRole(['content-creator']) && meta.creatorContacts.length) {
+      if (meta.creatorContacts.some(contentCreator => contentCreator.id === this.userId)) {
+        return true
+      }
+    }
+    return false
   }
 
   convertToISODate(date = ''): Date {

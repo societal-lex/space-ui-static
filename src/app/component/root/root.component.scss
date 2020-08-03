@@ -29,6 +29,17 @@ ws-app-nav-bar {
   width: 100%;
   bottom: 0;
 }
+
+.theme-muave.night-mode .mat-drawer-container {
+  background-color: white !important;
+}
+
+::ng-deep {
+  .theme-muave.day-mode .mat-drawer-container {
+    background-color: white !important;
+  }
+}
+
 .height-adjust {
   // background-color: white;
   min-height: calc(100vh - (0px + 52px));

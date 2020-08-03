@@ -1005,7 +1005,7 @@
             </div>
           </div>
           <ng-container *ngIf="displayRadioSystem">
-            <mat-radio-group formControlName="spaceAssetType">
+            <mat-radio-group formControlName="spaceAssetType" [disabled]="!isEditEnabled">
               <mat-radio-button value="asset_link">Attach a Link</mat-radio-button>
               <mat-radio-button value="asset_upload">Upload Asset</mat-radio-button>
             </mat-radio-group>
@@ -1605,7 +1605,7 @@
               </div>
             </div>
             <div class="flex margin-xl padding-left-l">
-              <mat-checkbox [checked]="contentForm?.controls.spaceLicenseTnCAgreed.value"
+              <mat-checkbox [checked]="contentForm?.controls.spaceLicenseTnCAgreed.value" [disabled]="!isEditEnabled"
                 (change)="updateLicenseTnCAgreed($event)"></mat-checkbox>
               <p class="margin-left-xs margin-remove-bottom" *ngIf="contentForm?.controls.assetType.value !== 'Connection'">
                 I agree that by submitting / publishing this Content, I confirm that this Content

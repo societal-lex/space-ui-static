@@ -14,7 +14,7 @@
         <div class="margin-top-xl">
           <p 
           class="font-weight-bold margin-remove-bottom" i18n
-          [ngClass]="{ required: checkCondition('artifactLinkUrl', 'required') }"
+          [ngClass]="{ required: checkCondition('artifactLinkUrl', 'required'), disabled: checkCondition('artifactLink', 'disabled') && allowedToEdit}"
           >
             Link
           </p>

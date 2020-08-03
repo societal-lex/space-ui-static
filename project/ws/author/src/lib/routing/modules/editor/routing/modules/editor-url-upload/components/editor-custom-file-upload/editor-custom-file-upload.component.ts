@@ -68,6 +68,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
   enableUpload = true
   duration = 0
   canUpdate = true
+  allowedToEdit = false
   fileUploadCondition = {
     fileName: false,
     eval: false,
@@ -133,6 +134,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
     if (!this.fileUploadForm) {
       this.createForm()
     }
+    this.allowedToEdit = this.accessService.isAllowedToEdit(meta)
     this.canUpdate = false
     this.fileUploadForm.controls.artifactUploadUrl.setValue(meta.artifactUploadUrl || '')
     // console.log('name is ', this.fileName.split('/').pop(), ` ${this.fileUploadForm.controls.artifactUploadUrl.value}`)

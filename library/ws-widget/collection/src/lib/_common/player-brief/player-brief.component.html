@@ -459,7 +459,7 @@
     <div class="info-item" *ngIf="content?.sourceName?.length">
       <h3 class="item-heading ws-mat-primary-text" i18n>Created By</h3>
       <h3 class="ws-mat-accent-text width-expand">
-        {{ content?.sourceName  }}
+        {{ content?.sourceName  }} <span *ngIf="content?.sourceName === 'Other'">( {{content?.otherSourceName}} )</span>
       </h3>
     </div>
     <mat-divider></mat-divider>

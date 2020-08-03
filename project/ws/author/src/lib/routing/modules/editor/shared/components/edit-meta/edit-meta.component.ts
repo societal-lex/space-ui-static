@@ -468,7 +468,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private set content(contentMeta: NSContent.IContentMeta) {
     this.contentMeta = contentMeta
-    this.isEditEnabled = this.contentService.hasAccess(
+    this.isEditEnabled = this.contentService.isAllowedToEdit(
       contentMeta,
       false,
       this.parentContent ? this.contentService.getUpdatedMeta(this.parentContent) : undefined,

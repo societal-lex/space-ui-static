@@ -135,7 +135,7 @@ export class NotificationService {
         identifier: content.identifier,
       },
       'tag-value-pair': {
-        '#contentType': content.category,
+        '#contentType': this.mapContentType(content.category),
         '#contentTitle': content.name,
         '#targetUrl': `${document.baseURI}app/toc/${content.identifier}/overview`,
         '#comment': comment,
@@ -162,7 +162,7 @@ export class NotificationService {
       'event-id': 'approve_content',
 
       'tag-value-pair': {
-        '#contentType': content.category,
+        '#contentType': this.mapContentType(content.category),
         '#contentTitle': content.name,
         '#nextActor': `${nextActorName}${nextActor.length > 1 ? 's' : ''}`,
         '#currentActor': `${currentActorName}${actor.length > 1 ? 's' : ''}`,
@@ -193,7 +193,7 @@ export class NotificationService {
         identifier: content.identifier,
       },
       'tag-value-pair': {
-        '#contentType': content.category,
+        '#contentType': this.mapContentType(content.category),
         '#contentTitle': content.name,
         '#targetUrl': `${document.baseURI}author/editor/${content.identifier}`,
         '#currentActor': `${owner}`,
@@ -206,6 +206,16 @@ export class NotificationService {
         author: (content.creatorContacts || []).map(v => v.id),
       },
     }
+  }
+
+  mapContentType(type: string) {
+    if (type === 'Collection') {
+      return 'Asset'
+    }
+    if (type === 'Course') {
+      return 'Colleciton'
+    }
+    return type
   }
 
   sendContent(
@@ -221,7 +231,7 @@ export class NotificationService {
         identifier: content.identifier,
       },
       'tag-value-pair': {
-        '#contentType': content.category,
+        '#contentType': this.mapContentType(content.category),
         '#contentTitle': content.name,
         '#targetUrl': `${document.baseURI}author/editor/${content.identifier}`,
         '#nextActor': `${nextActorName}${nextActor.length > 1 ? 's' : ''}`,
@@ -244,7 +254,7 @@ export class NotificationService {
       'event-id': content.status === 'Live' ? 'delete_live_content' : 'delete_non_live_content',
       'tag-value-pair': {
         '#contentTitle': content.name,
-        '#contentType': content.contentType,
+        '#contentType': this.mapContentType(content.contentType),
         '#comment': comment,
         '#currentStage': this.workFlowService.getActionName(content.status) || content.status,
         '#targetUrl': `${document.baseURI}author/my-content?status=deleted`,
@@ -266,7 +276,7 @@ export class NotificationService {
       'event-id': 'mark_content_for_deletion',
       'tag-value-pair': {
         '#contentTitle': content.name,
-        '#contentType': content.contentType,
+        '#contentType': this.mapContentType(content.contentType),
         '#comment': comment,
         '#contentExpiryDate': content.expiryDate,
       },
@@ -287,7 +297,7 @@ export class NotificationService {
       'event-id': 'unpublish_content',
       'tag-value-pair': {
         '#contentTitle': content.name,
-        '#contentType': content.contentType,
+        '#contentType': this.mapContentType(content.contentType),
         '#comment': comment,
         '#targetUrl': `${document.baseURI}author/my-content?status=unpublished`,
       },
@@ -309,7 +319,7 @@ export class NotificationService {
       'event-id': 'move_content_to_draft',
       'tag-value-pair': {
         '#contentTitle': content.name,
-        '#contentType': content.contentType,
+        '#contentType': this.mapContentType(content.contentType),
         '#comment': comment,
         '#previousStage': currentActionName,
       },
