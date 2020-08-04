@@ -87,3 +87,8 @@ mat-card {
 .aStyle {
   font-family: campaign, sans-serif !important;
 }
+::ng-deep {
+  .theme-muave.night-mode .margin-bottom-s strong{
+  color: white !important;
+}
+}

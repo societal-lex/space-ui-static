@@ -64,3 +64,8 @@ ws-widget-user-image {
 .aStyle {
   font-family: campaign, sans-serif !important;
 }
+::ng-deep {
+  .theme-muave.night-mode .post-content span{
+  color: white !important;
+}
+}
