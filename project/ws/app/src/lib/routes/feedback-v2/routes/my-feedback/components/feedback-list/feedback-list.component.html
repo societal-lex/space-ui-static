@@ -97,17 +97,17 @@
     class="mat-toolbar cursor-pointer"
     (click)="onFeedbackItemClick(feedback)"
   >
-    <div mat-list-avatar>
+    <div mat-list-avatar *ngIf="feedback.feedbackBy">
       <ws-widget-user-image [email]="feedback.feedbackBy.email"></ws-widget-user-image>
     </div>
     <div mat-line>
       <div class="w-full sm:flex sm:flex-between">
-        <h3
-          class="mat-h3 truncate m-0 flex-grow"
-          [style.font-weight]="!feedback.replied ? 500 : 'inherit'"
-        >
-          {{ feedback.feedbackBy.name }}
-        </h3>
+         <div class="flex-grow">
+            <h3 *ngIf="feedback.feedbackBy" class="mat-h3 truncate m-0 "
+              [style.font-weight]="!feedback.replied ? 500 : 'inherit'">
+              {{ feedback.feedbackBy.name }}
+            </h3>
+         </div>
         <div
           class="mat-caption hidden sm:block"
           [style.font-weight]="!feedback.replied ? 500 : 'inherit'"

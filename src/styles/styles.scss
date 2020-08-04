@@ -76,9 +76,10 @@ mat-toolbar span {
   background: transparent !important;
 }
 [disabled|='true'] {
-  background: rgba(0, 0, 0, 0.12) !important;
-  color: rgba(0, 0, 0, 0.87) !important;
-  // background: transparent !important;
+  // background: rgba(0, 0, 0, 0.12) !important;
+  // color: rgba(0, 0, 0, 0.87) !important;
+  background: transparent !important;
+  color: darkgrey !important;
   // color: rgba(255, 255, 255, 0.3) !important;
 }
 .theme-muave.night-mode .mobileview span {

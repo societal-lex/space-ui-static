@@ -9,7 +9,7 @@
     <label>
       <b i18n>Add Role For</b>
     </label>
-    <mat-radio-group color="primary" (change)="changeMessage()" [(ngModel)]="forSelf" class="example-radio-group">
+    <mat-radio-group (change)="changeMessage()" [(ngModel)]="forSelf" class="example-radio-group mat-primary">
       <mat-radio-button class="example-radio-button" [value]="true" i18n>
         Myself
       </mat-radio-button>
