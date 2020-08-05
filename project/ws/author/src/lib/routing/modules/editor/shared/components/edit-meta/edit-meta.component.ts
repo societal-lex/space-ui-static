@@ -1185,6 +1185,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       visibility: [],
       isSearchable: [],
       spaceAssetType: [],
+      sourceShortName: [],
     })
     this.contentForm.controls.assetType.valueChanges.pipe(
       startWith(null),
@@ -1270,8 +1271,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.contentForm.controls.sourceName.value.includes('Other')) {
         this.showOther = true
       }
-      this.contentForm.controls.sourceShortName = this.contentForm.controls.sourceName
-      // console.log('source name ', this.contentForm.controls.sourceName.value)
+      this.contentForm.controls.sourceShortName.setValue(this.contentForm.controls.sourceName.value)      // console.log('source name ', this.contentForm.controls.sourceName.value)
       // console.log(this.contentService.getUpdatedMeta(this.contentService.currentContent))
     })
 
