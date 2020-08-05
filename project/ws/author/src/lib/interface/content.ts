@@ -45,7 +45,7 @@ export namespace NSContent {
     msArtifactDetails: IMsArtifacts[]
     idealScreenSize: string
     sourceShortName: string
-    sourceName: string[]
+    sourceName: string
     sourceUrl: string
     playgroundInstructions: string
     registrationInstructions: string
