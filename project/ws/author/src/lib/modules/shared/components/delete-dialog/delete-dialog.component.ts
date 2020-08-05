@@ -83,9 +83,9 @@ export class DeleteDialogComponent implements OnInit {
     observable.pipe(
       mergeMap(() =>
         this.notificationSvc
-          .deleteContent(
+          .deleteContent2(
             this.contentMeta as any,
-            this.commentsForm.value.comments,
+            this.contentMeta.status
           )
           .pipe(
             catchError(() => {

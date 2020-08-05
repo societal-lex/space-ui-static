@@ -23,6 +23,7 @@ import { LoaderService } from '@ws/author/src/lib/services/loader.service'
 import { Subscription } from 'rxjs'
 import { MyContentService } from '../../services/my-content.service'
 import { map } from 'rxjs/operators'
+import { NotificationService } from '@ws/author/src/lib/services/notification.service'
 
 @Component({
   selector: 'ws-auth-my-content',
@@ -82,6 +83,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private authInitService: AuthInitService,
+    private readonly notificationSrvc: NotificationService,
   ) {
     this.filterMenuTreeControl = new FlatTreeControl<IMenuFlatNode>(
       node => node.levels,
@@ -341,6 +343,9 @@ export class MyContentComponent implements OnInit, OnDestroy {
           this.cardContent = (this.cardContent || []).filter(
             v => v.identifier !== request.identifier,
           )
+            if (['Live', 'Unpublished', 'Reviewed'].includes(request.status)) {
+              this.notificationSrvc.triggerNotification('delete', request, request.status)
+            }
         },
         error => {
           if (error.status === 409) {
@@ -512,7 +517,8 @@ export class MyContentComponent implements OnInit, OnDestroy {
 
   unPublishOrDraft(request: NSContent.IContentMeta, actionType?: string) {
     this.loadService.changeLoad.next(true)
-    this.myContSvc.upPublishOrDraft(request.identifier, this.allowAccordingToStatus(request.status, actionType)).subscribe(
+    const operation = this.allowAccordingToStatus(request.status, actionType)
+    this.myContSvc.upPublishOrDraft(request.identifier, operation).subscribe(
       () => {
         this.loadService.changeLoad.next(false)
         this.snackBar.openFromComponent(NotificationComponent, {
@@ -522,6 +528,12 @@ export class MyContentComponent implements OnInit, OnDestroy {
           duration: NOTIFICATION_TIME * 1000,
         })
         this.cardContent = (this.cardContent || []).filter(v => v.identifier !== request.identifier)
+        // trigger notification
+        if (operation) {
+          this.notificationSrvc.triggerNotification('unpublish', request, 'Live')
+        } else {
+          this.notificationSrvc.triggerNotification('moveToDraft', request, 'Reviewed')
+        }
       },
       error => {
         if (error.status === 409) {

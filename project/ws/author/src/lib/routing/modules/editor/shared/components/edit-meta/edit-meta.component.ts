@@ -1271,6 +1271,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.contentForm.controls.sourceName.value.includes('Other')) {
         this.showOther = true
       }
+      // tslint:disable-next-line: max-line-length
       this.contentForm.controls.sourceShortName.setValue(this.contentForm.controls.sourceName.value)      // console.log('source name ', this.contentForm.controls.sourceName.value)
       // console.log(this.contentService.getUpdatedMeta(this.contentService.currentContent))
     })
