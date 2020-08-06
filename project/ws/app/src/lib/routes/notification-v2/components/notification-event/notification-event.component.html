@@ -29,4 +29,20 @@
   <ng-container *ngSwitchCase="notificationEvents.ApproveContent">
     create
   </ng-container>
+  <ng-container *ngSwitchCase="notificationEvents.DeleteContent">
+    delete_forever
+  </ng-container>
+  <ng-container *ngSwitchCase="notificationEvents.UnpublishContent">
+    settings_backup_restore
+  </ng-container>
+  <ng-container *ngSwitchCase="notificationEvents.RecallToDraftContent">
+    restore
+  </ng-container>
+  <ng-container *ngSwitchCase="notificationEvents.UnpublishedToDraftContent">
+    restore
+  </ng-container>
+  <!--Default case when no event matches-->
+  <ng-container *ngSwitchDefault>
+    create
+  </ng-container>
 </mat-icon>
