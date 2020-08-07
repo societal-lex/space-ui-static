@@ -530,9 +530,9 @@ export class MyContentComponent implements OnInit, OnDestroy {
         this.cardContent = (this.cardContent || []).filter(v => v.identifier !== request.identifier)
         // trigger notification
         if (operation) {
-          this.notificationSrvc.triggerNotification('unpublish', request, 'Live')
+          this.notificationSrvc.triggerNotification('unpublish', request, request.status)
         } else {
-          this.notificationSrvc.triggerNotification('moveToDraft', request, 'Reviewed')
+          this.notificationSrvc.triggerNotification('moveToDraft', request, request.status)
         }
       },
       error => {

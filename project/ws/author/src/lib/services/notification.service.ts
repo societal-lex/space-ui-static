@@ -342,8 +342,13 @@ export class NotificationService {
     if (!this.initService.authAdditionalConfig.allowNotification) {
       return of({})
     }
+    let eventID = 'Recall_to_draft'
+
+    if (previousStage === 'Unpublished' && this.accessService.hasRole(['publisher', 'editor'])) {
+      eventID = 'unpublished_to_draft'
+    }
     const body = {
-      'event-id': 'Recall_to_draft',
+      'event-id': eventID,
       'tag-value-pair': {
         '#contentTitle': content.name,
         '#contentType': this.mapContentType(content.contentType),
