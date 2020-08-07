@@ -95,6 +95,7 @@ export class PlayerPdfComponent extends WidgetBaseComponent
   }
 
   ngOnInit() {
+    console.log('wid',this.widgetData)
     // SimpleLinkService does not support handling of relative link switching PDFLinkService
     pdfjsViewer.SimpleLinkService.prototype.getDestinationHash =
       pdfjsViewer.PDFLinkService.prototype.getDestinationHash
@@ -167,6 +168,28 @@ export class PlayerPdfComponent extends WidgetBaseComponent
         this.loadPageNum(this.currentPage.value - 1)
       }
     })
+  }
+  get isDownloadable() {
+    if (this.widgetData) {
+      if (this.widgetData.pdfUrl) {
+        return true
+      }
+    }
+    return false
+  }
+  download() {
+    if (this.widgetData.pdfUrl) {
+      const link = document.createElement('a')
+      link.download = this.widgetData.pdfUrl
+      link.target = '_self'
+      // Construct the URI
+      link.href = this.widgetData.pdfUrl || ''
+      document.body.appendChild(link)
+      link.click()
+      // Cleanup the DOM
+      document.body.removeChild(link)
+    }
+    // delete link;
   }
   ngOnChanges() {
     // if (this.widgetData !== this.oldData) {
