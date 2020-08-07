@@ -12,7 +12,7 @@
 .title-textarea {
   width: 100%;
   border-bottom: 1px solid;
-  border-radius: 5px;
+  // border-radius: 5px;
   outline: none;
   font-size: 2rem;
   resize: none;
@@ -23,7 +23,7 @@
 .abstract-textarea {
   width: 100%;
   border-bottom: 1px solid;
-  border-radius: 5px;
+  // border-radius: 5px;
   outline: none;
   font-size: 1.2rem;
   resize: none;
@@ -32,9 +32,15 @@
 }
 
 .editor {
-  display: block;
-  min-height: 178px;
-  margin-top: $size-m;
+  // display: block;
+  // min-height: 178px;
+  // margin-top: $size-m;
+    display: block;
+    min-height: 150px;
+    margin-top: 16px;
+    padding: 0 24px;
+    border: 1px solid;
+    border-radius: 8px;
 }
 
 .error-text {
