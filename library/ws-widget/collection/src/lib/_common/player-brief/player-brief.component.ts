@@ -49,7 +49,7 @@ export class PlayerBriefComponent implements OnInit {
 
   get isDownloadable() {
     if (this.content) {
-      if (this.content.mimeType === "application/pdf") {
+      if (this.content.mimeType === 'application/pdf') {
         return true
       }
     }
