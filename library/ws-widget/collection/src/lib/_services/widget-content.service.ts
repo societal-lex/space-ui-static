@@ -57,6 +57,18 @@ export class WidgetContentService {
       .get<NsContent.IContent>(url)
       .pipe(retry(1))
   }
+  // fetchContent(
+  //   contentId: string,
+  //   hierarchyType: 'all' | 'minimal' | 'detail' = 'detail',
+  //   additionalFields: string[] = [],
+  // ): Observable<NsContent.IContent> {
+  //   const url = `${API_END_POINTS.CONTENT}/${contentId}?hierarchyType=${hierarchyType}`
+  //   return this.http
+  //     .post<NsContent.IContent>(url, { additionalFields })
+  //     .pipe(retry(1))
+  // }
+
+
 
   fetchAuthoringContent(contentId: string): Observable<NsContent.IContent> {
     const url = `${API_END_POINTS.AUTHORING_CONTENT}/${contentId}`

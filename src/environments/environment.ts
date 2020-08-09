@@ -9,7 +9,7 @@
 
 export const environment: IEnvironment = {
   production: false,
-  sitePath: 'localhost_3000',
+  sitePath: 'learn.stackroutelabs.com',
 }
 
 interface IEnvironment {

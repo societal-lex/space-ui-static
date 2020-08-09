@@ -67,6 +67,7 @@ import { AppCollaboratorsComponent } from './component/app-collaborators/app-col
 import { AppFooterInsideComponent } from './component/app-footer-inside/app-footer-inside.component'
 import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
 import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.component'
+import { RegisterUserModule } from './routes/public/register-user/register-user.module'
 // import { ServiceWorkerModule } from '@angular/service-worker'
 // import { environment } from '../environments/environment'
 
@@ -110,7 +111,6 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     AppFooterInsideComponent,
     TermsofuseComponent,
     DataprivacyComponent,
-
   ],
   imports: [
     FormsModule,
@@ -149,6 +149,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     MobileAppModule,
     PipeSafeSanitizerModule,
     TourModule,
+    RegisterUserModule
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   exports: [

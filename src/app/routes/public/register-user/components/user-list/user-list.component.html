@@ -1,0 +1,135 @@
+<mat-toolbar class="mat-primary" [color]="navBackground?.color" [ngStyle]="navBackground?.styles">
+  <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+  <span class="margin-left-s text-color" i18n>Registered Users</span>
+</mat-toolbar>
+
+<!-- **************************************************************** -->
+
+<!-- <ng-container *ngFor="let registeredUser of users">
+  <div class="container w-9/12">
+    <div class="top w-full">
+      <div class="image-container">
+        <img src="/Users/tanyachauhan/Documents/img_avatar.jpeg" alt="Avatar" class="avatar">
+        <div class="body text-center md:text-left">
+          <h2>{{registeredUser.username}}</h2>
+          <div class="text-gray-60">{{registeredUser.residence_city}}</div>
+          <div class="text-purple-500">{{registeredUser.employment_status}}</div>
+          <div class="text-gray-600">{{registeredUser.department_name}}</div>
+
+        </div>
+      </div>
+    </div>
+    <div class="bottom w-full">
+      <button (click)="viewUserDetails(registeredUser)">View Details</button>
+    </div>
+  </div>
+</ng-container> -->
+
+
+<!-- ****************************************************************************** -->
+<div class="container">
+  <!-- <div class="example-header">
+    <mat-form-field>
+       <button mat-button matPrefix mat-icon-button> -->
+
+  <!-- </button> -->
+  <!-- <input matInput class="width-input" (keyup)="applyFilter($event.target.value)"
+        placeholder="Search by location or status" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+  </div>  -->
+  <!-- <mat-toolbar class="search-clr"> -->
+  <!-- this is the correct code for search -->
+  <!-- <mat-form-field class="search-clr" style="width: 100%" floatLabel='never'>
+    <input matInput [(ngModel)]="searchText" placeholder="Search" autocomplete="off">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field> -->
+
+  <mat-form-field>
+    <mat-label>Search by location or status</mat-label>
+    <mat-select [(ngModel)]="searchText">
+      <!-- <mat-option *ngFor="let registeredUser of users" [value]="registeredUser.residence_city">
+        {{registeredUser.residence_city}}
+
+      </mat-option>
+      <mat-option *ngFor="let registeredUser of  users" [value]="registeredUser.employment_status">
+        {{registeredUser.employment_status}}
+      </mat-option> -->
+
+      <mat-option *ngFor="let registeredUser of myarraylocation" [value]="registeredUser">
+        {{registeredUser}}
+
+      </mat-option>
+      <mat-option *ngFor="let registeredUser of  myarraystatus" [value]="registeredUser">
+        {{registeredUser}}
+      </mat-option>
+
+      <!-- <mat-option *ngFor="let registeredUser of  filtercombo" [value]="registeredUser">
+        {{registeredUser.location}} && {{registeredUser.status}}
+      </mat-option> -->
+
+    </mat-select>
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+  <!-- </mat-toolbar> -->
+
+  <mat-card-content class="grid">
+
+    <ng-container *ngFor="let registeredUser of users | filter : searchText">
+      <!-- <ng-container *ngFor="let registeredUser of users"> -->
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{registeredUser.username}}</mat-card-title>
+          <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="text-gray-60"> Location : {{registeredUser.residence_city}}</div>
+          <div class="text-purple-500"> Status : {{registeredUser.employment_status}}</div>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="mat-primary btn-clr" (click)="viewUserDetails(registeredUser)">View Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+
+  </mat-card-content>
+</div>
+
+<!-- *************************************************************************** -->
+
+<!-- <div class="container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-form-field class="example-full-width">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </mat-card-header>
+
+    <mat-card-content class="grid">
+
+
+      <mat-card class="example-card-two" *ngFor="let registeredUser of users">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{registeredUser.username}}</mat-card-title>
+          <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="text-purple-500">{{registeredUser.employment_status}}</div>
+          <div class="text-gray-60">{{registeredUser.residence_city}}</div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="viewUserDetails(registeredUser)">View Details</button>
+
+        </mat-card-actions>
+      </mat-card>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>  -->
