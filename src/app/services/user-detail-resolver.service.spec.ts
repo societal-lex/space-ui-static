@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing'
 
-import { UserDetailResolverService } from './user-detail-resolver.service';
+import { UserDetailResolverService } from './user-detail-resolver.service'
 
 describe('UserDetailResolverService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({}))
 
   it('should be created', () => {
-    const service: UserDetailResolverService = TestBed.get(UserDetailResolverService);
-    expect(service).toBeTruthy();
-  });
-});
+    const service: UserDetailResolverService = TestBed.get(UserDetailResolverService)
+    expect(service).toBeTruthy()
+  })
+})

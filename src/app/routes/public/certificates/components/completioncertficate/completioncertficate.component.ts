@@ -14,17 +14,15 @@ export class CompletioncertficateComponent implements OnInit {
   value = 1
   wid: any
   constructor(private router: ActivatedRoute, private readonly userDetailsSrvc: RegisterUserCoreService, private route: Router) {
-    console.log('inside component also')
   }
   ngOnInit() {
     this.date = new Date().toDateString()
     this.router.params.subscribe(params => {
-      this.value = parseInt(params['stage'])
-      this.wid = parseInt(params['userid'])
+      this.value = parseInt(params['stage'], 10)
+      this.wid = parseInt(params['userid'], 10)
 
-      if ((this.value == 1 || this.value == 2) && this.wid) {
+      if ((this.value === 1 || this.value === 2) && this.wid) {
         this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {
-          console.log('recieved student data as ', studentData)
           if (studentData) {
             this.student = { ...studentData }
           } else {
@@ -36,7 +34,6 @@ export class CompletioncertficateComponent implements OnInit {
       }
 
       // this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {
-      //   console.log('recieved student data as ', studentData)
       //   if (studentData) {
       //     this.student = { ...studentData }
       //   }

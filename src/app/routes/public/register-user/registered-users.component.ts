@@ -19,7 +19,6 @@ export class RegisteredUsersComponent implements OnInit {
 
   ngOnInit() {
     this._route.data.subscribe((_users: any) => {
-      console.log('+++', _users)
       this.registeredUsers = [..._users.users.details]
     })
   }

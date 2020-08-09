@@ -1,26 +1,166 @@
-.container {
-  min-height: 400px;
-  margin: auto;
-  border: 1px solid black;
-  background-color: white;
-  margin-top: 20px;
-  // margin-left: 60px;
-  width:60%;
-  align-items: center;
-  justify-content: center;
+// .container {
+//   min-height: 400px;
+//   margin: auto;
+//   // border: 1px solid black;
+//   background-color: white;
+//   margin-top: 20px;
+//   // margin-left: 60px;
+//   width:60%;
+//   align-items: center;
+//   justify-content: center;
 
-.allignimage{
-  align-items: center;
-  justify-content: center;
+// .allignimage{
+//   align-items: center;
+//   justify-content: center;
 
+// }
+// .example-header-image{
+//  background-image: url('https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
+//   background-size: cover;
+// }
+
+
+// }
+
+// .mat-card-avatar {
+//     height: 100px;
+//     width: 100px;
+//     border-radius: 50%;
+//     flex-shrink: 0;
+//     object-fit: cover;
+//     justify-content: center;
+//     align-items: center;
+//     margin: auto;
+// }
+// .btn-clr{
+//       width: 26%;
+//     height: 27px;
+// }
+// ::ng-deep{
+// //day mode
+// .theme-teal.day-mode .btn-clr{
+//   background-color: #005F87 !important;
+//   color: white !important;
+
+// }
+// .theme-orange.day-mode .btn-clr{
+// background: #FF9800 !important;
+// color: white !important;
+// }
+// .theme-muave.day-mode .btn-clr{
+//   background: #865BA0 !important;
+//   color: white !important;
+
+// }
+// .theme-lite-blue.day-mode .btn-clr{
+// background: #b3e5fc !important;
+// color: white !important;
+// }
+
+// .theme-blue.day-mode .btn-clr{
+// background: #0072CE !important;
+// color: white !important;
+// }
+// .theme-grey.day-mode .btn-clr{
+// background: #C6C6C6 !important;
+// color: white !important;
+// }
+// .theme-deep-purple.day-mode .btn-clr{
+// background: #673AB7!important;
+// color: white !important;
+// }
+// .theme-indigo.day-mode .btn-clr{
+// background: #3F51B5 !important;
+// color: white !important;
+// }
+
+//  //night mode
+
+//  .theme-teal.night-mode .btn-clr{
+//   background-color: #005F87 !important;
+//   color: white !important;
+
+// }
+// .theme-orange.night-mode .btn-clr{
+// background: #FF9800 !important;
+// color: white !important;
+// }
+// .theme-muave.night-mode .btn-clr{
+//   background: #865BA0 !important;
+//   color: white !important;
+
+// }
+// .theme-lite-blue.night-mode .btn-clr{
+// background: #b3e5fc !important;
+// color: white !important;
+// }
+
+// .theme-blue.night-mode .btn-clr{
+// background: #0072CE !important;
+// color: white !important;
+// }
+// .theme-grey.night-mode .btn-clr{
+// background: #C6C6C6 !important;
+// color: white !important;
+// }
+// .theme-deep-purple.night-mode .btn-clr{
+// background: #673AB7!important;
+// color: white !important;
+// }
+// .theme-indigo.night-mode .btn-clr{
+// background: #3F51B5 !important;
+// color: white !important;
+// }
+// .idclass{
+//   text-align: center;
+// }
+// .leftclass{
+//   width:80%;
+
+// // text-align: center;
+// float:left;
+
+// }
+// .rightclass{
+//   width:80%;
+
+// // text-align: center;
+// float:left;
+
+// }
+
+// }
+
+// *************************************************************
+.container > div{
+  width:150px;
+  height: 150px;
+  border: 1px red solid;
 }
-.example-header-image{
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+ .leftclass{
+   float: left;
+    // border: 1px green solid;
+    margin-left:50px;
+    font-size: 20px;
+
+ }
+ .rightclass{
+   float:right;
+  //  border: 1px green solid;
+   margin-right:45px;
+    font-size: 20px;
+ }
+ .example-header-image{
  background-image: url('https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
   background-size: cover;
 }
 
 
-}
+
 
 .mat-card-avatar {
     height: 100px;
@@ -32,9 +172,20 @@
     align-items: center;
     margin: auto;
 }
+.example-card{
+  height: 500px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right:20px;
+   margin-bottom:20px;
+}
+
+
 .btn-clr{
-      width: 26%;
-    height: 27px;
+    width: 13%;
+    height: 35px;
+    float:right;
+    font-size: 18px;
 }
 ::ng-deep{
 //day mode
@@ -111,6 +262,4 @@ color: white !important;
 background: #3F51B5 !important;
 color: white !important;
 }
-
-
 }

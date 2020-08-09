@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing'
 
-import { RegisterUserCoreService } from './register-user-core.service';
+import { RegisterUserCoreService } from './register-user-core.service'
 
 describe('RegisterUserCoreService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({}))
 
   it('should be created', () => {
-    const service: RegisterUserCoreService = TestBed.get(RegisterUserCoreService);
-    expect(service).toBeTruthy();
-  });
-});
+    const service: RegisterUserCoreService = TestBed.get(RegisterUserCoreService)
+    expect(service).toBeTruthy()
+  })
+})

@@ -22,7 +22,6 @@ export class UserListComponent implements OnInit {
 
     // const filteruser = [...new Set(this.users.map(x => x.employment_status))]
 
-    // console.log(":**********", filteruser)
     // const result = []
     // const map = new Map()
     // for (const item of this.users) {
@@ -34,7 +33,6 @@ export class UserListComponent implements OnInit {
     //     })
     //   }
     // }
-    // console.log("result", result)
 
     // const val = new Set(this.users.map(user => user.employment_status))
 
@@ -49,36 +47,33 @@ export class UserListComponent implements OnInit {
   // const uniqueWorkflowData = lodash.uniqBy(stats, 'workflow');
 
   searchText: any
-  filteruser_status: any
-  filteruser_location: any
-  filtercombo: any[] = []
-  myarraystatus: any
-  myarraylocation: any
+  filterStatus: any
+  filterLocation: any
+  filterCombo: any[] = []
+  myarrayStatus: any
+  myarrayLocation: any
 
   ngOnInit() {
     this.filterUser()
   }
   filterUser() {
 
-    // this.filteruser_status = new Set(this.users.map(x => x.employment_status))
-    const filteruser_status: any = new Set(this.users.map(x => x.employment_status))
+    // this.filterStatus = new Set(this.users.map(x => x.employment_status))
+    const filterStatus: any = new Set(this.users.map(x => x.employment_status))
 
-    this.myarraystatus = Array.from(filteruser_status)
-    console.log('filteruser_status', filteruser_status)
-    // this.filteruser_location = new Set(this.users.map(x => x.residence_city))
-    const filteruser_location: any = new Set(this.users.map(x => x.residence_city))
+    this.myarrayStatus = Array.from(filterStatus)
+    // this.filterLocation = new Set(this.users.map(x => x.residence_city))
+    const filterLocation: any = new Set(this.users.map(x => x.residence_city))
 
-    this.myarraylocation = Array.from(filteruser_location)
-    // console.log("filteruser_location", filteruser_location)
-    // this.filtercombo =
-    // this.myarraylocation.map((location: any) => {
-    //   this.myarraystatus.map((status: any) => {
+    this.myarrayLocation = Array.from(filterLocation)
+    // this.filterCombo =
+    // this.myarrayLocation.map((location: any) => {
+    //   this.myarrayStatus.map((status: any) => {
     //     let combo: any = {
     //       location: location,
     //       status: status
     //     }
-    //     this.filtercombo.push(combo)
-    //     console.log("++++++++combo", combo)
+    //     this.filterCombo.push(combo)
     //     // return combo
     //   })
     // })
@@ -103,7 +98,6 @@ export class UserListComponent implements OnInit {
   // }
 
   // selectPost(registeredUser: any) {
-  //   console.log(`The selected post is::  ${registeredUser.residence_city}`)
   // }
 
   // usage example:

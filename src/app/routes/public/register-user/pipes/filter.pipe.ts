@@ -52,7 +52,7 @@ function search(entries: any[], search: string) {
           return v.toString().toLowerCase().includes(search)
         })
       }
-       if (!isArray(value)) {
+      if (!isArray(value)) {
         return value.toString().toLowerCase().includes(search)
       }
     })
