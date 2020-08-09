@@ -32,3 +32,85 @@
     align-items: center;
     margin: auto;
 }
+.btn-clr{
+      width: 26%;
+    height: 27px;
+}
+::ng-deep{
+//day mode
+.theme-teal.day-mode .btn-clr{
+  background-color: #005F87 !important;
+  color: white !important;
+
+}
+.theme-orange.day-mode .btn-clr{
+background: #FF9800 !important;
+color: white !important;
+}
+.theme-muave.day-mode .btn-clr{
+  background: #865BA0 !important;
+  color: white !important;
+
+}
+.theme-lite-blue.day-mode .btn-clr{
+background: #b3e5fc !important;
+color: white !important;
+}
+
+.theme-blue.day-mode .btn-clr{
+background: #0072CE !important;
+color: white !important;
+}
+.theme-grey.day-mode .btn-clr{
+background: #C6C6C6 !important;
+color: white !important;
+}
+.theme-deep-purple.day-mode .btn-clr{
+background: #673AB7!important;
+color: white !important;
+}
+.theme-indigo.day-mode .btn-clr{
+background: #3F51B5 !important;
+color: white !important;
+}
+
+ //night mode
+
+ .theme-teal.night-mode .btn-clr{
+  background-color: #005F87 !important;
+  color: white !important;
+
+}
+.theme-orange.night-mode .btn-clr{
+background: #FF9800 !important;
+color: white !important;
+}
+.theme-muave.night-mode .btn-clr{
+  background: #865BA0 !important;
+  color: white !important;
+
+}
+.theme-lite-blue.night-mode .btn-clr{
+background: #b3e5fc !important;
+color: white !important;
+}
+
+.theme-blue.night-mode .btn-clr{
+background: #0072CE !important;
+color: white !important;
+}
+.theme-grey.night-mode .btn-clr{
+background: #C6C6C6 !important;
+color: white !important;
+}
+.theme-deep-purple.night-mode .btn-clr{
+background: #673AB7!important;
+color: white !important;
+}
+.theme-indigo.night-mode .btn-clr{
+background: #3F51B5 !important;
+color: white !important;
+}
+
+
+}

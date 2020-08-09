@@ -5,6 +5,7 @@
 
 
 <ng-container>
+
   <mat-card>
 
     <div class="container bg-white rounded-lg p-6">
@@ -39,9 +40,9 @@
 
         <div [ngSwitch]=currentUserDetails.employment_status>
           <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr" (click)="viewCertificate(2)">View
-              Certificates</button></div>
+              Certificate</button></div>
           <div *ngSwitchCase="'Achievement'"><button class="mat-primary btn-clr" (click)="viewCertificate(1)">View
-              Certificates</button></div>
+              Certificate</button></div>
 
         </div>
 
