@@ -1,39 +1,46 @@
 .intro{
-    padding-left: 300px;
-    width:800px;
-     height:600px;
-      padding:20px; 
-      text-align:center; 
-      border: 10px solid #787878
+
+width:800px;
+height:600px;
+padding:20px;
+text-align:center;
+border: 10px solid #787878
 }
 
 .intro1 {
-    
-    width:750px; 
-    height:550px; 
-    padding:20px; 
-    text-align:center; 
-    border: 5px solid #787878
-    
+
+width:750px;
+height:550px;
+padding:20px;
+text-align:center;
+border: 5px solid #787878
+
 }
 
 .v1{
-    
-    font-size:50px;
-     font-weight:bold
+font-size:50px;
+font-weight:bold
 }
 .v2 {
-    
-    font-size:25px
+
+font-size:25px
 }
 .v3 {
-    
-    font-size:30px
+padding-top: 50%;
+font-size:30px
 }
 .v4 {
-    
-    font-size:20px
+
+font-size:20px
 }
 .center{
-    padding-left: 300px;
+
+padding-left: 300px;
+}
+.date{
+padding-top: 1vh;
+padding-left: 83vh;
+}
+.main{
+padding-top: 14vh;
 }

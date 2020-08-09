@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { RegisterUserCoreService } from '../../../register-user/services/register-user-core.service'
 @Component({
   selector: 'app-completioncertficate',
@@ -13,7 +13,7 @@ export class CompletioncertficateComponent implements OnInit {
   data: any
   value = 1
   wid: any
-  constructor(private router: ActivatedRoute, private readonly userDetailsSrvc: RegisterUserCoreService) {
+  constructor(private router: ActivatedRoute, private readonly userDetailsSrvc: RegisterUserCoreService, private route: Router) {
     console.log('inside component also')
   }
   ngOnInit() {
@@ -21,12 +21,26 @@ export class CompletioncertficateComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.value = parseInt(params['stage'])
       this.wid = parseInt(params['userid'])
-      this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {
-        console.log('recieved student data as ', studentData)
-        if (studentData) {
-          this.student = { ...studentData }
-        }
-      })
+
+      if ((this.value == 1 || this.value == 2) && this.wid) {
+        this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {
+          console.log('recieved student data as ', studentData)
+          if (studentData) {
+            this.student = { ...studentData }
+          } else {
+            this.route.navigateByUrl('/public/registeredusers')
+          }
+        })
+      } else {
+        this.route.navigateByUrl('/public/registeredusers')
+      }
+
+      // this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {
+      //   console.log('recieved student data as ', studentData)
+      //   if (studentData) {
+      //     this.student = { ...studentData }
+      //   }
+      // })
     })
   }
 }
