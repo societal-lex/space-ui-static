@@ -24,7 +24,8 @@ export class RegisterUserCoreService {
         "contact_phone_number_personal": "8908765671",
         "residence_city": "Delhi",
         "employment_status": "Achievement",
-        "department_name": "Bird Watching"
+        "department_name": "Bird Watching",
+        "time_updated": "7 Aug 2020"
       },
       {
         "source_id": 100,
@@ -38,7 +39,8 @@ export class RegisterUserCoreService {
         "contact_phone_number_personal": "9880076500",
         "residence_city": "Bangalore",
         "employment_status": "Participatry",
-        "department_name": "Visiting"
+        "department_name": "Visiting",
+        "time_updated": "7 Aug 2020"
 
       },
       {
@@ -53,7 +55,8 @@ export class RegisterUserCoreService {
         "contact_phone_number_personal": "9880076501",
         "residence_city": "Bangalore",
         "employment_status": "Achievement",
-        "department_name": "Feeding Birds"
+        "department_name": "Feeding Birds",
+        "time_updated": "7 Aug 2020"
       },
 
       {
@@ -68,7 +71,8 @@ export class RegisterUserCoreService {
         "contact_phone_number_personal": "9880076503",
         "residence_city": "Bangalore",
         "employment_status": "Achievement",
-        "department_name": "Watching Birds"
+        "department_name": "Watching Birds",
+        "time_updated": "7 Aug 2020"
       },
       {
         "source_id": 103,
@@ -82,7 +86,8 @@ export class RegisterUserCoreService {
         "contact_phone_number_personal": "9880076505",
         "residence_city": "Bangalore",
         "employment_status": "Participatry",
-        "department_name": "Feeding Birds"
+        "department_name": "Feeding Birds",
+        "time_updated": "7 Aug 2020"
       }
 
 

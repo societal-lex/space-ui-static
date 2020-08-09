@@ -1,34 +1,33 @@
-<div *ngIf="value==1" class = "center">
-    <div class = "intro">
-        <div class = "intro1">
-               <span class = "v1">Certificate of Achievement</span>
-               <br><br>
-               <span class = "v2"><i>This is to certify that</i></span>
-               <br><br>
-               <span class = "v3"><b>{{student?.FullName}}</b></span><br/><br/>
-               <span class = "v2"><i>has completed the course</i></span> <br/><br/>
-               <span class = "v3">{{student?.course}}</span> <br/><br/>
-               <span class = "v4">with score of <b>{{student?.point}}</b></span> <br/><br/><br/><br/>
-               <span class = "v2"><i>dated</i></span><br>
-              <span class = "v3">{{date}}</span>
-        </div>
+<div *ngIf="value==1" class="center">
+    <div class="intro">
+        <div class="intro1">
+            <span class="v1">Certificate of Achievement</span>
+            <br><br>
+            <span class="v2"><i>This is to certify that</i></span>
+            <br><br>
+            <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
+            <span class="v2"><i>has completed the course</i></span> <br /><br />
+            <span class="v3">{{student?.department_name}}</span> <br /><br />
+            <span class="v4">with status of <b>{{student?.employment_status}}</b></span> <br /><br /><br /><br />
+            <span class="v2"><i>Certified on</i></span><br>
+            <span class="v3">{{student?.time_updated}}</span>
         </div>
     </div>
+</div>
 
-    <div *ngIf="value==2" class = "center">
-        <div class = "intro">
-            <div class = "intro1">
-                   <span class = "v1">Certificate of Participation</span>
-                   <br><br>
-                   <span class = "v2"><i>This is to acknowledge that</i></span>
-                   <br><br>
-                   <span class = "v3"><b>{{student.FullName}}</b></span><br/><br/>
-                   <span class = "v2"><i>has participated in the course</i></span> <br/><br/>
-                   <span class = "v3">{{student.course}}</span> <br/><br/>
-                   <span class = "v4">with score of <b>{{student.point}}</b></span> <br/><br/><br/><br/>
-                   <span class = "v2"><i>dated</i></span><br>
-                  {{student.date}}
-                  <span class = "v3">{{date}}</span>
-            </div>
-            </div>
+<div *ngIf="value==2" class="center">
+    <div class="intro">
+        <div class="intro1">
+            <span class="v1">Certificate of Participation</span>
+            <br><br>
+            <span class="v2"><i>This is to certify that</i></span>
+            <br><br>
+            <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
+            <span class="v2"><i>has completed the course</i></span> <br /><br />
+            <span class="v3">{{student?.department_name}}</span> <br /><br />
+            <span class="v4">with status of <b>{{student?.employment_status}}</b></span> <br /><br /><br /><br />
+            <span class="v2"><i>Certified on</i></span><br>
+            <span class="v3">{{student?.time_updated}}</span>
         </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ export interface RegsiterDetailObject {
   residence_city?: string,
   employment_status?: string,
   department_name?: string,
+  time_updated?: string
 }
 export interface RegisterUserModel {
   details: RegsiterDetailObject[]

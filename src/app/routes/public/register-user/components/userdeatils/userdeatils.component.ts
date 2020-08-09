@@ -24,6 +24,7 @@ export class UserdeatilsComponent implements OnInit {
     })
   }
   viewCertificate(certiType: number, defaultUserID?: number) {
+    // if(this.currentUserDetails.employment_status==="Achievement")
     if (certiType == 1) {
       this.router.navigate([`/public/registeredusers/certificates/${1}/${defaultUserID ? defaultUserID : this.currentUserDetails.source_id}`], { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType == 2) {

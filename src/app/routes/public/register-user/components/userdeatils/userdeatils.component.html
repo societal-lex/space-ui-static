@@ -6,6 +6,7 @@
 
 <ng-container>
   <mat-card>
+
     <div class="container bg-white rounded-lg p-6">
       <!-- <img class="h-16 w-16 rounded-full mx-auto allignimage .example-header-image"> -->
       <div mat-card-avatar class="example-header-image"></div>
@@ -18,6 +19,8 @@
         <div class="text-gray-600">Country : {{currentUserDetails.residence_country}}</div>
         <div class="text-gray-600">Gender : {{currentUserDetails.gender}}</div>
 
+        <div class="text-gray-600">Cerification Date : {{currentUserDetails.time_updated}}</div>
+
         <div class="text-gray-60">Location : {{currentUserDetails.residence_city}}</div>
         <div class="text-gray-600">Course : {{currentUserDetails.department_name}}</div>
         <div class="text-gray-600">Contact Number : {{currentUserDetails.contact_phone_number_personal}}</div>
@@ -26,12 +29,21 @@
         <div class="text-blue-500">Status : {{currentUserDetails.employment_status}}</div>
 
         <br><br><br>
-        <!-- <div class="text-purple-50"><a href="https://learn.stackroutelabs.com"><span class="s7">View
-              Certificates</span></a></div> -->
-        <button class="mat-primary btn-clr" (click)="viewCertificate(1)">View
+
+        <!-- <button class="mat-primary btn-clr" (click)="viewCertificate(1)">View
           Acheivements</button>
         <button class="mat-primary btn-clr" (click)="viewCertificate(2)">View
-          Participation</button>
+          Participation</button> -->
+
+
+
+        <div [ngSwitch]=currentUserDetails.employment_status>
+          <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr" (click)="viewCertificate(2)">View
+              Certificates</button></div>
+          <div *ngSwitchCase="'Achievement'"><button class="mat-primary btn-clr" (click)="viewCertificate(1)">View
+              Certificates</button></div>
+
+        </div>
 
       </div>
     </div>
