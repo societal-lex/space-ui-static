@@ -38,13 +38,14 @@ export class BtnMailUserDialogComponent implements OnInit {
       .subscribe(
         data => {
           this.mailSendInProgress = false
-          if (data.response === 'Success' && (!data.invalidIds || data.invalidIds.length === 0)) {
+          // if (data.response === 'Success' && (!data.invalidIds || data.invalidIds.length === 0)) {
             this.sendStatus = 'SUCCESS'
             this.snackBar.open(
               successMsg,
             )
             this.dialogRef.close()
-          } else if (data.invalidIds && data.invalidIds.length) {
+          // }
+          if (data.invalidIds && data.invalidIds.length) {
             this.sendStatus = 'INVALID_ID'
             this.snackBar.open(invalidIdToast)
           }
