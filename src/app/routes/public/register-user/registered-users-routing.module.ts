@@ -8,20 +8,20 @@ import { UserDetailResolverService } from '../../../services/user-detail-resolve
 const routes: Routes = [
   {
     path: '',
-    component: RegisteredUsersComponent
+    component: RegisteredUsersComponent,
   },
   {
     path: 'detail/:userID',
     component: UserdeatilsComponent,
     resolve: {
-      details: UserDetailResolverService
+      details: UserDetailResolverService,
     },
-  }
+  },
 ] // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class RegisteredUsersRoutingModule { }

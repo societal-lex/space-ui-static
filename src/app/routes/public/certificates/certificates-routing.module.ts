@@ -5,13 +5,13 @@ import { CompletioncertficateComponent } from './components/completioncertficate
 const routes: Routes = [
   {
     path: ':stage/:userid',
-    component: CompletioncertficateComponent
-  }
+    component: CompletioncertficateComponent,
+  },
 ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class CertificatesRoutingModule {
   constructor() {

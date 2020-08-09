@@ -68,8 +68,6 @@ export class WidgetContentService {
   //     .pipe(retry(1))
   // }
 
-
-
   fetchAuthoringContent(contentId: string): Observable<NsContent.IContent> {
     const url = `${API_END_POINTS.AUTHORING_CONTENT}/${contentId}`
     return this.http.get<NsContent.IContent>(url).pipe(retry(1))

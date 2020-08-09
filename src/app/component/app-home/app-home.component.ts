@@ -38,8 +38,9 @@ export class AppHomeComponent implements OnInit {
   ngOnInit() {
   }
   resolvedomain(domain: string) {
-    if (Array.isArray(this.configSvc.org))
+    if (Array.isArray(this.configSvc.org)) {
       return this.configSvc.org[0].toLowerCase() === domain
+    }
     // return window.location.hostname.split('.').includes(domain)
     return false
   }

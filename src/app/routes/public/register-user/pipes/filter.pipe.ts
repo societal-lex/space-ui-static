@@ -3,12 +3,11 @@ import { RegsiterDetailObject } from '../services/register-user-core.model'
 const { isArray } = Array
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
 
   // transform(users: RegsiterDetailObject[], searchText: string): RegsiterDetailObject[] {
-
 
   //   if (!users || !searchText) {
   //     return users
@@ -31,16 +30,12 @@ export class FilterPipe implements PipeTransform {
     //   this.handleObject(find)
     // }
 
-    if (!users) return []
-    if (!find) return users
+    if (!users) { return [] }
+    if (!find) { return users }
     find = find.toLowerCase()
 
     return search(users, find)
   }
-
-
-
-
 
 }
 
@@ -57,11 +52,9 @@ function search(entries: any[], search: string) {
           return v.toString().toLowerCase().includes(search)
         })
       }
-      else if (!isArray(value)) {
+       if (!isArray(value)) {
         return value.toString().toLowerCase().includes(search)
       }
     })
   })
 }
-
-

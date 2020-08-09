@@ -20,17 +20,12 @@ import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/s
 import { MatSelectModule } from '@angular/material/select'
 import { CertificatesModule } from '../certificates/certificates.module'
 
-
-
-
 @NgModule({
   declarations: [
     RegisteredUsersComponent,
     UserListComponent,
     UserdeatilsComponent,
     FilterPipe,
-
-
 
   ],
   providers: [RegisterUserCoreService],
@@ -50,7 +45,7 @@ import { CertificatesModule } from '../certificates/certificates.module'
     CertificatesModule,
   ],
   exports: [
-    RegisteredUsersComponent, UserListComponent, UserdeatilsComponent
-  ]
+    RegisteredUsersComponent, UserListComponent, UserdeatilsComponent,
+  ],
 })
 export class RegisterUserModule { }

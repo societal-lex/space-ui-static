@@ -6,16 +6,13 @@ import { RegsiterDetailObject } from './../../services/register-user-core.model'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 // import { lodash_ } from 'lodash'
 
-
 // import * as lodash from 'lodash'
 // import _ from 'lodash';
-
-
 
 @Component({
   selector: 'user-list-component',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
@@ -41,12 +38,10 @@ export class UserListComponent implements OnInit {
 
     // const val = new Set(this.users.map(user => user.employment_status))
 
-
-
   }
   @Input() users: RegsiterDetailObject[] = []
 
-  @Output() selectedUser = new EventEmitter<object | null>();
+  @Output() selectedUser = new EventEmitter<object | null>()
   // filteruser: RegsiterDetailObject[] = []
   // dataSource = new MatTableDataSource(this.users);
 
@@ -60,21 +55,18 @@ export class UserListComponent implements OnInit {
   myarraystatus: any
   myarraylocation: any
 
-
   ngOnInit() {
     this.filterUser()
   }
   filterUser() {
 
-
-
     // this.filteruser_status = new Set(this.users.map(x => x.employment_status))
-    let filteruser_status: any = new Set(this.users.map(x => x.employment_status))
+    const filteruser_status: any = new Set(this.users.map(x => x.employment_status))
 
     this.myarraystatus = Array.from(filteruser_status)
-    console.log("filteruser_status", filteruser_status)
+    console.log('filteruser_status', filteruser_status)
     // this.filteruser_location = new Set(this.users.map(x => x.residence_city))
-    let filteruser_location: any = new Set(this.users.map(x => x.residence_city))
+    const filteruser_location: any = new Set(this.users.map(x => x.residence_city))
 
     this.myarraylocation = Array.from(filteruser_location)
     // console.log("filteruser_location", filteruser_location)
@@ -91,10 +83,7 @@ export class UserListComponent implements OnInit {
     //   })
     // })
 
-
-
   }
-
 
   viewUserDetails(_userObj: any) {
     if (_userObj) {
@@ -109,7 +98,6 @@ export class UserListComponent implements OnInit {
 
   // var  unique = this.users.employment_status.filter(onlyUnique);
 
-
   // applyFilter(filterValue: string) {
   //   this.dataSource.filter = filterValue.trim().toLowerCase()
   // }
@@ -120,14 +108,4 @@ export class UserListComponent implements OnInit {
 
   // usage example:
 
-
-
-
-
-
-
-
-
 }
-
-

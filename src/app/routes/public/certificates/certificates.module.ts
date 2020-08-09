@@ -5,7 +5,6 @@ import { CertificatesRoutingModule } from './certificates-routing.module'
 import { CompletioncertficateComponent } from './components/completioncertficate/completioncertficate.component'
 import { CertificateServiceService } from './services/certificate-service/certificate-service.service'
 
-
 @NgModule({
   declarations: [CompletioncertficateComponent],
   imports: [
@@ -13,6 +12,6 @@ import { CertificateServiceService } from './services/certificate-service/certif
     CertificatesRoutingModule,
   ],
   providers: [CertificateServiceService],
-  exports: [CompletioncertficateComponent]
+  exports: [CompletioncertficateComponent],
 })
 export class CertificatesModule { }

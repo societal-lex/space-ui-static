@@ -6,7 +6,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 @Component({
   selector: 'ws-userdeatils',
   templateUrl: './userdeatils.component.html',
-  styleUrls: ['./userdeatils.component.scss']
+  styleUrls: ['./userdeatils.component.scss'],
 })
 export class UserdeatilsComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
@@ -31,7 +31,5 @@ export class UserdeatilsComponent implements OnInit {
       this.router.navigate([`/public/registeredusers/certificates/${2}/${defaultUserID ? defaultUserID : this.currentUserDetails.source_id}`], { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
-
-
 
 }

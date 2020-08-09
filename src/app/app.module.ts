@@ -149,7 +149,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     MobileAppModule,
     PipeSafeSanitizerModule,
     TourModule,
-    RegisterUserModule
+    RegisterUserModule,
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   exports: [
