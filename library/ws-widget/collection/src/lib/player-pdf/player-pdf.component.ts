@@ -168,6 +168,28 @@ export class PlayerPdfComponent extends WidgetBaseComponent
       }
     })
   }
+  get isDownloadable() {
+    if (this.widgetData) {
+      if (this.widgetData.pdfUrl) {
+        return true
+      }
+    }
+    return false
+  }
+  download() {
+    if (this.widgetData.pdfUrl) {
+      const link = document.createElement('a')
+      link.download = this.widgetData.pdfUrl
+      link.target = '_self'
+      // Construct the URI
+      link.href = this.widgetData.pdfUrl || ''
+      document.body.appendChild(link)
+      link.click()
+      // Cleanup the DOM
+      document.body.removeChild(link)
+    }
+    // delete link;
+  }
   ngOnChanges() {
     // if (this.widgetData !== this.oldData) {
     //   if (this.totalPages > 0) {
