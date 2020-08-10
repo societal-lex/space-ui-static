@@ -95,7 +95,6 @@ export class PlayerPdfComponent extends WidgetBaseComponent
   }
 
   ngOnInit() {
-    console.log('wid',this.widgetData)
     // SimpleLinkService does not support handling of relative link switching PDFLinkService
     pdfjsViewer.SimpleLinkService.prototype.getDestinationHash =
       pdfjsViewer.PDFLinkService.prototype.getDestinationHash
