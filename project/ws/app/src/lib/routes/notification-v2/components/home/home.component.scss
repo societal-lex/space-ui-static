@@ -2,6 +2,7 @@
 
 .container-balanced {
   @extend %page-center;
+  max-width: 850px;
 }
 
 .text-right {
@@ -20,3 +21,7 @@ button[disabled] {
 // mat-icon {
 //   font-size: 40px;
 // }
+
+.min-w-120 {
+  min-width: 120px;
+}
