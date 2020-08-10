@@ -55,8 +55,8 @@
             </div>
 
             <div class="mat-caption w-2/10 flex flex-col flex-center text-right">
-              <span [style.font-weight]="!notification.seen ? 500 : 'inherit'">
-                {{ notification.receivedOn | date: 'dd MMM' }}
+              <span [style.font-weight]="!notification.seen ? 500 : 'inherit'" class="min-w-120">
+                {{ notification.receivedOn | date: 'dd MMM' }} at {{notification.receivedOn | date: 'shortTime'}}
               </span>
             </div>
           </div>
@@ -99,8 +99,8 @@
             </div>
 
             <div class="mat-caption w-2/10 flex flex-col flex-center text-right">
-              <span [style.font-weight]="!notification.seen ? 500 : 'inherit'">
-                {{ notification.receivedOn | date: 'dd MMM' }}
+              <span [style.font-weight]="!notification.seen ? 500 : 'inherit'" class="min-w-120">
+                {{ notification.receivedOn | date: 'dd MMM' }} at {{notification.receivedOn | date: 'shortTime'}}
               </span>
             </div>
           </div>
