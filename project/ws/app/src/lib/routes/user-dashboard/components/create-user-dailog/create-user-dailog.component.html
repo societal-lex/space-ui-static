@@ -8,15 +8,17 @@
     <h1 mat-dialog-title>License Details</h1>
   </div> -->
 
-<!-- <mat-toolbar color="primary"> -->
+  <!-- <mat-toolbar color="primary"> -->
   <div class="flex-align">
-<div><h2>Create User</h2></div>
-<button mat-icon-button [mat-dialog-close]="false">
-  <mat-icon>close</mat-icon>
-</button>
-<!-- <div><mat-icon [mat-dailog-close]="true">close</mat-icon></div> -->
-</div>
-<!-- </mat-toolbar> -->
+    <div>
+      <h2>Create User</h2>
+    </div>
+    <button mat-icon-button [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+    </button>
+    <!-- <div><mat-icon [mat-dailog-close]="true">close</mat-icon></div> -->
+  </div>
+  <!-- </mat-toolbar> -->
 </div>
 <!-- <mat-radio-group class= "padding-top" [(ngModel)]="selectedValue"  (change)="radioChange($event)" >
   <div class = "apply-flex">
@@ -27,19 +29,31 @@
 {{value}} -->
 
 <form [formGroup]="eventEditForm" novalidate>
-    <mat-radio-group  formControlName="completed">
-  <div class="apply-flex">
-      <mat-radio-button [value]="true" class="ws-mat-primary-text font-size" [checked]="defaultValue">Single User</mat-radio-button>
+  <mat-radio-group formControlName="completed">
+    <div class="apply-flex">
+      <mat-radio-button [value]="true" class="ws-mat-primary-text font-size" [checked]="defaultValue">Single User
+      </mat-radio-button>
       <mat-radio-button class="ws-mat-primary-text font-size" [value]="false">Bulk User</mat-radio-button>
-      </div>
-    </mat-radio-group>
+    </div>
+  </mat-radio-group>
 </form>
 
 
-<ng-container class="pading-top" *ngIf="eventEditForm.controls.completed?.value">
+<!-- <ng-container class="pading-top" *ngIf="eventEditForm.controls.completed?.value">
   <ws-app-register-user></ws-app-register-user>
 </ng-container>
 <ng-container *ngIf="!eventEditForm.controls.completed?.value">
 <ws-app-upload-file (closeDailog)= isCloseDailog($event)></ws-app-upload-file>
-</ng-container>
+</ng-container> -->
 
+
+<ng-container *ngIf="eventEditForm">
+  <ng-container class="pading-top" *ngIf="eventEditForm.controls.completed?.value">
+    <ws-app-register-user></ws-app-register-user>
+  </ng-container>
+
+
+  <ng-container *ngIf="!eventEditForm.controls.completed?.value">
+    <ws-app-upload-file (closeDailog)=isCloseDailog($event)></ws-app-upload-file>
+  </ng-container>
+</ng-container>

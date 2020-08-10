@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { RegsiterDetailObject } from './services/register-user-core.model'
+import { IRegsiterDetailObject } from './services/register-user-core.model'
 
 @Component({
   selector: 'ws-registered-users',
@@ -11,7 +11,7 @@ export class RegisteredUsersComponent implements OnInit {
 
   @Input() searchTerm = ''
   confirmDelete = false
-  registeredUsers: RegsiterDetailObject[] | undefined = undefined
+  registeredUsers: IRegsiterDetailObject[] | undefined = undefined
 
   constructor(private _route: ActivatedRoute,
               private _router: Router
@@ -23,8 +23,8 @@ export class RegisteredUsersComponent implements OnInit {
     })
   }
 
-  redirectToUser($event: RegsiterDetailObject) {
-    this._router.navigate(['/public/registeredusers/detail', $event.source_id])
+  redirectToUser($event: IRegsiterDetailObject) {
+    this._router.navigate(['/public/guides/detail', $event.source_id])
   }
 
   // viewEmployee() {

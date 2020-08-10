@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { RegsiterDetailObject } from './../../services/register-user-core.model'
+import { IRegsiterDetailObject } from './../../services/register-user-core.model'
 // import { filter } from 'rxjs/operators'
 // import { MatTableDataSource } from '@angular/material/table'
 // import { MatFormFieldControl } from '@angular/material'
@@ -15,7 +15,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
+  navBackground: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   constructor(private configSvc: ConfigurationsService) {
     // var filteruser = [...new Set(this.users)]
@@ -37,10 +37,10 @@ export class UserListComponent implements OnInit {
     // const val = new Set(this.users.map(user => user.employment_status))
 
   }
-  @Input() users: RegsiterDetailObject[] = []
+  @Input() users: IRegsiterDetailObject[] = []
 
   @Output() selectedUser = new EventEmitter<object | null>()
-  // filteruser: RegsiterDetailObject[] = []
+  // filteruser: IRegsiterDetailObject[] = []
   // dataSource = new MatTableDataSource(this.users);
 
   // const filteruser = new Set(this.users.map(x => x.employment_status));

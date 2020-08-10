@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core'
-import { RegsiterDetailObject } from '../services/register-user-core.model'
+import { IRegsiterDetailObject } from '../services/register-user-core.model'
 const { isArray } = Array
 
 @Pipe({
@@ -7,7 +7,7 @@ const { isArray } = Array
 })
 export class FilterPipe implements PipeTransform {
 
-  // transform(users: RegsiterDetailObject[], searchText: string): RegsiterDetailObject[] {
+  // transform(users: IRegsiterDetailObject[], searchText: string): IRegsiterDetailObject[] {
 
   //   if (!users || !searchText) {
   //     return users
@@ -24,7 +24,7 @@ export class FilterPipe implements PipeTransform {
 
   // this.transform()
   //   }
-  transform(users: RegsiterDetailObject[], find: string): RegsiterDetailObject[] {
+  transform(users: IRegsiterDetailObject[], find: string): IRegsiterDetailObject[] {
 
     // if(typeof find==='object'){
     //   this.handleObject(find)
@@ -32,28 +32,48 @@ export class FilterPipe implements PipeTransform {
 
     if (!users) { return [] }
     if (!find) { return users }
-    find = find.toLowerCase()
+    const finding = find.toLowerCase()
 
-    return search(users, find)
+    return searching(users, finding)
   }
 
 }
 
-function search(entries: any[], search: string) {
+// function searching(entries: any[], search: string) {
 
-  search = search.toLowerCase()
+//   search = search.toLowerCase()
 
-  return entries.filter(function (obj) {
+//   return entries.filter(function (obj) {
+//     const keys: string[] = Object.keys(obj)
+//     return keys.some(function (key) {
+//       const value = obj[key]
+//       if (isArray(value)) {
+//         return value.some(v => {
+//           return v.toString().toLowerCase().includes(search)
+//         })
+//       }
+//       if (!isArray(value)) {
+//         return value.toString().toLowerCase().includes(search)
+//       }
+//     })
+//   })
+// }
+
+function searching(entries: any[], search: string) {
+
+  const searchs = search.toLowerCase()
+
+  return entries.filter(obj => {
     const keys: string[] = Object.keys(obj)
-    return keys.some(function (key) {
+    return keys.some(key => {
       const value = obj[key]
       if (isArray(value)) {
         return value.some(v => {
-          return v.toString().toLowerCase().includes(search)
+          return v.toString().toLowerCase().includes(searchs)
         })
       }
       if (!isArray(value)) {
-        return value.toString().toLowerCase().includes(search)
+        return value.toString().toLowerCase().includes(searchs)
       }
     })
   })

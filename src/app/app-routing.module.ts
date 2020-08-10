@@ -28,9 +28,7 @@ import { PublicCollaboratorsComponent } from './routes/public/public-collaborato
 import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
 import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.component'
 import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
-// import { RegisteredUsersComponent } from './routes/public/register-user/registered-users.component'
 import { RegisterUserReolverService } from './services/register-user-reolver.service'
-// import { CompletioncertficateComponent } from './routes/public/certificates/components/completioncertficate/completioncertficate.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -460,14 +458,14 @@ const routes: Routes = [
     component: TermsofuseComponent,
   },
   {
-    path: 'public/registeredusers',
+    path: 'public/guides',
     loadChildren: () =>
       import('./routes/public/register-user/register-user.module').then(u => u.RegisterUserModule),
     resolve:
       { users: RegisterUserReolverService },
   },
   {
-    path: 'public/registeredusers/certificates',
+    path: 'public/guides/certificates',
     loadChildren: () => import('./routes/public/certificates/certificates.module').then(u => u.CertificatesModule),
   },
   {

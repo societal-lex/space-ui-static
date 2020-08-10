@@ -26,11 +26,11 @@ export class CompletioncertficateComponent implements OnInit {
           if (studentData) {
             this.student = { ...studentData }
           } else {
-            this.route.navigateByUrl('/public/registeredusers')
+            this.route.navigateByUrl('/public/guides')
           }
         })
       } else {
-        this.route.navigateByUrl('/public/registeredusers')
+        this.route.navigateByUrl('/public/guides')
       }
 
       // this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {

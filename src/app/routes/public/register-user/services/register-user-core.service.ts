@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 // import { HttpClient } from '@angular/common/http'
-import { RegisterUserModel, RegsiterDetailObject } from './register-user-core.model'
+import { IRegisterUserModel, IRegsiterDetailObject } from './register-user-core.model'
 import { Observable, of } from 'rxjs'
 
 @Injectable({
@@ -10,7 +10,7 @@ export class RegisterUserCoreService {
 
   constructor() { }
 
-  userData: RegisterUserModel = {
+  userData: IRegisterUserModel = {
     details: [
       {
         source_id: 1234,
@@ -99,7 +99,7 @@ export class RegisterUserCoreService {
     return of(result)
   }
 
-  getUserFromID(userID: number): Observable<RegsiterDetailObject | any> {
+  getUserFromID(userID: number): Observable<IRegsiterDetailObject | any> {
     const result = this.userData.details.find(userObj => userObj.source_id === userID)
     if (result) {
       return of(result)

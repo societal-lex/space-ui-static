@@ -1,4 +1,4 @@
-export interface RegsiterDetailObject {
+export interface IRegsiterDetailObject {
   source_id?: number,
   username?: string,
   first_name?: string,
@@ -13,6 +13,6 @@ export interface RegsiterDetailObject {
   department_name?: string,
   time_updated?: string
 }
-export interface RegisterUserModel {
-  details: RegsiterDetailObject[]
+export interface IRegisterUserModel {
+  details: IRegsiterDetailObject[]
 }

@@ -7,9 +7,9 @@ import { RegisterUserCoreService } from '../routes/public/register-user/services
 })
 export class RegisterUserReolverService implements Resolve<any> {
   constructor(
-    private readonly RUSrvc: RegisterUserCoreService,
+    private readonly rUSrvc: RegisterUserCoreService,
   ) { }
   resolve(_route: import('@angular/router').ActivatedRouteSnapshot, _state: import('@angular/router').RouterStateSnapshot) {
-    return this.RUSrvc.getUsersDetails()
+    return this.rUSrvc.getUsersDetails()
   }
 }
