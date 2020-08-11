@@ -237,7 +237,8 @@ export class NotificationService {
         '#nextActor': `${nextActorName}${nextActor.length > 1 ? 's' : ''}`,
         '#nextStage': nextStage,
         '#comment': comment,
-        '#author': this.accessService.userId,
+        /* '#author': this.accessService.userId, */
+        '#authorName': this.accessService.userName,
       },
       recipients: {
         nextActor,
