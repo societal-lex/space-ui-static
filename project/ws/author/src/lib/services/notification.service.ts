@@ -347,6 +347,8 @@ export class NotificationService {
 
     if (previousStage === 'Unpublished' && this.accessService.hasRole(['publisher', 'editor'])) {
       eventID = 'unpublished_to_draft'
+    } else if (previousStage === 'Live' && this.accessService.hasRole(['publisher', 'editor'])) {
+      eventID = 'published_to_draft'
     }
     const body = {
       'event-id': eventID,
