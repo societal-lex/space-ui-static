@@ -33,15 +33,15 @@
         <mat-checkbox name="program-checkbox" [checked]="selectedContentTypes.includes(appContentTypes.PROGRAM)"
           (change)="filterChanged(appContentTypes.PROGRAM, $event.checked)" i18n>Program</mat-checkbox>
       </div>
-      <div *ngIf="dataType === 'authoring'" mat-menu-item>
+      <!-- <div *ngIf="dataType === 'authoring'" mat-menu-item>
         <mat-checkbox name="channel-checkbox" [checked]="selectedContentTypes.includes(appContentTypes.CHANNEL)"
           (change)="filterChanged(appContentTypes.CHANNEL, $event.checked)" i18n>Channel</mat-checkbox>
-      </div>
-      <div *ngIf="dataType === 'authoring'" mat-menu-item>
+      </div> -->
+      <!-- <div *ngIf="dataType === 'authoring'" mat-menu-item>
         <mat-checkbox name="kb-checkbox" [checked]="selectedContentTypes.includes(appContentTypes.KNOWLEDGE_BOARD)"
           (change)="filterChanged(appContentTypes.KNOWLEDGE_BOARD, $event.checked)" i18n>Knowledge Board
         </mat-checkbox>
-      </div>
+      </div> -->
     </mat-menu>
     <button name="language-button" mat-button *ngIf="availableLanguages?.length" [matMenuTriggerFor]="sortLang" type="button">
       <mat-icon>language</mat-icon>
