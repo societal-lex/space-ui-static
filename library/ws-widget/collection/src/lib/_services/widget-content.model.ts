@@ -267,7 +267,7 @@ export namespace NsContent {
   export const PLAYLIST_SUPPORTED_CONTENT_TYPES: EContentTypes[] = [
     EContentTypes.COURSE,
     EContentTypes.MODULE,
-    EContentTypes.PROGRAM,
+    // EContentTypes.PROGRAM,
     EContentTypes.RESOURCE,
   ]
   export enum EMimeTypes {
