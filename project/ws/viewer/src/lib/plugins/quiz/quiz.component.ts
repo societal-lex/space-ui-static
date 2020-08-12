@@ -15,7 +15,9 @@ import { QuestionComponent } from './components/question/question.component'
 import { SubmitQuizDialogComponent } from './components/submit-quiz-dialog/submit-quiz-dialog.component'
 import { OnConnectionBindInfo } from 'jsplumb'
 import { QuizService } from './quiz.service'
-import { EventService } from '../../../../../../../library/ws-widget/utils/src/public-api'
+import { EventService, ConfigurationsService } from '../../../../../../../library/ws-widget/utils/src/public-api'
+import { ActivatedRoute, Router } from '@angular/router'
+import { RegisterUserCoreService } from '../../../../../../../src/app/routes/public/register-user/services/register-user-core.service'
 export type FetchStatus = 'hasMore' | 'fetching' | 'done' | 'error' | 'none'
 
 @Component({
@@ -75,13 +77,38 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
   timerSubscription: Subscription | null = null
   viewState: NSQuiz.TQuizViewMode = 'initial'
   paramSubscription: Subscription | null = null
+  currentUserDetails: { [k: string]: any } | undefined
   constructor(
     private events: EventService,
     public dialog: MatDialog,
     private quizSvc: QuizService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private configSvc: ConfigurationsService,
+    private userList: RegisterUserCoreService
   ) { }
 
   ngOnInit() {
+  }
+
+  viewCertificate(certiType: number, _defaultUserID?: number) {
+
+    let userId = ''
+    if (this.configSvc.userProfile) {
+      userId = this.configSvc.userProfile.userId || ''
+    }
+this.userList.updateVisibility(userId)
+    this.userList.updateVisibility(userId)
+    if (certiType === 1) {
+      this.router.navigateByUrl(`/public/guides/certificates/${1}/${userId ? userId :
+        userId}`,
+                                { state: this.currentUserDetails, relativeTo: this.route })
+    } else if (certiType === 2) {
+      this.router.navigateByUrl(`/public/guides/certificates/${2}/${userId ? userId :
+        userId}`,
+                                { state: this.currentUserDetails, relativeTo: this.route })
+    }
+
   }
 
   scroll(qIndex: number) {

@@ -79,7 +79,7 @@
     <ng-container *ngFor="let registeredUser of users | filter : searchText">
       <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
-      <mat-card class="example-card">
+      <mat-card class="example-card" *ngIf= "registeredUser.visible == true" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{registeredUser.username}}</mat-card-title>
@@ -95,6 +95,7 @@
           <button class="mat-primary btn-clr" (click)="viewUserDetails(registeredUser)">View Details</button>
         </mat-card-actions>
       </mat-card>
+
     </ng-container>
 
   </mat-card-content>

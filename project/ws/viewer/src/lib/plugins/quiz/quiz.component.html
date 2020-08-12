@@ -115,8 +115,21 @@
             i18n="button quiz show answers">
             Show Answers
           </button>
-        </div>
-      </div>
+
+
+
+        <div *ngIf="result > '60'; else  elseBlock">    <button class="margin-left-m" mat-raised-button color="primary" *ngIf="viewState === 'review' ||viewState === 'answer'"
+              (click)="viewCertificate(1)" i18n="button view certificate show certificate">
+              view certificate
+            </button></div>
+        <ng-template #elseBlock>
+          <button class="margin-left-m" mat-raised-button color="primary" *ngIf="viewState === 'review' ||viewState === 'answer'"
+            (click)="viewCertificate(2)" i18n="button view certificate show certificate">
+            view certificate
+          </button>
+        </ng-template>
+          </div>
+          </div>
       <div id="quiz-end"></div>
     </mat-sidenav-content>
   </mat-sidenav-container>

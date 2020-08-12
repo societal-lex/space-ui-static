@@ -15,9 +15,9 @@ export class UserDetailResolverService implements Resolve<any> {
   resolve(_route: import('@angular/router').ActivatedRouteSnapshot, _state: import('@angular/router').RouterStateSnapshot) {
 
     if (_route.paramMap.get('userID')) {
-      return this.rUSrvc.getUserFromID(parseInt(_route.paramMap.get('userID') as string, 10)).pipe(tap(_res => {
+      return this.rUSrvc.getUserFromID(_route.paramMap.get('userID') as string).pipe(tap(_res => {
       }),
-                                                                                                   catchError(_e => {
+                                                                                     catchError(_e => {
           return of(null)
         })
       )

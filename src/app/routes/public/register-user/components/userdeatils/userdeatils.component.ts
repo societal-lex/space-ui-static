@@ -23,7 +23,7 @@ export class UserdeatilsComponent implements OnInit {
       }
     })
   }
-  viewCertificate(certiType: number, defaultUserID?: number) {
+  viewCertificate(certiType: number, defaultUserID?: string) {
     // if(this.currentUserDetails.employment_status==="Achievement")
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :

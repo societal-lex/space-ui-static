@@ -91,6 +91,9 @@ export class AppNavBarComponent implements OnInit, OnChanges {
       }
     })
   }
+  explore() {
+    this.router.navigateByUrl('/public/guides')
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     for (const property in changes) {

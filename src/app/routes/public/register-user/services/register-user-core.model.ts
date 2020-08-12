@@ -1,5 +1,6 @@
 export interface IRegsiterDetailObject {
-  source_id?: number,
+  visible?: boolean,
+  source_id?: string,
   username?: string,
   first_name?: string,
   last_name?: string,

@@ -19,7 +19,7 @@ export class CompletioncertficateComponent implements OnInit {
     this.date = new Date().toDateString()
     this.router.params.subscribe(params => {
       this.value = parseInt(params['stage'], 10)
-      this.wid = parseInt(params['userid'], 10)
+      this.wid = params['userid']
 
       if ((this.value === 1 || this.value === 2) && this.wid) {
         this.userDetailsSrvc.getUserFromID(this.wid).subscribe(studentData => {
