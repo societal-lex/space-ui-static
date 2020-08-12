@@ -4,7 +4,7 @@
       <p class="ws-mat-primary-text font-weight-bold title margin-right-xs" i18n>
         CONTENT CREATION
       </p>
-      <mat-icon class="ws-mat-primary-text margin-bottom-xxs">create</mat-icon>
+      <mat-icon class="ws-mat-primary-text margin-bottom-xxs icon-create">create</mat-icon>
     </div>
     <div class="margin-left grid" *ngIf="currentStep >= 0">
       <div class="stepper-grid" [ngClass]="{ 'cursor-disable': disableCursor === true }">
@@ -88,7 +88,7 @@
         <mat-icon class="text-white" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">close</mat-icon>
         <mat-icon class="text-white" *ngIf="!showSettingButtons">more_vert</mat-icon>
       </button>
-      <p class="mat-h5 margin-remove button-text padding-remove-top" *ngIf="showSettingButtons" i18n-matTooltip
+      <p class="mat-h5 margin-remove button-text padding-remove-top text" *ngIf="showSettingButtons" i18n-matTooltip
         matTooltip="Close">
         Close
       </p>

@@ -5,3 +5,8 @@
 .iframe {
   height: calc(100vh - 70px);
 }
+   @media only screen and (min-width: 280px) and(max-width: 330px) {
+.font-size-m {
+    font-size: 10px;
+}
+}

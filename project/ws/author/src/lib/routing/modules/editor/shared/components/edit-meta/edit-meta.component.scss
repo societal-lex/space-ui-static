@@ -109,7 +109,11 @@ input {
   bottom: 13px;
   cursor: pointer;
 }
-
+@media only screen and (max-width: 1020px) {
+  .photo {
+    left: 0 !important;
+  }
+}
 .photo-icon {
   position: relative;
   top: 10px;

@@ -85,7 +85,24 @@ ul li {
   cursor: pointer;
   z-index: 1001;
 }
-
+ @media only screen and (min-width: 350px) and(max-width: 710px) {
+   .buttons {
+  top:-1.5rem !important;
+  right:0.5rem !important;
+   }
+  .text {
+    color: white;
+  }
+  }
+   @media only screen and (min-width: 280px) and(max-width: 330px) {
+   .buttons {
+  top:-1.5rem !important;
+  right:-1.5rem !important;
+   }
+  .text {
+    color: white;
+  }
+  }
 .buttons {
   display: flex;
   flex-direction: column;
