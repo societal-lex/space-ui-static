@@ -1,11 +1,11 @@
 .container {
   min-height: 400px;
   margin: auto;
-  // border: 1px solid black;
+  border: 1px solid red;
   background-color: white;
   margin-top: 20px;
   // margin-left: 60px;
-  // width:60%;
+  max-width:780px;
   align-items: center;
   justify-content: center;
 
@@ -24,6 +24,7 @@
 .mat-card{
 transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
 display: block;
+border: 2px purple solid;
     /* display: block; */
     // position: relative;
     /* padding: 16px; */
@@ -31,6 +32,9 @@ display: block;
     margin-left: 40px;
     margin-top:40px;
     margin-right: 40px;
+    max-width: unset;
+    margin: auto;
+    width: 900px;
 }
 .mat-card-avatar {
     height: 100px;
@@ -41,6 +45,7 @@ display: block;
     justify-content: center;
     align-items: center;
     // margin: auto;
+    border: 2px green solid;
 }
 .btn-clr{
       width: 20%;
@@ -140,6 +145,14 @@ float:left;
 float:left;
 
 }
+
+}
+
+.mat-card.cardallign{
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    /* display: block; */
+    position: relative;
+    /* padding: 16px; */
 
 }
 
