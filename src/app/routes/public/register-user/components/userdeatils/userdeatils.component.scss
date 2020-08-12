@@ -23,13 +23,14 @@
 }
 .mat-card{
 transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+display: block;
     /* display: block; */
-    position: relative;
+    // position: relative;
     /* padding: 16px; */
     border-radius: 4px;
-    margin-left: 4px;
-    margin-top:4px;
-    margin-right: 4px;
+    margin-left: 40px;
+    margin-top:40px;
+    margin-right: 40px;
 }
 .mat-card-avatar {
     height: 100px;
@@ -42,8 +43,10 @@ transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     // margin: auto;
 }
 .btn-clr{
-      width: 26%;
+      width: 20%;
     height: 27px;
+    margin-left:60%;
+
 }
 ::ng-deep{
 //day mode
@@ -139,6 +142,7 @@ float:left;
 }
 
 }
+
 
 
 

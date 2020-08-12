@@ -15,7 +15,6 @@ export class RegisterUserCoreService {
   // constructor(private readonly http: HttpClient) { }
   constructor() { }
 
-
   userData: IRegisterUserModel = {
     details: [
       {
