@@ -1,7 +1,27 @@
-<mat-toolbar class="mat-primary" [color]="navBackground?.color" [ngStyle]="navBackground?.styles">
-  <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-  <span class="margin-left-s text-color" i18n>Registered Users</span>
-</mat-toolbar>
+<div class="header flex-header">
+  <mat-toolbar class="mat-primary" [color]="navBackground?.color" [ngStyle]="navBackground?.styles">
+    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+    <span class="margin-left-s text-color" i18n>Registered Users</span>
+    <div class="column-2">
+      <div id="blogsearchbar"
+        class="flex items-center border search border-solid search-border text-white justify-search">
+        <div class="w-full search">
+          <mat-form-field appearance="none" class="autocomplete-form " color="primary" style="width: 100%;"
+            [floatLabel]="'never'">
+            <input type="search"
+              class="border-2 border-gray-300 align-input bg-white pr-16 rounded-lg text-sm text-white focus:outline-none placeholderallign"
+              i18n-placeholder="search content" [placeholder]="placeHolder" matInput [(ngModel)]="searchText" />
+
+          </mat-form-field>
+        </div>
+        <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+          <mat-icon class="text-white">search</mat-icon>
+        </div>
+      </div>
+    </div>
+
+  </mat-toolbar>
+</div>
 
 <!-- **************************************************************** -->
 
@@ -27,29 +47,74 @@
 
 
 <!-- ****************************************************************************** -->
-<div class="container">
-  <!-- <div class="example-header">
+<!-- <div class="container"> -->
+<!-- <div class="example-header">
     <mat-form-field>
        <button mat-button matPrefix mat-icon-button> -->
 
-  <!-- </button> -->
-  <!-- <input matInput class="width-input" (keyup)="applyFilter($event.target.value)"
+<!-- </button> -->
+<!-- <input matInput class="width-input" (keyup)="applyFilter($event.target.value)"
         placeholder="Search by location or status" />
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
   </div>  -->
-  <!-- <mat-toolbar class="search-clr"> -->
-  <!-- this is the correct code for search -->
-  <!-- <mat-form-field class="search-clr" style="width: 100%" floatLabel='never'>
+<!-- <mat-toolbar class="search-clr"> -->
+<!-- this is the correct code for search -->
+<!-- <mat-form-field class="search-clr" style="width: 100%" floatLabel='never'>
     <input matInput [(ngModel)]="searchText" placeholder="Search" autocomplete="off">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field> -->
 
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <mat-select [(ngModel)]="searchText">
-      <!-- <mat-option *ngFor="let registeredUser of users" [value]="registeredUser.residence_city">
+<!-- <div class="flex items-center border search border-solid search-border" style="width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    max-height: 50px;">
+
+  <div class="w-full search searchallign">
+
+    <mat-form-field class="autocomplete-form" color="primary" style="width:100%;;" [floatLabel]="'never'">
+      <input class="border-2 border-gray-300 bg-white pr-16 rounded-lg text-sm focus:outline-none"
+        i18n-placeholder="search content" [placeholder]="placeHolder" style="width:90%;margin-left: 10%;" matInput
+        [(ngModel)]="searchText" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+  </div> -->
+
+
+<!-- <div class="column-2">
+  <div id="blogsearchbar" class="flex items-center border search border-solid search-border text-white justify-search">
+    <div class="w-full search">
+      <mat-form-field class="autocomplete-form " color="primary" style="width: 100%;" [floatLabel]="'never'">
+        <input type="search"
+          class="border-2 border-gray-300 align-input bg-white pr-16 rounded-lg text-sm text-white focus:outline-none"
+          i18n-placeholder="search content" [placeholder]="placeHolder" matInput [(ngModel)]="searchText" />
+
+      </mat-form-field>
+    </div>
+    <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+      <mat-icon class="text-white">search</mat-icon>
+    </div>
+  </div>
+</div> -->
+<!-- <a [routerLink]="['/app/social/socialSearch/view-search']" [queryParams]="{search:queryEntered}">
+    <div class="flex items-center justify-center w-8 sm:w-16 cursor-pointer">
+      <mat-icon>search</mat-icon>
+    </div>
+  </a> -->
+<!-- </div> -->
+<!-- ************************* -->
+<!-- <ws-user-filter></ws-user-filter> -->
+<div class="allignment">
+  <div class="alligncontainer">
+
+    <div class="formallign leftclass">
+      <mat-form-field>
+        <mat-label>Filter Location</mat-label>
+        <mat-select [(ngModel)]="searchText">
+          <!-- <mat-option *ngFor="let registeredUser of users" [value]="registeredUser.residence_city">
         {{registeredUser.residence_city}}
 
       </mat-option>
@@ -57,47 +122,87 @@
         {{registeredUser.employment_status}}
       </mat-option> -->
 
-      <mat-option *ngFor="let registeredUser of myarrayLocation" [value]="registeredUser">
-        {{registeredUser}}
+          <mat-option *ngFor="let registeredUser of myarrayLocation" [value]="registeredUser">
+            {{registeredUser}}
 
-      </mat-option>
-      <mat-option *ngFor="let registeredUser of  myarrayStatus" [value]="registeredUser">
+          </mat-option>
+          <!-- <mat-option *ngFor="let registeredUser of  myarrayStatus" [value]="registeredUser">
         {{registeredUser}}
-      </mat-option>
+      </mat-option> -->
 
-      <!-- <mat-option *ngFor="let registeredUser of  filtercombo" [value]="registeredUser">
+          <!-- <mat-option *ngFor="let registeredUser of  filtercombo" [value]="registeredUser">
         {{registeredUser.location}} && {{registeredUser.status}}
       </mat-option> -->
 
-    </mat-select>
-    <!-- <mat-icon matPrefix>search</mat-icon> -->
-  </mat-form-field>
-  <!-- </mat-toolbar> -->
+        </mat-select>
+        <!-- <mat-icon matPrefix>search</mat-icon> -->
+      </mat-form-field>
+      <!-- </mat-toolbar> -->
+      <br>
+      <!--********************Second Filter************************ -->
 
-  <mat-card-content class="grid">
-
-    <ng-container *ngFor="let registeredUser of users | filter : searchText">
-      <!-- <ng-container *ngFor="let registeredUser of users"> -->
-
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{registeredUser.username}}</mat-card-title>
-          <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="text-gray-60"> Location : {{registeredUser.residence_city}}</div>
-          <div class="text-purple-500"> Status : {{registeredUser.employment_status}}</div>
+      <mat-form-field>
+        <mat-label>Filter Certificate</mat-label>
+        <mat-select [(ngModel)]="searchText">
 
 
-        </mat-card-content>
-        <mat-card-actions>
-          <button class="mat-primary btn-clr" (click)="viewUserDetails(registeredUser)">View Details</button>
-        </mat-card-actions>
-      </mat-card>
-    </ng-container>
+          <!-- <mat-option *ngFor="let registeredUser of myarrayLocation" [value]="registeredUser">
+        {{registeredUser}}
+      </mat-option> -->
 
-  </mat-card-content>
+          <mat-option *ngFor="let registeredUser of  myarrayStatus" [value]="registeredUser">
+            {{registeredUser}}
+          </mat-option>
+
+        </mat-select>
+        <!-- <mat-icon matPrefix>search</mat-icon> -->
+      </mat-form-field>
+    </div>
+
+    <div class="container rightclass">
+      <mat-card-content class="grid">
+
+        <ng-container *ngFor="let registeredUser of users | filter : searchText">
+          <!-- <ng-container *ngFor="let registeredUser of users"> -->
+
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image avatarclass"></div>
+              <mat-card-title>{{registeredUser.username}}</mat-card-title>
+              <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle>
+            </mat-card-header>
+            <br>
+            <mat-card-content>
+              <div class="text-gray-60"> Location : {{registeredUser.residence_city}}</div>
+              <br>
+              <div class="text-purple-500"> Status : {{registeredUser.employment_status}}</div>
+
+
+            </mat-card-content>
+            <br><br>
+            <mat-card-actions>
+              <div>
+
+                <div class="flex-container">
+                  <ng-container *ngFor="let star of stars">
+                    <ws-star (starEnter)="onStarEnter($event)" (starLeave)="onStarLeave()"
+                      (starClicked)="onStarClick($event)" [starId]="star" [rating]="hoverState || rating">
+                    </ws-star>
+                  </ng-container>
+
+                </div>
+
+
+
+                <button class="mat-primary btn-clr" (click)="viewUserDetails(registeredUser)">View Details</button>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </ng-container>
+
+      </mat-card-content>
+    </div>
+  </div>
 </div>
 
 <!-- *************************************************************************** -->

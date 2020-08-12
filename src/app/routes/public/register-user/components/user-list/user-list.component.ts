@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core'
 import { IRegsiterDetailObject } from './../../services/register-user-core.model'
 // import { filter } from 'rxjs/operators'
 // import { MatTableDataSource } from '@angular/material/table'
@@ -13,9 +13,11 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
   selector: 'user-list-component',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class UserListComponent implements OnInit {
   navBackground: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
+  placeHolder: String = 'Search'
 
   constructor(private configSvc: ConfigurationsService) {
     // var filteruser = [...new Set(this.users)]
@@ -40,6 +42,15 @@ export class UserListComponent implements OnInit {
   @Input() users: IRegsiterDetailObject[] = []
 
   @Output() selectedUser = new EventEmitter<object | null>()
+
+  // @Input('rating') private rating: any
+  // @Input('starCount') private starCount: any
+  // // @Input('color') private color: any
+  // @Output() private ratingUpdated = new EventEmitter();
+  // private snackBarDuration: number = 2000;
+
+  // private ratingArr = []
+
   // filteruser: IRegsiterDetailObject[] = []
   // dataSource = new MatTableDataSource(this.users);
 
@@ -52,10 +63,17 @@ export class UserListComponent implements OnInit {
   filterCombo: any[] = []
   myarrayStatus: any
   myarrayLocation: any
+  currentRate = 5
+  stars = [1, 2, 3, 4, 5]
+  rating = 1
+  hoverState = 0
+  selectedValue: any
 
   ngOnInit() {
+
     this.filterUser()
   }
+
   filterUser() {
 
     // this.filterStatus = new Set(this.users.map(x => x.employment_status))
@@ -101,5 +119,21 @@ export class UserListComponent implements OnInit {
   // }
 
   // usage example:
+
+  // countStar(star: any) {
+  //   this.selectedValue = star
+  //   console.log('Value of star', star)
+  // }
+
+  onStarEnter(starId: any) {
+    this.hoverState = starId
+
+  }
+  onStarLeave() {
+    this.hoverState = 0
+  }
+  onStarClick(starId: any) {
+    this.rating = starId
+  }
 
 }

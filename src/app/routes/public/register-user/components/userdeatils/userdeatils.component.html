@@ -4,17 +4,17 @@
 </mat-toolbar>
 
 
-<!-- <ng-container>
+<ng-container>
 
   <mat-card>
 
-    <div class="container bg-white rounded-lg p-6">
+    <div class="container bg-white  p-6">
       <div mat-card-avatar class="example-header-image"></div>
 
       <div>
         <div>
-          <h2 class="text-center">Username : {{currentUserDetails.username}}</h2>
-          <div class="text-gray-600 idclass">UserId : {{currentUserDetails.source_id}}</div>
+          <h2 class="leftclass">Username : {{currentUserDetails.username}}</h2>
+          <div class="text-gray-600 leftclass">UserId : {{currentUserDetails.source_id}}</div>
           <div class="text-gray-600 leftclass">First Name : {{currentUserDetails.first_name}}</div>
           <div class="text-gray-600 leftclass">Last Name : {{currentUserDetails.last_name}}</div>
           <div class="text-gray-60 leftclass">Location : {{currentUserDetails.residence_city}}</div>
@@ -39,7 +39,7 @@
         </div>
 
         <div [ngSwitch]=currentUserDetails.employment_status>
-          <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr text-center"
+          <div *ngSwitchCase="'Participation'"><button class="mat-primary btn-clr text-center"
               (click)="viewCertificate(2)">View
               Certificate</button></div>
           <div *ngSwitchCase="'Achievement'"><button class="mat-primary btn-clr text-center"
@@ -51,7 +51,7 @@
       </div>
     </div>
   </mat-card>
-</ng-container> -->
+</ng-container>
 
 
 
@@ -60,7 +60,7 @@
 <!-- <ng-container> -->
 <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
-<mat-card class="example-card">
+<!-- <mat-card class="example-card">
   <div [ngSwitch]=currentUserDetails.employment_status>
     <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr text-center"
         (click)="viewCertificate(2)">View
@@ -68,13 +68,17 @@
     <div *ngSwitchCase="'Achievement'"><button class="mat-primary btn-clr text-center" (click)="viewCertificate(1)">View
         Certificate</button></div>
 
-  </div>
+  </div> -->
+<!-- <img src="/Users/tanyachauhan/Documents/Societal/space-ui-static/src/app/routes/public/register-user/My_Gallery.png"
+    alt="QR Code"> -->
+<!-- <img src="src/app/routes/public/register-user/My_Gallery.png"> -->
 
-  <div class="container bg-white rounded-lg p-6">
-    <div mat-card-avatar class="example-header-image"></div>
-  </div>
-  <!-- <div> -->
-  <h2 class="text-center">Username : {{currentUserDetails.username}}</h2>
+
+<!-- <div class="container bg-white rounded-lg p-6">
+    <div class="example-header-image"></div>
+  </div> -->
+<!-- <div> -->
+<!-- <h2 class="text-center">Username : {{currentUserDetails.username}}</h2>
   <div class="text-gray-600 text-center" style="font-size: 19px;">UserId : {{currentUserDetails.source_id}}</div>
   <br>
   <div class="leftclass">
@@ -103,10 +107,10 @@
     <br>
     <div class="text-purple-500">Email Id : {{currentUserDetails.email}}</div>
     <br>
-  </div>
-  <!-- </div> -->
-  <!-- </div> -->
-  <!-- <div [ngSwitch]=currentUserDetails.employment_status>
+  </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- <div [ngSwitch]=currentUserDetails.employment_status>
     <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr text-center"
         (click)="viewCertificate(2)">View
         Certificate</button></div>
@@ -115,5 +119,5 @@
 
   </div> -->
 
-</mat-card>
+<!-- </mat-card> -->
 <!-- </ng-container> -->

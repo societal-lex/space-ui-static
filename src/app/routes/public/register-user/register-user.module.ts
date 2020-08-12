@@ -15,10 +15,13 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { FilterPipe } from './pipes/filter.pipe'
-import { MatAutocompleteModule } from '@angular/material'
+import { MatAutocompleteModule, MatTooltipModule } from '@angular/material'
 import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/src/lib/btn-page-back/btn-page-back.module'
 import { MatSelectModule } from '@angular/material/select'
 import { CertificatesModule } from '../certificates/certificates.module'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { StarComponent } from './components/star/star.component'
+import { UserFilterComponent } from './components/user-filter/user-filter.component'
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { CertificatesModule } from '../certificates/certificates.module'
     UserListComponent,
     UserdeatilsComponent,
     FilterPipe,
+    StarComponent,
+    UserFilterComponent,
 
   ],
   providers: [RegisterUserCoreService],
@@ -43,9 +48,13 @@ import { CertificatesModule } from '../certificates/certificates.module'
     MatSelectModule,
     RegisteredUsersRoutingModule,
     CertificatesModule,
+    NgbModule,
+    HttpClientModule,
+    MatTooltipModule,
+
   ],
   exports: [
-    RegisteredUsersComponent, UserListComponent, UserdeatilsComponent,
+    RegisteredUsersComponent, UserListComponent, UserdeatilsComponent, StarComponent, UserFilterComponent,
   ],
 })
 export class RegisterUserModule { }
