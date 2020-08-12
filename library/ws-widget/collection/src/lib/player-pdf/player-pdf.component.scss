@@ -34,3 +34,7 @@
 .mat-toolbar-single-row {
   padding: 0;
 }
+input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        display: none;
+      }
