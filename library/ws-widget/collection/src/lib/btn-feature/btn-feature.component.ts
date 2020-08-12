@@ -115,11 +115,10 @@ export class BtnFeatureComponent extends WidgetBaseComponent
   }
 
   isMobile(name: string): boolean {
-    if (this.utilitySvc.isMobile && name === 'Create') {
+    if (this.utilitySvc.isMobile && name === 'Create' || this.utilitySvc.isMobile && name === 'Publish') {
       return true
     }
       return false
-
   }
 
   get featureStatusColor() {
