@@ -53,12 +53,18 @@ export class MyContentComponent implements OnInit, OnDestroy {
   queryFilter = ''
   ordinals: any
   isAdmin = false
+  keyValue: any
+  apiCallingCount = 0
+  sameContentTypeAPI: any
+  variousContentTypeAPI: any
+  checked = false
   currentAction: 'author' | 'reviewer' | 'expiry' | 'deleted' = 'author'
   @ViewChild('searchInput', { static: false }) searchInputElem: ElementRef<any> = {} as ElementRef<
     any
   >
 
   public filterMenuItems: any = []
+  key: any
 
   dataSource: any
   hasChild = (_: number, node: IMenuFlatNode) => node.expandable
@@ -169,7 +175,8 @@ export class MyContentComponent implements OnInit, OnDestroy {
     }
   }
 
-  fetchContent(loadMoreFlag: boolean, changeFilter = true) {
+  fetchContent(loadMoreFlag: boolean, changeFilter = true, checked = false) {
+    this.apiCallingCount += this.apiCallingCount
     const searchV6Data = this.myContSvc.getSearchBody(
       this.status,
       this.searchLanguage ? [this.searchLanguage] : [],
@@ -207,11 +214,36 @@ export class MyContentComponent implements OnInit, OnDestroy {
     if (this.finalFilters.length) {
       this.finalFilters.forEach((v: any) => {
         searchV6Data.filters.forEach((filter: any) => {
-          filter.andFilters[0] = {
-            ...filter.andFilters[0],
-            [v.key]: v.value,
+          if (filter.andFilters[0].hasOwnProperty(v.key)) {
+            // filter.andFilters[0] = {
+            //   ...filter.andFilters[0],
+            // }
+            filter.andFilters[0][v.key].push(...v.value)
+          } else {
+            filter.andFilters[0] = {
+              ...filter.andFilters[0],
+              [v.key]: v.value,
+            }
           }
+
         })
+        if (this.apiCallingCount === 2) {
+          this.sameContentTypeAPI = { ...requestData.request.filters, [v.key]: v.value }
+        }
+        if (this.apiCallingCount > 2) {
+          if (checked) {
+            if (this.sameContentTypeAPI.hasOwnProperty(v.key)) {
+              requestData.request.filters = { ...this.sameContentTypeAPI }
+            } else {
+              this.variousContentTypeAPI = { ...this.sameContentTypeAPI, [v.key]: v.value }
+              requestData.request.filters = { ...this.variousContentTypeAPI }
+            }
+          } else {
+            requestData.request.filters = { ...this.sameContentTypeAPI, [v.key]: v.value }
+          }
+        } else {
+          requestData.request.filters = { ...requestData.request.filters, [v.key]: v.value }
+        }
         requestData.request.filters = { ...requestData.request.filters, [v.key]: v.value }
       })
     }
@@ -243,34 +275,36 @@ export class MyContentComponent implements OnInit, OnDestroy {
     const observable =
       this.status === 'expiry' || this.newDesign
         ? this.myContSvc.fetchFromSearchV6(searchV6Data, this.isAdmin).pipe(
-            map((v: any) => {
-              return {
-                result: {
-                  response: v,
-                },
-              }
-            }),
-          )
+          map((v: any) => {
+            return {
+              result: {
+                response: v,
+              },
+            }
+          }),
+        )
         : this.myContSvc.fetchContent(requestData)
     this.loadService.changeLoad.next(true)
     observable.subscribe(
       data => {
         this.loadService.changeLoad.next(false)
+        // console.log(changeFilter)
         if (changeFilter) {
           this.filterMenuItems =
             data && data.result && data.result.response && data.result.response.filters
               ? data.result.response.filters
               : this.filterMenuItems
           this.dataSource.data = this.filterMenuItems
+          // console.log(this.dataSource.data, this.filterMenuItems)
         }
         this.cardContent =
           loadMoreFlag && !this.queryFilter
             ? (this.cardContent || []).concat(
-                data && data.result && data.result.response ? data.result.response.result : [],
-              )
+              data && data.result && data.result.response ? data.result.response.result : [],
+            )
             : data && data.result.response
-            ? data.result.response.result
-            : []
+              ? data.result.response.result
+              : []
         this.totalContent = data && data.result.response ? data.result.response.totalHits : 0
         this.showLoadMore =
           this.pagination.offset * this.pagination.limit + this.pagination.limit < this.totalContent
@@ -294,12 +328,17 @@ export class MyContentComponent implements OnInit, OnDestroy {
     this.fetchContent(false, false)
   }
 
-  filterApplyEvent(node: any) {
+  filterApplyEvent(node: any, event: any) {
+    if (event) {
+      this.checked = event.checked
+    }
+    // console.log(event)
     this.pagination.offset = 0
     this.sideNavBarOpened = false
     const filterIndex = this.filters.findIndex(v => v.displayName === node.displayName)
     const filterMenuItemsIndex = this.filterMenuItems.findIndex((obj: any) =>
-      obj.content.some((val: any) => val.type === node.type),
+      obj.content.some((val: any) =>
+        val.type === node.type),
     )
     const ind = this.finalFilters.indexOf(this.filterMenuItems[filterMenuItemsIndex].type)
     if (filterIndex === -1 && node.checked) {
@@ -309,10 +348,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
       ).checked = true
 
       if (ind === -1) {
-        this.finalFilters.push({
-          key: this.filterMenuItems[filterMenuItemsIndex].type,
-          value: [node.type],
-        })
+        this.assignValuesToFinalFilter(filterMenuItemsIndex, node)
       } else {
         this.finalFilters[ind].value.push(node.type)
       }
@@ -321,12 +357,59 @@ export class MyContentComponent implements OnInit, OnDestroy {
         (v: any) => v.displayName === node.displayName,
       ).checked = false
       this.filters.splice(filterIndex, 1)
-      this.finalFilters.splice(ind, 1)
+      this.finalFilters.forEach((value: any, index: any) => {
+        if (value.value.length > 0) {
+          value.value.forEach((removeItem: any, idx: any) => {
+            if (removeItem === 'Collection') { value.value[idx] = 'Module' }
+            if (removeItem === node.displayName) {
+              const indexOfFilterRemoveItem = this.finalFilters[index].value.indexOf(node.displayName)
+              const removeFilterValue = this.finalFilters[index].value
+              removeFilterValue.splice(indexOfFilterRemoveItem, 1)
+            }
+          })
+        }
+      })
     }
     this.dataSource.data = this.filterMenuItems
-    this.fetchContent(false, false)
+    this.fetchContent(false, false, this.checked)
   }
 
+  assignValuesToFinalFilter(filterMenuItemsIndex: any, node: any) {
+    if (this.finalFilters.length > 0) {
+      this.finalFilters.forEach((val: any, index: any) => {
+        this.keyValue = val
+        if (this.finalFilters[index].key === this.filterMenuItems[filterMenuItemsIndex].type && node.hasOwnProperty('type')) {
+          this.finalFilters[index].value.push(node.type)
+        } else {
+          if (this.finalFilters.length === 1 && index === 0) {
+            this.finalFilters.push({
+              key: this.filterMenuItems[filterMenuItemsIndex].type,
+              value: [node.type],
+            })
+          }
+        }
+      })
+    }
+    if (this.finalFilters.length === 0) {
+      if (this.finalFilters.includes('key')) {
+        this.finalFilters.forEach((val: any) => {
+          if (val.key === this.filterMenuItems[filterMenuItemsIndex].type) {
+            this.finalFilters[0].value.push(node.type)
+          } else {
+            this.finalFilters.push({
+              key: this.filterMenuItems[filterMenuItemsIndex].type,
+              value: [node.type],
+            })
+          }
+        })
+      } else {
+        this.finalFilters.push({
+          key: this.filterMenuItems[filterMenuItemsIndex].type,
+          value: [node.type],
+        })
+      }
+    }
+  }
   deleteContent(request: NSContent.IContentMeta) {
     this.loadService.changeLoad.next(true)
     this.myContSvc
@@ -343,9 +426,9 @@ export class MyContentComponent implements OnInit, OnDestroy {
           this.cardContent = (this.cardContent || []).filter(
             v => v.identifier !== request.identifier,
           )
-            if (['Live', 'Unpublished', 'Reviewed'].includes(request.status)) {
-              this.notificationSrvc.triggerNotification('delete', request, request.status)
-            }
+          if (['Live', 'Unpublished', 'Reviewed'].includes(request.status)) {
+            this.notificationSrvc.triggerNotification('delete', request, request.status)
+          }
         },
         error => {
           if (error.status === 409) {
