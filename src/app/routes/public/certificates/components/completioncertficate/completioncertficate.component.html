@@ -33,6 +33,10 @@
 </div> -->
 
 
+<mat-toolbar class="mat-primary" [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
+    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+    <span class="margin-left-s text-color" i18n>Certificate</span>
+</mat-toolbar>
 
 <div *ngIf="value==1" class="center">
     <div class="intro">
