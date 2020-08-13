@@ -340,10 +340,25 @@ color: white !important;
 }
 
 .profile{
-  width:150px;
+  // width:150px;
   img{
     object-fit: contain;
     width: 70px;
      border-radius: 50%;
+     margin-right: 55px;
   }
+}
+
+// .mat-card-header-text {
+//     margin: 0 16px;
+//     margin-top: 29px;
+// }
+// .allignheader {
+
+//     margin-left: 100px;
+// }
+
+
+.alligncontent{
+  margin-top: 30px;
 }

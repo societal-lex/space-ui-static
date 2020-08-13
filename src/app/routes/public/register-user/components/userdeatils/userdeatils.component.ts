@@ -11,7 +11,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 export class UserdeatilsComponent implements OnInit {
   currentRate = 5
   stars = [1, 2, 3, 4, 5]
-  rating = 1
+  rating = 2
   hoverState = 0
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
@@ -40,7 +40,6 @@ export class UserdeatilsComponent implements OnInit {
         { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
-
 
   onStarEnter(starId: any) {
     this.hoverState = starId

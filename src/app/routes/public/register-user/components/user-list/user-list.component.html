@@ -166,19 +166,26 @@
           <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
           <mat-card class="example-card">
+            <!-- <div mat-card-avatar class="profile">
+              <img [attr.src]="registeredUser?.profile_image">
+            </div> -->
             <mat-card-header class="allignheader">
               <!-- <div mat-card-avatar class="example-header-image avatarclass"></div> -->
-              <div class="profile">
+              <div mat-card-avatar class="profile">
                 <img [attr.src]="registeredUser?.profile_image">
               </div>
-              <mat-card-title>{{registeredUser.username}}</mat-card-title>
-              <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle>
+
+              <mat-card-title style="font-size: 18px; margin-left: 25px; margin-top: 20px;">{{registeredUser.username}}
+              </mat-card-title>
+              <!-- <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle> -->
 
             </mat-card-header>
             <br>
-            <mat-card-content>
+            <mat-card-content class="alligncontent">
+
               <div class="text-gray-60"> Location : {{registeredUser.residence_city}}</div>
-              <br>
+              <!-- <br> -->
+              <div class="text-gray-60"> Course : {{registeredUser.department_name}}</div>
               <div class="text-purple-500"> Status : {{registeredUser.employment_status}}</div>
 
 

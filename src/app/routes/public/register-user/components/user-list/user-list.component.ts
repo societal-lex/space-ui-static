@@ -65,7 +65,7 @@ export class UserListComponent implements OnInit {
   myarrayLocation: any
   currentRate = 5
   stars = [1, 2, 3, 4, 5]
-  rating = 1
+  rating = 2
   hoverState = 0
   selectedValue: any
 
