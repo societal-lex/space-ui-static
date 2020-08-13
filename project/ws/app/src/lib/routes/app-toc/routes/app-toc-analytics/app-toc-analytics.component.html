@@ -298,7 +298,7 @@
             <div class="margin-top-m margin-left-m">
               <div class="flex flex-between flex-middle">
                 <h3 class="margin-remove-bottom font-bold text-left ws-mat-primary-text" i18n>
-                  Users by Job Profiles
+                  Users by Organizations
                 </h3>
                 <button
                   *ngIf="analyticsDataClient?.department?.length >= 20"
@@ -309,7 +309,7 @@
                 </button>
               </div>
               <br />
-              <p class="description" i18n>This chart displays # of unique users by job profiles</p>
+              <p class="description" i18n>This chart displays # of unique users by Organizations</p>
             </div>
             <div class="margin-m">
               <ng-container [wsResolverWidget]="barChartDeptData"> </ng-container>
@@ -333,7 +333,7 @@
             <div class="margin-top-m margin-left-m">
               <div class="flex flex-between flex-middle">
                 <h3 class="margin-remove-bottom font-bold text-left ws-mat-primary-text" i18n>
-                  Views by Job Profiles
+                  Views by Organizations
                 </h3>
                 <button
                   *ngIf="analyticsDataClient?.department?.length >= 20"
@@ -344,7 +344,7 @@
                 </button>
               </div>
               <br />
-              <p class="description" i18n>This chart displays # of views by job profiles</p>
+              <p class="description" i18n>This chart displays # of views by Organizations</p>
             </div>
             <div class="margin-m">
               <ng-container [wsResolverWidget]="barChartDeptHitsData"> </ng-container>

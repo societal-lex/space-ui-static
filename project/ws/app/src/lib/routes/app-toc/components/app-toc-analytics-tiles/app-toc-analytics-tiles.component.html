@@ -13,7 +13,7 @@
         class="margin-remove-bottom underline margin-left-xs text-left"
         (click)="onClick('departments')"
       >
-        {{ category1 }}
+        {{ category1 === 'Job Profile-wise' ? 'Organizations' : category1}}
       </p>
       <p
         *ngIf="analyticsDataClient?.country?.length > 0"

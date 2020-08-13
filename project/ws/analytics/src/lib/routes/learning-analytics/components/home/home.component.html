@@ -355,7 +355,7 @@
           <div class="margin-top-m margin-left-m">
             <div class="flex flex-between flex-middle">
               <h3 class="margin-remove-bottom font-bold text-left ws-mat-primary-text" i18n>
-                Users by Departments
+                Users by Organizations
               </h3>
               <button
                 *ngIf="contentData?.departments?.length >= 20"
@@ -366,7 +366,7 @@
               </button>
             </div>
             <br />
-            <p class="description" i18n>This chart displays # of unique users by departments</p>
+            <p class="description" i18n>This chart displays # of unique users by organizations</p>
           </div>
           <div class="margin-m">
             <ng-container [wsResolverWidget]="barChartDepartmentData"> </ng-container>
@@ -378,7 +378,7 @@
           <div class="margin-top-m margin-left-m">
             <div class="flex flex-between flex-middle">
               <h3 class="margin-remove-bottom font-bold text-left ws-mat-primary-text" i18n>
-                Users by Sub-Departments
+                Users by Sub-Organizations
               </h3>
               <button
                 *ngIf="contentData?.subDepartment?.length >= 20"
@@ -389,7 +389,7 @@
               </button>
             </div>
             <br />
-            <p class="description" i18n>This chart displays # of unique users by sub-Department</p>
+            <p class="description" i18n>This chart displays # of unique users by sub-Organizations</p>
           </div>
           <div class="margin-m">
             <ng-container [wsResolverWidget]="barChartSubDepartmentData"> </ng-container>
