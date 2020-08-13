@@ -157,7 +157,8 @@ export class PlayerPdfComponent extends WidgetBaseComponent
     }
 
     document.addEventListener('keydown', event => {
-      event.preventDefault()
+      // event.preventDefault()
+      event.stopPropagation()
       const key = event.key // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
       if (key === 'ArrowRight') {
         this.loadPageNum(this.currentPage.value + 1)
