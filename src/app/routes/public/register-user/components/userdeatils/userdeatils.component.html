@@ -7,50 +7,56 @@
 <ng-container>
 
   <mat-card class="cardallign">
-
+    <!-- <div class="allignphoto"> -->
     <div class="container bg-white  p-6">
-      <div mat-card-avatar class="example-header-image"></div>
-
-
-      <div>
-        <div>
-          <h2 class="leftclass">Username : {{currentUserDetails.username}}</h2>
-          <div class="text-gray-600 leftclass">UserId : {{currentUserDetails.source_id}}</div>
-          <div class="text-gray-600 leftclass">First Name : {{currentUserDetails.first_name}}</div>
-          <div class="text-gray-600 leftclass">Last Name : {{currentUserDetails.last_name}}</div>
-          <div class="text-gray-60 leftclass">Location : {{currentUserDetails.residence_city}}</div>
-          <div class="text-gray-600 leftclass">Course : {{currentUserDetails.department_name}}</div>
-          <div class="text-blue-500 leftclass">Status : {{currentUserDetails.employment_status}}</div>
-        </div>
-        <div>
-          <div class="text-gray-600 rightclass">Country : {{currentUserDetails.residence_country}}</div>
-          <div class="text-gray-600 rightclass">Gender : {{currentUserDetails.gender}}</div>
-
-          <div class="text-gray-600 rightclass">Cerification Date : {{currentUserDetails.time_updated}}</div>
-
-          <div class="text-gray-600 rightclass">Contact Number : {{currentUserDetails.contact_phone_number_personal}}
-          </div>
-
-          <div class="text-purple-500 rightclass">Email Id : {{currentUserDetails.email}}</div>
-
-          <br><br><br>
-
-
-
-        </div>
-
-        <div [ngSwitch]=currentUserDetails.employment_status>
-          <div *ngSwitchCase="'Participation'"><button class="mat-primary btn-clr text-center"
-              (click)="viewCertificate(2)">View
-              Certificate</button></div>
-          <div *ngSwitchCase="'Achievement'"><button class="mat-primary btn-clr text-center"
-              (click)="viewCertificate(1)">View
-              Certificate</button></div>
-
-        </div>
-
+      <div class="profile">
+        <img [attr.src]="currentUserDetails?.profile_image">
+      </div>
+      <div class="qrcontainer">
+        <img [attr.src]="currentUserDetails?.images">
       </div>
     </div>
+
+    <div>
+      <!-- <div> -->
+      <h2 class="rightclass">Username : {{currentUserDetails.username}}</h2>
+      <div class="text-gray-600 rightclass">UserId : {{currentUserDetails.source_id}}</div>
+      <div class="text-gray-600 rightclass">First Name : {{currentUserDetails.first_name}}</div>
+      <div class="text-gray-600 rightclass">Last Name : {{currentUserDetails.last_name}}</div>
+      <div class="text-gray-60 rightclass">Location : {{currentUserDetails.residence_city}}</div>
+      <div class="text-gray-600 rightclass">Course : {{currentUserDetails.department_name}}</div>
+      <div class="text-blue-500 rightclass">Status : {{currentUserDetails.employment_status}}</div>
+      <!-- </div>
+          <div> -->
+      <div class="text-gray-600 rightclass">Country : {{currentUserDetails.residence_country}}</div>
+      <div class="text-gray-600 rightclass">Gender : {{currentUserDetails.gender}}</div>
+
+      <div class="text-gray-600 rightclass">Cerification Date : {{currentUserDetails.time_updated}}</div>
+
+      <div class="text-gray-600 rightclass">Contact Number : {{currentUserDetails.contact_phone_number_personal}}
+      </div>
+
+      <div class="text-purple-500 rightclass">Email Id : {{currentUserDetails.email}}</div>
+
+      <!-- <br><br><br> -->
+
+
+
+      <!-- </div> -->
+
+      <div [ngSwitch]=currentUserDetails.employment_status>
+        <div *ngSwitchCase="'Participation'"><button class="mat-primary btn-clr text-center"
+            (click)="viewCertificate(2)">View
+            Certificate</button></div>
+        <div *ngSwitchCase="'Achievement'"><button class="mat-primary btn-clr text-center"
+            (click)="viewCertificate(1)">View
+            Certificate</button></div>
+
+      </div>
+
+    </div>
+
+    <!-- </div> -->
   </mat-card>
 </ng-container>
 

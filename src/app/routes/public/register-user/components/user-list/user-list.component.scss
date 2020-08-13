@@ -62,7 +62,7 @@
 
 
 .container  {
-    max-width: 900px;
+    // max-width: 900px;
     justify-items: center;
     justify-content: center;
     text-align: center;
@@ -71,14 +71,14 @@
     // border: 2px red solid;
     // padding-left: 80px;
     // padding-top: 8%;
-    margin-left:17%;
+    // margin-left:17%;
     // display: flex;
   justify-content: space-around;
 }
 
 .example-card {
     // padding-left: 105px;
-    height: 300px;
+    // height: 300px;
 }
 
 .example-full-width {
@@ -191,7 +191,7 @@ color: white !important;
   // border: 2px green solid;
 }
 .mat-form-field{
-  width: 140px !important;
+  // width: 140px !important;
 }
 }
 //   .rating-list li {
@@ -314,13 +314,13 @@ color: white !important;
  .leftclass{
    float: left;
     // border: 1px green solid;
-    margin-left:50px;
+    // margin-left:50px;
     font-size: 20px;
 
  }
  .rightclass{
   //  float:right;
-  //  border: 1px green solid;
+  //  border: 1px red solid;
    margin-right:45px;
     font-size: 20px;
     margin-top: 55px;
@@ -333,3 +333,16 @@ color: white !important;
     /* flex-shrink: 0; */
     object-fit: cover;
  }
+
+ .mat-card-actions, .mat-card-content, .mat-card-subtitle {
+    // display: block;
+     margin-bottom: 1px;
+}
+
+.profile{
+  width:150px;
+  img{
+    object-fit: contain;
+    width: 70px;
+  }
+}

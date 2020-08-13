@@ -1,7 +1,7 @@
 <div class="header flex-header">
   <mat-toolbar class="mat-primary" [color]="navBackground?.color" [ngStyle]="navBackground?.styles">
     <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-    <span class="margin-left-s text-color" i18n>Registered Users</span>
+    <span class="margin-left-s text-color" i18n>Explore Guides</span>
     <div class="column-2">
       <div id="blogsearchbar"
         class="flex items-center border search border-solid search-border text-white justify-search">
@@ -162,12 +162,15 @@
     <div class="container rightclass">
       <mat-card-content class="grid">
 
-        <ng-container *ngFor="let registeredUser of users | filter : searchText">
+        <ng-container fxFlex="33.3%" *ngFor="let registeredUser of users | filter : searchText">
           <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
           <mat-card class="example-card">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image avatarclass"></div>
+              <!-- <div mat-card-avatar class="example-header-image avatarclass"></div> -->
+              <div class="profile">
+                <img [attr.src]="registeredUser?.profile_image">
+              </div>
               <mat-card-title>{{registeredUser.username}}</mat-card-title>
               <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle>
             </mat-card-header>

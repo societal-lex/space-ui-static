@@ -31,7 +31,8 @@ export class RegisterUserCoreService {
         employment_status: 'Achievement',
         department_name: 'Bird Watching',
         time_updated: '7 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Sumit.png',
+        profile_image: '/fusion-assets/qrcode/Male.png',
       },
       {
         source_id: 100,
@@ -47,7 +48,8 @@ export class RegisterUserCoreService {
         employment_status: 'Participation',
         department_name: 'Visiting',
         time_updated: '6 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Tanya.png',
+        profile_image: '/fusion-assets/qrcode/Female.png',
       },
       {
         source_id: 101,
@@ -63,7 +65,8 @@ export class RegisterUserCoreService {
         employment_status: 'Achievement',
         department_name: 'Feeding Birds',
         time_updated: '7 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Anjitha.png',
+        profile_image: '/fusion-assets/qrcode/Female.png',
       },
 
       {
@@ -80,7 +83,8 @@ export class RegisterUserCoreService {
         employment_status: 'Achievement',
         department_name: 'Watching Birds',
         time_updated: '7 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Uma.png',
+        profile_image: '/fusion-assets/qrcode/Female.png',
       },
       {
         source_id: 103,
@@ -96,7 +100,8 @@ export class RegisterUserCoreService {
         employment_status: 'Participation',
         department_name: 'Feeding Birds',
         time_updated: '7 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Rishabh.png',
+        profile_image: '/fusion-assets/qrcode/Male.png',
       },
 
       {
@@ -113,7 +118,8 @@ export class RegisterUserCoreService {
         employment_status: 'Participation',
         department_name: 'Feeding Birds',
         time_updated: '9 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Rohit.png',
+        profile_image: '/fusion-assets/qrcode/Male.png',
       },
       {
         source_id: 105,
@@ -129,7 +135,8 @@ export class RegisterUserCoreService {
         employment_status: 'Participation',
         department_name: 'Feeding Birds',
         time_updated: '8 Aug 2020',
-        images: 'src/My_Gallery.png',
+        images: '/fusion-assets/qrcode/Vijay.png',
+        profile_image: '/fusion-assets/qrcode/Male.png',
       },
 
     ],
