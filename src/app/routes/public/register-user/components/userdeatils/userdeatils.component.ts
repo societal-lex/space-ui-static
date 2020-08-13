@@ -29,11 +29,11 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
 

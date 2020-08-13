@@ -78,7 +78,7 @@
 
 .example-card {
     // padding-left: 105px;
-    // height: 300px;
+    height: 300px;
 }
 
 .example-full-width {
@@ -344,5 +344,6 @@ color: white !important;
   img{
     object-fit: contain;
     width: 70px;
+     border-radius: 50%;
   }
 }
