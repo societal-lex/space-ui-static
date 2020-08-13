@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { IRegsiterDetailObject } from '../../services/register-user-core.model'
+// import { IRegsiterDetailObject } from '../../services/register-user-core.model'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 
 @Component({
@@ -15,7 +15,7 @@ export class UserdeatilsComponent implements OnInit {
   hoverState = 0
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
-  currentUserDetails: IRegsiterDetailObject = {}
+  currentUserDetails: any = {}
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute, private readonly router: Router) { }
 
   ngOnInit() {
@@ -31,11 +31,11 @@ export class UserdeatilsComponent implements OnInit {
     // if(this.currentUserDetails.employment_status==="Achievement")
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
-        this.currentUserDetails.source_id}`],
+        this.currentUserDetails.details.source_id}`],
                            { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
-        this.currentUserDetails.source_id}`],
+        this.currentUserDetails.details.source_id}`],
                            { state: this.currentUserDetails, relativeTo: this.route })
     }
   }

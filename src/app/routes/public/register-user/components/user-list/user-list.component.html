@@ -165,7 +165,7 @@
         <ng-container fxFlex="33.3%" *ngFor="let registeredUser of users | filter : searchText">
           <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
-          <mat-card class="example-card">
+          <mat-card class="example-card" *ngIf="registeredUser.visible == true">
             <!-- <div mat-card-avatar class="profile">
               <img [attr.src]="registeredUser?.profile_image">
             </div> -->

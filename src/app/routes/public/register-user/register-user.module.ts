@@ -19,7 +19,7 @@ import { MatAutocompleteModule, MatTooltipModule } from '@angular/material'
 import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/src/lib/btn-page-back/btn-page-back.module'
 import { MatSelectModule } from '@angular/material/select'
 import { CertificatesModule } from '../certificates/certificates.module'
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StarComponent } from './components/star/star.component'
 import { UserFilterComponent } from './components/user-filter/user-filter.component'
 
@@ -48,7 +48,7 @@ import { UserFilterComponent } from './components/user-filter/user-filter.compon
     MatSelectModule,
     RegisteredUsersRoutingModule,
     CertificatesModule,
-    NgbModule,
+    // NgbModule,
     HttpClientModule,
     MatTooltipModule,
 
