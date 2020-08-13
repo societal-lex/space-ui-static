@@ -3,6 +3,8 @@ import {  IRegsiterDetailObject } from './register-user-core.model'
 import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 
+// const GETURL = ''
+// const GET_ID_URL = ''
 @Injectable({
 providedIn: 'root',
 })

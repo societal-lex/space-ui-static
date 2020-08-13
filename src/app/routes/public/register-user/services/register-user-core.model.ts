@@ -12,7 +12,9 @@ export interface IRegsiterDetailObject {
   residence_city?: string,
   employment_status?: string,
   department_name?: string,
-  time_updated?: string
+  time_updated?: string,
+  images?: string,
+  profile_image?: string
 }
 export interface IRegisterUserModel {
   details: IRegsiterDetailObject[]

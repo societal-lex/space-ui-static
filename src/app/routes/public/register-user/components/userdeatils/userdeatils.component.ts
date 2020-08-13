@@ -9,6 +9,10 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
   styleUrls: ['./userdeatils.component.scss'],
 })
 export class UserdeatilsComponent implements OnInit {
+  currentRate = 5
+  stars = [1, 2, 3, 4, 5]
+  rating = 2
+  hoverState = 0
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   currentUserDetails: IRegsiterDetailObject = {}
@@ -34,6 +38,17 @@ export class UserdeatilsComponent implements OnInit {
         this.currentUserDetails.source_id}`],
                            { state: this.currentUserDetails, relativeTo: this.route })
     }
+  }
+
+  onStarEnter(starId: any) {
+    this.hoverState = starId
+
+  }
+  onStarLeave() {
+    this.hoverState = 0
+  }
+  onStarClick(starId: any) {
+    this.rating = starId
   }
 
 }
