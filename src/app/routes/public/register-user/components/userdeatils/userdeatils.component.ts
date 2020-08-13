@@ -9,6 +9,10 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
   styleUrls: ['./userdeatils.component.scss'],
 })
 export class UserdeatilsComponent implements OnInit {
+  currentRate = 5
+  stars = [1, 2, 3, 4, 5]
+  rating = 1
+  hoverState = 0
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   currentUserDetails: IRegsiterDetailObject = {}
@@ -29,12 +33,24 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.source_id}`],
-                           { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.source_id}`],
-                           { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     }
+  }
+
+
+  onStarEnter(starId: any) {
+    this.hoverState = starId
+
+  }
+  onStarLeave() {
+    this.hoverState = 0
+  }
+  onStarClick(starId: any) {
+    this.rating = starId
   }
 
 }

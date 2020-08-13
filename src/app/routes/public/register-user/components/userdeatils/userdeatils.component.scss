@@ -1,7 +1,7 @@
 .container {
   // min-height: 400px;
   // margin: auto;
-  // border: 1px solid red;
+  // border: 1px yellow solid;
   background-color: white;
   margin-top: 20px;
   display: flex;
@@ -9,6 +9,7 @@
   max-width:780px;
   align-items: center;
   justify-content: space-between;
+  height: 150px;
 
 .allignimage{
   align-items: center;
@@ -26,7 +27,7 @@
 .mat-card{
 transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
 display: block;
-border: 2px purple solid;
+// border: 2px purple solid;
     /* display: block; */
     // position: relative;
     /* padding: 16px; */
@@ -47,17 +48,19 @@ border: 2px purple solid;
     justify-content: center;
     align-items: center;
     // margin: auto;
-    border: 2px green solid;
+    // border: 2px green solid;
 }
 .btn-clr{
-      width: 20%;
+      width: 150px;
     height: 30px;
     margin-left:73%;
+    margin-top: 60px;
 
 }
 .qrcontainer{
   width:150px;
-
+    width: 150px;
+    margin-bottom: 50px;
   img{
     object-fit: contain;
     width: 120%;
@@ -68,13 +71,16 @@ border: 2px purple solid;
 
 .profile{
   width:150px;
+  // margin-bottom: 50px;
   img{
     object-fit: contain;
     width: 130px;
+    margin-bottom: 50%;
+
   }
 }
 .allignphoto{
-  border: 2px green solid;
+  // border: 2px green solid;
 }
 ::ng-deep{
 //day mode
@@ -154,23 +160,30 @@ color: white !important;
 .idclass{
   text-align: center;
 }
-.leftclass{
+.leftclasses{
   // width:20%;
 
 // text-align: center;
-float:left;
-
-}
-.rightclass{
-  // width:80%;
-
-// text-align: center;
 // float:left;
+// border: 2px red solid;
+}
+.rightclasses{
+  // width:80%;
+// border:2px green solid;
+margin-left: 13%;
 
 }
 
 }
+.buttonrightclasses{
 
+// border:2px green solid;
+margin-left: 13%;
+}
+
+.buttonleftclasses{
+  margin-top:10px;
+}
 .mat-card.cardallign{
     transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
     /* display: block; */
@@ -178,8 +191,18 @@ float:left;
     /* padding: 16px; */
 
 }
-
-
+.alligntextdetails{
+  // border: 2px green solid ;
+  display:flex
+}
+.userdetails{
+  margin-bottom: 70px;
+}
+.containerbuttonbox{
+  // border: 2px #FF9800 solid;
+  display: flex;
+  margin-top: 40px;
+}
 
 
 // *************************************************************
