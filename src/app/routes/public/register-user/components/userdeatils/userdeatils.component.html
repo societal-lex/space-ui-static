@@ -10,7 +10,7 @@
     <!-- <div class="allignphoto"> -->
     <div class="container bg-white  p-6">
       <div class="profile">
-        <img [attr.src]="currentUserDetails?.profile_image">
+        <img style="margin-left:20px" [attr.src]="currentUserDetails?.profile_image">
       </div>
       <div class="userdetails" style="margin-right: 15%;">
         <h2>{{currentUserDetails.username}}</h2>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="containerbuttonbox">
-        <div class="flex-container">
+        <div style="margin-top: 20px;" class="flex-container">
           <ng-container *ngFor="let star of stars">
             <ws-star (starEnter)="onStarEnter($event)" (starLeave)="onStarLeave()" (starClicked)="onStarClick($event)"
               [starId]="star" [rating]="hoverState || rating">
