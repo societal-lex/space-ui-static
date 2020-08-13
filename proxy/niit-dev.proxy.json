@@ -52,5 +52,11 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
+  },
+  "/users/*": {
+    "target": "http://127.0.0.1:3001/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }

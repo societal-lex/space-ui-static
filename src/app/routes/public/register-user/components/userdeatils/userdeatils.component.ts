@@ -19,7 +19,7 @@ export class UserdeatilsComponent implements OnInit {
       if (!routeData.details) {
         this.router.navigate(['/public/guides'])
       } else {
-        this.currentUserDetails = { ...routeData.details }
+        this.currentUserDetails = { ...routeData }
       }
     })
   }

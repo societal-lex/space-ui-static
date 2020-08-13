@@ -97,8 +97,9 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
     if (this.configSvc.userProfile) {
       userId = this.configSvc.userProfile.userId || ''
     }
-this.userList.updateVisibility(userId)
-    this.userList.updateVisibility(userId)
+    this.userList.updateVisibility(userId).subscribe(() => {
+
+    })
     if (certiType === 1) {
       this.router.navigateByUrl(`/public/guides/certificates/${1}/${userId ? userId :
         userId}`,
