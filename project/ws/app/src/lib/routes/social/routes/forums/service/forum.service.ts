@@ -84,16 +84,16 @@ export class ForumService {
     let finalAcceptance = true
     if (this.configSvc.userRoles && this.configSvc.userRoles.size) {
       if (notAllowedRoles.length) {
-        const rolesNotAllowed = notAllowedRoles.filter(role => (this.configSvc.userRoles as Set<string>).has(role))
-        if (rolesNotAllowed.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (rolesOK) {
           finalAcceptance = false
         } else {
           finalAcceptance = true
         }
       }
       if (allowedRoles.length) {
-        const rolesMising = allowedRoles.filter(role => !(this.configSvc.userRoles as Set<string>).has(role))
-        if (rolesMising.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
           finalAcceptance = false
         } else {
           finalAcceptance = true
