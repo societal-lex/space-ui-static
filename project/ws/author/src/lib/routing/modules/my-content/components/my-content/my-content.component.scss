@@ -25,7 +25,9 @@
 .border-bottom {
   border-bottom: 1px solid lightgray;
 }
-
+.mat-drawer-container{
+  overflow: inherit;
+}
 .mat-drawer-content {
   overflow: hidden !important;
 }
