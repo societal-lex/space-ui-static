@@ -59,6 +59,8 @@ export class MyContentComponent implements OnInit, OnDestroy {
   variousContentTypeAPI: any
   checked = false
   count = false
+  selectedFilterItem: any
+  removeFilterItem: any
   currentAction: 'author' | 'reviewer' | 'expiry' | 'deleted' = 'author'
   @ViewChild('searchInput', { static: false }) searchInputElem: ElementRef<any> = {} as ElementRef<
     any
@@ -247,7 +249,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
         // }
         requestData.request.filters = { ...requestData.request.filters, [v.key]: v.value }
       })
-      console.log(requestData.request.filters)
+      // console.log(requestData.request.filters)
     }
     if (this.queryFilter) {
       delete requestData.request.sort
@@ -360,10 +362,16 @@ export class MyContentComponent implements OnInit, OnDestroy {
       ).checked = false
       this.filters.splice(filterIndex, 1)
       this.finalFilters.forEach((value: any, index: any) => {
+        if (value.key === 'duration') {
+          this.selectedFilterItem = node.type
+        } else {
+          this.selectedFilterItem = node.displayName
+        }
         if (value.value.length > 0) {
           value.value.forEach((removeItem: any) => {
-            if (removeItem === 'Collection') { removeItem = 'Module' }
-            if (removeItem === node.displayName) {
+            this.removeFilterItem = removeItem
+            if (this.removeFilterItem === 'Collection') { this.removeFilterItem = 'Module' }
+            if (this.removeFilterItem === this.selectedFilterItem) {
               const indexOfFilterRemoveItem = this.finalFilters[index].value.indexOf(node.displayName)
               const removeFilterValue = this.finalFilters[index].value
               removeFilterValue.splice(indexOfFilterRemoveItem, 1)
@@ -377,7 +385,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
   }
 
   assignValuesToFinalFilter(filterMenuItemsIndex: any, node: any) {
-    this.count = false;
+    this.count = false
     if (this.finalFilters.length > 0) {
       this.finalFilters.forEach((val: any, index: any) => {
         this.keyValue = val

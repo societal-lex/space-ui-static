@@ -35,6 +35,13 @@
   padding: 0;
 }
 input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        display: none;
-      }
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+ }
+input[type=number] {
+    -moz-appearance:textfield;
+}
+  .pdf-page-num {
+    max-width: 3rem !important ;
+  }
