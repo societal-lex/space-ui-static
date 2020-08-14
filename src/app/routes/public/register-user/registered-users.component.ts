@@ -14,7 +14,7 @@ export class RegisteredUsersComponent implements OnInit {
   registeredUsers: IRegsiterDetailObject[] | undefined = undefined
 
   constructor(private _route: ActivatedRoute,
-              private _router: Router
+    private _router: Router
   ) { }
 
   ngOnInit() {

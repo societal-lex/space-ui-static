@@ -14,7 +14,8 @@ export interface IRegsiterDetailObject {
   department_name?: string,
   time_updated?: string,
   images?: string,
-  profile_image?: string
+  profile_image?: string,
+  rating?: number
 }
 export interface IRegisterUserModel {
   details: IRegsiterDetailObject[]

@@ -21,7 +21,8 @@ import { MatSelectModule } from '@angular/material/select'
 import { CertificatesModule } from '../certificates/certificates.module'
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StarComponent } from './components/star/star.component'
-import { UserFilterComponent } from './components/user-filter/user-filter.component'
+import { UserFilterComponent } from './components/user-filter/user-filter.component';
+import { UserCardComponent } from './components/user-card/user-card.component'
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserFilterComponent } from './components/user-filter/user-filter.compon
     FilterPipe,
     StarComponent,
     UserFilterComponent,
+    UserCardComponent,
 
   ],
   providers: [RegisterUserCoreService],

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core'
-import {  IRegsiterDetailObject } from './register-user-core.model'
+import { IRegsiterDetailObject } from './register-user-core.model'
 import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 
 // const GETURL = ''
 // const GET_ID_URL = ''
 @Injectable({
-providedIn: 'root',
+   providedIn: 'root',
 })
 export class RegisterUserCoreService {
 
-data: any
+   data: any
    constructor(private http: HttpClient) { }
 
    // userData: IRegisterUserModel =
@@ -120,33 +120,43 @@ data: any
 
    // }
 
-// get API
-getUsersDetails(): Observable<any> {
-   return this.http.get('/users/users')
-}
+   // get API
+   getUsersDetails(): Observable<any> {
+      return this.http.get('/users/users')
+   }
 
-getUserFromID(userID: string): Observable<IRegsiterDetailObject | any> {
-   return this.http.get(`/users/users/${userID}`)
-}
-updateVisibility(userId: string): Observable<IRegsiterDetailObject | any> {
-   return this.http.put(`/users/users`, {
-      id: userId, properties: {
-         visible: true,
-      }},               {
-      headers: {
-         'Content-Type': 'application/json',
-      },
-   })
-}
+   getUserFromID(userID: string): Observable<IRegsiterDetailObject | any> {
+      return this.http.get(`/users/users/${userID}`)
+   }
+   updateVisibility(userId: string): Observable<IRegsiterDetailObject | any> {
+      return this.http.put(`/users/users`, {
+         id: userId, properties: {
+            visible: true,
+         }
+      }, {
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      })
+   }
 
-//   Visibility(visible: true): Observable<IRegsiterDetailObject | any >
-// {
-// const result = this.userData.details.find(userObj => userObj.visible != visible)
-// if(result)
-// {
-// return of(result);
-// }
-// return of(false);
-// }
+   updateRating(userID: string, rating: number) {
+      return this.http.put(`/users/users`, {
+         id: userID,
+         properties: {
+            rating
+         }
+      })
+   }
+
+   //   Visibility(visible: true): Observable<IRegsiterDetailObject | any >
+   // {
+   // const result = this.userData.details.find(userObj => userObj.visible != visible)
+   // if(result)
+   // {
+   // return of(result);
+   // }
+   // return of(false);
+   // }
 
 }

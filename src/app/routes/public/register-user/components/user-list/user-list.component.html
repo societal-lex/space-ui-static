@@ -165,50 +165,8 @@
         <ng-container fxFlex="33.3%" *ngFor="let registeredUser of users | filter : searchText">
           <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
-          <mat-card class="example-card" *ngIf="registeredUser.visible == true">
-            <!-- <div mat-card-avatar class="profile">
-              <img [attr.src]="registeredUser?.profile_image">
-            </div> -->
-            <mat-card-header class="allignheader">
-              <!-- <div mat-card-avatar class="example-header-image avatarclass"></div> -->
-              <div mat-card-avatar class="profile">
-                <img [attr.src]="registeredUser?.profile_image">
-              </div>
-
-              <mat-card-title style="font-size: 18px; margin-left: 25px; margin-top: 20px;">{{registeredUser.username}}
-              </mat-card-title>
-              <!-- <mat-card-subtitle>{{registeredUser.department_name}}</mat-card-subtitle> -->
-
-            </mat-card-header>
-            <br>
-            <mat-card-content class="alligncontent">
-
-              <div class="text-gray-60"> Location : {{registeredUser.residence_city}}</div>
-              <!-- <br> -->
-              <div class="text-gray-60"> Course : {{registeredUser.department_name}}</div>
-              <div class="text-purple-500"> Status : {{registeredUser.employment_status}}</div>
-
-
-            </mat-card-content>
-            <br><br>
-            <mat-card-actions>
-              <div>
-
-                <div class="flex-container">
-                  <ng-container *ngFor="let star of stars">
-                    <ws-star (starEnter)="onStarEnter($event)" (starLeave)="onStarLeave()"
-                      (starClicked)="onStarClick($event)" [starId]="star" [rating]="hoverState || rating">
-                    </ws-star>
-                  </ng-container>
-
-                </div>
-
-
-
-                <button class="mat-primary btn-clr" (click)="viewUserDetails(registeredUser)">View Details</button>
-              </div>
-            </mat-card-actions>
-          </mat-card>
+          <ws-user-card *ngIf="registeredUser?.visible" [registeredUser]="registeredUser" [stars]="[1,2,3,4,5]"
+            (onStarClick)="onStarClick($event)" (onViewUserDetails)="viewUserDetails($event)"></ws-user-card>
         </ng-container>
 
       </mat-card-content>

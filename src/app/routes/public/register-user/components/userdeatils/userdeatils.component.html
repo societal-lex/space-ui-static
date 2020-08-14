@@ -68,18 +68,18 @@
         <div style="margin-top: 20px;" class="flex-container">
           <ng-container *ngFor="let star of stars">
             <ws-star (starEnter)="onStarEnter($event)" (starLeave)="onStarLeave()" (starClicked)="onStarClick($event)"
-              [starId]="star" [rating]="hoverState || rating">
+              [starId]="star" [rating]="hoverState || currentUserDetails?.details?.rating || 0">
             </ws-star>
           </ng-container>
 
         </div>
         <div class="buttonleftclasses">
           <textarea rows="4" cols="50" name="comment" form="usrform"
-            style="margin-left: 33%; width:80%"class="text-gray-600">Give your review comments....</textarea>
-          <!-- <div style="margin-left: 40%;">
-            <label>1.App is very useful</label><br>
-            <label>2.Very helpful application</label>
-          </div> -->
+            style="margin-left: 33%; width:80%">Give your review comments....</textarea>
+          <div style="margin-left: 40%;">
+            <label>1. App is very useful</label><br>
+            <label>2. Very helpful application</label>
+          </div>
 
 
         </div>

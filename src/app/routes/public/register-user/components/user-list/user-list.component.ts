@@ -4,6 +4,7 @@ import { IRegsiterDetailObject } from './../../services/register-user-core.model
 // import { MatTableDataSource } from '@angular/material/table'
 // import { MatFormFieldControl } from '@angular/material'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
+import { RegisterUserCoreService } from '../../services/register-user-core.service'
 // import { lodash_ } from 'lodash'
 
 // import * as lodash from 'lodash'
@@ -19,7 +20,7 @@ export class UserListComponent implements OnInit {
   navBackground: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   placeHolder: String = 'Search'
 
-  constructor(private configSvc: ConfigurationsService) {
+  constructor(private configSvc: ConfigurationsService, private registerUserSrvc: RegisterUserCoreService) {
     // var filteruser = [...new Set(this.users)]
 
     // const filteruser = [...new Set(this.users.map(x => x.employment_status))]
@@ -132,8 +133,13 @@ export class UserListComponent implements OnInit {
   onStarLeave() {
     this.hoverState = 0
   }
-  onStarClick(starId: any) {
-    this.rating = starId
+  onStarClick(ratingDataForUser: IRegsiterDetailObject) {
+    console.log('recieved data for api handling', ratingDataForUser.source_id + '--> ' + ratingDataForUser.rating)
+    this.registerUserSrvc.updateRating(ratingDataForUser.source_id as string, ratingDataForUser.rating as number).subscribe(ratingRes => {
+      console.log('rating status', ratingRes)
+    }, err => {
+      console.error('Could not update the rating of the user', err)
+    })
   }
 
 }
