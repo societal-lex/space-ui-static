@@ -380,6 +380,9 @@ export class LearningComponent implements OnInit, OnDestroy {
             this.activated.snapshot.data.pageroute !== 'learning' ? true : false,
           )
           this.filtersResponse = filteR.filtersRes
+          var filterData = this.filtersResponse.splice(0, 1)
+          this.filtersResponse.splice(4, 0, filterData[0]);
+          // console.log('filter ',this.filtersResponse, filterData)
           if (
             this.searchResults.totalHits === 0 && this.isDefaultFilterApplied
           ) {

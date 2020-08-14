@@ -1181,7 +1181,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           graphDefaultPalette: 'default',
           graphFilterType: 'Organization',
           graphXAxisLabel: '# Users',
-          graphYAxisLabel: 'Organization',
+          graphYAxisLabel: '#Organization',
           graphIsXAxisLabel: true,
           graphIsYAxisLabel: true,
           graphOnClick: true,
