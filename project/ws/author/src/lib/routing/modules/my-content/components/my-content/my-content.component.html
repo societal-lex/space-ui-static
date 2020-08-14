@@ -13,7 +13,7 @@
       [treeControl]="filterMenuTreeControl">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
         <ng-container>
-          <mat-checkbox [value]="node.displayName" (change)="filterApplyEvent(node,$event)" [(ngModel)]="node.checked"
+          <mat-checkbox [value]="node.displayName" (change)="filterApplyEvent(node)" [(ngModel)]="node.checked"
             class="checklist-leaf-node">{{ modifyFilterDisplayName(node.displayName) }} {{' (' + node.count + ')' }}
           </mat-checkbox>
         </ng-container>

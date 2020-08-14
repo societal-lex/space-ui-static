@@ -58,6 +58,7 @@ export class MyContentComponent implements OnInit, OnDestroy {
   sameContentTypeAPI: any
   variousContentTypeAPI: any
   checked = false
+  count = false
   currentAction: 'author' | 'reviewer' | 'expiry' | 'deleted' = 'author'
   @ViewChild('searchInput', { static: false }) searchInputElem: ElementRef<any> = {} as ElementRef<
     any
@@ -175,8 +176,8 @@ export class MyContentComponent implements OnInit, OnDestroy {
     }
   }
 
-  fetchContent(loadMoreFlag: boolean, changeFilter = true, checked = false) {
-    this.apiCallingCount += this.apiCallingCount
+  fetchContent(loadMoreFlag: boolean, changeFilter = true) {
+    // this.apiCallingCount += this.apiCallingCount
     const searchV6Data = this.myContSvc.getSearchBody(
       this.status,
       this.searchLanguage ? [this.searchLanguage] : [],
@@ -227,25 +228,26 @@ export class MyContentComponent implements OnInit, OnDestroy {
           }
 
         })
-        if (this.apiCallingCount === 2) {
-          this.sameContentTypeAPI = { ...requestData.request.filters, [v.key]: v.value }
-        }
-        if (this.apiCallingCount > 2) {
-          if (checked) {
-            if (this.sameContentTypeAPI.hasOwnProperty(v.key)) {
-              requestData.request.filters = { ...this.sameContentTypeAPI }
-            } else {
-              this.variousContentTypeAPI = { ...this.sameContentTypeAPI, [v.key]: v.value }
-              requestData.request.filters = { ...this.variousContentTypeAPI }
-            }
-          } else {
-            requestData.request.filters = { ...this.sameContentTypeAPI, [v.key]: v.value }
-          }
-        } else {
-          requestData.request.filters = { ...requestData.request.filters, [v.key]: v.value }
-        }
+        // if (this.apiCallingCount === 2) {
+        //   this.sameContentTypeAPI = { ...requestData.request.filters, [v.key]: v.value }
+        // }
+        // if (this.apiCallingCount > 2) {
+        //   if (checked) {
+        //     if (this.sameContentTypeAPI.hasOwnProperty(v.key)) {
+        //       requestData.request.filters = { ...this.sameContentTypeAPI }
+        //     } else {
+        //       this.variousContentTypeAPI = { ...this.sameContentTypeAPI, [v.key]: v.value }
+        //       requestData.request.filters = { ...this.variousContentTypeAPI }
+        //     }
+        //   } else {
+        //     requestData.request.filters = { ...this.sameContentTypeAPI, [v.key]: v.value }
+        //   }
+        // } else {
+        //   requestData.request.filters = { ...requestData.request.filters, [v.key]: v.value }
+        // }
         requestData.request.filters = { ...requestData.request.filters, [v.key]: v.value }
       })
+      console.log(requestData.request.filters)
     }
     if (this.queryFilter) {
       delete requestData.request.sort
@@ -328,10 +330,10 @@ export class MyContentComponent implements OnInit, OnDestroy {
     this.fetchContent(false, false)
   }
 
-  filterApplyEvent(node: any, event: any) {
-    if (event) {
-      this.checked = event.checked
-    }
+  filterApplyEvent(node: any) {
+    // if (event) {
+    //   this.checked = event.checked
+    // }
     // console.log(event)
     this.pagination.offset = 0
     this.sideNavBarOpened = false
@@ -359,8 +361,8 @@ export class MyContentComponent implements OnInit, OnDestroy {
       this.filters.splice(filterIndex, 1)
       this.finalFilters.forEach((value: any, index: any) => {
         if (value.value.length > 0) {
-          value.value.forEach((removeItem: any, idx: any) => {
-            if (removeItem === 'Collection') { value.value[idx] = 'Module' }
+          value.value.forEach((removeItem: any) => {
+            if (removeItem === 'Collection') { removeItem = 'Module' }
             if (removeItem === node.displayName) {
               const indexOfFilterRemoveItem = this.finalFilters[index].value.indexOf(node.displayName)
               const removeFilterValue = this.finalFilters[index].value
@@ -371,25 +373,27 @@ export class MyContentComponent implements OnInit, OnDestroy {
       })
     }
     this.dataSource.data = this.filterMenuItems
-    this.fetchContent(false, false, this.checked)
+    this.fetchContent(false, false)
   }
 
   assignValuesToFinalFilter(filterMenuItemsIndex: any, node: any) {
+    this.count = false;
     if (this.finalFilters.length > 0) {
       this.finalFilters.forEach((val: any, index: any) => {
         this.keyValue = val
         if (this.finalFilters[index].key === this.filterMenuItems[filterMenuItemsIndex].type && node.hasOwnProperty('type')) {
+          this.count = true
           this.finalFilters[index].value.push(node.type)
-        } else {
-          if (this.finalFilters.length === 1 && index === 0) {
+        }
+      })
+          if (this.count === false) {
             this.finalFilters.push({
               key: this.filterMenuItems[filterMenuItemsIndex].type,
               value: [node.type],
             })
           }
         }
-      })
-    }
+
     if (this.finalFilters.length === 0) {
       if (this.finalFilters.includes('key')) {
         this.finalFilters.forEach((val: any) => {
