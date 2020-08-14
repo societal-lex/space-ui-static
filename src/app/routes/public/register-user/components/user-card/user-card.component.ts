@@ -4,7 +4,7 @@ import { IRegsiterDetailObject } from '../../services/register-user-core.model'
 @Component({
   selector: 'ws-user-card',
   templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.scss']
+  styleUrls: ['./user-card.component.scss'],
 })
 export class UserCardComponent implements OnInit {
   @Input() registeredUser: IRegsiterDetailObject = {}
@@ -14,7 +14,6 @@ export class UserCardComponent implements OnInit {
   @Output() onViewUserDetails = new EventEmitter<any>()
 
   hoverState = 0
-
 
   constructor() { }
 
@@ -34,7 +33,6 @@ export class UserCardComponent implements OnInit {
     this.registeredUser.rating = starId
     this.onStarClick.emit(this.registeredUser)
   }
-
 
   viewUserDetails(_registeredUser: any) {
     this.onViewUserDetails.emit(_registeredUser)

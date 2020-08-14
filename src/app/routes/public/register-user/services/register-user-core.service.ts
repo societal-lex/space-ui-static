@@ -132,8 +132,8 @@ export class RegisterUserCoreService {
       return this.http.put(`/users/users`, {
          id: userId, properties: {
             visible: true,
-         }
-      }, {
+         },
+      },                   {
          headers: {
             'Content-Type': 'application/json',
          },
@@ -144,8 +144,8 @@ export class RegisterUserCoreService {
       return this.http.put(`/users/users`, {
          id: userID,
          properties: {
-            rating
-         }
+            rating,
+         },
       })
    }
 

@@ -134,12 +134,13 @@ export class UserListComponent implements OnInit {
     this.hoverState = 0
   }
   onStarClick(ratingDataForUser: IRegsiterDetailObject) {
-    console.log('recieved data for api handling', ratingDataForUser.source_id + '--> ' + ratingDataForUser.rating)
-    this.registerUserSrvc.updateRating(ratingDataForUser.source_id as string, ratingDataForUser.rating as number).subscribe(ratingRes => {
-      console.log('rating status', ratingRes)
-    }, err => {
-      console.error('Could not update the rating of the user', err)
-    })
+    // console.log('recieved data for api handling', ratingDataForUser.source_id + '--> ' + ratingDataForUser.rating)
+    this.registerUserSrvc.updateRating(ratingDataForUser.source_id as string,
+      ratingDataForUser.rating as number).subscribe(_ratingRes => {
+        // console.log('rating status', ratingRes)
+      }, _err => {
+        // console.error('Could not update the rating of the user', err)
+      })
   }
 
 }
