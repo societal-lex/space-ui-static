@@ -18,6 +18,7 @@ export class UserdeatilsComponent implements OnInit {
   hoverState = 0
   myArray = []
   feature = ['Very good app for guides']
+  heroes = ["Very good app for guides", "Very helpful for the guides"];
 
   selectedFeatures: any = []
 
@@ -80,17 +81,22 @@ export class UserdeatilsComponent implements OnInit {
 
   }
 
-  addNew() {
-    [...this.myArray]
-    console.log(this.myArray)
-  }
+  // addNew() {
+  //   [...this.myArray]
+  //   console.log(this.myArray)
+  // }
 
-  onAdd() {
-    this.selectedFeatures.push(this.feature)
-  }
+  // onAdd() {
+  //   this.selectedFeatures.push(this.feature)
+  // }
 
-  onRemove() {
-    this.selectedFeatures.pop()
+  // onRemove() {
+  //   this.selectedFeatures.pop()
+  // }
+  addHero(newHero: string) {
+    if (newHero) {
+      this.heroes.push(newHero)
+    }
   }
 
 }

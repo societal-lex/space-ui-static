@@ -84,33 +84,17 @@
 
         </div>
         <div class="buttonleftclasses">
-          <textarea rows="4" cols="50" name="comment" form="usrform" class="text-gray-600"
-            style="margin-left: 36%; width:80%">Give your review comments....</textarea>
-          <div class="text-gray-60" style="margin-left: 40%;">
-            <label>1. App is very useful</label><br>
-            <label>2. Very helpful application</label>
-          </div>
-          <!-- ******************************************* -->
-          <!-- Enter a value <input type="text" [(ngModel)]="name">
-          <label id="lblName"> {{name}} </label> -->
+          <textarea input #newHero (keyup.enter)="addHero(newHero.value)"
+            (blur)="addHero(newHero.value); newHero.value='' " class="text-gray-600" style="margin-left: 65%; width:80%"
+            placeholder="Enter text to add comments"></textarea>
+          <button class="addbtnallign" (click)="addHero(newHero.value)">Add</button>
 
 
-          <!-- <br>Welcome.<br>
-          <input type="text" value="Sydney" [(ngModel)]="myArray" />
-
-          <button (click)="addNew()">Add</button>
-          {{myArray}} -->
-          <!-- <form [formGroup]="demoForm">
-  <div formArrayName="demoArray" *ngFor="let arrayItem of arrayItems; let i=index"> -->
-
-          <div>
-            {{ selectedFeatures|json}}
-          </div>
-          <button type="submit" (click)="onAdd()" class="btn btn-warning btn-sm mt-2">Add</button>
-          <button type="submit" (click)="onRemove()" class="btn btn-warning btn-sm mt-2">Remove</button>
 
 
-          <!-- *********************************************************************** -->
+
+
+
         </div>
         <div class="buttonrightclasses" [ngSwitch]=currentUserDetails.details?.employment_status>
           <div *ngSwitchCase="'Beginner'"><button class="mat-primary btn-clr text-center"
@@ -121,6 +105,13 @@
               Certificate</button></div>
 
         </div>
+
+      </div>
+      <hr>
+      <h2>Review Comments</h2>
+
+      <div class="boxed" *ngFor="let hero of heroes">
+        {{hero}}
 
       </div>
 

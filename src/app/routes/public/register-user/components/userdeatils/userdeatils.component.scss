@@ -53,8 +53,8 @@ display: block;
 .btn-clr{
       width: 150px;
     height: 30px;
-    margin-left:20%;
-    margin-top: 30px;
+    margin-left:250px;
+    margin-top: 13px;
 
 }
 .qrcontainer{
@@ -199,12 +199,14 @@ margin-left: 13%;
   // margin-bottom: 70px;
 }
 .containerbuttonbox{
-  // border: 2px #FF9800 solid;
+  border: 2px #FF9800 solid;
   display: flex;
   margin-top: 40px;
 }
 
-
+.boxed{
+  border: 1px black solid;
+}
 // *************************************************************
 // .container > div{
 //   width:150px;
