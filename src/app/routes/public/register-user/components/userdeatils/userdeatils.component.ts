@@ -10,15 +10,24 @@ import { RegisterUserCoreService } from '../../services/register-user-core.servi
   styleUrls: ['./userdeatils.component.scss'],
 })
 export class UserdeatilsComponent implements OnInit {
+  constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
+    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
   hoverState = 0
+  myArray = []
+  feature = ['Very good app for guides']
+
+  selectedFeatures: any = []
+
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   currentUserDetails: any = {}
-  constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+
+  public name: any
+  public str: any
+  placeId: any
 
   ngOnInit() {
     this.route.data.subscribe(routeData => {
@@ -53,12 +62,35 @@ export class UserdeatilsComponent implements OnInit {
   onStarClick(starID: number) {
     // console.log('recieved data for api handling', this.currentUserDetails.details.source_id + '--> ' + this.currentUserDetails.details.rating)
     this.currentUserDetails.details.rating = starID
-    this.registerUserSrvc.updateRating(this.currentUserDetails.details.source_id as string,
-      this.currentUserDetails.details.rating as number).subscribe(_ratingRes => {
+    this.registerUserSrvc.updateRating(
+      this.currentUserDetails.details.source_id as string,
+      this.currentUserDetails.details.rating as number)
+      .subscribe(_ratingRes => {
         // console.log('rating status', ratingRes)
       }, _err => {
         // console.error('Could not update the rating of the user', err)
       })
+  }
+
+  changeLabelName() {
+    this.name = this.str
+  }
+  myFunc(_num1: any) {
+    // console.log(num1)// here you will get input value through ng-model
+
+  }
+
+  addNew() {
+    [...this.myArray]
+    console.log(this.myArray)
+  }
+
+  onAdd() {
+    this.selectedFeatures.push(this.feature)
+  }
+
+  onRemove() {
+    this.selectedFeatures.pop()
   }
 
 }
