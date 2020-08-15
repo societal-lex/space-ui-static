@@ -10,8 +10,8 @@ export class UserCardComponent implements OnInit {
   @Input() registeredUser: IRegsiterDetailObject = {}
   @Input() stars: number[] = []
 
-  @Output() onStarClick = new EventEmitter<any>()
-  @Output() onViewUserDetails = new EventEmitter<any>()
+  @Output() oStarClick = new EventEmitter<any>()
+  @Output() oViewUserDetails = new EventEmitter<any>()
 
   hoverState = 0
 
@@ -31,11 +31,11 @@ export class UserCardComponent implements OnInit {
 
   starClick(starId: any) {
     this.registeredUser.rating = starId
-    this.onStarClick.emit(this.registeredUser)
+    this.oStarClick.emit(this.registeredUser)
   }
 
   viewUserDetails(_registeredUser: any) {
-    this.onViewUserDetails.emit(_registeredUser)
+    this.oViewUserDetails.emit(_registeredUser)
   }
 
 }

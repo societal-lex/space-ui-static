@@ -53,7 +53,7 @@ display: block;
 .btn-clr{
       width: 150px;
     height: 30px;
-    margin-left:250px;
+    margin-left:300px;
     margin-top: 13px;
 
 }
@@ -196,17 +196,22 @@ margin-left: 13%;
   display:flex
 }
 .userdetails{
+  // border: 2px red solid;
   // margin-bottom: 70px;
 }
 .containerbuttonbox{
-  border: 2px #FF9800 solid;
+  // border: 2px #FF9800 solid;
   display: flex;
   margin-top: 40px;
 }
 
-.boxed{
-  border: 1px black solid;
-}
+// .boxed{
+//   border: 1px black solid;
+
+// }
+// .rowgap{
+//   grid-row: 2px;
+// }
 // *************************************************************
 // .container > div{
 //   width:150px;

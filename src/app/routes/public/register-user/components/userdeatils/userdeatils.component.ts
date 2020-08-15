@@ -11,14 +11,14 @@ import { RegisterUserCoreService } from '../../services/register-user-core.servi
 })
 export class UserdeatilsComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
   hoverState = 0
   myArray = []
-  feature = ['Very good app for guides']
-  heroes = ["Very good app for guides", "Very helpful for the guides"];
+
+  heroes = ['Very good website for guides', 'Very helpful for the guides', 'I love this']
 
   selectedFeatures: any = []
 
@@ -44,11 +44,11 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
 
@@ -60,15 +60,14 @@ export class UserdeatilsComponent implements OnInit {
     this.hoverState = 0
   }
 
-  onStarClick(starID: number) {
-    // console.log('recieved data for api handling', this.currentUserDetails.details.source_id + '--> ' + this.currentUserDetails.details.rating)
+  oStarClick(starID: number) {
     this.currentUserDetails.details.rating = starID
     this.registerUserSrvc.updateRating(
       this.currentUserDetails.details.source_id as string,
       this.currentUserDetails.details.rating as number)
       .subscribe(_ratingRes => {
         // console.log('rating status', ratingRes)
-      }, _err => {
+      },         _err => {
         // console.error('Could not update the rating of the user', err)
       })
   }

@@ -133,10 +133,10 @@ export class UserListComponent implements OnInit {
   onStarLeave() {
     this.hoverState = 0
   }
-  onStarClick(ratingDataForUser: IRegsiterDetailObject) {
-    // console.log('recieved data for api handling', ratingDataForUser.source_id + '--> ' + ratingDataForUser.rating)
-    this.registerUserSrvc.updateRating(ratingDataForUser.source_id as string,
-      ratingDataForUser.rating as number).subscribe(_ratingRes => {
+  oStarClick(ratingDataForUser: IRegsiterDetailObject) {
+    this.registerUserSrvc.updateRating
+      (ratingDataForUser.source_id as string, ratingDataForUser.rating as number)
+      .subscribe(_ratingRes => {
       }, _err => {
 
       })

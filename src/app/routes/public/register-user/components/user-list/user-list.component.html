@@ -168,7 +168,7 @@
           <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
           <ws-user-card *ngIf="registeredUser?.visible" [registeredUser]="registeredUser" [stars]="[1,2,3,4,5]"
-            (onStarClick)="onStarClick($event)" (onViewUserDetails)="viewUserDetails($event)"></ws-user-card>
+            (oStarClick)="oStarClick($event)" (oViewUserDetails)="viewUserDetails($event)"></ws-user-card>
         </ng-container>
 
       </mat-card-content>
