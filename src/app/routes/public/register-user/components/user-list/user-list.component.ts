@@ -134,10 +134,9 @@ export class UserListComponent implements OnInit {
     this.hoverState = 0
   }
   oStarClick(ratingDataForUser: IRegsiterDetailObject) {
-    this.registerUserSrvc.updateRating
-      (ratingDataForUser.source_id as string, ratingDataForUser.rating as number)
+    this.registerUserSrvc.updateRating(ratingDataForUser.source_id as string, ratingDataForUser.rating as number)
       .subscribe(_ratingRes => {
-      }, _err => {
+      },         _err => {
 
       })
   }
