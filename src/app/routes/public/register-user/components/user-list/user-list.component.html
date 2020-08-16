@@ -110,10 +110,11 @@
 <div class="allignment">
   <div class="alligncontainer">
 
-    <div class="formallign leftclass">
+    <div class="formallign leftclass" style="margin-right: 2%;">
       <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
         <mat-label>Filter Location</mat-label>
-        <mat-select [(ngModel)]="searchText">
+        <mat-select class="removearraow" [(ngModel)]="searchText">
           <!-- <mat-option *ngFor="let registeredUser of users" [value]="registeredUser.residence_city">
         {{registeredUser.residence_city}}
 
@@ -142,6 +143,7 @@
       <!--********************Second Filter************************ -->
 
       <mat-form-field>
+        <mat-icon matPrefix>filter_list</mat-icon>
         <mat-label>Filter Expertise</mat-label>
         <mat-select [(ngModel)]="searchText">
 
@@ -166,7 +168,7 @@
           <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
           <ws-user-card *ngIf="registeredUser?.visible" [registeredUser]="registeredUser" [stars]="[1,2,3,4,5]"
-            (onStarClick)="onStarClick($event)" (onViewUserDetails)="viewUserDetails($event)"></ws-user-card>
+            (oStarClick)="oStarClick($event)" (oViewUserDetails)="viewUserDetails($event)"></ws-user-card>
         </ng-container>
 
       </mat-card-content>

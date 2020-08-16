@@ -53,8 +53,8 @@ display: block;
 .btn-clr{
       width: 150px;
     height: 30px;
-    margin-left:20%;
-    margin-top: 30px;
+    margin-left:300px;
+    margin-top: 13px;
 
 }
 .qrcontainer{
@@ -196,6 +196,7 @@ margin-left: 13%;
   display:flex
 }
 .userdetails{
+  // border: 2px red solid;
   // margin-bottom: 70px;
 }
 .containerbuttonbox{
@@ -204,7 +205,13 @@ margin-left: 13%;
   margin-top: 40px;
 }
 
+// .boxed{
+//   border: 1px black solid;
 
+// }
+// .rowgap{
+//   grid-row: 2px;
+// }
 // *************************************************************
 // .container > div{
 //   width:150px;
