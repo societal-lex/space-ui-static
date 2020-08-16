@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { RegisterUserCoreService } from '../../../register-user/services/register-user-core.service'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
-
 @Component({
   selector: 'app-completioncertficate',
   templateUrl: './completioncertficate.component.html',
@@ -16,11 +15,12 @@ export class CompletioncertficateComponent implements OnInit {
   value = 1
   wid: any
   constructor(private router: ActivatedRoute, private readonly userDetailsSrvc: RegisterUserCoreService, private route: Router,
-              private configSvc: ConfigurationsService) {
+    private configSvc: ConfigurationsService) {
   }
 
   ngOnInit() {
-    this.date = new Date().toDateString()
+    let currentDate = new Date();
+    this.date = currentDate.toDateString().split(' ').slice(1).join(' ');
     this.router.params.subscribe(params => {
       this.value = parseInt(params['stage'], 10)
       this.wid = params['userid']

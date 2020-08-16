@@ -1,0 +1,17 @@
+
+.format{
+
+    text-align: center;
+    padding-top: 10vh;
+}
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+
+  .button-align{
+      text-align: center;
+  }
+  .width{
+width: 600px;
+  }

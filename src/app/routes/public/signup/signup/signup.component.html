@@ -1,0 +1,43 @@
+<mat-toolbar class="mat-primary" [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
+  <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+  <span class="margin-left-s text-color" i18n>SignUp</span>
+</mat-toolbar>
+
+<div class="format">
+<p>
+    <mat-form-field class="width" appearance="legacy">
+      <mat-label>Enter your First Name</mat-label>
+      <input matInput placeholder="First Name" required>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="width" appearance="legacy">
+      <mat-label>Enter your Last Name</mat-label>
+      <input matInput placeholder="Last Name" required>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="width" appearance="legacy">
+      <mat-label>Enter your Email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="width" appearance="legacy">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    </mat-form-field>
+  </p>
+</div>
+
+
+<div class ="button-align">
+   <button mat-raised-button color="primary">Submit</button>
+</div>

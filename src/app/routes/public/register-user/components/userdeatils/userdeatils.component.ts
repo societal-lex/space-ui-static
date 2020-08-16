@@ -17,10 +17,13 @@ export class UserdeatilsComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   currentUserDetails: any = {}
+  date: any
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
     private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   ngOnInit() {
+    let currentDate = new Date()
+    this.date = currentDate.toDateString().split(' ').slice(1).join(' ');
     this.route.data.subscribe(routeData => {
       if (!routeData.details) {
         this.router.navigate(['/public/guides'])

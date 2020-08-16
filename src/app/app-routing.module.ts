@@ -469,6 +469,10 @@ const routes: Routes = [
     loadChildren: () => import('./routes/public/certificates/certificates.module').then(u => u.CertificatesModule),
   },
   {
+    path: 'public/user',
+    loadChildren: () => import('./routes/public/signup/signup.module').then(u => u.SignupModule),
+  },
+  {
     path: 'public/tnc',
     component: TncComponent,
     data: {
