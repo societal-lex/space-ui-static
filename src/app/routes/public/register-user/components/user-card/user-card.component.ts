@@ -9,12 +9,9 @@ import { IRegsiterDetailObject } from '../../services/register-user-core.model'
 export class UserCardComponent implements OnInit {
   @Input() registeredUser: IRegsiterDetailObject = {}
   @Input() stars: number[] = []
-
   @Output() onStarClick = new EventEmitter<any>()
   @Output() onViewUserDetails = new EventEmitter<any>()
-
   hoverState = 0
-
   constructor() { }
 
   ngOnInit() {

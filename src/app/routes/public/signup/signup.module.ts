@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SignupComponent } from './signup/signup.component';
-import {MatFormFieldModule,} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input' ;
-import {MatIconModule} from '@angular/material/icon' ;
-import {MatButtonModule} from '@angular/material/button';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { SignupComponent } from './signup/signup.component'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button'
 import { SignUpRoutingModule } from './signup-routing.module'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -21,8 +21,8 @@ import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/s
     MatButtonModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    BtnPageBackModule
+    BtnPageBackModule,
   ]
-  ,exports :[SignupComponent]
+  , exports : [SignupComponent],
 })
 export class SignupModule {}

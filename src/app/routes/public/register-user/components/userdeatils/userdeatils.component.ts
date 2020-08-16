@@ -19,11 +19,11 @@ export class UserdeatilsComponent implements OnInit {
   currentUserDetails: any = {}
   date: any
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   ngOnInit() {
-    let currentDate = new Date()
-    this.date = currentDate.toDateString().split(' ').slice(1).join(' ');
+    const currentDate = new Date()
+    this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
     this.route.data.subscribe(routeData => {
       if (!routeData.details) {
         this.router.navigate(['/public/guides'])
@@ -37,11 +37,11 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
 
@@ -54,12 +54,11 @@ export class UserdeatilsComponent implements OnInit {
   }
 
   onStarClick(starID: number) {
-    // console.log('recieved data for api handling', this.currentUserDetails.details.source_id + '--> ' + this.currentUserDetails.details.rating)
     this.currentUserDetails.details.rating = starID
     this.registerUserSrvc.updateRating(this.currentUserDetails.details.source_id as string,
-      this.currentUserDetails.details.rating as number).subscribe(_ratingRes => {
+                                       this.currentUserDetails.details.rating as number).subscribe(_ratingRes => {
         // console.log('rating status', ratingRes)
-      }, _err => {
+      },                                                                                           _err => {
         // console.error('Could not update the rating of the user', err)
       })
   }
