@@ -25,7 +25,7 @@ export class UserdeatilsComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   currentUserDetails: any = {}
-date:any;
+date: any
   public name: any
   public str: any
   placeId: any

@@ -8,7 +8,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 })
 export class SignupComponent  {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
-  constructor(private configSvc: ConfigurationsService){}
+  constructor(private configSvc: ConfigurationsService) {}
   hide = true
   email = new FormControl('', [Validators.required, Validators.email])
 

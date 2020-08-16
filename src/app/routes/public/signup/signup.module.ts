@@ -9,6 +9,7 @@ import { SignUpRoutingModule } from './signup-routing.module'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/src/lib/btn-page-back/btn-page-back.module'
+import { MatCardModule } from '@angular/material/card'
 
 @NgModule({
   declarations: [SignupComponent],
@@ -22,6 +23,7 @@ import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/s
     ReactiveFormsModule,
     MatToolbarModule,
     BtnPageBackModule,
+    MatCardModule,
   ]
   , exports : [SignupComponent],
 })

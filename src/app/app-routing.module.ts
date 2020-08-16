@@ -472,6 +472,11 @@ const routes: Routes = [
     path: 'public/user',
     loadChildren: () => import('./routes/public/signup/signup.module').then(u => u.SignupModule),
   },
+
+  {
+    path: 'qrcode',
+    loadChildren: () => import('./routes/public/qrcode/qrcode.module').then(u => u.QrcodeModule),
+  },
   {
     path: 'public/tnc',
     component: TncComponent,
