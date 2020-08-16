@@ -4,7 +4,7 @@ import { QrcodeComponent } from './qrcode.component'
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':userid',
     component: QrcodeComponent,
   },
 ]
