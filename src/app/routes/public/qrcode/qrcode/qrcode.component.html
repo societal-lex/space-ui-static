@@ -1,13 +1,15 @@
+<div style="background-color: darkcyan;">
 <mat-toolbar class="mat-primary" [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
     <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-    <span class="margin-left-s text-color" i18n>qrcode</span>
+    <span class="margin-left-s text-color" i18n>Qr Code</span>
 </mat-toolbar>
 <mat-card class= "qrcode">
 <div class="format">
-    <h1>Communication - {{student?.Communication}}</h1>
+    <h1 >Communication - {{student?.Communication}}</h1>
     <h1>Birds History – {{student?.Birds_history}}</h1>
     <h1>Indian Birds Knowledge - {{student?.Indian_birds_knowledge}}</h1>
     <h1>Birds Feeding - {{student?.Bird_feeding}}</h1>
     <h1>Multi Location Experience - {{student?.Multi_location_experience}}</h1>
 </div>
 </mat-card>
+</div>
