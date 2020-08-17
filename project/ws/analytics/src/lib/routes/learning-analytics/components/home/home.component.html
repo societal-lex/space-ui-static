@@ -21,7 +21,7 @@
         [description]="totalUsersDescription"
       >
       </ws-analytics-analytics-tile>
-      <ws-analytics-analytics-tile
+      <!-- <ws-analytics-analytics-tile
         *ngIf="hits > 0"
         class="unique-users-card margin-m"
         (clickEvent)="onClick($event)"
@@ -32,7 +32,7 @@
         [uniqueUsers]="hits"
         [description]="hitsDescription"
       >
-      </ws-analytics-analytics-tile>
+      </ws-analytics-analytics-tile> -->
       <ws-analytics-analytics-tile
         *ngIf="contentUsers > 0"
         class="unique-users-card margin-m"
@@ -129,7 +129,7 @@
             <br />
             <p class="description" i18n>How many users visited on each hour?</p>
           </div>
-          <mat-form-field class="filter-select x-small-typography margin-remove">
+          <!-- <mat-form-field class="filter-select x-small-typography margin-remove">
             <mat-select
               [(value)]="selected"
               i18n-placeholder
@@ -144,7 +144,7 @@
                 {{ filter?.filterName }}</mat-option
               >
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
         <div *ngIf="filterFetchStatus === 'fetching'" class="flex flex-center margin-xl padding-xl">
           <mat-spinner></mat-spinner>
