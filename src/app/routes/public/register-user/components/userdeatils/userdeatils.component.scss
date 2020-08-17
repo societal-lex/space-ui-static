@@ -84,79 +84,86 @@ display: block;
 }
 ::ng-deep{
 //day mode
-.theme-teal.day-mode .btn-clr{
+.theme-teal.day-mode .btn-clr,.theme-teal.day-mode .addbtnallign{
   background-color: #005F87 !important;
   color: white !important;
 
 }
-.theme-orange.day-mode .btn-clr{
+.theme-orange.day-mode .btn-clr,.theme-orange.day-mode .addbtnallign{
 background: #FF9800 !important;
 color: white !important;
 }
-.theme-muave.day-mode .btn-clr{
+.theme-muave.day-mode .btn-clr,.theme-muave.day-mode .addbtnallign{
   background: #865BA0 !important;
   color: white !important;
 
 }
-.theme-lite-blue.day-mode .btn-clr{
+.theme-lite-blue.day-mode .btn-clr,.theme-lite-blue.day-mode .addbtnallign{
 background: #b3e5fc !important;
 color: white !important;
 }
 
-.theme-blue.day-mode .btn-clr{
+.theme-blue.day-mode .btn-clr,.theme-blue.day-mode .addbtnallign{
 background: #0072CE !important;
 color: white !important;
 }
-.theme-grey.day-mode .btn-clr{
+.theme-grey.day-mode .btn-clr,.theme-grey.day-mode .addbtnallign{
 background: #C6C6C6 !important;
 color: white !important;
 }
-.theme-deep-purple.day-mode .btn-clr{
+.theme-deep-purple.day-mode .btn-clr,.theme-deep-purple.day-mode .addbtnallign{
 background: #673AB7!important;
 color: white !important;
 }
-.theme-indigo.day-mode .btn-clr{
+.theme-indigo.day-mode .btn-clr,.theme-indigo.day-mode .addbtnallign{
 background: #3F51B5 !important;
 color: white !important;
 }
 
  //night mode
 
- .theme-teal.night-mode .btn-clr{
+ .theme-teal.night-mode .btn-clr,.theme-teal.night-mode .addbtnallign{
   background-color: #005F87 !important;
   color: white !important;
 
 }
-.theme-orange.night-mode .btn-clr{
+.theme-orange.night-mode .btn-clr,.theme-orange.night-mode .addbtnallign{
 background: #FF9800 !important;
 color: white !important;
 }
-.theme-muave.night-mode .btn-clr{
+.theme-muave.night-mode .btn-clr,.theme-muave.night-mode .addbtnallign{
   background: #865BA0 !important;
   color: white !important;
 
 }
-.theme-lite-blue.night-mode .btn-clr{
+.theme-lite-blue.night-mode .btn-clr,.theme-lite-blue.night-mode .addbtnallign{
 background: #b3e5fc !important;
 color: white !important;
 }
 
-.theme-blue.night-mode .btn-clr{
+.theme-blue.night-mode .btn-clr,.theme-blue.night-mode .addbtnallign{
 background: #0072CE !important;
 color: white !important;
 }
-.theme-grey.night-mode .btn-clr{
+.theme-grey.night-mode .btn-clr,.theme-grey.night-mode .addbtnallign{
 background: #C6C6C6 !important;
 color: white !important;
 }
-.theme-deep-purple.night-mode .btn-clr{
+.theme-deep-purple.night-mode .btn-clr,.theme-deep-purple.night-mode .addbtnallign{
 background: #673AB7!important;
 color: white !important;
 }
-.theme-indigo.night-mode .btn-clr{
+.theme-indigo.night-mode .btn-clr,.theme-indigo.night-mode .addbtnallign{
 background: #3F51B5 !important;
 color: white !important;
 }
+
+// .theme-teal.day-mode .addbtnallign{
+//   background: #865BA0 !important;
+//   color: white !important;
+
+// }
+
 .idclass{
   text-align: center;
 }
@@ -203,15 +210,14 @@ margin-left: 13%;
   // border: 2px #FF9800 solid;
   display: flex;
   margin-top: 40px;
+justify-content: space-between;
+}
+.reviewallignment{
+  display: flex;
+  justify-content: space-between;
 }
 
-// .boxed{
-//   border: 1px black solid;
 
-// }
-.rowgap{
-// display: flex;
-}
 // *************************************************************
 // .container > div{
 //   width:150px;
@@ -270,76 +276,76 @@ margin-left: 13%;
 // }
 // ::ng-deep{
 // //day mode
-// .theme-teal.day-mode .btn-clr{
+// .theme-teal.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 //   background-color: #005F87 !important;
 //   color: white !important;
 
 // }
-// .theme-orange.day-mode .btn-clr{
+// .theme-orange.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #FF9800 !important;
 // color: white !important;
 // }
-// .theme-muave.day-mode .btn-clr{
+// .theme-muave.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 //   background: #865BA0 !important;
 //   color: white !important;
 
 // }
-// .theme-lite-blue.day-mode .btn-clr{
+// .theme-lite-blue.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #b3e5fc !important;
 // color: white !important;
 // }
 
-// .theme-blue.day-mode .btn-clr{
+// .theme-blue.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #0072CE !important;
 // color: white !important;
 // }
-// .theme-grey.day-mode .btn-clr{
+// .theme-grey.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #C6C6C6 !important;
 // color: white !important;
 // }
-// .theme-deep-purple.day-mode .btn-clr{
+// .theme-deep-purple.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #673AB7!important;
 // color: white !important;
 // }
-// .theme-indigo.day-mode .btn-clr{
+// .theme-indigo.day-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #3F51B5 !important;
 // color: white !important;
 // }
 
 //  //night mode
 
-//  .theme-teal.night-mode .btn-clr{
+//  .theme-teal.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 //   background-color: #005F87 !important;
 //   color: white !important;
 
 // }
-// .theme-orange.night-mode .btn-clr{
+// .theme-orange.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #FF9800 !important;
 // color: white !important;
 // }
-// .theme-muave.night-mode .btn-clr{
+// .theme-muave.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 //   background: #865BA0 !important;
 //   color: white !important;
 
 // }
-// .theme-lite-blue.night-mode .btn-clr{
+// .theme-lite-blue.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #b3e5fc !important;
 // color: white !important;
 // }
 
-// .theme-blue.night-mode .btn-clr{
+// .theme-blue.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #0072CE !important;
 // color: white !important;
 // }
-// .theme-grey.night-mode .btn-clr{
+// .theme-grey.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #C6C6C6 !important;
 // color: white !important;
 // }
-// .theme-deep-purple.night-mode .btn-clr{
+// .theme-deep-purple.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #673AB7!important;
 // color: white !important;
 // }
-// .theme-indigo.night-mode .btn-clr{
+// .theme-indigo.night-mode .btn-clr,theme-teal.day-mode .addbtnallign{
 // background: #3F51B5 !important;
 // color: white !important;
 // }

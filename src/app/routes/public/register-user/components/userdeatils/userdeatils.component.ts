@@ -11,7 +11,7 @@ import { RegisterUserCoreService } from '../../services/register-user-core.servi
 })
 export class UserdeatilsComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
@@ -41,6 +41,8 @@ export class UserdeatilsComponent implements OnInit {
   public name: any
   public str: any
   placeId: any
+  reviewcommennts: any
+  reviewname: any
 
   ngOnInit() {
     this.route.data.subscribe(routeData => {
@@ -56,11 +58,11 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-                           { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-                           { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
 
@@ -79,7 +81,7 @@ export class UserdeatilsComponent implements OnInit {
       this.currentUserDetails.details.rating as number)
       .subscribe(_ratingRes => {
         // console.log('rating status', ratingRes)
-      },         _err => {
+      }, _err => {
         // console.error('Could not update the rating of the user', err)
       })
   }
@@ -109,5 +111,23 @@ export class UserdeatilsComponent implements OnInit {
   //     this.reviewpeople.push(newHero)
   //   }
   // }
+
+  addnew(newcomments: string) {
+    // if (this.reviewcommennts) {
+    this.reviewcommennts = newcomments
+    // this.reviewpeople.push({ name: this.reviewcommennts, comments: newcomments })
+    // }
+
+  }
+
+  addName(newname: string) {
+    this.reviewname = newname
+    // this.reviewpeople.push({ name: newname, comments: newcomments })
+  }
+  reviewbutton() {
+    if (this.reviewcommennts && this.reviewname) {
+      this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
+    }
+  }
 
 }
