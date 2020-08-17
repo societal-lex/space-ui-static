@@ -24,6 +24,9 @@ export class QrcodeComponent implements OnInit {
     window.history.back()
   }
 ngOnInit() {
+  const currentDate = new Date()
+  this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
+
   this.router.params.subscribe(params => {
     this.wid = params['userid']
 

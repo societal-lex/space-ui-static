@@ -37,7 +37,7 @@
     <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
     <span class="margin-left-s text-color" i18n>Certificate</span>
 </mat-toolbar>
-
+<mat-card>
 <div *ngIf="value==1" class="center">
     <div class="intro">
         <div class="intro1">
@@ -61,7 +61,9 @@
         </div>
     </div>
 </div>
+</mat-card>
 
+<mat-card >
 <div *ngIf="value==2" class="center">
     <div class="intro">
         <div class="intro1">
@@ -85,3 +87,4 @@
         </div>
     </div>
 </div>
+</mat-card>

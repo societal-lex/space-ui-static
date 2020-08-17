@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { MatIconModule } from '@angular/material'
+import { MatIconModule, MatCardModule } from '@angular/material'
 import { CertificatesRoutingModule } from './certificates-routing.module'
 import { CompletioncertficateComponent } from './components/completioncertficate/completioncertficate.component'
 import { CertificateServiceService } from './services/certificate-service/certificate-service.service'
@@ -14,6 +14,7 @@ import { BtnPageBackModule } from '../../../../../library/ws-widget/collection/s
     MatIconModule,
     MatToolbarModule,
     BtnPageBackModule,
+    MatCardModule,
   ],
   providers: [CertificateServiceService],
   exports: [CompletioncertficateComponent],

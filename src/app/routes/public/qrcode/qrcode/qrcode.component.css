@@ -3,11 +3,57 @@
     margin-left: 70vh;
     margin-right: 55vh;
     margin-top: 20vh;
-    /* margin-bottom: 20vh; */
+    margin-bottom: 20vh;
 }
 
  h1
  {
 
      font-family: "Lucida Console", Courier, monospace!important;
+}
+
+.intro{
+
+width:800px;
+height:600px;
+padding:20px;
+text-align:center;
+border: 10px solid #787878
+}
+
+.intro1 {
+
+width:750px;
+height:550px;
+padding:20px;
+text-align:center;
+border: 5px solid #787878
+
+}
+
+.v1{
+font-size:50px;
+font-weight:bold
+}
+.v2 {
+
+font-size:25px
+}
+.v3 {
+padding-top: 50%;
+font-size:30px
+}
+.v4 {
+
+font-size:20px
+}
+.center{
+
+padding-left: 300px;
+}
+.date{
+padding-left: 78vh;
+}
+.main{
+padding-top: 14vh;
 }
