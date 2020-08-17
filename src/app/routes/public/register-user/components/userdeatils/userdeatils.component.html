@@ -114,8 +114,18 @@
       <br>
       <h2 class="text-gray-600">Review Comments</h2>
       <div class="rowgap">
-        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of heroes">
-          {{hero}}<br>
+
+        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of reviewpeople">
+
+          <mat-icon matPrefix>person</mat-icon>
+          <!-- <p class="allignicon"> -->
+          {{hero.name}} : {{hero.comments}}
+          <!-- </p> -->
+          <br>
+
+          <!-- <div>
+            <mat-icon matPrefix>person</mat-icon>
+          </div> -->
         </div>
 
       </div>

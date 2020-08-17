@@ -11,14 +11,26 @@ import { RegisterUserCoreService } from '../../services/register-user-core.servi
 })
 export class UserdeatilsComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
   hoverState = 0
   myArray = []
 
-  heroes = ['Very good website for guides', 'Very helpful for the guides', 'I love this']
+  reviewpeople = [{
+    "name": "Sumit Nautiyal",
+    "comments": "Very good website for the bird guides.",
+  },
+  {
+    "name": "Tanya Chauhan",
+    "comments": "Very helpful for the people they can certify themselves ",
+  },
+  {
+    "name": "Anjitha R.",
+    "comments": "Very helpful for the guides",
+  }]
+  // ['Very good website for guides', 'Very helpful for the guides', 'I love this']
 
   selectedFeatures: any = []
 
@@ -44,11 +56,11 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-                           { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-                           { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
 
@@ -67,7 +79,7 @@ export class UserdeatilsComponent implements OnInit {
       this.currentUserDetails.details.rating as number)
       .subscribe(_ratingRes => {
         // console.log('rating status', ratingRes)
-      },         _err => {
+      }, _err => {
         // console.error('Could not update the rating of the user', err)
       })
   }
@@ -92,10 +104,10 @@ export class UserdeatilsComponent implements OnInit {
   // onRemove() {
   //   this.selectedFeatures.pop()
   // }
-  addHero(newHero: string) {
-    if (newHero) {
-      this.heroes.push(newHero)
-    }
-  }
+  // addHero(newHero: string) {
+  //   if (newHero) {
+  //     this.reviewpeople.push(newHero)
+  //   }
+  // }
 
 }
