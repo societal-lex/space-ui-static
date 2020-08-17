@@ -18,7 +18,19 @@ export class UserdeatilsComponent implements OnInit {
   hoverState = 0
   myArray = []
 
-  heroes = ['Very good website for guides', 'Very helpful for the guides', 'I love this']
+  reviewpeople = [{
+    name: 'Sumit Nautiyal',
+    comments: 'Very good website for the bird guides.',
+  },
+  {
+    name: 'Tanya Chauhan',
+    comments: 'Very helpful for the people they can certify themselves ',
+  },
+  {
+    name: 'Anjitha R.',
+    comments: 'Very helpful for the guides',
+  }]
+  // ['Very good website for guides', 'Very helpful for the guides', 'I love this']
 
   selectedFeatures: any = []
 
@@ -29,6 +41,8 @@ date: any
   public name: any
   public str: any
   placeId: any
+  reviewcommennts: any
+  reviewname: any
 
   ngOnInit() {
     const currentDate = new Date()
@@ -94,9 +108,27 @@ date: any
   // onRemove() {
   //   this.selectedFeatures.pop()
   // }
-  addHero(newHero: string) {
-    if (newHero) {
-      this.heroes.push(newHero)
+  // addHero(newHero: string) {
+  //   if (newHero) {
+  //     this.reviewpeople.push(newHero)
+  //   }
+  // }
+
+  addnew(newcomments: string) {
+    // if (this.reviewcommennts) {
+    this.reviewcommennts = newcomments
+    // this.reviewpeople.push({ name: this.reviewcommennts, comments: newcomments })
+    // }
+
+  }
+
+  addName(newname: string) {
+    this.reviewname = newname
+    // this.reviewpeople.push({ name: newname, comments: newcomments })
+  }
+  reviewbutton() {
+    if (this.reviewcommennts && this.reviewname) {
+      this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
     }
   }
 

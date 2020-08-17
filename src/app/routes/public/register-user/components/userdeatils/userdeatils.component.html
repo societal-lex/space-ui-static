@@ -22,13 +22,6 @@
           <br>
           {{currentUserDetails.details?.about}}</div>
 
-
-
-
-        <!-- <br> -->
-        <!-- <h3>About
-          <hr>
-        </h3> -->
       </div>
       <hr>
       <div class="qrcontainer">
@@ -84,20 +77,7 @@
           </ng-container>
 
         </div>
-        <div class="buttonleftclasses">
-          <textarea input #newHero (keyup.enter)="addHero(newHero.value)"
-            (blur)="addHero(newHero.value); newHero.value='' " class="text-gray-600"
-            style="margin-left: 95%; width:150%" placeholder="Give your review comments"></textarea>
-          <div>
-            <!-- <button class="addbtnallign" (click)="addHero(newHero.value)">Add</button> -->
 
-          </div>
-
-
-
-
-
-        </div>
         <div class="buttonrightclasses" [ngSwitch]=currentUserDetails.details?.employment_status>
           <div *ngSwitchCase="'Beginner'"><button class="mat-primary btn-clr text-center"
               (click)="viewCertificate(2)">View
@@ -112,10 +92,46 @@
       <br>
       <hr>
       <br>
-      <h2 class="text-gray-600">Review Comments</h2>
+      <div class="reviewallignment">
+        <div>
+          <h2 class="text-gray-600">Review Comments</h2>
+        </div>
+        <!-- <div class="buttonleftclasses"> -->
+        <div class="text-gray-600">
+          <textarea input #newcomments (keyup.enter)="addnew(newcomments.value)"
+            (blur)="addnew(newcomments.value); newcomments.value='' " class="text-gray-600"
+            placeholder="Write your Review here…"></textarea>
+        </div>
+        <div class="text-gray-600">
+          <input style="height: 30px;" #newname (keyup.enter)="addName(newname.value)"
+            (blur)="addName(newname.value); newname.value='' " class="text-gray-600" placeholder="Enter your name">
+        </div>
+
+        <div>
+          <button style="height: 30px;" class="text-gray-600 mat-primary addbtnallign" (click)="reviewbutton()">Add
+            Review</button>
+
+        </div>
+
+
+        <!-- </div> -->
+
+
+      </div>
       <div class="rowgap">
-        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of heroes">
-          {{hero}}<br>
+
+        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of reviewpeople">
+          <div>
+            <mat-icon class="matclass" style="font-size: 20px;" matPrefix>person</mat-icon>
+          </div>
+          <div>
+            <strong> {{hero.name}}</strong> : {{hero.comments}}
+          </div>
+          <br>
+
+          <!-- <div>
+            <mat-icon matPrefix>person</mat-icon>
+          </div> -->
         </div>
 
       </div>
