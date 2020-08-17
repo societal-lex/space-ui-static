@@ -1,9 +1,10 @@
 
 .qrcode{
-    margin-left: 70vh;
-    margin-right: 55vh;
-    margin-top: 20vh;
-    margin-bottom: 20vh;
+    width: 100%;
+    min-width: 50vh;
+    text-align: center;
+    /* padding-left: 70vh;
+     padding-right: 70vh; */
 }
 
  h1
@@ -13,11 +14,11 @@
 }
 
 .intro{
-
+/* text-align:center; */
+margin:auto;
 width:800px;
 height:600px;
 padding:20px;
-text-align:center;
 border: 10px solid #787878
 }
 
@@ -57,3 +58,16 @@ padding-left: 78vh;
 .main{
 padding-top: 14vh;
 }
+.certificate{
+    text-align: center;
+    /* padding-left: 40vh; */
+    justify-content: center;
+    align-items: center;
+     min-width: 134vh;
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+    min-width: 139vh;
+}
+/* .format{
+    padding-left: 35vh;
+} */
