@@ -10,9 +10,22 @@
  h1
  {
 
-     font-family: "Lucida Console", Courier, monospace!important;
+     font-size:25px;
 }
-
+.vn1{
+    margin:auto;
+width:800px;
+height:350px;
+padding:20px;
+border: 10px solid #787878
+}
+.vn2{
+    width:750px;
+height:300px;
+padding:20px;
+text-align:center;
+border: 5px solid #787878
+}
 .intro{
 /* text-align:center; */
 margin:auto;
@@ -59,15 +72,33 @@ padding-left: 78vh;
 padding-top: 14vh;
 }
 .certificate{
+     margin: auto;
     text-align: center;
     /* padding-left: 40vh; */
     justify-content: center;
     align-items: center;
      min-width: 134vh;
+     max-width: 61%;
+     /* max-width: 120vh; */
 }
 .mat-toolbar-row, .mat-toolbar-single-row{
     min-width: 139vh;
 }
-/* .format{
-    padding-left: 35vh;
-} */
+.format{
+    margin: auto;
+    max-width: 61%;
+   min-width: 134vh;
+   text-align: center;
+   padding-bottom: 10px;
+}
+.skills{
+    font-size:50px;
+font-weight:bold;
+}
+.space{
+    padding-top: 18px;
+}
+.pdng{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
