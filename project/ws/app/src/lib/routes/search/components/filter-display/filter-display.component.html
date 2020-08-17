@@ -73,9 +73,15 @@
   <mat-checkbox (change)="applyFilters(unitFilterObject)" [checked]="unitFilterObject.unitFilter.checked && unitFilterObject.filterType.length"
     class="width-expand fit-checkbox-to-width">
     <span class="flex">
-      <span class="width-expand text-truncate">{{ translatedFilters[unitFilterObject.parentFilter?.toLowerCase()]?.value[unitFilterObject.unitFilter.displayName.toLowerCase()] || unitFilterObject.unitFilter.displayName
+      <span class="width-expand text-truncate" *ngIf="unitFilterObject.unitFilter.displayName !=='Module' && unitFilterObject.unitFilter.displayName !=='Course'">{{ translatedFilters[unitFilterObject.parentFilter?.toLowerCase()]?.value[unitFilterObject.unitFilter.displayName.toLowerCase()] || unitFilterObject.unitFilter.displayName
         }}
       </span>
+        <span class="width-expand text-truncate" *ngIf="unitFilterObject.unitFilter.displayName ==='Module'">{{ translatedFilters[unitFilterObject.parentFilter?.toLowerCase()]?.value['Asset'.toLowerCase()] || 'Asset'
+                }}
+        </span>
+          <span class="width-expand text-truncate" *ngIf="unitFilterObject.unitFilter.displayName ==='Course'">{{ translatedFilters[unitFilterObject.parentFilter?.toLowerCase()]?.value['Collection'.toLowerCase()] || 'Collection'
+                  }}
+          </span>
     </span>
   </mat-checkbox>
   <span class="width-auto padding-left-s" *ngIf="unitFilterObject.unitFilter.count">{{ unitFilterObject.unitFilter.count }}
