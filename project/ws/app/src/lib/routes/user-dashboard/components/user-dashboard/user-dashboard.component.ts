@@ -23,11 +23,12 @@ export class UserDashboardComponent implements OnInit {
 
   navBackground: Partial<NsPage.INavBackground> | null = null
   selectedRow: NsUserDashboard.IUserListDataFromUserTable[] = []
-  constructor(private userDashboardSvc: UserDashboardService,
-              public snackBar: MatSnackBar,
-              public dialog: MatDialog,
-              private activateRoute: ActivatedRoute,
-              private configSvc: ConfigurationsService
+  constructor(
+    private userDashboardSvc: UserDashboardService,
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private activateRoute: ActivatedRoute,
+    private configSvc: ConfigurationsService,
   ) {
 
     const instanceConfig = this.configSvc.userProfile
@@ -55,7 +56,7 @@ export class UserDashboardComponent implements OnInit {
 
   getUserData: NsUserDashboard.IGetUserData = {} as any
   displayedColumns =
-    ['select', 'SlNo', 'first_name', 'email', 'Actions']
+    ['select', 'SlNo', 'first_name', 'organization', 'email', 'Actions']
   allroles!: NsUserDashboard.IRoles
   allrolesForBulkChangeRole: NsUserDashboard.IRoles | null = null
   paramsForChangeRole: NsUserDashboard.IChangeRole = {} as any
@@ -214,7 +215,7 @@ export class UserDashboardComponent implements OnInit {
       }
     })
   }
-  async  changeUserRoles(roles: any, getwid: any, displayName: string) {
+  async changeUserRoles(roles: any, getwid: any, displayName: string) {
     this.isLoad = true
     this.headersForChangeUserRole.rootOrg = this.getRootOrg
     this.headersForChangeUserRole.org = this.getOrg
