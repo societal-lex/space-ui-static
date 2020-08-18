@@ -13,6 +13,8 @@ export class DisplayContentTypeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // console.log(this.content)
+    if (this.content) {
       if (this.content.contentType === 'Resource') {
         if (this.content.assetType) {
           // console.log(this.content.assetType, this.displayContentType)
@@ -23,5 +25,5 @@ export class DisplayContentTypeComponent implements OnInit {
         }
       }
   }
-
+  }
 }
