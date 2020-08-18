@@ -21,42 +21,58 @@
         [description]="totalUsersDescription"
       >
       </ws-analytics-analytics-tile>
-      <!-- <ws-analytics-analytics-tile
-        *ngIf="hits > 0"
-        class="unique-users-card margin-m"
-        (clickEvent)="onClick($event)"
-        [title]="'# Hits'"
-        [category2]="''"
-        [category3]="''"
-        [category1]="''"
-        [uniqueUsers]="hits"
-        [description]="hitsDescription"
-      >
-      </ws-analytics-analytics-tile> -->
-      <ws-analytics-analytics-tile
-        *ngIf="contentUsers > 0"
-        class="unique-users-card margin-m"
-        (clickEvent)="onClick($event)"
-        [title]="'Users accessing content'"
-        [category2]="''"
-        [category3]="''"
-        [category1]="''"
-        [uniqueUsers]="contentUsers"
-        [description]="contentUsersDescription"
-      >
-      </ws-analytics-analytics-tile>
-      <ws-analytics-analytics-tile
-        *ngIf="contentAccessed > 0"
-        class="unique-users-card margin-m"
-        (clickEvent)="onClick($event)"
-        [title]="'# Access to content'"
-        [category2]="''"
-        [category3]="''"
-        [category1]="''"
-        [uniqueUsers]="contentAccessed"
-        [description]="contentAccessedDescription"
-      >
-      </ws-analytics-analytics-tile>
+      <ng-container *ngIf="contentData?.user_content_toc">
+        <ws-analytics-analytics-tile
+                class="unique-users-card margin-m"
+                (clickEvent)="onClick($event)"
+                [title]="'# Users'"
+                [category2]="''"
+                [category3]="''"
+                [category1]="''"
+                [uniqueUsers]="contentData?.user_content_toc"
+                [description]="'Unique users accessing the content'"
+              >
+              </ws-analytics-analytics-tile>
+      </ng-container>
+      <ng-container *ngIf="contentData?.content_toc">
+        <ws-analytics-analytics-tile
+                class="unique-users-card margin-m"
+                (clickEvent)="onClick($event)"
+                [title]="'# Access'"
+                [category2]="''"
+                [category3]="''"
+                [category1]="''"
+                [uniqueUsers]="contentData?.content_toc"
+                [description]="'Unique users viewing the content'"
+              >
+              </ws-analytics-analytics-tile>
+      </ng-container>
+      <ng-container *ngIf="contentData?.user_content_viewer">
+        <ws-analytics-analytics-tile
+                class="unique-users-card margin-m"
+                (clickEvent)="onClick($event)"
+                [title]="'# Users'"
+                [category2]="''"
+                [category3]="''"
+                [category1]="''"
+                [uniqueUsers]="contentData?.user_content_viewer"
+                [description]="'Unique users viewing content by clicking on view button'"
+              >
+              </ws-analytics-analytics-tile>
+      </ng-container>
+      <ng-container *ngIf="contentData?.content_viewer">
+        <ws-analytics-analytics-tile
+                class="unique-users-card margin-m"
+                (clickEvent)="onClick($event)"
+                [title]="'# Views'"
+                [category2]="''"
+                [category3]="''"
+                [category1]="''"
+                [uniqueUsers]="contentData?.content_viewer"
+                [description]="'Total views on content'"
+              >
+              </ws-analytics-analytics-tile>
+      </ng-container>
     </div>
     <div class="flex flex-center flex-wrapped">
       <mat-card
