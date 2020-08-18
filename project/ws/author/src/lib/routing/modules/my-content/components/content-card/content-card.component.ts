@@ -19,6 +19,15 @@ export class ContentCardComponent implements OnInit {
   constructor(private accessService: AccessControlService) { }
 
   ngOnInit() {
+    // console.log(this.data)
+    if (this.data.contentType === 'Resource') {
+        if (this.data.assetType) {
+          if (this.data.assetType === 'Connection') {
+            this.data.contentType = 'Connection'
+          }
+          // console.log(this.data.assetType, this.data.contentType)
+        }
+      }
     if (this.data.hasTranslations && this.data.hasTranslations.length) {
       this.translationArray = this.translationArray.concat(this.data.hasTranslations)
     }
@@ -52,9 +61,9 @@ export class ContentCardComponent implements OnInit {
         break
       case 'delete': {
         if (
-            // tslint:disable-next-line: max-line-length
-            (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished' || this.data.status === 'Reviewed') && this.accessService.hasRole(['editor', 'admin', 'content-creator'])
-          ) {
+          // tslint:disable-next-line: max-line-length
+          (this.data.status === 'Draft' || this.data.status === 'Live' || this.data.status === 'Unpublished' || this.data.status === 'Reviewed') && this.accessService.hasRole(['editor', 'admin', 'content-creator'])
+        ) {
           returnValue = this.accessService.hasAccess(this.data)
         }
         break

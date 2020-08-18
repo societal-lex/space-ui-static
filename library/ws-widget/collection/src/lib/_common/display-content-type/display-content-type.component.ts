@@ -7,12 +7,21 @@ import { NsContent } from '../../_services/widget-content.model'
   styleUrls: ['./display-content-type.component.scss'],
 })
 export class DisplayContentTypeComponent implements OnInit {
-
-  @Input() displayContentType: NsContent.EDisplayContentTypes = NsContent.EDisplayContentTypes.DEFAULT
+  @Input() content!: NsContent.IContent
+  @Input() displayContentType: NsContent.EDisplayContentTypes | string = NsContent.EDisplayContentTypes.DEFAULT
   displayContentTypeEnum = NsContent.EDisplayContentTypes
   constructor() { }
 
   ngOnInit() {
+      if (this.content.contentType === 'Resource') {
+        if (this.content.assetType) {
+          // console.log(this.content.assetType, this.displayContentType)
+          if (this.content.assetType === 'Connection') {
+            this.displayContentType = 'Connection'
+          }
+          // console.log(this.displayContentType)
+        }
+      }
   }
 
 }
