@@ -8,6 +8,7 @@ export namespace NsContent {
     addedOn: string
     appIcon: string
     artifactUrl: string
+    assetType: string
     codebase: string
     profile_link: string
     averageRating?: any
