@@ -1,45 +1,52 @@
-.intro{
-
-width:800px;
-height:600px;
-padding:20px;
-text-align:center;
-border: 10px solid #787878
-}
-
-.intro1 {
-
-width:750px;
-height:550px;
-padding:20px;
-text-align:center;
-border: 5px solid #787878
-
-}
 
 .v1{
-font-size:50px;
+  font-family: 'Cormorant Garamond'!important;
+ text-align: center;
+font-size:55px;
 font-weight:bold
+
 }
 .v2 {
-
+ font-family: 'Cormorant Garamond'!important;
 font-size:25px
 }
 .v3 {
+   font-family: 'Cormorant Garamond'!important;
 padding-top: 50%;
-font-size:30px
+font-size:40px
 }
 .v4 {
-
+ font-family: 'Cormorant Garamond'!important;
 font-size:20px
 }
 .center{
 
-padding-left: 300px;
+align-content: center;
 }
 .date{
-padding-left: 78vh;
+    padding-left: 113vh;
+    padding-top: 20vh;
 }
 .main{
 padding-top: 14vh;
+}
+.place{
+  margin: auto;
+  background-image: url("../../../../../../fusion-assets/certificatetemplate/certificate.jpg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 821px;
+  width: 100%;
+}
+.pad{
+  text-align: center;
+  padding-top: 20vh;
+}
+.certDate{
+    margin:auto;
+font-family: Arial, Helvetica, sans-serif!important;
+font-size: 90%;
+padding-right: 120vh;
 }

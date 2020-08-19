@@ -1,7 +1,6 @@
 # FROM node:10
 
-WORKDIR /app
-COPY dist .
+
 
 FROM node:10
 WORKDIR /app
