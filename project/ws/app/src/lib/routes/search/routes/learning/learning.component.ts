@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { NsContent, NsError, NSSearch, ROOT_WIDGET_CONFIG } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ConfigurationsService, ValueService, UtilityService } from '@ws-widget/utils'
-import { Subscription } from 'rxjs'
+import { Subscription, BehaviorSubject } from 'rxjs'
 import { IKhubFetchStatus } from '../../../infy/routes/knowledge-hub/models/knowledgeHub.model'
 import { TrainingService } from '../../../infy/routes/training/services/training.service'
 import { FilterDisplayComponent } from '../../components/filter-display/filter-display.component'
@@ -15,6 +15,9 @@ import { SearchServService } from '../../services/search-serv.service'
   styleUrls: ['./learning.component.scss'],
 })
 export class LearningComponent implements OnInit, OnDestroy {
+  selectedContentTypes = NsContent.PLAYLIST_SUPPORTED_CONTENT_TYPES
+  debounceSubject = new BehaviorSubject<boolean>(false)
+  appContentTypes = NsContent.EContentTypes
   @ViewChild(FilterDisplayComponent, { static: false })
   appFilterDisplay: FilterDisplayComponent | null = null
 
@@ -80,6 +83,7 @@ export class LearningComponent implements OnInit, OnDestroy {
       errorType: 'internalServer',
     },
   }
+  checked = true
   constructor(
     private activated: ActivatedRoute,
     private router: Router,
@@ -373,6 +377,7 @@ export class LearningComponent implements OnInit, OnDestroy {
           this.searchResults.doYouMean = data.doYouMean
           this.searchResults.queryUsed = data.queryUsed
           // this.handleFilters(this.searchResults.filters)
+          // console.log(this.searchResults, data)
           const filteR = this.searchServ.handleFilters(
             this.searchResults.filters,
             this.selectedFilterSet,
@@ -385,6 +390,16 @@ export class LearningComponent implements OnInit, OnDestroy {
           const contentType = this.filtersResponse.splice(0, 2)
           this.filtersResponse.splice(0, 0, contentType[1])
           this.filtersResponse.splice(1, 0, contentType[0])
+          this.filtersResponse.forEach((element: any, idx: any) => {
+            if (element) {
+              if (element.type === 'contentType') {
+                element.content.forEach((content: any, index: any) => {
+                  // console.log(this.filtersResponse[idx].content[index])
+                  this.filtersResponse[idx].content[index].checked = content.checked
+                })
+              }
+            }
+          })
           // console.log(this.filtersResponse)
           // if(this.filtersResponse[0] !== 'undefined') {
           // this.filtersResponse[0].content.forEach((element, index) => {
@@ -560,6 +575,84 @@ export class LearningComponent implements OnInit, OnDestroy {
 
     if (trainingLHubEnabled) {
       this.trainingSvc.getTrainingCountsForSearchResults(searchResults)
+    }
+  }
+  applyFilters(filter: any, filterType: any) {
+    // console.log(content)
+    // if (filter.checked) {
+    //   this.selectedContentTypes.push(filter.type)
+    // } else {
+    //   this.selectedContentTypes = this.selectedContentTypes.filter(
+    //     contentType => contentType !== filter.type,
+    //   )
+    // }
+    // this.debounceSubject.next(false)
+    // this.filtersResponse.forEach((element: any, idx: any) => {
+    //   if (element.type === 'contentType') {
+    //     element.content.forEach((content: any) => {
+    //       console.log(content, this.filtersResponse)
+    //       // content.checked = !content.checked
+    //     })
+    //   }
+
+    // })
+    // this.checked = filter.checked
+    // console.log(filter, filterType, this.checked)
+    this.filtersResponse = []
+    const filterItem = {
+      key: filterType,
+      value: filter.type || '',
+    }
+    // console.log(filterItem)
+    const requestFilters = this.searchRequest.filters
+    let filterRemove = false
+
+    if (requestFilters) {
+      if (
+        requestFilters[filterItem.key] &&
+        requestFilters[filterItem.key].indexOf(filterItem.value) !== -1
+      ) {
+        filterRemove = true
+      }
+    }
+    if (!filterRemove) {
+      this.addFilter(filterItem)
+    } else {
+      this.removeFilter(filterItem)
+    }
+  }
+  addFilter({ key, value }: { key: string; value: string }) {
+
+    const filters = { ...this.searchRequest.filters }
+
+    if (key in filters) {
+      filters[key] = [...filters[key], value]
+    } else {
+      filters[key] = [value]
+    }
+
+    this.router.navigate([], {
+      queryParams: { f: JSON.stringify(filters) },
+      relativeTo: this.activated.parent,
+      queryParamsHandling: 'merge',
+    })
+  }
+  removeFilter({ key, value }: { key: string; value: string }) {
+
+    const filters = { ...this.searchRequest.filters }
+
+    if (key in filters || filters) {
+      filters[key] = filters[key].filter(filter => filter !== value)
+      for (const fil in filters) {
+        if (filters[fil].length === 0) {
+          delete filters[fil]
+        }
+      }
+      this.router.navigate([], {
+        queryParams: { f: JSON.stringify(filters) },
+        relativeTo: this.activated.parent,
+        queryParamsHandling: 'merge',
+      })
     }
   }
 }

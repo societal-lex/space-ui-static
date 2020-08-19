@@ -34,6 +34,38 @@
         <a (click)="getResults(true)" class="ws-mat-primary-text cursor-pointer" i18n>Click here </a>
         <span i18n="search route hits for showing actual query">to explore more. </span>
       </ng-container>
+      <div class="float-right mt-1">
+        <button name="content-filter-menu-button" mat-icon-button class="height-1-1" [matMenuTriggerFor]="filterMenu"
+          type="button" class="filter-btn padding-remove ws-mat-primary-background mat-elevation-z6">
+          <mat-icon class="text-white" *ngIf="showSettingButtons" i18n-matTooltip matTooltip="Close">close</mat-icon>
+          <mat-icon class="text-white" *ngIf="!showSettingButtons">more_vert</mat-icon>
+        </button>
+        <mat-menu #filterMenu="matMenu" xPosition="before">
+          <span *ngFor="let filter of filtersResponse">
+            <span *ngIf="filter.type === 'contentType'">
+              <span *ngFor="let content of filter?.content">
+                <!-- <span *ngFor="let content of filterContent"> -->
+                <div mat-menu-item *ngIf="content?.displayName !=='Course' && content?.displayName !=='Module'">
+                  <mat-checkbox name="resource-checkbox" (change)="applyFilters(content,filter.type)"
+                    [checked]="content.checked && filter.content.length" i18n>
+                    {{content?.displayName}}</mat-checkbox>
+                </div>
+                <div mat-menu-item *ngIf="content?.displayName ==='Course'">
+                  <mat-checkbox name="resource-checkbox" (change)="applyFilters(content,filter.type)"
+                    [checked]="content.checked && filter.content.length" i18n>
+                    Collection</mat-checkbox>
+                </div>
+                <div mat-menu-item *ngIf="content?.displayName ==='Module'">
+                  <mat-checkbox name="resource-checkbox" (change)="applyFilters(content,filter.type)"
+                    [checked]="content.checked && filter.content.length" i18n>
+                    Asset</mat-checkbox>
+                </div>
+              </span>
+              <!-- </span> -->
+            </span>
+          </span>
+        </mat-menu>
+      </div>
       <button mat-icon-button class="width-auto" [ngClass]="{ 'hide-filter-btn': sideNavBarOpened }"
         (click)="sideNavBarOpened = !sideNavBarOpened">
         <mat-icon>filter_list</mat-icon>
@@ -44,22 +76,25 @@
         <span *ngFor="let filter of filtersResponse">
           <span *ngFor="let content of filter?.content">
             <span *ngIf="content?.checked">
-              <mat-chip [removable]="removable" *ngIf="content.displayName !=='Module'&& content.displayName !=='Course'">
+              <mat-chip [removable]="removable"
+                *ngIf="content.displayName !=='Module'&& content.displayName !=='Course'">
                 {{translatedFilters[filter?.displayName]?.value[content?.displayName] || content?.displayName}}
                 <mat-icon matChipRemove
                   (click)="appFilterDisplay.removeFilter({ key : filter?.type, value :content?.type})"
                   *ngIf="removable">cancel</mat-icon>
               </mat-chip>
-                <mat-chip [removable]="removable" *ngIf="content.displayName ==='Module'">
-                  {{translatedFilters[filter?.displayName]?.value['Asset'] || 'Asset'}}
-                  <mat-icon matChipRemove (click)="appFilterDisplay.removeFilter({ key : filter?.type, value :content?.type})"
-                    *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <mat-chip [removable]="removable" *ngIf="content.displayName ==='Course'">
-                  {{translatedFilters[filter?.displayName]?.value['Collection'] || 'Collection'}}
-                  <mat-icon matChipRemove (click)="appFilterDisplay.removeFilter({ key : filter?.type, value :content?.type})"
-                    *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
+              <mat-chip [removable]="removable" *ngIf="content.displayName ==='Module'">
+                {{translatedFilters[filter?.displayName]?.value['Asset'] || 'Asset'}}
+                <mat-icon matChipRemove
+                  (click)="appFilterDisplay.removeFilter({ key : filter?.type, value :content?.type})"
+                  *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <mat-chip [removable]="removable" *ngIf="content.displayName ==='Course'">
+                {{translatedFilters[filter?.displayName]?.value['Collection'] || 'Collection'}}
+                <mat-icon matChipRemove
+                  (click)="appFilterDisplay.removeFilter({ key : filter?.type, value :content?.type})"
+                  *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
             </span>
             <span *ngIf="content?.children?.length>0">
               <span *ngFor="let children of content?.children">
@@ -76,7 +111,7 @@
         </span>
       </mat-chip-list>
     </div>
-    <div *ngIf="searchResults?.result?.length">
+    <div *ngIf="searchResults?.result?.length" class="cardStyle">
       <ws-app-learning-card class="search-card" *ngFor="let result of searchResults.result; trackBy: contentTrackBy"
         [displayType]="resultsDisplayType" [content]="result"></ws-app-learning-card>
       <div *ngIf="searchRequestStatus === 'fetching'" class="margin-top-m flex flex-center">
