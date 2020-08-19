@@ -5,7 +5,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { ISearchAutoComplete, ISearchQuery, ISuggestedFilters } from '../../models/search.model'
 import { SearchServService } from '../../services/search-serv.service'
-import { json } from 'd3'
+// import { json } from 'd3'
 @Component({
   selector: 'ws-app-home',
   templateUrl: './home.component.html',
