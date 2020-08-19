@@ -21,7 +21,7 @@ export namespace NsContentStripMultiple {
     postWidgets?: NsWidgetResolver.IRenderConfigWithAnyData[]
     stripConfig?: IStripConfig
     canHideStrip?: boolean
-    filters?: any[]
+    filters?: {[key: string]: string} | undefined | any
     selectAll?: boolean | null
     request?: {
       search?: NSSearch.ISearchRequest
@@ -44,7 +44,8 @@ export namespace NsContentStripMultiple {
       pageNo?: number
       pageSize?: number
       pageState?: string
-      sourceFields?: string
+      sourceFields?: string,
+      excludeContentType?: string
     }
   }
   export interface IStripInfo {

@@ -22,6 +22,7 @@ export class ContentStripMultipleService {
       pageState: request.queryParams ? request.queryParams.pageState : undefined,
       sourceFields: request.queryParams ? request.queryParams.sourceFields : undefined,
       filters: filters ? encodeURIComponent(JSON.stringify(filters)) : undefined,
+      excludeContentType: request.queryParams ? request.queryParams.excludeContentType : undefined,
     })
     let url = request.path
     url += stringifiedQueryParams ? `?${stringifiedQueryParams}` : ''
