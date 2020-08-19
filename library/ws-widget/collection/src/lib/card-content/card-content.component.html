@@ -252,7 +252,7 @@
               </div>
             </div>
             <div class="flex">
-              <ng-container [ngTemplateOutlet]="rating"></ng-container>
+              <ng-container *ngIf="widgetData.content?.assetType !== 'Connection'" [ngTemplateOutlet]="rating"></ng-container>
               <button
                 type="button"
                 (click)="isCardFlipped = !isCardFlipped"
@@ -325,7 +325,7 @@
               </div>
             </div>
             <div class="flex">
-              <ng-container [ngTemplateOutlet]="rating"></ng-container>
+              <ng-container *ngIf="widgetData.content?.assetType !== 'Connection'" [ngTemplateOutlet]="rating"></ng-container>
               <button
                 type="button"
                 (click)="isCardFlipped = !isCardFlipped"
@@ -472,7 +472,7 @@
             >
             </ws-widget-display-content-type>
             <div class="flex items-center">
-              <ng-container [ngTemplateOutlet]="rating"></ng-container>
+              <ng-container *ngIf="widgetData.content?.assetType !== 'Connection'" [ngTemplateOutlet]="rating"></ng-container>
               <button
                 type="button"
                 mat-icon-button
@@ -498,7 +498,7 @@
             >
             </ws-widget-display-content-type>
             <div class="float-right flex items-center">
-              <ng-container [ngTemplateOutlet]="rating"></ng-container>
+              <ng-container *ngIf="widgetData.content?.assetType !== 'Connection'" [ngTemplateOutlet]="rating"></ng-container>
               <button
                 type="button"
                 mat-icon-button
@@ -1165,7 +1165,7 @@
           </div>
           <div class="text-gray-600 complexity flex-end">
             <div class="flex items-center">
-              <ng-container [ngTemplateOutlet]="rating"></ng-container>
+              <ng-container *ngIf="widgetData.content.assetType !== 'Connection'" [ngTemplateOutlet]="rating"></ng-container>
               <button
                 type="button"
                 mat-icon-button
