@@ -5,6 +5,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { ISearchAutoComplete, ISearchQuery, ISuggestedFilters } from '../../models/search.model'
 import { SearchServService } from '../../services/search-serv.service'
+import { json } from 'd3'
 @Component({
   selector: 'ws-app-home',
   templateUrl: './home.component.html',
@@ -43,6 +44,12 @@ export class HomeComponent implements OnInit {
   }
 
   search(query?: string) {
+    // var content = []
+    const filters = { contentType: ['Resource', 'Course', 'Collection'] }
+    //  filters.forEach(element => {
+    //    JSON.stringify(content.push(element))
+    //  });
+    // encodeURIComponent(JSON.stringify(filters))
     this.router.navigate(['/app/search/home'], {
       queryParams: { lang: this.searchQuery.l, q: query || this.searchQuery.q },
     }).then(() => {
@@ -50,6 +57,7 @@ export class HomeComponent implements OnInit {
         queryParams: {
           q: query || this.searchQuery.q,
           lang: this.searchQuery.l,
+          f: JSON.stringify(filters),
         },
       })
     })
@@ -130,7 +138,7 @@ export class HomeComponent implements OnInit {
       this.languageSearch = this.languageSearch.sort()
       this.swapRemove(this.languageSearch, this.languageSearch.indexOf('all'), 0)
       if (this.preferredLanguages && this.preferredLanguages.split(',').length > 1) {
-      this.languageSearch.splice(1, 0, this.preferredLanguages)
+        this.languageSearch.splice(1, 0, this.preferredLanguages)
       }
     })
     this.searchSvc.getSearchConfig().then(res => {
