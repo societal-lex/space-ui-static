@@ -9,16 +9,18 @@
   </button>
 </div>
 <mat-accordion multi="true" *ngIf="filtersResponse">
-  <mat-expansion-panel [expanded]="filter.checked" *ngFor="let filter of filtersResponse; trackBy: filterUnitResponseTrackBy">
-    <mat-expansion-panel-header>{{ translatedFilters[filter.displayName.toLowerCase()]?.translatedField || filter.displayName }}
+  <ng-container  *ngFor="let filter of filtersResponse; trackBy: filterUnitResponseTrackBy">
+  <mat-expansion-panel [expanded]="filter.checked" *ngIf="filter.type !== 'contentType'">
+    <mat-expansion-panel-header >{{ translatedFilters[filter.displayName.toLowerCase()]?.translatedField || filter.displayName }}
     </mat-expansion-panel-header>
-    <ng-container *ngTemplateOutlet="
+    <ng-container  *ngTemplateOutlet="
         filtersHolder;
         context: {
           $implicit: { filters: filter.content, filterType: filter.type, parentFilter: filter.displayName }
         }
       "></ng-container>
   </mat-expansion-panel>
+</ng-container>
 </mat-accordion>
 <ng-container *ngIf="advancedFilters?.length">
   <h2 class="mat-h2 margin-remove padding-left-m" i18n="search advanced filters">Advanced Filters</h2>
