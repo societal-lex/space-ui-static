@@ -65,10 +65,16 @@ const routes: Routes = [
   {
     path: 'shared/:id',
     component: PlaylistDetailComponent,
-    data: { type: NsPlaylist.EPlaylistTypes.SHARED },
+    data: {
+      type: NsPlaylist.EPlaylistTypes.SHARED,
+      pageType: 'feature',
+      pageKey: 'playlist',
+      },
     resolve: {
       playlist: PlaylistResolve,
+      pageData: PageResolve,
     },
+    runGuardsAndResolvers: 'paramsChange',
   },
   {
     path: 'shared/:id/edit',

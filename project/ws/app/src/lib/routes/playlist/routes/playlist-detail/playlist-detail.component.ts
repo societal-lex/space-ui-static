@@ -25,6 +25,7 @@ import {
   PLAYLIST_TITLE_MAX_LENGTH,
   PLAYLIST_TITLE_MIN_LENGTH,
 } from '../../constants/playlist.constant'
+import { PlaylistService } from '../../service/playlist.service'
 
 @Component({
   selector: 'ws-app-playlist-detail',
@@ -63,6 +64,7 @@ export class PlaylistDetailComponent implements OnInit, OnDestroy {
   isLtMedium$ = this.valueSvc.isLtMedium$
   screenSizeIsLtMedium = false
   screenSizeSubscription: Subscription | null = null
+  allowedToSharePlaylist = true
 
   constructor(
     fb: FormBuilder,
@@ -73,7 +75,8 @@ export class PlaylistDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public router: Router,
-    public valueSvc: ValueService
+    public valueSvc: ValueService,
+    public playlistService: PlaylistService,
   ) {
     const instanceConfig = this.configSvc.instanceConfig
     if (instanceConfig) {
@@ -93,6 +96,17 @@ export class PlaylistDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // console.log(this.route.snapshot.data.pagedata)
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.playlistService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.playList, _data.pageData.data.rolesNotAllowed.playList)) {
+        this.allowedToSharePlaylist = true
+      } else {
+        this.allowedToSharePlaylist = false
+      }
+    })
+
     if (this.configSvc.restrictedFeatures) {
       this.isShareEnabled = !this.configSvc.restrictedFeatures.has('share')
     }

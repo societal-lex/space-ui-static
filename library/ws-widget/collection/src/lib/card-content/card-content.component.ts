@@ -8,6 +8,8 @@ import { NsPlaylist } from '../btn-playlist/btn-playlist.model'
 import { NsContent } from '../_services/widget-content.model'
 import { NsCardContent } from './card-content.model'
 import { WidgetContentService } from '../_services/widget-content.service'
+import { ActivatedRoute } from '@angular/router'
+import { ContentStripMultipleService } from '../content-strip-multiple/content-strip-multiple.service'
 
 @Component({
   selector: 'ws-widget-card-content',
@@ -27,17 +29,29 @@ export class CardContentComponent extends WidgetBaseComponent
   btnGoalsConfig: NsGoal.IBtnGoal | null = null
   prefChangeSubscription: Subscription | null = null
   isIntranetAllowedSettings = false
+  allowedToSharePlaylist = true
   constructor(
     private events: EventService,
     private configSvc: ConfigurationsService,
     private utilitySvc: UtilityService,
     private snackBar: MatSnackBar,
     private contentService: WidgetContentService,
+    private route: ActivatedRoute,
+    private contentStripSvc: ContentStripMultipleService
   ) {
     super()
   }
 
   ngOnInit() {
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.contentStripSvc.isVisibileAccToRoles(_data.pageData.data.authorRestrictions.rolesAllowed.share, _data.pageData.data.authorRestrictions.rolesNotAllowed.share)) {
+        this.allowedToSharePlaylist = true
+      } else {
+        this.allowedToSharePlaylist = false
+      }
+    })
     // console.log('widget data: ', this.widgetData)
     this.isIntranetAllowedSettings = this.configSvc.isIntranetAllowed
     this.prefChangeSubscription = this.configSvc.prefChangeNotifier.subscribe(() => {

@@ -3,6 +3,7 @@ import { NsContent, NsDiscussionForum } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ActivatedRoute } from '@angular/router'
 import { ConfigurationsService } from '../../../../../../../library/ws-widget/utils/src/public-api'
+import { ViewerDataService } from '../../viewer-data.service'
 
 @Component({
   selector: 'viewer-pdf-container',
@@ -29,9 +30,23 @@ export class PdfComponent implements OnInit {
   > | null = null
   isTypeOfCollection = false
   isRestricted = false
-  constructor(private activatedRoute: ActivatedRoute, private configSvc: ConfigurationsService) { }
+  allowedToSharePlaylist = true
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private configSvc: ConfigurationsService,
+    private viewerService: ViewerDataService
+) { }
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe(_data => {
+      console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.viewerService.isVisibileAccToRoles(_data.pageData.data.enableDisscussionForum.rolesAllowed.disscussionForum, _data.pageData.data.enableDisscussionForum.rolesNotAllowed.disscussionForum)) {
+        this.allowedToSharePlaylist = true
+      } else {
+        this.allowedToSharePlaylist = false
+      }
+    })
     if (this.configSvc.restrictedFeatures) {
       this.isRestricted =
         !this.configSvc.restrictedFeatures.has('disscussionForum')
