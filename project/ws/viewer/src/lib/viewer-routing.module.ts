@@ -128,7 +128,7 @@ const routes: Routes = [
     },
     resolve: {
       pageData: PageResolve,
-      content: ViewerResolve
+      content: ViewerResolve,
     },
   },
   {

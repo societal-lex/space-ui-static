@@ -30,7 +30,7 @@ export class PdfComponent implements OnInit {
   > | null = null
   isTypeOfCollection = false
   isRestricted = false
-  allowedToSharePlaylist = true
+  allowedToPdf = true
   constructor(
     private activatedRoute: ActivatedRoute,
     private configSvc: ConfigurationsService,
@@ -39,12 +39,12 @@ export class PdfComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(_data => {
-      console.log(_data)
+      // console.log(_data)
       // tslint:disable-next-line: max-line-length
       if (this.viewerService.isVisibileAccToRoles(_data.pageData.data.enableDisscussionForum.rolesAllowed.disscussionForum, _data.pageData.data.enableDisscussionForum.rolesNotAllowed.disscussionForum)) {
-        this.allowedToSharePlaylist = true
+        this.allowedToPdf = true
       } else {
-        this.allowedToSharePlaylist = false
+        this.allowedToPdf = false
       }
     })
     if (this.configSvc.restrictedFeatures) {

@@ -41,10 +41,16 @@
       <span>{{ group.name }}</span>
     </h2>
     <div class="flex flex-wrap">
-      <ng-container
-        [wsResolverWidget]="featureWidget"
-        *ngFor="let featureWidget of group.featureWidgets"
-      >
+      <ng-container  *ngFor="let featureWidget of group.featureWidgets">
+        <!-- {{featureWidget.widgetData.actionBtn.id | json}} -->
+      <ng-container *ngIf="featureWidget.widgetData.actionBtn.id !== 'feature_feedback'">
+      <ng-container [wsResolverWidget]="featureWidget">
+      </ng-container>
+      </ng-container>
+        <ng-container *ngIf="featureWidget.widgetData.actionBtn.id === 'feature_feedback'">
+          <ng-container [wsResolverWidget]="featureWidget" *ngIf="allowedToFeedback">
+          </ng-container>
+        </ng-container>
       </ng-container>
     </div>
   </div>
