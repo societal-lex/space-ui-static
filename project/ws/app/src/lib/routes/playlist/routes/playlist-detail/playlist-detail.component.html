@@ -17,6 +17,7 @@
       class="text-white"
       mat-button
       (click)="sharePlaylist()"
+      *ngIf="allowedToSharePlaylist"
     >
       <mat-icon>share</mat-icon>&nbsp;
       <span i18n>Share</span>

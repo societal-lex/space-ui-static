@@ -16,6 +16,7 @@ import { VideoComponent } from './routes/video/video.component'
 import { VideoModule } from './routes/video/video.module'
 import { YoutubeComponent } from './routes/youtube/youtube.component'
 import { YoutubeModule } from './routes/youtube/youtube.module'
+import { PageResolve } from '../../../../../library/ws-widget/utils/src/public-api'
 
 const routes: Routes = [
   {
@@ -75,8 +76,11 @@ const routes: Routes = [
     component: HtmlComponent,
     data: {
       resourceType: 'html',
+      pageType: 'feature',
+      pageKey: 'disscussionForum',
     },
     resolve: {
+      pageData: PageResolve,
       content: ViewerResolve,
     },
   },
@@ -119,9 +123,12 @@ const routes: Routes = [
     component: PdfComponent,
     data: {
       resourceType: 'pdf',
+      pageType: 'feature',
+      pageKey: 'disscussionForum',
     },
     resolve: {
-      content: ViewerResolve,
+      pageData: PageResolve,
+      content: ViewerResolve
     },
   },
   {

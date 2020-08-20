@@ -10,6 +10,13 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',
+    data: {
+      pageType: 'feature',
+      pageKey: 'home',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
   },
   {
     path: 'home',

@@ -4,6 +4,7 @@ import { BtnPlaylistService, NsError, NsPlaylist, ROOT_WIDGET_CONFIG } from '@ws
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
+import { PlaylistService } from '../../service/playlist.service'
 
 @Component({
   selector: 'ws-app-playlist-home',
@@ -25,6 +26,7 @@ export class PlaylistHomeComponent implements OnInit, OnDestroy {
 
   searchPlaylistQuery = ''
   isShareEnabled = false
+  allowedToSharePlaylist = true
 
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   errorWidget: NsWidgetResolver.IRenderConfigWithTypedData<NsError.IWidgetErrorResolver> = {
@@ -39,9 +41,20 @@ export class PlaylistHomeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private playlistSvc: BtnPlaylistService,
     private configSvc: ConfigurationsService,
+    public playlistService: PlaylistService,
+
   ) { }
 
   ngOnInit() {
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.playlistService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.playList, _data.pageData.data.rolesNotAllowed.playList)) {
+        this.allowedToSharePlaylist = true
+      } else {
+        this.allowedToSharePlaylist = false
+      }
+    })
     if (this.configSvc.restrictedFeatures) {
       this.isShareEnabled = !this.configSvc.restrictedFeatures.has('share')
     }

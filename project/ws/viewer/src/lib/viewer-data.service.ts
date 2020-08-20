@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { NsContent } from '@ws-widget/collection'
 import { Subject, ReplaySubject } from 'rxjs'
+import { ConfigurationsService } from '../../../../../library/ws-widget/utils/src/public-api'
 
 export interface IViewerTocChangeEvent {
   tocAvailable: boolean
@@ -35,7 +36,7 @@ export class ViewerDataService {
   changedSubject = new ReplaySubject(1)
   tocChangeSubject = new ReplaySubject<IViewerTocChangeEvent>(1)
   navSupportForResource = new ReplaySubject<IViewerResourceOptions>(1)
-  constructor() { }
+  constructor(private configSvc: ConfigurationsService ) { }
 
   reset(resourceId: string | null = null, status: TStatus = 'none') {
     this.resourceId = resourceId
@@ -68,5 +69,30 @@ export class ViewerDataService {
       },
     )
   }
-
+  isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {
+    let finalAcceptance = true
+    if (this.configSvc.userRoles && this.configSvc.userRoles.size) {
+      if (notAllowedRoles.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (allowedRoles.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (!notAllowedRoles.length && !allowedRoles.length) {
+        finalAcceptance = true
+      }
+    }
+    // console.log(finalAcceptance)
+    return finalAcceptance
+  }
 }

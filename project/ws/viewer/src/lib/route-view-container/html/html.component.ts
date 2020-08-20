@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router'
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser'
 import { PipeLimitToPipe } from '@ws-widget/utils/src/lib/pipes/pipe-limit-to/pipe-limit-to.pipe'
 import { ValueService, ConfigurationsService } from '@ws-widget/utils'
+import { ViewerDataService } from '../../viewer-data.service'
 @Component({
   selector: 'viewer-html-container',
   templateUrl: './html.component.html',
@@ -25,15 +26,26 @@ export class HtmlComponent implements OnInit, OnChanges {
   isLtMedium = false
   isScormContent = false
   isRestricted = false
+  allowedToSharePlaylist = true
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
     private pipeLimitTo: PipeLimitToPipe,
     private valueSvc: ValueService,
     private configSvc: ConfigurationsService,
+    private viewerService: ViewerDataService
   ) { }
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.viewerService.isVisibileAccToRoles(_data.pageData.data.enableDisscussionForum.rolesAllowed.disscussionForum, _data.pageData.data.enableDisscussionForum.rolesNotAllowed.disscussionForum)) {
+        this.allowedToSharePlaylist = true
+      } else {
+        this.allowedToSharePlaylist = false
+      }
+    })
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false
     if (this.configSvc.restrictedFeatures) {
       this.isRestricted =

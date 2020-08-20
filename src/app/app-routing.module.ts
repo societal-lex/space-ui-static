@@ -160,6 +160,13 @@ const routes: Routes = [
   },
   {
     path: 'app/playlist',
+    data: {
+      pageType: 'feature',
+      pageKey: 'playlist',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
     loadChildren: () =>
       import('./routes/route-playlist-app.module').then(u => u.RoutePlaylistAppModule),
     canActivate: [GeneralGuard],
