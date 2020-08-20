@@ -93,7 +93,7 @@
         </span>
       </span>
       <mat-divider class="margin-top-xs margin-bottom-xs"></mat-divider>
-      <ng-container *ngIf="conversation?.mainPost.status === 'Active'">
+      <ng-container *ngIf="conversation?.mainPost.status === 'Active' && canUserComment">
         <h3>
           <strong>
             <ng-container i18n> Responses </ng-container>

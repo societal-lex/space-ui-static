@@ -37,6 +37,10 @@ export class GoalCreateCustomComponent implements OnInit {
   editGoal: NsGoal.IGoal | null = null
   fetchEditGoalStatus: TFetchStatus = 'none'
   isShareEnabled = false
+  rolesInfo: any
+  routerEvents$: any
+  showOthers = false
+  accessAllowed = true
   constructor(
     fb: FormBuilder,
     private events: EventService,
@@ -56,7 +60,9 @@ export class GoalCreateCustomComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.rolesInfo = this.route.snapshot.parent ? this.route.snapshot.parent.data.pageData.data : null
+    // tslint:disable-next-line: max-line-length
+    this.updateSettings()
     if (this.configSvc.restrictedFeatures) {
       this.isShareEnabled = !this.configSvc.restrictedFeatures.has('share')
     }
@@ -86,6 +92,27 @@ export class GoalCreateCustomComponent implements OnInit {
         })
       }
     }
+  }
+
+  updateSettings() {
+    this.rolesInfo = this.route.snapshot.parent ? this.route.snapshot.parent.data.pageData.data : null
+    this.handleRolesSpecificFeatures(this.rolesInfo)
+  }
+
+  handleRolesSpecificFeatures(_rolesData: any) {
+    if (_rolesData) {
+      this.showOthers = this.goalsSvc.isVisibileAccToRoles(_rolesData.forOthers.rolesAllowed, _rolesData.forOthers.rolesAllowed)
+    } else {
+      this.setDefaults()
+    }
+    if (!this.accessAllowed && this.router.url.includes('create/custom')) {
+      this.router.navigate(['/app/goals/me/all'])
+    }
+  }
+
+  setDefaults() {
+    this.showOthers = true
+    this.accessAllowed = true
   }
 
   updateUsers(users: NsAutoComplete.IUserAutoComplete[]) {

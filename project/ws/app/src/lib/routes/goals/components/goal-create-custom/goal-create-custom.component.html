@@ -128,13 +128,15 @@
                 i18n
                 >Yourself
               </mat-radio-button>
-              <mat-radio-button
+              <ng-container *ngIf="showOthers">
+                <mat-radio-button
                 name="others-radio-input-goal-create-custom"
                 class="ml-4"
                 [value]="EGoalTypes.FOR_OTHERS_USER"
                 i18n
                 >Others</mat-radio-button
               >
+              </ng-container>
             </mat-radio-group>
           </p>
         </ng-container>

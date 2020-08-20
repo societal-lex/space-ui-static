@@ -16,6 +16,7 @@ export class BtnSocialVoteComponent implements OnInit {
   @Input() postId = ''
   @Input() postCreatorId = ''
   @Input() activity: NsDiscussionForum.IPostActivity | null = null
+  @Input() isDisabled = false
   @ViewChild('invalidUser', { static: true }) invalidUser!: ElementRef<
     any
   >

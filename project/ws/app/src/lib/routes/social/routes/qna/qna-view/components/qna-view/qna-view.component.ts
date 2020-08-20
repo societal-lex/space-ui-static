@@ -39,6 +39,8 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   isPostingComment = false
   isPostingReply = false
   allowedToEdit = false
+  allowedToComment = false
+  allowedToAnswer = false
 
   commentAddRequest: NsDiscussionForum.IPostCommentRequest = {
     postKind: NsDiscussionForum.EReplyKind.COMMENT,
@@ -123,9 +125,11 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.activatedRoute.data.subscribe((response: Data) => {
       if (response.socialData.error) {
         this.allowedToEdit = false
-      } else {
-        // tslint:disable-next-line: max-line-length
-        this.allowedToEdit = this.forumSrvc.isVisibileAccToRoles(response.socialData.data.rolesAllowed.QnA, response.socialData.data.rolesNotAllowed.QnA)
+      // tslint:disable-next-line: max-line-length
+      } else if (this.forumSrvc.isVisibileAccToRoles(response.socialData.data.rolesAllowed.QnA, response.socialData.data.rolesNotAllowed.QnA)) {
+        this.allowedToEdit = true
+        this.allowedToComment = true
+        this.allowedToAnswer = true
       }
       if (response.resolveData.error) {
         this.errorFetchingTimeline = true

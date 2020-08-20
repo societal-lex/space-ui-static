@@ -51,7 +51,7 @@
       <mat-divider></mat-divider>
       <div class="flex mt-4">
         <div class="icon-section" *ngIf="qnaConversation.mainPost.status !== 'Draft'">
-          <ws-widget-btn-social-vote
+          <ws-widget-btn-social-vote *ngIf="allowedToComment"
             class="block"
             [voteType]="'upVote'"
             [postId]="qnaConversation.mainPost.id"
@@ -59,13 +59,13 @@
             [activity]="qnaConversation.mainPost.activity"
             [iconType]="'triangle'"
           ></ws-widget-btn-social-vote>
-          <div class="vote-count">
+          <div class="vote-count" [ngClass]="{'large-w': !allowedToComment}">
             {{
               qnaConversation.mainPost.activity.activityData.upVote -
                 qnaConversation.mainPost.activity.activityData.downVote
-            }}
+            }} <span *ngIf="!allowedToComment" class="votes-text"> votes </span>
           </div>
-          <ws-widget-btn-social-vote
+          <ws-widget-btn-social-vote *ngIf="allowedToComment"
             class="block"
             [voteType]="'downVote'"
             [postId]="qnaConversation.mainPost.id"
@@ -142,7 +142,7 @@
           >
             <mat-spinner [diameter]="30" [strokeWidth]="3"></mat-spinner>
           </div>
-          <form class="comment-form">
+          <form class="comment-form" *ngIf="allowedToComment">
             <mat-form-field class="width-1-1">
               <input
                 matInput
@@ -227,7 +227,7 @@
     </div>
   </mat-card>
 
-  <mat-card [hidden]="!qnaConversation" class="my-4">
+  <mat-card [hidden]="!qnaConversation || !allowedToAnswer" class="my-4">
     <h2 i18n>Your Answer</h2>
     <ws-widget-editor-quill
       class="editor"
