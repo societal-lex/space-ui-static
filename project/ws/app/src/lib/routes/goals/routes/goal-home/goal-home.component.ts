@@ -44,6 +44,7 @@ export class GoalHomeComponent implements OnInit, OnDestroy {
       })
       this.handleRolesSpecificFeatures(this.rolesInfo)
     } catch (e) {
+      // tslint:disable-next-line: no-console
       console.error('An error occured while loading goals, redirecting back ', e)
       this.router.navigate(['/app/goals/me/all'])
     }
