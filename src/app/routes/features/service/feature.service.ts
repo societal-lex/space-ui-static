@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
-import { ConfigurationsService } from '../../../../../../../../library/ws-widget/utils/src/public-api'
+import { ConfigurationsService } from '../../../../../library/ws-widget/utils/src/public-api'
 
 @Injectable({
   providedIn: 'root',
 })
-export class PlaylistService {
+export class FeatureService {
 
   constructor(public configSvc: ConfigurationsService) { }
   isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {

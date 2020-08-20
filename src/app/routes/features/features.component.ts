@@ -7,6 +7,7 @@ import { NsAppsConfig, ConfigurationsService, NsPage, LogoutComponent, Subapplic
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ROOT_WIDGET_CONFIG, CustomTourService } from '@ws-widget/collection'
 import { MatDialog } from '@angular/material'
+import { FeatureService } from './service/feature.service'
 interface IGroupWithFeatureWidgets extends NsAppsConfig.IGroup {
   featureWidgets: NsWidgetResolver.IRenderConfigWithTypedData<NsPage.INavLink>[]
 }
@@ -25,6 +26,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   pageNavbar: Partial<NsPage.INavBackground> = this.configurationSvc.pageNavBar
   rolesBasedFeatureGroups: IGroupWithFeatureWidgets[] = []
   private queryChangeSubs: Subscription | null = null
+  allowedToFeedback = true
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -33,6 +35,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     private tour: CustomTourService,
     private respondSvc: SubapplicationRespondService,
     private valueSvc: ValueService,
+    private featureService: FeatureService
   ) {
     this.valueSvc.isXSmall$.subscribe(isXSmall => {
       this.isXSmall = isXSmall
@@ -68,6 +71,15 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.activateRoute.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.featureService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.feedback, _data.pageData.data.rolesNotAllowed.feedback)) {
+        this.allowedToFeedback = true
+      } else {
+        this.allowedToFeedback = false
+      }
+    })
     this.queryChangeSubs = this.queryControl.valueChanges
       .pipe(
         startWith(this.activateRoute.snapshot.queryParamMap.get('q')),

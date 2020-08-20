@@ -104,6 +104,13 @@ const routes: Routes = [
   {
     path: 'app/features',
     component: FeaturesComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'feedback',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
     canActivate: [GeneralGuard],
   },
 
