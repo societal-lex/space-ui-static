@@ -2,7 +2,7 @@
 @import 'ws-vars';
 
 $border-color: #a1a1a156;
-$icon-container-size: 60px;
+$icon-container-size: 100px;
 mat-spinner {
   display: inline-block;
 }
@@ -26,6 +26,13 @@ mat-card {
       display: flex;
       align-items: center;
       justify-content: center;
+      .votes-text {
+        margin-left: 5px;
+        font-size: smaller;
+      }
+    }
+    .large-w {
+      width: 100px
     }
   }
   .body-section {

@@ -3,7 +3,7 @@
     <button
       name="discussion-forum-downvote-button"
       *ngIf="iconType === 'thumbs'"
-      [disabled]="isUpdating"
+      [disabled]="isUpdating || isDisabled"
       (click)="downVote(invalidUser.value)"
       type="button"
       mat-icon-button
@@ -42,7 +42,7 @@
     <button
       name="discussion-forum-upvote-button"
       *ngIf="iconType === 'thumbs'"
-      [disabled]="isUpdating"
+      [disabled]="isUpdating || isDisabled"
       (click)="upVote(invalidUser.value)"
       type="button"
       mat-icon-button
