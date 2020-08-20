@@ -1,90 +1,34 @@
-<!-- <img class="images" src="../../../../../../fusion-assets/certificatetemplate/template.jpg" />
-<mat-toolbar class="mat-primary" [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
-    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-    <span class="margin-left-s text-color" i18n>Certificate</span>
-</mat-toolbar>
-<mat-card>
-<div *ngIf="value==1" class="center">
-    <div class="intro">
-        <div class="intro1">
-            <div class="main">
-                <span class="v1">Certificate of Achievement</span>
-                <br><br>
-                <span class="v2"><i>This is to certify that</i></span>
-                <br><br>
-                <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
-                <span class="v2"><i>has completed the course</i></span> <br /><br />
-                <span class="v3"><b>{{student?.department_name}}</b></span> <br /><br />
-                <span class="v4"><i>with status of </i><b>{{student?.employment_status}}</b></span> <br /><br /><br /><br />
-                <br /><br /><br /><br />
-                <div class="date">
-                    <span class="v2"><i>Certified on</i></span><br><br>
-                    <span class="v3"><b>{{date| date:'dd MMM yyyy'}}</b></span>
+<div>
+    <mat-toolbar class="mat-primary tool" [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
+        <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+        <span class="margin-left-s text-color" i18n>Certificate & Details</span>
+    </mat-toolbar>
+    <mat-card class="format">
+        <div class="cerforskills">
+            <div class="top-space">
+                <span class="skills">Certified For Skills</span>
+                <div class="space">
+
+                    <span class="v"><i>Communication - {{student?.Communication}}</i></span>
+                    <br /><br />
+                    <span class="v"><i>Birds History – {{student?.Birds_history}}</i></span>
+                    <br /><br />
+                    <span class="v"><i>Indian Birds Knowledge - {{student?.Indian_birds_knowledge}}</i></span>
+                    <br /><br />
+                    <span class="v"><i>Birds Feeding - {{student?.Bird_feeding}}</i></span>
+                    <br /><br />
+                    <span class="v"><i>Multi Location Experience - {{student?.Multi_location_experience}}</i></span>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</mat-card>
-<mat-card>
-<div *ngIf="value==2" class="center">
-    <div class="intro">
-        <div class="intro1">
 
-            <div class="main">
-                <span class="v1">Certificate of Participation</span>
-                <br><br>
-                <span class="v2"><i>This is to certify that</i></span>
-                <br><br>
-                <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
-                <span class="v2"><i>has completed the course</i></span> <br /><br />
-                <span class="v3"><b>{{student?.department_name}}</b></span> <br /><br />
-                <span class="v4"><i>with status of </i><b>{{student?.employment_status}}</b></span> <br /><br /><br /><br />
-                <br /><br /><br /><br />
-                <div class="date">
-                    <span class="v2"><i>Certified on</i></span><br><br>
-                    <span class="v3"><b>{{date| date:'dd MMM yyyy'}}</b></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</mat-card> -->
-<mat-toolbar class="mat-primary" [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
-    <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
-    <span class="margin-left-s text-color" i18n>Certificate</span>
-</mat-toolbar>
+    </mat-card>
 
-    <div *ngIf="value==2" class="center">
-<mat-card>
-        <div class="place">
-            <div class="pad">
-                <span class="v1">Certificate of Participation</span>
-                <br><br>
-                <span class="v2"><i>This is to certify that</i></span>
-                <br><br>
-                <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
-                <span class="v2"><i>has completed the course</i></span> <br /><br />
-                <span class="v3"><b>{{student?.department_name}}</b></span> <br /><br />
-                <span class="v4"><i>with status of </i><b>{{student?.employment_status}}</b></span>
-                <br /><br /><br /><br />
-                <br /><br /><br /><br />
-                <div class="date">
-                    <span class="v2"><i>Certified on</i></span><br><br>
-                    <span class="v3"><b>{{date| date:'dd MMM yyyy'}}</b></span>
-                </div>
-                <span class="certDate"><b>{{date| date:'dd MMM yyyy'}}</b></span>
-            </div>
-
-        </div>
-</mat-card>
-    </div>
-
-    <div *ngIf="value==1" class="center">
-        <mat-card>
+    <div *ngIf="student?.employment_status=='Beginner'" class="center">
+        <mat-card class="wid">
             <div class="place">
                 <div class="pad">
-                    <span class="v1">Certificate of Achievement</span>
+                    <span class="v1">Certificate of Participation</span>
                     <br><br>
                     <span class="v2"><i>This is to certify that</i></span>
                     <br><br>
@@ -100,6 +44,37 @@
                     </div>
                     <span class="certDate"><b>{{date| date:'dd MMM yyyy'}}</b></span>
                 </div>
+
             </div>
+        </mat-card>
+    </div>
+
+    <div *ngIf="student?.employment_status=='Achievement'" class="center">
+        <mat-card class="wid">
+            <div class="place">
+                <div class="pad">
+                    <span class="v1">Certificate of Achievement</span>
+                    <br><br>
+                    <span class="v2"><i>This is to certify that</i></span>
+                    <br><br>
+                    <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
+                    <span class="v2"><i>has completed the course</i></span> <br /><br />
+                    <span class="v3"><b>{{student?.department_name}}</b></span> <br /><br />
+                    <span class="v4"><i>with status of </i><b>{{student?.employment_status}}</b></span>
+                    <br /><br /><br /><br />
+                    <br /><br /><br /><br />
+                    <div class="date">
+                        <span class="v2"><i>Certified on</i></span><br><br>
+                        <span class="v3"><b>{{date| date:'dd MMM yyyy'}}</b></span>
+
+                    </div>
+                    <span class="certDate"><b>{{date| date:'dd MMM yyyy'}}</b></span>
+
+                </div>
+
+
+
+            </div>
+
         </mat-card>
     </div>

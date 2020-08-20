@@ -105,3 +105,44 @@ padding-right: 112vh;
  font-family: 'Cormorant Garamond'!important;
 font-size:25px
 }
+
+
+
+.parent-container {
+    text-align:center;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+.word-cloud-header {
+    text-align: center;
+    margin-bottom: 0
+}
+
+.word-cloud-group {
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.word-cloud-group:nth-last-child(1) {
+    margin-bottom: 0;
+}
+
+.word-cloud-div {
+    height: 800px;
+    width: 850px;
+    margin: auto;
+    padding: 50px;
+    position: relative;
+}
+
+
+p {
+    font-size: 50px;
+    position: absolute;
+    top: 35%;
+    left: 45%;
+}

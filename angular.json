@@ -17,6 +17,9 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "scripts": [
+              "./src/app/routes/public/qrcode/cloudModule/word-cloud-module.js"
+            ],
             "assets": ["src/favicon.ico", "src/favicon.png", "src/fusion-assets"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
@@ -26,6 +29,7 @@
                 "input": "src/styles/libraries.scss",
                 "bundleName": "libraries"
               },
+
               "node_modules/material-icons/iconfont/material-icons.scss",
               "src/styles/mat-typography.scss",
               "src/styles/styles.scss",
