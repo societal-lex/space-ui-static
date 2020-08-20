@@ -29,9 +29,11 @@
         <p>
           <mat-button-toggle-group (change)="goalToggle($event?.value)" [value]="goalFor">
             <mat-button-toggle value="me" i18n>My goals</mat-button-toggle>
-            <mat-button-toggle value="others" i18n *ngIf="isShareEnabled"
+            <ng-container *ngIf="showOthers">
+              <mat-button-toggle value="others" i18n *ngIf="isShareEnabled"
               >For others</mat-button-toggle
             >
+            </ng-container>
           </mat-button-toggle-group>
         </p>
       </div>

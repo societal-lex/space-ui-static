@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { NsGoal } from './btn-goals.model'
 import { forkJoin, of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
+import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 
 const API_END_POINTS = {
   acceptRejectGoal: (action: string, goalType: string, goalId: string, confirm: boolean) =>
@@ -36,7 +37,7 @@ const API_END_POINTS = {
 export class BtnGoalsService {
   goalsHash: { [goalId: string]: NsGoal.IGoal } = {}
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private readonly configSvc: ConfigurationsService) {}
 
   createGoal(upsertRequest: NsGoal.IGoalUpsertRequest) {
     return this.http.post<NsGoal.IGoalUpsertResponse>(API_END_POINTS.createGoal, upsertRequest)
@@ -133,5 +134,31 @@ export class BtnGoalsService {
     return this.http.delete<NsGoal.IGoalRemoveContentResponse>(
       API_END_POINTS.removeContentFromGoal(goalId, contentId, goalType),
     )
+  }
+
+  isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {
+    let finalAcceptance = true
+    if (this.configSvc.userRoles && this.configSvc.userRoles.size) {
+      if (notAllowedRoles.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (allowedRoles.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (!notAllowedRoles.length && !allowedRoles.length) {
+        finalAcceptance = true
+      }
+    }
+    return finalAcceptance
   }
 }

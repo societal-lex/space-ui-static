@@ -109,6 +109,13 @@ const routes: Routes = [
 
   {
     path: 'app/goals',
+    data: {
+      pageType: 'feature',
+      pageKey: 'goals',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
     loadChildren: () => import('./routes/route-goals-app.module').then(u => u.RouteGoalsAppModule),
     canActivate: [GeneralGuard],
   },
