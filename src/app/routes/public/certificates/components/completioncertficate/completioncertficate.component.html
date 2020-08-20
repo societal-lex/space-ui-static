@@ -3,28 +3,9 @@
         <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
         <span class="margin-left-s text-color" i18n>Certificate & Details</span>
     </mat-toolbar>
-    <mat-card class="format">
-        <div class="cerforskills">
-            <div class="top-space">
-                <span class="skills">Certified For Skills</span>
-                <div class="space">
 
-                    <span class="v"><i>Communication - {{student?.Communication}}</i></span>
-                    <br /><br />
-                    <span class="v"><i>Birds History – {{student?.Birds_history}}</i></span>
-                    <br /><br />
-                    <span class="v"><i>Indian Birds Knowledge - {{student?.Indian_birds_knowledge}}</i></span>
-                    <br /><br />
-                    <span class="v"><i>Birds Feeding - {{student?.Bird_feeding}}</i></span>
-                    <br /><br />
-                    <span class="v"><i>Multi Location Experience - {{student?.Multi_location_experience}}</i></span>
-                </div>
-            </div>
-        </div>
 
-    </mat-card>
-
-    <div *ngIf="student?.employment_status=='Beginner'" class="center">
+    <div *ngIf="student?.employment_status=='Beginner' || 'value==2' class="center">
         <mat-card class="wid">
             <div class="place">
                 <div class="pad">
@@ -49,7 +30,7 @@
         </mat-card>
     </div>
 
-    <div *ngIf="student?.employment_status=='Achievement'" class="center">
+    <div *ngIf="student?.employment_status=='Expert'|| 'value==1'" class="center">
         <mat-card class="wid">
             <div class="place">
                 <div class="pad">
