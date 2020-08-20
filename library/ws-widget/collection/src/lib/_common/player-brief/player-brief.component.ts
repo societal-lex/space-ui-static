@@ -23,6 +23,8 @@ export class PlayerBriefComponent implements OnInit {
   @Input()
   askAuthorEnabled = true
   tocConfig: any = null
+  enableRatings = false
+  mailIcon = false
 
   contentTypes = NsContent.EContentTypes
   showMoreGlance = false
@@ -110,6 +112,14 @@ export class PlayerBriefComponent implements OnInit {
     const url = `${this.configSvc.sitePath}/feature/toc.json`
     this.widgetContentSvc.fetchConfig(url).subscribe(data => {
       this.tocConfig = data
+      // tslint:disable-next-line: no-console
+      console.log('toc data is ', this.tocConfig)
+      // verify the roles and disbale the rating component
+      // tslint:disable-next-line: max-line-length
+      this.enableRatings = this.widgetContentSvc.isVisibileAccToRoles(this.tocConfig.rolesAllowed.rateContent, this.tocConfig.rolesNotAllowed.rateContent)
+      // tslint:disable-next-line: max-line-length
+      this.mailIcon = this.widgetContentSvc.isVisibileAccToRoles(this.tocConfig.rolesAllowed.mail, this.tocConfig.rolesNotAllowed.mail)
+
     })
   }
 

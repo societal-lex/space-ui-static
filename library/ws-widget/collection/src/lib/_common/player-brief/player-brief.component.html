@@ -552,7 +552,7 @@
     </div>
   </mat-card>
   <ws-widget-user-content-rating class="mb-4 block" *ngIf="content?.identifier && content?.assetType !== 'Connection'" [contentId]="content?.identifier"
-    [isDisabled]="isPreviewMode">
+    [isDisabled]="isPreviewMode || !enableRatings">
   </ws-widget-user-content-rating>
   <!-- <div class="hidden sm:block margin-bottom-m" *ngIf="content?.creatorDetails?.length">
     <ng-container [ngTemplateOutlet]="creators" [ngTemplateOutletContext]="{
@@ -581,8 +581,10 @@
         [email]="author.email"></ws-widget-user-image>
       <div class="width-expand flex flex-middle flex-between">
         <h3 class="margin-remove">{{ author.name }}</h3>
-        <ws-widget-btn-mail-user *ngIf="askAuthorEnabled" [widgetData]="{ content: content, emails: [author.email] }">
+        <ng-container *ngIf="mailIcon">
+         <ws-widget-btn-mail-user *ngIf="askAuthorEnabled" [widgetData]="{ content: content, emails: [author.email] }">
         </ws-widget-btn-mail-user>
+        </ng-container>
       </div>
     </div>
   </mat-card>

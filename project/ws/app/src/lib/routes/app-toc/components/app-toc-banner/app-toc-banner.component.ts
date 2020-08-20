@@ -19,6 +19,7 @@ import { NsAppToc } from '../../models/app-toc.model'
 import { AppTocService } from '../../services/app-toc.service'
 import { AppTocDialogIntroVideoComponent } from '../app-toc-dialog-intro-video/app-toc-dialog-intro-video.component'
 import { MobileAppsService } from 'src/app/services/mobile-apps.service'
+import { ForumService } from '../../../social/routes/forums/service/forum.service'
 
 @Component({
   selector: 'ws-app-toc-banner',
@@ -27,6 +28,9 @@ import { MobileAppsService } from 'src/app/services/mobile-apps.service'
   providers: [AccessControlService],
 })
 export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
+  feedbackicon = false
+  shareicon = false
+  data: any
   @Input() banners: NsAppToc.ITocBanner | null = null
   @Input() content: NsContent.IContent | null = null
   @Input() resumeData?: NsContent.IContinueLearningData
@@ -79,12 +83,17 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
     private mobileAppsSvc: MobileAppsService,
     private authAccessService: AccessControlService,
     private contentService: WidgetContentService,
+    private readonly forumSvc: ForumService
   ) { }
 
   ngOnInit() {
+    // tslint:disable-next-line: no-debugger
+    debugger
+
     this.getContentHistory()
     this.route.data.subscribe(data => {
       this.tocConfig = data.pageData.data
+      this.updateAccessVariables(this.tocConfig)
       if (this.content && this.isPostAssessment) {
         this.tocSvc.fetchPostAssessmentStatus(this.content.identifier).subscribe(res => {
           const assessmentData = res.result
@@ -148,6 +157,20 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
         contentName: this.content.name,
         contentType: this.content.contentType,
       }
+    }
+  }
+
+  updateAccessVariables(_configData: any) {
+    if (_configData.rolesAllowed || _configData.rolesNotAllowed) {
+      const response = this.forumSvc.isVisibileAccToRoles(_configData.rolesAllowed.feedback, _configData.rolesNotAllowed.feedback)
+      const shareResponse = this.forumSvc.isVisibileAccToRoles(_configData.rolesAllowed.share, _configData.rolesNotAllowed.share)
+
+      // set value to all the required variables
+      this.feedbackicon = response
+      this.shareicon = shareResponse
+    } else {
+      this.feedbackicon = true
+      this.shareicon = true
     }
   }
 
