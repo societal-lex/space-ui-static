@@ -30,6 +30,7 @@ export class BlogViewComponent implements OnInit {
   }
   fetchStatus: TFetchStatus = 'none'
   canUserEdit = false
+  canUserComment = false
   replyEnabled = false
   commentText = ''
   postingReply = false
@@ -60,6 +61,7 @@ export class BlogViewComponent implements OnInit {
       if (this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.blogs, _combinedResult[0].socialData.data.rolesNotAllowed.blogs)) {
           this.allowedToEditBlog = true
           this.allowedToDeleteBlog = true
+          this.canUserComment = true
       } else {
           this.allowedToEditBlog = false
           this.allowedToDeleteBlog = false
