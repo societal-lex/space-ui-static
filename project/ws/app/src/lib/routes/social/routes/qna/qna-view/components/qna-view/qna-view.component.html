@@ -142,7 +142,7 @@
           >
             <mat-spinner [diameter]="30" [strokeWidth]="3"></mat-spinner>
           </div>
-          <form class="comment-form">
+          <form class="comment-form" *ngIf="allowedToComment">
             <mat-form-field class="width-1-1">
               <input
                 matInput
@@ -227,7 +227,7 @@
     </div>
   </mat-card>
 
-  <mat-card [hidden]="!qnaConversation" class="my-4">
+  <mat-card [hidden]="!qnaConversation || !allowedToAnswer" class="my-4">
     <h2 i18n>Your Answer</h2>
     <ws-widget-editor-quill
       class="editor"
