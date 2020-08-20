@@ -113,7 +113,7 @@ export class PlayerBriefComponent implements OnInit {
     this.widgetContentSvc.fetchConfig(url).subscribe(data => {
       this.tocConfig = data
       // tslint:disable-next-line: no-console
-      console.log('toc data is ', this.tocConfig)
+      // console.log('toc data is ', this.tocConfig)
       // verify the roles and disbale the rating component
       // tslint:disable-next-line: max-line-length
       this.enableRatings = this.widgetContentSvc.isVisibileAccToRoles(this.tocConfig.rolesAllowed.rateContent, this.tocConfig.rolesNotAllowed.rateContent)
