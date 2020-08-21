@@ -8,14 +8,24 @@ import { ContentRequestComponent } from './components/content-request/content-re
 import { ServiceRequestComponent } from './components/service-request/service-request.component'
 import { FeedbackSummaryResolver } from '../../resolvers/feedback-summary.resolver'
 import { FeedbackConfigResolver } from '../../resolvers/feedback-config.resolver'
+import { GeneralGuard } from '../../../../../../../../../src/app/guards/general.guard'
 
 const routes: Routes = [
   {
     path: EFeedbackType.Platform,
     component: FeedbackComponent,
+    data : {
+      requiredRoles: [
+        "org-admin",
+        "editor",
+        "content-creator",
+        "publisher"
+    ]
+    },
     resolve: {
       feedbackConfig: FeedbackConfigResolver,
     },
+    canActivate: [GeneralGuard],
   },
   {
     path: EFeedbackType.ContentRequest,
