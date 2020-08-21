@@ -26,7 +26,7 @@ export class HtmlComponent implements OnInit, OnChanges {
   isLtMedium = false
   isScormContent = false
   isRestricted = false
-  allowedToSharePlaylist = true
+  allowedToDiscussionForum = true
   constructor(
     private activatedRoute: ActivatedRoute,
     private domSanitizer: DomSanitizer,
@@ -41,9 +41,9 @@ export class HtmlComponent implements OnInit, OnChanges {
       // console.log(_data)
       // tslint:disable-next-line: max-line-length
       if (this.viewerService.isVisibileAccToRoles(_data.pageData.data.enableDisscussionForum.rolesAllowed.disscussionForum, _data.pageData.data.enableDisscussionForum.rolesNotAllowed.disscussionForum)) {
-        this.allowedToSharePlaylist = true
+        this.allowedToDiscussionForum = true
       } else {
-        this.allowedToSharePlaylist = false
+        this.allowedToDiscussionForum = false
       }
     })
     this.isTypeOfCollection = this.activatedRoute.snapshot.queryParams.collectionType ? true : false

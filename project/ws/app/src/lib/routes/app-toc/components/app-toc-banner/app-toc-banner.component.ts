@@ -87,6 +87,9 @@ export class AppTocBannerComponent implements OnInit, OnChanges, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // tslint:disable-next-line: no-debugger
+    // debugger
+
     this.getContentHistory()
     this.route.data.subscribe(data => {
       this.tocConfig = data.pageData.data

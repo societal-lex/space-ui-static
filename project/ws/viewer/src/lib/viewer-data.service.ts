@@ -36,7 +36,7 @@ export class ViewerDataService {
   changedSubject = new ReplaySubject(1)
   tocChangeSubject = new ReplaySubject<IViewerTocChangeEvent>(1)
   navSupportForResource = new ReplaySubject<IViewerResourceOptions>(1)
-  constructor(private configSvc: ConfigurationsService ) { }
+  constructor(private configSvc: ConfigurationsService) { }
 
   reset(resourceId: string | null = null, status: TStatus = 'none') {
     this.resourceId = resourceId
