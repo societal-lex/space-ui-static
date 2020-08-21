@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { MatSnackBar } from '@angular/material'
 
 import { TFetchStatus, NsPage, ConfigurationsService, EventService } from '@ws-widget/utils'
@@ -8,6 +8,7 @@ import { NsPlaylist, IPickerContentData, BtnPlaylistService, NsContent, NsAutoCo
 import {
   PLAYLIST_TITLE_MIN_LENGTH, PLAYLIST_TITLE_MAX_LENGTH,
 } from '../../constants/playlist.constant'
+import { PlaylistService } from '../../service/playlist.service'
 
 @Component({
   selector: 'ws-app-playlist-create',
@@ -31,6 +32,7 @@ export class PlaylistCreateComponent implements OnInit {
   // shareWithEmailIds: string[] | undefined = undefined
   sharedWithUsers: NsAutoComplete.IUserAutoComplete[] = []
   isShareEnabled = false
+  allowedToSharePlaylist = true
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   constructor(
     fb: FormBuilder,
@@ -39,6 +41,8 @@ export class PlaylistCreateComponent implements OnInit {
     private snackBar: MatSnackBar,
     private playlistSvc: BtnPlaylistService,
     private configSvc: ConfigurationsService,
+    public playlistService: PlaylistService,
+    private route: ActivatedRoute,
   ) {
     this.createPlaylistForm = fb.group({
       title: [
@@ -51,6 +55,17 @@ export class PlaylistCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log(this.route.snapshot.data.pagedata)
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.playlistService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.playList, _data.pageData.data.rolesNotAllowed.playList)) {
+        this.allowedToSharePlaylist = true
+      } else {
+        this.allowedToSharePlaylist = false
+      }
+    })
+
     if (this.configSvc.restrictedFeatures) {
       this.isShareEnabled = !this.configSvc.restrictedFeatures.has('share')
     }

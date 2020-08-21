@@ -25,7 +25,7 @@
       (change)="onContentSelectionChanged($event?.content, $event?.checked)"
     >
     </ws-widget-picker-content>
-    <ng-container *ngIf="isShareEnabled">
+    <ng-container *ngIf="isShareEnabled && allowedToSharePlaylist">
       <h2 class="mat-h2 margin-top-m margin-bottom-xs" i18n>Share With</h2>
       <ws-widget-user-autocomplete
         class="block"
