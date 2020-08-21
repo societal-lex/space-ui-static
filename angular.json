@@ -17,9 +17,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "scripts": [
-              "./src/app/routes/public/qrcode/cloudModule/word-cloud-module.js"
-            ],
             "assets": ["src/favicon.ico", "src/favicon.png", "src/fusion-assets"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
@@ -84,7 +81,8 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/fusion-assets/telemetry.min.js",
-              "node_modules/shepherd.js/dist/js/shepherd.min.js"
+              "node_modules/shepherd.js/dist/js/shepherd.min.js",
+                "./src/app/routes/public/qrcode/cloudModule/word-cloud-module.js"
             ]
           },
           "configurations": {

@@ -99,12 +99,13 @@
         <!-- <div class="buttonleftclasses"> -->
         <div class="text-gray-600">
           <textarea input #newcomments (keyup.enter)="addnew(newcomments.value)"
-            (blur)="addnew(newcomments.value); newcomments.value='' " class="text-gray-600"
+            (blur)="addnew(newcomments.value); newcomments.value='' "
+            class="text-gray-600"
             placeholder="Write your Review here…"></textarea>
         </div>
         <div class="text-gray-600">
           <input style="height: 30px;" #newname (keyup.enter)="addName(newname.value)"
-            (blur)="addName(newname.value); newname.value='' " class="text-gray-600" placeholder="Enter your name">
+            (blur)="addName(newname.value);  newname.value='' " class="text-gray-600" placeholder="Enter your name">
         </div>
 
         <div>
@@ -120,7 +121,7 @@
       </div>
       <div class="rowgap">
 
-        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of reviewpeople">
+        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of currentUserDetails.details.comments">
           <div>
             <mat-icon class="matclass" style="font-size: 20px;" matPrefix>person</mat-icon>
           </div>
@@ -128,10 +129,6 @@
             <strong><i> {{hero.name}}</i></strong> : {{hero.comments}}
           </div>
           <br>
-
-          <!-- <div>
-            <mat-icon matPrefix>person</mat-icon>
-          </div> -->
         </div>
 
       </div>

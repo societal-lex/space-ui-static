@@ -149,6 +149,15 @@ export class RegisterUserCoreService {
       })
    }
 
+   updateComments(userID: string, comments: Array<string>) {
+      return this.http.put(`/users/users`, {
+         id: userID,
+         properties: {
+            comments,
+         },
+      })
+   }
+
    //   Visibility(visible: true): Observable<IRegsiterDetailObject | any >
    // {
    // const result = this.userData.details.find(userObj => userObj.visible != visible)

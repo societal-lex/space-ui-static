@@ -18,19 +18,7 @@ export class UserdeatilsComponent implements OnInit {
   hoverState = 0
   myArray = []
 
-  reviewpeople = [{
-    name: 'Sumit Nautiyal',
-    comments: 'Very good website for the bird guides.',
-  },
-  {
-    name: 'Tanya Chauhan',
-    comments: 'Very helpful for the people they can certify themselves ',
-  },
-  {
-    name: 'Anjitha R.',
-    comments: 'Very helpful for the guides',
-  }]
-  // ['Very good website for guides', 'Very helpful for the guides', 'I love this']
+
 
   selectedFeatures: any = []
 
@@ -43,7 +31,7 @@ date: any
   placeId: any
   reviewcommennts: any
   reviewname: any
-
+value = false;
   ngOnInit() {
     const currentDate = new Date()
     this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
@@ -125,10 +113,23 @@ date: any
   addName(newname: string) {
     this.reviewname = newname
     // this.reviewpeople.push({ name: newname, comments: newcomments })
+
   }
   reviewbutton() {
     if (this.reviewcommennts && this.reviewname) {
-      this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
+      // this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
+     this.currentUserDetails.details.comments.push({name: this.reviewname,comments:this.reviewcommennts})
+    let data =   this.currentUserDetails.details.comments
+      this.registerUserSrvc.updateComments(
+        this.currentUserDetails.details.source_id as string,
+        data as Array<string>)
+        .subscribe(_comments => {
+        this.reviewname = ''
+          this.value=true;
+          // console.log('rating status', ratingRes)
+        }, _err => {
+          // console.error('Could not update the rating of the user', err)
+        })
     }
   }
 
