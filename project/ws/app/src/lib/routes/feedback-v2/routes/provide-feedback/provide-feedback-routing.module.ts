@@ -16,11 +16,11 @@ const routes: Routes = [
     component: FeedbackComponent,
     data : {
       requiredRoles: [
-        "org-admin",
-        "editor",
-        "content-creator",
-        "publisher"
-    ]
+        'org-admin',
+        'editor',
+        'content-creator',
+        'publisher',
+    ],
     },
     resolve: {
       feedbackConfig: FeedbackConfigResolver,
