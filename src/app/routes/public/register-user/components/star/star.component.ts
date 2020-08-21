@@ -17,9 +17,9 @@ export class StarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onStarEnter() {
-    this.starEnter.emit(this.starId)
-  }
+  // onStarEnter() {
+  //   this.starEnter.emit(this.starId)
+  // }
   onStarLeave() {
     this.starLeave.emit()
   }
