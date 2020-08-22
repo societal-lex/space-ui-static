@@ -149,7 +149,7 @@ export class RegisterUserCoreService {
       })
    }
 
-   updateComments(userID: string, comments: Array<string>) {
+   updateComments(userID: string, comments: string[]) {
       return this.http.put(`/users/users`, {
          id: userID,
          properties: {

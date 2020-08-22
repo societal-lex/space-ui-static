@@ -119,10 +119,10 @@ value = false
     const data =   this.currentUserDetails.details.comments
       this.registerUserSrvc.updateComments(
         this.currentUserDetails.details.source_id as string,
-        data as Array<string> )
+        data as string[])
         .subscribe(_comments => {
           (document.getElementById('myInput') as HTMLTextAreaElement).value = '';
-          (document.getElementById('nameInput') as HTMLTextAreaElement).value = '';
+          (document.getElementById('nameInput') as HTMLTextAreaElement).value = ''
 
           // console.log('rating status', ratingRes)
         },         _err => {
