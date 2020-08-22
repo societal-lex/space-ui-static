@@ -18,6 +18,7 @@ export interface IRegsiterDetailObject {
   rating?: number
   about?: string
   language?: string
+  commentdata?:string
 }
 export interface IRegisterUserModel {
   details: IRegsiterDetailObject[]
