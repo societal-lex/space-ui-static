@@ -58,8 +58,8 @@ export class UserListComponent implements OnInit {
   // const filteruser = new Set(this.users.map(x => x.employment_status));
   // const uniqueWorkflowData = lodash.uniqBy(stats, 'workflow');
 
-  searchText: any = "All";
-  filterStatus: any = "All";
+  searchText: any = 'All'
+  filterStatus: any = 'All'
   filterLocation: any
   filterCombo: any[] = []
   myarrayStatus: any
@@ -78,15 +78,15 @@ export class UserListComponent implements OnInit {
   filterUser() {
 
     // this.filterStatus = new Set(this.users.map(x => x.employment_status))
-    let tempUserArray: any = this.users
-    tempUserArray.unshift({ employment_status: "All", residence_city: "All" })
+    const tempUserArray: any = this.users
+    tempUserArray.unshift({ employment_status: 'All', residence_city: 'All' })
     const filterStatus: any = new Set(tempUserArray.map((x: any) => x.employment_status))
 
     this.myarrayStatus = Array.from(filterStatus)
-    let tempArray: any = this.users
+    const tempArray: any = this.users
     // tempArray.unshift({ residence_city: "All" })
     // this.filterLocation = new Set(this.users.map(x => x.residence_city))
-    let filterLocation: any = new Set(tempArray.map((x: any) => x.residence_city))
+    const filterLocation: any = new Set(tempArray.map((x: any) => x.residence_city))
     //  filterLocation=new Set("All");
 
     this.myarrayLocation = Array.from(filterLocation)
@@ -141,7 +141,7 @@ export class UserListComponent implements OnInit {
   oStarClick(ratingDataForUser: IRegsiterDetailObject) {
     this.registerUserSrvc.updateRating(ratingDataForUser.source_id as string, ratingDataForUser.rating as number)
       .subscribe(_ratingRes => {
-      }, _err => {
+      },         _err => {
 
       })
   }

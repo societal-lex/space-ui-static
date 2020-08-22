@@ -75,7 +75,8 @@
               [starId]="star" [rating]="hoverState || currentUserDetails?.details?.rating || 0">
             </ws-star>
           </ng-container>
-
+          <br /><br />
+          {{currentUserDetails.details.rating}}/5{{currentUserDetails.details.commentdata}}
         </div>
 
         <div class="buttonrightclasses" [ngSwitch]=currentUserDetails.details?.employment_status>
@@ -98,14 +99,12 @@
         </div>
         <!-- <div class="buttonleftclasses"> -->
         <div class="text-gray-600">
-          <textarea input #newcomments (keyup.enter)="addnew(newcomments.value)"
-            (blur)="addnew(newcomments.value); newcomments.value='' "
-            class="text-gray-600"
-            placeholder="Write your Review here…"></textarea>
+          <textarea input #newcomments (keyup.enter)="addnew(newcomments.value)" (blur)="addnew(newcomments.value); "
+            class="text-gray-600" placeholder="Write your Review here…" id="myInput"></textarea>
         </div>
         <div class="text-gray-600">
           <input style="height: 30px;" #newname (keyup.enter)="addName(newname.value)"
-            (blur)="addName(newname.value);  newname.value='' " class="text-gray-600" placeholder="Enter your name">
+            (blur)="addName(newname.value);   " class="text-gray-600" placeholder="Enter your name" id="nameInput">
         </div>
 
         <div>
@@ -121,7 +120,8 @@
       </div>
       <div class="rowgap">
 
-        <div class="boxed text-gray-600" style="margin-top: 20px;" *ngFor="let hero of currentUserDetails.details.comments">
+        <div class="boxed text-gray-600" style="margin-top: 20px;"
+          *ngFor="let hero of currentUserDetails.details.comments">
           <div>
             <mat-icon class="matclass" style="font-size: 20px;" matPrefix>person</mat-icon>
           </div>

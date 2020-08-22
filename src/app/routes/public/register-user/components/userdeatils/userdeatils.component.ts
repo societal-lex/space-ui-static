@@ -17,9 +17,6 @@ export class UserdeatilsComponent implements OnInit {
   rating = 2
   hoverState = 0
   myArray = []
-
-
-
   selectedFeatures: any = []
 
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
@@ -31,7 +28,7 @@ date: any
   placeId: any
   reviewcommennts: any
   reviewname: any
-value = false;
+value = false
   ngOnInit() {
     const currentDate = new Date()
     this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
@@ -118,16 +115,17 @@ value = false;
   reviewbutton() {
     if (this.reviewcommennts && this.reviewname) {
       // this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
-     this.currentUserDetails.details.comments.push({name: this.reviewname,comments:this.reviewcommennts})
-    let data =   this.currentUserDetails.details.comments
+     this.currentUserDetails.details.comments.push({ name: this.reviewname, comments: this.reviewcommennts })
+    const data =   this.currentUserDetails.details.comments
       this.registerUserSrvc.updateComments(
         this.currentUserDetails.details.source_id as string,
-        data as Array<string>)
+        data as Array<string> )
         .subscribe(_comments => {
-        this.reviewname = ''
-          this.value=true;
+          (document.getElementById('myInput') as HTMLTextAreaElement).value = '';
+          (document.getElementById('nameInput') as HTMLTextAreaElement).value = '';
+
           // console.log('rating status', ratingRes)
-        }, _err => {
+        },         _err => {
           // console.error('Could not update the rating of the user', err)
         })
     }

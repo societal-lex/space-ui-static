@@ -21,19 +21,18 @@
 </div>
 </div>
     </div>
-
 </mat-card>
 
+
+<!-- Feedback For Engagements -->
 <div class ="center">
- <mat-card class ="format">
-    <div>
+ <mat-card class ="mat">
+
+    <div class="Engagements">
         <span class="skills">Feedback From Engagements</span>
     </div>
-
-
 <div class="parent-container">
  <br/>
-
 <div class="word-cloud-group">
   <div class="word-cloud">
     <div class="word-cloud-div" id="wordcloud" >
@@ -46,6 +45,7 @@
 
 </mat-card>
 </div>
+
 <div *ngIf="student?.employment_status=='Beginner'" class="center">
     <mat-card class="wid">
         <div class="place">
@@ -71,7 +71,7 @@
     </mat-card>
 </div>
 
-<div *ngIf="student?.employment_status=='Achievement'" class="center">
+<div *ngIf="student?.employment_status=='Expert'" class="center">
     <mat-card class="wid">
         <div class="place">
             <div class="pad">

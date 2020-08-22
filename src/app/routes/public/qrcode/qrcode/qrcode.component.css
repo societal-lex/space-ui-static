@@ -94,7 +94,7 @@ padding-right: 112vh;
 
   /* Center and scale the image nicely */
   background-repeat: no-repeat;
-  height: 423px;
+  height: 500px;
   width: 100%;
 
 }
@@ -132,7 +132,7 @@ font-size:25px
 }
 
 .word-cloud-div {
-    height: 800px;
+    height: 509px;
     width: 850px;
     margin: auto;
     padding: 50px;
@@ -145,4 +145,16 @@ p {
     position: absolute;
     top: 35%;
     left: 45%;
+}
+
+.mat{
+       margin: auto;
+    max-width: 61%;
+   min-width: 134vh;
+   text-align: center;
+   padding-bottom: 10px;
+   max-height: 110vh;
+}
+.Engagements{
+    padding-top: 73px;
 }
