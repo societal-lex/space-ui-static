@@ -23,7 +23,7 @@ export class QrcodeComponent implements OnInit {
   alldata: any
   title: any
   res: any
-
+hide  = false
   constructor(private configSvc: ConfigurationsService,
               private router: ActivatedRoute,
               private readonly userDetailsSrvc: RegisterUserCoreService,
@@ -75,6 +75,9 @@ export class QrcodeComponent implements OnInit {
         this.wordcloud = response['comments']
         this.data = this.wordcloud.map(({ comments }) => comments).join(' ')
         this.alldata = this.data
+        if (this.wordcloud.length <= 0) {
+          this.hide = true
+        }
         wordCloudModule(d3, d3Cloud).wordCloudGenerator({
           containerid: `#${response.divid}`,
           wordclouddata: this.alldata,

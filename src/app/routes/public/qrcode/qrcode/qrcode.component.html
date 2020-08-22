@@ -25,8 +25,8 @@
 
 
 <!-- Feedback For Engagements -->
-<div class ="center">
- <mat-card class ="mat">
+<div class ="center" *ngIf="!hide">
+ <mat-card class ="mat" >
 
     <div class="Engagements">
         <span class="skills">Feedback From Engagements</span>
@@ -36,7 +36,8 @@
 <div class="word-cloud-group">
   <div class="word-cloud">
     <div class="word-cloud-div" id="wordcloud" >
-        <p *ngIf="!res">Loading ...</p>
+        <p *ngIf="student?.comments.length <= 0">Loading ...</p>
+
     </div>
 
   </div>
