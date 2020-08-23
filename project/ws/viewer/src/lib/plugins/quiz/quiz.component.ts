@@ -97,17 +97,23 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
     if (this.configSvc.userProfile) {
       userId = this.configSvc.userProfile.userId || ''
     }
-    this.userList.updateVisibility(userId).subscribe(() => {
+    if (certiType === 1) {
+      this.userList.updateVisibility(userId, 'Expert').subscribe(() => {
 
-    })
+      })
+    } else if (certiType === 2) {
+      this.userList.updateVisibility(userId, 'Beginner').subscribe(() => {
+
+      })
+    }
     if (certiType === 1) {
       this.router.navigateByUrl(`/public/guides/certificates/${1}/${userId ? userId :
         userId}`,
-                                { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigateByUrl(`/public/guides/certificates/${2}/${userId ? userId :
         userId}`,
-                                { state: this.currentUserDetails, relativeTo: this.route })
+        { state: this.currentUserDetails, relativeTo: this.route })
     }
 
   }
