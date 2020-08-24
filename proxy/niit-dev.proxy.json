@@ -48,7 +48,7 @@
     "changeOrigin": true
   },
   "/usersubmission/*": {
-    "target": "https://learn.stackroutelabs.com/",
+    "target": "http://localhost:9400",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
