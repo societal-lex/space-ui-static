@@ -10,7 +10,7 @@ export interface IRegsiterDetailObject {
   email?: string,
   contact_phone_number_personal?: string,
   residence_city?: string,
-  employment_status?: string,
+  employmentStatus?: string,
   department_name?: string,
   time_updated?: string,
   images?: string,

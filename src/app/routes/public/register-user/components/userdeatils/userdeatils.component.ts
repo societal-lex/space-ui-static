@@ -41,7 +41,7 @@ value = false
     })
   }
   viewCertificate(certiType: number, defaultUserID?: string) {
-    // if(this.currentUserDetails.employment_status==="Achievement")
+    // if(this.currentUserDetails.employmentStatus==="Achievement")
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],

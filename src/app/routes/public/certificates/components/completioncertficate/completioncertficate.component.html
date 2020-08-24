@@ -5,7 +5,7 @@
     </mat-toolbar>
 
 
-    <div *ngIf="student?.employment_status=='Beginner'|| value==2" class="center">
+    <div *ngIf="student?.employmentStatus=='Beginner'|| value==2" class="center">
         <mat-card class="wid">
             <div class="place">
                 <div class="pad">
@@ -16,7 +16,7 @@
                     <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
                     <span class="v2"><i>has completed the course</i></span> <br /><br />
                     <span class="v3"><b>{{student?.department_name}}</b></span> <br /><br />
-                    <span class="v4"><i>with status of </i><b>{{student?.employment_status}}</b></span>
+                    <span class="v4"><i>with status of </i><b>{{student?.employmentStatus}}</b></span>
                     <br /><br /><br /><br />
                     <br /><br /><br /><br />
                     <div class="date">
@@ -30,7 +30,7 @@
         </mat-card>
     </div>
 
-    <div *ngIf="student?.employment_status=='Expert'|| value==1" class="center">
+    <div *ngIf="student?.employmentStatus=='Expert'|| value==1" class="center">
         <mat-card class="wid">
             <div class="place">
                 <div class="pad">
@@ -41,7 +41,7 @@
                     <span class="v3"><b>{{student?.first_name}} {{student?.last_name}}</b></span><br /><br />
                     <span class="v2"><i>has completed the course</i></span> <br /><br />
                     <span class="v3"><b>{{student?.department_name}}</b></span> <br /><br />
-                    <span class="v4"><i>with status of </i><b>{{student?.employment_status}}</b></span>
+                    <span class="v4"><i>with status of </i><b>{{student?.employmentStatus}}</b></span>
                     <br /><br /><br /><br />
                     <br /><br /><br /><br />
                     <div class="date">

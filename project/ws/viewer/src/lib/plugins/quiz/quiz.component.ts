@@ -109,11 +109,11 @@ export class QuizComponent implements OnInit, OnChanges, OnDestroy {
     if (certiType === 1) {
       this.router.navigateByUrl(`/public/guides/certificates/${1}/${userId ? userId :
         userId}`,
-        { state: this.currentUserDetails, relativeTo: this.route })
+                                { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigateByUrl(`/public/guides/certificates/${2}/${userId ? userId :
         userId}`,
-        { state: this.currentUserDetails, relativeTo: this.route })
+                                { state: this.currentUserDetails, relativeTo: this.route })
     }
 
   }

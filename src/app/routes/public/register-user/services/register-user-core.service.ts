@@ -128,11 +128,11 @@ export class RegisterUserCoreService {
    getUserFromID(userID: string): Observable<IRegsiterDetailObject | any> {
       return this.http.get(`/users/users/${userID}`)
    }
-   updateVisibility(userId: string, employment_status: string): Observable<IRegsiterDetailObject | any> {
+   updateVisibility(userId: string, employmentStatus: string): Observable<IRegsiterDetailObject | any> {
       return this.http.put(`/users/users`, {
          id: userId, properties: {
+            employmentStatus,
             visible: true,
-            employment_status,
          },
       },                   {
          headers: {

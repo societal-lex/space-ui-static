@@ -40,7 +40,7 @@
           <!-- <div class="text-gray-600">Course : {{currentUserDetails.department_name}}</div> -->
           <div class="text-gray-600">Language : {{currentUserDetails.details?.language}}</div><br>
 
-          <div class="text-blue-500">Certification : {{currentUserDetails.details?.employment_status}}</div>
+          <div class="text-blue-500">Certification : {{currentUserDetails.details?.employmentStatus}}</div>
 
         </div>
         <div class="rightclasses">
@@ -79,7 +79,7 @@
           {{currentUserDetails.details.rating}}/5{{currentUserDetails.details.commentdata}}
         </div>
 
-        <div class="buttonrightclasses" [ngSwitch]=currentUserDetails.details?.employment_status>
+        <div class="buttonrightclasses" [ngSwitch]=currentUserDetails.details?.employmentStatus>
           <div *ngSwitchCase="'Beginner'"><button class="mat-primary btn-clr text-center"
               (click)="viewCertificate(2)">View
               Certificate</button></div>
@@ -146,7 +146,7 @@
 <!-- <ng-container *ngFor="let registeredUser of users"> -->
 
 <!-- <mat-card class="example-card">
-  <div [ngSwitch]=currentUserDetails.employment_status>
+  <div [ngSwitch]=currentUserDetails.employmentStatus>
     <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr text-center"
         (click)="viewCertificate(2)">View
         Certificate</button></div>
@@ -175,7 +175,7 @@
     <br>
     <div class="text-gray-600 ">Course : {{currentUserDetails.department_name}}</div>
     <br>
-    <div class="text-blue-500">Status : {{currentUserDetails.employment_status}}</div>
+    <div class="text-blue-500">Status : {{currentUserDetails.employmentStatus}}</div>
     <br>
 
   </div>
@@ -195,7 +195,7 @@
   </div> -->
 <!-- </div> -->
 <!-- </div> -->
-<!-- <div [ngSwitch]=currentUserDetails.employment_status>
+<!-- <div [ngSwitch]=currentUserDetails.employmentStatus>
     <div *ngSwitchCase="'Participatry'"><button class="mat-primary btn-clr text-center"
         (click)="viewCertificate(2)">View
         Certificate</button></div>

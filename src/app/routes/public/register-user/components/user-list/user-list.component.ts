@@ -23,21 +23,21 @@ export class UserListComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private registerUserSrvc: RegisterUserCoreService) {
     // var filteruser = [...new Set(this.users)]
 
-    // const filteruser = [...new Set(this.users.map(x => x.employment_status))]
+    // const filteruser = [...new Set(this.users.map(x => x.employmentStatus))]
 
     // const result = []
     // const map = new Map()
     // for (const item of this.users) {
-    //   if (map.has(item.employment_status)) {
-    //     map.set(item.employment_status, true)    // set any value to Map
+    //   if (map.has(item.employmentStatus)) {
+    //     map.set(item.employmentStatus, true)    // set any value to Map
     //     result.push({
-    //       id: item.employment_status
+    //       id: item.employmentStatus
 
     //     })
     //   }
     // }
 
-    // const val = new Set(this.users.map(user => user.employment_status))
+    // const val = new Set(this.users.map(user => user.employmentStatus))
 
   }
   @Input() users: IRegsiterDetailObject[] = []
@@ -55,7 +55,7 @@ export class UserListComponent implements OnInit {
   // filteruser: IRegsiterDetailObject[] = []
   // dataSource = new MatTableDataSource(this.users);
 
-  // const filteruser = new Set(this.users.map(x => x.employment_status));
+  // const filteruser = new Set(this.users.map(x => x.employmentStatus));
   // const uniqueWorkflowData = lodash.uniqBy(stats, 'workflow');
 
   searchText: any = 'All'
@@ -77,10 +77,10 @@ export class UserListComponent implements OnInit {
 
   filterUser() {
 
-    // this.filterStatus = new Set(this.users.map(x => x.employment_status))
+    // this.filterStatus = new Set(this.users.map(x => x.employmentStatus))
     const tempUserArray: any = this.users
-    tempUserArray.unshift({ employment_status: 'All', residence_city: 'All' })
-    const filterStatus: any = new Set(tempUserArray.map((x: any) => x.employment_status))
+    tempUserArray.unshift({ employmentStatus: 'All', residence_city: 'All' })
+    const filterStatus: any = new Set(tempUserArray.map((x: any) => x.employmentStatus))
 
     this.myarrayStatus = Array.from(filterStatus)
     const tempArray: any = this.users
@@ -115,7 +115,7 @@ export class UserListComponent implements OnInit {
   //     return self.indexOf(value) === index
   //   }
 
-  // var  unique = this.users.employment_status.filter(onlyUnique);
+  // var  unique = this.users.employmentStatus.filter(onlyUnique);
 
   // applyFilter(filterValue: string) {
   //   this.dataSource.filter = filterValue.trim().toLowerCase()
