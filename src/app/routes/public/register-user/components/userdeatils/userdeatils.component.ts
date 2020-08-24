@@ -130,6 +130,7 @@ export class UserdeatilsComponent implements OnInit {
   }
   reviewbutton() {
     if (this.reviewcommennts && this.reviewname) {
+      this.buttondisabled = false;
       // this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
       this.currentUserDetails.details.comments.push({ name: this.reviewname, comments: this.reviewcommennts })
       const data = this.currentUserDetails.details.comments
@@ -138,7 +139,7 @@ export class UserdeatilsComponent implements OnInit {
         data as string[])
         .subscribe(_comments => {
           (document.getElementById('myInput') as HTMLTextAreaElement).value = '';
-          (document.getElementById('nameInput') as HTMLTextAreaElement).value = ''
+          (document.getElementById('nameInput') as HTMLTextAreaElement).value = '';
 
           // console.log('rating status', ratingRes)
         },         _err => {
