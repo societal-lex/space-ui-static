@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { ActivatedRoute, Router } from '@angular/router'
-
-import * as d3 from 'd3'
-import * as d3Cloud from 'd3-cloud'
 import { RegisterUserCoreService } from '../../register-user/qrcode/services/register-user-core.service'
-declare var wordCloudModule: any
 
 @Component({
   selector: 'app-qrcode',
@@ -38,7 +34,7 @@ hide  = false
     window.history.back()
   }
   ngOnInit() {
-    this.createWordCloudDynamically()
+
     const currentDate = new Date()
     this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
 
@@ -66,25 +62,5 @@ hide  = false
     })
 
   }
-  createWordCloudDynamically() {
 
-    this.router.params.subscribe(params => {
-      this.wid = params['userid']
-      this.userDetailsSrvc.getUserFromID(this.wid).subscribe(response => {
-          this.res = { ...response }
-        this.wordcloud = response['comments']
-        this.data = this.wordcloud.map(({ comments }) => comments).join(' ')
-        this.alldata = this.data
-        if (this.wordcloud.length <= 0) {
-          this.hide = true
-        }
-        wordCloudModule(d3, d3Cloud).wordCloudGenerator({
-          containerid: `#${response.divid}`,
-          wordclouddata: this.alldata,
-          stopwords: 'this as of a was is new old how',
-        })
-      })
-
-  })
-  }
   }

@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router'
 // import { IRegsiterDetailObject } from '../../services/register-user-core.model'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { RegisterUserCoreService } from '../../services/register-user-core.service'
-
+import * as d3 from 'd3'
+import * as d3Cloud from 'd3-cloud'
+declare var wordCloudModule: any
 @Component({
   selector: 'ws-userdeatils',
   templateUrl: './userdeatils.component.html',
@@ -11,25 +13,35 @@ import { RegisterUserCoreService } from '../../services/register-user-core.servi
 })
 export class UserdeatilsComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService,
+    private readonly userDetailsSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
   hoverState = 0
   myArray = []
   selectedFeatures: any = []
-
+  buttondisabled = true
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
 
   currentUserDetails: any = {}
   date: any
   public name: any
   public str: any
+  wid: any
   placeId: any
   reviewcommennts: any
   reviewname: any
   value = false
+  display=false
+  res: any
+  wordcloud = []
+  data: any
+  alldata: any
+  hide = "none"
+  oneClick = 0;
   ngOnInit() {
+
     const currentDate = new Date()
     this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
     this.route.data.subscribe(routeData => {
@@ -37,8 +49,12 @@ export class UserdeatilsComponent implements OnInit {
         this.router.navigate(['/public/guides'])
       } else {
         this.currentUserDetails = { ...routeData }
+        if (this.currentUserDetails.details.comments.length > 0) {
+          this.buttondisabled = false;
+        }
       }
     })
+
   }
   viewCertificate(certiType: number, defaultUserID?: string) {
     // if(this.currentUserDetails.employmentStatus==="Achievement")
@@ -130,5 +146,35 @@ export class UserdeatilsComponent implements OnInit {
         })
     }
   }
+
+    createWordCloudDynamically() {
+      this.oneClick++;
+      if(this.oneClick > 1)
+      {
+        (document.getElementById("buttondisabled") as HTMLTextAreaElement).disabled = false;
+      }
+      this.display=true
+    this.route.params.subscribe( params => {
+      this.wid = params['userID']
+     this.userDetailsSrvc.getUserFromID(this.wid).subscribe(response => {
+        this.res = { ...response }
+        this.wordcloud = response['comments']
+       if (this.wordcloud.length <= 0)
+       {
+         (document.getElementById("word-cloud-button") as HTMLTextAreaElement).disabled = true;
+       }
+        this.data = this.wordcloud.map(({ comments }) => comments).join(' ')
+        this.alldata = this.data
+                  this.hide = "block"
+        wordCloudModule(d3, d3Cloud).wordCloudGenerator({
+          containerid: `#${response.divid}`,
+          wordclouddata: this.alldata,
+          stopwords: 'this as of a was is new old how',
+        })
+      })
+
+    })
+  }
+
 
 }

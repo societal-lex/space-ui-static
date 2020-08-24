@@ -224,6 +224,231 @@ justify-content: space-between;
   display: flex;
 }
 
+
+
+// word cloud css
+
+
+// .parent-container {
+//     text-align:center;
+//     background: #d3d3d37a;
+//     padding-top: 30px;
+//     padding-bottom: 50px;
+// }
+// .word-cloud-header {
+//     text-align: center;
+//     margin-bottom: 0
+// }
+
+
+// .word-cloud-group {
+//     width: 80%;
+//     margin: auto;
+//     background-color: white;
+//     border: 1px solid white;
+//     border-radius: 5px;
+//     margin-bottom: 20px;
+// }
+
+// .word-cloud-group:nth-last-child(1) {
+//     margin-bottom: 0;
+// }
+
+// .word-cloud-div {
+//     height: 509px;
+//     width: 850px;
+//     margin: auto;
+//     padding: 50px;
+//     position: relative;
+//     text-align: center;
+// }
+
+
+// p {
+//     font-size: 50px;
+//     position: absolute;
+//     top: 35%;
+//     left: 45%;
+// }
+// .center{
+// padding-top:23px;
+// align-content: center;
+// }
+// .mat{
+//        transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+//     /* display: block; */
+//     position: relative;
+//     /* padding: 16px; */
+// }
+// .Engagements{
+//     padding-top: 73px;
+// }
+// .skills{
+//     font-family: 'Cormorant Garamond'!important;
+//     font-size:50px;
+// font-weight:bold;
+// }
+// .parent-container {
+//     text-align:center;
+//     padding-top: 30px;
+//     padding-bottom: 50px;
+// }
+
+
+
+.format{
+    margin: auto;
+    max-width: 61%;
+   min-width: 134vh;
+   text-align: center;
+   padding-bottom: 10px;
+}
+.vn1{
+    margin:auto;
+width:800px;
+height:350px;
+padding:20px;
+border: 10px solid #787878
+}
+.vn2{
+    width:750px;
+height:300px;
+padding:20px;
+text-align:center;
+border: 5px solid #787878
+}
+.skills{
+    font-family: 'Cormorant Garamond'!important;
+    font-size:40px;
+font-weight:bold;
+}
+.space{
+    padding-top: 18px;
+}
+
+
+
+.v1{
+  font-family: 'Cormorant Garamond'!important;
+ text-align: center;
+font-size:55px;
+font-weight:bold
+
+}
+.v2 {
+ font-family: 'Cormorant Garamond'!important;
+font-size:25px
+}
+.v3 {
+   font-family: 'Cormorant Garamond'!important;
+padding-top: 50%;
+font-size:40px
+}
+.v4 {
+ font-family: 'Cormorant Garamond'!important;
+font-size:20px
+}
+.center{
+padding-top:23px;
+align-content: center;
+}
+.date{
+    padding-left: 100vh;
+    padding-top: 10vh;
+}
+.main{
+padding-top: 14vh;
+}
+
+.pad{
+  text-align: center;
+  padding-top: 22%;
+}
+.wid{
+     margin: auto;
+    max-width: 61%;
+   min-width: 134vh;
+   text-align: center;
+   padding-bottom: 10px;
+}
+.certDate{
+    margin:auto;
+font-family: Arial, Helvetica, sans-serif!important;
+font-size: 90%;
+padding-right: 112vh;
+}
+
+
+.top-space{
+    padding-top: 16vh;
+}
+.v {
+ font-family: 'Cormorant Garamond'!important;
+font-size:25px
+}
+
+
+
+.parent-container {
+    text-align:center;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+.word-cloud-header {
+    text-align: center;
+    margin-bottom: 0
+}
+
+.word-cloud-group {
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.word-cloud-group:nth-last-child(1) {
+    margin-bottom: 0;
+}
+
+.word-cloud-div {
+    height: 509px;
+    width: 850px;
+    margin: auto;
+    padding: 50px;
+    position: relative;
+    text-align: center;
+}
+
+
+p {
+    font-size: 50px;
+    position: absolute;
+    top: 35%;
+    left: 45%;
+}
+
+.mat{
+       margin: auto;
+  //   max-width: 61%;
+  //  min-width: 134vh;
+   text-align: center;
+   padding-bottom: 10px;
+   max-height: 110vh;
+   margin-bottom: 20px;
+}
+.Engagements{
+    padding-top: 73px;
+}
+
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: white !important;
+}
+
+
 // *************************************************************
 // .container > div{
 //   width:150px;

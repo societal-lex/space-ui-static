@@ -89,6 +89,8 @@
 
         </div>
 
+
+
       </div>
       <br>
       <hr>
@@ -110,7 +112,7 @@
         <div>
           <button style="height: 30px;" class="text-gray-600 mat-primary addbtnallign" (click)="reviewbutton()">Add
             Review</button>
-
+        <div><button [disabled] = "buttondisabled" class="mat-primary btn-clr text-center"  (click)="createWordCloudDynamically()">View WordCloud</button></div>
         </div>
 
 
@@ -128,6 +130,9 @@
           <div>
             <strong><i> {{hero.name}}</i></strong> : {{hero.comments}}
           </div>
+          <div>
+
+          </div>
           <br>
         </div>
 
@@ -135,11 +140,33 @@
     </div>
 
     <!-- </div> -->
+
+
   </mat-card>
 </ng-container>
 
 
+<div class="center" *ngIf="display==true">
+  <mat-card class="mat">
 
+    <div class="Engagements">
+      <span class="skills">Feedback From Engagements</span>
+    </div>
+    <div class="parent-container">
+      <br />
+      <div class="word-cloud-group">
+        <div class="word-cloud">
+          <div class="word-cloud-div" id="wordcloud">
+            <p *ngIf="currentUserDetails.details?.comments.length <= 0">Loading ...</p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </mat-card>
+</div>
 
 <!-- ****************************************************** -->
 <!-- <ng-container> -->
