@@ -11,7 +11,7 @@ import { RegisterUserCoreService } from '../../services/register-user-core.servi
 })
 export class UserdeatilsComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
-    private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
+              private readonly router: Router, private registerUserSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
@@ -45,11 +45,11 @@ export class UserdeatilsComponent implements OnInit {
     if (certiType === 1) {
       this.router.navigate([`/public/guides/certificates/${1}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     } else if (certiType === 2) {
       this.router.navigate([`/public/guides/certificates/${2}/${defaultUserID ? defaultUserID :
         this.currentUserDetails.details.source_id}`],
-        { state: this.currentUserDetails, relativeTo: this.route })
+                           { state: this.currentUserDetails, relativeTo: this.route })
     }
   }
 
@@ -68,7 +68,7 @@ export class UserdeatilsComponent implements OnInit {
       this.currentUserDetails.details.rating as number)
       .subscribe(_ratingRes => {
         // console.log('rating status', ratingRes)
-      }, _err => {
+      },         _err => {
         // console.error('Could not update the rating of the user', err)
       })
   }
@@ -125,7 +125,7 @@ export class UserdeatilsComponent implements OnInit {
           (document.getElementById('nameInput') as HTMLTextAreaElement).value = ''
 
           // console.log('rating status', ratingRes)
-        }, _err => {
+        },         _err => {
           // console.error('Could not update the rating of the user', err)
         })
     }

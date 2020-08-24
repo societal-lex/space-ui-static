@@ -185,17 +185,6 @@
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { NsTnc } from '../../../../../../../../../src/app/models/tnc.model'
 import { Subscription } from 'rxjs'
