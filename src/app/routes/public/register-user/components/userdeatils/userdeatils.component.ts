@@ -14,7 +14,7 @@ declare var wordCloudModule: any
 export class UserdeatilsComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService, private readonly route: ActivatedRoute,
               private readonly router: Router, private registerUserSrvc: RegisterUserCoreService,
-    private readonly userDetailsSrvc: RegisterUserCoreService) { }
+              private readonly userDetailsSrvc: RegisterUserCoreService) { }
 
   stars = [1, 2, 3, 4, 5]
   rating = 2
@@ -33,13 +33,13 @@ export class UserdeatilsComponent implements OnInit {
   reviewcommennts: any
   reviewname: any
   value = false
-  display=false
+  display = false
   res: any
   wordcloud = []
   data: any
   alldata: any
-  hide = "none"
-  oneClick = 0;
+  hide = 'none'
+  oneClick = 0
   ngOnInit() {
 
     const currentDate = new Date()
@@ -50,7 +50,7 @@ export class UserdeatilsComponent implements OnInit {
       } else {
         this.currentUserDetails = { ...routeData }
         if (this.currentUserDetails.details.comments.length > 0) {
-          this.buttondisabled = false;
+          this.buttondisabled = false
         }
       }
     })
@@ -130,7 +130,7 @@ export class UserdeatilsComponent implements OnInit {
   }
   reviewbutton() {
     if (this.reviewcommennts && this.reviewname) {
-      this.buttondisabled = false;
+      this.buttondisabled = false
       // this.reviewpeople.push({ name: this.reviewname, comments: this.reviewcommennts })
       this.currentUserDetails.details.comments.push({ name: this.reviewname, comments: this.reviewcommennts })
       const data = this.currentUserDetails.details.comments
@@ -139,7 +139,7 @@ export class UserdeatilsComponent implements OnInit {
         data as string[])
         .subscribe(_comments => {
           (document.getElementById('myInput') as HTMLTextAreaElement).value = '';
-          (document.getElementById('nameInput') as HTMLTextAreaElement).value = '';
+          (document.getElementById('nameInput') as HTMLTextAreaElement).value = ''
 
           // console.log('rating status', ratingRes)
         },         _err => {
@@ -149,24 +149,22 @@ export class UserdeatilsComponent implements OnInit {
   }
 
     createWordCloudDynamically() {
-      this.oneClick++;
-      if(this.oneClick > 1)
-      {
-        (document.getElementById("buttondisabled") as HTMLTextAreaElement).disabled = false;
+      this.oneClick = this.oneClick + 1
+        if (this.oneClick > 1) {
+        (document.getElementById('buttondisabled') as HTMLTextAreaElement).disabled = false
       }
-      this.display=true
-    this.route.params.subscribe( params => {
+      this.display = true
+    this.route.params.subscribe(params => {
       this.wid = params['userID']
      this.userDetailsSrvc.getUserFromID(this.wid).subscribe(response => {
         this.res = { ...response }
         this.wordcloud = response['comments']
-       if (this.wordcloud.length <= 0)
-       {
-         (document.getElementById("word-cloud-button") as HTMLTextAreaElement).disabled = true;
+       if (this.wordcloud.length <= 0) {
+         (document.getElementById('word-cloud-button') as HTMLTextAreaElement).disabled = true
        }
         this.data = this.wordcloud.map(({ comments }) => comments).join(' ')
         this.alldata = this.data
-                  this.hide = "block"
+                  this.hide = 'block'
         wordCloudModule(d3, d3Cloud).wordCloudGenerator({
           containerid: `#${response.divid}`,
           wordclouddata: this.alldata,
@@ -176,6 +174,5 @@ export class UserdeatilsComponent implements OnInit {
 
     })
   }
-
 
 }
