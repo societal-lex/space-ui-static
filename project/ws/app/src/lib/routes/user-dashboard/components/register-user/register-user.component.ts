@@ -127,22 +127,27 @@ export class RegisterUserComponent implements OnInit {
       })
     } else {
       this.clearSignUpForm()
-      this.snackBar.open(this.errorMessage, '', {
-        duration: 3000,
-      })
+      if (responseForCreateUser.error) {
+        if (responseForCreateUser.error.error.MESSAGE) {
+          this.snackBar.open(responseForCreateUser.error.error.MESSAGE, '', {
+            duration: 3000,
+          })
+        }
+      }
+
     }
   }
 
- clearSignUpForm() {
-   this.signupForm.reset()
-   if (this.signupForm) {
-     this.signupForm.controls.firstName.clearValidators()
-     this.signupForm.controls.firstName.updateValueAndValidity()
-     this.signupForm.controls.lastName.clearValidators()
-     this.signupForm.controls.lastName.updateValueAndValidity()
-     this.signupForm.controls.email.clearValidators()
-     this.signupForm.controls.email.updateValueAndValidity()
-   }
+  clearSignUpForm() {
+    this.signupForm.reset()
+    if (this.signupForm) {
+      this.signupForm.controls.firstName.clearValidators()
+      this.signupForm.controls.firstName.updateValueAndValidity()
+      this.signupForm.controls.lastName.clearValidators()
+      this.signupForm.controls.lastName.updateValueAndValidity()
+      this.signupForm.controls.email.clearValidators()
+      this.signupForm.controls.email.updateValueAndValidity()
+    }
   }
   //   passwordVerify() {
   //     if (this.signupForm.controls.password && this.signupForm.controls.confirmPassword) {
