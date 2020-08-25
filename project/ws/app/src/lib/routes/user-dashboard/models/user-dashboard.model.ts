@@ -1,3 +1,6 @@
+import { UUID } from 'jsplumb'
+import { Timestamp } from 'rxjs'
+
 export namespace NsUserDashboard {
   export interface IUserDashboard {
     username: string,
@@ -35,6 +38,45 @@ export namespace NsUserDashboard {
     url: string,
     errorMessage: string,
     successMessage: string
+  }
+  export interface IUserListDataFromUserTable {
+    wid: UUID,
+    root_org: string,
+    org: string,
+    is_active: boolean,
+    account_expiry_date: Date,
+    kid: UUID,
+    username: string,
+    first_name: string,
+    last_name: string,
+    middle_name: string,
+    known_as: string,
+    email: string,
+    gender: string,
+    dob: Date,
+    languages_known: string[],
+    preferred_language: string,
+    source_profile_picture: string,
+    residence_country: string,
+    residence_state: string,
+    residence_city: string,
+    contact_phone_number_office: string,
+    contact_phone_number_home: string,
+    contact_phone_number_personal: string,
+    employment_status: string,
+    contract_type: string,
+    job_title: string,
+    job_role: string,
+    department_name: string,
+    sub_department_name: string,
+    unit_name: string,
+    organization_location_country: string,
+    organization_location_state: string,
+    organization_location_city: string,
+    time_inserted: Timestamp<any>,
+    time_updated: Timestamp<any>,
+    manager_id: string,
+    time_zone: string,
   }
   export interface IUpdateRoles {
     type: string,
@@ -89,6 +131,7 @@ export namespace NsUserDashboard {
   export interface IDeclineUser {
     email: string
     user_Id: string
+    wid: string
   }
   export interface IRoles {
     roles: string[]
