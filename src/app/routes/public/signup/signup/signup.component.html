@@ -8,14 +8,14 @@
     <mat-form-field class="width" appearance="legacy">
       <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Enter your First Name</mat-label>
       <input  matInput placeholder="First Name" required>
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
     </mat-form-field>
   </p>
   <p>
     <mat-form-field class="width" appearance="legacy">
       <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Enter your Last Name</mat-label>
       <input matInput placeholder="Last Name" required>
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
     </mat-form-field>
   </p>
   <p>
@@ -23,7 +23,7 @@
       <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Enter your Email</mat-label>
       <input matInput placeholder="pat@example.com" [formControl]="email" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      <mat-icon matSuffix>email</mat-icon>
+
     </mat-form-field>
   </p>
   <p>

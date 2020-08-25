@@ -33,7 +33,7 @@ hide  = false
     window.history.back()
   }
   ngOnInit() {
-    this.createWordCloudDynamically();
+    this.createWordCloudDynamically()
     const currentDate = new Date()
     this.date = currentDate.toDateString().split(' ').slice(1).join(' ')
 
@@ -68,7 +68,7 @@ hide  = false
         this.res = { ...response }
         this.wordcloud = response['comments']
         if (this.wordcloud.length <= 0) {
-          this.hide = true;
+          this.hide = true
         }
         this.data = this.wordcloud.map(({ comments }) => comments).join(' ')
         this.alldata = this.data

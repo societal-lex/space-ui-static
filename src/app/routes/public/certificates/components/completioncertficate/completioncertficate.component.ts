@@ -5,7 +5,7 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 @Component({
   selector: 'app-completioncertficate',
   templateUrl: './completioncertficate.component.html',
-  styleUrls: ['./completioncertficate.component.css'],
+  styleUrls: ['./completioncertficate.component.scss'],
 })
 export class CompletioncertficateComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
