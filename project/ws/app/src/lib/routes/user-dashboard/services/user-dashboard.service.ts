@@ -7,7 +7,8 @@ import { UserAutocompleteService } from '@ws-widget/collection'
 
 interface IResponse {
   ok: boolean
-  error?: string | null,
+  error?: any | null,
+  // DATA?: [NsUserDashboard.IUserListData],
   DATA?: [NsUserDashboard.IUserListDataFromUserTable],
   STATUS?: string,
   MESSAGE: string,
@@ -25,7 +26,6 @@ interface IResponseForGetRoles {
   STATUS?: string,
   MESSAGE?: string,
 }
-
 @Injectable({
   providedIn: 'root',
 })

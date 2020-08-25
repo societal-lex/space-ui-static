@@ -126,7 +126,7 @@ export class UserDashboardComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach((row: NsUserDashboard.IUserListData) => this.selection.select(row))
+      this.dataSource.data.forEach((row: NsUserDashboard.IUserListDataFromUserTable) => this.selection.select(row))
   }
 
   /** The label for the checkbox on the passed row */
