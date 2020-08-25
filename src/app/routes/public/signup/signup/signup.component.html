@@ -6,21 +6,21 @@
 <div class="format">
 <p>
     <mat-form-field class="width" appearance="legacy">
-      <mat-label>Enter your First Name</mat-label>
-      <input matInput placeholder="First Name" required>
+      <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Enter your First Name</mat-label>
+      <input  matInput placeholder="First Name" required>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field class="width" appearance="legacy">
-      <mat-label>Enter your Last Name</mat-label>
+      <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Enter your Last Name</mat-label>
       <input matInput placeholder="Last Name" required>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field class="width" appearance="legacy">
-      <mat-label>Enter your Email</mat-label>
+      <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Enter your Email</mat-label>
       <input matInput placeholder="pat@example.com" [formControl]="email" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       <mat-icon matSuffix>email</mat-icon>
@@ -28,7 +28,7 @@
   </p>
   <p>
     <mat-form-field class="width" appearance="legacy">
-      <mat-label>Password</mat-label>
+      <mat-label style="font-family: Open Sans,Helvetica,Arial,sans-serif">Password</mat-label>
       <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" required>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -41,5 +41,9 @@
 <div class ="button-align">
    <button mat-raised-button color="primary">Submit</button>
 </div>
+  <!-- <button  name="login_client_button" color="primary" mat-raised-button i18n="login: client"
+    (click)="login('S')" class="log-btn">
+    <span class="mat-title">SignUp</span>
+  </button> -->
 
 </mat-card>

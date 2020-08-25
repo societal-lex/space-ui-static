@@ -58,4 +58,5 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   login(key: 'E' | 'N' | 'S') {
     this.authSvc.login(key, this.redirectUrl)
   }
+
 }

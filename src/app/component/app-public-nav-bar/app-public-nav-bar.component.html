@@ -12,9 +12,16 @@
     <span i18n class="small-font-size">Explore Guides</span>
   </a>
 
-    <a name="about_btn" class="margin-left-s padding-remove-small campaign btn-clr" mat-button routerLink="/public/user/signup">
+<div class="flex justify-center flex-col login-btn ml-auto margin-right-m">
+    <button name="login_client_button" mat-button i18n="login: client" routerLink="/public/user/signup"
+      class="padding-remove-small color modified-props">
+      <span i18n class="small-font-size btn-size">SignUp</span>
+    </button>
+</div>
+    <!-- <a name="about_btn" class="margin-left-s padding-remove-small campaign btn-clr" mat-button routerLink="/public/user/signup">
       <span i18n class="small-font-size">SignUp</span>
-    </a>
+    </a> -->
+
   <!-- <a
     name="collaborator_btn"
     class="padding-remove-small campaign"
@@ -28,7 +35,7 @@
   </a> -->
   <!-- todo for Wingspan change column -->
 
-  <div class="flex justify-center flex-col login-btn ml-auto">
+  <div class="flex justify-center flex-col login-btn ml-right ">
     <div *ngIf="loginConfig && loginConfig?.loginButtons">
       <button name="login_btn_{{ (loginConfig?.loginButtons)[key] }}"
         *ngFor="let key of objectKeys(loginConfig?.loginButtons)" color="primary" mat-raised-button
@@ -36,6 +43,7 @@
         <span class="mat-title">{{ key }}</span>
       </button>
     </div>
+
 
     <button name="login_client_button" mat-button i18n="login: client" (click)="login('S')"
       class="padding-remove-small color modified-props">

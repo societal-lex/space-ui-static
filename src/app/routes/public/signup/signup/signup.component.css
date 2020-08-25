@@ -20,3 +20,11 @@ width: 600px;
     margin-left: 50vh;
     margin-right: 50vh;
   }
+  /* ::ng-deep{
+     .theme-muave.day-mode .mat-button, .theme-muave.day-mode .mat-icon-button, .theme-muave.day-mode .mat-stroked-button{
+    background:  #451771 !important;
+  }
+  }
+  .theme-muave.day-mode .mat-button, .theme-muave.day-mode .mat-icon-button, .theme-muave.day-mode .mat-stroked-button{
+    background:  #451771 !important;
+  } */
