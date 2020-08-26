@@ -6,6 +6,7 @@
   // min-width: 8rem;
   // margin-top: -0.5rem;
   // padding: 8px 0 0 8px;
+  width: 100%;
 }
 .btn-size {
   padding: 0px 6px 0px 6px;
@@ -55,7 +56,9 @@
 .logosize {
   overflow-y: hidden;
   // height: 3rem;
-    padding: 8px 0 0 8px ;
+    padding: 8px 0 0 0 ;
+    width: 295px;
+    height: 35px;
 }
 .title-app {
   @include breakpoint-xs {
