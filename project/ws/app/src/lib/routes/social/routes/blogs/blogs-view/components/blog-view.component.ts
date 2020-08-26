@@ -17,6 +17,7 @@ export class BlogViewComponent implements OnInit {
   showSocialLike = false
   allowedToEditBlog = false
   allowedToDeleteBlog = false
+  allowedToDeleteBlogForSpecificRoles = false
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   conversationRequest: NsDiscussionForum.IPostRequest = {
     postId: '',
@@ -37,6 +38,8 @@ export class BlogViewComponent implements OnInit {
   resetEditor = false
   userEmail = ''
   userId = ''
+  userRole: Set<string> | null = null
+  canUserDelete = false
 
   constructor(
     public dialog: MatDialog,
@@ -51,6 +54,9 @@ export class BlogViewComponent implements OnInit {
       this.userId = this.configSvc.userProfile.userId || ''
       this.userEmail = this.configSvc.userProfile.email || ''
     }
+    // if (this.configSvc.userRoles) {
+    //   this.userRole = this.configSvc.userRoles || ''
+    // }
     this.conversationRequest.userId = this.userId
   }
 
@@ -59,12 +65,19 @@ export class BlogViewComponent implements OnInit {
     combineLatest(this.route.data, this.route.paramMap).subscribe(_combinedResult => {
       // tslint:disable-next-line: max-line-length
       if (this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.blogs, _combinedResult[0].socialData.data.rolesNotAllowed.blogs)) {
-          this.allowedToEditBlog = true
-          this.allowedToDeleteBlog = true
-          this.canUserComment = true
+        this.allowedToEditBlog = true
+        this.allowedToDeleteBlog = true
+        this.canUserComment = true
       } else {
-          this.allowedToEditBlog = false
-          this.allowedToDeleteBlog = false
+        this.allowedToEditBlog = false
+        this.allowedToDeleteBlog = false
+      }
+      if (_combinedResult[0].socialData.data.rolesAllowedForDelete.blogs) {
+        const allowedForDelete = _combinedResult[0].socialData.data.rolesAllowedForDelete.blogs.some((role: string) =>
+          (this.configSvc.userRoles as Set<string>).has(role))
+        if (allowedForDelete) {
+          this.allowedToDeleteBlogForSpecificRoles = true
+        }
       }
       const idVal = _combinedResult[1].get('id')
       if (idVal) {
@@ -110,6 +123,9 @@ export class BlogViewComponent implements OnInit {
             if (this.allowedToEditBlog && this.allowedToDeleteBlog) {
               this.canUserEdit = true
             }
+          }
+          if (this.allowedToDeleteBlogForSpecificRoles) {
+            this.canUserDelete = true
           }
           this.fetchStatus = 'done'
         } else if (this.isFirstConversationRequestDone) {
