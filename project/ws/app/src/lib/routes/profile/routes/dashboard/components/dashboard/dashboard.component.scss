@@ -1,12 +1,16 @@
 @import 'ws-mixins';
 @import 'ws-vars';
 
+.mat-standard-chip {
+height:auto;
+}
 .profile-container {
   margin: 16px 16px 0 16px;
 
   @include breakpoint-xs {
     margin: 16px 16px 0 16px;
   }
+
 
   .margin-zero {
     margin-bottom: 0px;

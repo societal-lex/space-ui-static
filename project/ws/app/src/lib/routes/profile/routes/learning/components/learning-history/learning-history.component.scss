@@ -248,10 +248,17 @@ $badge-padding: 12px;
 }
 .text-inside-grid {
   position: absolute;
-  // left: 5px;
+  @include breakpoint-xs {
+     font-size:12px;
+     margin :0 0 1.2px;
+  }
+ // left: 5px;
 }
 .text-outside-grid {
   position: absolute;
+  @include breakpoint-xs {
+     font-size:12px;
+  }
   // right: 5px;
 }
 .unique-users-card {
