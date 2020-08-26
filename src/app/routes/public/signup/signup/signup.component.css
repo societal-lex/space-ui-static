@@ -13,12 +13,12 @@
       text-align: center;
   }
   .width{
+    min-width: 260px;
 width: 600px;
   }
   .signup{
-    margin-top:10vh;
-    margin-left: 50vh;
-    margin-right: 50vh;
+     width: 577px;
+        min-width: 277px;
   }
   /* ::ng-deep{
      .theme-muave.day-mode .mat-button, .theme-muave.day-mode .mat-icon-button, .theme-muave.day-mode .mat-stroked-button{
@@ -28,3 +28,22 @@ width: 600px;
   .theme-muave.day-mode .mat-button, .theme-muave.day-mode .mat-icon-button, .theme-muave.day-mode .mat-stroked-button{
     background:  #451771 !important;
   } */
+
+  .mat-form-field {
+    display: inline;
+
+    position: relative;
+    text-align: left;
+}
+.flexcontainer{
+   display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.flexcontainercol{
+  display: flex;
+  padding-top: 7vh;
+  padding-bottom: 7vh;
+  justify-content: center;
+  flex-direction: column;
+}

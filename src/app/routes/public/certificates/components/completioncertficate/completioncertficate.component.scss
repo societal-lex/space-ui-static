@@ -38,7 +38,7 @@ padding-top: 14vh;
   background-position: center;
   background-repeat: no-repeat;
   height: 821px;
-  width: 100%;
+  min-width: 100%;
 }
 .pad{
   text-align: center;
@@ -53,3 +53,14 @@ padding-right: 881px;
 }
 
 
+.flexcontainer{
+   display: flex;
+  justify-content: center;
+  flex-direction: row;
+  min-width: 100%;
+}
+.flexcontainercertdate{
+    display: flex;
+  justify-content: initial;
+  flex-direction: row;
+}
