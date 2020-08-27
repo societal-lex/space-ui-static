@@ -1,4 +1,3 @@
-
 .v1{
   font-family: 'Cormorant Garamond'!important;
  text-align: center;
@@ -12,7 +11,7 @@ font-size:25px
 }
 .v3 {
    font-family: 'Cormorant Garamond'!important;
-padding-top: 50%;
+
 font-size:40px
 }
 .v4 {
@@ -20,12 +19,12 @@ font-size:40px
 font-size:20px
 }
 .center{
-
-align-content: center;
+padding-top:148px;
+text-align: center;
 }
-.date{
-    padding-left: 822px;
-    padding-top: 147px;
+.date {
+    padding-left: 880px;
+    padding-top: 142px;
 }
 .main{
 padding-top: 14vh;
@@ -35,32 +34,89 @@ padding-top: 14vh;
   background-image: url("../../../../../../fusion-assets/certificatetemplate/certificate.jpg");
 
   /* Center and scale the image nicely */
-  background-position: center;
   background-repeat: no-repeat;
-  height: 821px;
-  min-width: 100%;
+  object-fit: cover;
+  // height: 111vh;
+  // width: 100%;
+  // min-height: 30px;
+    width: 1064px;
+  height: 100%;
 }
 .pad{
   text-align: center;
   padding-top: 147px;
-
+}
+.wid{
+     margin: auto;
+    max-width: 61%;
+   min-width: 134vh;
+   text-align: center;
+   padding-bottom: 10px;
 }
 .certDate{
     margin:auto;
 font-family: Arial, Helvetica, sans-serif!important;
 font-size: 90%;
-padding-right: 881px;
+padding-right: 704px;
 }
 
+//Applying flex
 
-.flexcontainer{
-   display: flex;
-  justify-content: center;
+.flex{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+}
+
+.flexdate{
+  display: flex;
   flex-direction: row;
-  min-width: 100%;
+  justify-content:flex-end;
+padding-right: 13px;
 }
-.flexcontainercertdate{
+.flexsecdate{
     display: flex;
-  justify-content: initial;
   flex-direction: row;
+  justify-content:initial;
+  padding-left: 44px;
+    padding-top: 10px;
+}
+.fleximage{
+   display: flex;
+  flex-direction: row;
+  justify-content:center;
+  width: 100%;
+}
+.flexmatrow{
+    display: flex;
+  flex-direction: row;
+  justify-content:center;
+
+}
+.flexmatcol{
+    display: flex;
+  flex-direction: column;
+  justify-content:center;
+}
+.certmat{
+  min-width: 73vw;
+    height: 19vh;
+    margin: 5vh;
+    /* width: 73vw; */
+    height: 112vh;
+overflow: scroll;
+max-width: 73vw;
+}
+
+.matdata{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+}
+.flex-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+
 }

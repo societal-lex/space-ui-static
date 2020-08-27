@@ -1,9 +1,10 @@
 .format{
     margin: auto;
-    max-width: 61%;
-   min-width: 134vh;
+    min-width: 73vw;
    text-align: center;
    padding-bottom: 10px;
+   overflow: scroll;
+   max-width: 91vw;
 }
 .vn1{
     margin:auto;
@@ -68,7 +69,7 @@ padding-top: 14vh;
   /* Center and scale the image nicely */
   background-repeat: no-repeat;
   height: 821px;
-  width: 100%;
+  width: 1064px;
 }
 .pad{
   text-align: center;
@@ -76,10 +77,11 @@ padding-top: 14vh;
 }
 .wid{
      margin: auto;
-    max-width: 61%;
-   min-width: 134vh;
+     max-width: 91vw;
+   min-width: 73vw;
    text-align: center;
    padding-bottom: 10px;
+   overflow:scroll;
 }
 .certDate{
     margin:auto;
@@ -95,8 +97,15 @@ padding-right: 704px;
   /* Center and scale the image nicely */
   background-repeat: no-repeat;
   height: 500px;
-  width: 100%;
+ min-width: 1064px;
 
+}
+.feedback{
+          margin: auto;
+ /* Center and scale the image nicely */
+ background-repeat: no-repeat;
+  height: 776px;
+ min-width: 1064px;
 }
 .top-space{
     padding-top: 16vh;
@@ -110,8 +119,14 @@ font-size:25px
 
 .parent-container {
     text-align:center;
-    padding-top: 30px;
-    padding-bottom: 50px;
+    // padding-top: 30px;
+    // padding-bottom: 50px;
+        width: 80%;
+    margin: auto;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 .word-cloud-header {
     text-align: center;
@@ -150,12 +165,35 @@ p {
 
 .mat{
        margin: auto;
-    max-width: 61%;
-   min-width: 134vh;
+
    text-align: center;
    padding-bottom: 10px;
    max-height: 158vh;
+   min-width: 73vw;
+   max-width: 91vw;
+   overflow: scroll;
 }
 .Engagements{
     padding-top: 73px;
+}
+
+
+
+.skillsrow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.skillscol{
+    display: flex;
+    flex-direction: col;
+    justify-content: initial;
+}
+
+.feedbacksrow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 25px;
+    min-width: 70vw;
 }

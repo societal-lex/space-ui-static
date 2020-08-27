@@ -8,7 +8,7 @@ declare var wordCloudModule: any
 @Component({
   selector: 'app-qrcode',
   templateUrl: './qrcode.component.html',
-  styleUrls: ['./qrcode.component.css'],
+  styleUrls: ['./qrcode.component.scss'],
 })
 export class QrcodeComponent implements OnInit {
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
