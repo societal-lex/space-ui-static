@@ -28,6 +28,7 @@ export class BlogViewComponent implements OnInit {
     sortOrder: NsDiscussionForum.EConversationSortOrder.LATEST_DESC,
     pgNo: 0,
     pgSize: 10,
+    postCreatorId: '',
   }
   fetchStatus: TFetchStatus = 'none'
   canUserEdit = false
@@ -39,6 +40,7 @@ export class BlogViewComponent implements OnInit {
   userEmail = ''
   userId = ''
   userRole: Set<string> | null = null
+  postCreatorId: string | null = null
   canUserDelete = false
 
   constructor(
@@ -72,13 +74,9 @@ export class BlogViewComponent implements OnInit {
         this.allowedToEditBlog = false
         this.allowedToDeleteBlog = false
       }
-      if (_combinedResult[0].socialData.data.rolesAllowedForDelete.blogs) {
-        const allowedForDelete = _combinedResult[0].socialData.data.rolesAllowedForDelete.blogs.some((role: string) =>
-          (this.configSvc.userRoles as Set<string>).has(role))
-        if (allowedForDelete) {
-          this.allowedToDeleteBlogForSpecificRoles = true
-        }
-      }
+      // this method will allow the access to only specific user roles to delete the blog
+      this.deleteBlogsForSpecificRole(_combinedResult[0].socialData.data.rolesAllowedForDelete.blogs)
+
       const idVal = _combinedResult[1].get('id')
       if (idVal) {
         this.conversationRequest.postId = idVal
@@ -87,6 +85,16 @@ export class BlogViewComponent implements OnInit {
     })
     this.showSocialLike = (this.configSvc.restrictedFeatures && !this.configSvc.restrictedFeatures.has('socialLike')) || false
 
+  }
+
+  deleteBlogsForSpecificRole(blogsData: any) {
+    if (blogsData) {
+      const allowedForDelete = blogsData.some((role: string) =>
+        (this.configSvc.userRoles as Set<string>).has(role))
+      if (allowedForDelete) {
+        this.allowedToDeleteBlogForSpecificRoles = true
+      }
+    }
   }
 
   fetchConversationData(forceNew = false) {
@@ -100,6 +108,9 @@ export class BlogViewComponent implements OnInit {
     }
     this.discussionSvc.fetchPost(this.conversationRequest).subscribe(
       data => {
+        if (data.mainPost.postCreator.postCreatorId) {
+          this.conversationRequest.postCreatorId = data.mainPost.postCreator.postCreatorId
+        }
         if (this.conversationRequest && this.conversationRequest.pgNo) {
           this.conversationRequest.pgNo += 1
         }
@@ -120,8 +131,11 @@ export class BlogViewComponent implements OnInit {
             this.conversation.mainPost.postCreator &&
             this.userId === this.conversation.mainPost.postCreator.postCreatorId
           ) {
-            if (this.allowedToEditBlog && this.allowedToDeleteBlog) {
+            if (this.allowedToEditBlog) {
               this.canUserEdit = true
+            }
+            if (this.allowedToDeleteBlog) {
+              this.canUserDelete = true
             }
           }
           if (this.allowedToDeleteBlogForSpecificRoles) {
@@ -157,7 +171,10 @@ export class BlogViewComponent implements OnInit {
 
   deleteBlog(successMsg: string) {
     const dialogRef = this.dialog.open(DialogSocialDeletePostComponent, {
-      data: { postId: this.conversationRequest.postId },
+      data: {
+        postId: this.conversationRequest.postId,
+        postCreatorId: this.conversationRequest.postCreatorId,
+      },
     })
     dialogRef.afterClosed().subscribe(data => {
       if (data) {

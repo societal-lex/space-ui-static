@@ -211,6 +211,7 @@ export namespace NsDiscussionForum {
     sortOrder?: EConversationSortOrder
     pgNo?: number
     pgSize?: number
+    postCreatorId?: string
   }
 
   export interface IPostRequestV2 {

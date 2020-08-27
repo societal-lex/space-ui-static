@@ -32,7 +32,7 @@
             class="aStyle"
             >Edit Blog</a
           >
-          <button  *ngIf="canUserEdit || canUserDelete" (click)="deleteBlog(deleteMsg.value)" mat-menu-item i18n>Delete Blog</button>
+          <button  *ngIf="canUserDelete" (click)="deleteBlog(deleteMsg.value)" mat-menu-item i18n>Delete Blog</button>
         </ng-template>
       </mat-menu>
       <h2 class="margin-bottom-m">{{ conversation?.mainPost?.postContent?.abstract }}</h2>

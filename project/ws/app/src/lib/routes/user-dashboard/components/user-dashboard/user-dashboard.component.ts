@@ -75,32 +75,9 @@ export class UserDashboardComponent implements OnInit {
   errorMessage!: string
   email = ''
   displayNameForUser = ''
-  allowedToDiscussionForum = true
-  // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
-  // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
-  // dataSource = new MatTableDataSource(this.searchForName);
-  //  public userListDataForTable: NsUserDashboard.IUserListData
-  //  | undefined
-  //  public userListDataForTable: NsUserDashboard.IUserListData
-
-  // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
-  // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
-  // dataSource = new MatTableDataSource(this.searchForName);
-
-  //  public userListDataForTable: NsUserDashboard.IUserListData
-  //  | undefined
-  //  public userListDataForTable: NsUserDashboard.IUserListData
 
   ngOnInit() {
     this.userDashboardDataFromConfig = this.activateRoute.data.subscribe(data => {
-      // console.log(data)
-            // tslint:disable-next-line:max-line-length
-      if (this.userDashboardSvc.isVisibileAccToRoles(data.pageData.data.rolesAllowed.userDashboard, data.pageData.data.rolesNotAllowed.userDashboard)) {
-        this.allowedToDiscussionForum = true
-      } else {
-        this.router.navigateByUrl('/page/home')
-      }
-      // todo
       this.userDashboardData = data.pageData.data
       this.userDashboardDataForDailog = data.pageData.data.dailog_data,
         this.userdefaultRoles = data.pageData.data.defaultRoles.roles,
@@ -238,10 +215,13 @@ export class UserDashboardComponent implements OnInit {
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
     this.isLoad = false
     if (userChangedRoleResponse.ok) {
-      this.paramsForChangeRole.wid = ''
-      this.paramsForChangeRole.roles = []
-      this.paramsForChangeRole.email = ''
-      this.paramsForChangeRole.name = ''
+      // this.paramsForChangeRole.wid = ''
+      // this.paramsForChangeRole.roles = []
+      // this.paramsForChangeRole.email = ''
+      // this.paramsForChangeRole.name = ''
+      this.paramsForChangeRole = {} as any
+      this.headersForChangeUserRole = {} as any
+
       this.email = ''
       this.widUser = ''
       this.roles = [],
@@ -314,7 +294,6 @@ export class UserDashboardComponent implements OnInit {
       this.isLoad = false
       const dialogResponseForChangeRoles = this.dialog.open(AcceptUserDailogComponent, {
         width: '400px',
-        // height: '300px',
         data: {
           allRoles: getAllRolesForBulkChangeRole.DATA,
           defaultValueToBeChecked: [],
@@ -341,20 +320,14 @@ export class UserDashboardComponent implements OnInit {
       const userResponse = selectedRow.map(user => {
         return this.userDashboardSvc.fetchPublishersList(user.email).pipe(
           catchError((error: any) => {
-            // tslint:disable-next-line: no-console
             return of(error)
           })
         )
 
       })
-      // tslint:disable-next-line: deprecation
       forkJoin(userResponse).subscribe(response => {
-        // if (response.length) {
-        // console.log('response', Object.entries(response))
         const responseAfterFilter = response.filter(data => {
-          // console.log('data1', data)
           if (data.length !== 0) {
-            // console.log('data2', data)
             return data
           }
         })
@@ -371,6 +344,7 @@ export class UserDashboardComponent implements OnInit {
             this.paramsForChangeRoleForBulkUser.name = ''
             this.paramsForChangeRoleForBulkUser.wid = ''
             this.paramsForChangeRoleForBulkUser.email = ''
+            // this.paramsForChangeRoleForBulkUser = {} as any
             return observableForChangeRole
           })
 
@@ -396,7 +370,6 @@ export class UserDashboardComponent implements OnInit {
           },
             // tslint:disable-next-line: align
             _error => {
-              // console.log('error', error)
               this.snackBar.open('something went wrong', '', {
                 duration: 3000,
               })

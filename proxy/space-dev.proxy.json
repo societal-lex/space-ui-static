@@ -48,10 +48,9 @@
       "changeOrigin": true
     },
     "/usersubmission/*": {
-      "target": "https://space.societalplatform.org",
+      "target": "http://localhost:9400",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
     }
   }
-  

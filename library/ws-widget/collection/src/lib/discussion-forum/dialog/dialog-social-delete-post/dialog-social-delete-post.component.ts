@@ -14,7 +14,7 @@ export class DialogSocialDeletePostComponent implements OnInit {
   userId = ''
   constructor(
     public dialogRef: MatDialogRef<DialogSocialDeletePostComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { postId: string },
+    @Inject(MAT_DIALOG_DATA) public data: { postId: string, postCreatorId: string },
     private socialSvc: WsDiscussionForumService,
     private configSvc: ConfigurationsService,
   ) {
@@ -27,8 +27,8 @@ export class DialogSocialDeletePostComponent implements OnInit {
 
   deletePost() {
     this.isDeleting = true
-    if (this.userId) {
-      this.socialSvc.deletePost(this.data.postId, this.userId).subscribe(
+    if (this.data.postCreatorId) {
+      this.socialSvc.deletePost(this.data.postId, this.data.postCreatorId).subscribe(
         (_data: any) => {
           this.isDeleting = false
           this.dialogRef.close(true)
