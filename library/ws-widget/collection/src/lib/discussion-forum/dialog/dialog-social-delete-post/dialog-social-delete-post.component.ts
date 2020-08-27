@@ -26,9 +26,10 @@ export class DialogSocialDeletePostComponent implements OnInit {
   ngOnInit() { }
 
   deletePost() {
+    debugger;
     this.isDeleting = true
-    if (this.data.postCreatorId) {
-      this.socialSvc.deletePost(this.data.postId, this.data.postCreatorId).subscribe(
+    if (this.data.postCreatorId || this.userId) {
+      this.socialSvc.deletePost(this.data.postId, this.data.postCreatorId || this.userId).subscribe(
         (_data: any) => {
           this.isDeleting = false
           this.dialogRef.close(true)
