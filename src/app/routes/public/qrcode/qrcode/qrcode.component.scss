@@ -3,8 +3,7 @@
     min-width: 73vw;
    text-align: center;
    padding-bottom: 10px;
-   overflow: scroll;
-   max-width: 91vw;
+
 }
 .vn1{
     margin:auto;
@@ -77,11 +76,9 @@ padding-top: 14vh;
 }
 .wid{
      margin: auto;
-     max-width: 91vw;
    min-width: 73vw;
    text-align: center;
    padding-bottom: 10px;
-   overflow:scroll;
 }
 .certDate{
     margin:auto;
@@ -170,8 +167,6 @@ p {
    padding-bottom: 10px;
    max-height: 158vh;
    min-width: 73vw;
-   max-width: 91vw;
-   overflow: scroll;
 }
 .Engagements{
     padding-top: 73px;
@@ -195,5 +190,18 @@ p {
     flex-direction: row;
     justify-content: center;
     padding-top: 25px;
-    min-width: 70vw;
+
+}
+.all{
+  margin: auto;
+
+  /* Center and scale the image nicely */
+  height: 271vh;
+ overflow: scroll;
+
+}
+.allElements{
+      height: 271vh;
+    max-width: 98vw;
+    min-width: 1074px;
 }
