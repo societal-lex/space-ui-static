@@ -9,6 +9,7 @@ import { NsWidgetResolver } from '@ws-widget/resolver'
 import { NsError, ROOT_WIDGET_CONFIG, NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
 import { TFetchStatus, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { WsSocialService } from '../../../../../services/ws-social.service'
+import { QnaService } from '../../../service/qna.service'
 
 @Component({
   selector: 'ws-app-qna-edit',
@@ -71,6 +72,7 @@ export class QnaEditComponent implements OnInit, OnDestroy {
   tagsFromConversation: NsDiscussionForum.IPostTag[] = []
   fetchTagsStatus: TFetchStatus | undefined
   userId = ''
+  allowedToDiscussionForum = true
 
   @ViewChild('tagsInput', { static: true }) tagsInput!: ElementRef<HTMLInputElement>
   @ViewChild('auto', { static: true }) matAutocomplete!: MatAutocomplete
@@ -82,6 +84,7 @@ export class QnaEditComponent implements OnInit, OnDestroy {
     private socialSvc: WsSocialService,
     private configSvc: ConfigurationsService,
     private matSnackBar: MatSnackBar,
+    private qnaService: QnaService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
@@ -117,6 +120,15 @@ export class QnaEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.qnaService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.qna, _data.pageData.data.rolesNotAllowed.qna)) {
+        this.allowedToDiscussionForum = true
+      } else {
+        this.router.navigateByUrl('/page/home')
+      }
+    })
     this.initData()
   }
   ngOnDestroy() {

@@ -27,6 +27,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   rolesBasedFeatureGroups: IGroupWithFeatureWidgets[] = []
   private queryChangeSubs: Subscription | null = null
   allowedToFeedback = true
+  allowedToAuthor = true
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -78,6 +79,12 @@ export class FeaturesComponent implements OnInit, OnDestroy {
         this.allowedToFeedback = true
       } else {
         this.allowedToFeedback = false
+      }
+       // tslint:disable-next-line: max-line-length
+      if (this.featureService.isVisibileAccToRoles(_data.pageData.data.author.rolesAllowed.author, _data.pageData.data.author.rolesNotAllowed.author)) {
+        this.allowedToAuthor = true
+      } else {
+        this.allowedToAuthor = false
       }
     })
     this.queryChangeSubs = this.queryControl.valueChanges

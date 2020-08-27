@@ -8,6 +8,7 @@ import { ConfigurationsService, NsPage, TFetchStatus, ValueService } from '@ws-w
 import { Observable } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { WsSocialService } from '../../../../services/ws-social.service'
+import { BlogService } from '../../service/blog.service'
 
 @Component({
   selector: 'ws-app-blog-edit',
@@ -61,6 +62,7 @@ export class BlogEditComponent implements OnInit {
 
   isXSmall$: Observable<boolean>
   userId = ''
+  allowedToDiscussionForum = true
 
   @ViewChild('tagsInput', { static: true }) tagsInput: ElementRef<HTMLInputElement> | null = null
   @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete | null = null
@@ -73,6 +75,7 @@ export class BlogEditComponent implements OnInit {
     private socialSvc: WsSocialService,
     private discussionSvc: WsDiscussionForumService,
     private valueSvc: ValueService,
+    private blogService: BlogService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
@@ -109,6 +112,15 @@ export class BlogEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.blogService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.blog, _data.pageData.data.rolesNotAllowed.blog)) {
+        this.allowedToDiscussionForum = true
+      } else {
+        this.router.navigateByUrl('/page/home')
+      }
+    })
     this.route.paramMap.subscribe(paramMap => {
       const id = paramMap.get('id')
       if (id) {

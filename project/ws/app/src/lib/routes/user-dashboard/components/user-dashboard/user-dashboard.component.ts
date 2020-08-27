@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { UserDashboardService } from '../../services/user-dashboard.service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription, Observable, forkJoin, of } from 'rxjs'
 import { NsUserDashboard } from '../../models/user-dashboard.model'
 import { FormControl } from '@angular/forms'
@@ -29,6 +29,7 @@ export class UserDashboardComponent implements OnInit {
     public dialog: MatDialog,
     private activateRoute: ActivatedRoute,
     private configSvc: ConfigurationsService,
+    private router: Router,
   ) {
 
     const instanceConfig = this.configSvc.userProfile
@@ -74,6 +75,7 @@ export class UserDashboardComponent implements OnInit {
   errorMessage!: string
   email = ''
   displayNameForUser = ''
+  allowedToDiscussionForum = true
   // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
   // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
   // dataSource = new MatTableDataSource(this.searchForName);
@@ -91,6 +93,13 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.userDashboardDataFromConfig = this.activateRoute.data.subscribe(data => {
+      // console.log(data)
+            // tslint:disable-next-line:max-line-length
+      if (this.userDashboardSvc.isVisibileAccToRoles(data.pageData.data.rolesAllowed.userDashboard, data.pageData.data.rolesNotAllowed.userDashboard)) {
+        this.allowedToDiscussionForum = true
+      } else {
+        this.router.navigateByUrl('/page/home')
+      }
       // todo
       this.userDashboardData = data.pageData.data
       this.userDashboardDataForDailog = data.pageData.data.dailog_data,

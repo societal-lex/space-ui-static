@@ -1,35 +1,39 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MatSnackBar } from '@angular/material'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { TSendStatus, IResolveResponse, ConfigurationsService } from '@ws-widget/utils'
 import {
   FeedbackSnackbarComponent,
-  FeedbackService,
   EFeedbackRole,
   EFeedbackType,
+  FeedbackService,
   IFeedbackConfig,
   INotificationRequest,
 } from '@ws-widget/collection'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
+import { ContentFeedbackService } from '../../service/content-feedback.service'
 
 @Component({
   selector: 'ws-app-feedback',
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.scss'],
 })
-export class FeedbackComponent {
+export class FeedbackComponent implements OnInit {
   positiveFeedbackSendStatus: TSendStatus
   negativeFeedbackSendStatus: TSendStatus
   singleFeedbackSendStatus: TSendStatus
   feedbackForm: FormGroup
   singleFeedbackForm: FormGroup
   feedbackConfig!: IFeedbackConfig
+  allowedToDiscussionForum = true
 
   constructor(
     private feedbackApi: FeedbackService,
     private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private configSvc: ConfigurationsService,
+    private feedbackService: ContentFeedbackService,
+    private router: Router,
   ) {
     this.positiveFeedbackSendStatus = 'none'
     this.negativeFeedbackSendStatus = 'none'
@@ -52,6 +56,17 @@ export class FeedbackComponent {
     }
   }
 
+    ngOnInit() {
+      this.route.data.subscribe(_data => {
+        // console.log(_data)
+        // tslint:disable-next-line: max-line-length
+        if (this.feedbackService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.feedback, _data.pageData.data.rolesNotAllowed.feedback)) {
+          this.allowedToDiscussionForum = true
+        } else {
+          this.router.navigateByUrl('/page/home')
+        }
+      })
+    }
   submitPositiveFeedback(text: string) {
     this.positiveFeedbackSendStatus = 'sending'
     this.feedbackApi

@@ -10,6 +10,7 @@ import { RecentBlogComponent } from './routes/blogs/recent-blogs/components/rece
 import { QnaEditComponent } from './routes/qna/qna-edit/components/qna-edit/qna-edit.component'
 import { QnaHomeComponent } from './routes/qna/qna-home/components/qna-home/qna-home.component'
 import { QnaViewComponent } from './routes/qna/qna-view/components/qna-view/qna-view.component'
+import { PageResolve } from '../../../../../../../library/ws-widget/utils/src/public-api'
 
 const routes: Routes = [
   {
@@ -24,8 +25,13 @@ const routes: Routes = [
     path: 'blogs/edit',
     component: BlogEditComponent,
     data: {
+      pageType: 'feature',
+      pageKey: 'blog',
       requiredFeatures: ['BLOGS'],
-      requiredRoles: ['publisher', 'content-creator', 'editor'],
+      // requiredRoles: ['publisher', 'content-creator', 'editor'],
+    },
+    resolve: {
+      pageData: PageResolve,
     },
     canActivate: [GeneralGuard],
   },
@@ -33,8 +39,13 @@ const routes: Routes = [
     path: 'blogs/edit/:id',
     component: BlogEditComponent,
     data: {
+      pageType: 'feature',
+      pageKey: 'blog',
       requiredFeatures: ['BLOGS'],
-      requiredRoles: ['publisher', 'content-creator', 'editor'],
+      // requiredRoles: ['publisher', 'content-creator', 'editor'],
+    },
+    resolve: {
+      pageData: PageResolve,
     },
     canActivate: [GeneralGuard],
   },
@@ -51,8 +62,13 @@ const routes: Routes = [
     path: 'blogs/me/:tab',
     component: MyBlogComponent,
     data: {
-      requiredRoles: ['publisher', 'content-creator', 'editor'],
+      pageType: 'feature',
+      pageKey: 'blog',
+      // requiredRoles: ['publisher', 'content-creator', 'editor'],
       requiredFeatures: ['BLOGS'],
+    },
+    resolve: {
+      pageData: PageResolve,
     },
     canActivate: [GeneralGuard],
   },
@@ -82,20 +98,28 @@ const routes: Routes = [
     path: 'qna/edit',
     component: QnaEditComponent,
     data: {
+        pageType: 'feature',
+        pageKey: 'qna',
       requiredFeatures: ['QUESTION_AND_ANSWER'],
-      requiredRoles: ['publisher', 'content-creator', 'editor'],
+      // requiredRoles: ['publisher', 'content-creator', 'editor'],
+    },
+    resolve: {
+      pageData: PageResolve,
     },
     canActivate: [GeneralGuard],
   },
   {
     path: 'qna/edit/:id',
     component: QnaEditComponent,
-    resolve: {
-      resolveData: PostFetchResolverService,
-    },
     data: {
+        pageType: 'feature',
+        pageKey: 'qna',
       requiredFeatures: ['QUESTION_AND_ANSWER'],
-      requiredRoles: ['publisher', 'content-creator', 'editor'],
+      // requiredRoles: ['publisher', 'content-creator', 'editor'],
+    },
+    resolve: {
+      pageData: PageResolve,
+      resolveData: PostFetchResolverService,
     },
     canActivate: [GeneralGuard],
   },

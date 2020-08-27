@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { NsDiscussionForum } from '@ws-widget/collection'
+import { BlogService } from '../../service/blog.service'
 
 @Component({
   selector: 'ws-app-my-blog',
@@ -30,11 +31,13 @@ export class MyBlogComponent implements OnInit {
     userId: '',
   }
   userId = ''
+  allowedToDiscussionForum = true
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private configSvc: ConfigurationsService,
+    private blogService: BlogService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
@@ -44,6 +47,15 @@ export class MyBlogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.blogService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.blog, _data.pageData.data.rolesNotAllowed.blog)) {
+        this.allowedToDiscussionForum = true
+      } else {
+        this.router.navigateByUrl('/page/home')
+      }
+    })
     this.route.paramMap.subscribe(params => {
       const tabVal = params.get('tab')
       if (tabVal) {
