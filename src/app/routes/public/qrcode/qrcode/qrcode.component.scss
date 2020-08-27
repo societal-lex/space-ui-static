@@ -165,7 +165,7 @@ p {
 
    text-align: center;
    padding-bottom: 10px;
-   max-height: 158vh;
+   max-height: 174vh;
    min-width: 73vw;
 }
 .Engagements{
@@ -193,15 +193,17 @@ p {
 
 }
 .all{
-  margin: auto;
-
   /* Center and scale the image nicely */
-  height: 271vh;
- overflow: scroll;
+  max-height: 392vh;
+  min-height: 207vh;
+  padding-top:10px;
+//   padding-bottom:35vh;
+//   padding-top: 10vh;
+ overflow-x: scroll;
+overflow-y:hidden;
 
 }
 .allElements{
-      height: 271vh;
     max-width: 98vw;
     min-width: 1074px;
 }
