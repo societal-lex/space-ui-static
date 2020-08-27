@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { UserDashboardService } from '../../services/user-dashboard.service'
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import { Subscription, Observable, forkJoin, of } from 'rxjs'
 import { NsUserDashboard } from '../../models/user-dashboard.model'
 import { FormControl } from '@angular/forms'
@@ -29,7 +29,6 @@ export class UserDashboardComponent implements OnInit {
     public dialog: MatDialog,
     private activateRoute: ActivatedRoute,
     private configSvc: ConfigurationsService,
-    private router: Router,
   ) {
 
     const instanceConfig = this.configSvc.userProfile
