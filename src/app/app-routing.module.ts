@@ -69,6 +69,7 @@ const routes: Routes = [
     loadChildren: () => import('./routes/route-admin.module').then(u => u.RouteAdminModule),
     canActivate: [GeneralGuard],
   },
+
   {
     path: 'analytics',
     loadChildren: () => import('./routes/route-analytics.module').then(u => u.RouteAnalyticsModule),
@@ -188,9 +189,9 @@ const routes: Routes = [
   {
     path: 'app/user-dashboard',
     data: {
-      requiredRoles: [
-        'org-admin',
-      ],
+      // requiredRoles: [
+      //   'org-admin',
+      // ],
       pageType: 'feature',
       pageKey: 'user-dashboard',
     },

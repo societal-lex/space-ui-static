@@ -80,7 +80,7 @@ export class WidgetContentShareService {
           : [
             {
               name: user.name,
-              email: 'kamaleeswary@stackroute.in',
+              email: user.email,
             },
           ],
       emailTo:
@@ -89,14 +89,14 @@ export class WidgetContentShareService {
           : [
             {
               name: user.name,
-              email: 'kamaleeswary@stackroute.in',
+              email: user.email,
             },
           ],
       emailType: type,
       sharedBy: [
         {
           name: user.name,
-          email: 'kamaleeswary@stackroute.in',
+          email: user.email,
         },
       ],
       timestamp: Date.now(),

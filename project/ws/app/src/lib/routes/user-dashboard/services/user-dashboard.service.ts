@@ -4,6 +4,7 @@ import { NsUserDashboard } from '../models/user-dashboard.model'
 import { Observable, of, forkJoin } from 'rxjs'
 import { switchMap, map, catchError, filter } from 'rxjs/operators'
 import { UserAutocompleteService } from '@ws-widget/collection'
+import { ConfigurationsService } from '../../../../../../../../library/ws-widget/utils/src/public-api'
 
 interface IResponse {
   ok: boolean
@@ -41,6 +42,7 @@ export class UserDashboardService {
   // url: any
 
   constructor(public http: HttpClient,
+              private configSvc: ConfigurationsService,
               private userAutoComplete: UserAutocompleteService) { }
 
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
@@ -310,5 +312,31 @@ export class UserDashboardService {
       filter((finalData: object[]) => finalData !== null)
     )
     return finalPublishers$
+  }
+  isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {
+    let finalAcceptance = true
+    if (this.configSvc.userRoles && this.configSvc.userRoles.size) {
+      if (notAllowedRoles.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (allowedRoles.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (!notAllowedRoles.length && !allowedRoles.length) {
+        finalAcceptance = true
+      }
+    }
+    // console.log(finalAcceptance)
+    return finalAcceptance
   }
 }

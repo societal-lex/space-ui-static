@@ -19,6 +19,7 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
   allowExpiry = false
   allowRestore = false
   isNewDesign = false
+  allowMember = false
   isLtMedium$ = this.valueSvc.isLtMedium$
   private defaultSideNavBarOpenedSubscription: any
   mode$ = this.isLtMedium$.pipe(map(isMedium => (isMedium ? 'over' : 'side')))
@@ -27,6 +28,7 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.allowAuthor = this.canShow('author')
+    this.allowMember = this.canShow('member')
     this.allowRedo = this.accessService.authoringConfig.allowRedo
     this.allowRestore = this.accessService.authoringConfig.allowRestore
     this.allowExpiry = this.accessService.authoringConfig.allowExpiry
@@ -56,6 +58,8 @@ export class AuthHomeComponent implements OnInit, OnDestroy {
       case 'publish':
         return this.accessService.hasRole(PUBLISH_ROLE)
       case 'author':
+        return this.accessService.hasRole(CREATE_ROLE)
+      case 'member':
         return this.accessService.hasRole(CREATE_ROLE)
       default:
         return false

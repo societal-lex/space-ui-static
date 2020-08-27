@@ -9,21 +9,26 @@ import { ServiceRequestComponent } from './components/service-request/service-re
 import { FeedbackSummaryResolver } from '../../resolvers/feedback-summary.resolver'
 import { FeedbackConfigResolver } from '../../resolvers/feedback-config.resolver'
 import { GeneralGuard } from '../../../../../../../../../src/app/guards/general.guard'
+import { PageResolve } from '../../../../../../../../../library/ws-widget/utils/src/public-api'
 
 const routes: Routes = [
   {
     path: EFeedbackType.Platform,
     component: FeedbackComponent,
+
     data : {
-      requiredRoles: [
-        'org-admin',
-        'editor',
-        'content-creator',
-        'publisher',
-    ],
+      // requiredRoles: [
+      //   'org-admin',
+      //   'editor',
+      //   'content-creator',
+      //   'publisher',
+      // ],
+        pageType: 'feature',
+        pageKey: 'feedback',
     },
     resolve: {
       feedbackConfig: FeedbackConfigResolver,
+      pageData: PageResolve,
     },
     canActivate: [GeneralGuard],
   },
