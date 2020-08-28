@@ -5,6 +5,7 @@ import { EFeedbackRole, IFeedbackSummary } from '@ws-widget/collection'
 import { IResolveResponse } from '@ws-widget/utils'
 import { Subject } from 'rxjs'
 import { filter, switchMap, takeUntil } from 'rxjs/operators'
+import { MyFeedbackService } from '../../services/my-feedback.service'
 
 @Component({
   selector: 'ws-app-home',
@@ -17,8 +18,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   feedbackRoles: typeof EFeedbackRole
   rolesSet: Set<string>
   subscriptionSubject$: Subject<any>
+  allowedToCreatorFeedback = true
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private feedbackService: MyFeedbackService) {
     this.subscriptionSubject$ = new Subject<any>()
     this.tabs = []
     this.feedbackRoles = EFeedbackRole
@@ -27,6 +32,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.route.data.subscribe(_data => {
+      // console.log(_data)
+      // tslint:disable-next-line: max-line-length
+      if (this.feedbackService.isVisibileAccToRoles(_data.pageData.data.creator.rolesAllowed.creator_feedback, _data.pageData.data.creator.rolesNotAllowed.creator_feedback)) {
+        this.allowedToCreatorFeedback = true
+      } else {
+        this.allowedToCreatorFeedback = false
+      }
+    })
     let tab
     if (this.route.children[0].snapshot.url.length) {
       tab = this.route.children[0].snapshot.url[0].path

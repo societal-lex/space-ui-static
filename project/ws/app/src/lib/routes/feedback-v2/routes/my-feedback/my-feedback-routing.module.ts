@@ -7,6 +7,7 @@ import { FeedbackThreadComponent } from './components/feedback-thread/feedback-t
 import { FeedbackListComponent } from './components/feedback-list/feedback-list.component'
 import { FeedbackSummaryResolver } from '../../resolvers/feedback-summary.resolver'
 import { FeedbackConfigResolver } from '../../resolvers/feedback-config.resolver'
+import { PageResolve } from '../../../../../../../../../library/ws-widget/utils/src/public-api'
 
 const routes: Routes = [
   {
@@ -42,9 +43,14 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         children: routes,
-        resolve: {
-          feedbackSummary: FeedbackSummaryResolver,
-        },
+         data: {
+          pageType: 'feature',
+          pageKey: 'feedback',
+     },
+      resolve: {
+        pageData: PageResolve,
+        feedbackSummary: FeedbackSummaryResolver,
+    },
       },
       {
         path: `${EFeedbackRole.User}/:feedbackId`,
