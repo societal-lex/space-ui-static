@@ -98,6 +98,13 @@ const routes: Routes = [
   },
   {
     path: 'app/feedback',
+    data: {
+      pageType: 'feature',
+      pageKey: 'feedback',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
     loadChildren: () =>
       import('./routes/route-feedback-v2.module').then(u => u.RouteFeedbackV2Module),
     canActivate: [GeneralGuard],

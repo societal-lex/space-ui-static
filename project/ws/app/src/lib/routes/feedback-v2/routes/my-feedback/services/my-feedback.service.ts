@@ -8,10 +8,14 @@ import {
   EFeedbackRole,
 } from '@ws-widget/collection'
 import { Observable } from 'rxjs'
+import { ConfigurationsService } from '../../../../../../../../../../library/ws-widget/utils/src/public-api'
 
 @Injectable()
 export class MyFeedbackService {
-  constructor(private feedbackApi: FeedbackService) { }
+  constructor(
+    private feedbackApi: FeedbackService,
+    private configSvc: ConfigurationsService
+  ) { }
 
   initFilterObj(viewedBy: EFeedbackRole): IFeedbackFilterObj {
     switch (viewedBy) {
@@ -90,5 +94,31 @@ export class MyFeedbackService {
     } catch (e) {
       return this.feedbackApi.submitPlatformFeedback(feedbackReply)
     }
+  }
+  isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {
+    let finalAcceptance = true
+    if (this.configSvc.userRoles && this.configSvc.userRoles.size) {
+      if (notAllowedRoles.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (allowedRoles.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (!notAllowedRoles.length && !allowedRoles.length) {
+        finalAcceptance = true
+      }
+    }
+    // console.log(finalAcceptance)
+    return finalAcceptance
   }
 }
