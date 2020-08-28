@@ -193,6 +193,8 @@
           [item]="qnaConversation.acceptedAnswer"
           [parentPostCreatorId]="qnaConversation.mainPost.postCreator.postCreatorId"
           (deleteSuccess)="onDeleteSuccess($event)"
+          [canComment]="allowedToComment"
+          [canVote]="allowedToComment"
         >
         </ws-app-qna-reply>
         <div *ngFor="let answer of qnaConversation.replyPost; let i = index">
@@ -202,6 +204,8 @@
             [parentPostCreatorId]="qnaConversation.mainPost.postCreator.postCreatorId"
             (acceptAnswerEvent)="onAnswerAccept($event)"
             (deleteSuccess)="onDeleteSuccess($event)"
+            [canComment]="allowedToComment"
+            [canVote]="allowedToComment"
           ></ws-app-qna-reply>
           <mat-divider *ngIf="i !== qnaConversation.replyPost.length - 1"></mat-divider>
         </div>

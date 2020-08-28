@@ -1,7 +1,7 @@
 <div class="card-view" *ngIf="item">
   <div class="flex">
     <div class="icon-section">
-      <ws-widget-btn-social-vote
+      <ws-widget-btn-social-vote *ngIf="canVote"
         class="block"
         [voteType]="'upVote'"
         [postId]="item.id"
@@ -9,10 +9,11 @@
         [iconType]="'triangle'"
         [postCreatorId]="item?.postCreator?.postCreatorId"
       ></ws-widget-btn-social-vote>
-      <div class="vote-count">
+      <div class="vote-count" [ngClass]="{'large-w': !canComment}">
         {{ item.activity.activityData.upVote - item.activity.activityData.downVote }}
+        <span *ngIf="!canComment" class="votes-text"> votes </span>
       </div>
-      <ws-widget-btn-social-vote
+      <ws-widget-btn-social-vote *ngIf="canVote"
         class="block"
         [voteType]="'downVote'"
         [postId]="item.id"
@@ -146,7 +147,7 @@
       >
         <mat-spinner [diameter]="30" [strokeWidth]="3"></mat-spinner>
       </div>
-      <form class="comment-form">
+      <form class="comment-form" *ngIf="canComment">
         <mat-form-field class="width-1-1">
           <input
             matInput

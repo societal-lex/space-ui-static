@@ -29,6 +29,13 @@ mat-spinner {
       display: flex;
       align-items: center;
       justify-content: center;
+      .votes-text {
+        margin-left: 5px;
+        font-size: smaller;
+      }
+    }
+    .large-w {
+      width: 100px
     }
   }
 

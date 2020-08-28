@@ -15,7 +15,8 @@ export class QnaReplyComponent implements OnInit {
   @Input() item!: NsDiscussionForum.ITimelineResult
   @Input() parentPostCreatorId!: string
   @Input() isAcceptedAnswer = false
-
+  @Input() canComment = true
+  @Input() canVote = true
   @Output() acceptAnswerEvent = new EventEmitter<string>()
   @Output() deleteSuccess = new EventEmitter<{ isAccepted: boolean; id: string }>()
   isAcceptingAnswerInProgress = false
