@@ -25,7 +25,8 @@ export namespace NsUserDashboard {
     root_org: string,
     org: string,
     userDetails: IUserDetails,
-    API_FOR_USER_DETAILS: string
+    API_FOR_USER_DETAILS: string,
+    rolesAllowedForDefault: string
   }
   export interface IUserListDataFromUserTable {
     wid: UUID
