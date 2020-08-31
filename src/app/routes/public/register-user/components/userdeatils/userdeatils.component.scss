@@ -486,16 +486,13 @@ button[disabled] {
   // width:80%;
 // border:2px green solid;
 margin-left: 1px;
-
+margin-top: 15px;
 }
 
 .mat-card{
 transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
 display: block;
-// border: 2px purple solid;
-    /* display: block; */
-    // position: relative;
-    /* padding: 16px; */
+
     border-radius: 4px;
     margin-left: 40px;
     margin-top:40px;
@@ -505,29 +502,62 @@ display: block;
     width: 300px;
 }
 
-
 .qrcontainer{
-  width:150px;
+  // width:150px;
     width: 150px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
   img{
     object-fit: contain;
-    width: 68px;
-    margin-bottom: 135px;
+    width: 94px;
     // margin-left: 450%;
       // border: 2px yellow solid;
   }
 }
-.container{
-  width: 10px;
-  height: 140px;
+
+.container {
+    background-color: white;
+    // margin-top: 20px;
+    display: inline;
+    max-width: 780px;
+    align-items: center;
+    justify-content: space-between;
+    // height: 150px;
 }
-.btnallignmobile{
-  margin-top: 5px;
+
+.profile{
+  width:0px;
+  // margin-bottom: 50px;
+  img{
+    object-fit: contain;
+    width: 98px;
+    margin-bottom: 0px;
+    margin: auto;
+
+  }
 }
+
+// .allignaboutmobile{
+//   margin-left: 1%;
+// }
+// .allignaboutweb{
+//   margin-left: 1%
+// }
+
+.p-6 {
+    padding: 1rem;
+}
+// .nameallignweb{
+//   margin-left: 1%;
+// }
 
 }
 
+// .allignaboutweb{
+//   margin-left: 30%;
+// }
+// .nameallignweb{
+// margin-left: 30%;
+// }
 // *************************************************************
 // .container > div{
 //   width:150px;
