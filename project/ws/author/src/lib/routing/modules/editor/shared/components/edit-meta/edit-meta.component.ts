@@ -1649,7 +1649,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateArtifactData(_inputEvent: any, _eventForArtifactType: 'link' | 'asset_upload' | 'profile_link' | 'profile_upload') {
-    console.log('input recieved as ', _inputEvent, _eventForArtifactType)
+    // console.log('input recieved as ', _inputEvent, _eventForArtifactType)
   }
 
   updateProfileLink(eventData: any, _eventType: string) {

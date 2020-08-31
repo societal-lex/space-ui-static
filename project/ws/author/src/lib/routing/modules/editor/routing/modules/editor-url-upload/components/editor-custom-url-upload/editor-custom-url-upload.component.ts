@@ -12,7 +12,6 @@ import { EditorContentService } from '@ws/author/src/lib/routing/modules/editor/
 import { IFormMeta } from './../../../../../../../../interface/form'
 import { AuthInitService } from './../../../../../../../../services/init.service'
 import { URLCheckerClass } from './../../../curate/components/url-upload/url-upload.helper'
-import { distinctUntilChanged } from 'rxjs/operators'
 
 @Component({
   // tslint:disable-next-line: component-selector
