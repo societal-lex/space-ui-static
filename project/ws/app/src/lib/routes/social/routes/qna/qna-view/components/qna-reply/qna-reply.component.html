@@ -93,7 +93,7 @@
       </mat-chip-list>
       <div class="flex flex-between margin-top-xs">
         <div class="ws-mat-primary-text">
-          <ng-container *ngIf="userId === item?.postCreator?.postCreatorId">
+          <ng-container *ngIf="userId === item?.postCreator?.postCreatorId && canComment">
             <a role="button" class="cursor-pointer" i18n (click)="editMode = true">edit</a
             >&nbsp;&nbsp;
             <a role="button" class="cursor-pointer" i18n (click)="deleteReply(deleteFailMsg.value)"
