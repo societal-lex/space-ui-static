@@ -167,6 +167,7 @@ export namespace NSContent {
     artifactUploadUrl: string,
     spaceAssetType: string,
     assetType: string,
+    spaceProfileType: string,
   }
 
   export interface IClient {

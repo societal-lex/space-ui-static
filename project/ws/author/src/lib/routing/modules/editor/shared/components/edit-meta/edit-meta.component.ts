@@ -723,7 +723,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   handleMimeTypeBeforeStore(meta: NSContent.IContentMeta) {
-    if (['Connection', 'Technology'].includes(this.contentForm.controls.assetType.value)) {
+    if (['Technology'].includes(this.contentForm.controls.assetType.value)) {
       meta.mimeType = 'application/html'
     }
     return meta
@@ -1186,6 +1186,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       isSearchable: [],
       spaceAssetType: [],
       sourceShortName: [],
+      spaceProfileType: [],
     })
     this.contentForm.controls.assetType.valueChanges.pipe(
       startWith(null),
@@ -1247,6 +1248,28 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           newMeta.artifactUploadUrl = ''
         }
         if (_spaceAssetTypeArray[1] === 'asset_link') {
+          newMeta.mimeType = 'application/html'
+        }
+        // console.log(this.contentService.getUpdatedMeta(this.contentService.currentContent))
+        this.contentService.setUpdatedMeta(newMeta, this.contentService.currentContent)
+      }
+    })
+
+    this.contentForm.controls.spaceProfileType.valueChanges.pipe(
+      startWith(null),
+      pairwise(),
+      filter((_v: [string, string]) => _v[0] !== _v[1])
+    ).subscribe((_spaceProfileTypeArray: [string, string]) => {
+      if (_spaceProfileTypeArray[0]) {
+        const newMeta = {
+          spaceProfileType: _spaceProfileTypeArray[1],
+        } as NSContent.IContentMeta
+        if (!this.contentForm.controls.spaceProfileType.pristine) {
+          newMeta.artifactLinkUrl = ''
+          newMeta.artifactUploadUrl = ''
+          newMeta.artifactUrl = ''
+        }
+        if (_spaceProfileTypeArray[1] === 'profile_link') {
           newMeta.mimeType = 'application/html'
         }
         // console.log(this.contentService.getUpdatedMeta(this.contentService.currentContent))
@@ -1625,7 +1648,25 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  updateArtifactData(_inputEvent: any, _eventForArtifactType: 'link' | 'asset_upload') {
-    // console.log('input recieved as ', _inputEvent, eventForArtifactType)
+  updateArtifactData(_inputEvent: any, _eventForArtifactType: 'link' | 'asset_upload' | 'profile_link' | 'profile_upload') {
+    console.log('input recieved as ', _inputEvent, _eventForArtifactType)
+  }
+
+  updateProfileLink(eventData: any, _eventType: string) {
+    this.contentForm.controls.profile_link.setValue(eventData ? eventData : null)
+    /* const updatedMeta = {
+      profile_link: !eventData ? '' : eventData,
+    } as NSContent.IContentMeta
+    this.contentService.setUpdatedMeta(updatedMeta, this.contentService.currentContent)
+    console.log('after update data looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
+    console.log(`data for profile is ${eventData} ${eventType}`) */
+    const updatedMeta = { } as NSContent.IContentMeta
+    if (_eventType === 'link') {
+      updatedMeta.artifactUploadUrl = ''
+    } else if (_eventType === 'upload') {
+      updatedMeta.artifactLinkUrl = ''
+    }
+    this.contentService.setUpdatedMeta(updatedMeta, this.contentService.currentContent)
+    this.storeData()
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core'
+import { Component, Input, OnInit, OnChanges, EventEmitter, Output } from '@angular/core'
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
 import { MatDialog } from '@angular/material/dialog'
@@ -32,6 +32,7 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
   @Input() isSubmitPressed = false
   @Input() showIPRDeclaration = false
   @Input() clearArtifactForm = false
+  @Output() data = new EventEmitter<any>()
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,7 +90,6 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
       }
     })
     this.urlUploadForm.controls.artifactLinkUrl.valueChanges.pipe(
-      distinctUntilChanged(),
       ).subscribe(() => {
       if (this.canUpdate) {
         this.iprAccepted = !this.showIPRDeclaration
@@ -200,6 +200,7 @@ export class EditorCustomUrlUploadComponent implements OnInit, OnChanges {
       // console.log('artifact url updated from artifact link ', meta.artifactUrl)
     }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
+    this.data.emit(meta.artifactUrl)
   }
 
   check() {

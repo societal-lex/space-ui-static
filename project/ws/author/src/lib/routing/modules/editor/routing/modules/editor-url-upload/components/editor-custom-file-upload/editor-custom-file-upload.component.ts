@@ -367,7 +367,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
             },
             duration: NOTIFICATION_TIME * 1000,
           })
-          this.data.emit('saveAndNext')
+          // this.data.emit('saveAndNext')
         },
         () => {
           this.loaderService.changeLoad.next(false)
@@ -413,6 +413,7 @@ export class EditorCustomFileUploadComponent implements OnInit {
       // console.log('artifact url updated from artifact link ', meta.artifacUrl)
     }
     this.contentService.setUpdatedMeta(meta, this.currentContent)
+    this.data.emit(meta.artifactUrl)
   }
 
   getDuration() {

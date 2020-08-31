@@ -894,7 +894,29 @@
               </div>
               <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('profile_link', 'show')"
                 [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
-                <div class="margin-top-xs" *ngIf="checkCondition('profile_link', 'show')"
+                <ng-container *ngIf="connectionAssetFormEnabled">
+                  <p class="font-weight-bold margin-remove-bottom"
+                    i18n="Title label|Label which explains the user to enter title"
+                    [ngClass]="{ required: checkCondition('profile_link', 'required') }">
+                    Profile
+                  </p>
+                  <mat-radio-group formControlName="spaceProfileType" [disabled]="!isEditEnabled">
+                    <mat-radio-button value="profile_link">Attach a Link</mat-radio-button>
+                    <mat-radio-button value="profile_upload">Upload</mat-radio-button>
+                  </mat-radio-group>
+                  <ws-author-editor-custom-url-upload
+                    *ngIf="contentForm?.controls?.spaceProfileType.value === 'profile_link'" 
+                    (data)="updateProfileLink($event, 'link')"
+                    [showIPRDeclaration]="false" [clearArtifactForm]="clearArtifactForm">
+                  </ws-author-editor-custom-url-upload>
+                  <ng-container >
+                    <ws-author-editor-custom-file-upload
+                    *ngIf="contentForm?.controls?.spaceProfileType.value === 'profile_upload'"
+                    (data)="updateProfileLink($event, 'upload')">
+                    </ws-author-editor-custom-file-upload>
+                  </ng-container>
+                </ng-container>
+                <!-- <div class="margin-top-xs" *ngIf="checkCondition('profile_link', 'show')"
                   [ngClass]="{ disable: checkCondition('profile_link', 'disabled') }">
                   <p class="font-weight-bold margin-remove-bottom"
                     i18n="Title label|Label which explains the user to enter title"
@@ -911,7 +933,7 @@
                       Profile Link is mandatory
                     </mat-error>
                   </mat-form-field>
-                </div>
+                </div> -->
               </div>
               <div class="margin-top-xs margin-left-xl" *ngIf="checkCondition('spaceAreaOfExpertise', 'show')"
                 [ngClass]="{ disable: checkCondition('spaceAreaOfExpertise', 'disabled') }">
