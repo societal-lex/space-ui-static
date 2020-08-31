@@ -185,7 +185,7 @@ color: white !important;
 }
 .formallign{
   align-items: left;
-  margin: auto;
+  // margin: auto;
   margin-left: 10px;
   // margin-right: 85%;
   // border: 2px green solid;
@@ -220,6 +220,14 @@ p {
     visibility: hidden;
     display: none !important;
   }
+
+  .alligncontainer{
+  // border: royalblue 2px;
+  display: flex;
+  flex-direction: column;
+  // padding-top: 30px;
+}
+
 }
 
 @media screen and (max-width: 375px) {
@@ -227,12 +235,18 @@ p {
     visibility: hidden;
     display: none !important;
   }
+
+
 }
 @media screen and (max-width: 320px) {
   #blogsearchbar {
     visibility: hidden;
     display: none !important;
-  }}
+  }
+
+
+
+  }
 
 //   [color|=primary] {
 //     color: black !important;
@@ -305,6 +319,8 @@ color: white !important;
 // }
 .alligncontainer{
   border: royalblue 2px;
+  display: flex;
+  padding-top: 30px;
 }
 .alligncontainer >div{
   //  width:150px;
@@ -323,8 +339,9 @@ color: white !important;
   //  border: 1px red solid;
    margin-right:45px;
     font-size: 20px;
-    margin-top: 55px;
+    // margin-top: 55px;
     margin-bottom: 55px;
+    flex: 4;
  }
  .mat-card-avatar.avatarclass{
     height: 65px;

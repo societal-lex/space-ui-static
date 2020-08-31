@@ -530,7 +530,7 @@ color: white !important;
 }
 .formallign{
   align-items: left;
-  margin: auto;
+  // margin: auto;
   margin-left: 10px;
   // margin-right: 85%;
   // border: 2px green solid;
@@ -713,4 +713,10 @@ color: white !important;
     position: relative;
     padding: 6px !important;
     border-radius: 4px;
+}
+
+@media screen and (max-width: 425px) {
+.margincardmobile{
+margin: 10px;
+}
 }
