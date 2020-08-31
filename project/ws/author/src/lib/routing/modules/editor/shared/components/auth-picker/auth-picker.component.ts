@@ -78,12 +78,12 @@ export class AuthPickerComponent implements OnInit, OnDestroy {
             searchQuery.filters[0].andFilters[0].status = searchQuery.filters[0].andFilters[0]
             .status
             ? searchQuery.filters[0].andFilters[0].status
-            : ['InReview', 'QualityReview', 'Reviewed', 'Draft']
+            : ['InReview', 'QualityReview', 'Reviewed', 'Draft', 'Live']
           } else {
             searchQuery.filters[0].andFilters[0].status = searchQuery.filters[0].andFilters[0]
             .status
             ? searchQuery.filters[0].andFilters[0].status
-            : ['InReview', 'QualityReview', 'Reviewed']
+            : ['Live']
           }
           return this.apiService.post<any>(SEARCH_V6_AUTH, searchQuery)
         }),
