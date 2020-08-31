@@ -38,7 +38,6 @@ export class UserDashboardComponent implements OnInit {
   }
   public userList!: NsUserDashboard.IUserListDataFromUserTable | undefined
   employees = this.userList
-  //  public userListArray: NsUserDashboard.IUserListData[] =[]
   public selectedVal: string | any
   myControl = new FormControl()
   searchForName: string[] = []
@@ -65,7 +64,7 @@ export class UserDashboardComponent implements OnInit {
   widUser = ''
   headersForChangeUserRole: NsUserDashboard.IHeaders = {} as any
   headersForChangeUserRoleForBulkUser: NsUserDashboard.IHeaders = {} as any
-  userdefaultRoles: NsUserDashboard.IRoles | null = null
+  userdefaultRoles: NsUserDashboard.IRoles = {} as NsUserDashboard.IRoles
   userDashboardDataForDailog!: NsUserDashboard.IDailogData
   paramsForDecline: NsUserDashboard.IDeclineUser = {} as any
   isConfirmed!: Boolean
@@ -79,8 +78,8 @@ export class UserDashboardComponent implements OnInit {
     this.userDashboardDataFromConfig = this.activateRoute.data.subscribe(data => {
       this.userDashboardData = data.pageData.data
       this.userDashboardDataForDailog = data.pageData.data.dailog_data,
-        this.userdefaultRoles = data.pageData.data.defaultRoles.roles,
-        this.errorMessage = data.pageData.data.user_list.errorMessage
+      this.userdefaultRoles.roles = data.pageData.data.rolesAllowedForDefault
+      this.errorMessage = data.pageData.data.user_list.errorMessage
 
       this.userDashboardSvc.setUserDashboardConfig(this.userDashboardData)
       this.getRootOrg = data.pageData.data.root_org,
@@ -134,14 +133,11 @@ export class UserDashboardComponent implements OnInit {
     this.headersForAllUsers.wid_OrgAdmin = this.widLoggedinUser
     // this.loaderService.changeLoad.next(true)
     // this.selectedVal = value
-    // console.log("selectedvalue", this.selectedVal)
-
     const userListResponse = await this.userDashboardSvc.getAllUsers(this.headersForAllUsers)
     if (userListResponse.ok) {
       if (userListResponse.DATA != null) {
         this.userListArray = userListResponse.DATA
         // this.enableFilter(this.userListArray)
-        // tslint:disable-next-line: no-console
         // this.userListArray = userListResponse.DATA
 
         // the datasource contains email verified users.
@@ -151,7 +147,6 @@ export class UserDashboardComponent implements OnInit {
         }
         setTimeout(() => {
           // this.dataSource.paginator = this.paginator
-          // tslint:disable-next-line: brace-style
           this.dataSource.sort = this.sort
         })
       }
@@ -189,6 +184,7 @@ export class UserDashboardComponent implements OnInit {
             defaultValueToBeChecked: this.roles,
             // tslint:disable-next-line: prefer-template
             userName: element.first_name + '' + element.last_name,
+            defaultRoles: this.userdefaultRoles.roles,
           },
         })
         dialogResponseForChangeRoles.afterClosed().subscribe(result => {
@@ -208,16 +204,11 @@ export class UserDashboardComponent implements OnInit {
     this.paramsForChangeRole.wid = getwid,
       this.paramsForChangeRole.roles = []
     this.paramsForChangeRole.roles = roles
-    this.paramsForChangeRole.roles.push('privileged')
     this.paramsForChangeRole.email = this.email
     this.paramsForChangeRole.name = displayName
     const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
     this.isLoad = false
     if (userChangedRoleResponse.ok) {
-      // this.paramsForChangeRole.wid = ''
-      // this.paramsForChangeRole.roles = []
-      // this.paramsForChangeRole.email = ''
-      // this.paramsForChangeRole.name = ''
       this.paramsForChangeRole = {} as any
       this.headersForChangeUserRole = {} as any
 
@@ -296,6 +287,7 @@ export class UserDashboardComponent implements OnInit {
         data: {
           allRoles: getAllRolesForBulkChangeRole.DATA,
           defaultValueToBeChecked: [],
+          defaultRoles: this.userdefaultRoles.roles,
         },
       })
       dialogResponseForChangeRoles.afterClosed().subscribe(result => {
@@ -314,7 +306,6 @@ export class UserDashboardComponent implements OnInit {
     this.paramsForChangeRoleForBulkUser.roles = []
     this.paramsForChangeRoleForBulkUser.roles = rolesForAllUsers
     if (selectedRow.length) {
-
       // tslint:disable-next-line: prefer-const
       const userResponse = selectedRow.map(user => {
         return this.userDashboardSvc.fetchPublishersList(user.email).pipe(
@@ -324,6 +315,7 @@ export class UserDashboardComponent implements OnInit {
         )
 
       })
+
       forkJoin(userResponse).subscribe(response => {
         const responseAfterFilter = response.filter(data => {
           if (data.length !== 0) {
@@ -334,8 +326,7 @@ export class UserDashboardComponent implements OnInit {
           const changedRoleResponse = responseAfterFilter.map(responseWithWidAndEmail => {
             // if (responseWithWidAndEmail) {
             this.paramsForChangeRoleForBulkUser.wid = responseWithWidAndEmail[0].id,
-              this.paramsForChangeRoleForBulkUser.roles.push('privileged')
-            this.paramsForChangeRoleForBulkUser.email = responseWithWidAndEmail[0].mail
+              this.paramsForChangeRoleForBulkUser.email = responseWithWidAndEmail[0].mail
             this.paramsForChangeRoleForBulkUser.name = responseWithWidAndEmail[0].displayName
             // tslint:disable-next-line: no-console
             // tslint:disable-next-line: max-line-length
@@ -343,7 +334,6 @@ export class UserDashboardComponent implements OnInit {
             this.paramsForChangeRoleForBulkUser.name = ''
             this.paramsForChangeRoleForBulkUser.wid = ''
             this.paramsForChangeRoleForBulkUser.email = ''
-            // this.paramsForChangeRoleForBulkUser = {} as any
             return observableForChangeRole
           })
 

@@ -178,7 +178,7 @@ export class BlogViewComponent implements OnInit {
     })
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
-        this.router.navigate(['../', 'me'], { relativeTo: this.route })
+        this.router.navigate(['../../', 'blogs'], { relativeTo: this.route })
         this.snackBar.open(successMsg)
       }
     })

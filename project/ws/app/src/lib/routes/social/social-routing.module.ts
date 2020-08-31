@@ -98,8 +98,8 @@ const routes: Routes = [
     path: 'qna/edit',
     component: QnaEditComponent,
     data: {
-        pageType: 'feature',
-        pageKey: 'qna',
+      pageType: 'feature',
+      pageKey: 'qna',
       requiredFeatures: ['QUESTION_AND_ANSWER'],
       // requiredRoles: ['publisher', 'content-creator', 'editor'],
     },
@@ -112,8 +112,8 @@ const routes: Routes = [
     path: 'qna/edit/:id',
     component: QnaEditComponent,
     data: {
-        pageType: 'feature',
-        pageKey: 'qna',
+      pageType: 'feature',
+      pageKey: 'qna',
       requiredFeatures: ['QUESTION_AND_ANSWER'],
       // requiredRoles: ['publisher', 'content-creator', 'editor'],
     },
@@ -151,4 +151,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SocialRoutingModule {}
+export class SocialRoutingModule { }

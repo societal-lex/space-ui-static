@@ -21,6 +21,8 @@ export class AcceptUserDailogComponent implements OnInit {
   buttonName!: string
   username = ''
   userDashboardDataFromConfig: Subscription | null = null
+  userDataFromConfig: NsUserDashboard.IUserData | any | null
+  defaultRoles: string[] = []
   constructor(
     public dialogRef: MatDialogRef<AcceptUserDailogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,33 +32,46 @@ export class AcceptUserDailogComponent implements OnInit {
     this.form = this.formBuilder.group({
       orders: new FormArray([], Validators.required),
     })
+    this.defaultRoles = this.data.defaultRoles
 
+    this.showAllRoles()
+    this.rolesForSelection()
+  }
+  ngOnInit() {
+  }
+  showAllRoles() {
     // tslint:disable-next-line: no-var-keyword
     var jsonstr = '{"values":[]}'
     // tslint:disable-next-line: prefer-const
     let objForAllRoles = JSON.parse(jsonstr)
-      if (data.allRoles.length) {
-         data.allRoles.forEach((element:  string, index: any) => {
-           // tslint:disable-next-line: brace-style
-           // tslint:disable-next-line: align
-           if (element === 'privileged') {
+    if (this.data.allRoles.length) {
+      this.data.allRoles.forEach((element: string, index: any) => {
+        if (this.defaultRoles.includes(element)) {
+          this.data.allRoles[index] = 'default'
+        }
+      })
+    }
 
-           data.allRoles[index] = 'default'
-           }
-         })
+    const unique = [...new Set(this.data.allRoles)]
+
+    unique.forEach((element: any, index: any) => {
+      if (element === 'default') {
+        const filterData = unique.splice(index, 1)
+        unique.splice((unique.length), 0, filterData[0])
       }
+    })
     // tslint:disable-next-line: no-increment-decrement
-    for (let i = 0; i < this.data.allRoles.length; i++) {
+    for (let i = 0; i < unique.length; i++) {
       // tslint:disable-next-line: object-literal-key-quotes
-      objForAllRoles['values'].push({ 'id': i, 'name': this.data.allRoles[i] })
+      objForAllRoles['values'].push({ 'id': i, 'name': unique[i] })
     }
     jsonstr = JSON.stringify(objForAllRoles)
-
     // tslint:disable-next-line: prefer-const
     let obj1 = JSON.parse(jsonstr)
-
     this.ordersData = obj1.values
+  }
 
+  rolesForSelection() {
     // tslint:disable-next-line: prefer-const
     let jsonstrForInsertion = '{"values":[]}'
     // tslint:disable-next-line: prefer-const
@@ -72,47 +87,49 @@ export class AcceptUserDailogComponent implements OnInit {
       }
       )
     }
-    jsonstr = JSON.stringify(obj)
+    jsonstrForInsertion = JSON.stringify(obj)
     // tslint:disable-next-line: prefer-const
-    let obj2 = JSON.parse(jsonstr)
+    let obj2 = JSON.parse(jsonstrForInsertion)
     this.selection = obj2.values
   }
-   ngOnInit() {
 
+  getSelection(item: any) {
+    if (item.name === 'default' || this.getSelectionsFromOtherItems(item)) {
+      return true
+    }
+    return false
+    // return this.selection.findIndex((s: { id: any; }) => s.id === item.id) !== -1
   }
-
-getSelection(item: any) {
-  if (item.name === 'default' || this.getSelectionsFromOtherItems(item)) {
-    return true
-  }
-  return false
-  // return this.selection.findIndex((s: { id: any; }) => s.id === item.id) !== -1
-}
   getSelectionsFromOtherItems(item: any) {
     return this.selection.findIndex((s: { id: any }) => s.id === item.id) !== -1
   }
-changeHandler(item: any, _event: KeyboardEvent) {
-  const id = item.id
+  changeHandler(item: any, _event: KeyboardEvent) {
+    const id = item.id
 
-  const index = this.selection.findIndex((u: { id: any; }) => u.id === id)
-  if (index === -1) {
-    this.selection = [...this.selection, item]
-  } else {
-    this.selection = this.selection.filter((user: { id: any; }) => user.id !== item.id)
+    const index = this.selection.findIndex((u: { id: any }) => u.id === id)
+    if (index === -1) {
+      this.selection = [...this.selection, item]
+    } else {
+      this.selection = this.selection.filter((user: { id: any }) => user.id !== item.id)
+    }
   }
-}
 
-save() {
- const name = this.selection.map((v: any, i: any) => v ? this.selection[i]['name'] : null)
-    .filter((v: null) => v !== null)
-  this.response = name
-  this.dialogRef.close({ event: '', data: this.response })
-}
+  save() {
+    const name = this.selection.map((v: any, i: any) => v ? this.selection[i]['name'] : null)
+      .filter((v: null) => v !== null)
+    if (this.defaultRoles) {
+      this.defaultRoles.forEach(role => {
+        name.push(role)
+      })
+    }
+    this.defaultRoles = []
+    this.dialogRef.close({ event: '', data: name })
+  }
 
   isDisabled(item: any) {
     if (item.name === 'default') {
       return true
     }
-      return false
+    return false
   }
 }

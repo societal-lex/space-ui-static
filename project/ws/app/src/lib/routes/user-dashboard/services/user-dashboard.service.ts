@@ -48,6 +48,11 @@ export class UserDashboardService {
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
     this.userData = userDataFromConfig
   }
+  getUserDashboardConfig() {
+    if (this.userData) {
+      return (this.userData)
+    }
+  }
   async getAllUsers(headers: NsUserDashboard.IHeaders): Promise<IResponse> {
     const httpOptions = {
       headers: new HttpHeaders({
