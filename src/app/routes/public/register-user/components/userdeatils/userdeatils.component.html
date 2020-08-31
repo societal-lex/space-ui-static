@@ -12,7 +12,7 @@
       <div class="profile">
         <img [attr.src]="currentUserDetails.details?.profile_image">
       </div>
-      <div class="userdetails" style="margin-right: 10%;">
+      <div class="userdetails alligndetailmobile">
         <!-- <h2>{{currentUserDetails.details?.username}}</h2> -->
         <h2 style="margin-left: 30%;">
           {{currentUserDetails.details?.first_name +' '+ currentUserDetails.details?.last_name}}
@@ -109,7 +109,7 @@
             (blur)="addName(newname.value);   " class="text-gray-600" placeholder="Enter your name" id="nameInput">
         </div>
         <!-- <div class="alligncloudbtn"> -->
-        <div>
+        <div class="btnallignmobile">
           <button style="height: 30px;" class="text-gray-600 mat-primary addbtnallign" (click)="reviewbutton()">Add
             Review
           </button>
