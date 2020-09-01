@@ -52,10 +52,10 @@ export class ContentCardComponent implements OnInit {
     let returnValue = false
     switch (menuType) {
       case 'edit':
-        if (this.data.status === 'Draft') {
+        /* if (this.data.status === 'Draft') {
           returnValue = this.accessService.hasAccess(this.data)
-          }
-        // returnValue = this.accessService.hasAccess(this.data)
+          } */
+        returnValue = this.accessService.hasAccess(this.data) && this.data.status !== 'Unpublished'
         if (this.data.authoringDisabled && menuType === 'edit') {
           returnValue = false
         }
