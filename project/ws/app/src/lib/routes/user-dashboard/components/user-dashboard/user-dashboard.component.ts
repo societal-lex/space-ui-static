@@ -55,7 +55,7 @@ export class UserDashboardComponent implements OnInit {
 
   getUserData: NsUserDashboard.IGetUserData = {} as any
   displayedColumns =
-    ['select', 'SlNo', 'first_name', 'organization', 'email', 'Actions']
+    ['select', 'SlNo', 'first_name', 'organization', 'email', 'time_inserted', 'Actions']
   allroles!: NsUserDashboard.IRoles
   allrolesForBulkChangeRole: NsUserDashboard.IRoles | null = null
   paramsForChangeRole: NsUserDashboard.IChangeRole = {} as any
@@ -88,7 +88,8 @@ export class UserDashboardComponent implements OnInit {
     })
     this.selectedVal = 'all'
     this.getAllUsers()
-
+    const date = new Date("2020-06-30 19:24:10.990745")
+    console.log(date.toLocaleString())
   }
 
   // ngAfterViewInit() {
@@ -137,6 +138,10 @@ export class UserDashboardComponent implements OnInit {
     if (userListResponse.ok) {
       if (userListResponse.DATA != null) {
         this.userListArray = userListResponse.DATA
+        // tslint:disable-next-line: ter-prefer-arrow-callback
+        this.convertTimestampToLocalDate(this.userListArray)
+        this.sortUserWithDate(this.userListArray)
+
         // this.enableFilter(this.userListArray)
         // this.userListArray = userListResponse.DATA
 
@@ -156,6 +161,19 @@ export class UserDashboardComponent implements OnInit {
   enableFilter(userData: any) {
     // tslint:disable-next-line: no-boolean-literal-compare
     return userData.filter((items: { emailVerified: boolean }) => items.emailVerified === true)
+  }
+
+  convertTimestampToLocalDate(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
+   return userList.map(userData => {
+      const date = new Date(userData.time_inserted)
+      userData.time_inserted = date.toLocaleString()
+    })
+  }
+
+  sortUserWithDate(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
+    return userList.sort((a, b) => {
+      return a.time_inserted < b.time_inserted ? -1 : 1
+    })
   }
 
   async changeRole(element: any) {
