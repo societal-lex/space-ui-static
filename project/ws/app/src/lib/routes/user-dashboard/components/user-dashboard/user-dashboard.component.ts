@@ -88,8 +88,6 @@ export class UserDashboardComponent implements OnInit {
     })
     this.selectedVal = 'all'
     this.getAllUsers()
-    const date = new Date("2020-06-30 19:24:10.990745")
-    console.log(date.toLocaleString())
   }
 
   // ngAfterViewInit() {
