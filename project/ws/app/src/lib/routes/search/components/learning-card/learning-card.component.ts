@@ -2,6 +2,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { NsContent } from '@ws-widget/collection'
 import { ConfigurationsService, EventService } from '@ws-widget/utils'
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser'
+import { ActivatedRoute } from '@angular/router'
+import { SearchServService } from '../../services/search-serv.service'
 @Component({
   selector: 'ws-app-learning-card',
   templateUrl: './learning-card.component.html',
@@ -16,10 +18,13 @@ export class LearningCardComponent implements OnInit, OnChanges {
   isExpanded = false
   defaultThumbnail = ''
   description: SafeHtml = ''
+  allowedToShare = true
   constructor(
     private events: EventService,
     private configSvc: ConfigurationsService,
     private domSanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+    private searchService: SearchServService,
   ) { }
 
   ngOnInit() {
@@ -27,7 +32,15 @@ export class LearningCardComponent implements OnInit, OnChanges {
     if (instanceConfig) {
       this.defaultThumbnail = instanceConfig.logos.defaultContent
     }
-
+    this.route.data.subscribe(_data => {
+  // console.log(_data)
+   // tslint:disable-next-line: max-line-length
+      if (this.searchService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.share, _data.pageData.data.rolesNotAllowed.share)) {
+        this.allowedToShare = true
+      } else {
+        this.allowedToShare = false
+      }
+    })
   }
   ngOnChanges(changes: SimpleChanges) {
     for (const prop in changes) {

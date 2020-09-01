@@ -173,7 +173,7 @@
     <mat-icon>add</mat-icon>
     <span i18n>Add More</span>
   </button>
-  <button mat-menu-item (click)="sharePlaylist()">
+  <button mat-menu-item (click)="sharePlaylist()"  *ngIf="allowedToSharePlaylist">
     <mat-icon>share</mat-icon>
     <span i18n>Share</span>
   </button>

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { NsContent, viewerRouteGenerator } from '@ws-widget/collection'
-import { ConfigurationsService } from '@ws-widget/utils'
+import { ConfigurationsService, UtilityService } from '@ws-widget/utils'
 import { NsAppToc } from '../../models/app-toc.model'
 
 @Component({
@@ -33,7 +33,9 @@ export class AppTocContentCardComponent implements OnInit, OnChanges {
   }
   defaultThumbnail = ''
   viewChildren = false
-  constructor(private configSvc: ConfigurationsService) {}
+  isMobileView = false
+  constructor(private configSvc: ConfigurationsService,
+              private utilitySvc: UtilityService) {}
 
   ngOnInit() {
     this.evaluateImmediateChildrenStructure()
@@ -41,6 +43,13 @@ export class AppTocContentCardComponent implements OnInit, OnChanges {
     if (instanceConfig) {
       this.defaultThumbnail = instanceConfig.logos.defaultContent
     }
+    this.isMobileView = this.isMobile()
+  }
+  isMobile(): boolean {
+    if (this.utilitySvc.isMobile || this.utilitySvc.isMobile) {
+      return true
+    }
+    return false
   }
   ngOnChanges(changes: SimpleChanges) {
     for (const property in changes) {
