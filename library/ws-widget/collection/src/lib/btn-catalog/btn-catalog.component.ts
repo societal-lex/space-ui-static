@@ -3,6 +3,7 @@ import { TreeCatalogService } from '../tree-catalog/tree-catalog.service'
 import { TFetchStatus } from '@ws-widget/utils'
 import { NSSearch } from '../_services/widget-search.model'
 import { NsWidgetResolver, WidgetBaseComponent } from '@ws-widget/resolver'
+import { sortBy } from 'lodash'
 
 @Component({
   selector: 'ws-widget-btn-catalog',
@@ -30,6 +31,7 @@ export class BtnCatalogComponent extends WidgetBaseComponent
         } else {
           this.catalogItems = catalog
         }
+        this.catalogItems = sortBy(this.catalogItems, 'displayName')
       },
       () => this.catalogFetchStatus = 'error',
     )

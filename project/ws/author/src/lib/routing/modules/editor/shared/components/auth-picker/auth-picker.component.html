@@ -35,16 +35,30 @@
       <img class="w-24 h-16 ws-mat-primary-lite-background" [src]="content?.appIcon"
         [wsUtilsDefaultThumbnail]="defaultThumbnail" alt="Content Icon" i18n-alt />
       <div class="flex-1 min-w-0">
-        <div class="flex">
+        <div class="flex style">
           <h3
             class="flex-1 min-w-0 mat-subheading-2 margin-remove-bottom margin-left-xs margin-right-xs truncate leading-none pb-1">
             <ng-container *ngIf="content.name; else noName">{{ content.name || '' }}</ng-container>
           </h3>
         </div>
-        <p class="margin-remove-bottom margin-left-xs margin-right-xs">
-          <ng-container *ngIf="content?.duration">{{ content.duration | pipeDurationTransform: 'hms' }}
+        <div class="flex">
+          <h5
+            class="flex-1 min-w-0 mat-subheading-2 margin-remove-bottom margin-left-xs margin-right-xs truncate leading-none pb-1">
+            <ng-container *ngIf="content.creatorContacts[0].name; else noName">
+              Created by: {{ content.creatorContacts[0].name || '' }}
+            </ng-container>
+          </h5>
+        </div>
+        <div class="flex">
+          <h5
+            class="flex-1 min-w-0 mat-subheading-2 margin-remove-bottom margin-left-xs margin-right-xs truncate leading-none pb-1">
+            <ng-container *ngIf="content.status; else noName">Status: {{ content.status || '' }}</ng-container>
+          </h5>
+        </div>
+        <h5 class="margin-remove-bottom margin-left-xs margin-right-xs">
+          <ng-container *ngIf="content?.duration">Duration: {{ content.duration | pipeDurationTransform: 'hms' }}
           </ng-container>
-        </p>
+        </h5>
       </div>
     </div>
   </div>

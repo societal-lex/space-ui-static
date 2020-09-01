@@ -6,6 +6,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { TFetchStatus } from '@ws-widget/utils'
 import { UploadService } from '../../services/upload.service'
 import { ICatalog, ITodoItemFlatNode, TodoItemNode } from './models/catalog-model'
+import { sortBy } from 'lodash'
 
 // const TREE_DATA = {
 //   Groceries: {
@@ -77,7 +78,7 @@ export class CatalogSelectComponent implements OnInit {
       this.catalogData = res.Common.child
       this.transformCatalogData()
       const data: TodoItemNode[] = this.buildFileTree(this.treeData, 0)
-      this.dataSource.data = data
+      this.dataSource.data = sortBy(data, 'name')
       this.status = 'done'
       this.parentPaths
         .filter(v => v !== 'Common')
@@ -110,7 +111,7 @@ export class CatalogSelectComponent implements OnInit {
     this.catalogData.forEach((data: ICatalog) => {
       this.flatCatalogData.push(data)
       const name = data.name
-      const childrens = data.child
+      const childrens = sortBy(data.child, 'name')
       if (childrens.length === 0) {
         this.treeData[name] = null
       } else {
@@ -118,7 +119,7 @@ export class CatalogSelectComponent implements OnInit {
         childrens.forEach((child: ICatalog) => {
           this.flatCatalogData.push(child)
           const childName = child.name
-          const grandChildren = child.child
+          const grandChildren = sortBy(child.child, 'name')
           if (grandChildren.length === 0) {
             childData[childName] = null
           } else {
@@ -138,14 +139,14 @@ export class CatalogSelectComponent implements OnInit {
       existingNode && existingNode.name === node.name
         ? existingNode
         : {
-            name: '',
-            level: 0,
-            expandable: false,
-            identifier: '',
-            path: '',
-            nodeId: '',
-            checkable: true,
-          }
+          name: '',
+          level: 0,
+          expandable: false,
+          identifier: '',
+          path: '',
+          nodeId: '',
+          checkable: true,
+        }
     flatNode.name = node.name
     const currentNode = this.flatCatalogData.find(r => {
       return r.name === flatNode.name
