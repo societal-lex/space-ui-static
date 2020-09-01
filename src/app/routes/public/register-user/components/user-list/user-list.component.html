@@ -111,10 +111,10 @@
   <div class="alligncontainer">
 
     <div class="formallign leftclass" style="margin-right: 2%;">
-      <mat-form-field>
+      <mat-form-field class="allignfiltermobile">
         <mat-icon matPrefix>filter_list</mat-icon>
         <mat-label>Filter Location</mat-label>
-        <mat-select  [(ngModel)]="searchText">
+        <mat-select [(ngModel)]="searchText">
           <!-- <mat-option *ngFor="let registeredUser of users" [value]="registeredUser.residence_city">
         {{registeredUser.residence_city}}
 
@@ -142,7 +142,7 @@
       <br>
       <!--********************Second Filter************************ -->
 
-      <mat-form-field>
+      <mat-form-field class="allignfiltermobile">
         <mat-icon matPrefix>filter_list</mat-icon>
         <mat-label>Filter Expertise</mat-label>
         <mat-select [(ngModel)]="searchText">

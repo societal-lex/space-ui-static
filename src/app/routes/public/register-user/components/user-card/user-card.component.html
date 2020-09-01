@@ -1,4 +1,4 @@
-<mat-card-content class="grid">
+<mat-card-content class="grid margincardmobile">
   <mat-card class="example-card">
     <mat-card-header class="allignheader">
       <div mat-card-avatar class="profile">
@@ -25,8 +25,8 @@
               [starId]="star" [rating]="hoverState || registeredUser?.rating || 0">
             </ws-star>
           </ng-container>
-          <br/> <br/>
-{{registeredUser.rating}}/5{{registeredUser.commentdata}}
+          <br /> <br />
+          {{registeredUser.rating}}/5{{registeredUser.commentdata}}
         </div>
 
 
