@@ -72,7 +72,7 @@ align-content: center;
 }
 @media screen and (min-width: 601px) {
   div.date {
-    padding-top:7%;
+    // padding-top:7%;
   }
 }
 
@@ -108,7 +108,7 @@ padding-top: 14vh;
 }
 .place{
   margin-top: 30px;
-  background-image: url("../../../../../fusion-assets/certificatetemplate/certificate.jpg");
+  background-image: url("../../../../../fusion-assets/certificatetemplate/certificate2.jpg") ;
    background-repeat: no-repeat;
 
   width: 1056px;
@@ -116,7 +116,7 @@ background-size: contain;
 text-align: center;
   //    display: flex;
   //    flex-direction: column;
-  // justify-content: flex-start;
+  // justify-content: center;
 }
 @media screen and (min-width: 601px) {
   div.place {
@@ -131,16 +131,22 @@ text-align: center;
 }
 @media screen and (min-width: 601px) {
   div.pad {
-padding-top:200px;
+// padding-top:200px;
+padding-top: 12vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
      }
 }
+@media screen and  (max-width: 768px) and (min-width: 602px) {
+  div.pad {
+   padding-top: 6vh;
+  }
+}
 
 @media screen and (max-width: 600px) {
   div.pad {
-    padding-top: 46px;
+    padding-top: 16vh;
   }
 }
 
@@ -272,7 +278,7 @@ font-family: Arial, Helvetica, sans-serif!important;
  /* Center and scale the image nicely */
  background-repeat: no-repeat;
   height: 776px;
- min-width: 1064px;
+//  min-width: 1064px;
 }
 
 
@@ -325,14 +331,26 @@ font-family: Arial, Helvetica, sans-serif!important;
 }
 
 .word-cloud-div {
-    height: 509px;
-    width: 850px;
+
     margin: auto;
     padding: 50px;
     position: relative;
     text-align: center;
 }
+@media screen and (min-width: 601px) {
+  div.word-cloud-div {
+      height: 509px;
+    width: 816px;
+  }
+}
 
+@media screen and (max-width: 600px) {
+  div.word-cloud-div {
+    height: 412px;
+    width: 263px;
+    object-fit: contain;
+  }
+}
 
 p {
     font-size: 50px;
@@ -349,6 +367,7 @@ p {
    min-width: 73vw;
    text-align: center;
    object-fit: contain;
+
 
 }
 .Engagements{
