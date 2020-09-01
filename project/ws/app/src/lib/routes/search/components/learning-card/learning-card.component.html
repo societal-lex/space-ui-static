@@ -85,7 +85,7 @@
 
             }"></ws-widget-btn-content-download>
           <ws-widget-btn-content-like [widgetData]="{ contentId: content.identifier }"></ws-widget-btn-content-like>
-          <ws-widget-btn-content-share [widgetData]="content"></ws-widget-btn-content-share>
+          <ws-widget-btn-content-share *ngIf="allowedToShare" [widgetData]="content"></ws-widget-btn-content-share>
           <ws-widget-btn-channel-analytics [widgetData]="content">
           </ws-widget-btn-channel-analytics>
           <ws-widget-btn-kb-analytics [widgetData]="

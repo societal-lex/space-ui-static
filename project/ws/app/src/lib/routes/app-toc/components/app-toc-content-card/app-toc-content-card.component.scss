@@ -47,3 +47,7 @@
     align-items: center;
   }
 }
+.wrap-text {
+  overflow-wrap: break-word;
+  max-width: 278px;
+}

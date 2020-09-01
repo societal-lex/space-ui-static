@@ -10,8 +10,12 @@ mat-spinner {
   padding: 20px 0;
   .icon-section {
     width: 10%;
-    min-width: $icon-container-size;
+    min-width: 100px;
     text-align: center;
+    padding-top: 12px;
+    // width: 10%;
+    // min-width: $icon-container-size;
+    // text-align: center;
 
     .isAccepted {
       color: green;
@@ -79,4 +83,7 @@ mat-spinner {
   .theme-muave.night-mode .margin-bottom-s span{
   color: white !important;
 }
+}
+mat-chip {
+      height: auto !important;
 }

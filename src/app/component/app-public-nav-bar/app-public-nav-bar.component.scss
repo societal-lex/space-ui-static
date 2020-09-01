@@ -18,7 +18,8 @@
     min-width: auto !important;
   }
   .logosize {
-    padding: 4px 0 0 8px !important;
+    padding: 0px 0 0 8px !important;
+    width: auto !important;
   }
 }
 @media only screen and (min-width: 250px) and (max-width: 311px) {
@@ -27,7 +28,9 @@
     width: 3rem;
   }
   .logosize {
-    padding: 4px 0px 0px 0px !important;
+    padding: 0px 0px 0px 0px !important;
+    width: auto !important;
+    height: auto !important;
   }
 }
 @media only screen and (min-width: 599px) and (max-width: 629px) {
@@ -38,6 +41,7 @@
   }
   .logosize {
         padding: 4px 0px 0px 8px !important;
+        width: auto !important;
   }
 }
 @media only screen and (min-width: 312px) and (max-width: 359px) {
@@ -49,9 +53,16 @@
   }
   .logosize {
     // height: 5rem !important;
-    padding: 4px 0 0 8px !important;
+    padding: 0px 0 0 8px !important;
     overflow-y: visible !important;
+    width: auto !important;
+    height: auto !important;
   }
+}
+@media only screen and (min-width: 629px) and (max-width: 760px) {
+.logosize {
+    width: auto !important;
+}
 }
 .logosize {
   overflow-y: hidden;
