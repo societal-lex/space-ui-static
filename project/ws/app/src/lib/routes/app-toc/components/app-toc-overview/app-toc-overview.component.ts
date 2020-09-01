@@ -2,7 +2,7 @@ import { AccessControlService } from '@ws/author'
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { ActivatedRoute, Data } from '@angular/router'
-import { NsContent } from '@ws-widget/collection'
+import { NsContent, WidgetContentService } from '@ws-widget/collection'
 import { ConfigurationsService } from '@ws-widget/utils'
 import { Observable, Subscription } from 'rxjs'
 import { retry } from 'rxjs/operators'
@@ -30,6 +30,7 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
   tocConfig: any = null
   contentParents: { [key: string]: NsAppToc.IContentParentResponse[] } = {}
   objKeys = Object.keys
+  mailIcon = true
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +40,7 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
     private trainingSvc: TrainingService,
     private domSanitizer: DomSanitizer,
     private authAccessControlSvc: AccessControlService,
+    private widgetContentSvc: WidgetContentService,
   ) {
     if (this.configSvc.restrictedFeatures) {
       this.askAuthorEnabled = this.configSvc.restrictedFeatures.has('askAuthor')
@@ -56,6 +58,12 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
         this.tocConfig = data.pageData.data
       })
     }
+    const url = `${this.configSvc.sitePath}/feature/toc.json`
+    this.widgetContentSvc.fetchConfig(url).subscribe(data => {
+      this.tocConfig = data
+      // tslint:disable-next-line: max-line-length
+      this.mailIcon = this.widgetContentSvc.isVisibileAccToRoles(this.tocConfig.rolesAllowed.mail, this.tocConfig.rolesNotAllowed.mail)
+    })
   }
 
   ngOnDestroy() {

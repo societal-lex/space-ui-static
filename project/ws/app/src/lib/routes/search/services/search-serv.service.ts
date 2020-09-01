@@ -365,7 +365,32 @@ export class SearchServService {
     }
     return name
   }
-
+  isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {
+    let finalAcceptance = true
+    if (this.configSrv.userRoles && this.configSrv.userRoles.size) {
+      if (notAllowedRoles.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSrv.userRoles as Set<string>).has(role))
+        if (rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (allowedRoles.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSrv.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (!notAllowedRoles.length && !allowedRoles.length) {
+        finalAcceptance = true
+      }
+    }
+    // console.log(finalAcceptance)
+    return finalAcceptance
+  }
   getLanguageSearchIndex(lang: string): string {
     let name = ''
     switch (lang) {

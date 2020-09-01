@@ -44,8 +44,8 @@
 }
 
 .save-options {
-  position: fixed;
-  bottom: 52px;
+  position: absolute;
+  // bottom: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +53,7 @@
   padding: 10px;
 
   @include breakpoint-xs {
-    bottom: 128px;
+    bottom: 170px;
   }
 }
 
