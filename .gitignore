@@ -52,3 +52,4 @@ Thumbs.db
 /src/assets
 package-lock.json
 Jenkinsfile
+/**/node_modules/
