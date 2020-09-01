@@ -62,7 +62,7 @@ export namespace NsUserDashboard {
     organization_location_country: string,
     organization_location_state: string,
     organization_location_city: string,
-    time_inserted: Timestamp<any>,
+    time_inserted: any,
     time_updated: Timestamp<any>,
     manager_id: string,
     time_zone: string,
