@@ -50,15 +50,15 @@
     <div class="flex flex-wrap">
       <ng-container  *ngFor="let featureWidget of group.featureWidgets">
         <!-- {{featureWidget.widgetData.actionBtn.id | json}} -->
-      <ng-container *ngIf="featureWidget.widgetData.actionBtn.id !== 'feature_feedback' && featureWidget.widgetData.actionBtn.id !== 'feature_create'
+      <ng-container *ngIf="featureWidget.widgetData.actionBtn.id !== 'feature_create'
       && featureWidget.widgetData.actionBtn.id !== 'feature_publish' ">
       <ng-container [wsResolverWidget]="featureWidget">
       </ng-container>
       </ng-container>
-      <ng-container *ngIf="featureWidget.widgetData.actionBtn.id === 'feature_feedback'">
+      <!-- <ng-container *ngIf="featureWidget.widgetData.actionBtn.id === 'feature_feedback'">
         <ng-container [wsResolverWidget]="featureWidget" *ngIf="allowedToFeedback">
         </ng-container>
-      </ng-container>
+      </ng-container> -->
       <ng-container *ngIf="featureWidget.widgetData.actionBtn.id === 'feature_create'">
         <ng-container [wsResolverWidget]="featureWidget" *ngIf="allowedToAuthor">
         </ng-container>
