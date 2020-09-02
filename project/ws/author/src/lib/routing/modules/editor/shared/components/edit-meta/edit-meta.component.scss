@@ -272,6 +272,11 @@ ul li {
   font-size: 0.56rem !important;
 }
 }
+textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   @include breakpoint-xs {
+  font-size: 0.56rem !important;
+}
+ }
 }
 .mat-standard-chip {
 height: auto;

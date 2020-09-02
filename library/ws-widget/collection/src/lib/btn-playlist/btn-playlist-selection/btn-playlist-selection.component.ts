@@ -62,8 +62,13 @@ export class BtnPlaylistSelectionComponent implements OnInit {
           this.snackBar.open(this.contentAddMessage.nativeElement.value)
           this.selectedPlaylists.add(playlistId)
         },
-        _ => {
-          this.snackBar.open(this.contentUpdateError.nativeElement.value)
+        error => {
+          if (error.error.errors[0].message === 'content.alreadyExists') {
+            this.snackBar.open('Content is Already Exists in this Playlist')
+          } else {
+            this.snackBar.open(this.contentUpdateError.nativeElement.value)
+          }
+          // console.log(error)
           this.selectedPlaylists.delete(playlistId)
           option.toggle()
         },
