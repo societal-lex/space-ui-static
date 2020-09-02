@@ -41,21 +41,20 @@ export class DialogBoxModeratorComponent implements OnInit {
   ]
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    data: {
-      postId: string
-      type: string
-    },
+    data: string,
     private flagSvc: BtnFlagService,
     private moderatorBtnSvc: BtnModeratorService,
     public dialogRef: MatDialogRef<DialogBoxModeratorComponent>,
   ) {
-    if (data.type) {
-      this.type = data.type
-      this.moderatorRejectRequest.postId = data.postId
-    } else {
+    // console.log(data);
+
+    // if (data) {
+    //   this.type = data
+      this.moderatorRejectRequest.postId = data
+    // } else {
       this.type = 'flag'
-      this.flagRequest.id = data.postId
-    }
+      this.flagRequest.id = data
+    // }
   }
 
   ngOnInit() {}
