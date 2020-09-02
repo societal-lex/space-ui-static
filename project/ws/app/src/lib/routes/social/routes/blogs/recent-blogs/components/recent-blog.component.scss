@@ -47,9 +47,12 @@
   }
 }
 .blog-title {
-  font-weight: 600;
+  font-weight: inherit;
   line-height: 1.35;
   // overflow-x: hidden;
+}
+.author-style {
+  font-weight: 600;
 }
 // .header {
 // border: thick solid #32A1CE;

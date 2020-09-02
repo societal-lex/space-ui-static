@@ -1,4 +1,5 @@
 @import 'ws-vars';
+@import 'ws-mixins';
 
 .card-collection {
   display: flex;
@@ -49,5 +50,8 @@
 }
 .wrap-text {
   overflow-wrap: break-word;
-  max-width: 278px;
+  max-width: 500px !important;
+    @include breakpoint-xs {
+        max-width: 180px !important;
+    }
 }
