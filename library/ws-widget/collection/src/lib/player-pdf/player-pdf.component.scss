@@ -1,3 +1,7 @@
+@import 'ws-common';
+@import 'ws-vars';
+@import 'ws-mixins';
+
 .pdf-nav-bar {
   // position: relative;
   // height: 40px;
@@ -45,3 +49,15 @@ input[type=number] {
   .pdf-page-num {
     max-width: 3rem !important ;
   }
+
+  .hidden-xs {
+  @include breakpoint-xs {
+    display: none;
+  }
+}
+
+.hidden-gt-xs {
+  @include breakpoint-gt-xs {
+    display: none;
+  }
+}
