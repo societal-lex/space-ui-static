@@ -127,6 +127,7 @@ text-align: center;
 @media screen and (max-width: 600px) {
   div.place {
     height: 350px;
+    width: 431px;
   }
 }
 @media screen and (min-width: 601px) {
@@ -248,12 +249,14 @@ font-family: Arial, Helvetica, sans-serif!important;
   div.cerforskills {
  padding-top:30px;
  height: 816px;
+
   }
 }
 @media screen and (max-width: 600px) {
   div.cerforskills {
  padding-top:10px;
  height: 350px;
+ width: 431px;
   }
 }
 
@@ -347,7 +350,7 @@ font-family: Arial, Helvetica, sans-serif!important;
 @media screen and (max-width: 600px) {
   div.word-cloud-div {
     height: 412px;
-    width: 263px;
+    width: 220px;
     object-fit: contain;
   }
 }
@@ -406,7 +409,6 @@ overflow-y:hidden;
 
 }
 .allElements{
-    max-width: 98vw;
-    min-width: 1074px;
+   text-align: center;
 }
 
