@@ -78,8 +78,11 @@ mat-card {
   .comment-form {
     width: 100%;
     margin-top: $size-m;
-    display: flex;
+    display: flex !important;
     align-items: center;
+       @include breakpoint-xs {
+display: block !important;
+  }
   }
 
   .mat-standard-chip {

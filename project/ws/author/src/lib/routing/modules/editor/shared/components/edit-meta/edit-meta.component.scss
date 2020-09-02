@@ -1,3 +1,5 @@
+@import 'ws-mixins';
+
 .font-weight-300 {
   font-weight: 300;
 }
@@ -263,4 +265,14 @@ ul li {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+::ng-deep {
+  input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   @include breakpoint-xs {
+  font-size: 0.56rem !important;
+}
+}
+}
+.mat-standard-chip {
+height: auto;
 }
