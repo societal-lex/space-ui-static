@@ -78,10 +78,11 @@
 .text-inside-grid {
   position: absolute;
   left: 5px;
+  line-height: 10px;
 }
 .text-outside-grid {
   position: absolute;
-  // right: 5px;
+  right: 5px;
 }
 .hidden-block-xs {
   display: block;
@@ -98,3 +99,16 @@
     display: block;
   }
 }
+@media screen and (max-width:425px){
+.padding-progress{
+padding-left: 20px !important;
+}
+mat-card{
+ height:100px !important;
+}
+span{
+  font-size: 0.5rem !important;
+}
+}
+
+

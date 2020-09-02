@@ -258,6 +258,7 @@ $badge-padding: 12px;
   position: absolute;
   @include breakpoint-xs {
      font-size:12px;
+     margin:auto;
   }
   // right: 5px;
 }
@@ -279,3 +280,9 @@ $badge-padding: 12px;
 .montserrat {
   font-family: montserrat, sans-serif !important;
 }
+::ng-deep{
+.mat-tab-body-content {
+    overflow: initial !important;
+}
+}
+
