@@ -1,3 +1,6 @@
+@import 'ws-common';
+@import 'ws-vars';
+
 .qna-home-container {
   border-radius: 0;
   box-sizing: border-box;
@@ -29,4 +32,7 @@
 }
 ::ng-deep .mat-button-toggle-label-content {
   line-height: 36px !important;
+   @include breakpoint-xs {
+  font-size: 0.6rem;
+}
 }
