@@ -62,13 +62,18 @@ var wordCloudModule = (function (d3Object, d3Cloud) {
     var colorScale = d3Object.scaleOrdinal(d3Object.schemeCategory10)
 
     var word_entries = d3Object.entries(word_count)
+    if(width > 263)
+    font = 100;
+    else
+    font = 50;
 
+    console.log("font",font);
     // creating the scale for the word's font size
     var xScale = d3Object.scaleLinear()
       .domain([0, d3Object.max(word_entries, function (d) {
         return d.value
       })])
-      .range([10, 100])
+      .range([10, font])
 
     // creating the layout of the word cloud
     d3Cloud().size([width, height])

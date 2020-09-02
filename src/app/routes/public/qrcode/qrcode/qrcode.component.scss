@@ -1,8 +1,8 @@
 .format{
     margin: auto;
-    min-width: 73vw;
+    width: 73vw;
    text-align: center;
-   padding-bottom: 10px;
+  //  padding-bottom: 10px;
 
 }
 .vn1{
@@ -20,12 +20,25 @@ text-align:center;
 border: 5px solid #787878
 }
 .skills{
+
     font-family: 'Cormorant Garamond'!important;
-    font-size:50px;
+
 font-weight:bold;
 }
+@media screen and (min-width: 601px) {
+  span.skills {
+    font-size:50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.skills {
+    font-size: 20px;
+  }
+}
 .space{
-    padding-top: 18px;
+    // padding-top: 18px;
+    line-height: 3.0;
 }
 
 
@@ -39,40 +52,168 @@ font-weight:bold
 }
 .v2 {
  font-family: 'Cormorant Garamond'!important;
-font-size:25px
+
 }
 .v3 {
    font-family: 'Cormorant Garamond'!important;
-padding-top: 50%;
-font-size:40px
+// padding-top: 50%;
+
 }
 .v4 {
  font-family: 'Cormorant Garamond'!important;
-font-size:20px
+
 }
 .center{
-padding-top:23px;
+// padding-top:23px;
 align-content: center;
 }
 .date {
-    padding-left: 758px;
-    padding-top: 142px;
+  text-align: end;
+}
+@media screen and (min-width: 641px) {
+  div.date {
+    padding-top:3%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  div.date {
+    padding-top: 12%;
+  }
+}
+@media screen and (min-width: 601px) {
+  span.certDate {
+    // padding-top:12%;
+    text-align: initial;
+     display: flex;
+     flex-direction: row;
+  align-items: initial;
+  padding-left: 6%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.certDate {
+    // padding-top: 20%;
+    font-size: 30%;
+       text-align: initial;
+     display: flex;
+     flex-direction: row;
+  align-items: initial;
+  padding-left: 6%;
+  }
 }
 .main{
 padding-top: 14vh;
 }
 .place{
-  margin: auto;
-  background-image: url("../../../../../fusion-assets/certificatetemplate/certificate.jpg");
+  margin-top: 30px;
+  background-image: url("../../../../../fusion-assets/certificatetemplate/certificate2.jpg") ;
+   background-repeat: no-repeat;
 
-  /* Center and scale the image nicely */
-  background-repeat: no-repeat;
-  height: 821px;
-  width: 1064px;
+  width: 1056px;
+background-size: contain;
+text-align: center;
+  //    display: flex;
+  //    flex-direction: column;
+  // justify-content: center;
+}
+@media screen and (min-width: 601px) {
+  div.place {
+    height: 816px;
+     }
+}
+
+@media screen and (max-width: 600px) {
+  div.place {
+    height: 350px;
+    width: 431px;
+  }
+}
+@media screen and (min-width: 601px) {
+  div.pad {
+// padding-top:200px;
+padding-top: 12vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+     }
+}
+@media screen and  (max-width: 768px) and (min-width: 602px) {
+  div.pad {
+   padding-top: 6vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  div.pad {
+    padding-top: 16vh;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  span.v1 {
+    font-size: 55px;
+    line-height: 1.8;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.v1 {
+    font-size: 15px;
+    line-height: 1.0;
+    display: block;
+  }
+}
+@media screen and (min-width: 601px) {
+  span.v2 {
+    font-size:25px;
+    line-height: 1.8;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.v2 {
+    font-size: 10px;
+    line-height: 1.0;
+    display: block;
+  }
+}
+@media screen and (min-width: 601px) {
+  span.v3 {
+    font-size:40px;
+    line-height: 1.8;
+    // display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.v3 {
+    font-size: 10px;
+    line-height: 1.0;
+    // display: block;
+  }
+}
+@media screen and (min-width: 601px) {
+  span.v4 {
+    font-size:20px;
+    line-height: 1.8;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.v4 {
+    font-size: 10px;
+    line-height: 1.0;
+    display: block;
+  }
 }
 .pad{
   text-align: center;
-  padding-top: 147px;
+  // padding-top: 147px;
 }
 .wid{
      margin: auto;
@@ -83,33 +224,82 @@ padding-top: 14vh;
 .certDate{
     margin:auto;
 font-family: Arial, Helvetica, sans-serif!important;
-font-size: 90%;
-padding-right: 704px;
+
+
+
 }
 
 .cerforskills{
-      margin: auto;
+      margin-top: 30px;
+
   background-image: url("../../../../../fusion-assets/certificatetemplate/skills.jpg");
 
   /* Center and scale the image nicely */
   background-repeat: no-repeat;
-  height: 500px;
- min-width: 1064px;
 
+  width: 1056px;
+  background-size: contain;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 601px) {
+  div.cerforskills {
+ padding-top:30px;
+ height: 816px;
+
+  }
+}
+@media screen and (max-width: 600px) {
+  div.cerforskills {
+ padding-top:10px;
+ height: 350px;
+ width: 431px;
+  }
+}
+
+
+@media screen and (min-width: 601px) {
+  span.v {
+    font-size: 25px;
+    line-height: 1.8;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  span.v {
+    font-size: 10px;
+    line-height: 2.0;
+    display: block;
+  }
 }
 .feedback{
           margin: auto;
  /* Center and scale the image nicely */
  background-repeat: no-repeat;
   height: 776px;
- min-width: 1064px;
+//  min-width: 1064px;
 }
-.top-space{
-    padding-top: 16vh;
+
+
+@media screen and (min-width: 601px) {
+  div.top-space {
+  padding-top: 150px;
+  }
 }
+
+@media screen and (max-width: 700px) {
+  div.top-space {
+ padding-top: 50px;
+  }
+}
+
 .v {
  font-family: 'Cormorant Garamond'!important;
-font-size:25px
+
 }
 
 
@@ -144,14 +334,26 @@ font-size:25px
 }
 
 .word-cloud-div {
-    height: 509px;
-    width: 850px;
+
     margin: auto;
     padding: 50px;
     position: relative;
     text-align: center;
 }
+@media screen and (min-width: 601px) {
+  div.word-cloud-div {
+      height: 509px;
+    width: 544px;
+  }
+}
 
+@media screen and (max-width: 600px) {
+  div.word-cloud-div {
+    height: 412px;
+    width: 220px;
+    object-fit: contain;
+  }
+}
 
 p {
     font-size: 50px;
@@ -162,11 +364,14 @@ p {
 
 .mat{
        margin: auto;
-
-   text-align: center;
    padding-bottom: 10px;
    max-height: 174vh;
-   min-width: 73vw;
+   height:100%;
+   min-width: 71vw;
+   text-align: center;
+   object-fit: contain;
+
+
 }
 .Engagements{
     padding-top: 73px;
@@ -182,7 +387,7 @@ p {
 .skillscol{
     display: flex;
     flex-direction: col;
-    justify-content: initial;
+    justify-content: center;
 }
 
 .feedbacksrow{
@@ -204,6 +409,6 @@ overflow-y:hidden;
 
 }
 .allElements{
-    max-width: 98vw;
-    min-width: 1074px;
+   text-align: center;
 }
+
