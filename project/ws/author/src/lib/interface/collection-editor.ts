@@ -9,4 +9,8 @@ export interface ICollectionEditorConfig {
   languageBar: boolean
   childrenConfig: ICollectionChildConfig
   enabledRole: string[]
+  nodeOptions: {
+    allowedFor: [string],
+    notAllowedFor: [string]
+  }
 }

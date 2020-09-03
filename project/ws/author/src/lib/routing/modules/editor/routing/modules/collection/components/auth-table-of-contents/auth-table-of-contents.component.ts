@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree'
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output, Input } from '@angular/core'
 import { MatDialog, MatSnackBar } from '@angular/material'
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { NOTIFICATION_TIME } from '@ws/author/src/lib/constants/constant'
@@ -15,6 +15,7 @@ import { IContentTreeNode } from './../../interface/icontent-tree'
 import { CollectionStoreService } from './../../services/store.service'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
 import { map } from 'rxjs/operators'
+import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 @Component({
   selector: 'ws-auth-table-of-contents',
   templateUrl: './auth-table-of-contents.component.html',
@@ -39,6 +40,8 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
   drawer = true
   menubtn = true
   parentHierarchy: number[] = []
+  isAllowed = false
+  @Input() optionPermission = null
   backUpInformation = {
     isDragging: false,
     dropContainer: null as any,
@@ -59,6 +62,7 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private authInitService: AuthInitService,
     private breakpointObserver: BreakpointObserver,
+    private readonly configSvc: ConfigurationsService,
   ) {}
 
   private _transformer = (node: IContentNode, level: number): IContentTreeNode => {
@@ -76,6 +80,7 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.setEditableOptions()
     this.parentNodeId = this.store.currentParentNode
     this.treeControl = new FlatTreeControl<IContentTreeNode>(
       node => node.level,
@@ -131,6 +136,46 @@ export class AuthTableOfContentsComponent implements OnInit, OnDestroy {
         this.menubtn = true
       }
     })
+  }
+
+  setEditableOptions() {
+    try {
+      const permissionData = this.authInitService.collectionConfig.nodeOptions || null
+      if (permissionData) {
+        this.isAllowed = this.isVisibileAccToRoles(permissionData.allowedFor, permissionData.notAllowedFor)
+      } else {
+        throw Error('permission Data malformed')
+      }
+
+    } catch (e) {
+      this.isAllowed = false
+    }
+  }
+
+  isVisibileAccToRoles(allowedRoles: [string], notAllowedRoles: [string]) {
+    let finalAcceptance = true
+    if (this.configSvc.userRoles && this.configSvc.userRoles.size) {
+      if (notAllowedRoles.length) {
+        const rolesOK = notAllowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (allowedRoles.length) {
+        const rolesOK = allowedRoles.some(role => (this.configSvc.userRoles as Set<string>).has(role))
+        if (!rolesOK) {
+          finalAcceptance = false
+        } else {
+          finalAcceptance = true
+        }
+      }
+      if (!notAllowedRoles.length && !allowedRoles.length) {
+        finalAcceptance = true
+      }
+    }
+    return finalAcceptance
   }
 
   ngOnDestroy() {
