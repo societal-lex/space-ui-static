@@ -7,8 +7,7 @@
   <div #blogContainer class="blog-container">
     <ng-container *ngIf="conversation">
       <div class="flex flex-between">
-        <h1 class="ws-mat-primary-text margin-bottom-s">
-          {{ conversation?.mainPost?.postContent?.title }}
+        <h1 class="ws-mat-primary-text margin-bottom-s title-style" [innerHTML]="conversation?.mainPost?.postContent?.title">
         </h1>
         <button
           tabindex="0"

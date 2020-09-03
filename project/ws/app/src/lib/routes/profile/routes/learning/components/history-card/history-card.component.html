@@ -14,7 +14,7 @@
             class="text-xs">{{ historyData?.name }}</span></a>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="padding-progress">
       <ws-app-progress-radial [mode]="'determinate'" [progress]="historyData?.progress" [isClient]="true">
       </ws-app-progress-radial>
     </mat-grid-tile>
@@ -32,7 +32,7 @@
       <ng-container [wsResolverWidget]="widgetPieGraph"></ng-container>
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list *ngIf="historyData?.screenSizeIsLtMedium" cols="4" rowHeight="70px">
+  <mat-grid-list *ngIf="historyData?.screenSizeIsLtMedium" cols="4" rowHeight="90px">
     <mat-grid-tile>
       <div class="text-inside-grid hidden sm:block">
         <a *ngIf="historyData?.isExternal" [href]="historyData?.contentUrl" target="_blank"><span
@@ -47,7 +47,7 @@
             class="text-xs">{{ historyData?.name }}</span></a>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="padding-progress">
       <ws-app-progress-radial [mode]="'determinate'" [progress]="historyData?.progress" [isClient]="true">
       </ws-app-progress-radial>
     </mat-grid-tile>
