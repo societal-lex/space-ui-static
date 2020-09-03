@@ -9,6 +9,7 @@ export class EditorQuillComponent implements OnInit {
   @Output() textData = new EventEmitter<{
     isValid: boolean
     htmlText: string
+    text: string
   }>()
 
   @Input() htmlText = ''
@@ -30,6 +31,7 @@ export class EditorQuillComponent implements OnInit {
     this.textData.emit({
       isValid: editorEvent.text.length > this.minLength,
       htmlText: editorEvent.html,
+      text: editorEvent.text,
     })
   }
 

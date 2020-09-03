@@ -66,6 +66,7 @@ export class BlogEditComponent implements OnInit {
 
   @ViewChild('tagsInput', { static: true }) tagsInput: ElementRef<HTMLInputElement> | null = null
   @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete | null = null
+  updatedText: any
 
   constructor(
     private router: Router,
@@ -169,8 +170,16 @@ export class BlogEditComponent implements OnInit {
     })
   }
 
+isHTML(str: any) {
+  const doc = new DOMParser().parseFromString(str, 'text/html')
+  return Array.from(doc.body.childNodes).some(node => node.nodeType === 1)
+}
   publishBlog(publishMsg: string, errorMsg: string) {
     this.isCreatingPost = true
+    if (this.isHTML(this.updatedText)) {
+      this.openSnackBar('HTML sting is not supported!')
+      this.isCreatingPost = false
+    } else {
     this.postPublishRequest.postContent = {
       title: this.title,
       abstract: this.abstract,
@@ -197,9 +206,14 @@ export class BlogEditComponent implements OnInit {
         this.isCreatingPost = false
       },
     )
+    }
   }
 
   saveDraft(successMsg: string, errorMsg: string) {
+    if (this.isHTML(this.updatedText)) {
+      this.openSnackBar('HTML sting is not supported!')
+      this.isCreatingPost = false
+    } else {
     const request: NsDiscussionForum.IPostPublishRequest = {
       postKind: NsDiscussionForum.EPostKind.BLOG,
       postCreator: this.userId || '',
@@ -230,10 +244,15 @@ export class BlogEditComponent implements OnInit {
         this.isCreatingPost = false
       },
     )
+    }
   }
 
   update(successMsg: string, errorMsg: string) {
     this.isCreatingPost = true
+   if (this.isHTML(this.updatedText)) {
+     this.openSnackBar('HTML sting is not supported!')
+     this.isCreatingPost = false
+   } else {
     this.postUpdateRequest.meta = {
       title: this.title,
       abstract: this.abstract,
@@ -265,6 +284,7 @@ export class BlogEditComponent implements OnInit {
         this.isCreatingPost = false
       },
     )
+   }
   }
 
   removeTag(tag: NsDiscussionForum.IPostTag): void {
@@ -290,9 +310,10 @@ export class BlogEditComponent implements OnInit {
     this.tagsCtrl.setValue(null)
   }
 
-  onTextChange(eventData: { isValid: boolean; htmlText: string }) {
+  onTextChange(eventData: { isValid: boolean; htmlText: string; text: string }) {
     this.actionBtnsEnabled = eventData.isValid
     this.updatedBody = eventData.htmlText
+    this.updatedText = eventData.text
   }
 
   openSnackBar(message: string) {

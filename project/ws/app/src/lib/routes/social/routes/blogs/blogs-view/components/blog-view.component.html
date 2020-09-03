@@ -34,7 +34,7 @@
           <button  *ngIf="canUserDelete" (click)="deleteBlog(deleteMsg.value)" mat-menu-item i18n>Delete Blog</button>
         </ng-template>
       </mat-menu>
-      <h2 class="margin-bottom-m">{{ conversation?.mainPost?.postContent?.abstract }}</h2>
+      <h2 class="margin-bottom-m" [innerHTML]="conversation?.mainPost?.postContent?.abstract"></h2>
       <div class="flex flex-middle margin-bottom-xl">
         <div class="padding-left-s width-expand">
           <div class="flex flex-middle">
