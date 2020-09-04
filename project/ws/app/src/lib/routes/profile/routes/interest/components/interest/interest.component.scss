@@ -16,6 +16,11 @@
   width: 50% !important;
 }
 
+@media screen and(max-width: 425px){
+  .search-width {
+  width: 100% !important;
+}
+}
 .suggestions-chip {
   background-color: transparent !important;
 }

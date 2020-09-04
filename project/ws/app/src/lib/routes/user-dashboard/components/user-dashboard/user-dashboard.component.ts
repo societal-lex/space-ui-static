@@ -78,7 +78,7 @@ export class UserDashboardComponent implements OnInit {
     this.userDashboardDataFromConfig = this.activateRoute.data.subscribe(data => {
       this.userDashboardData = data.pageData.data
       this.userDashboardDataForDailog = data.pageData.data.dailog_data,
-      this.userdefaultRoles.roles = data.pageData.data.rolesAllowedForDefault
+        this.userdefaultRoles.roles = data.pageData.data.rolesAllowedForDefault
       this.errorMessage = data.pageData.data.user_list.errorMessage
 
       this.userDashboardSvc.setUserDashboardConfig(this.userDashboardData)
@@ -137,8 +137,9 @@ export class UserDashboardComponent implements OnInit {
       if (userListResponse.DATA != null) {
         this.userListArray = userListResponse.DATA
         // tslint:disable-next-line: ter-prefer-arrow-callback
-        this.convertTimestampToLocalDate(this.userListArray)
+
         this.sortUserWithDate(this.userListArray)
+        this.convertTimestampToLocalDate(this.userListArray)
 
         // this.enableFilter(this.userListArray)
         // this.userListArray = userListResponse.DATA
@@ -162,7 +163,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   convertTimestampToLocalDate(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
-   return userList.map(userData => {
+    return userList.map(userData => {
       const date = new Date(userData.time_inserted)
       userData.time_inserted = date.toLocaleString()
     })
@@ -170,12 +171,14 @@ export class UserDashboardComponent implements OnInit {
 
   sortUserWithDate(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
     return userList.sort((a, b) => {
-      return a.time_inserted < b.time_inserted ? -1 : 1
+      // tslint:disable-next-line: prefer-const
+      let firstValue = new Date(a.time_inserted)
+      // tslint:disable-next-line: prefer-const
+      let secondValue = new Date(b.time_inserted)
+      return firstValue > secondValue ? -1 : (firstValue < secondValue) ? 1 : 0
     })
   }
-
   async changeRole(element: any) {
-
     this.isLoad = true
     this.userDashboardSvc.fetchPublishersList(element.email).subscribe(async data => {
       this.getUserData.roles = []

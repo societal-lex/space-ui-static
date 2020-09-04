@@ -19,8 +19,19 @@
 .width-full-wrapped{
   @include breakpoint-xs {
   width: 100%;
+  margin-left:8px;
   }
 }
+
+::ng-deep{
+
+@media screen and (max-width:599px){
+      span.mat-button-wrapper {
+        font-size: large !important;
+    }
+  }
+}
+
 
 .buttons-class{
   margin: 0 24px;
@@ -33,6 +44,20 @@
 .font-size-small{
   font-size: large !important;
 }
+
+@media screen and (max-width:280px){
+.font-size-small{
+  font-size: 10px !important;
+}
+}
+
+@media screen and (max-width:425px){
+.font-size-small{
+  font-size: small !important;
+}
+}
+
+
 
 .button-color{
   color: white !important;
