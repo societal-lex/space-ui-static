@@ -82,3 +82,6 @@
     @extend %flag-icon;
     background:url('/assets/common/flags/es.png');
   }
+article{
+  word-break: break-word !important;
+}
