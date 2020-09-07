@@ -26,6 +26,7 @@ import { VIEWER_ROUTE_FROM_MIME } from '@ws-widget/collection'
 import { NotificationService } from '@ws/author/src/lib/services/notification.service'
 import { AccessControlService } from '@ws/author/src/lib/modules/shared/services/access-control.service'
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
+import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 
 /**
  * @description
@@ -85,6 +86,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
     private notificationSvc: NotificationService,
     private accessControlSvc: AccessControlService,
     private breakpointObserver: BreakpointObserver,
+    private readonly configSrvc: ConfigurationsService,
   ) {}
 
   ngOnInit() {
@@ -444,10 +446,49 @@ export class CollectionComponent implements OnInit, OnDestroy {
     this.previewIdentifier = null
   }
 
+  shouldBePartOfModifiedNodes(meta: NSContent.IContentMeta): boolean {
+    let shouldBePart = false
+    // is current user a creator of the content
+    if (meta.creatorContacts.length) {
+      shouldBePart = meta.creatorContacts.some(creator => {
+        if (this.configSrvc.userProfile && this.configSrvc.userProfile.userId) {
+          return this.configSrvc.userProfile.userId === creator.id
+        }
+        return false
+      })
+      if (shouldBePart) {
+        return true
+      }
+    }
+    // is the current user publisher of the content
+    if (!shouldBePart && meta.publisherDetails && meta.status !== 'Live') {
+      shouldBePart = meta.publisherDetails.some(publisher => {
+        if (this.configSrvc.userProfile && this.configSrvc.userProfile.userId) {
+          return this.configSrvc.userProfile.userId === publisher.id
+        }
+        return false
+      })
+      if (shouldBePart) {
+        return true
+      }
+    }
+    // optional for editor, only to be added if needed
+    return shouldBePart
+  }
+
   triggerSave() {
     const nodesModified: any = {}
     let isRootPresent = false
-    Object.keys(this.contentService.upDatedContent).forEach(v => {
+    debugger
+    Object.keys(this.contentService.upDatedContent).filter(content => {
+      // only that content will go ahead which is part of current user in any respect
+      // 1. Either current user is the creatof the content
+      // 2. Or the publisher of the content
+      // This can be checked by verifying whether current user is allowed to edit this content or not
+      // if he is allowed, means he is associated with the content else this content has been imported
+      const contentDetails = this.contentService.getOriginalMeta(content)
+      return this.shouldBePartOfModifiedNodes(contentDetails)
+    }).forEach(v => {
       if (!isRootPresent) {
         isRootPresent = this.storeService.parentNode.includes(v)
       }
@@ -663,6 +704,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
   }
 
   getAction(): string {
+    debugger
     switch (this.contentService.originalContent[this.currentParentId].status) {
       case 'Draft':
       case 'Live':

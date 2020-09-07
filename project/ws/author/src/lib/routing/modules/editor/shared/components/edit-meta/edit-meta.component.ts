@@ -468,6 +468,8 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private set content(contentMeta: NSContent.IContentMeta) {
     this.contentMeta = contentMeta
+    // tslint:disable-next-line: prefer-template
+    console.log('current content is ', contentMeta.name, contentMeta.identifier + ' ' + contentMeta.status)
     this.isEditEnabled = this.contentService.isAllowedToEdit(
       contentMeta,
       false,
@@ -1661,12 +1663,14 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log('after update data looks like ', this.contentService.getUpdatedMeta(this.contentService.currentContent))
     console.log(`data for profile is ${eventData} ${eventType}`) */
     const updatedMeta = { } as NSContent.IContentMeta
-    if (_eventType === 'link') {
-      updatedMeta.artifactUploadUrl = ''
-    } else if (_eventType === 'upload') {
-      updatedMeta.artifactLinkUrl = ''
+    if (!this.contentForm.controls.profile_link.pristine) {
+      if (_eventType === 'link') {
+        updatedMeta.artifactUploadUrl = ''
+      } else if (_eventType === 'upload') {
+        updatedMeta.artifactLinkUrl = ''
+      }
+      this.contentService.setUpdatedMeta(updatedMeta, this.contentService.currentContent)
+      this.storeData()
     }
-    this.contentService.setUpdatedMeta(updatedMeta, this.contentService.currentContent)
-    this.storeData()
   }
 }
