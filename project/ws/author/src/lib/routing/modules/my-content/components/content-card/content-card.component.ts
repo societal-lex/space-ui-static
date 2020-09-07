@@ -56,9 +56,12 @@ export class ContentCardComponent implements OnInit {
           returnValue = this.accessService.hasAccess(this.data)
           } */
         returnValue = this.accessService.hasAccess(this.data) && this.data.status !== 'Unpublished'
-        if (this.data.authoringDisabled && menuType === 'edit') {
-          returnValue = false
-        }
+
+        returnValue = !this.data.authoringDisabled
+
+        returnValue = !this.accessService.hasRole(['publisher'])
+
+        returnValue = this.accessService.hasRole(['editor', 'content-creator'])
         break
       case 'delete': {
         if (
