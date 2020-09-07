@@ -479,7 +479,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
   triggerSave() {
     const nodesModified: any = {}
     let isRootPresent = false
-    debugger
     Object.keys(this.contentService.upDatedContent).filter(content => {
       // only that content will go ahead which is part of current user in any respect
       // 1. Either current user is the creatof the content
@@ -704,7 +703,6 @@ export class CollectionComponent implements OnInit, OnDestroy {
   }
 
   getAction(): string {
-    debugger
     switch (this.contentService.originalContent[this.currentParentId].status) {
       case 'Draft':
       case 'Live':
