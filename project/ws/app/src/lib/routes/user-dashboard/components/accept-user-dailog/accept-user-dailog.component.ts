@@ -13,12 +13,13 @@ export class AcceptUserDailogComponent implements OnInit {
   dataRoles!: string[]
   form: FormGroup
   defaultValueToBeCheckedValue: string[] = []
-
+  disableDefaultRole = ['learner', 'my-analytics']
   response!: NsUserDashboard.IRoles
   ordersData: any = []
   selection: any
   isTrue = false
   buttonName!: string
+  defaultRoles: string[] = []
   userDashboardDataFromConfig: Subscription | null = null
   constructor(
     public dialogRef: MatDialogRef<AcceptUserDailogComponent>,
@@ -29,32 +30,58 @@ export class AcceptUserDailogComponent implements OnInit {
       orders: new FormArray([], Validators.required),
     })
 
+    this.defaultRoles = this.data.defaultRoles
+    this.showAllRoles()
+    this.rolesForSelection()
+  }
+  ngOnInit() {
+
+  }
+
+  showAllRoles() {
     // tslint:disable-next-line: no-var-keyword
     var jsonstr = '{"values":[]}'
     // tslint:disable-next-line: prefer-const
     let objForAllRoles = JSON.parse(jsonstr)
-    if (data.allRoles.length) {
-      data.allRoles.forEach((element: string, index: any) => {
-        // tslint:disable-next-line: brace-style
-        // tslint:disable-next-line: align
+    if (this.data.allRoles.length) {
+      this.data.allRoles.forEach((element: string, index: any) => {
         if (element === 'privileged') {
-
-          data.allRoles[index] = 'learner'
+          this.data.allRoles[index] = 'learner'
         }
       })
     }
-    // tslint:disable-next-line: no-increment-decrement
-    for (let i = 0; i < this.data.allRoles.length; i++) {
-      // tslint:disable-next-line: object-literal-key-quotes
-      objForAllRoles['values'].push({ 'id': i, 'name': this.data.allRoles[i] })
-    }
-    jsonstr = JSON.stringify(objForAllRoles)
 
+    this.setDefaultRolesAtLast(objForAllRoles)
+    jsonstr = JSON.stringify(objForAllRoles)
     // tslint:disable-next-line: prefer-const
     let obj1 = JSON.parse(jsonstr)
-
     this.ordersData = obj1.values
+  }
 
+  setDefaultRolesAtLast(objForAllRoles: any) {
+    const unique = [...new Set(this.data.allRoles)]
+    // tslint:disable-next-line: prefer-const
+    let j = 0
+    const newArray = []
+    while (j < unique.length) {
+      if (this.disableDefaultRole.includes(unique[j] as string)) {
+        const filterData = unique.splice(j, 1)
+        newArray.push(filterData[0])
+      } else {
+        j += 1
+      }
+    }
+    if (newArray.length) {
+      unique.push(...newArray)
+    }
+    // tslint:disable-next-line: no-increment-decrement
+    for (let i = 0; i < unique.length; i++) {
+      // tslint:disable-next-line: object-literal-key-quotes
+      objForAllRoles['values'].push({ 'id': i, 'name': unique[i] })
+    }
+  }
+
+  rolesForSelection() {
     // tslint:disable-next-line: prefer-const
     let jsonstrForInsertion = '{"values":[]}'
     // tslint:disable-next-line: prefer-const
@@ -70,17 +97,15 @@ export class AcceptUserDailogComponent implements OnInit {
       }
       )
     }
-    jsonstr = JSON.stringify(obj)
+    jsonstrForInsertion = JSON.stringify(obj)
     // tslint:disable-next-line: prefer-const
-    let obj2 = JSON.parse(jsonstr)
+    let obj2 = JSON.parse(jsonstrForInsertion)
     this.selection = obj2.values
-  }
-  ngOnInit() {
 
   }
 
   getSelection(item: any) {
-    if (item.name === 'learner' || this.getSelectionsFromOtherItems(item)) {
+    if (item.name === 'learner' || item.name === 'my-analytics' || this.getSelectionsFromOtherItems(item)) {
       return true
     }
     return false
@@ -103,12 +128,17 @@ export class AcceptUserDailogComponent implements OnInit {
   save() {
     const name = this.selection.map((v: any, i: any) => v ? this.selection[i]['name'] : null)
       .filter((v: null) => v !== null)
-    this.response = name
-    this.dialogRef.close({ event: '', data: this.response })
+    if (this.defaultRoles) {
+      this.defaultRoles.forEach(role => {
+        name.push(role)
+      })
+    }
+    this.defaultRoles = []
+    this.dialogRef.close({ event: '', data: name })
   }
 
   isDisabled(item: any) {
-    if (item.name === 'learner') {
+    if (item.name === 'learner' || item.name === 'my-analytics') {
       return true
     }
     return false

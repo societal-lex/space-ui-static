@@ -56,7 +56,7 @@ export class UserDashboardComponent implements OnInit {
 
   getUserData: NsUserDashboard.IGetUserData = {} as any
   displayedColumns =
-    ['select', 'SlNo', 'first_name', 'email', 'Actions']
+    ['select', 'SlNo', 'first_name', 'organization', 'email', 'time_inserted', 'Actions']
   allroles!: NsUserDashboard.IRoles
   allrolesForBulkChangeRole: NsUserDashboard.IRoles | null = null
   paramsForChangeRole: NsUserDashboard.IChangeRole = {} as any
@@ -65,7 +65,7 @@ export class UserDashboardComponent implements OnInit {
   widUser = ''
   headersForChangeUserRole: NsUserDashboard.IHeaders = {} as any
   headersForChangeUserRoleForBulkUser: NsUserDashboard.IHeaders = {} as any
-  userdefaultRoles: NsUserDashboard.IRoles | null = null
+  userdefaultRoles: NsUserDashboard.IRoles = {} as NsUserDashboard.IRoles
   userDashboardDataForDailog!: NsUserDashboard.IDailogData
   paramsForDecline: NsUserDashboard.IDeclineUser = {} as any
   isConfirmed!: Boolean
@@ -74,27 +74,13 @@ export class UserDashboardComponent implements OnInit {
   errorMessage!: string
   email = ''
   displayNameForUser = ''
-  // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
-  // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
-  // dataSource = new MatTableDataSource(this.searchForName);
-  //  public userListDataForTable: NsUserDashboard.IUserListData
-  //  | undefined
-  //  public userListDataForTable: NsUserDashboard.IUserListData
-
-  // @ViewChild(MatSort,{static: true}) sort: MatSort | undefined;
-  // dataSource = new MatTableDataSource<NsUserDashboard.IUserListData>(this.userListArray);
-  // dataSource = new MatTableDataSource(this.searchForName);
-
-  //  public userListDataForTable: NsUserDashboard.IUserListData
-  //  | undefined
-  //  public userListDataForTable: NsUserDashboard.IUserListData
 
   ngOnInit() {
     this.userDashboardDataFromConfig = this.activateRoute.data.subscribe(data => {
-      // todo
       this.userDashboardData = data.pageData.data
       this.userDashboardDataForDailog = data.pageData.data.dailog_data,
         this.userdefaultRoles = data.pageData.data.defaultRoles.roles,
+        this.userdefaultRoles.roles = data.pageData.data.rolesAllowedForDefault
         this.errorMessage = data.pageData.data.user_list.errorMessage
 
       this.userDashboardSvc.setUserDashboardConfig(this.userDashboardData)
@@ -102,19 +88,9 @@ export class UserDashboardComponent implements OnInit {
         this.getOrg = data.pageData.data.org
       this.navBackground = this.configSvc.pageNavBar
     })
-    // this.selectedVal = 'all'
     this.getAllUsers()
 
   }
-
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
-
-  // ngOnDestroy() {
-  //   this.loaderService.changeLoad.next(false)
-  // }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -156,8 +132,10 @@ export class UserDashboardComponent implements OnInit {
       if (userListResponse.DATA != null) {
         this.userListArray = userListResponse.DATA
         // this.enableFilter(this.userListArray)
-        // tslint:disable-next-line: no-console
         // this.userListArray = userListResponse.DATA
+
+        this.sortUserWithDate(this.userListArray)
+        this.convertTimestampToLocalDate(this.userListArray)
 
         // the datasource contains email verified users.
         this.dataSource = new MatTableDataSource<NsUserDashboard.IUserListDataFromUserTable>(this.userListArray)
@@ -166,11 +144,27 @@ export class UserDashboardComponent implements OnInit {
         }
         setTimeout(() => {
           // this.dataSource.paginator = this.paginator
-          // tslint:disable-next-line: brace-style
           this.dataSource.sort = this.sort
         })
       }
     }
+  }
+
+  convertTimestampToLocalDate(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
+    return userList.map(userData => {
+      const date = new Date(userData.time_inserted)
+      userData.time_inserted = date.toLocaleString()
+    })
+  }
+
+  sortUserWithDate(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
+    return userList.sort((a, b) => {
+      // tslint:disable-next-line: prefer-const
+      let firstValue = new Date(a.time_inserted)
+      // tslint:disable-next-line: prefer-const
+      let secondValue = new Date(b.time_inserted)
+      return firstValue > secondValue ? -1 : (firstValue < secondValue) ? 1 : 0
+    })
   }
 
   // enableFilter(userData: any) {
@@ -178,221 +172,214 @@ export class UserDashboardComponent implements OnInit {
   //   return userData.filter((items: { emailVerified: boolean }) => items.emailVerified === true)
   // }
 
-  async changeRole(element: any) {
-
-    this.isLoad = true
-    this.userDashboardSvc.fetchPublishersList(element.email).subscribe(async data => {
-      this.getUserData.roles = []
-      if (data.length) {
-        this.getUserData = data[0]
-        this.getUserData.roles = data[0].roles
-        this.roles = this.getUserData.roles
-        this.email = data[0].mail
-        this.displayNameForUser = data[0].displayName
-        this.widUser = data[0].id
-      } else {
-        this.roles = []
-      }
-      const getAllRoles = await this.userDashboardSvc.getAllRoles(this.getRootOrg, this.widLoggedinUser, this.getOrg)
-      if (getAllRoles && this.roles) {
-        this.isLoad = false
-        const dialogResponseForChangeRoles = this.dialog.open(AcceptUserDailogComponent, {
-          width: '400px',
-          // height: '300px',
-          data: {
-            allRoles: getAllRoles.DATA,
-            defaultValueToBeChecked: this.roles,
-          },
-        })
-        dialogResponseForChangeRoles.afterClosed().subscribe(result => {
-          this.allroles = result.data
-          if (this.allroles) {
-            this.changeUserRoles(this.allroles, this.widUser, this.displayNameForUser)
-          }
-        })
-      }
-    })
-  }
-  async  changeUserRoles(roles: any, getwid: any, displayName: string) {
-    this.isLoad = true
-    this.headersForChangeUserRole.rootOrg = this.getRootOrg
-    this.headersForChangeUserRole.org = this.getOrg
-    this.headersForChangeUserRole.wid_OrgAdmin = this.widLoggedinUser
-    this.paramsForChangeRole.wid = getwid,
-      this.paramsForChangeRole.roles = []
-    this.paramsForChangeRole.roles = roles
-    this.paramsForChangeRole.roles.push('privileged')
-    this.paramsForChangeRole.email = this.email
-    this.paramsForChangeRole.name = displayName
-    const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
-    this.isLoad = false
-    if (userChangedRoleResponse.ok) {
-      this.paramsForChangeRole.wid = ''
-      this.paramsForChangeRole.roles = []
-      this.paramsForChangeRole.email = ''
-      this.paramsForChangeRole.name = ''
-      this.email = ''
-      this.widUser = ''
-      this.roles = [],
-        this.displayNameForUser = ''
-      this.getUserData.roles = []
-      // tslint:disable-next-line: no-non-null-assertion
-      this.snackBar.open(userChangedRoleResponse.MESSAGE, '', {
-        duration: 3000,
-      })
+async changeRole(element: any) {
+  this.isLoad = true
+  this.userDashboardSvc.fetchPublishersList(element.email).subscribe(async data => {
+    this.getUserData.roles = []
+    if (data.length) {
+      this.getUserData = data[0]
+      this.getUserData.roles = data[0].roles
+      this.roles = this.getUserData.roles
+      this.email = data[0].mail
+      this.displayNameForUser = data[0].displayName
+      this.widUser = data[0].id
     } else {
-      this.snackBar.open(userChangedRoleResponse.MESSAGE, '', {
-        duration: 3000,
-      })
+      this.roles = []
     }
-  }
-
-  openDialogForReject(element: any) {
-    const dialogResponse = this.dialog.open(DailogUserDashboardComponent, {
-      width: '300px',
-      data: {
-        title: this.userDashboardDataForDailog.title,
-        body: this.userDashboardDataForDailog.body,
-        userName: element.first_name + element.last_name,
-        email: element.email,
-      },
-    })
-
-    dialogResponse.afterClosed().subscribe(result => {
-      this.isConfirmed = result
-      if (this.isConfirmed) {
-        this.deleteUser(element)
-      }
-    })
-  }
-
-  async deleteUser(element: any) {
-    this.isLoad = true
-
-    if (typeof (this.paramsForDecline.email) === 'undefined') {
-      this.paramsForDecline.email = element.email
-      this.paramsForDecline.user_Id = element.kid
-      this.paramsForDecline.wid = element.wid
-    }
-    this.headersForRejectUser.rootOrg = this.getRootOrg
-    this.headersForRejectUser.org = this.getOrg
-    this.headersForRejectUser.wid_OrgAdmin = this.widLoggedinUser
-    const userDeletedResponse = await this.userDashboardSvc.deleteUser(this.paramsForDecline, this.headersForRejectUser)
-    this.isLoad = false
-    this.paramsForDecline = {} as any
-    this.headersForRejectUser = {} as any
-    if (userDeletedResponse.ok) {
-      // tslint:disable-next-line: no-non-null-assertion
-      this.snackBar.open(userDeletedResponse.MESSAGE, '', {
-        duration: 3000,
-      })
-    } else {
-      this.snackBar.open(userDeletedResponse.MESSAGE, '', {
-        duration: 3000,
-      })
-    }
-
-  }
-
-  async bulkChangeRole() {
-    this.isLoad = true
-    this.selectedRow = this.selection.selected
-    const getAllRolesForBulkChangeRole = await this.userDashboardSvc.getAllRoles(this.getRootOrg, this.widLoggedinUser, this.getOrg)
-    if (getAllRolesForBulkChangeRole) {
+    const getAllRoles = await this.userDashboardSvc.getAllRoles(this.getRootOrg, this.widLoggedinUser, this.getOrg)
+    if (getAllRoles && this.roles) {
       this.isLoad = false
       const dialogResponseForChangeRoles = this.dialog.open(AcceptUserDailogComponent, {
         width: '400px',
-        // height: '300px',
         data: {
-          allRoles: getAllRolesForBulkChangeRole.DATA,
-          defaultValueToBeChecked: [],
+          allRoles: getAllRoles.DATA,
+          defaultValueToBeChecked: this.roles,
+          // tslint:disable-next-line: prefer-template
+          userName: element.first_name + '' + element.last_name,
+          defaultRoles: this.userdefaultRoles.roles,
         },
       })
       dialogResponseForChangeRoles.afterClosed().subscribe(result => {
-        this.allrolesForBulkChangeRole = result.data
-        if (this.allrolesForBulkChangeRole) {
-          this.changeRoleForEachUser(this.selectedRow, this.allrolesForBulkChangeRole)
+        this.allroles = result.data
+        if (this.allroles) {
+          this.changeUserRoles(this.allroles, this.widUser, this.displayNameForUser)
         }
       })
     }
+  })
+}
+async changeUserRoles(roles: any, getwid: any, displayName: string) {
+  this.isLoad = true
+  this.headersForChangeUserRole.rootOrg = this.getRootOrg
+  this.headersForChangeUserRole.org = this.getOrg
+  this.headersForChangeUserRole.wid_OrgAdmin = this.widLoggedinUser
+  this.paramsForChangeRole.wid = getwid,
+    this.paramsForChangeRole.roles = []
+  this.paramsForChangeRole.roles = roles
+  this.paramsForChangeRole.email = this.email
+  this.paramsForChangeRole.name = displayName
+  const userChangedRoleResponse = await this.userDashboardSvc.changeRoles(this.paramsForChangeRole, this.headersForChangeUserRole)
+  this.isLoad = false
+  if (userChangedRoleResponse.ok) {
+    this.paramsForChangeRole = {} as any
+    this.headersForChangeUserRole = {} as any
+
+    this.email = ''
+    this.widUser = ''
+    this.roles = [],
+      this.displayNameForUser = ''
+    this.getUserData.roles = []
+    // tslint:disable-next-line: no-non-null-assertion
+    this.snackBar.open(userChangedRoleResponse.MESSAGE, '', {
+      duration: 3000,
+    })
+  } else {
+    this.snackBar.open(userChangedRoleResponse.MESSAGE, '', {
+      duration: 3000,
+    })
   }
-  changeRoleForEachUser(selectedRow: NsUserDashboard.IUserListDataFromUserTable[], rolesForAllUsers: any) {
-    this.isLoad = true
-    this.headersForChangeUserRoleForBulkUser.rootOrg = this.getRootOrg
-    this.headersForChangeUserRoleForBulkUser.org = this.getOrg
-    this.headersForChangeUserRoleForBulkUser.wid_OrgAdmin = this.widLoggedinUser
-    this.paramsForChangeRoleForBulkUser.roles = []
-    this.paramsForChangeRoleForBulkUser.roles = rolesForAllUsers
-    if (selectedRow.length) {
+}
 
-      // tslint:disable-next-line: prefer-const
-      const userResponse = selectedRow.map(user => {
-        return this.userDashboardSvc.fetchPublishersList(user.email).pipe(
-          catchError((error: any) => {
-            // tslint:disable-next-line: no-console
-            return of(error)
-          })
-        )
+openDialogForReject(element: any) {
+  const dialogResponse = this.dialog.open(DailogUserDashboardComponent, {
+    width: '300px',
+    data: {
+      title: this.userDashboardDataForDailog.title,
+      body: this.userDashboardDataForDailog.body,
+      // tslint:disable-next-line: prefer-template
+      userName: element.first_name + '' + element.last_name,
+      email: element.email,
+    },
+  })
 
-      })
-      // tslint:disable-next-line: deprecation
-      forkJoin(userResponse).subscribe(response => {
-        // if (response.length) {
-        // console.log('response', Object.entries(response))
-        const responseAfterFilter = response.filter(data => {
-          // console.log('data1', data)
-          if (data.length !== 0) {
-            // console.log('data2', data)
-            return data
-          }
+  dialogResponse.afterClosed().subscribe(result => {
+    this.isConfirmed = result
+    if (this.isConfirmed) {
+      this.deleteUser(element)
+    }
+  })
+}
+
+async deleteUser(element: any) {
+  this.isLoad = true
+
+  if (typeof (this.paramsForDecline.email) === 'undefined') {
+    this.paramsForDecline.email = element.email
+    this.paramsForDecline.user_Id = element.kid
+    this.paramsForDecline.wid = element.wid
+  }
+  this.headersForRejectUser.rootOrg = this.getRootOrg
+  this.headersForRejectUser.org = this.getOrg
+  this.headersForRejectUser.wid_OrgAdmin = this.widLoggedinUser
+  const userDeletedResponse = await this.userDashboardSvc.deleteUser(this.paramsForDecline, this.headersForRejectUser)
+  this.isLoad = false
+  this.paramsForDecline = {} as any
+  this.headersForRejectUser = {} as any
+  if (userDeletedResponse.ok) {
+    // tslint:disable-next-line: no-non-null-assertion
+    this.snackBar.open(userDeletedResponse.MESSAGE, '', {
+      duration: 3000,
+    })
+  } else {
+    this.snackBar.open(userDeletedResponse.MESSAGE, '', {
+      duration: 3000,
+    })
+  }
+
+}
+
+async bulkChangeRole() {
+  this.isLoad = true
+  this.selectedRow = this.selection.selected
+  const getAllRolesForBulkChangeRole = await this.userDashboardSvc.getAllRoles(this.getRootOrg, this.widLoggedinUser, this.getOrg)
+  if (getAllRolesForBulkChangeRole) {
+    this.isLoad = false
+    const dialogResponseForChangeRoles = this.dialog.open(AcceptUserDailogComponent, {
+      width: '400px',
+      data: {
+        allRoles: getAllRolesForBulkChangeRole.DATA,
+        defaultValueToBeChecked: [],
+        defaultRoles: this.userdefaultRoles.roles,
+      },
+    })
+    dialogResponseForChangeRoles.afterClosed().subscribe(result => {
+      this.allrolesForBulkChangeRole = result.data
+      if (this.allrolesForBulkChangeRole) {
+        this.changeRoleForEachUser(this.selectedRow, this.allrolesForBulkChangeRole)
+      }
+    })
+  }
+}
+changeRoleForEachUser(selectedRow: NsUserDashboard.IUserListDataFromUserTable[], rolesForAllUsers: any) {
+  this.isLoad = true
+  this.headersForChangeUserRoleForBulkUser.rootOrg = this.getRootOrg
+  this.headersForChangeUserRoleForBulkUser.org = this.getOrg
+  this.headersForChangeUserRoleForBulkUser.wid_OrgAdmin = this.widLoggedinUser
+  this.paramsForChangeRoleForBulkUser.roles = []
+  this.paramsForChangeRoleForBulkUser.roles = rolesForAllUsers
+  if (selectedRow.length) {
+    // tslint:disable-next-line: prefer-const
+    const userResponse = selectedRow.map(user => {
+      return this.userDashboardSvc.fetchPublishersList(user.email).pipe(
+        catchError((error: any) => {
+          return of(error)
         })
-        if (responseAfterFilter.length) {
-          const changedRoleResponse = responseAfterFilter.map(responseWithWidAndEmail => {
-            // if (responseWithWidAndEmail) {
-            this.paramsForChangeRoleForBulkUser.wid = responseWithWidAndEmail[0].id,
-              this.paramsForChangeRoleForBulkUser.roles.push('privileged')
-            this.paramsForChangeRoleForBulkUser.email = responseWithWidAndEmail[0].mail
-            this.paramsForChangeRoleForBulkUser.name = responseWithWidAndEmail[0].displayName
-            // tslint:disable-next-line: no-console
-            // tslint:disable-next-line: max-line-length
-            const observableForChangeRole = this.userDashboardSvc.changeRoles(this.paramsForChangeRoleForBulkUser, this.headersForChangeUserRoleForBulkUser)
-            this.paramsForChangeRoleForBulkUser.name = ''
-            this.paramsForChangeRoleForBulkUser.wid = ''
-            this.paramsForChangeRoleForBulkUser.email = ''
-            return observableForChangeRole
-          })
+      )
 
-          forkJoin(changedRoleResponse).subscribe(finalResponse => {
-            this.isLoad = false
-            const failedResponseEmail = finalResponse.filter(data => {
-              if (!data.ok) {
-                return data.ErrorResponseData
-              }
-              return ''
+    })
 
-            })
-            if (failedResponseEmail.length > 0) {
-              // tslint:disable-next-line: prefer-template
-              this.snackBar.open('Sorry, something went wrong, Please try again', '', {
-                duration: 3000,
-              })
-            } else {
-              this.snackBar.open('Role Updated Successfully', '', {
-                duration: 3000,
-              })
-            }
-          },
-            // tslint:disable-next-line: align
-            _error => {
-              // console.log('error', error)
-              this.snackBar.open('something went wrong', '', {
-                duration: 3000,
-              })
-            })
+    forkJoin(userResponse).subscribe(response => {
+      const responseAfterFilter = response.filter(data => {
+        if (data.length !== 0) {
+          return data
         }
       })
-    }
+      if (responseAfterFilter.length) {
+        const changedRoleResponse = responseAfterFilter.map(responseWithWidAndEmail => {
+          // if (responseWithWidAndEmail) {
+          this.paramsForChangeRoleForBulkUser.wid = responseWithWidAndEmail[0].id,
+            this.paramsForChangeRoleForBulkUser.email = responseWithWidAndEmail[0].mail
+          this.paramsForChangeRoleForBulkUser.name = responseWithWidAndEmail[0].displayName
+          // tslint:disable-next-line: no-console
+          // tslint:disable-next-line: max-line-length
+          const observableForChangeRole = this.userDashboardSvc.changeRoles(this.paramsForChangeRoleForBulkUser, this.headersForChangeUserRoleForBulkUser)
+          this.paramsForChangeRoleForBulkUser.name = ''
+          this.paramsForChangeRoleForBulkUser.wid = ''
+          this.paramsForChangeRoleForBulkUser.email = ''
+          return observableForChangeRole
+        })
+
+        forkJoin(changedRoleResponse).subscribe(finalResponse => {
+          this.isLoad = false
+          const failedResponseEmail = finalResponse.filter(data => {
+            if (!data.ok) {
+              return data.ErrorResponseData
+            }
+            return ''
+
+          })
+          if (failedResponseEmail.length > 0) {
+            // tslint:disable-next-line: prefer-template
+            this.snackBar.open('Sorry, something went wrong, Please try again', '', {
+              duration: 3000,
+            })
+          } else {
+            this.snackBar.open('Role Updated Successfully', '', {
+              duration: 3000,
+            })
+          }
+        },
+          // tslint:disable-next-line: align
+          _error => {
+            this.snackBar.open('something went wrong', '', {
+              duration: 3000,
+            })
+          })
+      }
+    })
   }
+}
+
   // returnEmail(failedResponseEmail: any) {
   //   // tslint:disable-next-line: prefer-template
   //   // tslint:disable-next-line: prefer-template
@@ -416,5 +403,6 @@ export class UserDashboardComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(() => {
     //   console.log('The dialog was closed')
     // })
-  }
+
+}
 }

@@ -5,9 +5,6 @@
 
 .padding-top{
     padding-top:30px;
-    // justify-content: center;
-    // padding-left: 20px;
-    // padding-right: 20px;
 }
 // @import '~@angular/material/theming';
 // //  $primary: map-get($theme,primary);
@@ -178,21 +175,13 @@ background: #3F51B5!important;
     display: flex;
     flex-direction: column;
     min-width: 300px;
-    // justify-content: center;
-    // justify-content: space-around;
     margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
-    // border:1px solid rgb(43, 226, 83);
-
-    /* border-collapse:separate;
-    border-spacing:0 15px;  */
-
   }
 
   table {
     width: 100%;
-    // border-spacing: 0 8px !important;
 
      }
 
@@ -263,31 +252,26 @@ background: #3F51B5!important;
       // color:white !important;
       background-color: white;
     }
-    // .allignment{
-    //   padding-top: 20px;
-    //   display: flex;
-    //   // flex-wrap: wrap;
-    //   flex-direction: column;
-    //     justify-content: space-between;
-    // }
-
 .flex-column2{
   flex:1;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  // justify-content: space-between;
 }
 
 .width-input{
   width:50px;
 }
-// .flex-column3{
-//   flex:1;
-// }
 .padding-button{
   padding-left:10px;
 }
 .padding-left{
   padding-left: 10px;
+}
+
+
+.column-align{
+    width: 350px !important;
+    word-break: break-word;
+    padding-right: 10px !important;
 }
