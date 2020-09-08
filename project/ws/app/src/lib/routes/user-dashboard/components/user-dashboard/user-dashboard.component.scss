@@ -269,9 +269,16 @@ background: #3F51B5!important;
   padding-left: 10px;
 }
 
+ @media only screen and (min-width: 1030px) {
 
 .column-align{
     width: 350px !important;
+    word-break: break-word;
+    padding-right: 10px !important;
+}
+}
+
+.column-align{
     word-break: break-word;
     padding-right: 10px !important;
 }
