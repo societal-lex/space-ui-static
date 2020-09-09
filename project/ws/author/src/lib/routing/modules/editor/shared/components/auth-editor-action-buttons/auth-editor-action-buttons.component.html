@@ -19,7 +19,7 @@
     <div
       *ngFor="let button of buttonConfig?.buttons || []"
       class="button-grid cursor-pointer"
-      (click)="action.next(button.event)"
+      (click)="button.title === 'Send For Review' ? validateForm() : action.next(button.event)"
     >
       <button mat-icon-button class="mat-elevation-z5 small-button padding-remove margin-top-l">
         <mat-icon class="text-white small-icon ws-mat-primary-text">{{ button.icon }}</mat-icon>

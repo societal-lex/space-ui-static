@@ -112,7 +112,7 @@
           Save
         </p>
       </div>
-      <div class="button-grid cursor-pointer" (click)="action('push'); isSubmitPressed = true"
+      <div class="button-grid cursor-pointer" (click)="contentService?.staticValidationEvent.next(true); isSubmitPressed = true"
         *ngIf="getAction() === 'sendForReview'">
         <button mat-icon-button class="mat-elevation-z5 small-button padding-remove margin-top-m" i18n-matTooltip
           matTooltip="Send For Review">

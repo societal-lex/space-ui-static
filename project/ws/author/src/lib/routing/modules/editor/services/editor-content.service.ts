@@ -8,10 +8,12 @@ import { IFormMeta } from './../../../../interface/form'
 import { AuthInitService } from './../../../../services/init.service'
 import { EditorService } from './editor.service'
 import { LoggerService } from '@ws-widget/utils/src/public-api'
+
 @Injectable()
 export class EditorContentService {
   originalContent: { [key: string]: NSContent.IContentMeta } = {}
   upDatedContent: { [key: string]: NSContent.IContentMeta } = {}
+  staticValidationEvent: BehaviorSubject<any>
   iapContent: { [key: string]: any } = {}
   public currentContent!: string
   public parentContent!: string
@@ -24,7 +26,9 @@ export class EditorContentService {
     private editorService: EditorService,
     private authInitService: AuthInitService,
     private readonly logger: LoggerService,
-  ) { }
+  ) {
+    this.staticValidationEvent = new BehaviorSubject<any>(null)
+  }
 
   getOriginalMeta(id: string): NSContent.IContentMeta {
     return this.originalContent[id]
@@ -332,4 +336,6 @@ export class EditorContentService {
       return false
     }
   }
+
+  validateStaticInfo() {}
 }

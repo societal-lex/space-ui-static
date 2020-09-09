@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IActionButtonConfig } from '@ws/author/src/lib/interface/action-button'
+import { EditorContentService } from '../../../services/editor-content.service'
 
 /**
  * @description
@@ -18,9 +19,16 @@ export class AuthEditorActionButtonsComponent implements OnInit {
   @Input() buttonConfig: IActionButtonConfig | null = null
   @Output() action = new EventEmitter<string>()
   showSettingButtons = true
-  constructor() {}
+  constructor(
+    private readonly editorContentSrvc: EditorContentService,
+  ) {}
 
   ngOnInit() {
     this.showSettingButtons = this.buttonConfig && this.buttonConfig.enabled ? true : false
+  }
+
+  validateForm() {
+    console.log('done')
+    this.editorContentSrvc.staticValidationEvent.next(true)
   }
 }

@@ -142,6 +142,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   assestTypeMetaData: IAssetTypeMetaInfo[] | any[] = []
   currentAssestTypeData: IAssetTypeMetaInfo[] | undefined = undefined
   showOther = false
+  staticValidation$: any
 
   @ViewChild('creatorContactsView', { static: false }) creatorContactsView!: ElementRef
   @ViewChild('trackContactsView', { static: false }) trackContactsView!: ElementRef
@@ -186,6 +187,10 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+    this.staticValidation$ = this.contentService.staticValidationEvent.pipe(filter(v => v))
+    this.staticValidation$.subscribe((_: any) => {
+      this.emitPushEvent()
+    })
     this.valueSvc.isXSmall$.subscribe(isMobile => (this.isMobile = isMobile))
     this.showRoleRequest = this.authInitService.authAdditionalConfig.allowRoleRequest
     this.isClient1 = this.accessService.rootOrg.toLowerCase() === 'client1'
@@ -458,6 +463,9 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
+    if (this.staticValidation$) {
+      this.staticValidation$.unsubscribe()
+    }
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe()
     }
@@ -469,7 +477,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
   private set content(contentMeta: NSContent.IContentMeta) {
     this.contentMeta = contentMeta
     // tslint:disable-next-line: prefer-template
-    console.log('current content is ', contentMeta.name, contentMeta.identifier + ' ' + contentMeta.status)
     this.isEditEnabled = this.contentService.isAllowedToEdit(
       contentMeta,
       false,

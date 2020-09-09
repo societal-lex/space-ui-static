@@ -52,7 +52,8 @@ export class CurateComponent implements OnInit, OnDestroy {
     private authInitService: AuthInitService,
     private accessService: AccessControlService,
     private notificationSvc: NotificationService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.showSettingButtons = this.accessService.rootOrg === 'client1'
