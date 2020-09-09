@@ -261,10 +261,10 @@ export class CollectionComponent implements OnInit, OnDestroy {
     return true
   }
 
-  takeAction() {
+  takeAction(nextAction?: string) {
     this.isSubmitPressed = true
     const needSave = Object.keys(this.contentService.upDatedContent || {}).length
-    if (!needSave && !this.isChanged) {
+    if (!needSave && !this.isChanged && nextAction !== 'publish') {
       this.snackBar.openFromComponent(NotificationComponent, {
         data: {
           type: Notify.UP_TO_DATE,
@@ -447,6 +447,9 @@ export class CollectionComponent implements OnInit, OnDestroy {
   }
 
   shouldBePartOfModifiedNodes(meta: NSContent.IContentMeta): boolean {
+    if (this.storeService.parentNode.includes(meta.identifier)) {
+      return true
+    }
     let shouldBePart = false
     // is current user a creator of the content
     if (meta.creatorContacts.length) {
@@ -485,13 +488,12 @@ export class CollectionComponent implements OnInit, OnDestroy {
         latestUpdatedMeta[updatedKey] = updatedMeta[updatedKey]
       }
     })
-    debugger;
     return latestUpdatedMeta
   }
 
   triggerSave() {
     const nodesModified: any = {}
-    let isRootPresent = false
+    let isRootPresent = false/* 
     Object.keys(this.contentService.upDatedContent).filter(content => {
       // only that content will go ahead which is part of current user in any respect
       // 1. Either current user is the creatof the content
@@ -500,7 +502,8 @@ export class CollectionComponent implements OnInit, OnDestroy {
       // if he is allowed, means he is associated with the content else this content has been imported
       const contentDetails = this.contentService.getOriginalMeta(content)
       return this.shouldBePartOfModifiedNodes(contentDetails)
-    }).forEach(v => {
+    }) */
+    Object.keys(this.contentService.upDatedContent).forEach(v => {
       if (!isRootPresent) {
         isRootPresent = this.storeService.parentNode.includes(v)
       }
@@ -510,6 +513,12 @@ export class CollectionComponent implements OnInit, OnDestroy {
           isNew: false,
           root: this.storeService.parentNode.includes(v),
           metadata: latestUpdatedMeta,
+        }
+      } else if (this.storeService.parentNode.includes(v) && !nodesModified.hasOwnProperty(v)) {
+        nodesModified[v] = {
+          isNew: false,
+          root: true,
+          metadata: {},
         }
       }
     })
@@ -609,7 +618,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
           })
           dialogRefForPublish.afterClosed().subscribe(result => {
             if (result) {
-              this.takeAction()
+              this.takeAction('publish')
             }
           })
         } else {
