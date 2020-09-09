@@ -18,6 +18,12 @@
       content: ' *';
     }
   }
+
+  .disabled {
+    opacity: 0.6;
+    cursor: no-drop;
+    pointer-events: none;
+  }
   
   ul li {
     margin: 20px 0;

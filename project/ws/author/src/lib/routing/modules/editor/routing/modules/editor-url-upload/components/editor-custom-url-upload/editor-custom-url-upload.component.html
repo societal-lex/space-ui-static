@@ -11,10 +11,10 @@
             </mat-error>
           </mat-form-field>
         </div> -->
-        <div class="margin-top-xl">
+        <div class="margin-top-xl" [ngClass]="{'disabled': !allowedToEdit}">
           <p 
           class="font-weight-bold margin-remove-bottom" i18n
-          [ngClass]="{ required: checkCondition('artifactLinkUrl', 'required'), disabled: checkCondition('artifactLink', 'disabled') && allowedToEdit}"
+          [ngClass]="{ required: checkCondition('artifactLinkUrl', 'required'), 'disabled': checkCondition('artifactLink', 'disabled')}"
           >
             Link
           </p>
