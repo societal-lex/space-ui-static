@@ -61,7 +61,10 @@ export class ContentCardComponent implements OnInit {
 
         returnValue = !this.accessService.hasRole(['publisher'])
 
-        returnValue = this.accessService.hasRole(['editor', 'content-creator'])
+        if (this.accessService.hasRole(['content-creator'])) {
+
+          returnValue = this.data.status === 'Reviewed' ? false : true
+        }
         break
       case 'delete': {
         if (

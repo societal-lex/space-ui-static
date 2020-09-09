@@ -8,7 +8,7 @@ import { Notify } from '@ws/author/src/lib/constants/notificationMessage'
 import { IActionButton, IActionButtonConfig } from '@ws/author/src/lib/interface/action-button'
 import { NSApiRequest } from '@ws/author/src/lib/interface/apiRequest'
 import { IAuthSteps } from '@ws/author/src/lib/interface/auth-stepper'
-import { NSContent } from '@ws/author/src/lib/interface/content'
+import { NSContent, NSContent } from '@ws/author/src/lib/interface/content'
 import { CommentsDialogComponent } from '@ws/author/src/lib/modules/shared/components/comments-dialog/comments-dialog.component'
 import { ConfirmDialogComponent } from '@ws/author/src/lib/modules/shared/components/confirm-dialog/confirm-dialog.component'
 import { ErrorParserComponent } from '@ws/author/src/lib/modules/shared/components/error-parser/error-parser.component'
@@ -476,6 +476,19 @@ export class CollectionComponent implements OnInit, OnDestroy {
     return shouldBePart
   }
 
+  getLatestUpdatedMeta(contentID: string) {
+    const updatedMeta: any = this.contentService.upDatedContent[contentID]
+    const originalMeta: any = this.contentService.originalContent[contentID]
+    const latestUpdatedMeta: any | {} = {}
+    Object.keys(updatedMeta).forEach((updatedKey: any) => {
+      if (updatedMeta[updatedKey] !== originalMeta[updatedKey]) {
+        latestUpdatedMeta[updatedKey] = updatedMeta[updatedKey]
+      }
+    })
+    debugger;
+    return latestUpdatedMeta
+  }
+
   triggerSave() {
     const nodesModified: any = {}
     let isRootPresent = false
@@ -491,10 +504,13 @@ export class CollectionComponent implements OnInit, OnDestroy {
       if (!isRootPresent) {
         isRootPresent = this.storeService.parentNode.includes(v)
       }
-      nodesModified[v] = {
-        isNew: false,
-        root: this.storeService.parentNode.includes(v),
-        metadata: this.contentService.upDatedContent[v],
+      const latestUpdatedMeta = this.getLatestUpdatedMeta(v)
+      if (Object.keys(latestUpdatedMeta).length) {
+        nodesModified[v] = {
+          isNew: false,
+          root: this.storeService.parentNode.includes(v),
+          metadata: latestUpdatedMeta,
+        }
       }
     })
     if (!isRootPresent) {

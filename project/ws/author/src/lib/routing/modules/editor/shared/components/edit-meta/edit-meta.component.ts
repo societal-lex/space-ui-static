@@ -1187,7 +1187,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
       visibility: [],
       isSearchable: [],
       spaceAssetType: [],
-      sourceShortName: [],
       spaceProfileType: [],
     })
     this.contentForm.controls.assetType.valueChanges.pipe(
