@@ -21,6 +21,7 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   isClientLogin = false
   private redirectUrl = ''
   objectKeys = Object.keys
+  clicked = false
 
   constructor(
     private domSanitizer: DomSanitizer,

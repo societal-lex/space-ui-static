@@ -1,20 +1,42 @@
 @import 'ws-vars';
 @import 'ws-common';
-
-/* collaborator page design start */
-.header {
-font-weight: 460;
-font-size: 48px;
-line-height: 55px;
-color: #925EB0;
-  @include breakpoint-xs {
-    font-size: 45px !important;
-  }
+// @import 'ws-includes';
+/* about page design start */
+.img {
+  background-image: url(/assets/instances/space/banners/about.png);
+  background-size: cover;
+  background-position: center;
+  height: 30rem;
+  width: 100%;
+   @include breakpoint-xs {
+     height: 10rem !important;
+     width: 9rem !important;
+   }
+   @include breakpoint-s {
+     height: 24rem !important;
+   }
+   @include breakpoint-xl {
+    height: 30rem !important;
+     width: 625px !important;
+   }
+   @include breakpoint-xll {
+     width: 65% !important;
+   }
 }
-.partnerContainerBody {
-  @include breakpoint-xs {
-    padding-top: 2.5rem !important;
-  }
+.ellipse {
+    background: no-repeat;
+    background-image: url(/assets/instances/space/banners/Ellipse21.png);
+    background-size: 5rem;
+    background-position: center;
+    width: 19%;
+    height: 5rem;
+    float: right;
+     @include breakpoint-xs {
+       display: none;
+     }
+     @include breakpoint-s {
+       width: 24% !important;
+     }
 }
 .ellipse2 {
     background: no-repeat;
@@ -72,6 +94,52 @@ color: #925EB0;
       margin-left: 40rem !important;
     }
 }
+.header {
+font-weight: 460;
+font-size: 48px;
+line-height: 55px;
+color: #925EB0;
+  @include breakpoint-xs {
+    font-size: 45px !important;
+  }
+}
+.flex {
+  justify-content: flex-start;
+}
+.col-1 {
+  flex: 1;
+}
+.col-2 {
+  flex: auto;
+}
+.text-wrap {
+ width: 33rem;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+word-break: break-word;
+  @include breakpoint-xs {
+    width: 16rem;
+    padding-top: 4rem;
+  }
+  @include breakpoint-s {
+    width: 19rem !important;;
+  }
+  @include breakpoint-m {
+    width: 28rem !important;
+  }
+}
+/* about page design end */
+/**/
+/* collaborator page design start */
+.partnerContainerBody {
+  // font-size: 17px;
+  // line-height: 2;
+  // text-align: center;
+  @include breakpoint-xs {
+    padding-top: 2.5rem !important;
+  }
+}
 .container {
   max-width: 100%;
   justify-content: center;
@@ -127,95 +195,3 @@ img {
   padding-top: 0 !important;
 }
 /* collaborator page design end */
-// @import 'ws-mixins';
-// #cimage {
-//   background-size: cover;
-//   background-position: center;
-//   width: 100%;
-// }
-// .container {
-//   max-width: 100%;
-//   justify-content: center;
-//   margin: 0;
-// }
-// .imgsize {
-//   margin-top: -1rem;
-//   height: 16rem;
-//   background-image: url(/assets/instances/space/banners/CollaboratorsBanner.png);
-//   background-size: cover;
-//   background-position: center;
-//   @include breakpoint-xs {
-//     height: 11rem !important;
-//     background-position: right;
-//   }
-// }
-// #textDec {
-//   font-size: -webkit-xxx-large;
-//   font-family: campaign, sans-serif;
-// }
-// .jumbotron {
-//   background-color: white !important;
-// }
-// .jumbotron-fluid {
-//   padding-right: 0;
-//   padding-left: 0;
-//   border-radius: 0;
-// }
-// @media (min-width: 576px) {
-//   .jumbotron {
-//     padding: 4rem 2rem;
-//   }
-// }
-// .jumbotron {
-//   padding: 2rem 1rem;
-//   margin-bottom: 2rem;
-//   border-radius: 0.3rem;
-// }
-// .partnerBody {
-//   font-size: 17px;
-//   line-height: 2;
-//   text-align: center;
-//   font-family: campaign, sans-serif;
-//   font-weight: 400 !important;
-//   @include breakpoint-xs {
-//     padding-top: 0rem !important;
-//   }
-// }
-
-// .imageRow {
-//   display: flex;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   justify-content: center;
-//   margin-bottom: 20px;
-// }
-// @media only screen and (min-width: 453px) and (max-width: 680px) {
-//   .imageRow {
-//     display: inline !important;
-//   }
-//   .box {
-//     width: 35% !important;
-//     margin-right: 10px !important;
-//   }
-// }
-// @media only screen and (min-width: 312px) and (max-width: 453px) {
-//   .imageRow {
-//     display: inline !important;
-//   }
-//   .box {
-//     width: 35% !important;
-//     padding: 5.5em 0em 0 -0rem !important;
-//     margin-right: 10px !important;
-//   }
-// }
-// .box {
-//   width: 34%;
-//   padding: 5.5em 0em 0 8rem;
-//   margin-right: 10px;
-// }
-// a {
-//   background-color: transparent;
-//   color: #1cadce;
-//   text-decoration: none;
-//   -webkit-transition: 0.2s ease-in;
-// }

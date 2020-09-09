@@ -1,7 +1,7 @@
 @import 'ws-mixins';
 
 .footer-container {
-  display: flex;
+  // display: flex;
   justify-content: space-between;
   text-align: justify;
   @include breakpoint-xs {
@@ -12,12 +12,11 @@
 .font-12 {
   font-size: 12px !important;
 }
-
 #display-item {
-  background-color: #c6bcb8 !important;
+  background-color: #42428B !important;
 }
 #display-responsive {
-  background-color: #c6bcb8 !important;
+  background-color: #42428B !important;
 }
 @media (max-width: 971px) and (min-width: 250px) {
   #display-item {
@@ -28,14 +27,39 @@
     font-size: unset !important;
   }
 }
-@media (max-width: 750px) {
-  #display-responsive {
-    margin-bottom: 3rem;
-  }
-}
 @media (min-width: 972px) {
   #display-responsive {
     display: none;
     justify-content: center;
   }
+}
+/* text style start */
+a {
+  color:#FFFFFF !important;
+  font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+}
+.mail-style {
+color: #FFE22A !important;
+}
+p {
+  color:#FFFFFF !important;
+  font-weight: normal;
+font-size: 16px;
+line-height: 20px;
+}
+.mat-grid-tile {
+  position: initial !important;
+}
+.mat-body {
+  display: flex;
+  justify-content: space-around;
+}
+/* footer content style */
+.col-1 {
+  flex: 1;
+}
+.col-2 {
+  flex: 2;
 }

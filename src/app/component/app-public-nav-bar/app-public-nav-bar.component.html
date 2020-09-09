@@ -1,62 +1,42 @@
-<mat-toolbar
-  *ngIf="showPublicNavbar"
-  [color]="navBar?.color"
-  [ngStyle]="navBar?.styles"
-  id="publicWhiteNavBar"
->
+<mat-toolbar *ngIf="showPublicNavbar" [color]="navBar?.color" [ngStyle]="navBar?.styles" id="publicWhiteNavBar">
   <div class="logosize">
-    <a
-      name="application-logo"
-      class="padding-remove-small campaign"
-      mat-button
-      routerLink=""
-      i18n-matTooltip
-      matTooltip="Home"
-    >
+    <a name="application-logo" class="padding-remove-small campaign logo" mat-button routerLink="" i18n-matTooltip
+      matTooltip="Home">
       <img [src]="appIcon" i18n-alt alt="Application Logo" class="app-logo" />
       <!-- <span class="title-app mx-2" *ngIf="appName">| {{appName}}</span> -->
     </a>
   </div>
-
-  <a name="about_btn" class="padding-remove-small campaign" mat-button routerLink="/public/about">
-    <span i18n class="small-font-size">About Us</span>
-  </a>
-  <a
-    name="collaborator_btn"
-    class="padding-remove-small campaign"
-    mat-button
-    routerLink="/public/collaborators"
-  >
-    <span i18n class="small-font-size">Collaborators</span>
-  </a>
-  <!-- <a name="help_btn" class="padding-remove-small" mat-button routerLink="/public/contact">
+  <div class="hidden-xs">
+    <a name="about_btn" class="padding-remove-small campaign about_btn header-btn-style" mat-button
+      routerLink="/public/about">
+      <span i18n class="small-font-size">About Us</span>
+    </a>
+    <a class="collaborator_btn padding-remove-small campaign header-btn-style" mat-button
+      routerLink="/public/collaborators">
+      <span i18n class="small-font-size">Collaborators</span>
+    </a>
+    <!-- <a name="help_btn" class="padding-remove-small" mat-button routerLink="/public/contact">
     <span class="pr-4 small-font-size" i18n>Help & Contact</span>
   </a> -->
-  <!-- todo for Wingspan change column -->
-
-  <div class="flex justify-center flex-col login-btn ml-auto">
+    <!-- todo for Wingspan change column -->
+  </div>
+  <div class="flex justify-center flex-col login-btn ml-auto hidden-xs">
     <div *ngIf="loginConfig && loginConfig?.loginButtons">
-      <button
-        name="login_btn_{{ (loginConfig?.loginButtons)[key] }}"
-        *ngFor="let key of objectKeys(loginConfig?.loginButtons)"
-        color="primary"
-        mat-raised-button
-        (click)="login((loginConfig?.loginButtons)[key])"
-        class="log-btn"
-      >
+      <button name="login_btn_{{ (loginConfig?.loginButtons)[key] }}"
+        *ngFor="let key of objectKeys(loginConfig?.loginButtons)" color="primary" mat-raised-button
+        (click)="login((loginConfig?.loginButtons)[key])" class="log-btn">
         <span class="mat-title">{{ key }}</span>
       </button>
     </div>
-    <button
-      name="login_client_button"
-      mat-button
-      i18n="login: client"
-      (click)="login('S')"
-      class="padding-remove-small color"
-    >
+    <button name="login_client_button" mat-button i18n="login: client" (click)="login('S')"
+      class="padding-remove-small color header-btn-style signIn">
       <span i18n class="small-font-size btn-size text-white">Sign In</span>
     </button>
-    <!-- <button *ngIf="!isClientLogin" name="login_for_infoscions" color="primary" mat-raised-button i18n="login: employee"
+  </div>
+  <button class="hidden-gt-xs menu" mat-icon-button [matMenuTriggerFor]="pdfMenu">
+    <mat-icon class="icon">more_vert</mat-icon>
+  </button>
+  <!-- <button *ngIf="!isClientLogin" name="login_for_infoscions" color="primary" mat-raised-button i18n="login: employee"
       (click)="login('E')" class="log-btn">
       <span class="mat-title">Login For Infoscions</span>
       <mat-icon class="margin-left-xs">exit_to_app</mat-icon>
@@ -69,5 +49,32 @@
       i18n="login: new recruits" (click)="login('N')" class="log-btn">
       <span class="mat-title">Login For New Recruits</span>
     </button> -->
-  </div>
 </mat-toolbar>
+<mat-menu #pdfMenu="matMenu">
+  <a name="about_btn" class="padding-remove-small campaign about_btn header-btn-style" mat-button
+    routerLink="/public/about">
+    <span i18n class="small-font-size">About Us</span>
+  </a>
+  <a class="collaborator_btn padding-remove-small campaign header-btn-style" mat-button
+    routerLink="/public/collaborators">
+    <span i18n class="small-font-size">Collaborators</span>
+  </a>
+  <!-- <a name="help_btn" class="padding-remove-small" mat-button routerLink="/public/contact">
+        <span class="pr-4 small-font-size" i18n>Help & Contact</span>
+      </a> -->
+  <!-- todo for Wingspan change column -->
+
+  <div class="flex justify-center flex-col login-btn ml-auto">
+    <div *ngIf="loginConfig && loginConfig?.loginButtons">
+      <button name="login_btn_{{ (loginConfig?.loginButtons)[key] }}"
+        *ngFor="let key of objectKeys(loginConfig?.loginButtons)" color="primary" mat-raised-button
+        (click)="login((loginConfig?.loginButtons)[key])" class="log-btn">
+        <span class="mat-title">{{ key }}</span>
+      </button>
+    </div>
+    <button name="login_client_button" mat-button i18n="login: client" (click)="login('S')"
+      class="header-btn-style signIn">
+      <span i18n class="small-font-size btn-size">Sign In</span>
+    </button>
+  </div>
+</mat-menu>

@@ -1,75 +1,39 @@
 @import 'ws-mixins';
 #publicWhiteNavBar {
   background-color: white;
+  // background: transparent;
+  //   position: absolute;
+  //   z-index: 100;
+    // width: 1226px;
+    height: 79px;
 }
 .app-logo {
   // min-width: 8rem;
   // margin-top: -0.5rem;
   // padding: 8px 0 0 8px;
   width: 100%;
+  height: 34px !important;
+  @include breakpoint-xs {
+    width: 100%;
+    height: auto !important;
+  }
+}
+.logo {
+    padding: 0px 0 0 40px !important;
 }
 .btn-size {
   padding: 0px 6px 0px 6px;
-}
-@media only screen and (min-width: 360px) and (max-width: 599px) {
-  .app-logo {
-    width: 6rem !important;
-    // margin-top: 0.5rem !important;
-    min-width: auto !important;
-  }
-  .logosize {
-    padding: 0px 0 0 8px !important;
-    width: auto !important;
-  }
-}
-@media only screen and (min-width: 250px) and (max-width: 311px) {
-  .app-logo {
-   min-width: auto !important;
-    width: 3rem;
-  }
-  .logosize {
-    padding: 0px 0px 0px 0px !important;
-    width: auto !important;
-    height: auto !important;
-  }
-}
-@media only screen and (min-width: 599px) and (max-width: 629px) {
-  .app-logo {
-    width: 7rem !important;
-    margin-top: auto !important;
-    min-width: auto !important;
-  }
-  .logosize {
-        padding: 4px 0px 0px 8px !important;
-        width: auto !important;
-  }
-}
-@media only screen and (min-width: 312px) and (max-width: 359px) {
-  .app-logo {
-    width: 5rem !important;
-    // margin-top: 1.79rem !important;
-    min-width: auto !important;
-
-  }
-  .logosize {
-    // height: 5rem !important;
-    padding: 0px 0 0 8px !important;
-    overflow-y: visible !important;
-    width: auto !important;
-    height: auto !important;
-  }
-}
-@media only screen and (min-width: 629px) and (max-width: 760px) {
-.logosize {
-    width: auto !important;
-}
+  color: black !important;
 }
 .logosize {
   overflow-y: hidden;
   // height: 3rem;
-    padding: 8px 0 0 0 ;
+    // padding: 8px 0 0 0 ;
     width: 295px;
-    height: 35px;
+    height: 34px;
+     @include breakpoint-xs {
+       height: auto !important;
+     }
 }
 .title-app {
   @include breakpoint-xs {
@@ -102,5 +66,112 @@
   color: white !important;
 }
 mat-toolbar span {
-  color: black;
+line-height: 17px;
+color: #696466;
 }
+/* sign in button responsive */
+@media only screen and (min-width: 1020px) {
+  .login-btn {
+    padding: 0 30px !important;
+  }
+  .mat-button {
+  padding: 0 47.21px !important;
+  height: 34px !important;
+}
+.logo {
+    padding: 0px 0 0 33px !important;
+}
+}
+/* btn style */
+
+.about_btn {
+  padding: 0 20px !important;
+   @include breakpoint-xs {
+     display: flex !important;
+   }
+}
+.collaborator_btn {
+   padding: 0 20px !important;
+    @include breakpoint-xs {
+     display: flex !important;
+   }
+}
+.signIn {
+  line-height: 17px;
+  @include breakpoint-xs {
+  display: flex !important;
+  }
+}
+ .hidden-xs {
+  @include breakpoint-xs {
+    display: none !important;
+  }
+}
+
+.hidden-gt-xs {
+  @include breakpoint-gt-xs {
+    display: none !important;
+  }
+}
+.menu {
+  background: white !important;
+  color: black !important;
+}
+.icon {
+  color: black;
+   line-height: 12px !important;
+}
+
+// @media only screen and (min-width: 360px) and (max-width: 599px) {
+//   .app-logo {
+//     // width: 6rem !important;
+//     // margin-top: 0.5rem !important;
+//     min-width: auto !important;
+//   }
+//   .logosize {
+//     padding: 0px 0 0 8px !important;
+//     width: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 250px) and (max-width: 311px) {
+//   .app-logo {
+//    min-width: auto !important;
+//     width: 3rem;
+//   }
+//   .logosize {
+//     padding: 0px 0px 0px 0px !important;
+//     width: auto !important;
+//     height: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 599px) and (max-width: 629px) {
+//   .app-logo {
+//     width: 7rem !important;
+//     margin-top: auto !important;
+//     min-width: auto !important;
+//   }
+//   .logosize {
+//         padding: 4px 0px 0px 8px !important;
+//         width: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 312px) and (max-width: 359px) {
+//   .app-logo {
+//     width: 5rem !important;
+//     // margin-top: 1.79rem !important;
+//     min-width: auto !important;
+
+//   }
+//   .logosize {
+//     // height: 5rem !important;
+//     padding: 0px 0 0 8px !important;
+//     overflow-y: visible !important;
+//     width: auto !important;
+//     height: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 629px) and (max-width: 760px) {
+// .logosize {
+//     width: auto !important;
+// }
+// }
