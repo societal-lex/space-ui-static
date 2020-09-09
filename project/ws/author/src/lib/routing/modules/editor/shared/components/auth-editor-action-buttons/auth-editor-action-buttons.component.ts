@@ -28,7 +28,6 @@ export class AuthEditorActionButtonsComponent implements OnInit {
   }
 
   validateForm() {
-    console.log('done')
     this.editorContentSrvc.staticValidationEvent.next(true)
   }
 }

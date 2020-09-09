@@ -493,7 +493,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
 
   triggerSave() {
     const nodesModified: any = {}
-    let isRootPresent = false/* 
+    let isRootPresent = false/*
     Object.keys(this.contentService.upDatedContent).filter(content => {
       // only that content will go ahead which is part of current user in any respect
       // 1. Either current user is the creatof the content
