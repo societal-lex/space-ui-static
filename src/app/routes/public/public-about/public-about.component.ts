@@ -6,6 +6,8 @@ import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 import { ActivatedRoute } from '@angular/router'
 import { IAboutObject } from './about.model'
+import { IWidgetsPlayerMediaData } from '../../../../../library/ws-widget/collection/src/public-api'
+import { NsWidgetResolver } from '../../../../../library/ws-widget/resolver/src/public-api'
 
 @Component({
   selector: 'ws-public-about',
@@ -26,6 +28,24 @@ export class PublicAboutComponent implements OnInit, OnDestroy {
 
   videoLink: SafeResourceUrl | null = null
   aboutImage: SafeStyle | null = null
+  widgetResolverData: NsWidgetResolver.IRenderConfigWithTypedData<
+    IWidgetsPlayerMediaData
+  > = {
+      widgetData: {
+        url: 'assets/instances/space/videos/intro_video.mp4',
+        autoplay: true,
+        identifier: '',
+      },
+      widgetHostClass: 'video-full block',
+      widgetSubType: 'playerVideo',
+      widgetType: 'player',
+      widgetHostStyle: {
+        height: '100%',
+        'max-width': '90%',
+        'margin-left': 'auto',
+        'margin-right': 'auto',
+      },
+    }
 
   constructor(
     private breakpointObserver: BreakpointObserver,

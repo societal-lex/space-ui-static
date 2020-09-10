@@ -11,13 +11,14 @@
   // min-width: 8rem;
   // margin-top: -0.5rem;
   // padding: 8px 0 0 8px;
-  width: 100%;
+  width: 255px;
   height: 34px !important;
   @include breakpoint-xs {
     width: 100%;
     height: auto !important;
   }
 }
+
 .logo {
     padding: 0px 0 0 40px !important;
 }
@@ -75,7 +76,7 @@ color: #696466;
     padding: 0 30px !important;
   }
   .mat-button {
-  padding: 0 47.21px !important;
+ padding: 0 42.34px !important;
   height: 34px !important;
 }
 .logo {
@@ -101,6 +102,12 @@ color: #696466;
   @include breakpoint-xs {
   display: flex !important;
   }
+  @include breakpoint-s {
+    line-height: unset !important;
+}
+  @include breakpoint-m {
+    line-height: unset !important;
+  }
 }
  .hidden-xs {
   @include breakpoint-xs {
@@ -121,7 +128,17 @@ color: #696466;
   color: black;
    line-height: 12px !important;
 }
-
+@media screen and (min-width:635px) and (max-width: 670px) {
+.app-logo {
+  width: 13rem !important;
+  height: 28px !important;
+}
+}
+@media screen and (min-width:539px) and (max-width: 542px) {
+  .logosize {
+    width: auto !important;
+  }
+}
 // @media only screen and (min-width: 360px) and (max-width: 599px) {
 //   .app-logo {
 //     // width: 6rem !important;

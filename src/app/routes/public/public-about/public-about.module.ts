@@ -11,6 +11,7 @@ import {
 } from '@angular/material'
 import { BtnPageBackModule } from '@ws-widget/collection'
 import { HorizontalScrollerModule, PipeSafeSanitizerModule } from '@ws-widget/utils'
+import { WidgetResolverModule } from '../../../../../library/ws-widget/resolver/src/public-api'
 
 @NgModule({
   declarations: [PublicAboutComponent],
@@ -23,7 +24,7 @@ import { HorizontalScrollerModule, PipeSafeSanitizerModule } from '@ws-widget/ut
     MatCardModule,
     BtnPageBackModule,
     MatButtonModule,
-
+    WidgetResolverModule,
     HorizontalScrollerModule,
     PipeSafeSanitizerModule,
   ],

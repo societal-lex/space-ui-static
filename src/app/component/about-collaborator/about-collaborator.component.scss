@@ -100,9 +100,14 @@ font-size: 48px;
 line-height: 55px;
 color: #925EB0;
   @include breakpoint-xs {
-    font-size: 45px !important;
+    font-size: 38px !important;
   }
 }
+ @media only screen and (max-width: 321px) {
+    .header {
+    font-size: 27px !important;
+    }
+    }
 .flex {
   justify-content: flex-start;
 }

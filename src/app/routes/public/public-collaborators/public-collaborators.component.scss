@@ -7,8 +7,16 @@ font-weight: 460;
 font-size: 48px;
 line-height: 55px;
 color: #925EB0;
+width:240px;
+height: 65px;
   @include breakpoint-xs {
-    font-size: 45px !important;
+    font-size: 38px !important;
+  }
+}
+  @media only screen and (max-width: 321px) {
+    .header {
+    font-size: 27px !important;
+    width: 217px !important;
   }
 }
 .partnerContainerBody {
@@ -122,6 +130,7 @@ a {
 }
 img {
   width: 9rem;
+  opacity: 0.2;
 }
 .exception-style {
   padding-top: 0 !important;

@@ -7,7 +7,8 @@
   background-size: cover;
   background-position: center;
   height: 30rem;
-  width: 100%;
+  width: 99%;
+  // opacity: 0.9;
    @include breakpoint-xs {
      height: 10rem !important;
      width: 9rem !important;
@@ -106,9 +107,17 @@ font-weight: 460;
 font-size: 48px;
 line-height: 55px;
 color: #925EB0;
+width:240px;
+height: 65px;
   @include breakpoint-xs {
-    font-size: 45px !important;
+    font-size: 38px !important;
     width: 12rem;
+  }
+}
+  @media only screen and (max-width: 321px) {
+    .header {
+    font-size: 27px !important;
+    width: 217px !important;
   }
 }
 .flex {
@@ -119,6 +128,19 @@ color: #925EB0;
 }
 .col-2 {
   flex: auto;
+}
+.icon {
+  background-image: url(/assets/instances/space/common/Vector@2x.png);
+  background-size: 9rem;
+  background-position: center;
+  height: 10rem;
+  width: 50%;
+  position: absolute;
+  background-repeat: no-repeat;
+  padding-top: 22rem;
+}
+.abt-video {
+opacity: 0.2;
 }
 .text-wrap {
  width: 33rem;
@@ -137,12 +159,26 @@ word-break: break-word;
     width: 28rem !important;
   }
 }
-@media screen and (min-width: 520px) and (max-width: 550px) {
+   @media only screen and (max-width: 310px) {
+    .text-wrap {
+    width: 12rem !important;
+  }
+}
+
+@media screen and (min-width: 520px) and (max-width: 570px) {
   .img {
    padding-left: -4rem !important;
   }
   .text-wrap {
     width: 25rem !important;
+  }
+}
+@media screen and (min-width: 635px) and (max-width: 670px) {
+  .img {
+    height: 16rem !important;
+  }
+  .text-wrap {
+    width: 16rem !important;
   }
 }
 /* about page design end */
