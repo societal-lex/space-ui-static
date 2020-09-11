@@ -30,6 +30,7 @@ import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.co
 import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
 import { ContentpolicyandcommunicationComponent } from './routes/public/contentpolicyandcommunication/contentpolicyandcommunication.component'
 import { AboutCollaboratorComponent } from './component/about-collaborator/about-collaborator.component'
+import { TourVideoComponent } from './routes/public/tour-video/tour-video.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -387,7 +388,7 @@ const routes: Routes = [
   },
   {
     path: 'page/collaborators',
-     data: {
+    data: {
       pageType: 'feature',
       pageKey: 'about',
     },
@@ -504,6 +505,11 @@ const routes: Routes = [
   {
     path: 'public/termsofuse',
     component: TermsofuseComponent,
+  },
+  {
+    path: 'public/tour-video',
+    component: TourVideoComponent
+    ,
   },
   {
     path: 'public/content-policy-and-community-guidelines',
