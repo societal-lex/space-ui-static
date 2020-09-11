@@ -4,18 +4,24 @@
     <span i18n="page title: licencepolicy" class="margin-left-xs">Licence Policy </span>
   </span>
 </mat-toolbar> -->
-<section class="mat-drawer-container mat-drawer-container-has-open mat-drawer-transition">
-  <div class="imgsize">
+<section class="mat-drawer-container mat-drawer-container-has-open mat-drawer-transition flex  mr-10 pt-16">
+  <!-- <div class="imgsize">
     <img [src]="licensePolicy" id="cimage" />
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-12"></div>
-        <!-- <p class="text-center" id="textdec">Collaborators</p> -->
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="allignment">
-    <!-- <p class="p1"><span class="s1 font-style"><strong>License Policy</strong></span></p> -->
+      <div class="text-wrap">
+        <div class="img-container">
+          <img [src]="licensePolicy" id="cimage" />
+        </div>
+    <div class=" ml-10">
+        <h1 class="header heading-style">License Policy</h1>
+        <!-- <p class="p1"><span class="s1"><
+    <p class="p1"><span class="s1 font-style"><strong>License Policy</strong></span></p> -->
     <p class="p2">&nbsp;</p>
     <p class="p3 font-style font-style">
       <span class="s1 font-style"
@@ -452,5 +458,7 @@
         licenses, as applicable.</span
       >
     </p>
+    </div>
+  </div>
   </div>
 </section>
