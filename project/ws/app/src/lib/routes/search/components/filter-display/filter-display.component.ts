@@ -16,6 +16,7 @@ export class FilterDisplayComponent implements OnInit {
   @Output() filterClose: EventEmitter<boolean> = new EventEmitter()
   advancedFilters: IWsSearchAdvancedFilter[] = []
   translatedFilters: any = {}
+  isExpanded = false
   searchRequest: {
     filters: { [type: string]: string[] }
   } = {
@@ -29,6 +30,7 @@ export class FilterDisplayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isExpanded = true
     const lang = this.configSvc.userPreference && this.configSvc.userPreference.selectedLocale
     this.searchServ.translateSearchFilters(lang || 'en').then(val => {
       this.lowerCaseFilter(val, Object.keys(val))
