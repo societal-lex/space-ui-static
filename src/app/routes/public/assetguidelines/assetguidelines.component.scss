@@ -55,11 +55,16 @@ color: #925EB0 !important;;
   font-size: 17px;
 
 }
+.spaceallign {
+  padding-left: 1rem !important;
+}
+.spaceallignment{
+  padding-left: 0rem !important;
+}
 @media screen and (max-width: 450px) {
   .spaceallign{
   padding-left:0.8em;
 }
-
 }
 @media screen and (max-width: 380px) {
   .spaceallignment{
@@ -76,9 +81,11 @@ font-weight: 460;
 font-size: 48px;
 line-height: 55px;
 color: #925EB0;
+margin-left: 2.5rem !important;
 @include breakpoint-xs {
   width: 19rem !important;
-  font-size: 22px !important;
+  font-size: 21px !important;
+  padding-bottom: 0rem;
 }
   @include breakpoint-s {
 font-size: 27px !important;
@@ -87,8 +94,11 @@ font-size: 27px !important;
 .img-container {
   float: right;
   width: 30rem;
+  margin-top: -9rem !important;
   @include breakpoint-xs {
     width: auto !important;
+    margin-top: auto !important;
+    float: unset !important;
   }
   @include breakpoint-s {
 width: 17rem !important;
@@ -104,7 +114,8 @@ width: 17rem !important;
   float: none !important;
 }
   .header{
-    width: 17rem !important;
+    padding-bottom: 1rem !important;
+    width: 15rem !important;
    }
    .font-style {
     width: 14rem !important;
