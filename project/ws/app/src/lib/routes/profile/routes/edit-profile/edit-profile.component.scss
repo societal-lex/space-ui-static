@@ -1,0 +1,83 @@
+.format{
+
+    text-align: center;
+}
+
+
+  .button-align{
+      text-align: center;
+  }
+  .width{
+    min-width: 230px;
+width: 600px;
+  }
+  .profile-form{
+    width: 577px;
+        min-width: 277px;
+  }
+  .mat-form-field {
+    display: inline;
+    position: relative;
+    text-align: left;
+}
+.flexcontainer{
+   display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.flexcontainercol{
+  display: flex;
+  padding-top: 7vh;
+  padding-bottom: 7vh;
+  justify-content: center;
+  flex-direction: column;
+}
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+   margin-left: auto;
+  margin-right: auto;
+
+}
+.center {
+  display: block;
+   width: 50%;
+}
+.photo-icon {
+  position: absolute;
+  bottom:0;
+  right:12%;
+  border: 1px solid red;
+  height:30px;
+  width:30px;
+  border-radius:50%;
+  text-align:center;
+  line-height:30px;
+  background: white;
+  font-size:20px;
+  cursor: pointer;
+}
+.hoverable{
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  border: 2px solid white;
+  border-radius: 50%;
+   margin-left: auto;
+  margin-right: auto;
+}
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+#fileInput{
+  display: none;
+}
+.width-textarea{
+    min-width: 230px;
+width: 600px;
+height:20px;
+}

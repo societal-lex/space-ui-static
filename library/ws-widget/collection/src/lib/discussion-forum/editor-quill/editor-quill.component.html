@@ -8,8 +8,10 @@
     [minLength]="minLength"
     #editor="ngModel"
     placeholder="{{ placeholder }}"
+    [modules]="quillConfig"
   >
   </quill-editor>
+  <!-- <div id="editor1"></div> -->
   <p *ngIf="(editor.dirty || editor.touched) && editor.invalid" class="error-text mat-caption">
     <ng-container i18n> Minimum </ng-container>
     {{ minLength }}
