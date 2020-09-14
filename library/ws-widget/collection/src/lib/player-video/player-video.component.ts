@@ -65,7 +65,7 @@ export class PlayerVideoComponent extends WidgetBaseComponent
     this.widgetData = {
       ...this.widgetData,
     }
-    if (this.widgetData && this.widgetData.identifier && !this.widgetData.url) {
+    if (this.widgetData && !this.widgetData.url) {
       await this.fetchContent()
     }
     if (this.widgetData.url) {
@@ -93,7 +93,7 @@ export class PlayerVideoComponent extends WidgetBaseComponent
     const saveCLearning: saveContinueLearningFunction = data => {
       if (this.widgetData.identifier) {
         if (this.activatedRoute.snapshot.queryParams.collectionType &&
-        this.activatedRoute.snapshot.queryParams.collectionType.toLowerCase() === 'playlist') {
+          this.activatedRoute.snapshot.queryParams.collectionType.toLowerCase() === 'playlist') {
           const continueLearningData = {
             contextPathId: this.activatedRoute.snapshot.queryParams.collectionId ?
               this.activatedRoute.snapshot.queryParams.collectionId : this.widgetData.identifier,
@@ -163,7 +163,7 @@ export class PlayerVideoComponent extends WidgetBaseComponent
     const saveCLearning: saveContinueLearningFunction = data => {
       if (this.widgetData.identifier) {
         if (this.activatedRoute.snapshot.queryParams.collectionType &&
-        this.activatedRoute.snapshot.queryParams.collectionType.toLowerCase() === 'playlist') {
+          this.activatedRoute.snapshot.queryParams.collectionType.toLowerCase() === 'playlist') {
           const continueLearningData = {
             contextPathId: this.activatedRoute.snapshot.queryParams.collectionId ?
               this.activatedRoute.snapshot.queryParams.collectionId : this.widgetData.identifier,
@@ -248,6 +248,7 @@ export class PlayerVideoComponent extends WidgetBaseComponent
     })
   }
   async fetchContent() {
+    debugger
     const content = await this.contentSvc
       .fetchContent(this.widgetData.identifier || '', 'minimal')
       .toPromise()

@@ -508,6 +508,13 @@ const routes: Routes = [
   },
   {
     path: 'public/tour-video',
+    data: {
+      pageType: 'feature',
+      pageKey: 'social',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
     component: TourVideoComponent
     ,
   },
