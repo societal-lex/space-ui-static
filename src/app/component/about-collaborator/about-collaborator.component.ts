@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Compiler } from '@angular/core'
+import { Component, OnInit, OnDestroy, Compiler } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser'
 import { map } from 'rxjs/operators'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { IAboutObject } from '../../routes/public/public-about/about.model'
 
 @Component({
@@ -12,7 +12,7 @@ import { IAboutObject } from '../../routes/public/public-about/about.model'
   templateUrl: './about-collaborator.component.html',
   styleUrls: ['./about-collaborator.component.scss'],
 })
-export class AboutCollaboratorComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AboutCollaboratorComponent implements OnInit, OnDestroy {
   objectKeys = Object.keys
   headerBanner: SafeStyle | null = null
   footerBanner: SafeStyle | null = null
@@ -30,13 +30,18 @@ export class AboutCollaboratorComponent implements OnInit, OnDestroy, AfterViewI
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+
     private domSanitizer: DomSanitizer,
     private configSvc: ConfigurationsService,
     private activateRoute: ActivatedRoute,
     private _compiler: Compiler,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false
+    }
     this.scroll()
     this._compiler.clearCache()
     this.subscriptionAbout = this.activateRoute.data.subscribe(data => {
@@ -58,61 +63,36 @@ export class AboutCollaboratorComponent implements OnInit, OnDestroy, AfterViewI
       this.aboutImage = this.configSvc.instanceConfig.banners.aboutBanner
     }
   }
-  ngAfterViewInit(): void {
-
-  }
   scroll() {
     const about = document.getElementById('about') as HTMLElement
     const collaborator = document.getElementById('collaborator') as HTMLElement
     if (window.location.href.includes('about') && about) {
       setTimeout(() => {
         about.scrollIntoView({
-            behavior: 'smooth', block: 'start'
+            behavior: 'smooth',
+            block: 'start',
             })
-      }, 500)
+      },
+       // tslint:disable-next-line:align
+      500,
+      )
       // location.hash = 'views'
       // location.pathname + '#about'
     }
     if (window.location.href.includes('collaborators') && collaborator) {
-      setTimeout(()=>{
+      setTimeout(() => {
         collaborator.scrollIntoView({
              behavior: 'smooth',
-              block: 'start'
+              block: 'start',
                })
-      }, 500)
+      },
+       // tslint:disable-next-line:align
+       500,
+       )
       // location.hash = 'view'
       // location.pathname + '#collaborator'
     }
   }
-  // ngAfterViewChecked() {
-
-  //   if (!this.scrollExecuted) {
-  //     let routeFragmentSubscription: Subscription
-  //     console.log(this.activateRoute.fragment)
-  //     // Automatic scroll
-  //     routeFragmentSubscription =
-  //       this.activatedRoute.fragment
-  //         .subscribe(fragment => {
-  //           console.log(fragment)
-  //           if (fragment) {
-  //             let element = document.getElementById(fragment)
-  //             if (element) {
-  //               element.scrollIntoView()
-  //               this.scrollExecuted = true
-  //               // Free resources
-  //               setTimeout(
-  //                 () => {
-  //                   console.log('routeFragmentSubscription unsubscribe')
-  //                   routeFragmentSubscription.unsubscribe()
-  //                 }, 1000)
-
-  //             }
-  //           }
-  //         })
-  //   }
-
-  // }
-
   ngOnDestroy() {
     if (this.subscriptionAbout) {
       this.subscriptionAbout.unsubscribe()
