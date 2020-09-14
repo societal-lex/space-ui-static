@@ -13,21 +13,25 @@ import { NsDiscussionForum } from '../../ws-discussion-forum.model'
 export class BtnSocialLikeComponent implements OnInit {
   @Input() postId = ''
   @Input() postCreatorId = ''
-  @Input() activity: NsDiscussionForum.IPostActivity | null = null
+  @Input() activity: NsDiscussionForum.IPostActivity = {} as NsDiscussionForum.IPostActivity
   isUpdating = false
   userId = ''
+  userDataForLike: any[] = []
   constructor(
     private configSvc: ConfigurationsService,
     private socialSvc: WsDiscussionForumService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private discussionSvc: WsDiscussionForumService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getWidsForLike()
+  }
 
   updateLike(invalidUserMsg: string) {
     if (this.postCreatorId === this.userId) {
@@ -62,5 +66,15 @@ export class BtnSocialLikeComponent implements OnInit {
     this.dialog.open(DialogSocialActivityUserComponent, {
       data,
     })
+  }
+
+  async getWidsForLike() {
+    if (this.activity.activityDetails) {
+      const wids = this.activity.activityDetails.like
+      if (wids.length) {
+        const userDetails = await this.discussionSvc.getUsersByIDs(wids)
+        this.userDataForLike = this.discussionSvc.addIndexToData(userDetails)
+      }
+    }
   }
 }

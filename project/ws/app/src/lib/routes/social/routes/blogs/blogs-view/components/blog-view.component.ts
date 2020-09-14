@@ -43,6 +43,15 @@ export class BlogViewComponent implements OnInit {
   postCreatorId: string | null = null
   canUserDelete = false
 
+  activityDetails: any = {
+    like: ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+      'b690b9c6-a9de-49dd-94ef-1dffcc7a053c'],
+    upVote: ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+      'b690b9c6-a9de-49dd-94ef-1dffcc7a053c'],
+    downVote: ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+      'b690b9c6-a9de-49dd-94ef-1dffcc7a053c'],
+    flag: [],
+  }
   constructor(
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -63,6 +72,7 @@ export class BlogViewComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // tslint:disable-next-line: deprecation
     combineLatest(this.route.data, this.route.paramMap).subscribe(_combinedResult => {
       // tslint:disable-next-line: max-line-length
@@ -116,6 +126,9 @@ export class BlogViewComponent implements OnInit {
         }
         if (!this.isFirstConversationRequestDone && data && data.mainPost) {
           this.conversation = data
+          // this.getWidsForUserActivity = this.activityDetails //getting the activity details and calling user details api
+          // this.getUserDetails()
+
           if (this.conversation.mainPost.status === NsDiscussionForum.EPostStatus.DRAFT) {
             this.router.navigate(['../', 'edit', this.conversationRequest.postId], {
               relativeTo: this.route,
@@ -131,6 +144,7 @@ export class BlogViewComponent implements OnInit {
             this.conversation.mainPost.postCreator &&
             this.userId === this.conversation.mainPost.postCreator.postCreatorId
           ) {
+
             if (this.allowedToEditBlog) {
               this.canUserEdit = true
             }
@@ -229,4 +243,13 @@ export class BlogViewComponent implements OnInit {
     this.replyEnabled = eventData.isValid
     this.commentText = eventData.htmlText
   }
-}
+
+  // getUserDetails() {
+  //   const wid = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+  //     'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
+
+  //   this.discussionSvc.getUserDetails(wid).then((resp: any[]) => {
+  //         this.userDetailsforupvote = resp
+  //       })
+  // }
+  }

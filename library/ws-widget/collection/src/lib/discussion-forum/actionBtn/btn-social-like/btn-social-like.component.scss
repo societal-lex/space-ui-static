@@ -1,3 +1,7 @@
+ @import 'src/themes/theme-muave.scss';
+
+ $primary: $theme-primary;
+
 .highlight {
   // color: #f48024;
   color: #ffe22a !important;
@@ -12,4 +16,21 @@
 }
 .like-clr {
   color: #ffe22a !important;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

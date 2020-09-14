@@ -1,5 +1,8 @@
 @import 'ws-vars';
 
+ @import 'src/themes/theme-muave.scss';
+
+ $primary: $theme-primary;
 .highlight {
   color: #f48024 !important;
 }
@@ -18,4 +21,66 @@
   &:hover {
     text-decoration: underline;
   }
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  // bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  // transition: opacity 0.3s;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.mat-card-size-qna-up{
+   width: 150px;
+    height: auto;
+    min-height: 130px;
+    margin-left: -160px;
+    margin-right: 10px;
+    margin-top: -26px;
+    border-top: 3px solid  mat-color($primary) !important;
+    border-bottom: 3px solid mat-color($primary) !important;
+}
+
+@media screen and (max-width:1024px){
+.mat-card-size-down{
+    width: 150px;
+    height: auto;
+    min-height: 130px;
+    margin-left: -175px;
+    margin-right: 10px;
+    margin-top: -26px;
+    border-top: 3px solid  mat-color($primary) !important;
+    border-bottom: 3px solid mat-color($primary) !important;
+}
+.mat-card-size-like{
+   width: 150px;
+    height: auto;
+    min-height: 130px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: -26px;
+    border-top: 3px solid  mat-color($primary) !important;
+    border-bottom: 3px solid mat-color($primary) !important;
+}
+.mat-card-size-qna-up{
+   width: 150px;
+    height: auto;
+    min-height: 130px;
+    margin-left: 20px;
+    margin-right: 15px;
+    margin-top: -26px;
+    border-top: 3px solid  mat-color($primary) !important;
+    border-bottom: 3px solid mat-color($primary) !important;
+}
 }

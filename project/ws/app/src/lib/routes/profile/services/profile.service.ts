@@ -14,7 +14,17 @@ const LA_API_END_POINTS = {
   NSO_PROGRESS: `${LA_API}/nsoArtifactsAndCollaborators`,
   SKILL_DATA: `${LA_API}/managerRecommendedSkills`,
 }
-
+interface IResponse {
+  ok: boolean
+  error?: string | null,
+  // DATA?: [NsUserDashboard.IUserListData],
+  DATA?: string,
+  STATUS?: string,
+  MESSAGE: string,
+  ErrorResponseData?: string,
+  API_ID?: string,
+  STATUS_CODE?: number,
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -25,7 +35,7 @@ export class ProfileService {
     }),
   }
   baseUrl = this.configSvc.sitePath
-  constructor(private http: HttpClient, private configSvc: ConfigurationsService) {}
+  constructor(private http: HttpClient, private configSvc: ConfigurationsService) { }
 
   fetchConfigFile(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/feature/profile.json`).pipe()
@@ -61,4 +71,44 @@ export class ProfileService {
       `${LA_API_END_POINTS.USER_ORG_GRAPH}?startdate=${startDate}&enddate=${endDate}`,
     )
   }
+
+  async editProfile(headers: any, params: any): Promise<IResponse> {
+    const responseBodyAsJSON = {
+      wid: params.wid,
+      userFirstName: params.userFirstName,
+      userLastName: params.userLastName,
+      sourceProfilePicture: params.sourceProfilePicture,
+      userProperties: params.userProperties,
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        rootorg: headers.rootOrg,
+        org: headers.org,
+      }),
+    }
+    console.log('responseBodyAsJSON', responseBodyAsJSON)
+    try {
+      // tslint:disable-next-line: prefer-template
+      // tslint:disable-next-line: max-line-length
+      const responseData = await this.http.patch<IResponse>('/usersubmission/user/v1/editprofile', responseBodyAsJSON, httpOptions).toPromise()
+      console.log('responedata', responseData)
+      if (responseData && responseData.STATUS === 'OK') {
+        return Promise.resolve({
+          ok: true,
+          DATA: responseData.DATA,
+          MESSAGE: responseData.MESSAGE,
+        })
+      }
+      return { ok: false, error: responseData.MESSAGE, MESSAGE: responseData.MESSAGE }
+    } catch (ex) {
+      if (ex) {
+        return Promise.resolve({
+          ok: false, error: ex,
+          MESSAGE: 'Something went wrong',
+        })
+      }
+      return Promise.resolve({ ok: false, error: null, MESSAGE: 'Something went wrong' })
+    }
+  }
+
 }

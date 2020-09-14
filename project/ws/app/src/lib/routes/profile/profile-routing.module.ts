@@ -18,6 +18,7 @@ import { LearningTimeComponent } from './routes/learning/components/learning-tim
 import { LearningHistoryResolver } from './routes/learning/resolvers/learning-history.resolver'
 import { LearningTimeResolver } from './routes/learning/resolvers/learning-time.resolver'
 import { SettingsComponent } from './routes/settings/settings.component'
+import { EditProfileComponent } from './routes/edit-profile/edit-profile.component'
 const routes: Routes = [
   {
     path: '',
@@ -34,6 +35,10 @@ const routes: Routes = [
     resolve: {
       pageData: PageResolve,
     },
+  },
+  {
+    path: 'edit-Profile',
+    component: EditProfileComponent,
   },
   {
     path: 'competency',

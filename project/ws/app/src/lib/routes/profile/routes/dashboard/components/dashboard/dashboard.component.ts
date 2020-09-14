@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { NsContent, NsContentStripMultiple, ROOT_WIDGET_CONFIG } from '@ws-widget/collection'
 import { NsWidgetResolver } from '@ws-widget/resolver'
 import { ConfigurationsService, TFetchStatus } from '@ws-widget/utils'
@@ -101,6 +101,7 @@ export class DashboardComponent implements OnInit {
     private learnHstSvc: LearningHistoryService,
     private interestSvc: InterestService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     if (this.configSvc.userProfile) {
       this.userName = this.configSvc.userProfile.givenName || ''
@@ -192,4 +193,9 @@ export class DashboardComponent implements OnInit {
       })
     }
   }
+  // new changes in edit-profile
+  edituserdetails() {
+    this.router.navigate(['/app/profile/edit-Profile'])
+  }
+
 }
