@@ -78,7 +78,6 @@ export class InitService {
     // Register pin icon for use in Knowledge Board
     // Usage: <mat-icon svgIcon="pin"></mat-icon>
 
-
     iconRegistry.addSvgIcon(
       'pin',
       domSanitizer.bypassSecurityTrustResourceUrl('fusion-assets/icons/pin.svg'),

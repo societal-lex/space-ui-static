@@ -86,12 +86,10 @@ export class ProfileService {
         org: headers.org,
       }),
     }
-    console.log('responseBodyAsJSON', responseBodyAsJSON)
     try {
       // tslint:disable-next-line: prefer-template
       // tslint:disable-next-line: max-line-length
       const responseData = await this.http.patch<IResponse>('/usersubmission/user/v1/editprofile', responseBodyAsJSON, httpOptions).toPromise()
-      console.log('responedata', responseData)
       if (responseData && responseData.STATUS === 'OK') {
         return Promise.resolve({
           ok: true,

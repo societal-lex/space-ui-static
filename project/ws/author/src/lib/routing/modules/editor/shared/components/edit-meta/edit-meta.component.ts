@@ -907,7 +907,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           this.loader.changeLoad.next(true)
           this.uploadService
             .upload(formdata, {
-              contentId: "name",
+              contentId: 'name',
               contentType: CONTENT_BASE_STATIC,
             })
             .subscribe(
