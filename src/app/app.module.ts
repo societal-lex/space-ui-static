@@ -116,7 +116,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     DataprivacyComponent,
     ContentpolicyandcommunicationComponent,
     AboutCollaboratorComponent,
-    TourVideoComponent
+    TourVideoComponent,
 
   ],
   imports: [

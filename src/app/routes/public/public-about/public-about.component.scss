@@ -42,6 +42,11 @@ background-size: cover;
    top:24vh;
    right:52vh;
 
+  //  left: 8.33%;
+// right: 8.33%;
+// top: 8.33%;
+// bottom: 8.33%;
+
     opacity: 1;
   // opacity: 0.9;
 }
@@ -61,12 +66,16 @@ background-size: cover;
     // margin-left: -138px !important;
     // margin-top: 90px;
     top:15vh;
-   right:24vh;
+   right:29vh;
     opacity: 1;
   // opacity: 0.9;
 }
 .imagesize{
   width: 47px;
+}
+.img{
+  top:1vh;
+  right: 14vh;
 }
 }
 // 375 screen size

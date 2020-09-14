@@ -248,7 +248,7 @@ export class PlayerVideoComponent extends WidgetBaseComponent
     })
   }
   async fetchContent() {
-    debugger
+
     const content = await this.contentSvc
       .fetchContent(this.widgetData.identifier || '', 'minimal')
       .toPromise()
