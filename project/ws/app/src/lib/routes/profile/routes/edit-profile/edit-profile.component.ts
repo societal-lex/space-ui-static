@@ -85,7 +85,6 @@ export class EditProfileComponent implements OnInit {
     this.paramsForEditProfile.wid = this.userProfile.userId
     this.paramsForEditProfile.userFirstName = this.profileForm.value.givenName
     this.paramsForEditProfile.userLastName = this.profileForm.value.lastname
-    console.log('thiurl', this.url)
     this.paramsForEditProfile.sourceProfilePicture = this.url
     this.userPropertiesData.bio = this.profileForm.value.bio
     this.userPropertiesData.profileLink = this.profileForm.value.profileLink
