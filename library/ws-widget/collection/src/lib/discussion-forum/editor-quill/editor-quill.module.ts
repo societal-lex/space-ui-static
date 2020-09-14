@@ -23,6 +23,7 @@ const SUPPORTED_FORMATS = [
   'align',
   'direction',
   'code-block',
+  'mention',
 ]
 
 @NgModule({

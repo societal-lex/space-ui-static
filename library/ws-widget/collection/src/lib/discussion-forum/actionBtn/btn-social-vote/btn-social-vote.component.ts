@@ -20,7 +20,16 @@ export class BtnSocialVoteComponent implements OnInit {
   @ViewChild('invalidUser', { static: true }) invalidUser!: ElementRef<
     any
   >
+  @Input()
+  userWids: any
+  @Input()
+  userWidsForUpvote: any
+  userForUpvote: any[] = []
 
+  changeText: boolean
+  userDetailsForUpVote: any[] = []
+  userForDownVote: any[] = []
+  userDetailsForDownVote: any[] = []
   userId = ''
   isUpdating = false
   constructor(
@@ -28,13 +37,18 @@ export class BtnSocialVoteComponent implements OnInit {
     private socialSvc: WsDiscussionForumService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private discussionSvc: WsDiscussionForumService,
   ) {
+    this.changeText = false
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getWidsForVote()
+
+  }
 
   upVote(invalidUserMsg: string) {
     if (this.postCreatorId === this.userId) {
@@ -113,4 +127,27 @@ export class BtnSocialVoteComponent implements OnInit {
       data,
     })
   }
+  async getWidsForVote() {
+    if (this.activity) {
+      // filter for upvote
+            //  if (this.activity.activityDetails) {
+      // const wids = this.activity.activityDetails.upVote}
+      const wids = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1',
+        'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
+      const userDetails = await this.discussionSvc.getUsersByIDs(wids)
+      this.userForUpvote = this.discussionSvc.addIndexToData(userDetails)
+
+      // filter for downvote
+                  //  if (this.activity.activityDetails) {
+      // const wids = this.activity.activityDetails.downVote}
+      const widsForDownVote = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+        'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
+      const userDetailsforDownVote = await this.discussionSvc.getUsersByIDs(widsForDownVote)
+      this.userForDownVote = this.discussionSvc.addIndexToData(userDetailsforDownVote)
+    }
+  }
+
+  // isEnabled() {
+  //   this.isEnabledForDisplay = true;
+  // }
 }

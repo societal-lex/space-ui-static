@@ -1,23 +1,22 @@
 <ng-container *ngIf="voteType === 'upVote'">
   <ng-container *ngIf="iconType === 'thumbs'">
     <mat-card class="mat-card-size-up" *ngIf="userList?.length">
-      <div class="scrollable">
-        <div *ngFor="let user of userList;let i = index" class="flex-p">
-          <p class="name  ws-mat-primary-text "> {{user.full_name}}</p>
+      <div *ngFor="let user of userList;let i = index" class="flex-p">
+        <p class="name  ws-mat-primary-text "> {{user.full_name}}</p>
+        <div class="p-width">
           <p class="department">{{user.department_name}}</p>
           <hr *ngIf="i<userList.length-1" class="dashed-border">
         </div>
+
       </div>
     </mat-card>
   </ng-container>
   <ng-container *ngIf="iconType === 'triangle'">
-    <mat-card class="mat-card-size-qna-up" *ngIf="userList?.length">
-      <div class="scrollable">
-        <div *ngFor="let user of userList;let i = index" class="flex-p">
-          <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
-          <p class="department">{{user.department_name}}</p>
-          <hr *ngIf="i<userList.length-1" class="dashed-border">
-        </div>
+    <mat-card class="mat-card-size-up" *ngIf="userList?.length">
+      <div *ngFor="let user of userList;let i = index" class="flex-p">
+        <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
+        <p class="department ellipses">{{user.department_name}}</p>
+        <hr *ngIf="i<userList.length-1" class="dashed-border">
       </div>
     </mat-card>
   </ng-container>
@@ -26,9 +25,9 @@
 <ng-container *ngIf="voteType === 'downVote'">
   <ng-container *ngIf="iconType === 'thumbs'">
     <mat-card class="mat-card-size-down" *ngIf="userListDownVote?.length">
-      <div class="scrollable">
-        <div *ngFor="let user of userListDownVote;let i = index" class="flex-p">
-          <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
+      <div *ngFor="let user of userListDownVote;let i = index" class="flex-p">
+        <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
+        <div class="p-width">
           <p class="department">{{user.department_name}}</p>
           <hr *ngIf="i<userListDownVote.length-1" class="dashed-border">
         </div>
@@ -36,13 +35,11 @@
     </mat-card>
   </ng-container>
   <ng-container *ngIf="iconType === 'triangle'">
-    <mat-card class="mat-card-size-like" *ngIf="userListDownVote?.length">
-      <div class="scrollable">
-        <div *ngFor="let user of userListDownVote;let i = index" class="flex-p">
-          <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
-          <p class="department">{{user.department_name}}</p>
-          <hr *ngIf="i<userListDownVote.length-1" class="dashed-border">
-        </div>
+    <mat-card class="mat-card-size-down" *ngIf="userListDownVote?.length">
+      <div *ngFor="let user of userListDownVote;let i = index" class="flex-p">
+        <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
+        <div class="department ellipses">{{user.department_name}}</div>
+        <hr *ngIf="i<userListDownVote.length-1" class="dashed-border">
       </div>
     </mat-card>
   </ng-container>
@@ -51,9 +48,9 @@
 
 <ng-container *ngIf="userLike?.length">
   <mat-card class="mat-card-size-like">
-    <div class="scrollable">
-      <div *ngFor="let user of userLike;let i = index" class="flex-p">
-        <p class="name  ws-mat-primary-text"> {{user.full_name}}</p>
+    <div *ngFor="let user of userLike;let i = index" class="flex-p">
+      <p class="name ws-mat-primary-text"> {{user.full_name}}</p>
+      <div class="p-width">
         <p class="department">{{user.department_name}}</p>
         <hr *ngIf="i<userLike.length-1" class="dashed-border">
       </div>

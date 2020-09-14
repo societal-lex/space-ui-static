@@ -13,21 +13,25 @@ import { NsDiscussionForum } from '../../ws-discussion-forum.model'
 export class BtnSocialLikeComponent implements OnInit {
   @Input() postId = ''
   @Input() postCreatorId = ''
-  @Input() activity: NsDiscussionForum.IPostActivity | null = null
+  @Input() activity: NsDiscussionForum.IPostActivity = {} as NsDiscussionForum.IPostActivity
   isUpdating = false
   userId = ''
+  userDataForLike: any[] = []
   constructor(
     private configSvc: ConfigurationsService,
     private socialSvc: WsDiscussionForumService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private discussionSvc: WsDiscussionForumService,
   ) {
     if (this.configSvc.userProfile) {
       this.userId = this.configSvc.userProfile.userId || ''
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getWidsForLike()
+  }
 
   updateLike(invalidUserMsg: string) {
     if (this.postCreatorId === this.userId) {
@@ -62,5 +66,17 @@ export class BtnSocialLikeComponent implements OnInit {
     this.dialog.open(DialogSocialActivityUserComponent, {
       data,
     })
+  }
+
+  async getWidsForLike() {
+    if (this.activity) {
+      // filter for Like
+      //  if (this.activity.activityDetails) {
+      // const wids = this.activity.activityDetails.like
+      const wids = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+        'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
+      const userDetails = await this.discussionSvc.getUsersByIDs(wids)
+      this.userDataForLike = this.discussionSvc.addIndexToData(userDetails)
+    }
   }
 }

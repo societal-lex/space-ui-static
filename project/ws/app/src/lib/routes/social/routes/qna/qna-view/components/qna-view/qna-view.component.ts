@@ -80,7 +80,9 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   userId = ''
   showSocialLike = false
   isValidForUserAnswer = false
+
   @ViewChild('editor', { static: true }) editorQuill!: EditorQuillComponent
+  userDetails: any[] = []
   isXSmall$ = this.valueSvc.isXSmall$
   pageNavbar: Partial<NsPage.INavBackground> = this.configSvc.pageNavBar
   constructor(
@@ -112,6 +114,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initData()
+    // this.getUserDetails()
     this.showSocialLike = (this.configSvc.restrictedFeatures && !this.configSvc.restrictedFeatures.has('socialLike')) || false
 
   }
@@ -125,7 +128,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.activatedRoute.data.subscribe((response: Data) => {
       if (response.socialData.error) {
         this.allowedToEdit = false
-      // tslint:disable-next-line: max-line-length
+        // tslint:disable-next-line: max-line-length
       } else if (this.forumSrvc.isVisibileAccToRoles(response.socialData.data.rolesAllowed.QnA, response.socialData.data.rolesNotAllowed.QnA)) {
         this.allowedToEdit = true
         this.allowedToComment = true
@@ -325,5 +328,11 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     this.replyAddRequest.postContent.body = event.htmlText || ''
     this.isValidForUserAnswer = event.isValid
   }
+  // retrieve the user data from api
+  // getUserDetails() {
+  //   this.discussionSvc.getUserDetails(this.widUser).then(resp => {
+  //     this.userDetails = resp
+  //   })
+  // }
 
 }

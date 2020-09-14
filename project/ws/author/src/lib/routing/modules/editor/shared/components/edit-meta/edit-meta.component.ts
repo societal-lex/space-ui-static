@@ -891,7 +891,6 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
         imageFileName: fileName,
       },
     })
-
     dialogRef.afterClosed().subscribe({
       next: (result: File) => {
         if (result) {
@@ -899,7 +898,7 @@ export class EditMetaComponent implements OnInit, OnDestroy, AfterViewInit {
           this.loader.changeLoad.next(true)
           this.uploadService
             .upload(formdata, {
-              contentId: this.contentMeta.identifier,
+              contentId: "name",
               contentType: CONTENT_BASE_STATIC,
             })
             .subscribe(

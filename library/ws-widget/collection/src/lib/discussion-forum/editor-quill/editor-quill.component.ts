@@ -3,6 +3,7 @@ import 'quill-mention'
 import { NsUserDashboard } from '../../../../../../../project/ws/app/src/lib/routes/user-dashboard/models/user-dashboard.model'
 import { ConfigurationsService } from '../../../../../utils/src/public-api'
 import { WsDiscussionForumService } from '../ws-discussion-forum.services'
+import { ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'ws-widget-editor-quill',
   templateUrl: './editor-quill.component.html',
@@ -36,17 +37,13 @@ export class EditorQuillComponent implements OnInit {
     mention: {
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
       mentionDenotationChars: ['@', '#'],
+
       source: (searchTerm: string, renderList: (arg0: { id: number; value: string }[], arg1: any) => void, mentionChar: string) => {
         let values
-
         if (mentionChar === '@') {
           this.getAllUsers()
-
-          values = this.userDataInJsonFormat
-        } else {
           values = this.userDataInJsonFormat
         }
-
         if (searchTerm.length === 0) {
           renderList(values, searchTerm)
         } else {
@@ -63,6 +60,7 @@ export class EditorQuillComponent implements OnInit {
   }
 
   constructor(private configSvc: ConfigurationsService,
+              private activateRoute: ActivatedRoute,
               private discussionForumService: WsDiscussionForumService) {
     const instanceConfig = this.configSvc.userProfile
     if (instanceConfig) {
@@ -74,16 +72,15 @@ export class EditorQuillComponent implements OnInit {
     if (this.post) {
       this.placeholder = 'Add a post ...'
     }
-    // this.activateRoute.data.subscribe(data => {
-    //   if (data) {
-    //     console.log("data", data)
-    //     this.userDashboardData = data.pageData.data
-    //     this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
-    //   this.getRootOrg = data.pageData.data.root_org,
-    //     this.getOrg = data.pageData.data.org
-    //   }
-    // })
 
+    this.activateRoute.data.subscribe(data => {
+      if (data) {
+        this.userDashboardData = data.socialData.data.userListData
+        this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
+        this.getRootOrg = data.socialData.data.userListData.root_org,
+          this.getOrg = data.socialData.data.userListData.org
+      }
+    })
   }
 
   onContentChanged(editorEvent: any) {
@@ -102,8 +99,8 @@ export class EditorQuillComponent implements OnInit {
   }
 
   async getAllUsers() {
-    this.headersForAllUsers.rootOrg = 'space'
-    this.headersForAllUsers.org = 'space'
+    this.headersForAllUsers.rootOrg = this.getRootOrg
+    this.headersForAllUsers.org = this.getOrg
     this.headersForAllUsers.wid_OrgAdmin = this.widLoggedinUser
     const userListResponse = await this.discussionForumService.getAllUsers(this.headersForAllUsers)
     if (userListResponse.ok) {
@@ -111,7 +108,9 @@ export class EditorQuillComponent implements OnInit {
         this.userListData = userListResponse.DATA
         this.userListJson(this.userListData)
       }
+      return this.errorOnLoading()
     }
+    return this.errorOnLoading()
   }
 
   userListJson(userList: NsUserDashboard.IUserListDataFromUserTable[] = []) {
@@ -120,10 +119,19 @@ export class EditorQuillComponent implements OnInit {
     // tslint:disable-next-line: no-increment-decrement
     for (let i = 0; i < userList.length; i++) {
       // tslint:disable-next-line: prefer-template
-      const fullname = userList[i].first_name + ' '  + userList[i].last_name
+      // const fullname = this.discussionForumService.getFullName({ user: userList[] })
+      // tslint:disable-next-line: prefer-template
+      const fullname = userList[i].first_name + ' ' + userList[i].last_name
       // tslint:disable-next-line: object-literal-key-quotes
       obj.push({ 'id': i, 'value': fullname })
     }
     this.userDataInJsonFormat = obj
+    return this.userDataInJsonFormat
+  }
+
+  errorOnLoading() {
+    const errorObj = []
+    errorObj.push({ id: -1, value: 'Could not fetch user data' })
+    return errorObj
   }
 }

@@ -1,3 +1,7 @@
+ @import 'src/themes/theme-muave.scss';
+
+ $primary: $theme-primary;
+
 .highlight {
   // color: #f48024;
   color: #ffe22a !important;
@@ -13,3 +17,44 @@
 .like-clr {
   color: #ffe22a !important;
 }
+.tooltip {
+  position: relative;
+  display: inline-block;
+  // border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+
+//  width: 150px;
+//  height: auto;
+//  min-height: 130px;
+
+  visibility: hidden;
+  // width: 120px;
+  // background-color: #555;
+  // color: #fff;
+  // text-align: center;
+  // border-radius: 6px;
+  // padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  // bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  // transition: opacity 0.3s;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+// button span.only-show-on-hover {
+//   // visibility: hidden;
+//   // display:none;
+//       visibility: visible;
+//     display: block;
+// }
+// button span.only-show-on-hover  {
+//     visibility: visible;
+//     display: block;
+// }

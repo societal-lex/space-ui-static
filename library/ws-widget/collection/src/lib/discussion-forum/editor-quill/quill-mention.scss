@@ -18,6 +18,12 @@
   overflow:auto;
 }
 
+.ql-snow .ql-editor pre.ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: visible;
+     border:10px solid black;
+}
 .ql-mention-list-item {
     cursor: pointer;
     height: 40px;
@@ -32,15 +38,14 @@
   color:white;
   text-decoration: none;
 }
-
 .mention {
   height: 24px;
   width: 65px;
   border-radius: 6px;
-  background-color: mat-color($primary) !important;
+  background-color:  mat-color($primary) !important;
+  color:white;
   padding: 3px 0;
 }
-
 .mention>span {
   margin: 0 3px;
 }

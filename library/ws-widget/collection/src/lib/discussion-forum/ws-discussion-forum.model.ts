@@ -58,6 +58,12 @@ export namespace NsDiscussionForum {
       downVote: boolean
       flag: boolean
     }
+    activityDetails?: {
+      like: string[],
+      upVote: string[],
+      downVote: string[],
+      flag: string[]
+    }
   }
   export interface IPostActivityUpdateRequest {
     id: string
