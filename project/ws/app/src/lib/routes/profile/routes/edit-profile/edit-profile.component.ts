@@ -26,8 +26,8 @@ export class EditProfileComponent implements OnInit {
   paramsForEditProfile: NsEditProfile.IResponseBody = {} as NsEditProfile.IResponseBody
   headersForEditProfile: any = {} as any
   constructor(private initService: InitService,
-    private profileSvc: ProfileService,
-    public snackBar: MatSnackBar) { }
+              private profileSvc: ProfileService,
+              public snackBar: MatSnackBar) { }
   url = ''
   profileForm: FormGroup = new FormGroup({
     givenName: new FormControl(''),
