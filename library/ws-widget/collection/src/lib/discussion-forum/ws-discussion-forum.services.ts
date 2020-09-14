@@ -114,7 +114,7 @@ export class WsDiscussionForumService {
         return {
           index: idx + 1,
           ...item,
-          full_name: this.getFullName({ user : item }),
+          full_name: this.getFullName({ user: item }),
         }
       })
     }
@@ -162,57 +162,4 @@ export class WsDiscussionForumService {
       return []
     }
   }
-
-  // getUserDetails(widUser: any): any {
-  //   // let data: any[] = []
-  //     const userData = this.getUsersByIDs(widUser)
-  //   userData.subscribe(resp => {
-  //     return this.addIndexToData(resp)
-  //   })
-  // //  const data =  userData.subscribe(resp => {
-  // //    return resp
-  // //   })
-  // //   console.log("addIndexToData", this.addIndexToData(data))
-  // //   return this.addIndexToData(userData)
-  // }
-
-  // addIndexToData(objects: any) {
-  //   if (Array.isArray(objects)) {
-  //     return objects.map((item, idx) => {
-  //       return {
-  //         index: idx + 1,
-  //         ...item,
-  //         full_name: this.getFullName({ user: item }),
-  //       }
-  //     })
-  //   }
-  //   return []
-  // }
-
-  // getFullName(userObj: any) {
-  //   const finalName = []
-  //   if (userObj.user.first_name) {
-  //     finalName.push(userObj.user.first_name)
-  //   }
-  //   if (userObj.user.middle_name) {
-  //     finalName.push(userObj.user.middle_name)
-  //   }
-  //   if (userObj.user.last_name) {
-  //     finalName.push(userObj.user.last_name)
-  //   }
-  //   return finalName.join(' ')
-  // }
-  // //get all the data from  api
-  // getUsersByIDs(widUser: any): Observable<any> {
-  //   try {
-  //     // tslint:disable-next-line: prefer-template
-  //     const eventRelatedEndpoint = API_END_POINTS.SOCIAL_POST_WID_USER
-  //     const reqBody = {
-  //       wid: [...widUser],
-  //     }
-  //     return this.http.post(eventRelatedEndpoint, reqBody)
-  //   } catch (ex) {
-  //     return of([])
-  //   }
-  // }
 }

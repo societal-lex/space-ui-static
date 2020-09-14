@@ -15,7 +15,7 @@ export class BtnSocialVoteComponent implements OnInit {
   @Input() iconType: 'thumbs' | 'triangle' = 'thumbs'
   @Input() postId = ''
   @Input() postCreatorId = ''
-  @Input() activity: NsDiscussionForum.IPostActivity | null = null
+  @Input() activity: NsDiscussionForum.IPostActivity = {} as NsDiscussionForum.IPostActivity
   @Input() isDisabled = false
   @ViewChild('invalidUser', { static: true }) invalidUser!: ElementRef<
     any
@@ -128,22 +128,25 @@ export class BtnSocialVoteComponent implements OnInit {
     })
   }
   async getWidsForVote() {
-    if (this.activity) {
+    if (this.activity.activityDetails) {
       // filter for upvote
-            //  if (this.activity.activityDetails) {
-      // const wids = this.activity.activityDetails.upVote}
-      const wids = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1',
-        'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
-      const userDetails = await this.discussionSvc.getUsersByIDs(wids)
-      this.userForUpvote = this.discussionSvc.addIndexToData(userDetails)
-
+      //  if (this.activity.activityDetails) {
+      const wids = this.activity.activityDetails.upVote
+      // const wids = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1',
+      //   'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
+      if (wids.length) {
+        const userDetails = await this.discussionSvc.getUsersByIDs(wids)
+        this.userForUpvote = this.discussionSvc.addIndexToData(userDetails)
+      }
       // filter for downvote
-                  //  if (this.activity.activityDetails) {
-      // const wids = this.activity.activityDetails.downVote}
-      const widsForDownVote = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
-        'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
-      const userDetailsforDownVote = await this.discussionSvc.getUsersByIDs(widsForDownVote)
-      this.userForDownVote = this.discussionSvc.addIndexToData(userDetailsforDownVote)
+      //  if (this.activity.activityDetails) {
+      const widsForDownVote = this.activity.activityDetails.downVote
+      // const widsForDownVote = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
+      //   'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
+      if (widsForDownVote.length) {
+        const userDetailsforDownVote = await this.discussionSvc.getUsersByIDs(widsForDownVote)
+        this.userForDownVote = this.discussionSvc.addIndexToData(userDetailsforDownVote)
+      }
     }
   }
 

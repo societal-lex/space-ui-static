@@ -17,9 +17,15 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/favicon.png", "src/fusion-assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/favicon.png",
+              "src/fusion-assets"
+            ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             },
             "styles": [
               {
@@ -80,7 +86,9 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/fusion-assets/telemetry.min.js",
-              "node_modules/shepherd.js/dist/js/shepherd.min.js"
+              "node_modules/shepherd.js/dist/js/shepherd.min.js",
+              "node_modules/quill/dist/quill.min.js",
+              "node_modules/quill-mention/dist/quill.mention.min.js"
             ]
           },
           "configurations": {
@@ -140,16 +148,27 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/fusion-assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/fusion-assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -194,7 +213,9 @@
               "library/ws-widget/resolver/tsconfig.lib.json",
               "library/ws-widget/resolver/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -227,7 +248,9 @@
               "library/ws-widget/collection/tsconfig.lib.json",
               "library/ws-widget/collection/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -260,7 +283,9 @@
               "library/ws-widget/utils/tsconfig.lib.json",
               "library/ws-widget/utils/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -289,8 +314,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["project/ws/app/tsconfig.lib.json", "project/ws/app/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "project/ws/app/tsconfig.lib.json",
+              "project/ws/app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -323,7 +353,9 @@
               "project/ws/author/tsconfig.lib.json",
               "project/ws/author/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -356,7 +388,9 @@
               "project/ws/admin/tsconfig.lib.json",
               "project/ws/admin/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -389,7 +423,9 @@
               "project/ws/analytics/tsconfig.lib.json",
               "project/ws/analytics/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -422,7 +458,9 @@
               "project/ws/viewer/tsconfig.lib.json",
               "project/ws/viewer/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { DisplayUsersSocialVoteComponent } from './display-users-social-vote.component'
-import { MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card'
 
 @NgModule({
   declarations: [DisplayUsersSocialVoteComponent],

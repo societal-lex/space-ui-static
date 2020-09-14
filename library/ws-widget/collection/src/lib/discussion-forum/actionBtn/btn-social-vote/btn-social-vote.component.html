@@ -1,55 +1,33 @@
 <ng-container *ngIf="postId">
   <ng-container *ngIf="voteType === 'downVote'">
-    <div class="tooltip">
-    <button name="discussion-forum-downvote-button" *ngIf="iconType === 'thumbs'" [disabled]="isUpdating || isDisabled"
-      (click)="downVote(invalidUser.value)" type="button" mat-icon-button matTooltipPosition="above" i18n-aria-label
-      aria-label="down vote" i18n-matTooltip matTooltip="Down vote"
-      [ngClass]="{ highlight: activity.userActivity.downVote }">
-      <mat-icon [matBadgeHidden]="!activity?.activityData.downVote" [matBadge]="activity?.activityData.downVote"
-        matBadgeSize="small" matBadgeColor="accent">thumb_down</mat-icon>
-
-      <span class="tooltiptext">
-        <ws-widget-display-users-social-vote [userListDownVote]="userForDownVote" [iconType]="iconType"
-          [voteType]="voteType">
-        </ws-widget-display-users-social-vote>
-      </span>
-    </button>
-    </div>
-
-
-    <!-- <mat-icon *ngIf="iconType === 'triangle'" class="vote-triangle" role="button" (click)="downVote(invalidUser.value)"
-      [ngClass]="{ highlight: activity.userActivity.downVote }">arrow_drop_down</mat-icon> -->
-
-    <!--new changes to display te userlist-->
-    <!-- <ng-container *ngIf="iconType === 'triangle'">
-      <p>
-        <mat-icon class="vote-triangle" role="button"  matTooltip="UP vote" (click)="downVote(invalidUser.value)"
-          [ngClass]="{ highlight: activity.userActivity.downVote }">arrow_drop_down</mat-icon>
-        <span class="only-show-on-hover-qna">
+    <ng-container *ngIf="iconType === 'thumbs'">
+      <div class="tooltip">
+        <button name="discussion-forum-downvote-button" [disabled]="isUpdating || isDisabled"
+          (click)="downVote(invalidUser.value)" type="button" mat-icon-button matTooltipPosition="above" i18n-aria-label
+          aria-label="down vote" i18n-matTooltip matTooltip="Down vote"
+          [ngClass]="{ highlight: activity.userActivity.downVote }">
+          <mat-icon [matBadgeHidden]="!activity?.activityData.downVote" [matBadge]="activity?.activityData.downVote"
+            matBadgeSize="small" matBadgeColor="accent">thumb_down</mat-icon>
+        </button>
+        <span class="tooltiptext">
           <ws-widget-display-users-social-vote [userListDownVote]="userForDownVote" [iconType]="iconType"
             [voteType]="voteType">
           </ws-widget-display-users-social-vote>
         </span>
-      </p>
-    </ng-container> -->
-
+      </div>
+    </ng-container>
     <ng-container *ngIf="iconType === 'triangle'">
       <div class="tooltip">
         <mat-icon class="vote-triangle" role="button" matTooltip="Down vote" matTooltipPosition="right"
           (click)="downVote(invalidUser.value)" [ngClass]="{ highlight: activity.userActivity.downVote }">
           arrow_drop_down</mat-icon>
         <span class="tooltiptext">
-          <ws-widget-display-users-social-vote  [userListDownVote]="userForDownVote"
+          <ws-widget-display-users-social-vote class="mat-card-size-qna-up" [userListDownVote]="userForDownVote"
             [iconType]="iconType" [voteType]="voteType">
           </ws-widget-display-users-social-vote>
         </span>
       </div>
     </ng-container>
-
-
-
-
-
     <!-- <span
       role="button"
       *ngIf="activity?.activityData.downVote && iconType === 'thumbs'"
@@ -62,34 +40,32 @@
     <!-- matTooltip="Up vote" is removed from button of upvote-->
   </ng-container>
   <ng-container *ngIf="voteType === 'upVote'">
-<div class="tooltip">
-    <!-- <span class="only-show-on-hover">
+    <ng-container *ngIf="iconType === 'thumbs'">
+      <div class="tooltip">
+        <button name="discussion-forum-upvote-button" [disabled]="isUpdating || isDisabled"
+          (click)="upVote(invalidUser.value)" matTooltip="Up vote" matTooltipPosition="above" type="button"
+          mat-icon-button i18n-aria-label aria-label="Up vote" i18n-matTooltip
+          [ngClass]="{ highlight: activity.userActivity.upVote }">
+          <mat-icon [matBadgeHidden]="!activity?.activityData.upVote" [matBadge]="activity?.activityData.upVote"
+            matBadgeColor="accent" matBadgeSize="small">thumb_up</mat-icon>
+
+        </button>
+        <span class="tooltiptext">
           <ws-widget-display-users-social-vote [userList]="userForUpvote" [iconType]="iconType" [voteType]="voteType">
           </ws-widget-display-users-social-vote>
-        </span> -->
-    <button name="discussion-forum-upvote-button" *ngIf="iconType === 'thumbs'" [disabled]="isUpdating || isDisabled"
-      (click)="upVote(invalidUser.value)" matTooltip="Up vote" matTooltipPosition="above" type="button" mat-icon-button
-      i18n-aria-label aria-label="Up vote" i18n-matTooltip [ngClass]="{ highlight: activity.userActivity.upVote }">
-      <mat-icon [matBadgeHidden]="!activity?.activityData.upVote" [matBadge]="activity?.activityData.upVote"
-        matBadgeColor="accent" matBadgeSize="small">thumb_up</mat-icon>
-      <span class="tooltiptext">
-        <ws-widget-display-users-social-vote [userList]="userForUpvote" [iconType]="iconType" [voteType]="voteType">
-        </ws-widget-display-users-social-vote>
-      </span>
-    </button>
-    </div>
+        </span>
+      </div>
+    </ng-container>
     <ng-container *ngIf="iconType === 'triangle'">
       <div class="tooltip">
-        <div>
         <mat-icon class="vote-triangle" matTooltip="up vote" matTooltipPosition="right" role="button" i18n-matTooltip
           (click)="upVote(invalidUser.value)" [ngClass]="{ highlight: activity.userActivity.upVote }">arrow_drop_up
         </mat-icon>
         <span class="tooltiptext">
-          <ws-widget-display-users-social-vote  [userList]="userForUpvote"
+          <ws-widget-display-users-social-vote class="mat-card-size-qna-up" [userList]="userForUpvote"
             [iconType]="iconType" [voteType]="voteType">
           </ws-widget-display-users-social-vote>
         </span>
-        </div>
       </div>
     </ng-container>
     <!-- <span

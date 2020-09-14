@@ -69,14 +69,12 @@ export class BtnSocialLikeComponent implements OnInit {
   }
 
   async getWidsForLike() {
-    if (this.activity) {
-      // filter for Like
-      //  if (this.activity.activityDetails) {
-      // const wids = this.activity.activityDetails.like
-      const wids = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
-        'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
-      const userDetails = await this.discussionSvc.getUsersByIDs(wids)
-      this.userDataForLike = this.discussionSvc.addIndexToData(userDetails)
+    if (this.activity.activityDetails) {
+      const wids = this.activity.activityDetails.like
+      if (wids.length) {
+        const userDetails = await this.discussionSvc.getUsersByIDs(wids)
+        this.userDataForLike = this.discussionSvc.addIndexToData(userDetails)
+      }
     }
   }
 }

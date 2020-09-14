@@ -21,18 +21,10 @@ export class DisplayUsersSocialVoteComponent implements OnInit {
   @Input()
   userDetailsForDownVote: any
 
-  // getWidsForLike: string[] = []
-  // getWidsForUpvote: string[] = []
-  // getWidsForDownvote: string[] = []
   userListForUpvote: any
   constructor() { }
 
   ngOnInit() {
-    // console.log("userlist", this.userList)
-    // if(this.userList){
-    //   this.getWidsForUpvote = this.userList.
-    // }
-
   }
 
 }
