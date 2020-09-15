@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { AboutCollaboratorComponent } from './about-collaborator.component'
+// import { AboutCollaboratorComponent } from './about-collaborator.component'
 import {
   MatToolbarModule,
   MatDividerModule,
