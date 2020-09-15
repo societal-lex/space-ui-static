@@ -10,20 +10,20 @@
   width: 99%;
   // opacity: 0.9;
    @include breakpoint-xs {
-     height: 10rem !important;
-     width: 9rem !important;
-     margin-left: -10rem;
+       height: 10rem !important;
+    width: 14rem !important;
+    margin-left: -12rem;
     margin-top: 2rem;
    }
    @include breakpoint-s {
-     height: 24rem !important;
+     height: 17rem !important;
    }
    @include breakpoint-xl {
     height: 30rem !important;
      width: 625px !important;
    }
    @include breakpoint-xll {
-     width: 65% !important;
+     width: 99% !important;
    }
 }
 .text-section {
@@ -159,12 +159,27 @@ word-break: break-word;
     width: 28rem !important;
   }
 }
-   @media only screen and (max-width: 310px) {
+   @media only screen and (max-width: 320px) {
+     .img {
+      margin-left: -14rem !important;
+     }
     .text-wrap {
     width: 12rem !important;
   }
 }
 
+@media screen and (min-width: 1399px) and (max-width: 1420px) {
+  .img {
+    width: 99% !important;
+    height: 30rem !important;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1024px) {
+  .img {
+    // width: %;
+    height: 24rem !important;
+  }
+}
 @media screen and (min-width: 520px) and (max-width: 570px) {
   .img {
    padding-left: -4rem !important;
@@ -175,7 +190,7 @@ word-break: break-word;
 }
 @media screen and (min-width: 635px) and (max-width: 670px) {
   .img {
-    height: 16rem !important;
+    height: 15rem !important;
   }
   .text-wrap {
     width: 16rem !important;
