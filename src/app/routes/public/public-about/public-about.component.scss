@@ -785,7 +785,7 @@
        height: 10rem !important;
     width: 14rem !important;
     margin-left: -12rem;
-    margin-top: 2rem;
+    margin-top: -2rem;
    }
    @include breakpoint-s {
      height: 17rem !important;
@@ -967,6 +967,10 @@ word-break: break-word;
   .text-wrap {
     width: 16rem !important;
   }
+}
+
+.mt-20 {
+    margin-top: 10rem;
 }
 /* about page design end */
 
