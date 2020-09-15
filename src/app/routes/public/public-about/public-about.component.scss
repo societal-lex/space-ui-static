@@ -28,6 +28,11 @@
    @include breakpoint-xll {
      width: 65% !important;
    }
+    @include breakpoint-xxs{
+  top:1vh;
+  right: 10vh;
+    }
+
 }
 
 
@@ -49,13 +54,40 @@ background-size: cover;
 
     opacity: 1;
   // opacity: 0.9;
+
+   @include breakpoint-xxs{
+     top:15vh;
+   right:24vh;
+
+ }
+ @include breakpoint-xs{
+      top:13vh;
+   right:30vh;
+ }
+@include breakpoint-s{
+  top: 39vh;
+  right: 28vh;
+}
 }
 .allignment{
   position: relative;
+
+}
+.imagesize{
+  @include breakpoint-xxs{
+width: 45px;
+  }
+  @include breakpoint-xs{
+    width: 45px;
+  }
+  @include breakpoint-s{
+    width: 67px;
+  }
 }
 
-@media screen and (min-width: 320px) and (max-width: 374px) {
-.image{
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+  .image{
     // background-image: url(/assets/instances/space/common/Vector@3.png);
 background-size: cover;
     background-position: center;
@@ -66,21 +98,14 @@ background-size: cover;
     // margin-left: -138px !important;
     // margin-top: 90px;
     top:15vh;
-   right:29vh;
+   right:14vh;
     opacity: 1;
   // opacity: 0.9;
 }
-.imagesize{
-  width: 47px;
+
 }
-.img{
-  top:1vh;
-  right: 14vh;
-}
-}
-// 375 screen size
-@media screen and (min-width: 375px) and (max-width: 424px) {
-.image{
+@media screen and (min-width: 270px) and (max-width: 310px) {
+  .image{
     // background-image: url(/assets/instances/space/common/Vector@3.png);
 background-size: cover;
     background-position: center;
@@ -90,39 +115,83 @@ background-size: cover;
     // border: 2px red solid !important;
     // margin-left: -138px !important;
     // margin-top: 90px;
-    top:15vh;
-   right:34vh;
+    top:14vh;
+   right:25vh;
     opacity: 1;
   // opacity: 0.9;
 }
-.imagesize{
-  width: 47px;
-}
-}
-// 425
-
-@media screen and (min-width: 425px) and (max-width: 767px) {
-.image{
-    // background-image: url(/assets/instances/space/common/Vector@3.png);
-background-size: cover;
-    background-position: center;
-    height: 6rem !important;
-    width: 24% !important;
-    position: absolute;
-    // border: 2px red solid !important;
-    // margin-left: -138px !important;
-    // margin-top: 90px;
-    top:15vh;
-   right:40vh;
-    opacity: 1;
-  // opacity: 0.9;
-}
-.imagesize{
-  width: 47px;
-}
 }
 
-// 768
+// @media screen and (min-width: 320px) and (max-width: 374px) {
+// .image{
+//     // background-image: url(/assets/instances/space/common/Vector@3.png);
+// background-size: cover;
+//     background-position: center;
+//     height: 6rem !important;
+//     width: 24% !important;
+//     position: absolute;
+//     // border: 2px red solid !important;
+//     // margin-left: -138px !important;
+//     // margin-top: 90px;
+//     top:15vh;
+//    right:29vh;
+//     opacity: 1;
+//   // opacity: 0.9;
+// }
+// .imagesize{
+//   width: 47px;
+// }
+// .img{
+//   top:1vh;
+//   right: 14vh;
+// }
+// }
+// // 375 screen size
+// @media screen and (min-width: 375px) and (max-width: 424px) {
+// .image{
+//     // background-image: url(/assets/instances/space/common/Vector@3.png);
+// background-size: cover;
+//     background-position: center;
+//     height: 6rem !important;
+//     width: 24% !important;
+//     position: absolute;
+//     // border: 2px red solid !important;
+//     // margin-left: -138px !important;
+//     // margin-top: 90px;
+//     top:14vh;
+//    right:34vh;
+//     opacity: 1;
+//   // opacity: 0.9;
+// }
+// .imagesize{
+//   width: 47px;
+// }
+// }
+// // 425
+
+// @media screen and (min-width: 425px) and (max-width: 767px) {
+// .image{
+//     // background-image: url(/assets/instances/space/common/Vector@3.png);
+// background-size: cover;
+//     background-position: center;
+//     height: 6rem !important;
+//     width: 24% !important;
+//     position: absolute;
+//     // border: 2px red solid !important;
+//     // margin-left: -138px !important;
+//     // margin-top: 90px;
+//     top:15vh;
+//    right:40vh;
+//     opacity: 1;
+//   // opacity: 0.9;
+
+// }
+// .imagesize{
+//   width: 47px;
+// }
+// }
+
+// // 768
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 .image{
@@ -135,15 +204,68 @@ background-size: cover;
     // border: 2px red solid !important;
     // margin-left: -138px !important;
     // margin-top: 90px;
-    top:25vh;
-   right:25vh;
+    top:16vh;
+   right:13vh;
     opacity: 1;
   // opacity: 0.9;
 }
-.imagesize{
-  width: 80px;
+// .imagesize{
+//   width: 80px;
+// }
+}
+
+// @media screen and (min-width: 270px) and (max-width: 319px) {
+// .image{
+//     // background-image: url(/assets/instances/space/common/Vector@3.png);
+// background-size: cover;
+//     background-position: center;
+//     height: 6rem !important;
+//     width: 24% !important;
+//     position: absolute;
+//     // border: 2px red solid !important;
+//     // margin-left: -138px !important;
+//     // margin-top: 90px;
+//     top:15vh;
+//    right:24vh;
+//     opacity: 1;
+//   // opacity: 0.9;
+// }
+// .imagesize{
+//   width: 45px;
+// }
+// .img{
+//   top:1vh;
+//   right: 10vh;
+// }
+
+// }
+
+@media screen and (min-width: 411px) and (max-width: 450px) {
+.image{
+    // background-image: url(/assets/instances/space/common/Vector@3.png);
+background-size: cover;
+    background-position: center;
+    height: 6rem !important;
+    width: 24% !important;
+    position: absolute;
+    // border: 2px red solid !important;
+    // margin-left: -138px !important;
+    // margin-top: 90px;
+    top:13vh;
+   right:32vh;
+    opacity: 1;
+  // opacity: 0.9;
 }
 }
+
+
+
+
+
+
+
+
+
 
 
 .text-section {
@@ -300,6 +422,24 @@ word-break: break-word;
   .text-wrap {
     width: 16rem !important;
   }
+    .image{
+    // background-image: url(/assets/instances/space/common/Vector@3.png);
+background-size: cover;
+    background-position: center;
+    height: 6rem !important;
+    width: 24% !important;
+    position: absolute;
+    // border: 2px red solid !important;
+    // margin-left: -138px !important;
+    // margin-top: 90px;
+    top:25vh;
+   right:32vh;
+    opacity: 1;
+  // opacity: 0.9;
+}
+.imagesize{
+  width: 67px;
+}
 }
 /* about page design end */
 
@@ -538,4 +678,27 @@ word-break: break-word;
 // }
 // #secondary-navbar {
 //   background: #865ba0;
+// }
+
+
+
+// @media screen and (min-width: 635px) and (max-width: 670px){
+//   .image{
+//     // background-image: url(/assets/instances/space/common/Vector@3.png);
+// background-size: cover;
+//     background-position: center;
+//     height: 6rem !important;
+//     width: 24% !important;
+//     position: absolute;
+//     // border: 2px red solid !important;
+//     // margin-left: -138px !important;
+//     // margin-top: 90px;
+//     top:25vh;
+//    right:32vh;
+//     opacity: 1;
+//   // opacity: 0.9;
+// }
+// .imagesize{
+//   width: 67px;
+// }
 // }
