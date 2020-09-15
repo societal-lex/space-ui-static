@@ -1,4 +1,14 @@
 <mat-card class="unique-users-card p-6">
+  <span class="icon">
+    <ng-container *ngIf="showToolTip">
+      <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color ws-mat-primary-text info" 
+      role="img" 
+      aria-hidden="true" 
+      (click)="triggerInfoPopup(title)"
+      i18n-matTooltip matTooltip="More Info"
+      >visibility</mat-icon>
+    </ng-container>
+  </span>
   <h3 class="margin-remove-bottom text-left font-bold ws-mat-primary-text title">{{ title }}</h3>
   <p class="description mat-caption">{{ description }}</p>
   <h1 class="mat-display-3 text-center margin-top-m ws-mat-primary-text padding-bottom-m">
