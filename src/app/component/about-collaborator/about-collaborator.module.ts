@@ -13,7 +13,7 @@ import { BtnPageBackModule } from '@ws-widget/collection'
 import { HorizontalScrollerModule, PipeSafeSanitizerModule } from '@ws-widget/utils'
 
 @NgModule({
-  declarations: [AboutCollaboratorComponent],
+  declarations: [],
   imports: [
     CommonModule,
     MatToolbarModule,
