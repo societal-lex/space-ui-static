@@ -28,6 +28,5 @@ import { HorizontalScrollerModule, PipeSafeSanitizerModule } from '@ws-widget/ut
     PipeSafeSanitizerModule,
   ],
 
-  exports: [AboutCollaboratorComponent],
 })
 export class AboutCollaboratorModule { }
