@@ -6,24 +6,20 @@
         <mat-toolbar color="primary">
           <span class="title-center">Edit Profile</span>
         </mat-toolbar>
-
-
-
         <h3 style="text-align:center">Profile Photo</h3>
-          <label class="hoverable" for="fileInput">
-            <img
-              [src]="url ? url : 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'">
+        <div class="hoverable">
+          <img
+            [src]="url ? url : 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'">
+          <div (click)="fileInput.click()">
             <mat-icon class="photo-icon">photo_camera</mat-icon>
-          </label>
-
-          <input id="fileInput" type="file" (change)="onSelectFile($event)"
-            accept="image/*">
+            <input #fileInput type='file' (change)="onSelectFile($event.target.files[0])" accept="image/*">
+          </div>
+          <!-- <mat-icon class="delete-photo" *ngIf="url" (click)="delete()">close</mat-icon> -->
+        </div>
         <div class="format">
-
           <p>
             <mat-form-field class="width" appearance="legacy">
               <mat-label>Enter your First Name</mat-label>
-
               <input matInput placeholder="First Name" formControlName="givenName">
             </mat-form-field>
           </p>
@@ -63,6 +59,9 @@
             </mat-form-field>
           </p>
         </div>
+  <div class="spinner" *ngIf="isLoad">
+    <mat-spinner color="primary"></mat-spinner>
+  </div>
         <div class="button-align">
           <button type="submit" mat-raised-button color="primary">Save</button>
         </div>

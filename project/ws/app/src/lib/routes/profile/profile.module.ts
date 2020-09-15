@@ -17,7 +17,7 @@ import { InterestUserResolve } from './routes/interest/resolvers/interest-user.r
 import { LearningModule } from './routes/learning/learning.module'
 import { LearningHistoryResolver } from './routes/learning/resolvers/learning-history.resolver'
 import { LearningTimeResolver } from './routes/learning/resolvers/learning-time.resolver'
-import { SettingsModule } from './routes/settings/settings.module';
+import { SettingsModule } from './routes/settings/settings.module'
 import { EditProfileModule } from './routes/edit-profile/edit-profile.module'
 
 @NgModule({

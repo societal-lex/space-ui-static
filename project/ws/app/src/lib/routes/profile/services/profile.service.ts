@@ -36,11 +36,15 @@ export class ProfileService {
   }
   baseUrl = this.configSvc.sitePath
   constructor(private http: HttpClient, private configSvc: ConfigurationsService) { }
+  userData: any
 
   fetchConfigFile(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/feature/profile.json`).pipe()
   }
 
+  setUserEditProfileConfig(userDataFromConfig: any) {
+    this.userData = userDataFromConfig
+  }
   timeSpent(
     startDate: string,
     endDate: string,
@@ -86,12 +90,10 @@ export class ProfileService {
         org: headers.org,
       }),
     }
-    console.log('responseBodyAsJSON', responseBodyAsJSON)
     try {
       // tslint:disable-next-line: prefer-template
       // tslint:disable-next-line: max-line-length
-      const responseData = await this.http.patch<IResponse>('/usersubmission/user/v1/editprofile', responseBodyAsJSON, httpOptions).toPromise()
-      console.log('responedata', responseData)
+      const responseData = await this.http.patch<IResponse>(this.userData.API_END_POINT + this.userData.edit_profile.url, responseBodyAsJSON, httpOptions).toPromise()
       if (responseData && responseData.STATUS === 'OK') {
         return Promise.resolve({
           ok: true,
@@ -104,10 +106,10 @@ export class ProfileService {
       if (ex) {
         return Promise.resolve({
           ok: false, error: ex,
-          MESSAGE: 'Something went wrong',
+          MESSAGE: this.userData.edit_profile.errorMessage,
         })
       }
-      return Promise.resolve({ ok: false, error: null, MESSAGE: 'Something went wrong' })
+      return Promise.resolve({ ok: false, error: null, MESSAGE: this.userData.edit_profile.errorMessage })
     }
   }
 

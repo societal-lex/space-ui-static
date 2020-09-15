@@ -39,6 +39,13 @@ const routes: Routes = [
   {
     path: 'edit-Profile',
     component: EditProfileComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'edit-profile',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
   },
   {
     path: 'competency',
