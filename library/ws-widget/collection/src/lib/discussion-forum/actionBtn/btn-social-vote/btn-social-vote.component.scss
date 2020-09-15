@@ -37,6 +37,19 @@
   opacity: 0;
   // transition: opacity 0.3s;
 }
+  .tooltip .tooltiptext-downvote  {
+      visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    /* left: 50%; */
+    /* margin-left: 17px; */
+    opacity: 0;
+}
+
+ .tooltip:hover .tooltiptext-downvote  {
+  visibility: visible;
+  opacity: 1;
+}
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;

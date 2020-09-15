@@ -9,7 +9,7 @@
           <mat-icon [matBadgeHidden]="!activity?.activityData.downVote" [matBadge]="activity?.activityData.downVote"
             matBadgeSize="small" matBadgeColor="accent">thumb_down</mat-icon>
         </button>
-        <span class="tooltiptext">
+        <span class="tooltiptext-downvote">
           <ws-widget-display-users-social-vote [userListDownVote]="userForDownVote" [iconType]="iconType"
             [voteType]="voteType">
           </ws-widget-display-users-social-vote>
@@ -22,8 +22,8 @@
           (click)="downVote(invalidUser.value)" [ngClass]="{ highlight: activity.userActivity.downVote }">
           arrow_drop_down</mat-icon>
         <span class="tooltiptext">
-          <ws-widget-display-users-social-vote class="mat-card-size-qna-up" [userListDownVote]="userForDownVote"
-            [iconType]="iconType" [voteType]="voteType">
+          <ws-widget-display-users-social-vote [userListDownVote]="userForDownVote" [iconType]="iconType"
+            [voteType]="voteType">
           </ws-widget-display-users-social-vote>
         </span>
       </div>
@@ -62,8 +62,7 @@
           (click)="upVote(invalidUser.value)" [ngClass]="{ highlight: activity.userActivity.upVote }">arrow_drop_up
         </mat-icon>
         <span class="tooltiptext">
-          <ws-widget-display-users-social-vote class="mat-card-size-qna-up" [userList]="userForUpvote"
-            [iconType]="iconType" [voteType]="voteType">
+          <ws-widget-display-users-social-vote [userList]="userForUpvote" [iconType]="iconType" [voteType]="voteType">
           </ws-widget-display-users-social-vote>
         </span>
       </div>
