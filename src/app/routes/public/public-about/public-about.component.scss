@@ -23,7 +23,7 @@
      width: 625px !important;
    }
    @include breakpoint-xll {
-     width: 99% !important;
+     width: 94% !important;
    }
 }
 .text-section {
@@ -196,6 +196,14 @@ word-break: break-word;
     width: 16rem !important;
   }
 }
+@media screen and (min-width: 1135px) and (max-width: 1150px) {
+  .img {
+    height: 25rem !important;
+    width: 95% !important;
+  }
+}
+
+
 /* about page design end */
 
 // @import 'ws-vars';
