@@ -88,6 +88,7 @@ padding-left: 2.5rem !important;
 }
   @include breakpoint-s {
 font-size: 20px !important;
+line-height: 33px !important;
   }
 }
 .img-container {
@@ -134,5 +135,16 @@ width: 17rem !important;
 @media screen and (min-width:1020px) and (max-width: 1027px) {
 .header {
   font-size: 33px;
+}
+}
+@media screen and (max-width: 1024px) and (min-width: 1023px){
+  .img-container{
+  width: 30.5rem !important;
+}
+}
+
+@media screen and (max-width: 670px) and (min-width: 635px){
+  .header {
+    line-height: 33px !important;
 }
 }

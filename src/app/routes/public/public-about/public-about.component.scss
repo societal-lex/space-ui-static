@@ -795,9 +795,36 @@
     width: 625px !important;
    }
    @include breakpoint-xll {
-     width: 99% !important;
+     width: 94% !important;
    }
+
+//  @include breakpoint-gt-xs{
+//    width: 83% !important;
+//  }
 }
+// @media screen
+//   and (device-width: 320px)
+//   and (device-height: 640px)
+//   and (-webkit-device-pixel-ratio: 2)
+//   and (orientation: portrait) {
+//   .img{
+//     width: 80% !important;
+//   }
+
+// }
+
+// @media only screen and (min-width: 1368px) and (max-width: 1700px) {
+//    .img {
+
+//   width: 94% !important;
+//    }
+//   }
+// // @media only screen and (min-width: 600px){
+// //    .img {
+// // width: 94% !important ;
+
+// // }
+// }
 .text-section {
    @include breakpoint-xs {
       padding-top: 6.3rem;
@@ -961,6 +988,7 @@ word-break: break-word;
   }
 }
 @media screen and (min-width: 635px) and (max-width: 670px) {
+
   .img {
     height: 15rem !important;
   }
