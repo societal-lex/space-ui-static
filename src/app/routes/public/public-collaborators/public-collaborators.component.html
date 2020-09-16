@@ -8,12 +8,13 @@
     <!-- <div class="ellipse2"></div> -->
     <div class="container container-fluid partnerContainer">
       <div class="partnerContainerBody">
-        <div class="row imageRow pt-12">
-          <div class="box">
-            <a href="https://www.aastar.org/" target="_blank"><img class="p-0"
-                src="assets/instances/space/app-collaborators-logos/aastar.png" /></a>
+        <div class="row imageRow pt-12" >
+          <div class="box" *ngFor="let src of partner.src;let i = index">
+            <a href="{{partner.url[i]}}" target="_blank" *ngIf="i !== 3 && i !== 5"><img class="p-0" [src]="src" /></a>
+             <a href="{{partner.url[i]}}" target="_blank" *ngIf="i === 3 "><img class="p-0 exception-style" [src]="src" /></a>
+              <a href="{{partner.url[i]}}" target="_blank" *ngIf="i === 5"><img class="p-0 mt-6" [src]="src" /></a>
           </div>
-          <div class="box">
+          <!-- <div class="box">
             <a href="https://www.echoindia.in/" target="_blank"><img
                 src="assets/instances/space/app-collaborators-logos/ECHO.png" /></a>
           </div>
@@ -28,7 +29,7 @@
           <div class="box">
             <a href="https://shikshalokam.org/" target="_blank"><img
                 src="assets/instances/space/app-collaborators-logos/ShikshaLokam.png" /></a>
-          </div>
+          </div> -->
         </div>
       </div>
       <!---->
