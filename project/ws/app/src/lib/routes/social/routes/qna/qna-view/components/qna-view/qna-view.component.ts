@@ -41,6 +41,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   allowedToEdit = false
   allowedToComment = false
   allowedToAnswer = false
+  mentions = []
 
   commentAddRequest: NsDiscussionForum.IPostCommentRequest = {
     postKind: NsDiscussionForum.EReplyKind.COMMENT,
@@ -258,6 +259,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     this.replyAddRequest.postKind = NsDiscussionForum.EReplyKind.REPLY
     this.discussionSvc.publishPost(this.replyAddRequest).subscribe(
       () => {
+        this.triggerNotification()
         this.replyAddRequest.postContent.body = ''
         this.isPostingReply = false
         this.editorQuill.resetEditor()
@@ -328,11 +330,34 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     this.replyAddRequest.postContent.body = event.htmlText || ''
     this.isValidForUserAnswer = event.isValid
   }
-  // retrieve the user data from api
-  // getUserDetails() {
-  //   this.discussionSvc.getUserDetails(this.widUser).then(resp => {
-  //     this.userDetails = resp
-  //   })
-  // }
+  triggerNotification() {
+    if (this.mentions.length) {
+      const notificationData = this.mentions.map((mention: any) => {
+        return {
+          notificationFor: 'qna',
+          QnaTitle: this.postTitle || '',
+          QnaId: this.qnaConversationRequest.postId,
+          QnaCreatorID: this.qnaConversationRequest ? this.qnaConversationRequest.userId : '',
+          taggedUserID: mention.id,
+          taggedUserName: mention.name,
+          taggedUserEmail: mention.email,
+          tagCreatorName: this.configSvc.userProfile ? this.configSvc.userProfile.userName || '' : '',
+        }
+      })
+      this.forumSrvc.triggerTagNotification(notificationData)
+    }
+  }
+
+  get postTitle() {
+    try {
+      if (this.qnaConversation && this.qnaConversation.mainPost.postContent.title) {
+        const domEl = new DOMParser().parseFromString(this.qnaConversation.mainPost.postContent.title, 'text/html')
+        return (domEl.children[0] as any).innerText
+      }
+      return ''
+    } catch (e) {
+      return ''
+    }
+}
 
 }

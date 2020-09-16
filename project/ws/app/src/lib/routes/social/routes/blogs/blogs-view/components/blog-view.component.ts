@@ -5,6 +5,7 @@ import { TFetchStatus, ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { DialogSocialDeletePostComponent, NsDiscussionForum, WsDiscussionForumService } from '@ws-widget/collection'
 import { combineLatest } from 'rxjs'
 import { ForumService } from '../../../forums/service/forum.service'
+import { tap } from 'rxjs/operators'
 
 @Component({
   selector: 'ws-app-blog-view',
@@ -42,16 +43,8 @@ export class BlogViewComponent implements OnInit {
   userRole: Set<string> | null = null
   postCreatorId: string | null = null
   canUserDelete = false
+  mentions = []
 
-  activityDetails: any = {
-    like: ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
-      'b690b9c6-a9de-49dd-94ef-1dffcc7a053c'],
-    upVote: ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
-      'b690b9c6-a9de-49dd-94ef-1dffcc7a053c'],
-    downVote: ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
-      'b690b9c6-a9de-49dd-94ef-1dffcc7a053c'],
-    flag: [],
-  }
   constructor(
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -65,9 +58,6 @@ export class BlogViewComponent implements OnInit {
       this.userId = this.configSvc.userProfile.userId || ''
       this.userEmail = this.configSvc.userProfile.email || ''
     }
-    // if (this.configSvc.userRoles) {
-    //   this.userRole = this.configSvc.userRoles || ''
-    // }
     this.conversationRequest.userId = this.userId
   }
 
@@ -126,8 +116,6 @@ export class BlogViewComponent implements OnInit {
         }
         if (!this.isFirstConversationRequestDone && data && data.mainPost) {
           this.conversation = data
-          // this.getWidsForUserActivity = this.activityDetails //getting the activity details and calling user details api
-          // this.getUserDetails()
 
           if (this.conversation.mainPost.status === NsDiscussionForum.EPostStatus.DRAFT) {
             this.router.navigate(['../', 'edit', this.conversationRequest.postId], {
@@ -212,7 +200,11 @@ export class BlogViewComponent implements OnInit {
         name: NsDiscussionForum.EDiscussionType.SOCIAL,
       },
     }
-    this.discussionSvc.publishPost(request).subscribe(
+    this.discussionSvc.publishPost(request).pipe(
+      tap(_ => {
+        this.triggerNotification()
+    }))
+    .subscribe(
       _ => {
         this.fetchConversationData(true)
         this.postingReply = false
@@ -244,12 +236,35 @@ export class BlogViewComponent implements OnInit {
     this.commentText = eventData.htmlText
   }
 
-  // getUserDetails() {
-  //   const wid = ['7b710f74-8f84-427f-bc13-f4220ed2a1c1', 'acbf4053-c126-4e85-a0bf-252a896535ea',
-  //     'b690b9c6-a9de-49dd-94ef-1dffcc7a053c']
-
-  //   this.discussionSvc.getUserDetails(wid).then((resp: any[]) => {
-  //         this.userDetailsforupvote = resp
-  //       })
-  // }
+  triggerNotification() {
+    if (this.mentions.length) {
+      const notificationData = this.mentions.map((mention: any) => {
+        return {
+          notificationFor: 'blog',
+          blogTitle: this.blogTitle || '',
+          blogId: this.conversationRequest.postId,
+          blogCreatorID: this.conversation ? this.conversation.mainPost.postCreator.postCreatorId : '',
+          blogCreatorName: this.conversation ? this.conversation.mainPost.postCreator.name : '',
+          blogCreatorEmail: this.conversation ? this.conversation.mainPost.postCreator.emailId || '' : '',
+          taggedUserID: mention.id,
+          taggedUserName: mention.name,
+          taggedUserEmail: mention.email,
+          tagCreatorName: this.configSvc.userProfile ? this.configSvc.userProfile.userName || '' : '',
+        }
+      })
+      this.forumSrvc.triggerTagNotification(notificationData)
+    }
   }
+
+  get blogTitle() {
+      try {
+        if (this.conversation && this.conversation.mainPost.postContent.title) {
+          const domEl = new DOMParser().parseFromString(this.conversation.mainPost.postContent.title, 'text/html')
+          return (domEl.children[0] as any).innerText
+        }
+        return ''
+      } catch (e) {
+        return ''
+      }
+  }
+}
