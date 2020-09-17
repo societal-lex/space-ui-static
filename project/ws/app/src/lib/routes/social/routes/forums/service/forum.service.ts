@@ -116,33 +116,43 @@ export class ForumService {
         let request = {}
         if (_tag.notificationFor === 'blog') {
           request = {
-            'event-id': 'tag_user',
+            'event-id': 'tagged_in_comment',
             'tag-value-pair': {
+              '#type': 'blog',
               '#blogTitle': _tag.blogTitle,
-              '#blogLink': `${document.baseURI}app/social/blogs/${_tag.blogId}`,
-              '#tagCreatorName': _tag.tagCreatorName,
+              '#postUrl': `${document.baseURI}app/social/blogs/${_tag.blogId}`,
+              '#taggedBy': _tag.tagCreatorName,
               '#taggedUserName': _tag.taggedUserName,
             },
-            data: {
+            /* data: {
               identifier: _tag.blogId,
               blogCreatorID: _tag.blogCreatorID,
               taggedUserEmail: _tag.taggedUserEmail,
+            }, */
+            recipients: {
+              actor: [_tag.tagCreatorID],
+              taggedUser: [_tag.taggedUserID],
             },
           }
         }
         if (_tag.notificationFor === 'qna') {
           request = {
-            'event-id': 'tag_user',
+            'event-id': 'tagged_in_comment',
             'tag-value-pair': {
-              '#qnaTitle': _tag.QnaTitle,
-              '#qnaLink': `${document.baseURI}app/social/qna/${_tag.QnaId}`,
-              '#tagCreatorName': _tag.tagCreatorName,
+              '#blogTitle': _tag.QnaTitle,
+              '#type': 'qna',
+              '#postUrl': `${document.baseURI}app/social/qna/${_tag.QnaId}`,
+              '#taggedBy': _tag.tagCreatorName,
               '#taggedUserName': _tag.taggedUserName,
             },
-            data: {
+            /* data: {
               identifier: _tag.QnaId,
               qnaCreatorID: _tag.QnaCreatorID,
               taggedUserEmail: _tag.taggedUserEmail,
+            }, */
+            recipients: {
+              actor: [_tag.tagCreatorID],
+              taggedUser: [_tag.taggedUserID],
             },
           }
         }

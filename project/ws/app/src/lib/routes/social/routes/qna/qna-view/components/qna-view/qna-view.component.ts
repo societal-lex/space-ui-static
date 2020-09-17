@@ -342,6 +342,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
           taggedUserName: mention.name,
           taggedUserEmail: mention.email,
           tagCreatorName: this.configSvc.userProfile ? this.configSvc.userProfile.userName || '' : '',
+          tagCreatorID: this.configSvc.userProfile ? this.configSvc.userProfile.userId || '' : '',
         }
       })
       this.forumSrvc.triggerTagNotification(notificationData)
