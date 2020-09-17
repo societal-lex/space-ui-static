@@ -1,123 +1,255 @@
 
-.format{
-text-align: center;
+// // .format{
+// // text-align: center;
 
-}
-.button-align{
-text-align: center;
-}
-.width{
-min-width: 260px;
-width: 600px;
-}
+// // }
+// // .button-align{
+// // text-align: center;
+// // }
+// // .width{
+// // min-width: 260px;
+// // width: 600px;
+// // }
 
-.profile-form{
-width: 577px;
-min-width: 277px;
-}
+// // .profile-form{
+// // width: 577px;
+// // min-width: 277px;
+// // }
 
-.mat-form-field {
-display: inline;
-position: relative;
-text-align: left;
-}
-.flexcontainer{
-display: flex;
-justify-content: center;
-flex-direction: row;
-}
-.flexcontainercol{
-display: flex;
-padding-top: 7vh;
-padding-bottom: 7vh;
-justify-content: center;
-flex-direction: column;
-}
-img {
-height: 100%;
-width: 100%;
-border-radius: 50%;
-margin-left: auto;
-margin-right: auto;
+// // .mat-form-field {
+// // display: inline;
+// // position: relative;
+// // text-align: left;
+// // }
+// // .flexcontainer{
+// // display: flex;
+// // justify-content: center;
+// // flex-direction: row;
+// // }
+// // .flexcontainercol{
+// // display: flex;
+// // padding-top: 7vh;
+// // padding-bottom: 7vh;
+// // justify-content: center;
+// // flex-direction: column;
+// // }
+// // img {
+// // height: 100%;
+// // width: 100%;
+// // border-radius: 50%;
+// // margin-left: auto;
+// // margin-right: auto;
 
-}
-.center {
-display: block;
-width: 50%;
-}
-.photo-icon {
-position: absolute;
-bottom:0;
-right:12%;
-border: 1px solid red;
-height:30px;
-width:30px;
-border-radius:50%;
-text-align:center;
-line-height:30px;
-background: white;
-font-size:20px;
-cursor: pointer;
-}
-.hoverable{
-position: relative;
-display: block;
-height: 200px;
-width: 200px;
-border: 2px solid white;
-border-radius: 50%;
-margin-left: auto;
-margin-right: auto;
-input{
-opacity:0;
-}
-}
-.title-center {
-flex: 1 1 auto;
-text-align: center;
-}
-#fileInput{
-display: none;
-}
-.spinner {
-position: fixed;
-z-index: 999;
-height: 2em;
-width: 2em;
-overflow: visible;
-margin: auto;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-}
+// // }
+// // .center {
+// // display: block;
+// // width: 50%;
+// // }
+// // .photo-icon {
+// // position: absolute;
+// // bottom:0;
+// // right:12%;
+// // border: 1px solid red;
+// // height:30px;
+// // width:30px;
+// // border-radius:50%;
+// // text-align:center;
+// // line-height:30px;
+// // background: white;
+// // font-size:20px;
+// // cursor: pointer;
+// // }
+// // .hoverable{
+// // position: relative;
+// // display: block;
+// // height: 200px;
+// // width: 200px;
+// // border: 2px solid white;
+// // border-radius: 50%;
+// // margin-left: auto;
+// // margin-right: auto;
+// // input{
+// // opacity:0;
+// // }
+// // }
+// // .title-center {
+// // flex: 1 1 auto;
+// // text-align: center;
+// // }
+// // #fileInput{
+// // display: none;
+// // }
+// // .spinner {
+// // position: fixed;
+// // z-index: 999;
+// // height: 2em;
+// // width: 2em;
+// // overflow: visible;
+// // margin: auto;
+// // top: 0;
+// // left: 0;
+// // bottom: 0;
+// // right: 0;
+// // }
 
-@media only screen and (max-width: 768px) {
-.profile-form {
-width: 90%;
-min-width: auto;
-margin: 0 auto;
-}
-.flexcontainercol {
-padding-top:0
-}
+// // @media only screen and (max-width: 768px) {
+// // .profile-form {
+// // width: 90%;
+// // min-width: auto;
+// // margin: 0 auto;
+// // }
+// // .flexcontainercol {
+// // padding-top:0
+// // }
 
-form
-{
-width: 100%;
-}
-}
-.delete-photo{
-position: absolute;
-border: 1px solid black;
-top:0;
-right:12%;
-height:30px;
-width:30px;
-border-radius:50%;
-text-align:center;
-line-height:30px;
-background: white;
-font-size:20px;
-cursor: pointer;
-}
+// // form
+// // {
+// // width: 100%;
+// // }
+// // }
+// // .delete-photo{
+// // position: absolute;
+// // border: 1px solid black;
+// // top:0;
+// // right:12%;
+// // height:30px;
+// // width:30px;
+// // border-radius:50%;
+// // text-align:center;
+// // line-height:30px;
+// // background: white;
+// // font-size:20px;
+// // cursor: pointer;
+// // }
+
+
+
+// .format{
+// text-align: center;
+// p{
+// margin:0 0 0 6px !important
+// }
+
+// }
+// .button-align{
+// text-align: center;
+// }
+// .width{
+// min-width: 260px;
+// width: 600px;
+// }
+
+// .profile-form{
+// width: 577px;
+// min-width: 277px;
+// }
+
+// .mat-form-field {
+// display: inline;
+// position: relative;
+// text-align: left;
+// }
+// .flexcontainer{
+// display: flex;
+// justify-content: center;
+// flex-direction: row;
+// }
+// .flexcontainercol{
+// display: flex;
+// padding-bottom: 7vh;
+// justify-content: center;
+// flex-direction: column;
+// }
+// img {
+// height: 100%;
+// width: 100%;
+// border-radius: 50%;
+// margin-left: auto;
+// margin-right: auto;
+
+// }
+// .center {
+// display: block;
+// width: 50%;
+// }
+// .photo-icon {
+// position: absolute;
+// bottom:0;
+// right:12%;
+// border: 1px solid purple;
+// height:30px;
+// width:30px;
+// border-radius:50%;
+// text-align:center;
+// line-height:30px;
+// background: white;
+// font-size:20px;
+// cursor: pointer;
+// }
+// .hoverable{
+// position: relative;
+// display: block;
+// height: 170px;
+// width: 170px;
+// border: 2px solid white;
+// border-radius: 50%;
+// margin-left: auto;
+// margin-right: auto;
+// input{
+// opacity:0;
+// }
+// }
+// .title-center {
+// flex: 1 1 auto;
+// text-align: center;
+// }
+// #fileInput{
+// display: none;
+// }
+// .spinner {
+// position: fixed;
+// z-index: 999;
+// height: 2em;
+// width: 2em;
+// overflow: visible;
+// margin: auto;
+// top: 0;
+// left: 0;
+// bottom: 0;
+// right: 0;
+// }
+
+// @media only screen and (max-width: 768px) {
+// .profile-form {
+// width: 90%;
+// min-width: auto;
+// margin: 0 auto;
+// }
+// .flexcontainercol {
+// padding-top:0
+// }
+
+// form
+// {
+// width: 100%;
+// }
+// }
+// .delete-photo{
+// position: absolute;
+// border: 1px solid black;
+// top:0;
+// right:12%;
+// height:30px;
+// width:30px;
+// border-radius:50%;
+// text-align:center;
+// line-height:30px;
+// background: white;
+// font-size:20px;
+// cursor: pointer;
+// }
+
+// textarea.mat-input-element {
+// padding: 2px 0;
+// margin: -10px 0;
+// }
