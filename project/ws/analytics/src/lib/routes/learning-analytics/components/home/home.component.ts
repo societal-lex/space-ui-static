@@ -12,6 +12,8 @@ import { NsAnalytics } from '../../models/learning-analytics.model'
 import { AnalyticsResolver } from '../../resolvers/learning-analytics-filters.resolver'
 import { LearningAnalyticsService } from '../../services/learning-analytics.service'
 import { FormControl } from '@angular/forms'
+import { MatDialog } from '@angular/material'
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component'
 @Component({
   selector: 'ws-analytics-home',
   templateUrl: './home.component.html',
@@ -561,6 +563,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private analyticsSrv: LearningAnalyticsService,
     private configSvc: ConfigurationsService,
+    public dialog: MatDialog,
     private graphGeneralSvc: GraphGeneralService,
     private resolver: AnalyticsResolver,
   ) {}
@@ -1630,5 +1633,27 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
       }
     }
+  }
+
+  async openInfoPopup(eventType: string, titleToUse?: string) {
+    this.openDialog({
+      event: eventType,
+      title: titleToUse,
+      width: '50%',
+      height: '50%',
+      startDate: this.startDate,
+      endDate: this.endDate,
+      contentType: this.contentType,
+      searchQuery: this.searchQuery,
+      filters: this.filterArray,
+    })
+  }
+
+  openDialog(_data: any) {
+    this.dialog.open(InfoDialogComponent, {
+      data: _data,
+      width: _data.width,
+      height: _data.height,
+    })
   }
 }

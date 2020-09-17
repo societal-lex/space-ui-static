@@ -4,6 +4,7 @@ import { NsUserDashboard } from '../../../../../../../project/ws/app/src/lib/rou
 import { ConfigurationsService } from '../../../../../utils/src/public-api'
 import { WsDiscussionForumService } from '../ws-discussion-forum.services'
 import { ActivatedRoute } from '@angular/router'
+import { uniqBy } from 'lodash'
 @Component({
   selector: 'ws-widget-editor-quill',
   templateUrl: './editor-quill.component.html',
@@ -15,7 +16,9 @@ export class EditorQuillComponent implements OnInit {
     isValid: boolean
     htmlText: string
     text: string
+    mentions?: object[]
   }>()
+  @Output() mentionsData = new EventEmitter<any[]>()
 
   @Input() htmlText = ''
   @Input() minLength = '1'
@@ -56,6 +59,7 @@ export class EditorQuillComponent implements OnInit {
           renderList(matches, searchTerm)
         }
       },
+      dataAttributes: ['id', 'value', 'data']
     },
   }
 
@@ -84,11 +88,29 @@ export class EditorQuillComponent implements OnInit {
   }
 
   onContentChanged(editorEvent: any) {
+    const newList = this.emitMentionsEvent(editorEvent.content.ops)
     this.textData.emit({
       isValid: editorEvent.text.length > this.minLength,
       htmlText: editorEvent.html,
       text: editorEvent.text,
+      mentions: newList,
     })
+    this.mentionsData.emit(newList)
+  }
+
+  emitMentionsEvent(operations: any) {
+    const mentions = operations.filter((op: any) => {
+      return op.hasOwnProperty('insert') && typeof op.insert !== 'string'
+    }).map((mention: any) => {
+      // tslint:disable-next-line: max-line-length
+      return {name: mention.insert.mention.value,
+        id: mention.insert.mention.id,
+        email: JSON.parse(mention.insert.mention.data).email,
+    }
+  },
+    )
+    const uniqueUsers = uniqBy(mentions, 'id')
+    return uniqueUsers
   }
 
   resetEditor() {
@@ -123,7 +145,7 @@ export class EditorQuillComponent implements OnInit {
       // tslint:disable-next-line: prefer-template
       const fullname = userList[i].first_name + ' ' + userList[i].last_name
       // tslint:disable-next-line: object-literal-key-quotes
-      obj.push({ 'id': i, 'value': fullname })
+      obj.push({ 'id': userList[i].wid, 'value': fullname, data: JSON.stringify({email: userList[i].email }) })
     }
     this.userDataInJsonFormat = obj
     return this.userDataInJsonFormat

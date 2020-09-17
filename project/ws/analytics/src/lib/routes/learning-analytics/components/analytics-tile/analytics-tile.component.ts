@@ -11,8 +11,10 @@ export class AnalyticsTileComponent implements OnInit {
   @Input() title!: string
   @Input() category1!: string
   @Input() category2!: string
+  @Input() showToolTip = false
   @Input() category3!: string
   @Output() clickEvent = new EventEmitter<string>()
+  @Output() infoClick = new EventEmitter<string>()
 
   constructor() { }
 
@@ -29,6 +31,10 @@ export class AnalyticsTileComponent implements OnInit {
   }
   onClick(type: string) {
     this.clickEvent.emit(type)
+  }
+
+  triggerInfoPopup(data = this.title) {
+    this.infoClick.emit(data)
   }
 
 }

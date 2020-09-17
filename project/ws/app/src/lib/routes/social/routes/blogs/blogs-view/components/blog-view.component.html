@@ -117,6 +117,7 @@
               class="editor"
               [hidden]="postingReply"
               (textData)="onTextChange($event)"
+              (mentionsData)="mentions = $event"
               [minLength]="'10'"
             ></ws-widget-editor-quill>
             <div

@@ -5,6 +5,7 @@ import { SocialForum } from '../models/SocialForumposts.model'
 import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 
 const PROTECTED_SLAG_V8 = '/apis/protected/v8'
+const NOTIFICATION = '/apis/authNotificationApi/v1/notification/event'
 
 const API_END_POINTS = {
   SOCIAL_TIMELINE: `${PROTECTED_SLAG_V8}/social/post/timelinev2`, // this has to be changed(Temporary)
@@ -26,7 +27,10 @@ export class ForumService {
   }
   private forumsSubject: ReplaySubject<SocialForum.IForumViewResponse> | null = null
 
-  constructor(private http: HttpClient, private configSvc: ConfigurationsService) { }
+  constructor(
+    private http: HttpClient,
+    private configSvc: ConfigurationsService,
+  ) { }
   fetchTimelineData(request: SocialForum.ITimelineRequest): Observable<SocialForum.ITimeline> {
 
     return this.http.post<SocialForum.ITimeline>(API_END_POINTS.SOCIAL_TIMELINE, request)
@@ -106,4 +110,50 @@ export class ForumService {
     return finalAcceptance
   }
 
+  triggerTagNotification(tagData: any, type = 'email') {
+    if (type === 'email') {
+      const notificationPromises = tagData.map((_tag: any) => {
+        let request = {}
+        if (_tag.notificationFor === 'blog') {
+          request = {
+            'event-id': 'tag_user',
+            'tag-value-pair': {
+              '#blogTitle': _tag.blogTitle,
+              '#blogLink': `${document.baseURI}app/social/blogs/${_tag.blogId}`,
+              '#tagCreatorName': _tag.tagCreatorName,
+              '#taggedUserName': _tag.taggedUserName,
+            },
+            data: {
+              identifier: _tag.blogId,
+              blogCreatorID: _tag.blogCreatorID,
+              taggedUserEmail: _tag.taggedUserEmail,
+            },
+          }
+        }
+        if (_tag.notificationFor === 'qna') {
+          request = {
+            'event-id': 'tag_user',
+            'tag-value-pair': {
+              '#qnaTitle': _tag.QnaTitle,
+              '#qnaLink': `${document.baseURI}app/social/qna/${_tag.QnaId}`,
+              '#tagCreatorName': _tag.tagCreatorName,
+              '#taggedUserName': _tag.taggedUserName,
+            },
+            data: {
+              identifier: _tag.QnaId,
+              qnaCreatorID: _tag.QnaCreatorID,
+              taggedUserEmail: _tag.taggedUserEmail,
+            },
+          }
+        }
+        // console.log('request looks like', request)
+        return this.http.post(NOTIFICATION, request).toPromise()
+      })
+      return Promise.all(notificationPromises)
+        .catch(_ => {
+          return Promise.resolve({ error: true, message: 'Failed to notify all tagged users.' })
+        })
+    }
+    return ''
+  }
 }
