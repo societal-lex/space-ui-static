@@ -81,10 +81,10 @@ export class EditorQuillComponent implements OnInit {
 
     this.activateRoute.data.subscribe(data => {
       if (data) {
-        this.userDashboardData = data.socialData.data.userListData
+        this.userDashboardData = data.pageData.data.userListData
         this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
-        this.getRootOrg = data.socialData.data.userListData.root_org,
-          this.getOrg = data.socialData.data.userListData.org
+        this.getRootOrg = data.pageData.data.userListData.root_org,
+          this.getOrg = data.pageData.data.userListData.org
       }
     })
   }
@@ -105,11 +105,12 @@ export class EditorQuillComponent implements OnInit {
       return op.hasOwnProperty('insert') && typeof op.insert !== 'string'
     }).map((mention: any) => {
       // tslint:disable-next-line: max-line-length
-      return {name: mention.insert.mention.value,
+      return {
+        name: mention.insert.mention.value,
         id: mention.insert.mention.id,
         email: JSON.parse(mention.insert.mention.data).email,
-    }
-  },
+      }
+    },
     )
     const uniqueUsers = uniqBy(mentions, 'id')
     return uniqueUsers

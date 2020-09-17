@@ -249,6 +249,7 @@ const routes: Routes = [
     },
     resolve: {
       socialData: PageResolve,
+      pageData: PageResolve,
     },
     canActivate: [GeneralGuard],
   },
