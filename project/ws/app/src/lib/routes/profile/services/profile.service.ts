@@ -87,7 +87,7 @@ export class ProfileService {
     const httpOptions = {
       headers: new HttpHeaders({
         rootorg: headers.rootOrg,
-        org: headers.org,
+        newOrg: headers.org,
       }),
     }
     try {

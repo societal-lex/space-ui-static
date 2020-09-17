@@ -61,6 +61,11 @@ export class EditProfileComponent implements OnInit {
       this.profileForm.controls.givenName.setValue(this.userProfile.givenName)
       this.profileForm.controls.departmentName.setValue(this.userProfile.departmentName)
       this.profileForm.controls.email.setValue(this.userProfile.email)
+      this.profileForm.controls.lastname.setValue(this.userProfile.lastName)
+      if (this.userProfile.userProperties) {
+        this.profileForm.controls.bio.setValue(this.userProfile.userProperties.bio)
+        this.profileForm.controls.profileLink.setValue(this.userProfile.userProperties.profileLink)
+      }
       const url = this.userProfile.source_profile_picture
       if (url) {
         this.url = this.getAuthoringUrl(url)
