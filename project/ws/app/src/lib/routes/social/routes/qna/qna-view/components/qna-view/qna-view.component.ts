@@ -359,5 +359,4 @@ export class QnaViewComponent implements OnInit, OnDestroy {
       return ''
     }
 }
-
 }
