@@ -42,7 +42,7 @@ import { AnalyticsDirective } from './routes/analytics/analytics.directive'
 import { ContentCardComponent } from './components/content-card/content-card.component'
 import { ProgressRadialComponent } from './components/progress-radial/progress-radial.component'
 import { AnalyticsTileComponent } from './components/analytics-tile/analytics-tile.component'
-import { QuarterServiceService } from './services/quarter-filter.service';
+import { QuarterServiceService } from './services/quarter-filter.service'
 import { InfoDialogComponent } from './components/info-dialog/info-dialog.component'
 
 @NgModule({

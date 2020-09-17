@@ -147,7 +147,7 @@ export class EditorQuillComponent implements OnInit {
       // tslint:disable-next-line: prefer-template
       const fullname = userList[i].first_name + ' ' + userList[i].last_name
       // tslint:disable-next-line: object-literal-key-quotes
-      obj.push({ 'id': userList[i].wid, 'value': fullname, data: JSON.stringify({email: userList[i].email }) })
+      obj.push({ 'id': userList[i].wid, 'value': fullname, data: JSON.stringify({ email: userList[i].email }) })
     }
     this.userDataInJsonFormat = obj
     return this.userDataInJsonFormat
