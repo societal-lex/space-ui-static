@@ -5,6 +5,7 @@ import { ConfigurationsService } from '../../../../../utils/src/public-api'
 import { WsDiscussionForumService } from '../ws-discussion-forum.services'
 import { ActivatedRoute } from '@angular/router'
 import { uniqBy } from 'lodash'
+import { quillBaseConfig } from './config/quill-config'
 @Component({
   selector: 'ws-widget-editor-quill',
   templateUrl: './editor-quill.component.html',
@@ -37,6 +38,7 @@ export class EditorQuillComponent implements OnInit {
   userDataInJsonFormat: any
 
   quillConfig = {
+    ...quillBaseConfig.modules,
     mention: {
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
       mentionDenotationChars: ['@', '#'],
@@ -59,7 +61,7 @@ export class EditorQuillComponent implements OnInit {
           renderList(matches, searchTerm)
         }
       },
-      dataAttributes: ['id', 'value', 'data']
+      dataAttributes: ['id', 'value', 'data'],
     },
   }
 
