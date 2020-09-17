@@ -46,3 +46,4 @@ export const CONTENT_BASE_WEBHOST_ARTIFACT = '/web-hosted/artifact'
 export const CONTENT_BASE_LIVE = '/content-store'
 export const CONTENT_BASE_AUTHOR = '/contentv3/download'
 export const CONTENT_VIDEO_ENCODE = `${AUTHORING_CONTENT_BASE}contentv3/video-transcoding/start/`
+export const FOLDER_NAME_EDIT_PROFILE = 'profileimages'
