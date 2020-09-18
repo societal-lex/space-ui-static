@@ -47,49 +47,33 @@
               </span>
             </div>
           </div>
-          <span class="mat-caption"
-            ><span class="mat-caption" i18n>Last Modified: </span
-            >{{ conversation?.mainPost?.dtLastModified | date }}</span
-          >
+          <span class="mat-caption"><span class="mat-caption" i18n>Last Modified:
+            </span>{{ conversation?.mainPost?.dtLastModified | date }}</span>
         </div>
       </div>
 
       <!--   <div class="flex flex-between  margin-bottom-xl">
       <div class="mat-caption">{{ conversation?.mainPost?.dtPublished | date }}</div>
     </div> -->
-      <div
-        class="post-content"
-        [innerHTML]="conversation?.mainPost?.postContent?.body | pipeSafeSanitizer: 'html'"
-      ></div>
+      <div class="post-content" [innerHTML]="conversation?.mainPost?.postContent?.body | pipeSafeSanitizer: 'html'">
+      </div>
       <mat-chip-list class="margin-top-m">
         <mat-chip *ngFor="let tag of conversation?.mainPost?.tags">{{ tag.name }}</mat-chip>
       </mat-chip-list>
-      <span
-        class="margin-top-s flex flex-between"
-        *ngIf="conversation?.mainPost?.activity && conversation?.mainPost?.status === 'Active'"
-      >
-        <ws-widget-btn-social-like
-          *ngIf="showSocialLike"
-          [postId]="conversationRequest?.postId"
+      <span class="margin-top-s flex flex-between"
+        *ngIf="conversation?.mainPost?.activity && conversation?.mainPost?.status === 'Active'">
+        <ws-widget-btn-social-like *ngIf="showSocialLike" [postId]="conversationRequest?.postId"
           [postCreatorId]="conversation?.mainPost?.postCreator?.postCreatorId"
-          [activity]="conversation?.mainPost?.activity"
-        >
+          [activity]="conversation?.mainPost?.activity">
         </ws-widget-btn-social-like>
         <span>
-          <ws-widget-btn-social-vote
-            [postId]="conversationRequest?.postId"
-            [activity]="conversation?.mainPost?.activity"
-            [voteType]="'upVote'"
-            [postCreatorId]="conversation?.mainPost?.postCreator?.postCreatorId"
-          >
+          <ws-widget-btn-social-vote [postId]="conversationRequest?.postId"
+            [activity]="conversation?.mainPost?.activity" [voteType]="'upVote'"
+            [postCreatorId]="conversation?.mainPost?.postCreator?.postCreatorId">
           </ws-widget-btn-social-vote>
-          <ws-widget-btn-social-vote
-            class="margin-left-s"
-            [postId]="conversationRequest?.postId"
-            [activity]="conversation?.mainPost?.activity"
-            [voteType]="'downVote'"
-            [postCreatorId]="conversation?.mainPost?.postCreator?.postCreatorId"
-          ></ws-widget-btn-social-vote>
+          <ws-widget-btn-social-vote class="margin-left-s" [postId]="conversationRequest?.postId"
+            [activity]="conversation?.mainPost?.activity" [voteType]="'downVote'"
+            [postCreatorId]="conversation?.mainPost?.postCreator?.postCreatorId"></ws-widget-btn-social-vote>
         </span>
       </span>
       <mat-divider class="margin-top-xs margin-bottom-xs"></mat-divider>
@@ -98,8 +82,7 @@
           <strong>
             <ng-container i18n> Responses </ng-container>
             <ng-container *ngIf="conversation?.replyPost?.length">
-              ({{ conversation?.replyPost.length + conversation?.postCount }})</ng-container
-            >
+              ({{ conversation?.replyPost.length + conversation?.postCount }})</ng-container>
           </strong>
         </h3>
         <mat-accordion>
@@ -112,37 +95,20 @@
                 </div>
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <ws-widget-editor-quill
-              *ngIf="!resetEditor"
-              class="editor"
-              [hidden]="postingReply"
-              (textData)="onTextChange($event)"
-              (mentionsData)="mentions = $event"
-              [minLength]="'10'"
-            ></ws-widget-editor-quill>
-            <div
-              [hidden]="!postingReply"
-              [innerHTML]="commentText | pipeSafeSanitizer: 'html'"
-            ></div>
+            <ws-widget-editor-quill *ngIf="!resetEditor" class="editor" [hidden]="postingReply"
+              (textData)="onTextChange($event)" (mentionsData)="mentions = $event" [minLength]="'10'"
+              [showForBlogView]="true"></ws-widget-editor-quill>
+            <div [hidden]="!postingReply" [innerHTML]="commentText | pipeSafeSanitizer: 'html'"></div>
             <mat-spinner *ngIf="postingReply"></mat-spinner>
 
-            <button
-              type="button"
-              (click)="publishReply(failMsg.value)"
-              [disabled]="!replyEnabled || postingReply"
-              mat-stroked-button
-              color="primary"
-              i18n
-            >
+            <button type="button" (click)="publishReply(failMsg.value)" [disabled]="!replyEnabled || postingReply"
+              mat-stroked-button color="primary" i18n>
               Publish
             </button>
           </mat-expansion-panel>
         </mat-accordion>
-        <ws-app-blog-reply
-          [reply]="reply"
-          (deleteSuccess)="onDeleteReply(i)"
-          *ngFor="let reply of conversation?.replyPost; let i = index"
-        >
+        <ws-app-blog-reply [reply]="reply" (deleteSuccess)="onDeleteReply(i)"
+          *ngFor="let reply of conversation?.replyPost; let i = index">
         </ws-app-blog-reply>
       </ng-container>
     </ng-container>
@@ -150,24 +116,14 @@
       <mat-spinner></mat-spinner>
     </div>
     <div class="text-center margin-top-s" *ngIf="conversation?.postCount > 0">
-      <button
-        mat-stroked-button
-        [color]="'primary'"
-        [disabled]="fetchStatus === 'fetching'"
-        class="width-1-1"
-        type="button"
-        i18n
-        (click)="fetchConversationData()"
-      >
+      <button mat-stroked-button [color]="'primary'" [disabled]="fetchStatus === 'fetching'" class="width-1-1"
+        type="button" i18n (click)="fetchConversationData()">
         Show More Responses
       </button>
     </div>
   </div>
 
-  <div
-    class="new-replies-chip"
-    [hidden]="!conversation?.newPostCount || conversation?.newPostCount <= 0"
-  >
+  <div class="new-replies-chip" [hidden]="!conversation?.newPostCount || conversation?.newPostCount <= 0">
     <mat-chip-list>
       <mat-chip (click)="fetchConversationData(true)" color="primary" selected>
         <div class="cursor-pointer">New replies available ({{ conversation?.newPostCount }})</div>
