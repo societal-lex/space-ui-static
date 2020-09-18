@@ -248,6 +248,12 @@ export namespace NsUser {
     source_profile_picture?: null | string
     dealerCode?: null | string
     isManager?: boolean
+    lastName?: string
+    userProperties?: IUserProperties
+  }
+  export interface IUserProperties {
+    bio?: string
+    profileLink?: string
   }
   export interface IUserPidProfile {
     kid_updated: boolean
@@ -318,5 +324,6 @@ export namespace NsUser {
     time_updated: Date
     json_unmapped_fields?: any
     source_data: ISourceData
+    user_properties?: IUserProperties
   }
 }
