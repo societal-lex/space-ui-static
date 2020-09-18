@@ -27,6 +27,7 @@ export class InfoDialogComponent implements OnInit {
   isLoading: boolean | null = true
   public columnSequence: IDialogData['columnSequence'] = []
   public title = ''
+  deletedUserCount = 0
 
   constructor(
     public dialogRef: MatDialogRef<InfoDialogComponent>,
@@ -44,7 +45,9 @@ export class InfoDialogComponent implements OnInit {
         this.columnSequence = [...dataForDialog.columnSequence]
       }
       this.title = dataForDialog.title || ''
-      const userDetails = await this.getUsersByIDs(dataForDialog.users, false)
+      const priorUserIDs = dataForDialog.users
+      const userDetails = await this.getUsersByIDs(priorUserIDs, false)
+      this.deletedUserCount = this.findDeletedUserIDs(priorUserIDs, userDetails)
       this.dataSource = this.addIndexToData(userDetails)
       this.isLoading = false
     } catch (e) {
@@ -53,6 +56,19 @@ export class InfoDialogComponent implements OnInit {
       this.dataSource = []
       this.isLoading = null
     }
+  }
+
+  findDeletedUserIDs(initialIDs: any, APIData: any) {
+    if (Array.isArray(initialIDs) && Array.isArray(APIData) && initialIDs.length && APIData.length) {
+      const result = initialIDs.filter((o1: string) => {
+        const objectFound = APIData.some((o2: any) => {
+          return o1 === o2.wid
+        })
+        return !objectFound
+      })
+      return result.length
+    }
+    return -1
   }
 
   parseDataForDialog(eventResponseData: any, titleToUse = '') {
