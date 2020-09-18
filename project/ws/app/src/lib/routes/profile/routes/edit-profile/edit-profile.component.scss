@@ -1,6 +1,8 @@
-
 .format{
 text-align: center;
+p{
+margin:0 0 0 6px !important
+}
 
 }
 .button-align{
@@ -28,7 +30,6 @@ flex-direction: row;
 }
 .flexcontainercol{
 display: flex;
-padding-top: 7vh;
 padding-bottom: 7vh;
 justify-content: center;
 flex-direction: column;
@@ -49,7 +50,7 @@ width: 50%;
 position: absolute;
 bottom:0;
 right:12%;
-border: 1px solid red;
+border: 1px solid purple;
 height:30px;
 width:30px;
 border-radius:50%;
@@ -62,8 +63,8 @@ cursor: pointer;
 .hoverable{
 position: relative;
 display: block;
-height: 200px;
-width: 200px;
+height: 170px;
+width: 170px;
 border: 2px solid white;
 border-radius: 50%;
 margin-left: auto;
@@ -120,4 +121,9 @@ line-height:30px;
 background: white;
 font-size:20px;
 cursor: pointer;
+}
+
+textarea.mat-input-element {
+padding: 2px 0;
+margin: -10px 0;
 }

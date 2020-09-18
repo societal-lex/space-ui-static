@@ -270,6 +270,8 @@ export class InitService {
               userPidProfile.user.json_unmapped_fields.dealer_code
               ? userPidProfile.user.json_unmapped_fields.dealer_code
               : null,
+          lastName: userPidProfile.user.last_name,
+          userProperties: userPidProfile.user.user_properties,
           isManager:
             userPidProfile &&
               userPidProfile.user.json_unmapped_fields &&
