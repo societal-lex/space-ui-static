@@ -86,17 +86,27 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
   private initData(data: Data) {
     const initData = this.tocSharedSvc.initData(data)
     this.content = initData.content
-    this.body = this.domSanitizer.bypassSecurityTrustHtml(
-      this.content && this.content.body
-        ? this.forPreview
-          ? this.authAccessControlSvc.proxyToAuthoringUrl(this.content.body)
-          : this.content.body
-        : '',
-    )
-    this.contentParents = {}
-    this.resetAndFetchTocStructure()
-    this.getTrainingCount()
-    this.getContentParent()
+    this.tocSharedSvc.fetchEmails(this.content ? this.content.creatorContacts : []).then(newIDS => {
+      if (this.content) {
+        this.content.creatorContacts = [
+          ...newIDS,
+        ]
+      }
+      this.body = this.domSanitizer.bypassSecurityTrustHtml(
+        this.content && this.content.body
+          ? this.forPreview
+            ? this.authAccessControlSvc.proxyToAuthoringUrl(this.content.body)
+            : this.content.body
+          : '',
+      )
+      this.contentParents = {}
+      this.resetAndFetchTocStructure()
+      this.getTrainingCount()
+      this.getContentParent()
+    })
+    .catch(e => {
+      console.log('some error occured')
+    })
   }
 
   getContentParent() {

@@ -53,6 +53,12 @@ export class WidgetContentShareService {
     user: { name: string; email: string },
     type: 'attachment' | 'share' | 'query',
   ): NsShare.IEmailRequest {
+    let reciepients: any = []
+    if (this.configSvc.userProfile) {
+      reciepients = userMailIds.filter((usr: any) => usr.id !== (this.configSvc.userProfile as any).email)
+    } else {
+      reciepients = [...userMailIds]
+    }
     return {
       appURL: location.origin,
       artifacts: [
@@ -74,28 +80,12 @@ export class WidgetContentShareService {
         text: txtBody,
         isHTML: false,
       },
-      ccTo:
-        type === 'attachment'
-          ? []
-          : [
-            {
-              name: user.name,
-              email: user.email,
-            },
-          ],
-      emailTo:
-        type === 'attachment'
-          ? userMailIds
-          : [
-            {
-              name: user.name,
-              email: user.email,
-            },
-          ],
+      ccTo: [],
+      emailTo: reciepients,
       emailType: type,
       sharedBy: [
         {
-          name: user.name,
+          name: user.name.trim(),
           email: user.email,
         },
       ],

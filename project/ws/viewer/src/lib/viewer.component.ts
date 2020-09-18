@@ -6,6 +6,7 @@ import { UtilityService, ValueService } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
 import { RootService } from '../../../../../src/app/component/root/root.service'
 import { TStatus, ViewerDataService } from './viewer-data.service'
+import { AppTocService } from '@ws/app/src/lib/routes/app-toc/services/app-toc.service'
 
 export enum ErrorType {
   accessForbidden = 'accessForbidden',
@@ -52,6 +53,7 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     private rootSvc: RootService,
     private utilitySvc: UtilityService,
     private changeDetector: ChangeDetectorRef,
+    private tocSharedSvc: AppTocService,
   ) {
     this.rootSvc.showNavbarDisplay$.next(false)
   }
@@ -60,6 +62,13 @@ export class ViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
     e.activatedRoute.data.subscribe((data: { content: { data: NsContent.IContent } }) => {
       if (data.content && data.content.data) {
         this.content = data.content.data
+        this.tocSharedSvc.fetchEmails(this.content ? this.content.creatorContacts : []).then((newIDS: any) => {
+          if (this.content) {
+            this.content.creatorContacts = [
+              ...newIDS,
+            ]
+          }
+        })
       }
     })
   }

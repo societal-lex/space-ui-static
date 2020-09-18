@@ -31,7 +31,7 @@ export class BtnMailUserDialogComponent implements OnInit {
     this.shareSvc
       .shareContent(
         this.data.content,
-        this.data.emails.map(u => ({ email: u })),
+        this.data.emails.map((u: any) => ({ email: u.email, name: u.name })),
         txtBody,
         'query',
       )

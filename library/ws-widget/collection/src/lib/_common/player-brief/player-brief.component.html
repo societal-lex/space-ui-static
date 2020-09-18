@@ -582,7 +582,7 @@
       <div class="width-expand flex flex-middle flex-between">
         <h3 class="margin-remove">{{ author.name }}</h3>
         <ng-container *ngIf="mailIcon">
-         <ws-widget-btn-mail-user *ngIf="askAuthorEnabled" [widgetData]="{ content: content, emails: [author.email] }">
+         <ws-widget-btn-mail-user *ngIf="askAuthorEnabled" [widgetData]="{ content: content, emails: [{email: author.email, name: author.name}] }">
         </ws-widget-btn-mail-user>
         </ng-container>
       </div>

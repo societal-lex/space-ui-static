@@ -1,11 +1,12 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Data } from '@angular/router'
-import { Subject, Observable } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
-import { NsContent } from '@ws-widget/collection/src/lib/_services/widget-content.model'
 import { NsContentConstants } from '@ws-widget/collection/src/lib/_constants/widget-content.constants'
+import { NsContent } from '@ws-widget/collection/src/lib/_services/widget-content.model'
+import { UserAutocompleteService } from '@ws-widget/collection/src/public-api'
+import { ConfigurationsService, TFetchStatus } from '@ws-widget/utils'
+import { Observable, Subject } from 'rxjs'
 import { NsAppToc, NsCohorts } from '../models/app-toc.model'
-import { TFetchStatus, ConfigurationsService } from '@ws-widget/utils'
 
 // TODO: move this in some common place
 const PROTECTED_SLAG_V8 = '/apis/protected/v8'
@@ -35,7 +36,11 @@ export class AppTocService {
   private showSubtitleOnBanners = false
   private canShowDescription = false
 
-  constructor(private http: HttpClient, private configSvc: ConfigurationsService) { }
+  constructor(
+    private http: HttpClient,
+    private configSvc: ConfigurationsService,
+    private userAutoComplete: UserAutocompleteService,
+    ) { }
 
   get subtitleOnBanners(): boolean {
     return this.showSubtitleOnBanners
@@ -89,6 +94,52 @@ export class AppTocService {
       content,
       errorCode,
     }
+  }
+
+  /* fetchEmails(users: any[]) {
+    debugger
+    // fetch the email id of users using id
+    const usersQuery$ = from(users.map(user => user.name))
+    const request$ = usersQuery$.pipe(
+      map(v => v ? v.split(' ')[0] : v),
+    // tslint:disable-next-line: align
+    map(v => this.userAutoComplete.fetchAutoComplete(v)
+    ))
+    request$.pipe(
+      map((u: any) => {
+        debugger
+      return { id: u.wid, email: u.email, name: u.name }
+    }),
+      filter((d: any) => {
+    debugger
+    return users.includes(d.wid)
+  }
+    ),
+      tap(v => {
+      debugger
+      console.log('value is ', v)
+    }),
+      toArray())
+    .subscribe(_ => {
+      debugger
+      console.log('final val is ', _)
+    })
+  } */
+
+  async fetchEmails(users: any[]) {
+    const userDetailsPromise = users.map(u => {
+      return this.userAutoComplete.fetchAutoComplete(u.name.split(' ')[0]).toPromise()
+    })
+    const values = await Promise.all(userDetailsPromise)
+    const properValues = values.map(v => v[0])
+    const final = properValues.filter((_v: any) => users.findIndex(u => _v.wid === u.id) > -1).map((_x: any) => {
+      return {
+          id: _x.wid,
+          email: _x.email,
+          name: `${_x.first_name} ${_x.last_name}`,
+        }
+      })
+  return final
   }
 
   getTocStructure(
