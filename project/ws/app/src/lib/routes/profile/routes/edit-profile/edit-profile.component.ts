@@ -1,11 +1,13 @@
+
 import { Component, OnInit } from '@angular/core'
 import { InitService } from 'src/app/services/init.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ProfileService } from '../../services/profile.service'
 import { MatSnackBar } from '@angular/material'
 import { UploadService } from '../../../../../../../author/src/lib/routing/modules/editor/shared/services/upload.service'
-import { CONTENT_BASE_STATIC, FOLDER_NAME_EDIT_PROFILE } from '../../../../../../../author/src/lib/constants/apiEndpoints'
+import { CONTENT_BASE_STATIC } from '../../../../../../../author/src/lib/constants/apiEndpoints'
 import { ActivatedRoute } from '@angular/router'
+import { FOLDER_NAME_EDIT_PROFILE } from '../../../../../../../author/src/lib/constants/constant'
 
 export namespace NsEditProfile {
   export interface IResponseBody {
@@ -60,6 +62,7 @@ export class EditProfileComponent implements OnInit {
     if (this.userProfile) {
       this.profileForm.controls.givenName.setValue(this.userProfile.givenName)
       this.profileForm.controls.departmentName.setValue(this.userProfile.departmentName)
+      this.profileForm.controls.lastname.setValue(this.userProfile.lastname)
       this.profileForm.controls.email.setValue(this.userProfile.email)
       this.profileForm.controls.lastname.setValue(this.userProfile.lastName)
       if (this.userProfile.userProperties) {
@@ -71,6 +74,9 @@ export class EditProfileComponent implements OnInit {
         this.url = this.getAuthoringUrl(url)
       }
     }
+
+    // tslint:disable-next-line:no-console
+    console.log('user details', this.userProfile)
   }
   onSelectFile(file: File) {
     const formdata = new FormData()
@@ -98,9 +104,9 @@ export class EditProfileComponent implements OnInit {
           })
     }
   }
-  public delete() {
-    this.url = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
-  }
+  // public delete() {
+  //   this.url = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+  // }
   getAuthoringUrl(url: string): string {
     return url
       ? `/apis/authContent/${

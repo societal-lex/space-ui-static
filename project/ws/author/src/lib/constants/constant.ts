@@ -1,4 +1,5 @@
 export const NOTIFICATION_TIME = 5
+export const FOLDER_NAME_EDIT_PROFILE = 'profileimages'
 export const AVAILABLE_LOCALES = [
   'da',
   'hr',
