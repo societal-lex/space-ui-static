@@ -105,7 +105,7 @@ export class AppTocOverviewComponent implements OnInit, OnDestroy {
       this.getContentParent()
     })
     .catch(e => {
-      console.log('some error occured')
+      // console.log('some error occured')
     })
   }
 
