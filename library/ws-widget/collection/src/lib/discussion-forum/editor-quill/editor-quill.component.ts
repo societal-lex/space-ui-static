@@ -23,7 +23,7 @@ export class EditorQuillComponent implements OnInit {
 
   @Input() htmlText = ''
   @Input() minLength = '1'
-  @Input() post ?= false
+  @Input() post?= false
 
   text = ''
 
@@ -33,8 +33,8 @@ export class EditorQuillComponent implements OnInit {
   userDashboardData: NsUserDashboard.IUserData | any
   widLoggedinUser: string | any
   userListData: NsUserDashboard.IUserListDataFromUserTable[] = []
-  getRootOrg: string | any
-  getOrg: string | any
+  getRootOrg: string | any = ''
+  getOrg: string | any = ''
   userDataInJsonFormat: any
 
   quillConfig = {
@@ -53,10 +53,12 @@ export class EditorQuillComponent implements OnInit {
           renderList(values, searchTerm)
         } else {
           const matches = []
-          // tslint:disable-next-line: no-increment-decrement
-          for (let i = 0; i < values.length; i++) {
-            // tslint:disable-next-line: no-bitwise
-            if (~values[i].value.toLowerCase().indexOf(searchTerm.toLowerCase())) { matches.push(values[i]) }
+          if (values) {
+            // tslint:disable-next-line: no-increment-decrement
+            for (let i = 0; i < values.length; i++) {
+              // tslint:disable-next-line: no-bitwise
+              if (~values[i].value.toLowerCase().indexOf(searchTerm.toLowerCase())) { matches.push(values[i]) }
+            }
           }
           renderList(matches, searchTerm)
         }
@@ -80,7 +82,7 @@ export class EditorQuillComponent implements OnInit {
     }
 
     this.activateRoute.data.subscribe(data => {
-      if (data) {
+      if (data.socialData) {
         this.userDashboardData = data.socialData.data.userListData
         this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
         this.getRootOrg = data.socialData.data.userListData.root_org,
@@ -105,11 +107,12 @@ export class EditorQuillComponent implements OnInit {
       return op.hasOwnProperty('insert') && typeof op.insert !== 'string'
     }).map((mention: any) => {
       // tslint:disable-next-line: max-line-length
-      return {name: mention.insert.mention.value,
+      return {
+        name: mention.insert.mention.value,
         id: mention.insert.mention.id,
         email: JSON.parse(mention.insert.mention.data).email,
-    }
-  },
+      }
+    },
     )
     const uniqueUsers = uniqBy(mentions, 'id')
     return uniqueUsers
