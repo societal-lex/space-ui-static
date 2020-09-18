@@ -327,7 +327,8 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   }
 
   onTextChange(event: { htmlText: string; isValid: boolean }) {
-    this.replyAddRequest.postContent.body = event.htmlText || ''
+    this.replyAddRequest.postContent.body = event.htmlText
+    // this.replyAddRequest.postContent.body = event.htmlText || ''
     this.isValidForUserAnswer = event.isValid
   }
   triggerNotification() {
