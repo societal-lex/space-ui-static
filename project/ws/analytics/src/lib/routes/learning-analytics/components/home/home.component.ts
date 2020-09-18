@@ -1640,7 +1640,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       event: eventType,
       title: titleToUse,
       width: '50%',
-      height: '50%',
+      height: '55%',
       startDate: this.startDate,
       endDate: this.endDate,
       contentType: this.contentType,

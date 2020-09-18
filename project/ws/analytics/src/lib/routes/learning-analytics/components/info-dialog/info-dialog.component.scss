@@ -53,7 +53,7 @@ table {
 }
 
 .footer {
-  float: right;
+  padding-top: 20px;
 }
 
 .center-message {
@@ -70,6 +70,9 @@ td{
   padding-top: 20px;
   padding-left:10px;
   
+}
+.counter {
+  margin: 0; 
 }
 /* td {
     text-align: center;

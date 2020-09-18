@@ -51,10 +51,13 @@
         No {{title || 'Details'}} Found
       </p>
     </div>
-      <!-- <div class="footer" mat-dialog-actions>
-        <button mat-dialog-close mat-raised-button type="button" class="text-white ws-mat-primary-background text-white">
+      <div class="footer">
+        <!-- <button mat-dialog-close mat-raised-button type="button" class="text-white ws-mat-primary-background text-white">
                   <span class="text-white" i18n>Close</span>
-        </button>
-      </div> -->
+        </button> -->
+        <p class="counter" *ngIf="deletedUserCount > 0">
+          {{deletedUserCount}} user{{deletedUserCount > 1 ? 's' : ''}} deleted
+        </p>
+      </div>
     </div>
   
