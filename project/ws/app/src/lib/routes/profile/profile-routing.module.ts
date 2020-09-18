@@ -37,7 +37,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'edit-Profile',
+    path: 'edit-profile',
     component: EditProfileComponent,
     data: {
       pageType: 'feature',

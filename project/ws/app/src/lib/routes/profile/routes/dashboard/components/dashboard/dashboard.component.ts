@@ -195,7 +195,7 @@ export class DashboardComponent implements OnInit {
   }
   // new changes in edit-profile
   edituserdetails() {
-    this.router.navigate(['/app/profile/edit-Profile'])
+    this.router.navigate(['/app/profile/edit-profile'])
   }
 
 }
