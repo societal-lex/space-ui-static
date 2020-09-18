@@ -23,8 +23,10 @@ export class EditorQuillComponent implements OnInit {
 
   @Input() htmlText = ''
   @Input() minLength = '1'
-  @Input() post?= false
-
+  @Input() post ?= false
+  @Input() showForWriteABlog = false
+  @Input() showForQna = false
+  @Input() showForBlogView = false
   text = ''
 
   reset = false
@@ -80,17 +82,21 @@ export class EditorQuillComponent implements OnInit {
     if (this.post) {
       this.placeholder = 'Add a post ...'
     }
-
-    this.activateRoute.data.subscribe(data => {
-      if (data.socialData) {
-        this.userDashboardData = data.socialData.data.userListData
-        this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
-        this.getRootOrg = data.socialData.data.userListData.root_org,
-          this.getOrg = data.socialData.data.userListData.org
-      }
-    })
+    if (this.showForWriteABlog || this.showForQna || this.showForBlogView) {
+      this.getUserDatFromConfig()
+    }
   }
 
+ getUserDatFromConfig() {
+   this.activateRoute.data.subscribe(data => {
+     if (data.socialData) {
+       this.userDashboardData = data.socialData.data.userListData
+       this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
+       this.getRootOrg = data.socialData.data.userListData.root_org,
+         this.getOrg = data.socialData.data.userListData.org
+     }
+   })
+ }
   onContentChanged(editorEvent: any) {
     const newList = this.emitMentionsEvent(editorEvent.content.ops)
     this.textData.emit({
