@@ -112,6 +112,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   isDisabled() {
+    if (!this.profileForm.controls.givenName.value) {
+      return true
+    }
     if (this.profileUrlParams || this.profileForm.dirty) {
       return false
     }
