@@ -99,9 +99,11 @@ font-size: 27px !important;
     width: auto !important;
     margin-top: auto !important;
     float: unset !important;
+    margin-left: 2rem !important;
   }
   @include breakpoint-s {
 width: 17rem !important;
+margin-top: -7rem;
   }
   // height: 17rem;
 }
@@ -112,6 +114,7 @@ width: 17rem !important;
    .img-container {
   width: auto !important;
   float: none !important;
+  margin-left: 1rem !important;
 }
   .header{
     padding-bottom: 1rem !important;

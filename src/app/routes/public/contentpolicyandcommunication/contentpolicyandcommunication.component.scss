@@ -99,9 +99,11 @@ line-height: 33px !important;
     width: auto !important;
     margin-top: auto !important;
     float: unset !important;
+    margin-left: 2rem !important;
   }
   @include breakpoint-s {
 width: 17rem !important;
+margin-top: -7rem;
   }
   // height: 17rem;
 }
@@ -116,6 +118,9 @@ width: 17rem !important;
    }
    .font-style {
     width: 14rem !important;
+}
+.img-container {
+margin-left: 1rem !important;
 }
 }
 @media screen and (min-width:539px) and (max-width: 542px) {

@@ -107,26 +107,37 @@ p {
     display: none !important;
   }
 }
-@media (max-width: 962px) {
+@media (max-width: 1025px) {
   .display-image {
     display: none;
   }
   .display-text {
     text-align: center;
-    padding-top: 10rem;
+    padding-bottom: 3rem !important;
+    // padding-top: 10rem;
   }
   .h1-style {
     font-weight: 600;
+    color: #925EB0;
+  }
+  .flex {
+      justify-content: center !important;
+  }
+  img {
+    float: unset !important;
+  }
+  .group-image {
+    display: none !important;
   }
 }
-@media (min-width: 963px) {
+@media (min-width: 1026px) {
   .display-text {
     display: none;
   }
 }
 @media (min-width: 765px) and (max-width: 770px) {
   .display-text {
-    padding-top: 16rem !important;
+    // padding-top: 16rem !important;
   }
   .h1-style {
     font-size: 30px;
@@ -205,7 +216,11 @@ height: 624px;
     position: absolute;
     background-size: 4.9rem;
     // left: 1rem;
-    top:1rem
+    top:1rem;
+  @include breakpoint-xs {
+top: unset !important;
+left: unset !important;
+  }
  }
  .group-image1 {
     background:url('/assets/instances/space/banners/Group.png') no-repeat;
@@ -236,14 +251,19 @@ height: 624px;
  .signin-style {
    width: 100%;
  }
+//  .display-text {
+//    @include breakpoint-xs{
+//     padding-bottom: 3rem !important;
+//    }
+//  }
   @media screen and (min-width: 560px) and (max-width:568px) {
     .display-text {
-      padding-top: 1rem !important;
+      // padding-top: 1rem !important;
     }
   }
    @media screen and (min-width: 640px) and (max-width:766px) {
     .display-text {
-      padding-top: 4rem !important;
+      // padding-top: 4rem !important;
     }
     .signin-style {
       justify-content: center !important;
@@ -251,11 +271,11 @@ height: 624px;
 }
  @media screen and (min-width: 770px) and (max-width:890px) {
     .display-text {
-      padding-top: 4rem !important;
+      // padding-top: 4rem !important;
     }
     .signin-style {
       justify-content: center !important;
- }  
+ }
  }
  @media screen and (min-width: 1024px) and (max-width:1028px) {
 .homepage__banner-content {

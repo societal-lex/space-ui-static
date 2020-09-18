@@ -50,10 +50,14 @@
 
 </div>
 <div class="display-text container-fluid">
-  <h1 class="h1-style">Welcome To Societal Platform Assets</h1>
+  <div class="group">
+    <div class="group-image"></div>
+    <img [src]="appBanner" alt="The Last of us" />
+  </div>
+  <h1 class="h1-style">Societal Platform Assets</h1>
   <p class="p-style">
-    A place to search, discover and share assets including <br />
-    concepts, methods, processes, software, hardware and data.
+    A place for Societal Platform practitioners and enablers <br />
+    to learn, share and connect with each other.
   </p>
   <div class="signin-style flex">
     <button name="login_client_button" mat-button i18n="login: client" (click)="login('S')"
