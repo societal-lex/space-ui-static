@@ -1,6 +1,6 @@
 <div class="flexcontainercol">
 <div class="flexcontainer">
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
 <mat-card class="profile-form">
 
 <mat-toolbar color="primary">
@@ -63,7 +63,7 @@ Maximum character length exceeded
 <mat-spinner color="primary"></mat-spinner>
 </div>
 <div class="button-align">
-<button type="submit" mat-raised-button color="primary">Save</button>
+            <button type="submit" mat-raised-button [disabled]="isDisabled()" color="primary">Save</button>
 </div>
 </mat-card>
 </form>

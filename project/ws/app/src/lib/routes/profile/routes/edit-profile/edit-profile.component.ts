@@ -37,7 +37,7 @@ export class EditProfileComponent implements OnInit {
               private activateRoute: ActivatedRoute) { }
   url = ''
   profileUrlParams = ''
-  relativeUrl = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+  // relativeUrl = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
   profileForm: FormGroup = new FormGroup({
     givenName: new FormControl(''),
     departmentName: new FormControl(''),
@@ -74,9 +74,6 @@ export class EditProfileComponent implements OnInit {
         this.url = this.getAuthoringUrl(url)
       }
     }
-
-    // tslint:disable-next-line:no-console
-    console.log('user details', this.userProfile)
   }
   onSelectFile(file: File) {
     const formdata = new FormData()
@@ -88,7 +85,6 @@ export class EditProfileComponent implements OnInit {
       reader.onload = (file: any) => {
         this.url = file.target.result
       }
-      // formdata.append('content', fileName)
       formdata.append('content', file, fileName)
       // tslint:disable-next-line: no-console
       this.uploadService
@@ -113,6 +109,13 @@ export class EditProfileComponent implements OnInit {
       url.includes('/content-store/') ? new URL(url).pathname.slice(1) : encodeURIComponent(url)
       }`
       : ''
+  }
+
+  isDisabled() {
+    if (this.profileUrlParams || this.profileForm.dirty) {
+      return false
+    }
+    return true
   }
   async onSubmit() {
     if (this.profileForm.valid) {
@@ -139,7 +142,11 @@ export class EditProfileComponent implements OnInit {
     this.paramsForEditProfile.wid = this.userProfile.userId
     this.paramsForEditProfile.userFirstName = this.profileForm.value.givenName
     this.paramsForEditProfile.userLastName = this.profileForm.value.lastname
-    this.paramsForEditProfile.sourceProfilePicture = this.profileUrlParams
+    if (this.profileUrlParams) {
+      this.paramsForEditProfile.sourceProfilePicture = this.profileUrlParams
+    } else {
+      this.paramsForEditProfile.sourceProfilePicture = this.userProfile.source_profile_picture
+    }
     this.userPropertiesData.bio = this.profileForm.value.bio
     this.userPropertiesData.profileLink = this.profileForm.value.profileLink
     this.paramsForEditProfile.userProperties = this.userPropertiesData
