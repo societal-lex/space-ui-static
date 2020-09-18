@@ -58,6 +58,7 @@ export class InfoDialogComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line: variable-name
   findDeletedUserIDs(initialIDs: any, APIData: any) {
     if (Array.isArray(initialIDs) && Array.isArray(APIData) && initialIDs.length && APIData.length) {
       const result = initialIDs.filter((o1: string) => {
