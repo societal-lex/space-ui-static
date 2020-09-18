@@ -56,7 +56,7 @@
                   <span class="text-white" i18n>Close</span>
         </button> -->
         <p class="counter" *ngIf="deletedUserCount > 0">
-          {{deletedUserCount}} user{{deletedUserCount > 1 ? 's' : ''}} deleted
+          Detail{{deletedUserCount > 1 ? 's' : ''}} of {{deletedUserCount}} user{{deletedUserCount > 1 ? 's' : ''}} {{deletedUserCount > 1 ? 'were' : 'was'}} not found
         </p>
       </div>
     </div>
