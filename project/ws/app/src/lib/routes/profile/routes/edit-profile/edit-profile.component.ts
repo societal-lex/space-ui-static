@@ -29,7 +29,6 @@ export namespace NsEditProfile {
 })
 export class EditProfileComponent implements OnInit {
   paramsForEditProfile: NsEditProfile.IResponseBody = {} as NsEditProfile.IResponseBody
-  headersForEditProfile: any = {} as any
   constructor(private initService: InitService,
               private profileSvc: ProfileService,
               private uploadService: UploadService,
@@ -37,41 +36,39 @@ export class EditProfileComponent implements OnInit {
               private activateRoute: ActivatedRoute) { }
   url = ''
   profileUrlParams = ''
-  // relativeUrl = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+  relativeUrl = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
   profileForm: FormGroup = new FormGroup({
-    givenName: new FormControl(''),
-    departmentName: new FormControl(''),
+    userFirstName: new FormControl(''),
+    userOrganisation: new FormControl(''),
     email: new FormControl({ value: '', disabled: true }),
     profileLink: new FormControl(''),
-    sourceProfileLinkImage: new FormControl(''),
     bio: new FormControl('', Validators.maxLength(1000)),
-    lastname: new FormControl(''),
+    userLastName: new FormControl(''),
+    sourceProfilePicture: new FormControl(''),
   })
   userProfile: any
-  userConfigData: any
-  rootOrg = ''
-  userPropertiesData: NsEditProfile.IUserProperties = {} as NsEditProfile.IUserProperties
+  // userPropertiesData: NsEditProfile.IUserProperties = {} as NsEditProfile.IUserProperties
   isLoad = false
   ngOnInit() {
+
     this.activateRoute.data.subscribe(data => {
-      this.userConfigData = data.pageData.data
-      this.rootOrg = data.pageData.data.root_org
-      this.profileSvc.setUserEditProfileConfig(this.userConfigData)
+      if (data.pageData) {
+        this.profileSvc.setUserEditProfileConfig(data.pageData.data)
+      }
     })
     this.userProfile = this.initService.getUserProfile()
     if (this.userProfile) {
-      this.profileForm.controls.givenName.setValue(this.userProfile.givenName)
-      this.profileForm.controls.departmentName.setValue(this.userProfile.departmentName)
-      this.profileForm.controls.lastname.setValue(this.userProfile.lastname)
+      this.profileForm.controls.userFirstName.setValue(this.userProfile.givenName)
+      this.profileForm.controls.userOrganisation.setValue(this.userProfile.departmentName)
+      this.profileForm.controls.userLastName.setValue(this.userProfile.lastName)
       this.profileForm.controls.email.setValue(this.userProfile.email)
-      this.profileForm.controls.lastname.setValue(this.userProfile.lastName)
       if (this.userProfile.userProperties) {
         this.profileForm.controls.bio.setValue(this.userProfile.userProperties.bio)
         this.profileForm.controls.profileLink.setValue(this.userProfile.userProperties.profileLink)
       }
-      const url = this.userProfile.source_profile_picture
-      if (url) {
-        this.url = this.getAuthoringUrl(url)
+      if (this.userProfile.source_profile_picture) {
+        this.profileForm.controls.sourceProfilePicture.setValue(this.userProfile.source_profile_picture)
+        this.url = this.getAuthoringUrl(this.userProfile.source_profile_picture)
       }
     }
   }
@@ -95,7 +92,9 @@ export class EditProfileComponent implements OnInit {
         .subscribe(
           data => {
             if (data.code) {
-              this.profileUrlParams = data.artifactURL
+              // this.profileUrlParams = data.artifactURL
+              this.profileForm.controls.sourceProfilePicture.setValue(data.artifactURL)
+              this.url = this.getAuthoringUrl(data.artifactURL)
             }
           })
     }
@@ -112,10 +111,10 @@ export class EditProfileComponent implements OnInit {
   }
 
   isDisabled() {
-    if (!this.profileForm.controls.givenName.value) {
+    if (!this.profileForm.controls.userFirstName.value) {
       return true
     }
-    if (this.profileUrlParams || this.profileForm.dirty) {
+    if (this.profileForm.dirty) {
       return false
     }
     return true
@@ -123,11 +122,8 @@ export class EditProfileComponent implements OnInit {
   async onSubmit() {
     if (this.profileForm.valid) {
       this.isLoad = true
-      this.setFormValues()
-      const editresponse = await this.profileSvc.editProfile(this.headersForEditProfile, this.paramsForEditProfile)
+      const editresponse = await this.profileSvc.editProfile(this.userProfile.userId, this.profileForm.controls)
       this.isLoad = false
-      this.paramsForEditProfile = {} as NsEditProfile.IResponseBody
-      this.userPropertiesData = {} as NsEditProfile.IUserProperties
       if (editresponse.ok) {
         if (editresponse.DATA != null) {
           this.snackBar.open(editresponse.MESSAGE, '', {
@@ -141,20 +137,4 @@ export class EditProfileComponent implements OnInit {
       }
     }
   }
-  setFormValues() {
-    this.paramsForEditProfile.wid = this.userProfile.userId
-    this.paramsForEditProfile.userFirstName = this.profileForm.value.givenName
-    this.paramsForEditProfile.userLastName = this.profileForm.value.lastname
-    if (this.profileUrlParams) {
-      this.paramsForEditProfile.sourceProfilePicture = this.profileUrlParams
-    } else {
-      this.paramsForEditProfile.sourceProfilePicture = this.userProfile.source_profile_picture
-    }
-    this.userPropertiesData.bio = this.profileForm.value.bio
-    this.userPropertiesData.profileLink = this.profileForm.value.profileLink
-    this.paramsForEditProfile.userProperties = this.userPropertiesData
-    this.headersForEditProfile.org = this.profileForm.value.departmentName
-    this.headersForEditProfile.rootOrg = this.rootOrg
-  }
-
 }

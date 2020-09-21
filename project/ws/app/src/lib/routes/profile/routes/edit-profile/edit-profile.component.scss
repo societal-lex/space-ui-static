@@ -128,3 +128,8 @@ textarea.mat-input-element {
 padding: 2px 0;
 margin: -10px 0;
 }
+::ng-deep{
+.theme-muave.night-mode .ws-mat-primary-text{
+ color: black !important;
+}
+}
