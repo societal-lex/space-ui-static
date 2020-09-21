@@ -8,3 +8,8 @@
 .error-text {
   color: red;
 }
+::ng-deep{
+.theme-muave.night-mode .ql-mention-list-container{
+    background-color: #303030 !important;
+}
+}
