@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core'
 import 'quill-mention'
 import { NsUserDashboard } from '../../../../../../../project/ws/app/src/lib/routes/user-dashboard/models/user-dashboard.model'
 import { ConfigurationsService } from '../../../../../utils/src/public-api'
@@ -11,7 +11,7 @@ import { quillBaseConfig } from './config/quill-config'
   templateUrl: './editor-quill.component.html',
   styleUrls: ['./editor-quill.component.scss'],
 })
-export class EditorQuillComponent implements OnInit {
+export class EditorQuillComponent implements OnInit, OnDestroy {
   modules = {}
   @Output() textData = new EventEmitter<{
     isValid: boolean
@@ -24,9 +24,7 @@ export class EditorQuillComponent implements OnInit {
   @Input() htmlText = ''
   @Input() minLength = '1'
   @Input() post ?= false
-  @Input() showForWriteABlog = false
-  @Input() showForQna = false
-  @Input() showForBlogView = false
+  @Input() showMention = false
   text = ''
 
   reset = false
@@ -37,17 +35,19 @@ export class EditorQuillComponent implements OnInit {
   userListData: NsUserDashboard.IUserListDataFromUserTable[] = []
   getRootOrg: string | any = ''
   getOrg: string | any = ''
-  userDataInJsonFormat: any
+  userDataInJsonFormat: any = []
 
   quillConfig = {
     ...quillBaseConfig.modules,
+
     mention: {
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
       mentionDenotationChars: ['@', '#'],
 
       source: (searchTerm: string, renderList: (arg0: { id: number; value: string }[], arg1: any) => void, mentionChar: string) => {
-        let values
+        let values: string | any = []
         if (mentionChar === '@') {
+          // const users: NsUserDashboard.IUserListDataFromUserTable[] = this.getAllUsers()
           this.getAllUsers()
           values = this.userDataInJsonFormat
         }
@@ -72,31 +72,34 @@ export class EditorQuillComponent implements OnInit {
   constructor(private configSvc: ConfigurationsService,
               private activateRoute: ActivatedRoute,
               private discussionForumService: WsDiscussionForumService) {
-    const instanceConfig = this.configSvc.userProfile
-    if (instanceConfig) {
-      this.widLoggedinUser = instanceConfig.userId
+    if (this.configSvc.userProfile) {
+      this.widLoggedinUser = this.configSvc.userProfile.userId
     }
   }
 
   ngOnInit() {
+
     if (this.post) {
       this.placeholder = 'Add a post ...'
     }
-    if (this.showForWriteABlog || this.showForQna || this.showForBlogView) {
+    if (this.showMention) {
       this.getUserDatFromConfig()
     }
   }
 
- getUserDatFromConfig() {
-   this.activateRoute.data.subscribe(data => {
-     if (data.socialData) {
-       this.userDashboardData = data.socialData.data.userListData
-       this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
-       this.getRootOrg = data.socialData.data.userListData.root_org,
-         this.getOrg = data.socialData.data.userListData.org
-     }
-   })
- }
+  ngOnDestroy() {
+    this.userDataInJsonFormat = []
+  }
+  getUserDatFromConfig() {
+    this.activateRoute.data.subscribe(data => {
+      if (data.socialData) {
+        this.userDashboardData = data.socialData.data.userListData
+        this.discussionForumService.setUserDashboardConfig(this.userDashboardData)
+        this.getRootOrg = data.socialData.data.userListData.root_org,
+          this.getOrg = data.socialData.data.userListData.org
+      }
+    })
+  }
   onContentChanged(editorEvent: any) {
     const newList = this.emitMentionsEvent(editorEvent.content.ops)
     this.textData.emit({
@@ -131,35 +134,28 @@ export class EditorQuillComponent implements OnInit {
     },         0)
   }
 
-  async getAllUsers() {
+  getAllUsers(): any {
     this.headersForAllUsers.rootOrg = this.getRootOrg
     this.headersForAllUsers.org = this.getOrg
     this.headersForAllUsers.wid_OrgAdmin = this.widLoggedinUser
-    const userListResponse = await this.discussionForumService.getAllUsers(this.headersForAllUsers)
-    if (userListResponse.ok) {
-      if (userListResponse.DATA != null) {
-        this.userListData = userListResponse.DATA
-        this.userListJson(this.userListData)
+    this.discussionForumService.getAllUsersList(this.headersForAllUsers).subscribe(data => {
+      if (data.DATA != null) {
+        this.userDataInJsonFormat = this.userListJson(data.DATA)
       }
-      return this.errorOnLoading()
-    }
-    return this.errorOnLoading()
+    })
   }
 
-  userListJson(userList: NsUserDashboard.IUserListDataFromUserTable[] = []) {
+  userListJson(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
     // tslint:disable-next-line: prefer-const
     let obj = []
-    // tslint:disable-next-line: no-increment-decrement
-    for (let i = 0; i < userList.length; i++) {
-      // tslint:disable-next-line: prefer-template
-      // const fullname = this.discussionForumService.getFullName({ user: userList[] })
-      // tslint:disable-next-line: prefer-template
-      const fullname = userList[i].first_name + ' ' + userList[i].last_name
-      // tslint:disable-next-line: object-literal-key-quotes
-      obj.push({ 'id': userList[i].wid, 'value': fullname, data: JSON.stringify({ email: userList[i].email }) })
+    if (userList) {
+      // tslint:disable-next-line: no-increment-decrement
+      for (let i = 0; i < userList.length; i++) {
+        const fullname = this.discussionForumService.getFullName({ user: userList[i] })
+        obj.push({ id: userList[i].wid, value: fullname, data: JSON.stringify({ email: userList[i].email }) })
+      }
     }
-    this.userDataInJsonFormat = obj
-    return this.userDataInJsonFormat
+    return obj
   }
 
   errorOnLoading() {

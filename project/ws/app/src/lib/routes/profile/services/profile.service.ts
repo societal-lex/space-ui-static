@@ -76,24 +76,22 @@ export class ProfileService {
     )
   }
 
-  async editProfile(headers: any, params: any): Promise<IResponse> {
+  async editProfile(widUser: string, params: any): Promise<IResponse> {
     const responseBodyAsJSON = {
-      wid: params.wid,
-      userFirstName: params.userFirstName,
-      userLastName: params.userLastName,
-      sourceProfilePicture: params.sourceProfilePicture,
-      userProperties: params.userProperties,
-    }
-    const httpOptions = {
-      headers: new HttpHeaders({
-        rootorg: headers.rootOrg,
-        newOrg: headers.org,
-      }),
+      wid: widUser,
+      userFirstName: params.userFirstName.value,
+      userLastName: params.userLastName.value,
+      sourceProfilePicture: params.sourceProfilePicture.value,
+      userProperties: {
+        bio: params.bio.value,
+        profileLink: params.profileLink.value,
+      },
+      userOrganisation: params.userOrganisation.value,
     }
     try {
       // tslint:disable-next-line: prefer-template
       // tslint:disable-next-line: max-line-length
-      const responseData = await this.http.patch<IResponse>(this.userData.API_END_POINT + this.userData.edit_profile.url, responseBodyAsJSON, httpOptions).toPromise()
+      const responseData = await this.http.patch<IResponse>(this.userData.API_END_POINT + this.userData.edit_profile.url, responseBodyAsJSON).toPromise()
       if (responseData && responseData.STATUS === 'OK') {
         return Promise.resolve({
           ok: true,
