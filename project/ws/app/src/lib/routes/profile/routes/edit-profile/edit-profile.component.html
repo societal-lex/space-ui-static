@@ -6,8 +6,8 @@
         <mat-toolbar color="primary">
           <span class="title-center">Edit Profile</span>
         </mat-toolbar>
-        <h3 style="text-align:center">Profile Photo</h3>
         <div class="hoverable">
+          
           <img [src]="url ? url : relativeUrl">
           <div (click)="fileInput.click()">
             <mat-icon class="photo-icon ws-mat-primary-text">photo_camera</mat-icon>
