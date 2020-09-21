@@ -101,6 +101,9 @@
           </div>
           <form class="comment-form" *ngIf="allowedToComment">
             <mat-form-field class="width-1-1">
+              <!-- <input matInput i18n-placeholder placeholder="Add a comment" [mentionConfig]="mentionConfig"
+                value="commentAddRequest.postContent.body" type="text" name="comment"
+                [(ngModel)]="commentAddRequest.postContent.body" /> -->
               <input matInput i18n-placeholder placeholder="Add a comment" value="commentAddRequest.postContent.body"
                 type="text" name="comment" [(ngModel)]="commentAddRequest.postContent.body" />
             </mat-form-field>
@@ -156,8 +159,9 @@
 
   <mat-card [hidden]="!qnaConversation || !allowedToAnswer" class="my-4">
     <h2 i18n>Your Answer</h2>
-    <ws-widget-editor-quill class="editor" [htmlText]="replyAddRequest?.postContent?.body"  [showForQna] = "true" [minLength]="'20'"
-      (textData)="onTextChange($event)" (mentionsData)="mentions = $event" #editor></ws-widget-editor-quill>
+    <ws-widget-editor-quill class="editor" [htmlText]="replyAddRequest?.postContent?.body" [showMention]="allowMention"
+      [minLength]="'20'" (textData)="onTextChange($event)" (mentionsData)="mentions = $event" #editor>
+    </ws-widget-editor-quill>
     <button mat-raised-button [disabled]="!isValidForUserAnswer || isPostingReply" color="primary"
       i18n="Post comment of question" class="margin-top-s" (click)="postReply()">
       Post Your Answer

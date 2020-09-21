@@ -13,6 +13,7 @@ import {
 } from '@ws-widget/collection'
 import { TFetchStatus, ConfigurationsService, LoggerService, ValueService, NsPage } from '@ws-widget/utils'
 import { ForumService } from '../../../../forums/service/forum.service'
+import { NsUserDashboard } from '../../../../../../user-dashboard/models/user-dashboard.model'
 
 @Component({
   selector: 'ws-app-qna-view',
@@ -42,6 +43,13 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   allowedToComment = false
   allowedToAnswer = false
   mentions = []
+  headersForAllUsers: NsUserDashboard.IHeaders = {} as any
+  userDashboardData: NsUserDashboard.IUserData | any
+  widLoggedinUser: string | any
+  userListData: NsUserDashboard.IUserListDataFromUserTable[] = []
+  getRootOrg: string | any = ''
+  getOrg: string | any = ''
+  userDataInJsonFormat: any
 
   commentAddRequest: NsDiscussionForum.IPostCommentRequest = {
     postKind: NsDiscussionForum.EReplyKind.COMMENT,
@@ -78,9 +86,15 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     },
   }
 
+  mentionConfig = {
+    //  this.getAllUsers()
+    items: this.userDataInJsonFormat,
+    triggerChar: '@',
+  }
   userId = ''
   showSocialLike = false
   isValidForUserAnswer = false
+  allowMention = false
 
   @ViewChild('editor', { static: true }) editorQuill!: EditorQuillComponent
   userDetails: any[] = []
@@ -115,6 +129,7 @@ export class QnaViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initData()
+    // this.getAllUsers()
     // this.getUserDetails()
     this.showSocialLike = (this.configSvc.restrictedFeatures && !this.configSvc.restrictedFeatures.has('socialLike')) || false
 
@@ -127,6 +142,15 @@ export class QnaViewComponent implements OnInit, OnDestroy {
   private initData() {
     this.ngOnDestroy()
     this.routeSubscription = this.activatedRoute.data.subscribe((response: Data) => {
+      if (response.socialData) {
+        this.userDashboardData = response.socialData.data.userListData
+        this.discussionSvc.setUserDashboardConfig(this.userDashboardData)
+        this.getRootOrg = response.socialData.data.userListData.root_org,
+          this.getOrg = response.socialData.data.userListData.org
+      }
+      if (response.socialData.data.allowMentionUsers) {
+        this.allowMention = response.socialData.data.allowMentionUsers
+      }
       if (response.socialData.error) {
         this.allowedToEdit = false
         // tslint:disable-next-line: max-line-length
@@ -360,5 +384,32 @@ export class QnaViewComponent implements OnInit, OnDestroy {
     } catch (e) {
       return ''
     }
-}
+  }
+  getAllUsers(): any {
+    this.headersForAllUsers.rootOrg = this.getRootOrg
+    this.headersForAllUsers.org = this.getOrg
+    this.headersForAllUsers.wid_OrgAdmin = this.userId
+    this.discussionSvc.getAllUsersList(this.headersForAllUsers).subscribe(data => {
+      if (data.DATA != null) {
+        this.userDataInJsonFormat = this.userListJson(data.DATA)
+      }
+    })
+  }
+
+  userListJson(userList: NsUserDashboard.IUserListDataFromUserTable[]) {
+    // tslint:disable-next-line: prefer-const
+    let obj = []
+    if (userList) {
+      // tslint:disable-next-line: no-increment-decrement
+      for (let i = 0; i < userList.length; i++) {
+        // tslint:disable-next-line: prefer-template
+        // const fullname = this.discussionForumService.getFullName({ user: userList[] })
+        // tslint:disable-next-line: prefer-template
+        const fullname = userList[i].first_name + ' ' + userList[i].last_name
+        // tslint:disable-next-line: object-literal-key-quotes
+        obj.push({ 'id': userList[i].wid, 'value': fullname, data: JSON.stringify({ email: userList[i].email }) })
+      }
+    }
+    return obj
+  }
 }

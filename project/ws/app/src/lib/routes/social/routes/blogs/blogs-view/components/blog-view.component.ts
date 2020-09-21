@@ -44,6 +44,7 @@ export class BlogViewComponent implements OnInit {
   postCreatorId: string | null = null
   canUserDelete = false
   mentions = []
+  allowMention = false
 
   constructor(
     public dialog: MatDialog,
@@ -65,6 +66,9 @@ export class BlogViewComponent implements OnInit {
 
     // tslint:disable-next-line: deprecation
     combineLatest(this.route.data, this.route.paramMap).subscribe(_combinedResult => {
+      if (_combinedResult[0].socialData.data.allowMentionUsers) {
+        this.allowMention = _combinedResult[0].socialData.data.allowMentionUsers
+        }
       // tslint:disable-next-line: max-line-length
       if (this.forumSrvc.isVisibileAccToRoles(_combinedResult[0].socialData.data.rolesAllowed.blogs, _combinedResult[0].socialData.data.rolesNotAllowed.blogs)) {
         this.allowedToEditBlog = true

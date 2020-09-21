@@ -7,40 +7,27 @@
   <div #blogContainer class="blog-container">
     <ng-container *ngIf="conversation">
       <div class="flex flex-between">
-        <h1 class="ws-mat-primary-text margin-bottom-s title-style" [innerHTML]="conversation?.mainPost?.postContent?.title">
+        <h1 class="ws-mat-primary-text margin-bottom-s title-style"
+          [innerHTML]="conversation?.mainPost?.postContent?.title">
         </h1>
-        <button
-          tabindex="0"
-         *ngIf="canUserEdit || canUserDelete"
-          type="button"
-          mat-icon-button
-          [matMenuTriggerFor]="editMenu"
-        >
+        <button tabindex="0" *ngIf="canUserEdit || canUserDelete" type="button" mat-icon-button
+          [matMenuTriggerFor]="editMenu">
           <mat-icon>more_vert</mat-icon>
         </button>
       </div>
       <mat-menu #editMenu="matMenu">
         <ng-template matMenuContent>
-          <a
-            i18n-aria-label
-              *ngIf="canUserEdit"
-            aria-label="Edit Blog"
-            [routerLink]="'/app/social/blogs/edit/' + conversationRequest?.postId"
-            mat-menu-item
-            i18n
-            class="aStyle"
-            >Edit Blog</a
-          >
-          <button  *ngIf="canUserDelete" (click)="deleteBlog(deleteMsg.value)" mat-menu-item i18n>Delete Blog</button>
+          <a i18n-aria-label *ngIf="canUserEdit" aria-label="Edit Blog"
+            [routerLink]="'/app/social/blogs/edit/' + conversationRequest?.postId" mat-menu-item i18n
+            class="aStyle">Edit Blog</a>
+          <button *ngIf="canUserDelete" (click)="deleteBlog(deleteMsg.value)" mat-menu-item i18n>Delete Blog</button>
         </ng-template>
       </mat-menu>
       <h2 class="margin-bottom-m" [innerHTML]="conversation?.mainPost?.postContent?.abstract"></h2>
       <div class="flex flex-middle margin-bottom-xl">
         <div class="padding-left-s width-expand">
           <div class="flex flex-middle">
-            <ws-widget-user-image
-              [email]="conversation?.mainPost?.postCreator?.emailId"
-            ></ws-widget-user-image>
+            <ws-widget-user-image [email]="conversation?.mainPost?.postCreator?.emailId"></ws-widget-user-image>
             <div class="padding-left-s width-expand">
               <span class="ws-mat-primary-text">
                 {{ conversation?.mainPost?.postCreator?.name }}
@@ -86,7 +73,7 @@
           </strong>
         </h3>
         <mat-accordion>
-          <mat-expansion-panel [expanded]="resetEditor">
+          <mat-expansion-panel [expanded]="resetEditor" class="panel-overflow">
             <mat-expansion-panel-header class="panel-header" [collapsedHeight]="'72px'">
               <mat-panel-title>
                 <div class="flex flex-middle">
@@ -97,7 +84,7 @@
             </mat-expansion-panel-header>
             <ws-widget-editor-quill *ngIf="!resetEditor" class="editor" [hidden]="postingReply"
               (textData)="onTextChange($event)" (mentionsData)="mentions = $event" [minLength]="'10'"
-              [showForBlogView]="true"></ws-widget-editor-quill>
+              [showMention]="allowMention"></ws-widget-editor-quill>
             <div [hidden]="!postingReply" [innerHTML]="commentText | pipeSafeSanitizer: 'html'"></div>
             <mat-spinner *ngIf="postingReply"></mat-spinner>
 
