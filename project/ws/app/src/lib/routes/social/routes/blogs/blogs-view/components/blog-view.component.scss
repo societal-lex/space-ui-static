@@ -47,6 +47,7 @@ ws-widget-user-image {
   margin-top: $size-s;
 }
 
+
 .new-replies-chip {
   position: fixed;
   bottom: $size-xl * 2;
@@ -55,6 +56,9 @@ ws-widget-user-image {
   text-align: center;
 }
 
+.panel-overflow{
+  overflow:visible;
+}
 .panel-header {
   padding-left: $size-m;
 }
