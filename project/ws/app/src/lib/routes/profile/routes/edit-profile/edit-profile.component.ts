@@ -51,7 +51,12 @@ export class EditProfileComponent implements OnInit {
   // userPropertiesData: NsEditProfile.IUserProperties = {} as NsEditProfile.IUserProperties
   isLoad = false
   ngOnInit() {
-
+    this.activateRoute.data.subscribe(data => {
+      if (data.pageData) {
+        this.profileSvc.setUserEditProfileConfig(data.pageData.data)
+        this.relativeUrl = data.pageData.data.profileImage
+      }
+    })
     this.userProfile = this.initService.getUserProfile()
     if (this.userProfile) {
       this.profileForm.controls.userFirstName.setValue(this.userProfile.givenName)
@@ -62,17 +67,12 @@ export class EditProfileComponent implements OnInit {
         this.profileForm.controls.bio.setValue(this.userProfile.userProperties.bio)
         this.profileForm.controls.profileLink.setValue(this.userProfile.userProperties.profileLink)
       }
-      if (this.userProfile.source_profile_picture) {
+      if (this.userProfile.source_profile_picture !== 'null') {
         this.profileForm.controls.sourceProfilePicture.setValue(this.userProfile.source_profile_picture)
         this.url = this.getAuthoringUrl(this.userProfile.source_profile_picture)
       }
     }
-    this.activateRoute.data.subscribe(data => {
-      if (data.pageData) {
-        this.profileSvc.setUserEditProfileConfig(data.pageData.data)
-        this.relativeUrl = data.pageData.data.profileImage
-      }
-    })
+
   }
   onSelectFile(file: File) {
     this.isEnable = true
