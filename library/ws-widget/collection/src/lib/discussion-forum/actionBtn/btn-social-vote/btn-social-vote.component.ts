@@ -51,6 +51,7 @@ export class BtnSocialVoteComponent implements OnInit {
   }
 
   upVote(invalidUserMsg: string) {
+    // this.getWidsForVote()
     if (this.postCreatorId === this.userId) {
       this.snackBar.open(invalidUserMsg)
       return

@@ -137,6 +137,8 @@ export class WsDiscussionForumService {
           index: idx + 1,
           ...item,
           full_name: this.getFullName({ user: item }),
+          // wid: item.wid,
+          // email: item.email,
         }
       })
     }
@@ -145,7 +147,7 @@ export class WsDiscussionForumService {
 
   getFullName(userObj: any) {
     const finalName = []
-    if (userObj.user.first_name || userObj.first_name) {
+    if (userObj.user.first_name) {
       finalName.push(userObj.user.first_name)
     }
     if (userObj.user.middle_name) {

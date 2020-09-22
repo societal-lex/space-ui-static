@@ -59,7 +59,7 @@ export class BlogEditComponent implements OnInit {
   autocompleteAllTags: NsDiscussionForum.IPostTag[] = []
   tagsFromConversation: NsDiscussionForum.IPostTag[] = []
   fetchTagsStatus: TFetchStatus | null = null
-
+  allowMention = false
   isXSmall$: Observable<boolean>
   userId = ''
   allowedToDiscussionForum = true
@@ -114,7 +114,10 @@ export class BlogEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(_data => {
-      // console.log(_data)
+      if (_data.pageData.data.allowMentionUsers) {
+        this.allowMention = _data.pageData.data.allowMentionUsers
+      }
+
       // tslint:disable-next-line: max-line-length
       if (this.blogService.isVisibileAccToRoles(_data.pageData.data.rolesAllowed.blog, _data.pageData.data.rolesNotAllowed.blog)) {
         this.allowedToDiscussionForum = true
