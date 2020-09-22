@@ -166,3 +166,6 @@ margin-left: 1rem !important;
 .allignpara{
   margin-left: -15px;
 }
+.allignpara:not(:root:root){
+     margin-left: -20px !important
+}

@@ -178,3 +178,79 @@ margin-top: -7rem;
 .allign-paras{
   margin-left: -18px;
 }
+// @media screen and (-webkit-min-device-pixel-ratio:0) {
+//  .allignparagraph{
+//   margin-left: -15px !important;
+// }
+// }
+// _::-webkit-full-page-media, _:future, :root .safari_only {
+
+//   // color:#0000FF;
+//   // background-color:#CCCCCC;
+//   .allignparagraph{
+//   margin-left: -18px !important;
+// }
+
+// }
+
+// .allignparagraph :active {
+// margin-left: -18px !important;
+// }
+// ::i-block-chrome, .allignparagraph {
+//      margin-left: -18px !important;
+// }
+
+
+// @media screen and (-webkit-min-device-pixel-ratio:0) {
+//   .allignparagraph{
+//   margin-left: -13px;
+// }
+//    ::i-block-chrome, .seo-website {
+//     margin-left: -18px !important;
+//      }
+//     }
+// @media screen and (-webkit-min-device-pixel-ratio:0) {
+//     /* Safari and Chrome, if Chrome rule needed */
+//     .allignparagraph {
+// margin-left: -13px !important    }
+//     /* Safari 5+ ONLY */
+
+//     ::i-block-chrome,.allignparagraph {
+//      margin-left: -18px !important
+//     }
+// }
+
+
+.allignparagraph:not(:root:root){
+     margin-left: -18px !important
+}
+.allign-paras:not(:root:root){
+     margin-left: -21px !important
+}
+.allign-para:not(:root:root){
+  margin-left: -26px !important;
+}
+
+// @supports (-webkit-appearance:none) {
+//   .allignparagraph{
+//   margin-left: -18px !important
+// }}
+
+// @media not all and (min-resolution:.001dpcm)
+// { @supports (-webkit-appearance:none) {
+
+//     .allignparagraph{
+//   margin-left: -18px !important
+// }
+// }}
+
+// @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm)
+// {
+//     .allignparagraph {
+
+//        margin-left: -13px !important;
+
+//     }
+// }
+
+
