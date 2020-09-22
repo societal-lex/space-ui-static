@@ -107,7 +107,8 @@ color: #696466;
   border-radius: 0px !important;
 }
 .about_btn {
-  padding: 0 20px !important;
+  margin: 0 20px !important;
+  padding: 0px !important;
   margin-bottom: 3px !important;
    @include breakpoint-xs {
      display: flex !important;
@@ -119,7 +120,8 @@ color: #696466;
   text-decoration: inherit !important;
 }
 .collaborator_btn {
-   padding: 0 20px !important;
+   margin: 0 20px !important;
+  padding: 0px !important;
     margin-bottom: 3px !important;
     @include breakpoint-xs {
      display: flex !important;
@@ -171,6 +173,15 @@ color: #696466;
 .logosize {
     width: auto !important;
 }
+}
+::ng-deep {
+  mat-toolbar span {
+    font-family: montserrat, sans-serif !important;
+    font-style: normal !important;
+    font-weight: bolder;
+    font-size: 14px !important;
+    line-height: 17px !important;
+  }
 }
 // @media only screen and (min-width: 360px) and (max-width: 599px) {
 //   .app-logo {

@@ -1,6 +1,6 @@
 <mat-toolbar *ngIf="showPublicNavbar" [color]="navBar?.color" [ngStyle]="navBar?.styles" id="publicWhiteNavBar">
   <div class="logosize">
-    <a name="application-logo" class="padding-remove-small campaign logo" mat-button routerLink="" i18n-matTooltip
+    <a name="application-logo" [disableRipple]="true" class="padding-remove-small campaign logo" mat-flat-button routerLink="" i18n-matTooltip
       matTooltip="Home">
       <img [src]="appIcon" i18n-alt alt="Application Logo" class="app-logo" />
       <!-- <span class="title-app mx-2" *ngIf="appName">| {{appName}}</span> -->
