@@ -24,6 +24,7 @@
   max-width: 100%;
   justify-content: center;
   margin: 0;
+  padding-top: 40px;
 }
 .owl-carousel,
 .owl-carousel .owl-item {
@@ -56,7 +57,7 @@
   display: block;
   width: 100%;
   // height: auto;
-  height: 624px;
+  // height: 624px;
     left: 0px;
     top: 0px;
 }
@@ -68,7 +69,7 @@
 img {
     /* position: absolute; */
     // width: 50% !important;
-    height: auto;
+    height: 43rem;
     /* left: 682px; */
     /* top: 235px; */
     float: right;
@@ -149,9 +150,9 @@ p {
 }
 /* text style  start*/
 .h1-head-style {
-font-weight: 460;
-font-size: 48px;
-line-height: 55px;
+font-weight: 460 !important;
+font-size: 47px !important;
+line-height: 55px !important;
 color: #925EB0;
 }
 .sub-heading {
@@ -211,13 +212,13 @@ line-height: 22px !important;
 /* btn style end */
 /*image group style */
 .group-image {
- background:url('/assets/instances/space/banners/Ellipse.png') no-repeat;
-width: 100%;
-height: 624px;
-       left: 240px;
+background: url(/assets/instances/space/banners/Ellipse.png) no-repeat;
+    width: 100%;
+    height: 624px;
+    left: 293px;
     position: absolute;
-    background-size: 6.9rem;
-    top: -1.5rem;
+    background-size: 7rem;
+    top: -0.9rem;
   @include breakpoint-xs {
 top: unset !important;
 left: unset !important;
@@ -226,7 +227,7 @@ left: unset !important;
  .group-image1 {
     background:url('/assets/instances/space/banners/Group.png') no-repeat;
     position: absolute;
-    top: 35rem;
+    top: 36rem;
     background-size: 12rem;
     width: 281px;
     height: 250px;
@@ -238,11 +239,11 @@ left: unset !important;
     background:url('/assets/instances/space/banners/Group2.png') no-repeat;
     position: absolute;
     // top: 29rem;
-   background-size: 7rem;
+    background-size: 7.5rem;
     width: 125px;
     height: 125px;
     left: 30rem;
-    top: 38rem;
+    top: 39rem;
     z-index: 100;
 @include breakpoint-xl {
     left: 35rem;
@@ -334,15 +335,24 @@ left: unset !important;
 }
 
 .group {
-  position: relative;
+  position: absolute;
+    left: 0;
+    right: 0;
+    top: 53.5px;
 }
 @media screen and (max-width: 767px) {
   .mat-grid-tile {
     position: initial !important;
   }
 }
- .mat-grid-tile {
-   overflow: initial !important;
+.head-text {
+  z-index: 1;
+}
+.image-text {
+   overflow: hidden !important;
+   left: calc((45% - 0.5px + 1px) * 1) !important;
+    width: calc((57% - 0.5px) * 1 + 0px) !important;
+    padding-top: calc((50% - 0.5px) * 1 + 0px) !important;
  }
 @media screen and (min-width: 1024px) and (max-width: 1027px) {
 .homepage__banner-content {
@@ -362,7 +372,7 @@ left: unset !important;
     width: 100%;
 }
 .img-res {
-height: 150px;
+height: 230px;
 }
 .container-1 {
   margin-top: -12rem;
