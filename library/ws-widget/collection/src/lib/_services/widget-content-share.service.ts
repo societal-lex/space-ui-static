@@ -85,13 +85,13 @@ export class WidgetContentShareService {
           ],
       emailTo:
         type === 'attachment'
-          ? [
+          ? userMailIds
+          : [
             {
               name: user.name,
               email: user.email,
             },
-          ]
-          : userMailIds,
+          ],
       emailType: type,
       sharedBy: [
         {

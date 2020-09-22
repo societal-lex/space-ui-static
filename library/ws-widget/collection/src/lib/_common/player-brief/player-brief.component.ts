@@ -21,7 +21,7 @@ export class PlayerBriefComponent implements OnInit {
   @Input()
   forPreview = false
   @Input()
-  askAuthorEnabled = false
+  askAuthorEnabled = true
   tocConfig: any = null
 
   contentTypes = NsContent.EContentTypes

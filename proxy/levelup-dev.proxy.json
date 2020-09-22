@@ -1,0 +1,68 @@
+{
+  "/sample/*": {
+    "target": "http://localhost:3200",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/apis/*": {
+    "target": "https://levelup.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/content-api/*": {
+    "target": "https://levelup.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/content-store/*": {
+    "target": "https://levelup.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/chat-bot/*": {
+    "target": "https://levelup.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/mobile-apps/*": {
+    "target": "https://levelup.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/LA/*": {
+    "target": "https://levelup.stackroutelabs.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/assets/*": {
+    "target": "http://localhost:3007",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/usersubmission/*": {
+    "target": "http://localhost:9400",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/users/*": {
+    "target": "http://127.0.0.1:3001/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/public/*": {
+    "target": "http://127.0.0.1:3001/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

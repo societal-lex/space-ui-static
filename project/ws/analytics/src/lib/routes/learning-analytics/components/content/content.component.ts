@@ -716,12 +716,12 @@ export class ContentComponent implements OnInit, OnDestroy {
         (history: any) => {
           this.userProgressData = history
           this.progressData = []
-          if (history.learning_history[0].total_view) {
-            this.showViews = true
-          }
-          if (history.learning_history[0].avg_time) {
-            this.showTime = true
-          }
+          // if (history.learning_history[0].total_view) {
+          //   this.showViews = true
+          // }
+          // if (history.learning_history[0].avg_time) {
+          //   this.showTime = true
+          // }
           this.myProgress = history.learning_history
           this.othersProgress = history.learning_history_progress_range
           this.myProgress.map((cur: any, i: any) => {

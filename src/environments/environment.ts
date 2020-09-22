@@ -10,6 +10,8 @@
 export const environment: IEnvironment = {
   production: false,
   sitePath: 'learn.stackroutelabs.com',
+  // sitePath: 'knowledge.stackroutelabs.com',
+  // sitePath: 'levelup.stackroutelabs.com'
 }
 
 interface IEnvironment {

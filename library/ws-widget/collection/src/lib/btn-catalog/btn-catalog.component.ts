@@ -29,7 +29,7 @@ export class BtnCatalogComponent extends WidgetBaseComponent
   constructor(private catalogSvc: TreeCatalogService,
               private searchSvc: SearchServService,
               private router: Router,
-              private configSvc: ConfigurationsService) {
+              public configSvc: ConfigurationsService) {
     super()
   }
 

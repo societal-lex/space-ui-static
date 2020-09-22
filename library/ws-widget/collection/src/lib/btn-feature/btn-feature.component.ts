@@ -46,7 +46,7 @@ export class BtnFeatureComponent extends WidgetBaseComponent
   private navigationSubs?: Subscription
   constructor(
     private events: EventService,
-    private configurationsSvc: ConfigurationsService,
+    private configurationsSvc: ConfigurationsService ,
     private btnFeatureSvc: BtnFeatureService,
     private router: Router,
     private mobileSvc: MobileAppsService,
@@ -132,9 +132,17 @@ export class BtnFeatureComponent extends WidgetBaseComponent
       }
       return true
     }
-    return true
-  }
 
+      if (this.configurationsSvc.userRoles !== null && !this.configurationsSvc.userRoles.has('org-admin')) {
+        if (this.widgetData.actionBtn !== undefined && this.widgetData.actionBtn.id === 'feature_user_dashboard') {
+      return false
+    }
+    return true
+      }
+
+    return true
+
+  }
   togglePin(featureId: string, event: any) {
     event.preventDefault()
     event.stopPropagation()

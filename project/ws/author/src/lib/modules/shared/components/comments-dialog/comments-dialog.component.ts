@@ -3,6 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core'
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { NSContent } from '@ws/author/src/lib/interface/content'
+import { ConfigurationsService } from '@ws-widget/utils/src/public-api'
 
 @Component({
   selector: 'ws-auth-root-comments-dialog',
@@ -15,14 +16,17 @@ export class CommentsDialogComponent implements OnInit {
   history = <NSContent.IComments[]>[]
   isSubmitPressed = false
   showNewFlow = false
+  isDarkMode: any
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CommentsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: NSContent.IContentMeta,
     private authInitService: AuthInitService,
+    private configurationsSvc: ConfigurationsService
   ) {}
 
   ngOnInit() {
+      this.isDarkMode = this.configurationsSvc.isDarkMode
     this.showNewFlow = this.authInitService.authAdditionalConfig.allowActionHistory
     this.contentMeta = this.data
     this.commentsForm = this.formBuilder.group({

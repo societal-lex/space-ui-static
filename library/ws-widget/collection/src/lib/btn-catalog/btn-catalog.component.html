@@ -2,8 +2,8 @@
   <div>
     <button mat-button i18n-matTooltip matTooltip="Explore" (click)="getCatalog()" #rootTrigger="matMenuTrigger"
       name="exploreButtonHomePage" [matMenuTriggerFor]="rootMenu.childMenu">
-      <mat-icon>apps</mat-icon>
-      <span class="button-style" i18n>Explore</span>
+      <mat-icon *ngIf="configSvc.rootOrg != 'space'">apps</mat-icon>
+      <span *ngIf="configSvc.rootOrg != 'space'" class="button-style" i18n>Explore</span>
     </button>
   </div>
   <div>
