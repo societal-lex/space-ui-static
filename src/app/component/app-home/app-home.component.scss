@@ -174,6 +174,7 @@ color: #696466;
     position: relative;
     width: 38.59%;
     height: 49px;
+    border-radius: 0px !important;
     background: #925EB0 !important;
     //  @include breakpoint-gt-xs {
     //    width: 45% !important;
@@ -187,6 +188,7 @@ color: #696466;
 position: relative;
 width: 38.59%;
 height: 49px;
+border-radius: 0px !important;
 border: 2px solid #925EB0 !important;
 box-sizing: border-box;
 margin-left: 2rem;
@@ -212,11 +214,10 @@ line-height: 22px !important;
  background:url('/assets/instances/space/banners/Ellipse.png') no-repeat;
 width: 100%;
 height: 624px;
-    left: 150px;
+       left: 240px;
     position: absolute;
-    background-size: 4.9rem;
-    // left: 1rem;
-    top:1rem;
+    background-size: 6.9rem;
+    top: -1.5rem;
   @include breakpoint-xs {
 top: unset !important;
 left: unset !important;
@@ -225,8 +226,8 @@ left: unset !important;
  .group-image1 {
     background:url('/assets/instances/space/banners/Group.png') no-repeat;
     position: absolute;
-    top: 32rem;
-    background-size: 8rem;
+    top: 35rem;
+    background-size: 12rem;
     width: 281px;
     height: 250px;
 @include breakpoint-xl {
@@ -237,11 +238,11 @@ left: unset !important;
     background:url('/assets/instances/space/banners/Group2.png') no-repeat;
     position: absolute;
     // top: 29rem;
-    background-size: 7rem;
+   background-size: 7rem;
     width: 125px;
     height: 125px;
-    left: 27rem;
-    top: 31rem;
+    left: 30rem;
+    top: 38rem;
     z-index: 100;
 @include breakpoint-xl {
     left: 35rem;
@@ -361,12 +362,12 @@ left: unset !important;
     width: 100%;
 }
 .img-res {
-height: 90px;
+height: 150px;
 }
 .container-1 {
   margin-top: -12rem;
   @include breakpoint-gt-m {
-  padding-left: 10rem !important;
+  padding-left: 5rem !important;
   }
    @include breakpoint-xl {
      padding-left: 2rem !important;

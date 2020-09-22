@@ -12,8 +12,9 @@ line-height: 1.7;
   background-size: cover;
   background-position: center;
   // width: 100%;
-   width: 505px;
-    height: 307px;
+ width: 702px;
+    height: 355px;
+    // margin-left: -2.9rem;
     @include breakpoint-xs {
       width: 18rem !important;
       height: auto !important;
@@ -93,13 +94,15 @@ font-size: 27px !important;
 }
 .img-container {
   float: right;
-  width: 30rem;
-  margin-top: -9rem !important;
+   margin-top: -12rem !important;
+    width: 645px;
+    height: 346px;
   @include breakpoint-xs {
     width: auto !important;
     margin-top: auto !important;
     float: unset !important;
     margin-left: 2rem !important;
+    height: auto !important;
   }
   @include breakpoint-s {
 width: 17rem !important;
@@ -114,6 +117,7 @@ margin-top: -7rem;
    .img-container {
   width: auto !important;
   float: none !important;
+  height: auto !important;
   margin-left: 1rem !important;
 }
   .header{
@@ -141,4 +145,13 @@ margin-top: -7rem;
 .colortheme{
   color:#865ba0;
 
+}
+@media screen and (min-width:1020px) and (max-width: 1027px) {
+.img-container {
+  margin-top: -8rem !important;
+}
+#cimage{
+  width: 612px !important;
+  height: 334px !important;
+}
 }

@@ -6,8 +6,8 @@
   background-image: url(/assets/instances/space/banners/about.png);
   background-size: cover;
   background-position: center;
-  height: 30rem;
-  width: 99%;
+  height: 31rem;
+  width: 100%;
   // opacity: 0.9;
    @include breakpoint-xs {
        height: 10rem !important;
@@ -23,7 +23,8 @@
     width: 625px !important;
    }
    @include breakpoint-xll {
-     width: 94% !important;
+     width: 100% !important;
+    height: 32rem !important;
    }
 }
 .text-section {
@@ -125,9 +126,11 @@ height: 65px;
 }
 .col-1 {
   flex: 1;
+  max-width: 39rem;
 }
 .col-2 {
   flex: auto;
+  margin-top: 10.5rem !important;
 }
 .icon {
   background-image: url(/assets/instances/space/common/Vector@2x.png);
@@ -143,7 +146,7 @@ height: 65px;
 opacity: 0.2;
 }
 .text-wrap {
- width: 33rem;
+ width: 32rem;
 font-weight: normal;
 font-size: 16px;
 line-height: 24px;
@@ -204,6 +207,6 @@ word-break: break-word;
 @media screen and (min-width: 1135px) and (max-width: 1150px) {
   .img {
     height: 25rem !important;
-    width: 95% !important;
+    width: 87% !important;
   }
 }

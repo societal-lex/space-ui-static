@@ -10,9 +10,9 @@ line-height: 1.7;
 #cimage {
   background-size: cover;
   background-position: center;
-  // width: 100%;
-    width: 502px;
-    height: 330px;
+ width: 684px;
+    height: 346px;
+    margin-left: -2.5rem;
     @include breakpoint-xs {
       width: 18rem !important;
       height: auto !important;
@@ -102,17 +102,19 @@ font-size: 19px !important;
 }
 .img-container {
   float: right;
-  width: 33rem;
-  margin-top: -5rem !important;
+    margin-top: -7rem !important;
+    width: 664px;
+    height: 346px;
   @include breakpoint-xs {
     width: auto !important;
     margin-top: auto !important;
     float: unset !important;
-    margin-left: 2rem !important;
+    margin-left: 4rem !important;
+     height: auto !important;
   }
   @include breakpoint-s {
 width: 17rem !important;
-margin-top: -7rem;
+margin-top: -4rem !important;
   }
   // height: 17rem;
 }
@@ -124,7 +126,8 @@ margin-top: -7rem;
   width: auto !important;
   float: none !important;
   margin-top: auto !important;
-  margin-left: 1rem !important;
+  margin-left: 4rem !important;
+   height: auto !important;
 }
   .header{
     width: 17rem !important;

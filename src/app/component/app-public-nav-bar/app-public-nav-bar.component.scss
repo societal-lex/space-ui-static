@@ -1,4 +1,23 @@
 @import 'ws-mixins';
+
+.toc-links {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+    .link-active {
+      font-weight: bold;
+      border-bottom: 3px solid;
+      border-radius: 0px;
+    }
+    ::ng-deep .mat-tab-links {
+      display: flex;
+      justify-content: center !important;
+    }
+    ::ng-deep .mat-tab-link {
+      opacity:1;
+    }
+  }
 #publicWhiteNavBar {
   background-color: white;
   // background: transparent;
@@ -30,7 +49,7 @@
   overflow-y: hidden;
   // height: 3rem;
     // padding: 8px 0 0 0 ;
-    width: 295px;
+    width: 305px;
     height: 34px;
      @include breakpoint-xs {
        height: auto !important;
@@ -84,21 +103,30 @@ color: #696466;
 }
 }
 /* btn style */
-
+.mat-button {
+  border-radius: 0px !important;
+}
 .about_btn {
   padding: 0 20px !important;
+  margin-bottom: 3px !important;
    @include breakpoint-xs {
      display: flex !important;
    }
 }
+.about_btn:hover {
+  background-color: none !important;
+   color: inherit !important;
+  text-decoration: inherit !important;
+}
 .collaborator_btn {
    padding: 0 20px !important;
+    margin-bottom: 3px !important;
     @include breakpoint-xs {
      display: flex !important;
    }
 }
 .signIn {
-  line-height: 17px;
+  line-height: 20px;
   @include breakpoint-xs {
   display: flex !important;
   }

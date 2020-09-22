@@ -11,16 +11,18 @@ line-height: 1.7;
 #cimage {
   background-size: cover;
   background-position: center;
-  // width: 100%;
-    width: 533px;
-    // height: 346px;
+  width: 691px;
+    height: 358px;
+    margin-left: -1rem;
     @include breakpoint-xs {
       width: 18rem !important;
       height: auto !important;
+      margin-left: 0rem !important;
     }
       @include breakpoint-s {
 width: 20rem !important;
 height: auto !important;
+margin-left: 0rem !important;
   }
 }
 .imgsize {
@@ -93,13 +95,16 @@ line-height: 33px !important;
 }
 .img-container {
   float: right;
-  width: 33rem;
-  margin-top: -11rem;
+ margin-top: -12.5rem;
+    /* margin-top: -7rem !important; */
+    width: 656px;
+    height: 346px;
   @include breakpoint-xs {
     width: auto !important;
     margin-top: auto !important;
     float: unset !important;
     margin-left: 2rem !important;
+    height: auto !important;
   }
   @include breakpoint-s {
 width: 17rem !important;
@@ -110,6 +115,7 @@ margin-top: -7rem;
 @media screen and (min-width:280px) and (max-width: 320px) {
   #cimage {
     width: 16rem !important;
+    margin-left: 0rem !important;
   }
   .header{
     width: 17rem !important;
@@ -145,6 +151,10 @@ margin-left: 1rem !important;
 @media screen and (max-width: 1024px) and (min-width: 1023px){
   .img-container{
   width: 30.5rem !important;
+}
+#cimage {
+  width: 525px !important;
+  height: 320px !important;
 }
 }
 
