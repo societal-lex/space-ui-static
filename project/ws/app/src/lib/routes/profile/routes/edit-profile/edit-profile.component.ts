@@ -67,7 +67,8 @@ export class EditProfileComponent implements OnInit {
         this.profileForm.controls.bio.setValue(this.userProfile.userProperties.bio)
         this.profileForm.controls.profileLink.setValue(this.userProfile.userProperties.profileLink)
       }
-      if (this.userProfile.source_profile_picture !== 'null') {
+      // tslint:disable-next-line: max-line-length
+      if (this.userProfile.source_profile_picture && this.userProfile.source_profile_picture !== null && this.userProfile.source_profile_picture !== 'null' && this.userProfile.source_profile_picture !== '') {
         this.profileForm.controls.sourceProfilePicture.setValue(this.userProfile.source_profile_picture)
         this.url = this.getAuthoringUrl(this.userProfile.source_profile_picture)
       }

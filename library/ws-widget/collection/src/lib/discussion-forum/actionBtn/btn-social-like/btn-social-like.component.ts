@@ -34,7 +34,6 @@ export class BtnSocialLikeComponent implements OnInit {
   }
 
   updateLike(invalidUserMsg: string) {
-    // this.getWidsForLike()
     if (this.postCreatorId === this.userId) {
       this.snackBar.open(invalidUserMsg)
       return
@@ -52,11 +51,9 @@ export class BtnSocialLikeComponent implements OnInit {
       this.isUpdating = false
       if (this.activity) {
         if (this.activity.userActivity.like) {
-          // this.getWidsForLike()
           this.activity.userActivity.like = false
           this.activity.activityData.like -= 1
         } else {
-          // this.getWidsForLike()
           this.activity.userActivity.like = true
           this.activity.activityData.like += 1
         }
