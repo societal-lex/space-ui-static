@@ -36,7 +36,8 @@ export class EditProfileComponent implements OnInit {
               private activateRoute: ActivatedRoute) { }
   url = ''
   profileUrlParams = ''
-  relativeUrl = 'https://png.pngitem.com/pimgs/s/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+  relativeUrl = ''
+  isEnable = false
   profileForm: FormGroup = new FormGroup({
     userFirstName: new FormControl(''),
     userOrganisation: new FormControl(''),
@@ -50,10 +51,10 @@ export class EditProfileComponent implements OnInit {
   // userPropertiesData: NsEditProfile.IUserProperties = {} as NsEditProfile.IUserProperties
   isLoad = false
   ngOnInit() {
-
     this.activateRoute.data.subscribe(data => {
       if (data.pageData) {
         this.profileSvc.setUserEditProfileConfig(data.pageData.data)
+        this.relativeUrl = data.pageData.data.profileImage
       }
     })
     this.userProfile = this.initService.getUserProfile()
@@ -66,13 +67,16 @@ export class EditProfileComponent implements OnInit {
         this.profileForm.controls.bio.setValue(this.userProfile.userProperties.bio)
         this.profileForm.controls.profileLink.setValue(this.userProfile.userProperties.profileLink)
       }
-      if (this.userProfile.source_profile_picture) {
+      // tslint:disable-next-line: max-line-length
+      if (this.userProfile.source_profile_picture && this.userProfile.source_profile_picture !== null && this.userProfile.source_profile_picture !== 'null' && this.userProfile.source_profile_picture !== '') {
         this.profileForm.controls.sourceProfilePicture.setValue(this.userProfile.source_profile_picture)
         this.url = this.getAuthoringUrl(this.userProfile.source_profile_picture)
       }
     }
+
   }
   onSelectFile(file: File) {
+    this.isEnable = true
     const formdata = new FormData()
     const fileName = file.name.replace(/[^A-Za-z0-9.]/g, '')
     if (file) {
@@ -111,16 +115,17 @@ export class EditProfileComponent implements OnInit {
   }
 
   isDisabled() {
-    if (!this.profileForm.controls.userFirstName.value) {
-      return true
-    }
-    if (this.profileForm.dirty) {
+    if (this.profileForm.dirty || this.isEnable) {
       return false
     }
     return true
   }
   async onSubmit() {
-    if (this.profileForm.valid) {
+    if (!(this.profileForm.controls.userFirstName.value.trim()).match(/^[A-Za-z]+$/)) {
+      this.snackBar.open('First name is invalid or empty', '', {
+        duration: 1000,
+      })
+    } else if (this.profileForm.valid) {
       this.isLoad = true
       const editresponse = await this.profileSvc.editProfile(this.userProfile.userId, this.profileForm.controls)
       this.isLoad = false

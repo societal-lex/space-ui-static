@@ -6,30 +6,21 @@
   background-image: url(/assets/instances/space/banners/about.png);
   background-size: cover;
   background-position: center;
-  height: 31rem;
+  height: 30rem;
   width: 100%;
-  // opacity: 0.9;
    @include breakpoint-xs {
-       height: 10rem !important;
-    width: 14rem !important;
-    margin-left: -12rem;
-    margin-top: -2rem;
+     height: 10rem !important;
+     width: 9rem !important;
    }
    @include breakpoint-s {
-     height: 17rem !important;
+     height: 24rem !important;
    }
    @include breakpoint-xl {
     height: 30rem !important;
-    width: 625px !important;
+     width: 625px !important;
    }
    @include breakpoint-xll {
-     width: 100% !important;
-    height: 32rem !important;
-   }
-}
-.text-section {
-   @include breakpoint-xs {
-      padding-top: 6.3rem;
+     width: 65% !important;
    }
 }
 .ellipse {
@@ -108,45 +99,26 @@ font-weight: 460;
 font-size: 48px;
 line-height: 55px;
 color: #925EB0;
-width:240px;
-height: 65px;
   @include breakpoint-xs {
     font-size: 38px !important;
-    width: 12rem;
   }
 }
-  @media only screen and (max-width: 321px) {
+ @media only screen and (max-width: 321px) {
     .header {
     font-size: 27px !important;
-    width: 217px !important;
-  }
-}
+    }
+    }
 .flex {
   justify-content: flex-start;
 }
 .col-1 {
   flex: 1;
-  max-width: 39rem;
 }
 .col-2 {
   flex: auto;
-  margin-top: 10.5rem !important;
-}
-.icon {
-  background-image: url(/assets/instances/space/common/Vector@2x.png);
-  background-size: 9rem;
-  background-position: center;
-  height: 10rem;
-  width: 50%;
-  position: absolute;
-  background-repeat: no-repeat;
-  padding-top: 22rem;
-}
-.abt-video {
-opacity: 0.2;
 }
 .text-wrap {
- width: 32rem;
+ width: 33rem;
 font-weight: normal;
 font-size: 16px;
 line-height: 24px;
@@ -162,51 +134,69 @@ word-break: break-word;
     width: 28rem !important;
   }
 }
-   @media only screen and (max-width: 320px) {
-     .img {
-      margin-left: -14rem !important;
-     }
-    .text-wrap {
-    width: 12rem !important;
+/* about page design end */
+/**/
+/* collaborator page design start */
+.partnerContainerBody {
+  // font-size: 17px;
+  // line-height: 2;
+  // text-align: center;
+  @include breakpoint-xs {
+    padding-top: 2.5rem !important;
   }
 }
-
-@media screen and (min-width: 1399px) and (max-width: 1420px) {
-  .img {
-    width: 99% !important;
-    height: 30rem !important;
+.container {
+  max-width: 100%;
+  justify-content: center;
+  margin: 0;
+}
+.imageRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+@media only screen and (min-width: 453px) and (max-width: 680px) {
+  .imageRow {
+    display: inline !important;
+  }
+  .box {
+    width: 35% !important;
+    // padding: 5.5em 0em 0 -0rem !important;
+    margin-right: 10px !important;
   }
 }
-@media screen and (min-width: 1023px) and (max-width: 1024px) {
-  .img {
-    // width: %;
-    height: 24rem !important;
+@media only screen and (min-width: 312px) and (max-width: 453px) {
+  .imageRow {
+    display: inline !important;
+  }
+  .box {
+    margin: .5rem !important;
+    padding-top: 2rem !important;
+    width: 13rem !important;
   }
 }
-@media screen and (min-width: 520px) and (max-width: 570px) {
-  .img {
-   padding-left: -4rem !important;
-  }
-  .text-wrap {
-    width: 25rem !important;
-  }
+.box {
+    padding: 1em 1em 1rem 1rem;
+    margin-top: 2.5rem;
+    border: 2px solid #925EB0;
+    box-sizing: border-box;
+    border-radius: 20px;
+    height: 10rem;
+    margin: .5rem;
+    padding-top: 2.5rem;
+    width: 13rem;
 }
-@media screen and (min-width: 635px) and (max-width: 670px) {
-
-  .img {
-    height: 15rem !important;
-  }
-  .text-wrap {
-    width: 16rem !important;
-  }
+a {
+  background-color: transparent;
+  color: #1cadce;
+  text-decoration: none;
+  -webkit-transition: 0.2s ease-in;
 }
-
-.mt-20 {
-    margin-top: 10rem;
+img {
+  width: 9rem;
 }
-@media screen and (min-width: 1135px) and (max-width: 1150px) {
-  .img {
-    height: 25rem !important;
-    width: 87% !important;
-  }
+.exception-style {
+  padding-top: 0 !important;
 }
+/* collaborator page design end */

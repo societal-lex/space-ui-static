@@ -1,6 +1,6 @@
 <ng-container *ngIf="!reset">
   <quill-editor
-   *ngIf="showMention === false"
+   *ngIf="!showMention"
     name="discussion-forum-input-field"
     class="quill-editor"
     [ngModel]="htmlText"
@@ -12,7 +12,7 @@
   >
   </quill-editor>
 
-  <quill-editor  *ngIf = "showMention === true" name="discussion-forum-input-field" class="quill-editor" [ngModel]="htmlText"
+  <quill-editor  *ngIf = "showMention" name="discussion-forum-input-field" class="quill-editor" [ngModel]="htmlText"
     (onContentChanged)="onContentChanged($event)" [required]="true" [minLength]="minLength" #editor="ngModel"
     placeholder="{{ placeholder }}" [modules]="quillConfig">
   </quill-editor>

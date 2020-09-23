@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { NsDiscussionForum } from './ws-discussion-forum.model'
 import { NsUserDashboard } from '../../../../../../project/ws/app/src/lib/routes/user-dashboard/models/user-dashboard.model'
 
@@ -37,11 +37,17 @@ interface IResponse {
 })
 export class WsDiscussionForumService {
   constructor(private http: HttpClient) { }
+
   // added userdata and setuser method to set data from config
   userData: NsUserDashboard.IUserData | any | null
+  // wids = 0
+  // newWids = new BehaviorSubject<any>(this.wids)
   setUserDashboardConfig(userDataFromConfig: NsUserDashboard.IUserData) {
     this.userData = userDataFromConfig
   }
+  // setUserData(wid: number) {
+  //   this.wids = wid
+  // }
 
   deletePost(postId: string, userId: string) {
     const req: NsDiscussionForum.IPostDeleteRequest = {
@@ -73,6 +79,7 @@ export class WsDiscussionForumService {
   fetchAllPosts(request: NsDiscussionForum.IPostRequestV2): Observable<NsDiscussionForum.IPostResultV2> {
     return this.http.post<NsDiscussionForum.IPostResultV2>(API_END_POINTS.SOCIAL_VIEW_CONVERSATION_V2, request)
   }
+
   // added get all users to retrieve  all user details
   async getAllUsers(headers: NsUserDashboard.IHeaders): Promise<IResponse> {
     const httpOptions = {
@@ -103,6 +110,21 @@ export class WsDiscussionForumService {
     }
   }
 
+  getAllUsersList(request: NsUserDashboard.IHeaders): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        rootorg: request.rootOrg,
+        wid_orgadmin: request.wid_OrgAdmin,
+        org: request.org,
+      }),
+    }
+    try {
+      return this.http.get<IResponse>(this.userData.api + this.userData.user_list.url, httpOptions)
+    } catch (ex) {
+      return of([])
+    }
+
+  }
   //  async getUserDetails(widUser: any) {
   //   const userData =  await this.getUsersByIDs(widUser)
   //   return this.addIndexToData(userData)
@@ -115,6 +137,8 @@ export class WsDiscussionForumService {
           index: idx + 1,
           ...item,
           full_name: this.getFullName({ user: item }),
+          // wid: item.wid,
+          // email: item.email,
         }
       })
     }
@@ -123,7 +147,7 @@ export class WsDiscussionForumService {
 
   getFullName(userObj: any) {
     const finalName = []
-    if (userObj.user.first_name || userObj.first_name) {
+    if (userObj.user.first_name) {
       finalName.push(userObj.user.first_name)
     }
     if (userObj.user.middle_name) {

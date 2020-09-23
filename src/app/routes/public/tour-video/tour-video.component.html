@@ -1,0 +1,11 @@
+<mat-toolbar [color]="pageNavbar?.color" [ngStyle]="pageNavbar?.styles">
+  <ws-widget-btn-page-back [widgetData]="{ url: 'back' }"></ws-widget-btn-page-back>
+  <span class="margin-left-xs text-truncate">
+    <span i18n="page title: grievanceredressal" class="margin-left-xs">Tour Video
+    </span>
+  </span>
+</mat-toolbar>
+<video class="video-js vjs-default-skin vjs-big-play-centered" controls>
+  <source [src]="url" type="video/mp4">
+  <!-- <source src="movie.ogg" type="video/ogg"> -->
+</video>

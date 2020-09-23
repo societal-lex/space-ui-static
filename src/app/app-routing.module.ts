@@ -13,7 +13,7 @@ import { LoginGuard } from './guards/login.guard'
 import { FeaturesComponent } from './routes/features/features.component'
 import { FeaturesModule } from './routes/features/features.module'
 import { MobileAppHomeComponent } from './routes/public/mobile-app/components/mobile-app-home.component'
-import { PublicAboutComponent } from './routes/public/public-about/public-about.component'
+// import { PublicAboutComponent } from './routes/public/public-about/public-about.component'
 import { PublicContactComponent } from './routes/public/public-contact/public-contact.component'
 import { PublicFaqComponent } from './routes/public/public-faq/public-faq.component'
 import { TncComponent } from './routes/tnc/tnc.component'
@@ -24,11 +24,13 @@ import { AssetguidelinesComponent } from './routes/public/assetguidelines/assetg
 import { GrievanceredressalComponent } from './routes/public/grievanceredressal/grievanceredressal.component'
 import { LicencepolicyComponent } from './routes/public/licencepolicy/licencepolicy.component'
 import { AppHomeComponent } from './component/app-home/app-home.component'
-import { PublicCollaboratorsComponent } from './routes/public/public-collaborators/public-collaborators.component'
-import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
+// import { PublicCollaboratorsComponent } from './routes/public/public-collaborators/public-collaborators.component'
+// import { AppCollaboratorsComponent } from './component/app-collaborators/app-collaborators.component'
 import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.component'
 import { TermsofuseComponent } from './routes/public/termsofuse/termsofuse.component'
 import { ContentpolicyandcommunicationComponent } from './routes/public/contentpolicyandcommunication/contentpolicyandcommunication.component'
+import { AboutCollaboratorComponent } from './component/about-collaborator/about-collaborator.component'
+import { TourVideoComponent } from './routes/public/tour-video/tour-video.component'
 
 // 💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥
 // Please declare routes in alphabetical order
@@ -387,7 +389,25 @@ const routes: Routes = [
   },
   {
     path: 'page/collaborators',
-    component: AppCollaboratorsComponent,
+    data: {
+      pageType: 'feature',
+      pageKey: 'about',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+    component: AboutCollaboratorComponent,
+  },
+  {
+    path: 'page/about',
+    data: {
+      pageType: 'feature',
+      pageKey: 'about',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+    component: AboutCollaboratorComponent,
   },
   {
     path: 'page/:id',
@@ -423,7 +443,7 @@ const routes: Routes = [
   },
   {
     path: 'public/about',
-    component: PublicAboutComponent,
+    component: AboutCollaboratorComponent,
     data: {
       pageType: 'feature',
       pageKey: 'about',
@@ -445,10 +465,10 @@ const routes: Routes = [
   },
   {
     path: 'public/collaborators',
-    component: PublicCollaboratorsComponent,
+    component: AboutCollaboratorComponent,
     data: {
       pageType: 'feature',
-      pageKey: 'public-faq',
+      pageKey: 'about',
     },
     resolve: {
       pageData: PageResolve,
@@ -486,6 +506,18 @@ const routes: Routes = [
   {
     path: 'public/termsofuse',
     component: TermsofuseComponent,
+  },
+  {
+    path: 'public/tour-video',
+    data: {
+      pageType: 'feature',
+      pageKey: 'social',
+    },
+    resolve: {
+      pageData: PageResolve,
+    },
+    component: TourVideoComponent
+    ,
   },
   {
     path: 'public/content-policy-and-community-guidelines',
@@ -543,6 +575,7 @@ const routes: Routes = [
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'top',
       urlUpdateStrategy: 'eager',
+      onSameUrlNavigation: 'reload',
     }),
   ],
   exports: [RouterModule],

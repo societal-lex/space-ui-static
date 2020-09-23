@@ -20,6 +20,7 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatInputModule,
   MatFormFieldModule,
+  MatGridListModule,
 } from '@angular/material'
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -70,6 +71,8 @@ import { DataprivacyComponent } from './routes/public/dataprivacy/dataprivacy.co
 import { ContentpolicyandcommunicationComponent } from './routes/public/contentpolicyandcommunication/contentpolicyandcommunication.component'
 // import { ServiceWorkerModule } from '@angular/service-worker'
 // import { environment } from '../environments/environment'
+import { AboutCollaboratorComponent } from './component/about-collaborator/about-collaborator.component'
+import { TourVideoComponent } from './routes/public/tour-video/tour-video.component'
 
 @Injectable()
 export class HammerConfig extends GestureConfig {
@@ -112,6 +115,8 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     TermsofuseComponent,
     DataprivacyComponent,
     ContentpolicyandcommunicationComponent,
+    AboutCollaboratorComponent,
+    TourVideoComponent,
 
   ],
   imports: [
@@ -151,6 +156,7 @@ const getBaseHref = (platformLocation: PlatformLocation): string => {
     MobileAppModule,
     PipeSafeSanitizerModule,
     TourModule,
+    MatGridListModule,
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   exports: [
