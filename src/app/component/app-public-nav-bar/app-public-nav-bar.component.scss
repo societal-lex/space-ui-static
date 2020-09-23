@@ -1,75 +1,59 @@
 @import 'ws-mixins';
+
+.toc-links {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+    .link-active {
+      font-weight: bold;
+      border-bottom: 3px solid;
+      border-radius: 0px;
+    }
+    ::ng-deep .mat-tab-links {
+      display: flex;
+      justify-content: center !important;
+    }
+    ::ng-deep .mat-tab-link {
+      opacity:1;
+    }
+  }
 #publicWhiteNavBar {
   background-color: white;
+  // background: transparent;
+  //   position: absolute;
+  //   z-index: 100;
+    // width: 1226px;
+    height: 79px;
 }
 .app-logo {
   // min-width: 8rem;
   // margin-top: -0.5rem;
   // padding: 8px 0 0 8px;
-  width: 100%;
+  width: 255px;
+  height: 34px !important;
+  @include breakpoint-xs {
+    width: 100%;
+    height: auto !important;
+  }
+}
+
+.logo {
+    padding: 0px 0 0 40px !important;
 }
 .btn-size {
   padding: 0px 6px 0px 6px;
-}
-@media only screen and (min-width: 360px) and (max-width: 599px) {
-  .app-logo {
-    width: 6rem !important;
-    // margin-top: 0.5rem !important;
-    min-width: auto !important;
-  }
-  .logosize {
-    padding: 0px 0 0 8px !important;
-    width: auto !important;
-  }
-}
-@media only screen and (min-width: 250px) and (max-width: 311px) {
-  .app-logo {
-   min-width: auto !important;
-    width: 3rem;
-  }
-  .logosize {
-    padding: 0px 0px 0px 0px !important;
-    width: auto !important;
-    height: auto !important;
-  }
-}
-@media only screen and (min-width: 599px) and (max-width: 629px) {
-  .app-logo {
-    width: 7rem !important;
-    margin-top: auto !important;
-    min-width: auto !important;
-  }
-  .logosize {
-        padding: 4px 0px 0px 8px !important;
-        width: auto !important;
-  }
-}
-@media only screen and (min-width: 312px) and (max-width: 359px) {
-  .app-logo {
-    width: 5rem !important;
-    // margin-top: 1.79rem !important;
-    min-width: auto !important;
-
-  }
-  .logosize {
-    // height: 5rem !important;
-    padding: 0px 0 0 8px !important;
-    overflow-y: visible !important;
-    width: auto !important;
-    height: auto !important;
-  }
-}
-@media only screen and (min-width: 629px) and (max-width: 760px) {
-.logosize {
-    width: auto !important;
-}
+  color: black !important;
 }
 .logosize {
   overflow-y: hidden;
   // height: 3rem;
-    padding: 8px 0 0 0 ;
-    width: 295px;
-    height: 35px;
+    // padding: 8px 0 0 0 ;
+    width: 305px;
+    height: 34px;
+     @include breakpoint-xs {
+       height: auto !important;
+     }
 }
 .title-app {
   @include breakpoint-xs {
@@ -102,5 +86,153 @@
   color: white !important;
 }
 mat-toolbar span {
-  color: black;
+line-height: 17px;
+color: #696466;
 }
+/* sign in button responsive */
+@media only screen and (min-width: 1020px) {
+  .login-btn {
+    padding: 0 30px !important;
+  }
+  .mat-button {
+ padding: 0 42.34px !important;
+  height: 34px !important;
+}
+.logo {
+    padding: 0px 0 0 33px !important;
+}
+}
+/* btn style */
+.mat-button {
+  border-radius: 0px !important;
+}
+.about_btn {
+  margin: 0 20px !important;
+  padding: 0px !important;
+  margin-bottom: 3px !important;
+   @include breakpoint-xs {
+     display: flex !important;
+   }
+}
+.about_btn:hover {
+  background-color: none !important;
+   color: inherit !important;
+  text-decoration: inherit !important;
+}
+.collaborator_btn {
+   margin: 0 20px !important;
+  padding: 0px !important;
+    margin-bottom: 3px !important;
+    @include breakpoint-xs {
+     display: flex !important;
+   }
+}
+.signIn {
+  line-height: 20px;
+  @include breakpoint-xs {
+  display: flex !important;
+  }
+  @include breakpoint-s {
+    line-height: unset !important;
+}
+  @include breakpoint-m {
+    line-height: unset !important;
+  }
+}
+ .hidden-xs {
+  @include breakpoint-xs {
+    display: none !important;
+  }
+}
+
+.hidden-gt-xs {
+  @include breakpoint-gt-xs {
+    display: none !important;
+  }
+}
+.menu {
+  background: white !important;
+  color: black !important;
+}
+.icon {
+  color: black;
+   line-height: 12px !important;
+}
+@media screen and (min-width:635px) and (max-width: 670px) {
+.app-logo {
+  width: 13rem !important;
+  height: 28px !important;
+}
+}
+@media screen and (min-width:539px) and (max-width: 542px) {
+  .logosize {
+    width: auto !important;
+  }
+}
+@media screen and (max-width: 570px) and (min-width: 520px) {
+.logosize {
+    width: auto !important;
+}
+}
+::ng-deep {
+  mat-toolbar span {
+    font-family: montserrat, sans-serif !important;
+    font-style: normal !important;
+    font-weight: bolder;
+    font-size: 14px !important;
+    line-height: 17px !important;
+  }
+}
+// @media only screen and (min-width: 360px) and (max-width: 599px) {
+//   .app-logo {
+//     // width: 6rem !important;
+//     // margin-top: 0.5rem !important;
+//     min-width: auto !important;
+//   }
+//   .logosize {
+//     padding: 0px 0 0 8px !important;
+//     width: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 250px) and (max-width: 311px) {
+//   .app-logo {
+//    min-width: auto !important;
+//     width: 3rem;
+//   }
+//   .logosize {
+//     padding: 0px 0px 0px 0px !important;
+//     width: auto !important;
+//     height: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 599px) and (max-width: 629px) {
+//   .app-logo {
+//     width: 7rem !important;
+//     margin-top: auto !important;
+//     min-width: auto !important;
+//   }
+//   .logosize {
+//         padding: 4px 0px 0px 8px !important;
+//         width: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 312px) and (max-width: 359px) {
+//   .app-logo {
+//     width: 5rem !important;
+//     // margin-top: 1.79rem !important;
+//     min-width: auto !important;
+
+//   }
+//   .logosize {
+//     // height: 5rem !important;
+//     padding: 0px 0 0 8px !important;
+//     overflow-y: visible !important;
+//     width: auto !important;
+//     height: auto !important;
+//   }
+// }
+// @media only screen and (min-width: 629px) and (max-width: 760px) {
+// .logosize {
+//     width: auto !important;
+// }
+// }

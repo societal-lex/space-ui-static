@@ -1,20 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit, OnDestroy, Compiler } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser'
 import { map } from 'rxjs/operators'
 import { ConfigurationsService, NsPage } from '@ws-widget/utils'
 import { Subscription } from 'rxjs'
-import { ActivatedRoute } from '@angular/router'
-import { IAboutObject } from './about.model'
-import { IWidgetsPlayerMediaData } from '../../../../../library/ws-widget/collection/src/public-api'
-import { NsWidgetResolver } from '../../../../../library/ws-widget/resolver/src/public-api'
+import { ActivatedRoute, Router } from '@angular/router'
+import { IAboutObject } from '../../routes/public/public-about/about.model'
 
 @Component({
-  selector: 'ws-public-about',
-  templateUrl: './public-about.component.html',
-  styleUrls: ['./public-about.component.scss'],
+  selector: 'ws-about-collaborator',
+  templateUrl: './about-collaborator.component.html',
+  styleUrls: ['./about-collaborator.component.scss'],
 })
-export class PublicAboutComponent implements OnInit, OnDestroy {
+export class AboutCollaboratorComponent implements OnInit, OnDestroy {
   objectKeys = Object.keys
   headerBanner: SafeStyle | null = null
   footerBanner: SafeStyle | null = null
@@ -28,33 +26,24 @@ export class PublicAboutComponent implements OnInit, OnDestroy {
 
   videoLink: SafeResourceUrl | null = null
   aboutImage: SafeStyle | null = null
-  widgetResolverData: NsWidgetResolver.IRenderConfigWithTypedData<
-    IWidgetsPlayerMediaData
-  > = {
-      widgetData: {
-        url: 'assets/instances/space/videos/intro_video.mp4',
-        autoplay: true,
-        identifier: '',
-      },
-      widgetHostClass: 'video-full block',
-      widgetSubType: 'playerVideo',
-      widgetType: 'player',
-      widgetHostStyle: {
-        height: '100%',
-        'max-width': '90%',
-        'margin-left': 'auto',
-        'margin-right': 'auto',
-      },
-    }
+  forPreview = false
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+
     private domSanitizer: DomSanitizer,
     private configSvc: ConfigurationsService,
     private activateRoute: ActivatedRoute,
+    private _compiler: Compiler,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false
+    }
+    this.scroll()
+    this._compiler.clearCache()
     this.subscriptionAbout = this.activateRoute.data.subscribe(data => {
       this.aboutPage = data.pageData.data
       if (this.aboutPage && this.aboutPage.banner && this.aboutPage.banner.videoLink) {
@@ -74,7 +63,36 @@ export class PublicAboutComponent implements OnInit, OnDestroy {
       this.aboutImage = this.configSvc.instanceConfig.banners.aboutBanner
     }
   }
-
+  scroll() {
+    const about = document.getElementById('about') as HTMLElement
+    const collaborator = document.getElementById('collaborator') as HTMLElement
+    if (window.location.href.includes('about') && about) {
+      setTimeout(() => {
+        about.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            })
+      },
+       // tslint:disable-next-line:align
+      500,
+      )
+      // location.hash = 'views'
+      // location.pathname + '#about'
+    }
+    if (window.location.href.includes('collaborators') && collaborator) {
+      setTimeout(() => {
+        collaborator.scrollIntoView({
+             behavior: 'smooth',
+              block: 'start',
+               })
+      },
+       // tslint:disable-next-line:align
+       500,
+       )
+      // location.hash = 'view'
+      // location.pathname + '#collaborator'
+    }
+  }
   ngOnDestroy() {
     if (this.subscriptionAbout) {
       this.subscriptionAbout.unsubscribe()

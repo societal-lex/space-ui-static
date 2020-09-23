@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { ConfigurationsService } from '../../../../../library/ws-widget/utils/src/public-api'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'ws-public-collaborators',
@@ -10,9 +11,15 @@ import { ConfigurationsService } from '../../../../../library/ws-widget/utils/sr
 export class PublicCollaboratorsComponent implements OnInit {
 
   collaboratorBanner: SafeUrl | null = null
+  partner = {
+    src: [],
+    url: [],
+  }
 
-  constructor(private configSvc: ConfigurationsService,
-              private domSanitizer: DomSanitizer) {
+  constructor(
+    private configSvc: ConfigurationsService,
+    private domSanitizer: DomSanitizer,
+    private router: ActivatedRoute) {
     const instanceConfig = this.configSvc.instanceConfig
     if (instanceConfig) {
       this.collaboratorBanner = this.domSanitizer.bypassSecurityTrustResourceUrl(
@@ -21,6 +28,10 @@ export class PublicCollaboratorsComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.router.data.subscribe(data => {
+      this.partner.src = data.pageData.data.partner.src
+      this.partner.url = data.pageData.data.partner.url
+    })
   }
 
 }

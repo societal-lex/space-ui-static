@@ -3,29 +3,70 @@
     <div id="owl-demo" class="owl-carousel slideshow-carousel owl-loaded owl-drag">
       <div class="owl-stage-outer">
         <div class="owl-stage" style="transition: all 0s ease 0s;">
-          <div class="owl-item cloned">
-            <div class="item">
-              <img [src]="appBanner" alt="The Last of us" />
-              <div class="slide-details text-white">
-                <div class="container-1">
-                  <p class="text">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A place to search, discover and share assets including <br />
-                    concepts, methods, processes, software, hardware and data.
-                  </p>
-                  <br />
+          <div class="" style="height: 3rem;"></div>
+          <mat-grid-list cols="2">
+            <div class="owl-item cloned">
+              <div class="item">
+                <mat-grid-tile class="head-text">
+                  <div class="">
+                    <div class="container-1">
+                      <h1 class="h1-head-style heading-style homepage__banner-title pb-4">Societal Platform Assets</h1>
+                      <h2 class="sub-heading heading-style pb-4">Collaboration Environment</h2>
+                      <p class="text text-wrap text-style homepage__banner-content pb-12">
+                        A place for Societal Platform practitioners and enablers <br />
+                        to learn, share and connect with each other.
+                      </p>
+                      <br />
+                      <div class="signin-style flex">
+                        <button name="login_client_button" mat-button i18n="login: client" (click)="login('S')"
+                          class="padding-remove-small color btn-style signin">
+                          <span i18n class="small-font-size btn-size text-white text-style">Sign In</span>
+                        </button>
+                        <button name="login_client_button" mat-button i18n="login: client" (click)="signup()"
+                          class="padding-remove-small color btn-style signup">
+                          <span i18n class="small-font-size btn-size text-style color">Sign Up</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-grid-tile>
+                <mat-grid-tile class="image-text">
+                  <div class="group">
+                    <div class="group-image"></div>
+                    <img [src]="appBanner" alt="The Last of us" />
+                  </div>
+                </mat-grid-tile>
+                <div class="img-res">
+                  <div class="group-image1"></div>
+                  <div class="group-image2"></div>
                 </div>
               </div>
             </div>
-          </div>
+          </mat-grid-list>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 <div class="display-text container-fluid">
-  <h1 class="h1-style">Welcome To Societal Platform Assets</h1>
+  <div class="group">
+    <div class="group-image"></div>
+    <img [src]="appBanner" alt="The Last of us" />
+  </div>
+  <h1 class="h1-style">Societal Platform Assets</h1>
   <p class="p-style">
-    A place to search, discover and share assets including <br />
-    concepts, methods, processes, software, hardware and data.
+    A place for Societal Platform practitioners and enablers <br />
+    to learn, share and connect with each other.
   </p>
+  <div class="signin-style flex">
+    <button name="login_client_button" mat-button i18n="login: client" (click)="login('S')"
+      class="padding-remove-small color btn-style signin">
+      <span i18n class="small-font-size btn-size text-white text-style">Sign In</span>
+    </button>
+    <button name="login_client_button" mat-button i18n="login: client" (click)="signup()"
+      class="padding-remove-small color btn-style signup">
+      <span i18n class="small-font-size btn-size text-style color">Sign Up</span>
+    </button>
+  </div>
 </div>
