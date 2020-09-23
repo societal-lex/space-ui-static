@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
 import { ConfigurationsService, NsPage, AuthKeycloakService } from '@ws-widget/utils'
 import { IWSPublicLoginConfig } from '../login/login.model'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -21,12 +21,14 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
   isClientLogin = false
   private redirectUrl = ''
   objectKeys = Object.keys
+  clicked = false
 
   constructor(
     private domSanitizer: DomSanitizer,
     private configSvc: ConfigurationsService,
     private activateRoute: ActivatedRoute,
     private authSvc: AuthKeycloakService,
+    private router: Router,
   ) { }
 
   public get showPublicNavbar(): boolean {
@@ -54,7 +56,9 @@ export class AppPublicNavBarComponent implements OnInit, OnDestroy {
       this.subscriptionLogin.unsubscribe()
     }
   }
-
+  gotoHashtag(prodID: string) {
+    this.router.navigate(['public/collaborators'], { fragment: prodID })
+  }
   login(key: 'E' | 'N' | 'S') {
     this.authSvc.login(key, this.redirectUrl)
   }
